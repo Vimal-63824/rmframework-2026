@@ -1,0 +1,316 @@
+package commonfunctions;
+
+/**
+ * @author Deepan-GWL, Sakthi-GWL
+ * @company Galaxy Weblinks January 15, 2025
+ */
+import java.time.Duration;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import commonlocators.CommonUiLocators;
+import utils.ReportLoger;
+import utils.WebDriverBase;
+import utils.WebDriverBase.ElementType;
+
+public class CommonFunctions {
+	private static boolean flag = false;
+	private static WebDriverBase webDB = new WebDriverBase();
+	private static ReportLoger logs = new ReportLoger();
+
+	/**
+	 * This method used to open browser with platformName that was set in maven goal
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void browserOpen() {
+		webDB.Setup(System.getProperty("platformName"));
+	}
+
+	/**
+	 * This method used to navigate url that was set in config properties
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean enterUrl() {
+		webDB.enterURL(System.getProperty("url"));
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		return flag;
+	}
+
+	/**
+	 * This method used to wait 10 seconds till disappear table refreshing cells
+	 * 
+	 * @author Sakthi-GWL
+	 * @return purchaseId
+	 */
+	public boolean checkRefreshCellsDisappear() {
+		List<WebElement> refreshElements = webDB.getDriver()
+				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+		try {
+			for (WebElement element : refreshElements) {
+				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+				wait.until(ExpectedConditions.invisibilityOf(element));
+			}
+			Thread.sleep(500);
+		} catch (Exception e) {
+
+		}
+		List<WebElement> AfterWaitrefreshElements = webDB.getDriver()
+				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+		flag = AfterWaitrefreshElements.isEmpty();
+		return flag;
+	}
+
+	/**
+	 * This method used to logout from the current user
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 * @throws InterruptedException
+	 */
+	public boolean logoutUser() {
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.LoginForm, ElementType.Xpath);
+			if (flag)
+				logs.logging("INFO", "Logout Successfully");
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to Login with valid credentials of Entry User
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 * @throws InterruptedException
+	 */
+	public boolean validCommonLogin(String Username, String Password) {
+		flag = webDB.waitForElement(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
+		if (flag) {
+			webDB.clearTextField(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
+			webDB.sendTextToAnElement(CommonUiLocators.LoginEmailTextBox, Username, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.LoginPasswordTextBox, ElementType.Xpath);
+			if (flag) {
+				webDB.clearTextField(CommonUiLocators.LoginPasswordTextBox, ElementType.Xpath);
+				webDB.sendTextToAnElement(CommonUiLocators.LoginPasswordTextBox, Password, ElementType.Xpath);
+				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
+					if (flag)
+						logs.logging("INFO", "Login Successfully for Entry user");
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to Navigate Purchase Order Page
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	public boolean navigatePurchaseOrderPage() {
+		flag = clickLeftNavigationBar();
+		if (flag) {
+			flag = clickSupplyChainTab();
+			if (flag) {
+				flag = clickPurchaseTab();
+				if (flag) {
+					flag = clickPurchaseTransactionTab();
+					if (flag) {
+						flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
+							flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Navigated To Purchase Order page Successfully");
+							}
+						}
+					}
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method used to navigate Purchase Request Page
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean navigatePurchaseRequestPage() {
+		flag = clickLeftNavigationBar();
+		if (flag) {
+			flag = clickSupplyChainTab();
+			if (flag) {
+				flag = clickPurchaseTab();
+				if (flag) {
+					flag = clickPurchaseTransactionTab();
+					if (flag) {
+						flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
+							flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon,
+									ElementType.Xpath, 45);
+							if (flag)
+								logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
+						}
+					}
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method used to search and select values for all filters
+	 * 
+	 * @author Sakthi-GWL
+	 * @param locator
+	 * @param Value
+	 * @return boolean
+	 */
+	public boolean searchAndSelectValueInFilters(String locator, String Value) {
+		flag = webDB.waitForElement(locator, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(locator, ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+			a: for (int i = 0; i < searchBar.size(); i++) {
+				try {
+					if (searchBar.get(i).isDisplayed()) {
+						searchBar.get(i).sendKeys(Value);
+						flag = checkRefreshCellsDisappear();
+						if (flag) {
+							flag = webDB.waitForClickElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
+							if (flag) {
+								flag = webDB.clickAnElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
+								}
+								break a;
+							}
+						}
+					}
+				} catch (Exception e) {
+					flag = false;
+					continue;
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method used to click create icon - left add icon
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean clickCreateIcon() {
+		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method used to click pending icon - left watch icon
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean clickPendingIcon() {
+		flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			if (flag)
+				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to Opening Left Navigation bar
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	private boolean clickLeftNavigationBar() {
+		flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Left Navigation Bar Is clicked");
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to Opening SCM Tab
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	private boolean clickSupplyChainTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Supply Chain Management Tab Is Clicked");
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to opening Purchase Tab
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	private boolean clickPurchaseTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Purchase Tab Is Clicked");
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to Opening Purchase Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	private boolean clickPurchaseTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Purchase Transaction Tab Is Clicked");
+			}
+		}
+		return flag;
+	}
+}
