@@ -5,6 +5,8 @@ package com.roadmapERP;
  * @company Galaxy Weblinks January 15, 2025
  */
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -73,6 +75,18 @@ public class RoadMapERPTest {
 	public void VerifyDirectPODomesticMaterialStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPODomesticMaterialSimilarUOM();
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Verify After Method
+	 * 
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			commonFunc.verifyAfterMethod();
+		}
 	}
 
 	/**

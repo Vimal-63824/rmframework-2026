@@ -1,5 +1,6 @@
 package commonfunctions;
 
+import java.io.File;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import commonlocators.CommonUiLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -19,6 +21,7 @@ public class CommonFunctions {
 	private static boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
+	private static ExcelUtils excelUtils = new ExcelUtils();
 
 	/**
 	 * This method used to open browser with platformName that was set in maven goal
@@ -103,8 +106,16 @@ public class CommonFunctions {
 				if (flag) {
 					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
-					if (flag)
+					if (flag) {
 						logs.logging("INFO", "Login Successfully for Entry user");
+					} else {
+						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Retrying Login....");
+							webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+							flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
+						}
+					}
 				}
 			}
 		}
@@ -188,7 +199,9 @@ public class CommonFunctions {
 			a: for (int i = 0; i < searchBar.size(); i++) {
 				try {
 					if (searchBar.get(i).isDisplayed()) {
+						searchBar.get(i).clear();
 						searchBar.get(i).sendKeys(Value);
+						Thread.sleep(2000);
 						flag = checkRefreshCellsDisappear();
 						if (flag) {
 							flag = webDB.waitForClickElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
@@ -312,5 +325,40 @@ public class CommonFunctions {
 			}
 		}
 		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Get Data From Test Data Sheet
+	 * 
+	 * @author Deepan-GWL
+	 * @param Key
+	 * @return String value
+	 */
+	public String getDataFromTestDataSheet(String Key) {
+		String value = null;
+		if (VariableHandler.getTestData() == null) {
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+					+ "TestDatas.xlsx";
+			VariableHandler.setTestData(
+					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("TestDataSheetName")));
+		} else {
+		}
+		for (int i = 0; i < VariableHandler.getTestData().length; i++) {
+			if (VariableHandler.getTestData()[i][0].equals(Key)) {
+				value = VariableHandler.getTestData()[i][1];
+			}
+		}
+		return value;
+	}
+
+	/**
+	 * This MEthod Is Used To After Method In TestNG
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAfterMethod() {
+		webDB.navigateToRefresh();
+		webDB.switchToDefaultContent();
+		logoutUser();
 	}
 }
