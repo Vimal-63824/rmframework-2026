@@ -48,8 +48,9 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPoDomesticGeneralSimilarStockAndSupplier() {
-		flag = directPOCreation(webDB.getDataFromProperties("Loc_100"), webDB.getDataFromProperties("PraxairSupplier"),
-				webDB.getDataFromProperties("GeneralValue"));
+		flag = directPOCreation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
 		if (flag) {
 			flag = verifyCreateItemAndAddedQuantity();
 		}
@@ -94,7 +95,7 @@ public class PurchaseOrderFunctions {
 				String Text = webDB.getTextFromElement(PurchaseOrderPageLocators.PurchaseOrderheader,
 						ElementType.Xpath);
 				logs.logging("INFO", "Get Text Header From Purchase order Is: " + Text);
-				flag = Text.contains(webDB.getDataFromProperties("PurchaseOrder"));
+				flag = Text.contains(commonFunc.getDataFromTestDataSheet("PurchaseOrder"));
 				if (flag) {
 					logs.logging("INFO", "Verified Header Get Text Value From Purchase Order");
 				}
@@ -123,9 +124,9 @@ public class PurchaseOrderFunctions {
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
 				if (flag) {
 					String value = webDB.getAttributeFromElement(PurchaseOrderPageLocators.InputItemPO,
-							ElementType.Xpath, webDB.getDataFromProperties("Value"));
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 					logs.logging("INFO", "Get Text Item Name Value from Table Is: " + value);
-					flag = value.contains(webDB.getDataFromProperties("GwlItem_Serial"));
+					flag = value.contains(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 					if (flag) {
 						logs.logging("INFO", "Verified Item Value Successfully");
 					}
@@ -143,7 +144,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreateItemAndAddedQuantity() {
-		flag = verifyCreateItemInPo(webDB.getDataFromProperties("GwlItem_Serial"));
+		flag = verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		if (flag) {
 			flag = verifyCreateItemInPO();
 		}
@@ -174,7 +175,7 @@ public class PurchaseOrderFunctions {
 				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
 				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-						webDB.getDataFromProperties("Value"));
+						commonFunc.getDataFromTestDataSheet("Value"));
 				logs.logging("INFO", "Get Attribute Value Is: " + value);
 				flag = value.contains(Enteredvalue);
 				if (flag) {
@@ -197,24 +198,22 @@ public class PurchaseOrderFunctions {
 		try {
 			Thread.sleep(1000);
 			flag = verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
-					PurchaseOrderPageLocators.OrderedQuantityInput, webDB.getDataFromProperties("QuantityValue"));
+					PurchaseOrderPageLocators.OrderedQuantityInput,
+					commonFunc.getDataFromTestDataSheet("QuantityValue"));
 			if (flag) {
 				Thread.sleep(1000);
 				flag = verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput,
-						webDB.getDataFromProperties("UnitCostValue"));
+						commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 				if (flag) {
 					String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
-							ElementType.Xpath, webDB.getDataFromProperties("Value"));
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 					logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
 					VariableHandler.setPONumber(PONumbervalue);
-					flag = commonFunc.checkRefreshCellsDisappear();
+					flag = verifyTickIconcreateItem();
 					if (flag) {
-						flag = verifyTickIconcreateItem();
+						flag = verifyHeaderTickAndPost();
 						if (flag) {
-							flag = verifyHeaderTickAndPost();
-							if (flag) {
-								flag = verifyWaitingForApproval();
-							}
+							flag = verifyWaitingForApproval();
 						}
 					}
 				}
@@ -264,7 +263,7 @@ public class PurchaseOrderFunctions {
 		webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 		logs.logging("INFO", "Switched To Workflow Frame");
 		flag = commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-				webDB.getDataFromProperties("AshokValue"));
+				commonFunc.getDataFromTestDataSheet("AshokValue"));
 		if (flag) {
 			try {
 				Thread.sleep(2000);
@@ -313,6 +312,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyTickIconcreateItem() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
@@ -386,13 +386,14 @@ public class PurchaseOrderFunctions {
 					Thread.sleep(1000);
 				} catch (Exception e) {
 				}
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement("//a[text()='" + VariableHandler.getPONumber() + "']/../../td[last()]",
 						ElementType.Xpath);
 				if (flag) {
 					String ApproveStatus = webDB.getTextFromElement(
 							"//a[text()='" + VariableHandler.getPONumber() + "']/../../td[last()]", ElementType.Xpath);
 					logs.logging("INFO", "Get Text Status Is: " + ApproveStatus);
-					flag = ApproveStatus.contains(webDB.getDataFromProperties("ApproveStatus"));
+					flag = ApproveStatus.contains(commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 					if (flag) {
 						logs.logging("INFO", "Verified Approve Status In Table");
 					}
@@ -443,8 +444,9 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPoDomesticMaterialSimilarStockAndSupplier() {
-		flag = directPOCreation(webDB.getDataFromProperties("Loc_100"), webDB.getDataFromProperties("PraxairSupplier"),
-				webDB.getDataFromProperties("MaterialValue"));
+		flag = directPOCreation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
 		if (flag) {
 			flag = verifyCreateItemAndAddedQuantity();
 		}
@@ -485,8 +487,8 @@ public class PurchaseOrderFunctions {
 	}
 
 	public boolean verifyDirectPODomesticServiceSimilarUOM() throws Exception {
-		flag = commonFunc.validCommonLogin(webDB.getDataFromProperties("AdminLoginUsername"),
-				webDB.getDataFromProperties("AdminLoginPassword"));
+		flag = commonFunc.validCommonLogin(commonFunc.getDataFromTestDataSheet("AdminLoginUsername"),
+				commonFunc.getDataFromTestDataSheet("AdminLoginPassword"));
 		if (flag) {
 			flag = commonFunc.navigatePurchaseOrderPage();
 			if (flag) {
@@ -498,8 +500,9 @@ public class PurchaseOrderFunctions {
 						if (flag) {
 							flag = commonFunc.logoutUser();
 							if (flag) {
-								flag = commonFunc.validCommonLogin(webDB.getDataFromProperties("AdminLoginUsername"),
-										webDB.getDataFromProperties("AdminLoginPassword"));
+								flag = commonFunc.validCommonLogin(
+										commonFunc.getDataFromTestDataSheet("AdminLoginUsername"),
+										commonFunc.getDataFromTestDataSheet("AdminLoginPassword"));
 								if (flag) {
 									flag = commonFunc.navigatePurchaseOrderPage();
 									if (flag) {
@@ -522,8 +525,9 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPoDomesticServiceSimilarStockAndSupplier() {
-		flag = directPOCreation(webDB.getDataFromProperties("Loc_100"), webDB.getDataFromProperties("PraxairSupplier"),
-				webDB.getDataFromProperties("ServiceValue"));
+		flag = directPOCreation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
 		if (flag) {
 			flag = verifyCreateItemAndAddedQuantity();
 		}

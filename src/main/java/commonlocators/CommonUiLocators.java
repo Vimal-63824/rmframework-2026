@@ -45,13 +45,13 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SupplyChainTab = "//*[@id='t_TreeNav_4']";
 	/** @locatorType Xpath */
-	public static final String PurchaseTab = "//*[@id='t_TreeNav_201']";
+	public static final String PurchaseTab = "//*[@id='t_TreeNav_4']/*/li[1]";
 	/** @locatorType Xpath */
-	public static final String PurchaseTransactionTab = "//*[@id='t_TreeNav_207']";
+	public static final String PurchaseTransactionTab = "//*[@id='t_TreeNav_4']/*/li[1]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderTab = "//*[@id='t_TreeNav_220']";
+	public static final String PurchaseOrderTab = "//*[@id='t_TreeNav_4']/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
-	public static final String PurchaseRequestTab = "//*[@id='t_TreeNav_217']";
+	public static final String PurchaseRequestTab = "//*[@id='t_TreeNav_4']/*/li[1]/*/li[2]/*/li[6]";
 
 	/** @locatorType Xpath */
 	public static String convertXPath(String text) {
