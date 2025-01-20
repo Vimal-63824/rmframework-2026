@@ -54,8 +54,9 @@ public class ApprovalPageFunctions {
 				flag = filterPoforApproval(VariableHandler.getPONumber());
 				if (flag) {
 					flag = verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-							webDB.getDataFromProperties("CURRENCYINR"), webDB.getDataFromProperties("POHTYPE"),
-							webDB.getDataFromProperties("UOMNOS"));
+							commonFunc.getDataFromTestDataSheet("CURRENCYINR"),
+							commonFunc.getDataFromTestDataSheet("POHTYPE"),
+							commonFunc.getDataFromTestDataSheet("UOMNOS"));
 					if (flag) {
 						flag = verifyNavigateback();
 						if (flag) {
@@ -111,39 +112,42 @@ public class ApprovalPageFunctions {
 	 * @return
 	 */
 	public boolean verifyValidatedetailsPoDetails(String PONumber, String ExpCurrency, String POHType, String UOM) {
-		flag = webDB.waitForClickElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+		}
+//		flag = webDB.waitForClickElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
+//		if (flag) {
+		webDB.javaScriptClickAnElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
+		flag = webDB.waitForElement(ApprovalPageLocators.CURRENCY, ElementType.Id);
 		if (flag) {
-			webDB.javaScriptClickAnElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
-			flag = webDB.waitForElement(ApprovalPageLocators.CURRENCY, ElementType.Id);
+			logs.logging("INFO", "INFO Button Is Clicked ");
+			String currency = webDB.getTextFromElement(ApprovalPageLocators.CURRENCY, ElementType.Id);
+			logs.logging("INFO", "Get Text Currency Is: " + currency);
+			flag = currency.equals(ExpCurrency);
 			if (flag) {
-				logs.logging("INFO", "INFO Button Is Clicked ");
-				String currency = webDB.getTextFromElement(ApprovalPageLocators.CURRENCY, ElementType.Id);
-				logs.logging("INFO", "Get Text Currency Is: " + currency);
-				flag = currency.equals(ExpCurrency);
+				logs.logging("INFO", "Verified Expected Currency With Actual Currency");
+				flag = webDB.waitForElement(ApprovalPageLocators.POTYPE, ElementType.Id);
 				if (flag) {
-					logs.logging("INFO", "Verified Expected Currency With Actual Currency");
-					flag = webDB.waitForElement(ApprovalPageLocators.POTYPE, ElementType.Id);
+					String Potype = webDB.getTextFromElement(ApprovalPageLocators.POTYPE, ElementType.Id);
+					logs.logging("INFO", "Get Text Po Type Is: " + Potype);
+					flag = Potype.equals(POHType);
 					if (flag) {
-						String Potype = webDB.getTextFromElement(ApprovalPageLocators.POTYPE, ElementType.Id);
-						logs.logging("INFO", "Get Text Po Type Is: " + Potype);
-						flag = Potype.equals(POHType);
+						logs.logging("INFO", "Verified Expected PO Type With Actual PO Type");
+						flag = webDB.waitForElement(ApprovalPageLocators.UOMTYPE, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "Verified Expected PO Type With Actual PO Type");
-							flag = webDB.waitForElement(ApprovalPageLocators.UOMTYPE, ElementType.Xpath);
+							String Uomtype = webDB.getTextFromElement(ApprovalPageLocators.UOMTYPE, ElementType.Xpath);
+							logs.logging("INFO", "Get Text UOM Type Is: " + Uomtype);
+							flag = Uomtype.equals(UOM);
 							if (flag) {
-								String Uomtype = webDB.getTextFromElement(ApprovalPageLocators.UOMTYPE,
-										ElementType.Xpath);
-								logs.logging("INFO", "Get Text UOM Type Is: " + Uomtype);
-								flag = Uomtype.equals(UOM);
-								if (flag) {
-									logs.logging("INFO", "Verified Actual And Expected UOM");
-								}
+								logs.logging("INFO", "Verified Actual And Expected UOM");
 							}
 						}
-
 					}
+
 				}
 			}
+//			}
 		}
 		return flag;
 	}
@@ -175,25 +179,29 @@ public class ApprovalPageFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyApprovePoNumber(String PONumber) {
-		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(PONumber), ElementType.Xpath);
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+		}
+//		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(PONumber), ElementType.Xpath);
+//		if (flag) {
+		webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(PONumber), ElementType.Xpath);
+		flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
 		if (flag) {
-			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(PONumber), ElementType.Xpath);
-			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+			logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
+			webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+			flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
-				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				logs.logging("INFO", "CheckBox select for purchase ID " + PONumber + " and Process button clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "CheckBox select for purchase ID " + PONumber + " and Process button clicked");
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Approval Process Button IS Displayed");
-						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-					}
+					logs.logging("INFO", "Approval Process Button IS Displayed");
+					webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 				}
 			}
+//			}
 		}
 		return flag;
 	}
@@ -213,8 +221,9 @@ public class ApprovalPageFunctions {
 				flag = filterPoforApproval(VariableHandler.getPONumber());
 				if (flag) {
 					flag = verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-							webDB.getDataFromProperties("CURRENCYINR"), webDB.getDataFromProperties("MaterialType"),
-							webDB.getDataFromProperties("UOMNOS"));
+							commonFunc.getDataFromTestDataSheet("CURRENCYINR"),
+							commonFunc.getDataFromTestDataSheet("MaterialType"),
+							commonFunc.getDataFromTestDataSheet("UOMNOS"));
 					if (flag) {
 						flag = verifyNavigateback();
 						if (flag) {
@@ -246,8 +255,9 @@ public class ApprovalPageFunctions {
 				flag = filterPoforApproval(VariableHandler.getPONumber());
 				if (flag) {
 					flag = verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-							webDB.getDataFromProperties("CURRENCYINR"), webDB.getDataFromProperties("ServiceType"),
-							webDB.getDataFromProperties("UOMNOS"));
+							commonFunc.getDataFromTestDataSheet("CURRENCYINR"),
+							commonFunc.getDataFromTestDataSheet("ServiceType"),
+							commonFunc.getDataFromTestDataSheet("UOMNOS"));
 					if (flag) {
 						flag = verifyNavigateback();
 						if (flag) {

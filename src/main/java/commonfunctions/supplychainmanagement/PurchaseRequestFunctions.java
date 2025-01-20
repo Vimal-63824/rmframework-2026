@@ -32,13 +32,16 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			flag = commonFunc.navigatePurchaseRequestPage();
 			if (flag) {
-				flag = clickAddIcon_CreateNewPurchaseRequest(webDB.getDataFromProperties("Loc_100"),
-						webDB.getDataFromProperties("PR_General"), webDB.getDataFromProperties("Prefix_PR100"),
-						webDB.getDataFromProperties("PR_CPCCode"), webDB.getDataFromProperties("PR_Department"),
-						webDB.getDataFromProperties("PR_Requester"));
+				flag = clickAddIcon_CreateNewPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+						commonFunc.getDataFromTestDataSheet("PR_General"),
+						commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+						commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+						commonFunc.getDataFromTestDataSheet("PR_Department"),
+						commonFunc.getDataFromTestDataSheet("PR_Requester"));
 				if (flag) {
-					flag = fillItemsQuantityCostAndSaveLine_PR(webDB.getDataFromProperties("GwlItem_Serial"), "20",
-							"30", true);
+					flag = fillItemsQuantityCostAndSaveLine_PR(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
+							commonFunc.getDataFromTestDataSheet("QuantityValue"),
+							commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
 					if (flag) {
 						flag = saveHeaderAndClickPost_PR();
 						if (flag) {
@@ -317,8 +320,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean
 	 */
 	private boolean selectPRType_PR(String Type) {
-		if (webDB.getDataFromProperties(Type) != null) {
-			Type = webDB.getDataFromProperties(Type);
+		if (commonFunc.getDataFromTestDataSheet(Type) != null) {
+			Type = commonFunc.getDataFromTestDataSheet(Type);
 		}
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRTypeSelect, ElementType.Xpath);
 		if (flag) {
@@ -338,8 +341,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean
 	 */
 	private boolean selectPRDepartment_PR(String Dept) {
-		if (webDB.getDataFromProperties(Dept) != null) {
-			Dept = webDB.getDataFromProperties(Dept);
+		if (commonFunc.getDataFromTestDataSheet(Dept) != null) {
+			Dept = commonFunc.getDataFromTestDataSheet(Dept);
 		}
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRDepartmentSelect, ElementType.Xpath);
 		if (flag) {
@@ -359,8 +362,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean
 	 */
 	private boolean selectPRRequester_PR(String Rqstr) {
-		if (webDB.getDataFromProperties(Rqstr) != null) {
-			Rqstr = webDB.getDataFromProperties(Rqstr);
+		if (commonFunc.getDataFromTestDataSheet(Rqstr) != null) {
+			Rqstr = commonFunc.getDataFromTestDataSheet(Rqstr);
 		}
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRRequesterSelect, ElementType.Xpath);
 		if (flag) {
@@ -380,8 +383,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean
 	 */
 	private boolean selectPRPrefix_PR(String prefix) {
-		if (webDB.getDataFromProperties(prefix) != null) {
-			prefix = webDB.getDataFromProperties(prefix);
+		if (commonFunc.getDataFromTestDataSheet(prefix) != null) {
+			prefix = commonFunc.getDataFromTestDataSheet(prefix);
 		}
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRPrefixSelect, ElementType.Xpath);
 		if (flag) {
