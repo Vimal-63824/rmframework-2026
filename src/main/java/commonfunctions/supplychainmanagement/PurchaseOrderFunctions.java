@@ -1,5 +1,7 @@
 package commonfunctions.supplychainmanagement;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks January 15, 2025
@@ -22,60 +24,20 @@ public class PurchaseOrderFunctions {
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 
 	/**
-	 * Verify Direct PO Creation
-	 * 
-	 * @author Deepan-GWL
-	 * @param LocationId
-	 * @param SupplierName
-	 * @param POType
-	 * @return boolean flag
-	 */
-	public boolean directPOCreation(String LocationId, String SupplierName, String POType) {
-		flag = commonFunc.clickCreateIcon();
-		if (flag) {
-			flag = verifyCreateDirectPOAddingParameters(LocationId, SupplierName, POType);
-			if (flag) {
-				flag = verifyTickIconcreatePO();
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * Verify Direct PO Domestic General Similar Stock And Supplier
-	 * 
-	 * @author Deepan-GWL
-	 * @return boolean flag
-	 */
-	public boolean verifyDirectPoDomesticGeneralSimilarStockAndSupplier() {
-		flag = directPOCreation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
-				commonFunc.getDataFromTestDataSheet("GeneralValue"));
-		if (flag) {
-			flag = verifyCreateItemAndAddedQuantity();
-		}
-		return flag;
-	}
-
-	/**
 	 * Verify Create Direct PO Adding Parameter
 	 * 
 	 * @author Deepan-GWL
 	 * @param LocationId
 	 * @param SupplierName
 	 * @param POType
-	 * @return boolean flag
 	 */
-	public boolean verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
-		flag = commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
+	public void verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
+		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
+		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
-			webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
-			if (flag) {
-				flag = commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton,
-						SupplierName);
-			}
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
 		}
-		return flag;
+		assertTrue(flag);
 
 	}
 
@@ -83,9 +45,8 @@ public class PurchaseOrderFunctions {
 	 * Verify Clicking Add Button
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyClickingAddButton() {
+	public void verifyClickingAddButton() {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
@@ -101,7 +62,7 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
@@ -109,9 +70,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @param Item
-	 * @return boolean flag
 	 */
-	public boolean verifyCreateItemInPo(String Item) {
+	public void verifyCreateItemInPo(String Item) {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Item Add Button Is Displayed Successfully");
@@ -120,20 +80,20 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Item Add Button Is Clicked");
 				webDB.clickAnElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
-				flag = commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ItemSelectButton, Item);
+				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ItemSelectButton, Item);
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
 				if (flag) {
 					String value = webDB.getAttributeFromElement(PurchaseOrderPageLocators.InputItemPO,
 							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 					logs.logging("INFO", "Get Text Item Name Value from Table Is: " + value);
-					flag = value.contains(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+					flag = value.contains(Item);
 					if (flag) {
 						logs.logging("INFO", "Verified Item Value Successfully");
 					}
 				}
 			}
 		}
-		return flag;
+		assertTrue(flag);
 
 	}
 
@@ -141,16 +101,10 @@ public class PurchaseOrderFunctions {
 	 * Verify Create Item And Added Quantity
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyCreateItemAndAddedQuantity() {
-		flag = verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
-		if (flag) {
-			flag = verifyCreateItemInPO();
-		}
-
-		return flag;
-
+	public void verifyCreateItemAndAddedQuantity() {
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
 	}
 
 	/**
@@ -160,9 +114,8 @@ public class PurchaseOrderFunctions {
 	 * @param Tablespec
 	 * @param InputParameter
 	 * @param Enteredvalue
-	 * @return boolean flag
 	 */
-	public boolean verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
+	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(Tablespec, ElementType.Xpath);
@@ -183,8 +136,7 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-
-		return flag;
+		assertTrue(flag);
 
 	}
 
@@ -192,45 +144,35 @@ public class PurchaseOrderFunctions {
 	 * Verify Create Item In Po
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyCreateItemInPO() {
+	public void verifyAddItemInPOWithQuantityAndUnitCost() {
 		try {
+			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(1000);
-			flag = verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
+			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput,
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));
-			if (flag) {
-				Thread.sleep(1000);
-				flag = verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput,
-						commonFunc.getDataFromTestDataSheet("UnitCostValue"));
-				if (flag) {
-					String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
-							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-					logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
-					VariableHandler.setPONumber(PONumbervalue);
-					flag = verifyTickIconcreateItem();
-					if (flag) {
-						flag = verifyHeaderTickAndPost();
-						if (flag) {
-							flag = verifyWaitingForApproval();
-						}
-					}
-				}
-			}
+			// TODO WAIT_LOAD_TIME (will remove future)
+			Thread.sleep(1000);
+			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput,
+					commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+			VariableHandler.setPONumber(PONumbervalue);
+			verifyTickIconcreateItem();
+			verifyHeaderTickAndPost();
+			verifyWaitingForApproval();
 		} catch (Exception e) {
 		}
-		return flag;
-
 	}
 
 	/**
 	 * Verify Header Tick And Post
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyHeaderTickAndPost() {
+	public void verifyHeaderTickAndPost() {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
@@ -246,53 +188,51 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
 	 * Verify Waiting For Approval
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyWaitingForApproval() {
+	public void verifyWaitingForApproval() {
 		try {
+			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(3000);
 		} catch (Exception e) {
 		}
 		webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 		logs.logging("INFO", "Switched To Workflow Frame");
-		flag = commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
+		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
 				commonFunc.getDataFromTestDataSheet("AshokValue"));
+		try {
+			// TODO WAIT_LOAD_TIME (will remove future)
+			Thread.sleep(2000);
+		} catch (Exception e) {
+		}
+		webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+		logs.logging("INFO", "Switched To WorkFlow Frame");
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
 		if (flag) {
-			try {
-				Thread.sleep(2000);
-			} catch (Exception e) {
-			}
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+			logs.logging("INFO", "Ok Button Is Clicked");
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Verified Navigate To PO Home Page");
-				}
+				logs.logging("INFO", "Verified Navigate To PO Home Page");
 			}
 		}
 		webDB.switchToDefaultContent();
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
 	 * Verify Tick Icon Create PO
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyTickIconcreatePO() {
+	public void verifyTickIconcreatePO() {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Tick Icon Is Displayed");
@@ -302,16 +242,15 @@ public class PurchaseOrderFunctions {
 				logs.logging("INFO", "Verified Navigate To PO Edit Page");
 			}
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
 	 * Verify Tick Icon Create Item
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyTickIconcreateItem() {
+	public void verifyTickIconcreateItem() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 		if (flag) {
@@ -323,7 +262,7 @@ public class PurchaseOrderFunctions {
 				logs.logging("INFO", "Toast Close Icon Is Clicked");
 			}
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
@@ -332,9 +271,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 * @param locators
 	 * @param PONumber
-	 * @return boolean flag
 	 */
-	public boolean verifySelectPONumber(String locators, String PONumber) {
+	public void verifySelectPONumber(String locators, String PONumber) {
 		flag = webDB.waitForElement(locators, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(locators, ElementType.Xpath);
@@ -353,12 +291,14 @@ public class PurchaseOrderFunctions {
 				}
 			}
 			try {
+				// TODO WAIT_LOAD_TIME (will remove future)
 				Thread.sleep(2000);
 			} catch (Exception e) {
 			}
 			webDB.pressDownArrowKey();
 			logs.logging("INFO", "Down Arrow Is Clicked");
 			try {
+				// TODO WAIT_LOAD_TIME (will remove future)
 				Thread.sleep(1000);
 			} catch (Exception e) {
 			}
@@ -366,23 +306,23 @@ public class PurchaseOrderFunctions {
 			logs.logging("INFO", "Enter Key Is Clicked");
 			flag = commonFunc.checkRefreshCellsDisappear();
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
 	 * Verify Validate PO Approved Status
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean verifyValidatePoApprovedStatus() {
-		flag = verifySelectPONumber(PurchaseOrderPageLocators.PONumberSelect, VariableHandler.getPONumber());
+	public void verifyValidatePoApprovedStatus() {
+		verifySelectPONumber(PurchaseOrderPageLocators.PONumberSelect, VariableHandler.getPONumber());
 		if (flag) {
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
 				logs.logging("INFO", "Search Button Is Clicked");
 				try {
+					// TODO WAIT_LOAD_TIME (will remove future)
 					Thread.sleep(1000);
 				} catch (Exception e) {
 				}
@@ -401,136 +341,161 @@ public class PurchaseOrderFunctions {
 			}
 		}
 
-		return flag;
+		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Verify Direct PO Domestic General Similar UOM
+	 * 
+	 * @return boolean flag
+	 * @throws Exception
+	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOM() throws Exception {
-		flag = commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemAndAddedQuantity();
+		flag = commonFunc.logoutUser();
 		if (flag) {
-			flag = commonFunc.navigatePurchaseOrderPage();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
+					commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
 			if (flag) {
-				flag = verifyDirectPoDomesticGeneralSimilarStockAndSupplier();
-				if (flag) {
-					flag = commonFunc.logoutUser();
-					if (flag) {
-						flag = approvalFunc.verifyAshokAccountPOApproval();
-						if (flag) {
-							flag = commonFunc.logoutUser();
-							if (flag) {
-								flag = commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-										System.getProperty("HodPassword"));
-								if (flag) {
-									flag = commonFunc.navigatePurchaseOrderPage();
-									if (flag) {
-										flag = verifyValidatePoApprovedStatus();
-										if (flag) {
-											flag = commonFunc.logoutUser();
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
 			}
 		}
 		return flag;
 	}
 
 	/**
-	 * Verify Direct PO Domestic Material Similar Stock And Supplier
+	 * This Method Is Used To Verify Direct Po Domestic Material Similar UOM
 	 * 
-	 * @author Deepan-GWL
 	 * @return boolean flag
+	 * @throws Exception
 	 */
-	public boolean verifyDirectPoDomesticMaterialSimilarStockAndSupplier() {
-		flag = directPOCreation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+	public boolean verifyDirectPODomesticMaterialSimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemAndAddedQuantity();
+		flag = commonFunc.logoutUser();
 		if (flag) {
-			flag = verifyCreateItemAndAddedQuantity();
-		}
-		return flag;
-	}
-
-	public boolean verifyDirectPODomesticMaterialSimilarUOM() throws Exception {
-		flag = commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		if (flag) {
-			flag = commonFunc.navigatePurchaseOrderPage();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
 			if (flag) {
-				flag = verifyDirectPoDomesticMaterialSimilarStockAndSupplier();
-				if (flag) {
-					flag = commonFunc.logoutUser();
-					if (flag) {
-						flag = approvalFunc.verifyAshokAccountPOApprovalWithMaterial();
-						if (flag) {
-							flag = commonFunc.logoutUser();
-							if (flag) {
-								flag = commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-										System.getProperty("HodPassword"));
-								if (flag) {
-									flag = commonFunc.navigatePurchaseOrderPage();
-									if (flag) {
-										flag = verifyValidatePoApprovedStatus();
-										if (flag) {
-											flag = commonFunc.logoutUser();
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		return flag;
-	}
-
-	public boolean verifyDirectPODomesticServiceSimilarUOM() throws Exception {
-		flag = commonFunc.validCommonLogin(commonFunc.getDataFromTestDataSheet("AdminLoginUsername"),
-				commonFunc.getDataFromTestDataSheet("AdminLoginPassword"));
-		if (flag) {
-			flag = commonFunc.navigatePurchaseOrderPage();
-			if (flag) {
-				flag = verifyDirectPoDomesticServiceSimilarStockAndSupplier();
-				if (flag) {
-					flag = commonFunc.logoutUser();
-					if (flag) {
-						flag = approvalFunc.verifyAshokAccountPOApprovalWithService();
-						if (flag) {
-							flag = commonFunc.logoutUser();
-							if (flag) {
-								flag = commonFunc.validCommonLogin(
-										commonFunc.getDataFromTestDataSheet("AdminLoginUsername"),
-										commonFunc.getDataFromTestDataSheet("AdminLoginPassword"));
-								if (flag) {
-									flag = commonFunc.navigatePurchaseOrderPage();
-									if (flag) {
-										flag = verifyValidatePoApprovedStatus();
-									}
-								}
-							}
-						}
-					}
-				}
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
 			}
 		}
 		return flag;
 	}
 
 	/**
-	 * Verify Direct PO Domestic Service Similar Stock And Supplier
+	 * 
+	 * This Method Is Used To Verify Direct PO Domestic General Dissimilar
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
+	 * @throws Exception
 	 */
-	public boolean verifyDirectPoDomesticServiceSimilarStockAndSupplier() {
-		flag = directPOCreation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+	public boolean verifyDirectPODomesticGeneralDissimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
-				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		flag = commonFunc.logoutUser();
 		if (flag) {
-			flag = verifyCreateItemAndAddedQuantity();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
+					commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
+			}
 		}
 		return flag;
 	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Domestic General Dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPODomesticMaterialDissimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
 }
