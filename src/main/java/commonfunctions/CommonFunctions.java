@@ -11,6 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import commonlocators.CommonUiLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -33,7 +35,7 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * This method used to navigate url that was set in config properties
+	 * This method used to navigate url that was set in Maven Goal
 	 * 
 	 * @author Sakthi-GWL
 	 * @return boolean
@@ -58,6 +60,7 @@ public class CommonFunctions {
 				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
 				wait.until(ExpectedConditions.invisibilityOf(element));
 			}
+			//TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(500);
 		} catch (Exception e) {
 
@@ -80,20 +83,20 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.javaScriptClickAnElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.LoginForm, ElementType.Xpath);
-			if (flag)
+			if (flag) {
 				logs.logging("INFO", "Logout Successfully");
+			}
 		}
 		return flag;
 	}
 
 	/**
-	 * This method used to Login with valid credentials of Entry User
+	 * This method used to Login with valid credentials
 	 * 
 	 * @author Sakthi-GWL
-	 * @return boolean
 	 * @throws InterruptedException
 	 */
-	public boolean validCommonLogin(String Username, String Password) {
+	public void validCommonLogin(String Username, String Password, String... Name) {
 		flag = webDB.waitForElement(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
@@ -106,9 +109,7 @@ public class CommonFunctions {
 				if (flag) {
 					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Login Successfully for Entry user");
-					} else {
+					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Retrying Login....");
@@ -119,67 +120,56 @@ public class CommonFunctions {
 				}
 			}
 		}
-		return flag;
+		if (flag) {
+			if (Name != null) {
+				logs.logging("INFO", Name + " User Logged In Successfully");
+			} else {
+				logs.logging("INFO", "User Logged In Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This method used to Navigate Purchase Order Page
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	public boolean navigatePurchaseOrderPage() {
-		flag = clickLeftNavigationBar();
+	public void navigatePurchaseOrderPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
 		if (flag) {
-			flag = clickSupplyChainTab();
+			webDB.clickAnElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 			if (flag) {
-				flag = clickPurchaseTab();
-				if (flag) {
-					flag = clickPurchaseTransactionTab();
-					if (flag) {
-						flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(CommonUiLocators.PurchaseOrderTab, ElementType.Xpath);
-							flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Navigated To Purchase Order page Successfully");
-							}
-						}
-					}
-				}
+				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This Method used to navigate Purchase Request Page
 	 * 
 	 * @author Sakthi-GWL
-	 * @return boolean
 	 */
-	public boolean navigatePurchaseRequestPage() {
-		flag = clickLeftNavigationBar();
+	public void navigatePurchaseRequestPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
 		if (flag) {
-			flag = clickSupplyChainTab();
+			webDB.clickAnElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
 			if (flag) {
-				flag = clickPurchaseTab();
-				if (flag) {
-					flag = clickPurchaseTransactionTab();
-					if (flag) {
-						flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(CommonUiLocators.PurchaseRequestTab, ElementType.Xpath);
-							flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon,
-									ElementType.Xpath, 45);
-							if (flag)
-								logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
-						}
-					}
-				}
+				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -188,9 +178,8 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 * @param locator
 	 * @param Value
-	 * @return boolean
 	 */
-	public boolean searchAndSelectValueInFilters(String locator, String Value) {
+	public void searchAndSelectValueInFilters(String locator, String Value) {
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(locator, ElementType.Xpath);
@@ -201,6 +190,7 @@ public class CommonFunctions {
 					if (searchBar.get(i).isDisplayed()) {
 						searchBar.get(i).clear();
 						searchBar.get(i).sendKeys(Value);
+						//TODO WAIT_LOAD_TIME (will remove future)
 						Thread.sleep(2000);
 						flag = checkRefreshCellsDisappear();
 						if (flag) {
@@ -220,48 +210,45 @@ public class CommonFunctions {
 				}
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This Method used to click create icon - left add icon
 	 * 
 	 * @author Sakthi-GWL
-	 * @return boolean
 	 */
-	public boolean clickCreateIcon() {
+	public void clickCreateIcon() {
 		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This Method used to click pending icon - left watch icon
 	 * 
 	 * @author Sakthi-GWL
-	 * @return boolean
 	 */
-	public boolean clickPendingIcon() {
+	public void clickPendingIcon() {
 		flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			if (flag)
 				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This method used to Opening Left Navigation bar
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	private boolean clickLeftNavigationBar() {
+	private void clickLeftNavigationBar() {
 		flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
@@ -270,16 +257,15 @@ public class CommonFunctions {
 				logs.logging("INFO", "Left Navigation Bar Is clicked");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This method used to Opening SCM Tab
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	private boolean clickSupplyChainTab() {
+	private void clickSupplyChainTab() {
 		flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
@@ -288,16 +274,15 @@ public class CommonFunctions {
 				logs.logging("INFO", "Supply Chain Management Tab Is Clicked");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This method used to opening Purchase Tab
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	private boolean clickPurchaseTab() {
+	private void clickPurchaseTab() {
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
@@ -306,16 +291,15 @@ public class CommonFunctions {
 				logs.logging("INFO", "Purchase Tab Is Clicked");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
 	 * This method used to Opening Purchase Transaction Tab
 	 * 
 	 * @author Deepan-GWL
-	 * @return boolean flag
 	 */
-	private boolean clickPurchaseTransactionTab() {
+	private void clickPurchaseTransactionTab() {
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
@@ -324,7 +308,7 @@ public class CommonFunctions {
 				logs.logging("INFO", "Purchase Transaction Tab Is Clicked");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**

@@ -21,9 +21,6 @@ public class PurchaseRequestLocators {
 	public static final String FindSearchButton = "//button[@id='B148414063445984831']";
 	/** @locatorType Xpath */
 	public static final String PRStatusBoldText = "//div[contains(@style,'bold')]";
-	
-	
-	//
 	/** @locatorType Xpath */
 	public static final String AddLineIcon = "//button[@title='Add Line']";
 	/** @locatorType Xpath */
@@ -37,6 +34,8 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]";
 	/** @locatorType Xpath */
+	public static final String ItemDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]/div/input";
+	/** @locatorType Xpath */
 	public static final String QuantityDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]";
 	/** @locatorType Xpath */
 	public static final String QuantityDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]/div//input";
@@ -49,9 +48,41 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String ItemDataPopupSearchBox = "//input[contains(@class,'a-PopupLOV-search')]";
 	/** @locatorType Xpath */
-	public static final String ItemDataSearchFirstResult = "//tr[contains(@data-id,'FG00011')]";
+	public static final String ItemDataSearchFirstResult = "//tr/td[1][contains(@data-id,'FG00011')]";
+
 	/** @locatorType Xpath */
-	public static final String ItemDataPopupHighlights = "//span[@class='popup-lov-highlight']";
+	public static final String FindPR_LocIDBtn = "//button[contains(@id,'LOCATION')]";
 	/** @locatorType Xpath */
-	public static final String LastrowLineNo = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[1])[last()]";
+	public static final String FindPR_UnitBtn = "//button[contains(@id,'PLNT_lov')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_ItemBtn = "//button[contains(@id,'PROD_ID')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_RequesterBtn = "//button[contains(@id,'REQ_ID')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_ClassBtn = "//button[contains(@id,'CLASS')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_SubclassBtn = "//button[contains(@id,'SUBCLS')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_SOPrjRefBtn = "//button[contains(@id,'SO_SCHLD_DESC')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_WHDeptBtn = "//button[contains(@id,'STORE_ID')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_MRPNoBtn = "//button[contains(@id,'MRP_NO')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_PRTypeSelect = "//select[contains(@id,'DOC_TYPE')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_PRStatusSelect = "//select[contains(@id,'STATUS')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_ReqDateFROMINPUT = "//input[contains(@id,'REQ_DATE_FROM_input')]";
+	/** @locatorType Xpath */
+	public static final String FindPR_ReqDateTOINPUT = "//input[contains(@id,'REQ_DATE_TO_input')]";
+	/** @locatorType Xpath */
+	public static final String PR_TableViewCountSelect = "//select[@id='ld_row_select']";
+	/** @locatorType Xpath */
+	public static final String PR_Cancelbtn = "//button[@id='B4691386861259104744']";
+
+	/** @locatorType Xpath */
+	public static final String PR_LineDeleteIconWithData(String Text) {
+		return "(//td[text()='" + Text + "']/..//span[@class='fa fa-trash-o'])[1]";
+	}
 }
