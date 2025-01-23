@@ -58,6 +58,19 @@ public class PurchaseRequestTest {
 	}
 
 	/**
+	 * How to create the purchase request directly to the system through excel
+	 * upload?
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 4, groups = {
+			"PurchaseRequest" }, description = "67 - How to create the purchase request directly to the system through excel upload?")
+	public void VerifyCreatePRByUploadExcel() {
+		flag = PRFunc.verifyCreatePRByUploadExcel();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
 	 * Verify After Method
 	 * 
 	 * @param result

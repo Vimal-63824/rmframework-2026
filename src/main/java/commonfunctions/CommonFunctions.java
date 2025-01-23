@@ -6,6 +6,7 @@ import java.io.File;
  * @company Galaxy Weblinks January 15, 2025
  */
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -60,7 +61,7 @@ public class CommonFunctions {
 				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
 				wait.until(ExpectedConditions.invisibilityOf(element));
 			}
-			//TODO WAIT_LOAD_TIME (will remove future)
+			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(500);
 		} catch (Exception e) {
 
@@ -122,7 +123,7 @@ public class CommonFunctions {
 		}
 		if (flag) {
 			if (Name != null) {
-				logs.logging("INFO", Name + " User Logged In Successfully");
+				logs.logging("INFO", "'" + Arrays.toString(Name) + "' User Logged In Successfully");
 			} else {
 				logs.logging("INFO", "User Logged In Successfully");
 			}
@@ -190,7 +191,7 @@ public class CommonFunctions {
 					if (searchBar.get(i).isDisplayed()) {
 						searchBar.get(i).clear();
 						searchBar.get(i).sendKeys(Value);
-						//TODO WAIT_LOAD_TIME (will remove future)
+						// TODO WAIT_LOAD_TIME (will remove future)
 						Thread.sleep(2000);
 						flag = checkRefreshCellsDisappear();
 						if (flag) {
@@ -336,7 +337,7 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * This MEthod Is Used To After Method In TestNG
+	 * This Method Is Used To After Method In TestNG
 	 * 
 	 * @author Deepan-GWL
 	 */
