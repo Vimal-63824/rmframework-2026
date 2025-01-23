@@ -85,4 +85,13 @@ public class PurchaseRequestLocators {
 	public static final String PR_LineDeleteIconWithData(String Text) {
 		return "(//td[text()='" + Text + "']/..//span[@class='fa fa-trash-o'])[1]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String PR_UploadTemplateBtn = "//button[@title='Upload Template']";
+	/** @locatorType Xpath */
+	public static final String PR_UploadFileInput = "//input[contains(@id,'FILE_input')]";
+	/** @locatorType Xpath */
+	public static final String PR_UploadedFileText = "//div[contains(@id,'FILE_DROPZON')]//span[@class='a-FileDrop-heading']";
+	/** @locatorType Xpath */
+	public static final String PR_UploadOkBtn = "//button[@id='B1122765554844427422']";
 }

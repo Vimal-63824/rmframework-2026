@@ -1,5 +1,12 @@
 package commonfunctions.supplychainmanagement;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -32,7 +39,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreationOfPRGeneral() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
@@ -54,7 +62,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreationOfPRService() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"),
@@ -77,7 +86,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelPRAndDeleteLine() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
@@ -88,6 +98,29 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
 		deleteParticularLinesPurchaseRequest(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		cancelPurchaseRequestAndVerifyCancelStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Cancel of PR and Cancel of Item Lines
+	 * particularly
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCreatePRByUploadExcel() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		String updatedFileName = createUpdatedCsvFileWithRequiredDate(commonFunc.getDataFromTestDataSheet("PRtemplate1Line"));
+		verifyUploadCsvFileInPRAndDeleteUpdatedFile(updatedFileName);
+		saveHeaderAndClickPost();
+		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -122,7 +155,7 @@ public class PurchaseRequestFunctions {
 	 * @param ExpextedStatus
 	 */
 	public void searchPRAndCheckPRStatus(String PRNumber, String ExpextedStatus) {
-		if (webDB.isElementDisplayed(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath)) {
+		if (webDB.verifyIsElementDisplayed(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath)) {
 			webDB.clickAnElement(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath);
 		}
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_PRNoButton, PRNumber);
@@ -158,24 +191,10 @@ public class PurchaseRequestFunctions {
 				}
 			}
 		}
-		flag = commonFunc.checkRefreshCellsDisappear();
-		if (flag) {
-			searchAndSelectItems(Item);
-			flag = commonFunc.checkRefreshCellsDisappear();
-			if (flag) {
-				enterQuantityForLastItem(Qnty);
-				flag = commonFunc.checkRefreshCellsDisappear();
-				if (flag) {
-					enterCostForLastItem(Cost);
-					flag = commonFunc.checkRefreshCellsDisappear();
-					if (flag) {
-						saveLinesEntry();
-						flag = commonFunc.checkRefreshCellsDisappear();
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
+		searchAndSelectItems(Item);
+		enterQuantityForLastItem(Qnty);
+		enterCostForLastItem(Cost);
+		saveLinesEntry();
 	}
 
 	/**
@@ -264,6 +283,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void saveLinesEntry() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
@@ -291,6 +311,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void searchAndSelectItems(String Item) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
@@ -329,6 +350,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void enterQuantityForLastItem(String Quantity) {
+		commonFunc.checkRefreshCellsDisappear();
 		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
 		if (flag) {
@@ -363,6 +385,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void enterCostForLastItem(String Cost) {
+		commonFunc.checkRefreshCellsDisappear();
 		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
 		if (flag) {
@@ -484,6 +507,9 @@ public class PurchaseRequestFunctions {
 				String PRNum = webDB.getTextFromElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
 				VariableHandler.setPRNumber(PRNum);
 				logs.logging("INFO", "Purchase Request ID: " + VariableHandler.getPRNumber());
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -630,4 +656,102 @@ public class PurchaseRequestFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * This method used to upload csv file in PR and verify uploaded or not and
+	 * Delete file After delete
+	 * 
+	 * @author Sakthi-GWL
+	 * @param uploadingFile
+	 */
+	private void verifyUploadCsvFileInPRAndDeleteUpdatedFile(String uploadingFile) {
+		String File = uploadingFile;
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_UploadTemplateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PR_UploadTemplateBtn, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PR_UploadTemplateBtn, ElementType.Xpath);
+			logs.logging("INFO", "File Upload Button Clicked");
+			webDB.waitForElement(PurchaseRequestLocators.PR_UploadFileInput, ElementType.Xpath);
+			webDB.sendTextToAnElement(PurchaseRequestLocators.PR_UploadFileInput, (new File(File).getAbsolutePath()),
+					ElementType.Xpath);
+			webDB.waitForElement(PurchaseRequestLocators.PR_UploadedFileText, ElementType.Xpath);
+			flag = webDB.getTextFromElement(PurchaseRequestLocators.PR_UploadedFileText, ElementType.Xpath)
+					.contains(uploadingFile);
+			if (flag) {
+				logs.logging("INFO", uploadingFile + " - File Uploaded Successfully");
+				webDB.clickAnElement(PurchaseRequestLocators.PR_UploadOkBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)
+							.contains("Lines Uploaded Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+		deleteUpdatedCsvFileAfterUploaded(uploadingFile);
+		logs.logging("INFO", " PR Lines Uploaded Successfully Toast Displayed");
+	}
+
+	/**
+	 * This method used to create a new csv file with template file by replacing
+	 * Required Date as next day of System date
+	 * 
+	 * @author Sakthi-GWL
+	 * @param TemplarteFileName
+	 * @return String updatedFileName
+	 */
+	private String createUpdatedCsvFileWithRequiredDate(String TemplarteFileName) {
+		String FileName = VariableHandler.testdataDir + TemplarteFileName;
+		String updatedFile = "updated" + TemplarteFileName;
+
+		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
+		String tomorrowDate = myDateObj.format(myFormatObj);
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(FileName));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(updatedFile))) {
+			String line;
+			boolean isHeader = true;
+			while ((line = reader.readLine()) != null) {
+				if (line.trim().isEmpty()) {
+					break;
+				}
+				String[] columns = line.split(",");
+				if (isHeader) {
+					writer.write(String.join(",", columns));
+					writer.newLine();
+					isHeader = false;
+				} else {
+					int dateColumnIndex = 4;
+					columns[dateColumnIndex] = tomorrowDate; // Replace with tomorrow's date
+					writer.write(String.join(",", columns));
+					writer.newLine();
+				}
+			}
+			logs.logging("INFO", "File processed successfully. Modified file saved as: " + updatedFile);
+		} catch (Exception e) {
+			logs.logging("FAIL", "File processed Failed. Modified file failed to save as: " + updatedFile);
+			Assert.fail("File processed Failed. Modified file failed to save as: " + updatedFile);
+		}
+		return updatedFile;
+	}
+
+	/**
+	 * This method used to delete the csv file after uploaded in case of failure
+	 * remove the file manually
+	 * 
+	 * @param FileName
+	 */
+	private void deleteUpdatedCsvFileAfterUploaded(String FileName) {
+		File originalFile = new File(FileName);
+		if (originalFile.delete()) {
+			logs.logging("INFO", "Deleted the file: " + FileName);
+		} else {
+			logs.logging("FAIL", "Failed to Delete the file: " + FileName);
+			Assert.fail("Failed to Delete the file: " + FileName);
+		}
+	}
 }
