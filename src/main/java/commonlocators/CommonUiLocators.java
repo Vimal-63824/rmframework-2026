@@ -57,5 +57,9 @@ public class CommonUiLocators {
 	public static String convertXPath(String text) {
 		return "(//*[text()='" + text + "'])[1]";
 	}
+	
+	/**
+	 * first commit by harikrishna 
+	 */
 
 }
