@@ -19,23 +19,13 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String SearchBoxGoBtn = "//button[@id='PEND_search_button']";
 	/** @locatorType Xpath */
-	public static final String PR_ItemValuesTableList = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])";
-	/** @locatorType Xpath */
-	public static final String PR_QuantityValuesTableList = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])";
-	/** @locatorType Xpath */
-	public static final String PR_CostValuesTableList = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])";
-	/** @locatorType Xpath */
 	public static final String ProcessButton = "(//span[text()='Process']/parent::button)[1]";
 	/** @locatorType Xpath */
 	public static final String ApproveRadioBtn = "//label[text()='Approve']";
 	/** @locatorType Xpath */
-	public static final String ProcessTickIcon = "//span[contains(@class,'fa fa-check')]/parent::button";
-	/** @locatorType Xpath */
-	public static final String DocumentApprovedToast = "//span[contains(text(),'Document is Approved.')]";
-	/** @locatorType Xpath */
 	public static final String ToastCloseIcon = "//button[@title='Close']";
 	/** @locatorType Xpath */
-	public static final String SearchTableResult = "//table[@id='26244491392720942738']/tbody/tr/td[1]";
+	public static final String SearchTableResult = " //table[@id='26244491392720942738']/tbody/tr[2]/td[1]";
 	/** @locatorType Id */
 	public static final String CURRENCY = "P161513106044_POH_CURRENCY_DISPLAY";
 	/** @locatorType Id */

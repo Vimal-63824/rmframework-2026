@@ -9,9 +9,13 @@ import static org.testng.Assert.assertTrue;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -97,15 +101,14 @@ public class PurchaseOrderFunctions {
 
 	}
 
-	/**
-	 * Verify Create Item And Added Quantity
-	 * 
-	 * @author Deepan-GWL
-	 */
-	public void verifyCreateItemAndAddedQuantity() {
-		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
-		verifyAddItemInPOWithQuantityAndUnitCost();
-	}
+//	/**
+//	 * Verify Create Item And Added Quantity
+//	 * 
+//	 * @author Deepan-GWL
+//	 */
+//	public void verifyCreateItemAndAddedQuantity() {
+//		
+//	}
 
 	/**
 	 * Verify Add Table Specs
@@ -160,9 +163,7 @@ public class PurchaseOrderFunctions {
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
 			VariableHandler.setPONumber(PONumbervalue);
-			verifyTickIconcreateItem();
-			verifyHeaderTickAndPost();
-			verifyWaitingForApproval();
+
 		} catch (Exception e) {
 		}
 	}
@@ -185,6 +186,7 @@ public class PurchaseOrderFunctions {
 				if (flag) {
 					webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 					logs.logging("INFO", "Header Post Icon Is Clicked");
+//					flag = webDB.waitForElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 				}
 			}
 		}
@@ -196,35 +198,43 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void verifyWaitingForApproval() {
+	public boolean verifyWaitingForApproval() {
 		try {
 			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(3000);
 		} catch (Exception e) {
 		}
-		webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-		logs.logging("INFO", "Switched To Workflow Frame");
-		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-				commonFunc.getDataFromTestDataSheet("AshokValue"));
-		try {
-			// TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(2000);
-		} catch (Exception e) {
-		}
-		webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-		logs.logging("INFO", "Switched To WorkFlow Frame");
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
-			logs.logging("INFO", "Ok Button Is Clicked");
-			webDB.switchToDefaultContent();
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Verified Navigate To PO Home Page");
+		if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
+					commonFunc.getDataFromTestDataSheet("AshokValue"));
+			try {
+				// TODO WAIT_LOAD_TIME (will remove future)
+				Thread.sleep(2000);
+			} catch (Exception e) {
 			}
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To PO Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
 		}
-		webDB.switchToDefaultContent();
-		assertTrue(flag);
+		return flag;
 	}
 
 	/**
@@ -260,6 +270,7 @@ public class PurchaseOrderFunctions {
 				logs.logging("INFO", "Item Tick Icon Is Clicked");
 				webDB.clickAnElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 				logs.logging("INFO", "Toast Close Icon Is Clicked");
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);
@@ -351,14 +362,19 @@ public class PurchaseOrderFunctions {
 	 * @throws Exception
 	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOM() throws Exception {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
 		verifyTickIconcreatePO();
-		verifyCreateItemAndAddedQuantity();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
@@ -395,7 +411,11 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
 		verifyTickIconcreatePO();
-		verifyCreateItemAndAddedQuantity();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
@@ -436,6 +456,9 @@ public class PurchaseOrderFunctions {
 		verifyTickIconcreatePO();
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
@@ -476,6 +499,9 @@ public class PurchaseOrderFunctions {
 		verifyTickIconcreatePO();
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
@@ -496,6 +522,357 @@ public class PurchaseOrderFunctions {
 			}
 		}
 		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct Po Domestic Service Similar UOM
+	 * 
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPODomesticServiceSimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		if (VariableHandler.getApprovalFlag()) {
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+						commonFunc.getDataFromTestDataSheet("ServiceType"),
+						commonFunc.getDataFromTestDataSheet("UomNos"));
+				approvalFunc.verifyNavigateback();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+					commonFunc.navigatePurchaseOrderPage();
+				}
+			}
+		}
+		verifyValidatePoApprovedStatus();
+		flag = commonFunc.logoutUser();
+
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO Import General Similar UOM
+	 * 
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPOImportGeneralSimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyUsd"), commonFunc.getDataFromTestDataSheet("PohType"),
+					commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct Po Import Material Similar UOM
+	 * 
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPOImportMaterialSimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct Po Import Service Similar UOM
+	 * 
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPOImportServiceSimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		if (VariableHandler.getApprovalFlag()) {
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+						commonFunc.getDataFromTestDataSheet("ServiceType"),
+						commonFunc.getDataFromTestDataSheet("UomNos"));
+				approvalFunc.verifyNavigateback();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+					commonFunc.navigatePurchaseOrderPage();
+				}
+			}
+		}
+		verifyValidatePoApprovedStatus();
+		flag = commonFunc.logoutUser();
+
+		return flag;
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Import General Dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPOImportGeneralDissimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyUsd"), commonFunc.getDataFromTestDataSheet("PohType"),
+					commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Import Material Dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPOImportMaterialDissimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoApprovedStatus();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Domestic Service Dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPODomesticServiceDissimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarService"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		if (VariableHandler.getApprovalFlag()) {
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+						commonFunc.getDataFromTestDataSheet("ServiceType"),
+						commonFunc.getDataFromTestDataSheet("UomNos"));
+				approvalFunc.verifyNavigateback();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+					commonFunc.navigatePurchaseOrderPage();
+				}
+			}
+		}
+		verifyValidatePoApprovedStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Import Service Dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 * @throws Exception
+	 */
+	public boolean verifyDirectPOImportServiceDissimilarUOM() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarService"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		if (VariableHandler.getApprovalFlag()) {
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+						commonFunc.getDataFromTestDataSheet("ServiceType"),
+						commonFunc.getDataFromTestDataSheet("UomNos"));
+				approvalFunc.verifyNavigateback();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+					commonFunc.navigatePurchaseOrderPage();
+				}
+			}
+		}
+		verifyValidatePoApprovedStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+
 	}
 
 }
