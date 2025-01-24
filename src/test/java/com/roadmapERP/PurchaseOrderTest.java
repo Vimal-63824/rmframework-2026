@@ -244,8 +244,22 @@ public class PurchaseOrderTest {
 	}
 
 	/**
+	 * How to cancel Purchase Order Document? How to cancel the Purchase Order
+	 * Lines?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 13, groups = { "PurchaseOrder" }, description = "How to cancel Purchase Order Document?"
+			+ "How to cancel the Purchase Order Lines?")
+	public void VerifyCancelPurchaseOrderDocumentAndCancelItem() {
+		purchaseOrderFunc.VerifyCancelPurchaseOrderDocument();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
+	 * @author Deepan-GWL
 	 * @param result
 	 */
 	@AfterMethod
