@@ -186,6 +186,62 @@ public class PurchaseOrderTest {
 		flag = purchaseOrderFunc.verifyDirectPOImportServiceDissimilarUOM();
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 13, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestice Supplier - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyDomesticGeneralSimilarUOMFromPRtoPO() {
+		flag = purchaseOrderFunc.verifyDomesticGeneralSimilarUOMFromPRtoPO();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * From PR to PO - Domestic Supplier - Service Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 14, groups = {
+	"PurchaseOrder" }, description = "From PR to PO - Domestice Supplier - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyDomesticServiceSimilarUOMFromPRtoPO() {
+		flag = purchaseOrderFunc.verifyDomesticServiceSimilarUOMFromPRtoPO();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 15, groups = {
+	"PurchaseOrder" }, description = "From PR to PO - Domestice Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyDomesticGeneralDissimilarUOMFromPRtoPO() {
+		flag = purchaseOrderFunc.verifyDomesticGeneralDissimilarUOMFromPRtoPO();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * From PR to PO - Domestic Supplier - Service Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 15, groups = {
+	"PurchaseOrder" }, description = "From PR to PO - Domestice Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyDomesticServiceDissimilarUOMFromPRtoPO() {
+		flag = purchaseOrderFunc.verifyDomesticServiceDissimilarUOMFromPRtoPO();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Logout The Portal If Testcases Failed
