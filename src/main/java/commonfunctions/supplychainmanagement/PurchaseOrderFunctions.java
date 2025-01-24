@@ -9,13 +9,10 @@ import static org.testng.Assert.assertTrue;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
-import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
-import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -26,6 +23,7 @@ public class PurchaseOrderFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	private static PurchaseRequestFunctions PR_Func = new PurchaseRequestFunctions();
 
 	/**
 	 * Verify Create Direct PO Adding Parameter
@@ -181,7 +179,7 @@ public class PurchaseOrderFunctions {
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Close Toast Icon Is Displayed");
-				webDB.clickAnElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
@@ -277,81 +275,35 @@ public class PurchaseOrderFunctions {
 	}
 
 	/**
-	 * Verify Select PO Number
+	 * Verify Search PO and Validate PO Status
 	 * 
 	 * @author Deepan-GWL
-	 * @param locators
-	 * @param PONumber
+	 * @param POno
+	 * @param ExpectedStatus
 	 */
-	public void verifySelectPONumber(String locators, String PONumber) {
-		flag = webDB.waitForElement(locators, ElementType.Xpath);
+	public void verifyValidatePoStatus(String POno, String ExpectedStatus) {
+		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PONumberSelect, POno);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(locators, ElementType.Xpath);
-			logs.logging("INFO", "Select Locators Is Clicked Successfully");
-			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(PurchaseOrderPageLocators.searchBar));
-			for (int i = 0; i < searchBar.size(); i++) {
-				try {
-					searchBar.get(i).isDisplayed();
-					searchBar.get(i).sendKeys(PONumber);
-					logs.logging("INFO", "Send Text Po Number Is: " + PONumber);
-					flag = true;
-					break;
-				} catch (Exception e) {
-					flag = false;
-					continue;
-				}
-			}
-			try {
-				// TODO WAIT_LOAD_TIME (will remove future)
-				Thread.sleep(2000);
-			} catch (Exception e) {
-			}
-			webDB.pressDownArrowKey();
-			logs.logging("INFO", "Down Arrow Is Clicked");
+			webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+			logs.logging("INFO", "Search Button Is Clicked");
 			try {
 				// TODO WAIT_LOAD_TIME (will remove future)
 				Thread.sleep(1000);
 			} catch (Exception e) {
 			}
-			webDB.pressEnterKey();
-			logs.logging("INFO", "Enter Key Is Clicked");
-			flag = commonFunc.checkRefreshCellsDisappear();
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * Verify Validate PO Approved Status
-	 * 
-	 * @author Deepan-GWL
-	 */
-	public void verifyValidatePoApprovedStatus() {
-		verifySelectPONumber(PurchaseOrderPageLocators.PONumberSelect, VariableHandler.getPONumber());
-		if (flag) {
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.POStatusTableText(POno), ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
-				logs.logging("INFO", "Search Button Is Clicked");
-				try {
-					// TODO WAIT_LOAD_TIME (will remove future)
-					Thread.sleep(1000);
-				} catch (Exception e) {
-				}
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement("//a[text()='" + VariableHandler.getPONumber() + "']/../../td[last()]",
+				String Status = webDB.getTextFromElement(PurchaseOrderPageLocators.POStatusTableText(POno),
 						ElementType.Xpath);
+				flag = Status.contains(ExpectedStatus);
 				if (flag) {
-					String ApproveStatus = webDB.getTextFromElement(
-							"//a[text()='" + VariableHandler.getPONumber() + "']/../../td[last()]", ElementType.Xpath);
-					logs.logging("INFO", "Get Text Status Is: " + ApproveStatus);
-					flag = ApproveStatus.contains(commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-					if (flag) {
-						logs.logging("INFO", "Verified Approve Status In Table");
-					}
+					logs.logging("INFO", "Expected Status: " + ExpectedStatus);
+					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -390,7 +342,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -431,7 +384,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -474,7 +428,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -517,7 +472,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -563,7 +519,7 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-		verifyValidatePoApprovedStatus();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -603,7 +559,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -644,7 +601,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -690,7 +648,7 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-		verifyValidatePoApprovedStatus();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -732,7 +690,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -775,7 +734,8 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoApprovedStatus();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				flag = commonFunc.logoutUser();
 			}
 		}
@@ -823,7 +783,7 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-		verifyValidatePoApprovedStatus();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -869,10 +829,240 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-		verifyValidatePoApprovedStatus();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
 
+	}
+
+	/**
+	 * This method used to click pending and search PR no and verify
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingPRAndSearchPRNo() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPRBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPRBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to the Pending PR Successfully");
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_FindPRNo, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_FindPRNo,
+							VariableHandler.getPRNumber());
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+						webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						logs.logging("INFO", "Pending PR Search Button Clicked");
+						List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[3]"));
+						a: for (WebElement webElement : elements) {
+							if (!webElement.getText().equals(VariableHandler.getPRNumber())) {
+								flag = false;
+								break a;
+							} else {
+								flag = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click select all check box in pending PR and click
+	 * 'create PO'
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void selectAllPendingPRAndClickCreatePO() {
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
+			flag = webDB.isElementEnabled(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Select All CheckBox Clicked in Pending PR and Create PO Enabled");
+				webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending PR - 'Create PO' Clicked");
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select supplier in Pending PR - Create PO and click Ok
+	 * Button
+	 * 
+	 * @param Supplier
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void selectSupplierAndCurrencyPendingPRAndClickTickIcon(String Supplier) {
+		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, Supplier);
+		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Create PO - 'Ok' Button Clicked");
+				String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Displayed PO Number Is: " + PONumbervalue);
+				VariableHandler.setPONumber(PONumbervalue);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify From PR to PO - Domestic Supplier General Item (Similar UOM)
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPO() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		PR_Func.fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
+		PR_Func.saveHeaderAndClickPost();
+		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickPendingIcon();
+		clickPendingPRAndSearchPRNo();
+		selectAllPendingPRAndClickCreatePO();
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyHeaderTickAndPost();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * Verify From PR to PO - Domestic Supplier Service Item (Similar UOM)
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDomesticServiceSimilarUOMFromPRtoPO() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		PR_Func.fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Service"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
+		PR_Func.saveHeaderAndClickPost();
+		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickPendingIcon();
+		clickPendingPRAndSearchPRNo();
+		selectAllPendingPRAndClickCreatePO();
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyHeaderTickAndPost();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * Verify From PR to PO - Domestic Supplier General Item (Dissimilar UOM)
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPO() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		PR_Func.fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("DissimilarItem"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
+		PR_Func.saveHeaderAndClickPost();
+		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickPendingIcon();
+		clickPendingPRAndSearchPRNo();
+		selectAllPendingPRAndClickCreatePO();
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyHeaderTickAndPost();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * Verify From PR to PO - Domestic Supplier Service Item (Dissimilar UOM)
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDomesticServiceDissimilarUOMFromPRtoPO() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		PR_Func.fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("DissimilarService"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
+		PR_Func.saveHeaderAndClickPost();
+		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickPendingIcon();
+		clickPendingPRAndSearchPRNo();
+		selectAllPendingPRAndClickCreatePO();
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyHeaderTickAndPost();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
 	}
 
 }

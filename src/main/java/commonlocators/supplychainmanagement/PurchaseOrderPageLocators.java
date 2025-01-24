@@ -74,4 +74,30 @@ public class PurchaseOrderPageLocators {
 		return "//td[text()='" + ItemName + "']/../td[17]/a";
 	}
 
+	/** @locatorType Xpath */
+	public static final String POStatusTableText(String POno) {
+		return "//a[text()='" +POno + "']/../../td[last()]";
+	}
+	
+	/** @locatorType Xpath */
+	public static final String PendingRFQBtn = "//button[@id='B1022828162906840804']";
+	/** @locatorType Xpath */
+	public static final String PendingPRBtn = "//button[@id='B2145315718133643750']";
+	/** @locatorType Xpath */
+	public static final String PendingPRiframe = "//iframe[@title='Pending PR']";
+	/** @locatorType Xpath */
+	public static final String PendingPR_FindPRNo = "//button[contains(@id,'PR_NO')]";
+	/** @locatorType Xpath */
+	public static final String PendingPR_SearchBtn = "//button[@id='B2403556419484961039']";
+	/** @locatorType Xpath */
+	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all']/parent::span)[1]";
+	/** @locatorType Xpath */
+	public static final String PendingPR_CreatePO_Btn = "//button[@id='B1']";
+	/** @locatorType Xpath */
+	public static final String PendingPR_SupplierSelectBtn = "//button[@id='P16151310407_SUPPLIER_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PendingPR_CurrencySelectBtn = "//button[@id='P16151310407_CURRENCY_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PendingPR_OkBtn = "//button[@id='B2327883803940919344']";
+
 }

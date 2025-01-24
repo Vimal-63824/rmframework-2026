@@ -224,8 +224,10 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
-			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			}
 		}
 		Assert.assertTrue(flag);
 	}
@@ -236,11 +238,13 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickPendingIcon() {
+		checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingText, ElementType.Xpath);
 			if (flag)
-				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				logs.logging("INFO", "Pending Icon is Displayed and Clicked");
 		}
 		Assert.assertTrue(flag);
 	}
