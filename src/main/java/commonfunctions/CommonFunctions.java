@@ -122,8 +122,9 @@ public class CommonFunctions {
 			}
 		}
 		if (flag) {
-			if (Name != null) {
+			if (Name.length > 0) {
 				logs.logging("INFO", "'" + Arrays.toString(Name) + "' User Logged In Successfully");
+
 			} else {
 				logs.logging("INFO", "User Logged In Successfully");
 			}

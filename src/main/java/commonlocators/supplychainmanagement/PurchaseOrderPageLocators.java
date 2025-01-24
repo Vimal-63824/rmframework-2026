@@ -69,4 +69,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']";
 
+	/** @locatorType Xpath */
+	public static final String DeleteLineItemPO(String ItemName) {
+		return "//td[text()='" + ItemName + "']/../td[17]/a";
+	}
+
 }
