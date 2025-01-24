@@ -68,6 +68,8 @@ public class PurchaseOrderPageLocators {
 	public static final String SearchButton = "//button[@id='B162750960319221704']";
 	/** @locatorType Xpath */
 	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String CancelButton = "//button[@id='B3159242843298273062']";
 
 	/** @locatorType Xpath */
 	public static final String DeleteLineItemPO(String ItemName) {
@@ -76,9 +78,9 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String POStatusTableText(String POno) {
-		return "//a[text()='" +POno + "']/../../td[last()]";
+		return "//a[text()='" + POno + "']/../../td[last()]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String PendingRFQBtn = "//button[@id='B1022828162906840804']";
 	/** @locatorType Xpath */

@@ -9,10 +9,13 @@ import static org.testng.Assert.assertTrue;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -40,7 +43,6 @@ public class PurchaseOrderFunctions {
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
 		}
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -96,17 +98,7 @@ public class PurchaseOrderFunctions {
 			}
 		}
 		assertTrue(flag);
-
 	}
-
-//	/**
-//	 * Verify Create Item And Added Quantity
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	public void verifyCreateItemAndAddedQuantity() {
-//		
-//	}
 
 	/**
 	 * Verify Add Table Specs
@@ -138,7 +130,6 @@ public class PurchaseOrderFunctions {
 			}
 		}
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -161,7 +152,6 @@ public class PurchaseOrderFunctions {
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
 			VariableHandler.setPONumber(PONumbervalue);
-
 		} catch (Exception e) {
 		}
 	}
@@ -832,7 +822,75 @@ public class PurchaseOrderFunctions {
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
+	}
 
+	/**
+	 * This Method Is Used To Delete Particular Lines Purchase Order PO
+	 * 
+	 * @author Deepan-GWL
+	 * @param DataValue
+	 */
+	public void deleteParticularLinesPurchaseOrder(String DataValue) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			webDB.moveToElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
+			webDB.clickAnElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Cancel Purchase Order Documents
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void VerifyCancelPurchaseOrderDocument() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost();
+		verifyTickIconcreateItem();
+		deleteParticularLinesPurchaseOrder(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		clickHeaderCancelButton();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("CancelStatus"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click Header Cancel Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickHeaderCancelButton() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.CancelButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseOrderPageLocators.CancelButton, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseOrderPageLocators.CancelButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Toast Message Displayed, PO Cancelled Successfully");
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
