@@ -9,6 +9,7 @@ import java.io.File;
 public class VariableHandler {
 	private static ThreadLocal<String> PONumber = new ThreadLocal<>();
 	private static ThreadLocal<String> PRNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PRClsShrt_DocNumber = new ThreadLocal<>();
 	private static ThreadLocal<String[][]> Testdata = ThreadLocal.withInitial(() -> null);
 	public static String testdataDir = System.getProperty("user.dir") + File.separator + "testdata" + File.separator;
 	private static ThreadLocal<Boolean> Approvalflag = new ThreadLocal<>();
@@ -43,5 +44,13 @@ public class VariableHandler {
 
 	public static void setApprovalFlag(boolean flag) {
 		Approvalflag.set(flag);
+	}
+	
+	public static String getPRCloseShortDocNumber() {
+		return PRClsShrt_DocNumber.get();
+	}
+	
+	public static void setPRCloseShortDocNumber(String data) {
+		PRClsShrt_DocNumber.set(data);
 	}
 }

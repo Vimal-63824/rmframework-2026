@@ -94,4 +94,34 @@ public class PurchaseRequestLocators {
 	public static final String PR_UploadedFileText = "//div[contains(@id,'FILE_DROPZON')]//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
 	public static final String PR_UploadOkBtn = "//button[@id='B1122765554844427422']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_AddNewBtn = "//button[@title='Add']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_FindDocNo = "//button[contains(@id,'DOC_NO')]";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_SearchBtn = "//button[@id='B1764878166242042203']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_LocId = "//button[contains(@id,'PCH_PLNT_LOC_ID')]";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_Prefix = "//button[contains(@id,'PFX')]";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_Reference = "//input[contains(@id,'PCH_REF')]";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_TickIcon = "//button[@id='B1765045895689011518']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_LoadPRBtn = "//button[@id='B1758795715993518741']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_FetchPRIframe = "//iframe[@title='Fetch PR']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_SelectAllPRItem = "(//span[@class='a-IRR-headerLabel'])[1]";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_OkBtn = "//button[@id='B1']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_SaveLinesBtn = "//button[@id='B2727201100997978947']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_SaveHeaderBtn = "//button[@id='B1757901165046819709']";
+	/** @locatorType Xpath */
+	public static final String PRCloseShort_CloseShortBtn = "//button[@id='B1762277391045906722']";
 }

@@ -50,8 +50,8 @@ public class PurchaseRequestTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	@Test(priority = 3, groups = { "PurchaseRequest" }, description = "70 - How to cancel the purchase request(s)"
-			+ "71 - How to cancel the purchase request lines?")
+	@Test(priority = 3, groups = { "PurchaseRequest" }, description = "71 - How to cancel the purchase request(s)"
+			+ "72 - How to cancel the purchase request lines?")
 	public void VerifyCancelPRAndDeleteLines() {
 		flag = PRFunc.verifyCancelPRAndDeleteLine();
 		Assert.assertTrue(flag);
@@ -67,6 +67,18 @@ public class PurchaseRequestTest {
 			"PurchaseRequest" }, description = "67 - How to create the purchase request directly to the system through excel upload?")
 	public void VerifyCreatePRByUploadExcel() {
 		flag = PRFunc.verifyCreatePRByUploadExcel();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * How to closeshort the purchase request(s)?
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 5, groups = {
+	"PurchaseRequest" }, description = "73 - How to closeshort the purchase request(s)?")
+	public void VerifyPRCloseShort() {
+		flag = PRFunc.verifyPRCloseShort();
 		Assert.assertTrue(flag);
 	}
 	

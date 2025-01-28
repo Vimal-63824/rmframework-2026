@@ -126,6 +126,38 @@ public class PurchaseRequestFunctions {
 	}
 
 	/**
+	 * This Methods Is Used To Verify PR Close Short
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyPRCloseShort() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
+		saveHeaderAndClickPost();
+		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseRequestCloseShortPage();
+		clickAddIconPurchaseRequestCloseShort();
+		fillFormDetailsInPurchaseRequestCloseShort(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		clickTickIconAndStoreDocumentNumberInPRCloseShort();
+		clickLoadPRAndSelectAllItemstoLines();
+		saveHeaderAndClickCloseShort();
+		searchDocNumberAndCheckPRCloseShortStatus(VariableHandler.getPRCloseShortDocNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
 	 * This method used to select location PR-type prefix department and requester
 	 * for new purchase request
 	 * 
@@ -139,6 +171,12 @@ public class PurchaseRequestFunctions {
 			String Department, String Requester) {
 		commonFunc.clickCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
+		commonFunc.checkRefreshCellsDisappear();
+		// TODO WAIT_LOAD_TIME (will remove future)
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 		selectPRType(PRType);
 		selectPRPrefix(Prefix);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
@@ -743,6 +781,7 @@ public class PurchaseRequestFunctions {
 	 * This method used to delete the csv file after uploaded in case of failure
 	 * remove the file manually
 	 * 
+	 * @author Sakthi-GWL
 	 * @param FileName
 	 */
 	private void deleteUpdatedCsvFileAfterUploaded(String FileName) {
@@ -753,5 +792,168 @@ public class PurchaseRequestFunctions {
 			logs.logging("FAIL", "Failed to Delete the file: " + FileName);
 			Assert.fail("Failed to Delete the file: " + FileName);
 		}
+	}
+
+	/**
+	 * This method used to click Add Icon in PR CloseShort
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAddIconPurchaseRequestCloseShort() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add New Icon Clicked in PR CloseShort");
+			}
+		}
+	}
+
+	/**
+	 * This method used to fill details in PR CloseShort Page with LocID, PRNo and
+	 * Reference
+	 * 
+	 * @author Sakthi-GWL
+	 * @param locId
+	 * @param PRNo
+	 * @param Ref
+	 */
+	private void fillFormDetailsInPurchaseRequestCloseShort(String locId, String PRNo, String Ref) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_LocId, locId);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_Prefix, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_Prefix, PRNo);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_Reference, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.sendTextToAnElement(PurchaseRequestLocators.PRCloseShort_Reference, Ref,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Reference entered in PR CloseShort: " + Ref);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click the tick icon in PR CloseShort Details Page and
+	 * store document number
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickTickIconAndStoreDocumentNumberInPRCloseShort() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_TickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_TickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_DocNoText, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				String PRClsShrtDocNum = webDB.getDomPropertyFromElement(PurchaseRequestLocators.PRCloseShort_DocNoText,
+						ElementType.Xpath,commonFunc.getDataFromTestDataSheet("Value"));
+				VariableHandler.setPRCloseShortDocNumber(PRClsShrtDocNum);
+				logs.logging("INFO",
+						"Purchase Request Close Short Document Number: " + VariableHandler.getPRCloseShortDocNumber());
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Load PR and select all items in PR and click Ok
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickLoadPRAndSelectAllItemstoLines() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_FetchPRIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Load PR Clicked in PR CloseShort");
+				webDB.switchToFrame(PurchaseRequestLocators.PRCloseShort_FetchPRIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SelectAllPRItem, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Fetch PR iframe Switched Successfully");
+					webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SelectAllPRItem, ElementType.Xpath);
+					webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
+					flag = webDB.isElementEnabled(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"Select All Item Checkbox clicked and Items added Successfully in PR CloseShort");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to save header and click close short then verify with
+	 * success toast message
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void saveHeaderAndClickCloseShort() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SaveHeaderBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_SaveHeaderBtn, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SaveHeaderBtn, ElementType.Xpath);
+			logs.logging("INFO", "PR CloseShort Header Saved Successfully.");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_CloseShortBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_CloseShortBtn, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_CloseShortBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, CloseShort Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to search Purchase Request CloseShort Document Number and
+	 * verify status with expected status
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocumentNo
+	 * @param ExpextedStatus
+	 */
+	private void searchDocNumberAndCheckPRCloseShortStatus(String DocumentNo, String ExpextedStatus) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_FindDocNo, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_FindDocNo, DocumentNo);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
+				if (flag) {
+					String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText,
+							ElementType.Xpath);
+					logs.logging("INFO", "Document No: '" + DocumentNo + "' searched and displaying status: " + Status);
+					flag = Status.equalsIgnoreCase(ExpextedStatus);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }
