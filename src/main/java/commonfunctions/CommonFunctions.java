@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -192,16 +193,25 @@ public class CommonFunctions {
 					if (searchBar.get(i).isDisplayed()) {
 						searchBar.get(i).clear();
 						searchBar.get(i).sendKeys(Value);
+						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 						// TODO WAIT_LOAD_TIME (will remove future)
 						Thread.sleep(2000);
 						flag = checkRefreshCellsDisappear();
 						if (flag) {
-							flag = webDB.waitForClickElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
+							if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
+									ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
+										ElementType.Xpath);
+
+							} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
+									ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
+										ElementType.Xpath);
+							} else {
+								flag = false;
+							}
 							if (flag) {
-								flag = webDB.clickAnElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-								}
+								logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
 								break a;
 							}
 						}
@@ -225,7 +235,7 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			}
 		}
@@ -241,6 +251,8 @@ public class CommonFunctions {
 		checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 		if (flag) {
+			checkRefreshCellsDisappear();
+			webDB.moveToElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PendingText, ElementType.Xpath);
 			if (flag)
@@ -350,5 +362,26 @@ public class CommonFunctions {
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		logoutUser();
+	}
+
+	/**
+	 * This method used to Navigate Purchase Request Close Short Page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigatePurchaseRequestCloseShortPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }
