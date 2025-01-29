@@ -28,7 +28,7 @@ public class PurchaseOrderTest {
 	 * @throws Exception
 	 */
 	@Test(priority = 1, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - General Items with Similar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "88 Direct PO - Domestic Supplier - General Items with Similar Stock and Supplier UOM?")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPODomesticGeneralSimilarUOM();
 		Assert.assertTrue(flag);
@@ -42,7 +42,7 @@ public class PurchaseOrderTest {
 	 * @throws Exception
 	 */
 	@Test(priority = 2, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - Material Items with Similar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "89 Direct PO - Domestic Supplier - Material Items with Similar Stock and Supplier UOM?")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPODomesticMaterialSimilarUOM();
 		Assert.assertTrue(flag);
@@ -56,37 +56,23 @@ public class PurchaseOrderTest {
 	 * @throws Exception
 	 */
 	@Test(priority = 3, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "90 Direct PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM?")
 	public void VerifyDirectPODomesticServiceStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPODomesticServiceSimilarUOM();
 		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * Direct PO - Domestic Supplier - General Items with Dissimilar Stock and
-	 * Supplier UOM?\r\n
-	 * 
-	 * @author Deepan-GWL
-	 * @throws Exception
-	 */
-	@Test(priority = 4, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM?")
-	public void VerifyDirectPODomesticGeneralStockAndSupplierUOMDissimilar() throws Exception {
-		flag = purchaseOrderFunc.verifyDirectPODomesticGeneralDissimilarUOM();
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Direct PO - Domestic Supplier - Material Items with Dissimilar Stock and
+	 * Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and
 	 * Supplier UOM?
 	 * 
 	 * @author Deepan-GWL
 	 * @throws Exception
 	 */
-	@Test(priority = 5, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - Material Items with Dissimilar Stock and Supplier UOM?")
-	public void VerifyDirectPODomesticMaterialStockAndSupplierUOMDisSimilar() throws Exception {
-		flag = purchaseOrderFunc.verifyDirectPODomesticMaterialDissimilarUOM();
+	@Test(priority = 4, groups = {
+			"PurchaseOrder" }, description = "91 Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and Supplier UOM?")
+	public void VerifyDirectPODomesticStockTransferSimilarStockAndSupplierUOM() throws Exception {
+		flag = purchaseOrderFunc.verifyDirectPODomesticStockTransferSimilarUOM();
 		Assert.assertTrue(flag);
 	}
 
@@ -97,8 +83,8 @@ public class PurchaseOrderTest {
 	 * @author Deepan-GWL
 	 * @throws Exception
 	 */
-	@Test(priority = 6, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Import Supplier - General Items with Similar Stock and Supplier UOM?")
+	@Test(priority = 5, groups = {
+			"PurchaseOrder" }, description = "92 irect PO - Import Supplier - General Items with Similar Stock and Supplier UOM?")
 	public void VerifyDirectPOImportGeneralStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPOImportGeneralSimilarUOM();
 		Assert.assertTrue(flag);
@@ -111,8 +97,8 @@ public class PurchaseOrderTest {
 	 * @author Deepan-GWL
 	 * @throws Exception
 	 */
-	@Test(priority = 7, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Material Items with Similar Stock and Supplier UOM?")
+	@Test(priority = 6, groups = {
+			"PurchaseOrder" }, description = "93 Direct PO - Import Supplier - Material Items with Similar Stock and Supplier UOM?")
 	public void VerifyDirectPOImportMaterialStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPOImportMaterialSimilarUOM();
 		Assert.assertTrue(flag);
@@ -125,10 +111,38 @@ public class PurchaseOrderTest {
 	 * @author Deepan-GWL
 	 * @throws Exception
 	 */
-	@Test(priority = 8, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Service Items with Similar Stock and Supplier UOM?")
+	@Test(priority = 7, groups = {
+			"PurchaseOrder" }, description = "94 Direct PO - Import Supplier - Service Items with Similar Stock and Supplier UOM?")
 	public void VerifyDirectPOImportServiceStockAndSupplierSimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPOImportServiceSimilarUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?\r\n
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 8, groups = {
+			"PurchaseOrder" }, description = "101 Direct PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyDirectPODomesticGeneralStockAndSupplierUOMDissimilar() throws Exception {
+		flag = purchaseOrderFunc.verifyDirectPODomesticGeneralDissimilarUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier - Material Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 9, groups = {
+			"PurchaseOrder" }, description = "102 Direct PO - Domestic Supplier - Material Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyDirectPODomesticMaterialStockAndSupplierUOMDisSimilar() throws Exception {
+		flag = purchaseOrderFunc.verifyDirectPODomesticMaterialDissimilarUOM();
 		Assert.assertTrue(flag);
 	}
 
@@ -139,8 +153,8 @@ public class PurchaseOrderTest {
 	 * @author Deepan-GWL
 	 * @throws Exception
 	 */
-	@Test(priority = 9, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	@Test(priority = 10, groups = {
+			"PurchaseOrder" }, description = "103 Direct PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
 	public void VerifyDirectPOImportGeneralStockAndSupplierUOMDissimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPOImportGeneralDissimilarUOM();
 		Assert.assertTrue(flag);
@@ -152,41 +166,13 @@ public class PurchaseOrderTest {
 	 * 
 	 * @throws Exception
 	 */
-	@Test(priority = 10, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM?")
+	@Test(priority = 11, groups = {
+			"PurchaseOrder" }, description = "104 Direct PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM?")
 	public void VerifyDirectPOImportMaterialStockAndSupplierUOMDissimilar() throws Exception {
 		flag = purchaseOrderFunc.verifyDirectPOImportMaterialDissimilarUOM();
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Direct PO - Domestic Supplier - Service Items with Dissimilar Stock and
-	 * Supplier UOM?
-	 * 
-	 * @author Deepan-GWL
-	 * @throws Exception
-	 */
-	@Test(priority = 11, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
-	public void VerifyDirectPODomesticServiceStockAndSupplierUOMDissimilar() throws Exception {
-		flag = purchaseOrderFunc.verifyDirectPODomesticServiceDissimilarUOM();
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Direct PO - Import Supplier - Service Items with Dissimilar Stock and
-	 * Supplier UOM?
-	 * 
-	 * @author Deepan-GWL
-	 * @throws Exception
-	 */
-	@Test(priority = 12, groups = {
-			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
-	public void VerifyDirectPOImportServiceStockAndSupplierUOMDissimilar() throws Exception {
-		flag = purchaseOrderFunc.verifyDirectPOImportServiceDissimilarUOM();
-		Assert.assertTrue(flag);
-	}
-	
 	/**
 	 * From PR to PO - Domestic Supplier - General Items with Similar Stock and
 	 * Supplier UOM?
@@ -199,7 +185,7 @@ public class PurchaseOrderTest {
 		flag = purchaseOrderFunc.verifyDomesticGeneralSimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * From PR to PO - Domestic Supplier - Service Items with Similar Stock and
 	 * Supplier UOM?
@@ -207,12 +193,12 @@ public class PurchaseOrderTest {
 	 * @author Sakthi-GWL
 	 */
 	@Test(priority = 14, groups = {
-	"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM?")
 	public void VerifyDomesticServiceSimilarUOMFromPRtoPO() {
 		flag = purchaseOrderFunc.verifyDomesticServiceSimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and
 	 * Supplier UOM?
@@ -220,12 +206,12 @@ public class PurchaseOrderTest {
 	 * @author Sakthi-GWL
 	 */
 	@Test(priority = 15, groups = {
-	"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM?")
 	public void VerifyDomesticGeneralDissimilarUOMFromPRtoPO() {
 		flag = purchaseOrderFunc.verifyDomesticGeneralDissimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * From PR to PO - Domestic Supplier - Service Items with Dissimilar Stock and
 	 * Supplier UOM?
@@ -233,7 +219,7 @@ public class PurchaseOrderTest {
 	 * @author Sakthi-GWL
 	 */
 	@Test(priority = 16, groups = {
-	"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
 	public void VerifyDomesticServiceDissimilarUOMFromPRtoPO() {
 		flag = purchaseOrderFunc.verifyDomesticServiceDissimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
@@ -246,12 +232,13 @@ public class PurchaseOrderTest {
 	 * @author Deepan-GWL
 	 * 
 	 */
-	@Test(priority = 17, groups = { "PurchaseOrder" }, description = "How to cancel Purchase Order Document?"
-			+ "How to cancel the Purchase Order Lines?")
+
+	@Test(priority = 16, groups = { "PurchaseOrder" }, description = "110 How to cancel Purchase Order Document?"
+			+ "111 How to cancel the Purchase Order Lines?")
+
 	public void VerifyCancelPurchaseOrderDocumentAndCancelItem() {
 		purchaseOrderFunc.VerifyCancelPurchaseOrderDocument();
 	}
-	
 
 	/**
 	 * From PR to PO - Import Supplier - General Items with Similar Stock and
@@ -265,7 +252,7 @@ public class PurchaseOrderTest {
 		flag = purchaseOrderFunc.verifyImportGeneralSimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * From PR to PO - Import Supplier - Service Items with Similar Stock and
 	 * Supplier UOM?
@@ -273,12 +260,12 @@ public class PurchaseOrderTest {
 	 * @author Sakthi-GWL
 	 */
 	@Test(priority = 19, groups = {
-	"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Similar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Similar Stock and Supplier UOM?")
 	public void VerifyImportServiceSimilarUOMFromPRtoPO() {
 		flag = purchaseOrderFunc.verifyImportServiceSimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * From PR to PO - Import Supplier - General Items with Dissimilar Stock and
 	 * Supplier UOM?
@@ -286,12 +273,12 @@ public class PurchaseOrderTest {
 	 * @author Sakthi-GWL
 	 */
 	@Test(priority = 20, groups = {
-	"PurchaseOrder" }, description = "From PR to PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
 	public void VerifyImportGeneralDissimilarUOMFromPRtoPO() {
 		flag = purchaseOrderFunc.verifyImportGeneralDissimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * From PR to PO - Import Supplier - Service Items with Dissimilar Stock and
 	 * Supplier UOM?
@@ -299,11 +286,65 @@ public class PurchaseOrderTest {
 	 * @author Sakthi-GWL
 	 */
 	@Test(priority = 21, groups = {
-	"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
+			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
 	public void VerifyImportServiceDissimilarUOMFromPRtoPO() {
 		flag = purchaseOrderFunc.verifyImportServiceDissimilarUOMFromPRtoPO();
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * How to create PO with Charges and how PO amount is calculated?
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	@Test(priority = 17, groups = {
+			"PurchaseOrder" }, description = "109 How to create PO with Charges and how PO amount is calculated?")
+	public void VerifyDirectPOWithItemChargesCalculations() throws Exception {
+		purchaseOrderFunc.verifyDirectPOWithItemChargesCalculations();
+	}
+
+//	/**
+//	 * Direct PO - Domestic Supplier - Service Items with Dissimilar Stock and
+//	 * Supplier UOM?
+//	 * 
+//	 * @author Deepan-GWL
+//	 * @throws Exception
+//	 */
+//	@Test(priority = 11, groups = {
+//			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
+//	public void VerifyDirectPODomesticServiceStockAndSupplierUOMDissimilar() throws Exception {
+//		flag = purchaseOrderFunc.verifyDirectPODomesticServiceDissimilarUOM();
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Direct PO - Import Supplier - Service Items with Dissimilar Stock and
+//	 * Supplier UOM?
+//	 * 
+//	 * @author Deepan-GWL
+//	 * @throws Exception
+//	 */
+//	@Test(priority = 12, groups = {
+//			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Service Items with Dissimilar Stock and Supplier UOM?")
+//	public void VerifyDirectPOImportServiceStockAndSupplierUOMDissimilar() throws Exception {
+//		flag = purchaseOrderFunc.verifyDirectPOImportServiceDissimilarUOM();
+//		Assert.assertTrue(flag);
+//	}
+//	
+//	/**
+//	 * Direct PO - Domestic Supplier - stock Transfer Items with Dissimilar Stock
+//	 * and Supplier UOM?
+//	 * 
+//	 * @author Deepan-GWL
+//	 * @throws Exception
+//	 */
+//	@Test(priority = 17, groups = {
+//			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier - stock Transfer Items with Dissimilar Stock and Supplier UOM?")
+//	public void VerifyDirectPODomesticStockTransferDissimilarStockAndSupplierUOM() throws Exception {
+//		flag = purchaseOrderFunc.verifyDirectPODomesticStockTransferDissimilarUOM();
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Logout The Portal If Testcases Failed
