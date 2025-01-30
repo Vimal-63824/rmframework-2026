@@ -169,10 +169,14 @@ public class PurchaseOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Close Toast Icon Is Displayed");
 				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
-				flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForClickElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 					logs.logging("INFO", "Header Post Icon Is Clicked");
+					flag = (webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath)
+							|| webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath));
 				}
 			}
 		}
@@ -229,9 +233,11 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyTickIconcreatePO() {
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Tick Icon Is Displayed");
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.clickAnElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
 			if (flag) {
@@ -1120,7 +1126,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * Verify From PR to PO - Import Supplier General Item (Similar UOM)
 	 * 
@@ -1152,7 +1158,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * Verify From PR to PO - Import Supplier Service Item (Similar UOM)
 	 * 
@@ -1184,7 +1190,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * Verify From PR to PO - Import Supplier General Item (Dissimilar UOM)
 	 * 
@@ -1216,7 +1222,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * Verify From PR to PO - Import Supplier Service Item (Dissimilar UOM)
 	 * 

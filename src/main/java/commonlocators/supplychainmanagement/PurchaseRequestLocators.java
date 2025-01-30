@@ -124,4 +124,6 @@ public class PurchaseRequestLocators {
 	public static final String PRCloseShort_SaveHeaderBtn = "//button[@id='B1757901165046819709']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_CloseShortBtn = "//button[@id='B1762277391045906722']";
+	/** @locatorType Xpath */
+	public static final String LineAmountDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
 }
