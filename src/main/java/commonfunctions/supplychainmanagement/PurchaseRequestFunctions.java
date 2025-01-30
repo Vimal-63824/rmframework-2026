@@ -117,7 +117,8 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
 				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		String updatedFileName = createUpdatedCsvFileWithRequiredDate(commonFunc.getDataFromTestDataSheet("PRtemplate1Line"));
+		String updatedFileName = createUpdatedCsvFileWithRequiredDate(
+				commonFunc.getDataFromTestDataSheet("PRtemplate1Line"));
 		verifyUploadCsvFileInPRAndDeleteUpdatedFile(updatedFileName);
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -233,6 +234,7 @@ public class PurchaseRequestFunctions {
 		enterQuantityForLastItem(Qnty);
 		enterCostForLastItem(Cost);
 		saveLinesEntry();
+		checkLineCostAmount(Cost,Qnty);
 	}
 
 	/**
@@ -249,6 +251,7 @@ public class PurchaseRequestFunctions {
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForClickElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
@@ -270,6 +273,7 @@ public class PurchaseRequestFunctions {
 	 * This Method Is Used To Delete Particular Lines Purchase Request PR
 	 * 
 	 * @author Sakthi-GWL
+	 * 
 	 * @param DataValue
 	 */
 	public void deleteParticularLinesPurchaseRequest(String DataValue) {
@@ -855,7 +859,7 @@ public class PurchaseRequestFunctions {
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				String PRClsShrtDocNum = webDB.getDomPropertyFromElement(PurchaseRequestLocators.PRCloseShort_DocNoText,
-						ElementType.Xpath,commonFunc.getDataFromTestDataSheet("Value"));
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 				VariableHandler.setPRCloseShortDocNumber(PRClsShrtDocNum);
 				logs.logging("INFO",
 						"Purchase Request Close Short Document Number: " + VariableHandler.getPRCloseShortDocNumber());
@@ -952,6 +956,33 @@ public class PurchaseRequestFunctions {
 					logs.logging("INFO", "Document No: '" + DocumentNo + "' searched and displaying status: " + Status);
 					flag = Status.equalsIgnoreCase(ExpextedStatus);
 				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate line amount with unit cost and quantity
+	 * 
+	 * @author Sakthi-GWL
+	 * @param cost
+	 * @param quantity
+	 */
+	private void checkLineCostAmount(String cost, String quantity) {
+		double Cost = Double.parseDouble(cost);
+		double Quantity = Double.parseDouble(quantity);
+		flag = webDB.waitForElement(PurchaseRequestLocators.LineAmountDataLastRow, ElementType.Xpath);
+		if (flag) {
+			double LineAmount = Double.parseDouble(
+					webDB.getTextFromElement(PurchaseRequestLocators.LineAmountDataLastRow, ElementType.Xpath)
+							.replace(",", ""));
+			flag = LineAmount == (Cost * Quantity);
+			logs.logging("INFO", "Cost * Quantity amount: " + (Cost * Quantity));
+			logs.logging("INFO", "Line Amount: " + LineAmount);
+			if (flag) {
+				logs.logging("INFO", "Verified Line Amount with UnitCost and Quantity");
+			} else {
+				logs.logging("INFO", "Verified Failed Mismatch of Line Amount with UnitCost and Quantity");
 			}
 		}
 		Assert.assertTrue(flag);

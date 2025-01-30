@@ -53,7 +53,8 @@ public class VariableHandler {
 
 	public static void setPRCloseShortDocNumber(String data) {
 		PRClsShrt_DocNumber.set(data);
-
+	}
+	
 	public static String getPOTotalAmount() {
 		return POTotalAmount.get();
 	}

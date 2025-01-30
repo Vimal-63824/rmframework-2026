@@ -52,7 +52,7 @@ public class CommonFunctions {
 	 * This method used to wait 10 seconds till disappear table refreshing cells
 	 * 
 	 * @author Sakthi-GWL
-	 * @return purchaseId
+	 * @return boolean
 	 */
 	public boolean checkRefreshCellsDisappear() {
 		List<WebElement> refreshElements = webDB.getDriver()
@@ -383,5 +383,25 @@ public class CommonFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to wait 10 seconds till disappear success toast message
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean checkSuccessToastMessageDisappear() {
+		try {
+			WebElement ToastElements = webDB.getDriver().findElement(By.xpath(CommonUiLocators.PostToastMessage));
+			WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+			wait.until(ExpectedConditions.invisibilityOf(ToastElements));
+			// TODO WAIT_LOAD_TIME (will remove future)
+			Thread.sleep(500);
+			flag = !ToastElements.isDisplayed();
+		} catch (Exception e) {
+			flag = false;
+		}
+		return flag;
 	}
 }
