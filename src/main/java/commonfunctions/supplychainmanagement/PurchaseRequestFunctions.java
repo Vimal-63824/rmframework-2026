@@ -179,6 +179,7 @@ public class PurchaseRequestFunctions {
 		} catch (InterruptedException e) {
 		}
 		selectPRType(PRType);
+		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
 		selectPRDepartment(Department);
@@ -234,7 +235,7 @@ public class PurchaseRequestFunctions {
 		enterQuantityForLastItem(Qnty);
 		enterCostForLastItem(Cost);
 		saveLinesEntry();
-		checkLineCostAmount(Cost,Qnty);
+		checkLineCostAmount(Cost, Qnty);
 	}
 
 	/**
@@ -526,6 +527,7 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRPrefixSelect, ElementType.Xpath);
 		if (flag) {
 			webDB.waitForClickElement(PurchaseRequestLocators.PRPrefixSelect, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PRPrefixSelect, Prefix, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "PR Prefix: " + Prefix + " selected");
@@ -805,8 +807,9 @@ public class PurchaseRequestFunctions {
 	 */
 	private void clickAddIconPurchaseRequestCloseShort() {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
