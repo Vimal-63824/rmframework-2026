@@ -165,19 +165,18 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
 			webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForClickElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Close Toast Icon Is Displayed");
-				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
-				commonFunc.checkSuccessToastMessageDisappear();
-				flag = webDB.waitForClickElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
-				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
-					logs.logging("INFO", "Header Post Icon Is Clicked");
-					flag = (webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath)
-							|| webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath));
-				}
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
+				logs.logging("INFO", "Header Post Icon Is Clicked");
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
 			}
 		}
 		assertTrue(flag);
@@ -305,9 +304,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct PO Domestic General Similar UOM
 	 * 
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPODomesticGeneralSimilarUOM() throws Exception {
+	public boolean verifyDirectPODomesticGeneralSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
@@ -319,6 +317,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -348,9 +348,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct Po Domestic Material Similar UOM
 	 * 
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPODomesticMaterialSimilarUOM() throws Exception {
+	public boolean verifyDirectPODomesticMaterialSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -361,6 +360,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -392,9 +393,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPODomesticGeneralDissimilarUOM() throws Exception {
+	public boolean verifyDirectPODomesticGeneralDissimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -405,6 +405,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -414,7 +416,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
-					commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("Kgs"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
@@ -436,9 +438,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPODomesticMaterialDissimilarUOM() throws Exception {
+	public boolean verifyDirectPODomesticMaterialDissimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -449,6 +450,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -458,7 +461,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
-					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
@@ -478,9 +481,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct Po Domestic Service Similar UOM
 	 * 
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPODomesticServiceSimilarUOM() throws Exception {
+	public boolean verifyDirectPODomesticServiceSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -491,6 +493,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		if (VariableHandler.getApprovalFlag()) {
@@ -523,9 +527,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct PO Import General Similar UOM
 	 * 
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPOImportGeneralSimilarUOM() throws Exception {
+	public boolean verifyDirectPOImportGeneralSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -536,6 +539,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -565,9 +570,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct Po Import Material Similar UOM
 	 * 
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPOImportMaterialSimilarUOM() throws Exception {
+	public boolean verifyDirectPOImportMaterialSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -578,6 +582,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -607,9 +613,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct Po Import Service Similar UOM
 	 * 
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPOImportServiceSimilarUOM() throws Exception {
+	public boolean verifyDirectPOImportServiceSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -620,6 +625,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		if (VariableHandler.getApprovalFlag()) {
@@ -654,9 +661,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPOImportGeneralDissimilarUOM() throws Exception {
+	public boolean verifyDirectPOImportGeneralDissimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -667,6 +673,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -676,7 +684,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyUsd"), commonFunc.getDataFromTestDataSheet("PohType"),
-					commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("Kgs"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
@@ -698,9 +706,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPOImportMaterialDissimilarUOM() throws Exception {
+	public boolean verifyDirectPOImportMaterialDissimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -711,6 +718,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarItem"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -720,7 +729,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
-					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
@@ -737,98 +746,6 @@ public class PurchaseOrderFunctions {
 	}
 
 	/**
-	 * 
-	 * This Method Is Used To Verify Direct PO Domestic Service Dissimilar
-	 * 
-	 * @author Deepan-GWL
-	 * @return boolean flag
-	 * @throws Exception
-	 */
-	public boolean verifyDirectPODomesticServiceDissimilarUOM() throws Exception {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		commonFunc.clickCreateIcon();
-		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
-				commonFunc.getDataFromTestDataSheet("ServiceValue"));
-		verifyTickIconcreatePO();
-		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarService"));
-		verifyAddItemInPOWithQuantityAndUnitCost();
-		verifyTickIconcreateItem();
-		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		if (VariableHandler.getApprovalFlag()) {
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("CurrencyInr"),
-						commonFunc.getDataFromTestDataSheet("ServiceType"),
-						commonFunc.getDataFromTestDataSheet("UomNos"));
-				approvalFunc.verifyNavigateback();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-				flag = commonFunc.logoutUser();
-				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-					commonFunc.navigatePurchaseOrderPage();
-				}
-			}
-		}
-		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
-	}
-
-	/**
-	 * 
-	 * This Method Is Used To Verify Direct PO Import Service Dissimilar
-	 * 
-	 * @author Deepan-GWL
-	 * @return boolean flag
-	 * @throws Exception
-	 */
-	public boolean verifyDirectPOImportServiceDissimilarUOM() throws Exception {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		commonFunc.clickCreateIcon();
-		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
-				commonFunc.getDataFromTestDataSheet("ServiceValue"));
-		verifyTickIconcreatePO();
-		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("DissimilarService"));
-		verifyAddItemInPOWithQuantityAndUnitCost();
-		verifyTickIconcreateItem();
-		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		if (VariableHandler.getApprovalFlag()) {
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
-						commonFunc.getDataFromTestDataSheet("ServiceType"),
-						commonFunc.getDataFromTestDataSheet("UomNos"));
-				approvalFunc.verifyNavigateback();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-				flag = commonFunc.logoutUser();
-				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-					commonFunc.navigatePurchaseOrderPage();
-				}
-			}
-		}
-		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
-	}
-
-	/**
 	 * This Method Is Used To Delete Particular Lines Purchase Order PO
 	 * 
 	 * @author Deepan-GWL
@@ -838,6 +755,7 @@ public class PurchaseOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
 		if (flag) {
+			logs.logging("INFO", "Item Delete Button Is Displayed");
 			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 			webDB.moveToElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
@@ -1261,9 +1179,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public boolean verifyDirectPODomesticStockTransferSimilarUOM() throws Exception {
+	public boolean verifyDirectPODomesticStockTransferSimilarUOM() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -1274,52 +1191,8 @@ public class PurchaseOrderFunctions {
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("St_Item_Similar"));
 		verifyAddItemInPOWithQuantityAndUnitCost();
 		verifyTickIconcreateItem();
-		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
-					commonFunc.getDataFromTestDataSheet("Po_Stock_Transfer"),
-					commonFunc.getDataFromTestDataSheet("UomNos"));
-			approvalFunc.verifyNavigateback();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-				commonFunc.navigatePurchaseOrderPage();
-				verifyValidatePoStatus(VariableHandler.getPONumber(),
-						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * 
-	 * This Method Is Used To Verify Direct PO Domestic Stock Transfer Dissimilar
-	 * Uom
-	 * 
-	 * @author Deepan-GWL
-	 * @return boolean flag
-	 * @throws Exception
-	 */
-	public boolean verifyDirectPODomesticStockTransferDissimilarUOM() throws Exception {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		commonFunc.navigatePurchaseOrderPage();
-		commonFunc.clickCreateIcon();
-		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location02"),
-				commonFunc.getDataFromTestDataSheet("U1Supplier"),
-				commonFunc.getDataFromTestDataSheet("StockTransferSelect"));
-		verifyTickIconcreatePO();
-		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("Stock_Item_Dissimilar"));
-		verifyAddItemInPOWithQuantityAndUnitCost();
-		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
@@ -1351,9 +1224,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 * @return boolean flag
-	 * @throws Exception
 	 */
-	public void verifyDirectPOWithItemChargesCalculations() throws Exception {
+	public void verifyDirectPOWithItemChargesCalculations() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
@@ -1704,6 +1576,66 @@ public class PurchaseOrderFunctions {
 			logs.logging("INFO", "Header Post Icon Is Clicked");
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To verify Item Calculation
+	 * 
+	 * @author Deepan-GWL
+	 * @param Item
+	 */
+	public void verifyItemCalculationWithLineAmount() {
+		String Item;
+		List<WebElement> OrderedQtyList = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+		for (int i = 1; i <= OrderedQtyList.size(); i++) {
+			Item = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
+			logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
+			String OrderedQty = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.OrderedQty(i)))
+					.getText();
+			logs.logging("INFO", "Get Text Ordered Quantity Is: " + OrderedQty);
+			String UnitCost = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.UnitCostTable(i)))
+					.getText();
+			logs.logging("INFO", "Get Text Unit Cost Is: " + UnitCost);
+			double Quantityd = Double.parseDouble(OrderedQty);
+			double Costd = Double.parseDouble(UnitCost);
+			double LineAmountd = Costd * Quantityd;
+			String ExpectedLineAmount = String.format("%.2f", LineAmountd);
+			logs.logging("INFO", "Expected Line Amount Is: " + ExpectedLineAmount);
+			String ActualLineAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.LineAmount(Item),
+					ElementType.Xpath);
+			logs.logging("INFO", "Actual Line Amount Is: " + ActualLineAmount);
+			flag = ExpectedLineAmount.equals(ActualLineAmount);
+			if (flag) {
+				logs.logging("INFO", "Verified Actual Line Amount With Expected Line Amount");
+			} else {
+				assertTrue(flag);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify PO UOM
+	 * 
+	 * @author Deepan-GWL
+	 * @param ExpectedUOM
+	 */
+	public void verifyPoUOM(String ExpectedUOM) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
+		if (flag) {
+			String ActualUOM = webDB.getTextFromElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
+			logs.logging("INFO", "Expected UOM Is: " + ExpectedUOM);
+			logs.logging("INFO", "Actual Get Text UOM Is: " + ActualUOM);
+			flag = ActualUOM.equals(ExpectedUOM);
+			if (flag) {
+				logs.logging("INFO", "Verified Actual UOM With Expected UOM");
+			}
+
+		}
+		assertTrue(flag);
+
 	}
 
 }

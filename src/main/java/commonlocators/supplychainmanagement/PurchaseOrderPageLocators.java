@@ -176,4 +176,7 @@ public class PurchaseOrderPageLocators {
 		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[" + j + "]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String UOMTable = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[5]";
+
 }

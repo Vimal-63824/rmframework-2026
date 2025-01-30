@@ -9,8 +9,13 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -183,46 +188,63 @@ public class CommonFunctions {
 	 * @param Value
 	 */
 	public void searchAndSelectValueInFilters(String locator, String Value) {
+		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
+			checkRefreshCellsDisappear();
 			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 			a: for (int i = 0; i < searchBar.size(); i++) {
+				WebElement element = searchBar.get(i);
 				try {
-					if (searchBar.get(i).isDisplayed()) {
-						searchBar.get(i).clear();
-						searchBar.get(i).sendKeys(Value);
+					if (element.isDisplayed()) {
+						element.clear();
+						logs.logging("INFO", "Search Field Is Cleared");
+						try {
+							flag = fluentWaitClickElement(element);
+							if (flag) {
+								element.sendKeys(Value);
+							}
+						} catch (Exception e) {
+							logs.logging("INFO", "Exception is: " + e);
+						}
+						Thread.sleep(500);
+						logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
 						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 						// TODO WAIT_LOAD_TIME (will remove future)
 						Thread.sleep(2000);
-						flag = checkRefreshCellsDisappear();
+						checkRefreshCellsDisappear();
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
+								ElementType.Xpath)) {
+							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
+									ElementType.Xpath);
+						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
+								ElementType.Xpath)) {
+							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
+									ElementType.Xpath);
+						} else {
+							flag = false;
+						}
 						if (flag) {
-							if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
-									ElementType.Xpath)) {
-								webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
-										ElementType.Xpath);
-
-							} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
-									ElementType.Xpath)) {
-								webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
-										ElementType.Xpath);
-							} else {
-								flag = false;
-							}
-							if (flag) {
-								logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-								break a;
-							}
+							logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
+							break a;
 						}
 					}
 				} catch (Exception e) {
+					logs.logging("INFO", "Exception Is: " + e);
 					flag = false;
 					continue;
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	public boolean fluentWaitClickElement(WebElement element) {
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(webDB.getDriver()).withTimeout(Duration.ofSeconds(10))
+				.pollingEvery(Duration.ofSeconds(2)).ignoring(StaleElementReferenceException.class);
+		return wait.until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
 	}
 
 	/**
@@ -361,7 +383,7 @@ public class CommonFunctions {
 	public void verifyAfterMethod() {
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
-		logoutUser();
+		enterUrl();
 	}
 
 	/**
