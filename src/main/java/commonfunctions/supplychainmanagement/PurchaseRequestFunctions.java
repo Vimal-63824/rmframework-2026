@@ -1,5 +1,12 @@
 package commonfunctions.supplychainmanagement;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -32,7 +39,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreationOfPRGeneral() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
@@ -54,7 +62,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreationOfPRService() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"),
@@ -77,7 +86,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelPRAndDeleteLine() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
@@ -88,6 +98,62 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
 		deleteParticularLinesPurchaseRequest(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		cancelPurchaseRequestAndVerifyCancelStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Cancel of PR and Cancel of Item Lines
+	 * particularly
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCreatePRByUploadExcel() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		String updatedFileName = createUpdatedCsvFileWithRequiredDate(
+				commonFunc.getDataFromTestDataSheet("PRtemplate1Line"));
+		verifyUploadCsvFileInPRAndDeleteUpdatedFile(updatedFileName);
+		saveHeaderAndClickPost();
+		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify PR Close Short
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyPRCloseShort() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
+		saveHeaderAndClickPost();
+		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseRequestCloseShortPage();
+		clickAddIconPurchaseRequestCloseShort();
+		fillFormDetailsInPurchaseRequestCloseShort(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("RefText_Test"));
+		clickTickIconAndStoreDocumentNumberInPRCloseShort();
+		clickLoadPRAndSelectAllItemstoLines();
+		saveHeaderAndClickCloseShort();
+		searchDocNumberAndCheckPRCloseShortStatus(VariableHandler.getPRCloseShortDocNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -106,7 +172,14 @@ public class PurchaseRequestFunctions {
 			String Department, String Requester) {
 		commonFunc.clickCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
+		commonFunc.checkRefreshCellsDisappear();
+		// TODO WAIT_LOAD_TIME (will remove future)
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 		selectPRType(PRType);
+		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
 		selectPRDepartment(Department);
@@ -122,7 +195,7 @@ public class PurchaseRequestFunctions {
 	 * @param ExpextedStatus
 	 */
 	public void searchPRAndCheckPRStatus(String PRNumber, String ExpextedStatus) {
-		if (webDB.isElementDisplayed(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath)) {
+		if (webDB.verifyIsElementDisplayed(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath)) {
 			webDB.clickAnElement(PurchaseRequestLocators.BackIconBtn, ElementType.Xpath);
 		}
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_PRNoButton, PRNumber);
@@ -158,24 +231,11 @@ public class PurchaseRequestFunctions {
 				}
 			}
 		}
-		flag = commonFunc.checkRefreshCellsDisappear();
-		if (flag) {
-			searchAndSelectItems(Item);
-			flag = commonFunc.checkRefreshCellsDisappear();
-			if (flag) {
-				enterQuantityForLastItem(Qnty);
-				flag = commonFunc.checkRefreshCellsDisappear();
-				if (flag) {
-					enterCostForLastItem(Cost);
-					flag = commonFunc.checkRefreshCellsDisappear();
-					if (flag) {
-						saveLinesEntry();
-						flag = commonFunc.checkRefreshCellsDisappear();
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
+		searchAndSelectItems(Item);
+		enterQuantityForLastItem(Qnty);
+		enterCostForLastItem(Cost);
+		saveLinesEntry();
+		checkLineCostAmount(Cost, Qnty);
 	}
 
 	/**
@@ -192,6 +252,7 @@ public class PurchaseRequestFunctions {
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForClickElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
@@ -213,6 +274,7 @@ public class PurchaseRequestFunctions {
 	 * This Method Is Used To Delete Particular Lines Purchase Request PR
 	 * 
 	 * @author Sakthi-GWL
+	 * 
 	 * @param DataValue
 	 */
 	public void deleteParticularLinesPurchaseRequest(String DataValue) {
@@ -264,6 +326,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void saveLinesEntry() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
@@ -291,6 +354,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void searchAndSelectItems(String Item) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
@@ -329,6 +393,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void enterQuantityForLastItem(String Quantity) {
+		commonFunc.checkRefreshCellsDisappear();
 		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
 		if (flag) {
@@ -363,6 +428,7 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void enterCostForLastItem(String Cost) {
+		commonFunc.checkRefreshCellsDisappear();
 		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
 		if (flag) {
@@ -461,6 +527,7 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRPrefixSelect, ElementType.Xpath);
 		if (flag) {
 			webDB.waitForClickElement(PurchaseRequestLocators.PRPrefixSelect, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PRPrefixSelect, Prefix, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "PR Prefix: " + Prefix + " selected");
@@ -484,6 +551,9 @@ public class PurchaseRequestFunctions {
 				String PRNum = webDB.getTextFromElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
 				VariableHandler.setPRNumber(PRNum);
 				logs.logging("INFO", "Purchase Request ID: " + VariableHandler.getPRNumber());
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -630,4 +700,294 @@ public class PurchaseRequestFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * This method used to upload csv file in PR and verify uploaded or not and
+	 * Delete file After delete
+	 * 
+	 * @author Sakthi-GWL
+	 * @param uploadingFile
+	 */
+	private void verifyUploadCsvFileInPRAndDeleteUpdatedFile(String uploadingFile) {
+		String File = uploadingFile;
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_UploadTemplateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PR_UploadTemplateBtn, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PR_UploadTemplateBtn, ElementType.Xpath);
+			logs.logging("INFO", "File Upload Button Clicked");
+			webDB.waitForElement(PurchaseRequestLocators.PR_UploadFileInput, ElementType.Xpath);
+			webDB.sendTextToAnElement(PurchaseRequestLocators.PR_UploadFileInput, (new File(File).getAbsolutePath()),
+					ElementType.Xpath);
+			webDB.waitForElement(PurchaseRequestLocators.PR_UploadedFileText, ElementType.Xpath);
+			flag = webDB.getTextFromElement(PurchaseRequestLocators.PR_UploadedFileText, ElementType.Xpath)
+					.contains(uploadingFile);
+			if (flag) {
+				logs.logging("INFO", uploadingFile + " - File Uploaded Successfully");
+				webDB.clickAnElement(PurchaseRequestLocators.PR_UploadOkBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)
+							.contains("Lines Uploaded Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+		deleteUpdatedCsvFileAfterUploaded(uploadingFile);
+		logs.logging("INFO", " PR Lines Uploaded Successfully Toast Displayed");
+	}
+
+	/**
+	 * This method used to create a new csv file with template file by replacing
+	 * Required Date as next day of System date
+	 * 
+	 * @author Sakthi-GWL
+	 * @param TemplarteFileName
+	 * @return String updatedFileName
+	 */
+	private String createUpdatedCsvFileWithRequiredDate(String TemplarteFileName) {
+		String FileName = VariableHandler.testdataDir + TemplarteFileName;
+		String updatedFile = "updated" + TemplarteFileName;
+
+		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
+		String tomorrowDate = myDateObj.format(myFormatObj);
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(FileName));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(updatedFile))) {
+			String line;
+			boolean isHeader = true;
+			while ((line = reader.readLine()) != null) {
+				if (line.trim().isEmpty()) {
+					break;
+				}
+				String[] columns = line.split(",");
+				if (isHeader) {
+					writer.write(String.join(",", columns));
+					writer.newLine();
+					isHeader = false;
+				} else {
+					int dateColumnIndex = 4;
+					columns[dateColumnIndex] = tomorrowDate; // Replace with tomorrow's date
+					writer.write(String.join(",", columns));
+					writer.newLine();
+				}
+			}
+			logs.logging("INFO", "File processed successfully. Modified file saved as: " + updatedFile);
+		} catch (Exception e) {
+			logs.logging("FAIL", "File processed Failed. Modified file failed to save as: " + updatedFile);
+			Assert.fail("File processed Failed. Modified file failed to save as: " + updatedFile);
+		}
+		return updatedFile;
+	}
+
+	/**
+	 * This method used to delete the csv file after uploaded in case of failure
+	 * remove the file manually
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 */
+	private void deleteUpdatedCsvFileAfterUploaded(String FileName) {
+		File originalFile = new File(FileName);
+		if (originalFile.delete()) {
+			logs.logging("INFO", "Deleted the file: " + FileName);
+		} else {
+			logs.logging("FAIL", "Failed to Delete the file: " + FileName);
+			Assert.fail("Failed to Delete the file: " + FileName);
+		}
+	}
+
+	/**
+	 * This method used to click Add Icon in PR CloseShort
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAddIconPurchaseRequestCloseShort() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add New Icon Clicked in PR CloseShort");
+			}
+		}
+	}
+
+	/**
+	 * This method used to fill details in PR CloseShort Page with LocID, PRNo and
+	 * Reference
+	 * 
+	 * @author Sakthi-GWL
+	 * @param locId
+	 * @param PRNo
+	 * @param Ref
+	 */
+	private void fillFormDetailsInPurchaseRequestCloseShort(String locId, String PRNo, String Ref) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LocId, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_LocId, locId);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_Prefix, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_Prefix, PRNo);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_Reference, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.sendTextToAnElement(PurchaseRequestLocators.PRCloseShort_Reference, Ref,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Reference entered in PR CloseShort: " + Ref);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click the tick icon in PR CloseShort Details Page and
+	 * store document number
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickTickIconAndStoreDocumentNumberInPRCloseShort() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_TickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_TickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_DocNoText, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				String PRClsShrtDocNum = webDB.getDomPropertyFromElement(PurchaseRequestLocators.PRCloseShort_DocNoText,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				VariableHandler.setPRCloseShortDocNumber(PRClsShrtDocNum);
+				logs.logging("INFO",
+						"Purchase Request Close Short Document Number: " + VariableHandler.getPRCloseShortDocNumber());
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Load PR and select all items in PR and click Ok
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickLoadPRAndSelectAllItemstoLines() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_FetchPRIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Load PR Clicked in PR CloseShort");
+				webDB.switchToFrame(PurchaseRequestLocators.PRCloseShort_FetchPRIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SelectAllPRItem, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Fetch PR iframe Switched Successfully");
+					webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SelectAllPRItem, ElementType.Xpath);
+					webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
+					flag = webDB.isElementEnabled(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_OkBtn, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"Select All Item Checkbox clicked and Items added Successfully in PR CloseShort");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to save header and click close short then verify with
+	 * success toast message
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void saveHeaderAndClickCloseShort() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SaveHeaderBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_SaveHeaderBtn, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SaveHeaderBtn, ElementType.Xpath);
+			logs.logging("INFO", "PR CloseShort Header Saved Successfully.");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_CloseShortBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(PurchaseRequestLocators.PRCloseShort_CloseShortBtn, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_CloseShortBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, CloseShort Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to search Purchase Request CloseShort Document Number and
+	 * verify status with expected status
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocumentNo
+	 * @param ExpextedStatus
+	 */
+	private void searchDocNumberAndCheckPRCloseShortStatus(String DocumentNo, String ExpextedStatus) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_FindDocNo, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_FindDocNo, DocumentNo);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
+				if (flag) {
+					String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText,
+							ElementType.Xpath);
+					logs.logging("INFO", "Document No: '" + DocumentNo + "' searched and displaying status: " + Status);
+					flag = Status.equalsIgnoreCase(ExpextedStatus);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate line amount with unit cost and quantity
+	 * 
+	 * @author Sakthi-GWL
+	 * @param cost
+	 * @param quantity
+	 */
+	private void checkLineCostAmount(String cost, String quantity) {
+		double Cost = Double.parseDouble(cost);
+		double Quantity = Double.parseDouble(quantity);
+		flag = webDB.waitForElement(PurchaseRequestLocators.LineAmountDataLastRow, ElementType.Xpath);
+		if (flag) {
+			double LineAmount = Double.parseDouble(
+					webDB.getTextFromElement(PurchaseRequestLocators.LineAmountDataLastRow, ElementType.Xpath)
+							.replace(",", ""));
+			flag = LineAmount == (Cost * Quantity);
+			logs.logging("INFO", "Cost * Quantity amount: " + (Cost * Quantity));
+			logs.logging("INFO", "Line Amount: " + LineAmount);
+			if (flag) {
+				logs.logging("INFO", "Verified Line Amount with UnitCost and Quantity");
+			} else {
+				logs.logging("INFO", "Verified Failed Mismatch of Line Amount with UnitCost and Quantity");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }

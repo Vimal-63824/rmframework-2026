@@ -6,14 +6,21 @@ import java.io.File;
  * @company Galaxy Weblinks January 15, 2025
  */
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -50,7 +57,7 @@ public class CommonFunctions {
 	 * This method used to wait 10 seconds till disappear table refreshing cells
 	 * 
 	 * @author Sakthi-GWL
-	 * @return purchaseId
+	 * @return boolean
 	 */
 	public boolean checkRefreshCellsDisappear() {
 		List<WebElement> refreshElements = webDB.getDriver()
@@ -60,7 +67,7 @@ public class CommonFunctions {
 				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
 				wait.until(ExpectedConditions.invisibilityOf(element));
 			}
-			//TODO WAIT_LOAD_TIME (will remove future)
+			// TODO WAIT_LOAD_TIME (will remove future)
 			Thread.sleep(500);
 		} catch (Exception e) {
 
@@ -121,8 +128,9 @@ public class CommonFunctions {
 			}
 		}
 		if (flag) {
-			if (Name != null) {
-				logs.logging("INFO", Name + " User Logged In Successfully");
+			if (Name.length > 0) {
+				logs.logging("INFO", "'" + Arrays.toString(Name) + "' User Logged In Successfully");
+
 			} else {
 				logs.logging("INFO", "User Logged In Successfully");
 			}
@@ -180,37 +188,63 @@ public class CommonFunctions {
 	 * @param Value
 	 */
 	public void searchAndSelectValueInFilters(String locator, String Value) {
+		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
+			checkRefreshCellsDisappear();
 			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 			a: for (int i = 0; i < searchBar.size(); i++) {
+				WebElement element = searchBar.get(i);
 				try {
-					if (searchBar.get(i).isDisplayed()) {
-						searchBar.get(i).clear();
-						searchBar.get(i).sendKeys(Value);
-						//TODO WAIT_LOAD_TIME (will remove future)
-						Thread.sleep(2000);
-						flag = checkRefreshCellsDisappear();
-						if (flag) {
-							flag = webDB.waitForClickElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
+					if (element.isDisplayed()) {
+						element.clear();
+						logs.logging("INFO", "Search Field Is Cleared");
+						try {
+							flag = fluentWaitClickElement(element);
 							if (flag) {
-								flag = webDB.clickAnElement(CommonUiLocators.convertXPath(Value), ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-								}
-								break a;
+								element.sendKeys(Value);
 							}
+						} catch (Exception e) {
+							logs.logging("INFO", "Exception is: " + e);
+						}
+						Thread.sleep(500);
+						logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
+						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
+						// TODO WAIT_LOAD_TIME (will remove future)
+						Thread.sleep(2000);
+						checkRefreshCellsDisappear();
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
+								ElementType.Xpath)) {
+							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
+									ElementType.Xpath);
+						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
+								ElementType.Xpath)) {
+							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
+									ElementType.Xpath);
+						} else {
+							flag = false;
+						}
+						if (flag) {
+							logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
+							break a;
 						}
 					}
 				} catch (Exception e) {
+					logs.logging("INFO", "Exception Is: " + e);
 					flag = false;
 					continue;
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	public boolean fluentWaitClickElement(WebElement element) {
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(webDB.getDriver()).withTimeout(Duration.ofSeconds(10))
+				.pollingEvery(Duration.ofSeconds(2)).ignoring(StaleElementReferenceException.class);
+		return wait.until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
 	}
 
 	/**
@@ -222,8 +256,10 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
-			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			}
 		}
 		Assert.assertTrue(flag);
 	}
@@ -234,11 +270,15 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickPendingIcon() {
+		checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			checkRefreshCellsDisappear();
+			webDB.moveToElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingText, ElementType.Xpath);
 			if (flag)
-				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				logs.logging("INFO", "Pending Icon is Displayed and Clicked");
 		}
 		Assert.assertTrue(flag);
 	}
@@ -336,13 +376,54 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * This MEthod Is Used To After Method In TestNG
+	 * This Method Is Used To After Method In TestNG
 	 * 
 	 * @author Deepan-GWL
 	 */
 	public void verifyAfterMethod() {
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
-		logoutUser();
+		enterUrl();
+	}
+
+	/**
+	 * This method used to Navigate Purchase Request Close Short Page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigatePurchaseRequestCloseShortPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to wait 10 seconds till disappear success toast message
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean checkSuccessToastMessageDisappear() {
+		try {
+			WebElement ToastElements = webDB.getDriver().findElement(By.xpath(CommonUiLocators.PostToastMessage));
+			WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+			wait.until(ExpectedConditions.invisibilityOf(ToastElements));
+			// TODO WAIT_LOAD_TIME (will remove future)
+			Thread.sleep(500);
+			flag = !ToastElements.isDisplayed();
+		} catch (Exception e) {
+			flag = false;
+		}
+		return flag;
 	}
 }
