@@ -173,11 +173,7 @@ public class PurchaseRequestFunctions {
 		commonFunc.clickCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
 		commonFunc.checkRefreshCellsDisappear();
-		// TODO WAIT_LOAD_TIME (will remove future)
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-		}
+		commonFunc.hardWait(1000);
 		selectPRType(PRType);
 		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);

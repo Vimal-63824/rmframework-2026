@@ -138,13 +138,11 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyAddItemInPOWithQuantityAndUnitCost() {
 		try {
-			// TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(1000);
+			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput,
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));
-			// TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(1000);
+			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput,
 					commonFunc.getDataFromTestDataSheet("UnitCostValue"));
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
@@ -188,11 +186,7 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyWaitingForApproval() {
-		try {
-			// TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(3000);
-		} catch (Exception e) {
-		}
+		commonFunc.hardWait(3000);
 		if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath)) {
 			flag = true;
 			VariableHandler.setApprovalFlag(flag);
@@ -200,11 +194,7 @@ public class PurchaseOrderFunctions {
 			logs.logging("INFO", "Switched To Workflow Frame");
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
 					commonFunc.getDataFromTestDataSheet("AshokValue"));
-			try {
-				// TODO WAIT_LOAD_TIME (will remove future)
-				Thread.sleep(2000);
-			} catch (Exception e) {
-			}
+			commonFunc.hardWait(2000);
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
@@ -280,11 +270,7 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
-			try {
-				// TODO WAIT_LOAD_TIME (will remove future)
-				Thread.sleep(1000);
-			} catch (Exception e) {
-			}
+			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.POStatusTableText(POno), ElementType.Xpath);
 			if (flag) {
@@ -869,6 +855,8 @@ public class PurchaseOrderFunctions {
 	public void selectAllPendingPRAndClickCreatePO() {
 		commonFunc.checkRefreshCellsDisappear();
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+		webDB.moveToElement(PurchaseOrderPageLocators.PendingPRTable, ElementType.Xpath);
+		webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
@@ -1474,8 +1462,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyAddItemChargesPercentages() {
 		try {
-			// TODO WAIT_LOAD_TIME (wverifyAddItemChargesPercentagesill remove future)
-			Thread.sleep(1000);
+			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.ChargePercentage,
 					PurchaseOrderPageLocators.ChargePercentageInput,
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));

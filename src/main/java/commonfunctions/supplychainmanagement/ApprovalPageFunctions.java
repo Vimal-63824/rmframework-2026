@@ -80,11 +80,7 @@ public class ApprovalPageFunctions {
 	 * @param UOM
 	 */
 	public void verifyValidatedetailsPoDetails(String PONumber, String ExpCurrency, String POHType, String UOM) {
-		try {
-			//TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(1000);
-		} catch (Exception e) {
-		}
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
@@ -146,11 +142,7 @@ public class ApprovalPageFunctions {
 	 * @param PONumber
 	 */
 	public void verifyApproveWithDocNumber(String Number) {
-		try {
-			//TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(1000);
-		} catch (Exception e) {
-		}
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);

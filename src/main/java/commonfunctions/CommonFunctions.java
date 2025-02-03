@@ -9,7 +9,6 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -68,7 +67,7 @@ public class CommonFunctions {
 				wait.until(ExpectedConditions.invisibilityOf(element));
 			}
 			// TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(500);
+			hardWait(500);
 		} catch (Exception e) {
 
 		}
@@ -188,7 +187,6 @@ public class CommonFunctions {
 	 * @param Value
 	 */
 	public void searchAndSelectValueInFilters(String locator, String Value) {
-		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(locator, ElementType.Xpath);
@@ -209,11 +207,11 @@ public class CommonFunctions {
 						} catch (Exception e) {
 							logs.logging("INFO", "Exception is: " + e);
 						}
-						Thread.sleep(500);
+						hardWait(500);
 						logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
 						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 						// TODO WAIT_LOAD_TIME (will remove future)
-						Thread.sleep(2000);
+						hardWait(2000);
 						checkRefreshCellsDisappear();
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
 								ElementType.Xpath)) {
@@ -418,12 +416,24 @@ public class CommonFunctions {
 			WebElement ToastElements = webDB.getDriver().findElement(By.xpath(CommonUiLocators.PostToastMessage));
 			WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
 			wait.until(ExpectedConditions.invisibilityOf(ToastElements));
-			// TODO WAIT_LOAD_TIME (will remove future)
-			Thread.sleep(500);
+			hardWait(500);
 			flag = !ToastElements.isDisplayed();
 		} catch (Exception e) {
 			flag = false;
 		}
 		return flag;
+	}
+
+	/**
+	 * Hard Wait
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void hardWait(long value) {
+		try {
+			// TODO WAIT_LOAD_TIME (will remove future)
+			Thread.sleep(value);
+		} catch (Exception e) {
+		}
 	}
 }
