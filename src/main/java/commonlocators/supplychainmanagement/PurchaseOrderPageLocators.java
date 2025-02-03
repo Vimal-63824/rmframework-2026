@@ -178,5 +178,6 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String UOMTable = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[5]";
-
+	/** @locatorType Xpath */
+	public static final String PendingPRTable = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[1]";
 }
