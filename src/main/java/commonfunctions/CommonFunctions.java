@@ -114,7 +114,8 @@ public class CommonFunctions {
 				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
+					checkRefreshCellsDisappear();
+					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath,15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
@@ -198,7 +199,7 @@ public class CommonFunctions {
 				try {
 					if (element.isDisplayed()) {
 						element.clear();
-						logs.logging("INFO", "Search Field Is Cleared");
+						//logs.logging("INFO", "Search Field Is Cleared");
 						try {
 							flag = fluentWaitClickElement(element);
 							if (flag) {
@@ -208,7 +209,7 @@ public class CommonFunctions {
 							logs.logging("INFO", "Exception is: " + e);
 						}
 						hardWait(500);
-						logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
+						//logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
 						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 						// TODO WAIT_LOAD_TIME (will remove future)
 						hardWait(2000);
