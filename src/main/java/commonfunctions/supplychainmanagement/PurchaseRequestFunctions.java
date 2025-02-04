@@ -47,16 +47,10 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateLocationInPRHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		validateUnitInPRHeader(commonFunc.getDataFromTestDataSheet("Unit_100"));
-		validatePRTypeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_General"));
-		validatePrefixInPRHeader(commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		validateDepartmentInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Department"));
-		validateRequestorInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateCPCCodeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_CPCCode"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
@@ -77,16 +71,10 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateLocationInPRHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		validateUnitInPRHeader(commonFunc.getDataFromTestDataSheet("Unit_100"));
-		validatePRTypeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Service"));
-		validatePrefixInPRHeader(commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		validateDepartmentInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Department"));
-		validateRequestorInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateCPCCodeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_CPCCode"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Service"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
@@ -108,8 +96,9 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -132,16 +121,10 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateLocationInPRHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		validateUnitInPRHeader(commonFunc.getDataFromTestDataSheet("Unit_100"));
-		validatePRTypeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_General"));
-		validatePrefixInPRHeader(commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		validateDepartmentInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Department"));
-		validateRequestorInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateCPCCodeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_CPCCode"));
 		String updatedFileName = createUpdatedCsvFileWithRequiredDate(
 				commonFunc.getDataFromTestDataSheet("PRtemplate1Line"));
 		verifyUploadCsvFileInPRAndDeleteUpdatedFile(updatedFileName);
@@ -162,16 +145,10 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateLocationInPRHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		validateUnitInPRHeader(commonFunc.getDataFromTestDataSheet("Unit_100"));
-		validatePRTypeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_General"));
-		validatePrefixInPRHeader(commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		validateDepartmentInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Department"));
-		validateRequestorInPRHeader(commonFunc.getDataFromTestDataSheet("PR_Requester"));
-		validateCPCCodeInPRHeader(commonFunc.getDataFromTestDataSheet("PR_CPCCode"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
@@ -200,7 +177,7 @@ public class PurchaseRequestFunctions {
 	 * @param department
 	 * @param requester
 	 */
-	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String PRType, String Prefix, String CPCCode,
+	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String Unit, String PRType, String Prefix, String CPCCode,
 			String Department, String Requester) {
 		commonFunc.clickCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
@@ -213,6 +190,13 @@ public class PurchaseRequestFunctions {
 		selectPRDepartment(Department);
 		selectPRRequester(Requester);
 		clickTickIconCreateRequest();
+		validateLocationInPRHeader(Location);
+		validateUnitInPRHeader(Unit);
+		validatePRTypeInPRHeader(PRType);
+		validatePrefixInPRHeader(Prefix);
+		validateDepartmentInPRHeader(Department);
+		validateRequestorInPRHeader(Requester);
+		validateCPCCodeInPRHeader(CPCCode);
 	}
 
 	/**

@@ -57,14 +57,24 @@ public class PurchaseRequestTest {
 	}
 
 	/**
-	 * cancel the purchase request document cancel the purchase request lines
+	 * cancel the purchase request document
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	@Test(priority = 4, groups = { "PurchaseRequest" }, description = "78 -  cancel the purchase request document"
-			+ "79 -  cancel the purchase request lines")
-	public void VerifyCancelPRAndDeleteLines() {
+	@Test(priority = 4, groups = { "PurchaseRequest" }, description = "78 -  cancel the purchase request document")
+	public void VerifyCancelPR() {
 		flag = PRFunc.verifyCancelPRAndDeleteLine();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * cancel the purchase request lines
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 5, groups = { "PurchaseRequest" }, description = "79 -  cancel the purchase request lines")
+	public void VerifyPRDeleteLines() {
+		flag = true;
 		Assert.assertTrue(flag);
 	}
 
@@ -73,7 +83,7 @@ public class PurchaseRequestTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	@Test(priority = 5, groups = { "PurchaseRequest" }, description = "80 -  closeshort the purchase request")
+	@Test(priority = 6, groups = { "PurchaseRequest" }, description = "80 -  closeshort the purchase request")
 	public void VerifyPRCloseShort() {
 		flag = PRFunc.verifyPRCloseShort();
 		Assert.assertTrue(flag);

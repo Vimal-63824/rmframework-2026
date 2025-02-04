@@ -3,9 +3,11 @@ package commonfunctions;
 import java.io.File;
 
 import utils.ExcelUtils;
+import utils.WebDriverBase;
 
 public class ItemDetailsHandler {
 	private static ExcelUtils excelUtils = new ExcelUtils();
+	private static WebDriverBase webDB=new WebDriverBase();
 	private static ThreadLocal<String[][]> PR_LineDetails = ThreadLocal.withInitial(() -> null);
 	private static String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 			+ "ItemDetails.xlsx";
@@ -16,7 +18,7 @@ public class ItemDetailsHandler {
 	 * @author Sakthi-GWL
 	 */
 	public ItemDetailsHandler() {
-		PR_LineDetails.set(excelUtils.readAllDataInExcel(Filepath, "PR Details"));
+		PR_LineDetails.set(excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRItemDetailsSheetName")));
 	}
 
 	/**
