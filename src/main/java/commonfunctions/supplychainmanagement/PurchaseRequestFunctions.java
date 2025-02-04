@@ -16,9 +16,12 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.ItemDetailsHandler;
+import commonfunctions.ItemDetailsHandler.PRLineDetailsName;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
@@ -31,6 +34,7 @@ public class PurchaseRequestFunctions {
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
+	private static ItemDetailsHandler itmDtlHandler = new ItemDetailsHandler();
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General
@@ -43,8 +47,9 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -66,8 +71,9 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Service"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -90,8 +96,9 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -114,8 +121,9 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		String updatedFileName = createUpdatedCsvFileWithRequiredDate(
 				commonFunc.getDataFromTestDataSheet("PRtemplate1Line"));
@@ -137,8 +145,9 @@ public class PurchaseRequestFunctions {
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
-				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
 				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		fillItemsQuantityCostAndSaveLine(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
 				commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -168,7 +177,7 @@ public class PurchaseRequestFunctions {
 	 * @param department
 	 * @param requester
 	 */
-	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String PRType, String Prefix, String CPCCode,
+	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String Unit, String PRType, String Prefix, String CPCCode,
 			String Department, String Requester) {
 		commonFunc.clickCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
@@ -181,6 +190,13 @@ public class PurchaseRequestFunctions {
 		selectPRDepartment(Department);
 		selectPRRequester(Requester);
 		clickTickIconCreateRequest();
+		validateLocationInPRHeader(Location);
+		validateUnitInPRHeader(Unit);
+		validatePRTypeInPRHeader(PRType);
+		validatePrefixInPRHeader(Prefix);
+		validateDepartmentInPRHeader(Department);
+		validateRequestorInPRHeader(Requester);
+		validateCPCCodeInPRHeader(CPCCode);
 	}
 
 	/**
@@ -232,6 +248,9 @@ public class PurchaseRequestFunctions {
 		enterCostForLastItem(Cost);
 		saveLinesEntry();
 		checkLineCostAmount(Cost, Qnty);
+		clickLineDetailsIconForLastitem();
+		checkPRLineDetailsForLastUpdateItem(Item);
+		closeLineDetailsAndVerify();
 	}
 
 	/**
@@ -313,6 +332,34 @@ public class PurchaseRequestFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * This method used to validate the Line Details - Class, SubClass, Warehouse,
+	 * Convention Factor, Purchase UOM, GL Acc No, GL Acc Desc, CPC Code, CPC Desc
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 */
+	public void checkPRLineDetailsForLastUpdateItem(String Item) {
+		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_SubClass, Item,
+				PRLineDetailsName.SUBCLASS);
+		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_Class, Item, PRLineDetailsName.CLASS);
+		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_Warehouse, Item,
+				PRLineDetailsName.WAREHOUSE);
+		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ConventionFactor, Item,
+				PRLineDetailsName.CONVENTION_FACTOR);
+		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_PurchaseUOM, Item,
+				PRLineDetailsName.PURCHASE_UOM);
+		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccNo, Item,
+				PRLineDetailsName.GL_ACC_NO);
+		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccDesc, Item,
+				PRLineDetailsName.GL_ACC_DESC);
+		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCCode, Item,
+				PRLineDetailsName.CPC_CODE);
+		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCDesc, Item,
+				PRLineDetailsName.CPC_DESC);
+	}
+
 
 	/*----------------------private methods---------------------------*/
 
@@ -982,6 +1029,268 @@ public class PurchaseRequestFunctions {
 				logs.logging("INFO", "Verified Line Amount with UnitCost and Quantity");
 			} else {
 				logs.logging("INFO", "Verified Failed Mismatch of Line Amount with UnitCost and Quantity");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate location in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Location
+	 */
+	private void validateLocationInPRHeader(String Location) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeader_Location, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getTextFromElement(PurchaseRequestLocators.PRHeader_Location, ElementType.Xpath);
+			flag = DisplayText.equalsIgnoreCase(Location);
+			if (flag) {
+				logs.logging("INFO", "verified Displayed Location in PR Header: " + DisplayText);
+			} else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Text: " + Location + " Displayed: " + DisplayText);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate Unit in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 */
+	private void validateUnitInPRHeader(String Unit) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeader_Unit, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getDomPropertyFromElement(PurchaseRequestLocators.PRHeader_Unit,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			flag = DisplayText.equalsIgnoreCase(Unit);
+			if (flag) {
+				logs.logging("INFO", "verified Displayed Unit in PR Header: " + DisplayText);
+			}else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Text: " + Unit + " Displayed: " + DisplayText);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate PR Type in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param PRType
+	 */
+	private void validatePRTypeInPRHeader(String PRType) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeader_PRType, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getTextFromElement(PurchaseRequestLocators.PRHeader_PRType, ElementType.Xpath);
+			flag = DisplayText.equalsIgnoreCase(PRType);
+			if (flag) {
+				logs.logging("INFO", "verified Displayed PR Type in PR Header: " + DisplayText);
+			}else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Text: " + PRType + " Displayed: " + DisplayText);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate PR Prefix in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Prefix
+	 */
+	private void validatePrefixInPRHeader(String Prefix) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeader_PRPrefix, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getTextFromElement(PurchaseRequestLocators.PRHeader_PRPrefix, ElementType.Xpath);
+			flag = DisplayText.equalsIgnoreCase(Prefix);
+			if (flag) {
+				logs.logging("INFO", "verified Displayed Prefix in PR Header: " + DisplayText);
+			}else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Text: " + Prefix + " Displayed: " + DisplayText);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate Department in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Department
+	 */
+	private void validateDepartmentInPRHeader(String Department) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRDepartmentSelect, ElementType.Xpath);
+		if (flag) {
+			WebElement element = webDB.getDriver().findElement(By.xpath(PurchaseRequestLocators.PRDepartmentSelect));
+			Select select = new Select(element);
+			for (WebElement Text : select.getAllSelectedOptions()) {
+				if (Text.getText().equalsIgnoreCase(Department)) {
+					flag = true;
+					break;
+				} else {
+					flag = false;
+				}
+			}
+			if (flag) {
+				logs.logging("INFO", "Selected Department in PR Header: " + Department);
+			}else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Department: " + Department);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate Requester in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Rqstr
+	 */
+	private void validateRequestorInPRHeader(String Rqstr) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeader_Requester, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getDomPropertyFromElement(PurchaseRequestLocators.PRHeader_Requester,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			flag = DisplayText.equalsIgnoreCase(Rqstr);
+			if (flag) {
+				logs.logging("INFO", "verified Displayed Requester in PR Header: " + DisplayText);
+			}else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Text: " + Rqstr + " Displayed: " + DisplayText);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate CPC Code in PR header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param CPCCode
+	 */
+	private void validateCPCCodeInPRHeader(String CPCCode) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeader_CPCCode, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getDomPropertyFromElement(PurchaseRequestLocators.PRHeader_CPCCode,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			flag = DisplayText.equalsIgnoreCase(CPCCode);
+			if (flag) {
+				logs.logging("INFO", "verified Displayed CPC Code in PR Header: " + DisplayText);
+			}else {
+				logs.logging("INFO", "Verification failed in PR Header");
+				logs.logging("INFO", "Expected Text: " + CPCCode + " Displayed: " + DisplayText);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click lines details for the last added line item
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickLineDetailsIconForLastitem() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LastItemDetailIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PR_LastItemDetailIcon, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PR_LastItemDetailIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Line Details Icon Clicked for Last Item");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate PR Line Details in UI and Item Detail test data
+	 * with passing field locator using GetText
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Locator
+	 * @param Item
+	 * @param lineDtlName
+	 */
+	private void validatePRLineDetailsWithGetText(String Locator, String Item, PRLineDetailsName lineDtlName) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Class, ElementType.Xpath);
+			if (flag) {
+				String DisplayText = webDB.getTextFromElement(Locator, ElementType.Xpath);
+				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
+				flag = DisplayText.equalsIgnoreCase(expectedName);
+				logs.logging("INFO", "Displayed Text: " + DisplayText);
+				logs.logging("INFO", "Expected Text: " + expectedName);
+				if (flag) {
+					logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
+				} else {
+					logs.logging("INFO", "Verification Failed!!... Displayed and Expected Text for "
+							+ lineDtlName.name().toString());
+				}
+
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate PR Line Details in UI and Item Detail test data
+	 * with passing field locator using Get DOM property value
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Locator
+	 * @param Item
+	 * @param lineDtlName
+	 */
+	private void validatePRLineDetailsWithDomPropertyValue(String Locator, String Item, PRLineDetailsName lineDtlName) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Class, ElementType.Xpath);
+			if (flag) {
+				String DisplayText = webDB.getDomPropertyFromElement(Locator, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
+				flag = DisplayText.equalsIgnoreCase(expectedName);
+				logs.logging("INFO", "Displayed Text: " + DisplayText);
+				logs.logging("INFO", "Expected Text: " + expectedName);
+				if (flag) {
+					logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
+				} else {
+					logs.logging("INFO", "Verification Failed!!... Displayed and Expected Text for "
+							+ lineDtlName.name().toString());
+				}
+
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click close icon in the Line Details - PR and verified 
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void closeLineDetailsAndVerify() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_CloseIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.PRLineDetails_CloseIcon, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PRLineDetails_CloseIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = !webDB.verifyIsElementDisplayed(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Line Details Close Icon Clicked and verified");
 			}
 		}
 		Assert.assertTrue(flag);

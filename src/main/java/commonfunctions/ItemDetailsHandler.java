@@ -1,0 +1,65 @@
+package commonfunctions;
+
+import java.io.File;
+
+import utils.ExcelUtils;
+import utils.WebDriverBase;
+
+public class ItemDetailsHandler {
+	private static ExcelUtils excelUtils = new ExcelUtils();
+	private static WebDriverBase webDB=new WebDriverBase();
+	private static ThreadLocal<String[][]> PR_LineDetails = ThreadLocal.withInitial(() -> null);
+	private static String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+			+ "ItemDetails.xlsx";
+
+	/**
+	 * This Constructor used to set PR_LineDetails data from ItemDetails.xlsx file.
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public ItemDetailsHandler() {
+		PR_LineDetails.set(excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRItemDetailsSheetName")));
+	}
+
+	/**
+	 * This Enum 'PR Line Details Name column Name'
+	 */
+	public enum PRLineDetailsName {
+		ITEM_NAME, CLASS, SUBCLASS, WAREHOUSE, CONVENTION_FACTOR, PURCHASE_UOM, GL_ACC_NO, GL_ACC_DESC, CPC_CODE,
+		CPC_DESC
+	}
+
+	/**
+	 * This method used to return specific items particular Line Detail Data from
+	 * Item Details Sheet.
+	 * 
+	 * @param itemName
+	 * @param LineDetailName
+	 * @return String resultData
+	 */
+	public String getPRLineDetailsforGivenItem(String itemName, PRLineDetailsName LineDetailName) {
+		String resultData = null;
+		int columnIndex = 0;
+		int itemColumnIndex = 0;
+		if (PR_LineDetails.get() == null || PR_LineDetails.get().length == 0) {
+			PR_LineDetails.set(excelUtils.readAllDataInExcel(Filepath, "PR Details"));
+		}
+		String[] headers = PR_LineDetails.get()[0];
+		for (int i = 0; i < headers.length; i++) {
+			if (headers[i].trim().equalsIgnoreCase(LineDetailName.name().trim())) {
+				columnIndex = i;
+			}
+			if (headers[i].trim().equalsIgnoreCase(PRLineDetailsName.ITEM_NAME.name().trim())) {
+				itemColumnIndex = i;
+			}
+		}
+		for (int i = 1; i < PR_LineDetails.get().length; i++) {
+			if (PR_LineDetails.get()[i][itemColumnIndex].trim().equalsIgnoreCase(itemName.trim())) {
+				resultData = PR_LineDetails.get()[i][columnIndex];
+				break;
+			}
+		}
+		return resultData;
+	}
+
+}

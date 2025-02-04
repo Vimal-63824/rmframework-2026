@@ -63,7 +63,7 @@ public class CommonUiLocators {
 	public static String convertXPath(String text) {
 		return "(//*[text()='" + text + "'])[1]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static String searchHighlightText(String text) {
 		return "(//*[text()='" + text + "'][@class='popup-lov-highlight'])[1]";
