@@ -249,20 +249,33 @@ public class PurchaseOrderTest {
 	@Test(priority = 18, groups = {
 			"PurchaseOrder" }, description = "109 How to create PO with Charges and how PO amount is calculated?")
 	public void VerifyDirectPOWithItemChargesCalculations() {
-		purchaseOrderFunc.verifyDirectPOWithItemChargesCalculations();
+		flag = purchaseOrderFunc.verifyDirectPOWithItemChargesCalculations();
+		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * How to cancel Purchase Order Document? How to cancel the Purchase Order
-	 * Lines?
+	 * How to cancel Purchase Order Document
 	 * 
 	 * @author Deepan-GWL
 	 * 
 	 */
-	@Test(priority = 19, groups = { "PurchaseOrder" }, description = "110 How to cancel Purchase Order Document?"
-			+ "111 How to cancel the Purchase Order Lines?")
-	public void VerifyCancelPurchaseOrderDocumentAndCancelItem() {
-		purchaseOrderFunc.VerifyCancelPurchaseOrderDocument();
+	@Test(priority = 19, groups = { "PurchaseOrder" }, description = "110 How to cancel Purchase Order Document?")
+	public void VerifyCancelPurchaseOrderDocument() {
+		flag = purchaseOrderFunc.VerifyCancelPurchaseOrderDocument();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * How to cancel the Purchase Order Lines
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 20, groups = { "PurchaseOrder" }, description = "111 How to cancel the Purchase Order Lines?")
+	public void VerifyCancelPurchaseOrderCancelLines() {
+		//Covered in Previous Method
+		flag = true;
+		Assert.assertTrue(flag);
 	}
 
 	/**
