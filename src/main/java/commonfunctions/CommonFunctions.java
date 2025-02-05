@@ -18,8 +18,10 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
+import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -402,6 +404,64 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is Used To click Sales Tab
+	 * @author Harikrishna -RMITS
+	 * @return boolean flag
+	 */
+	private void clickSalesTab() {
+		flag = webDB.waitForElement(SalesOrderLocators.SalesTab, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(SalesOrderLocators.SalesTab, ElementType.Xpath);
+			flag= webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Sales Tab is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+		
+	}
+	
+	/**
+	 * This method is used to click the Sales Transaction Tab
+	 * @author Harikrishna - RMITS
+	 * @return Boolean Flag
+	 */
+	
+	private void clickSalesTransactionTab() {
+		flag= webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Sales Transaction Tab is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * This method is used to Navigate Sales Order Screen
+	 * @author Harikrishna - RMITS
+	 * @return Boolean Flag
+	 */
+	
+	private void navigateSalesOrderPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 			}
 		}
 		Assert.assertTrue(flag);
