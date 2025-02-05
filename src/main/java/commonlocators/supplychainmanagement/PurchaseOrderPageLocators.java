@@ -180,4 +180,106 @@ public class PurchaseOrderPageLocators {
 	public static final String UOMTable = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[5]";
 	/** @locatorType Xpath */
 	public static final String PendingPRTable = "//table[contains(@aria-label,'PENDING')]/tbody/tr/td[1]";
+	/** @locatorType Xpath */
+	public static final String PoTypeHeader = "//span[@id='P161513106041_POH_TYPE_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String LocationHeaderId = "//span[@id='P161513106041_POH_PLNT_LOC_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String SupplierHeaderName = "//input[@id='P161513106041_POH_SUPLR_NAME']";
+	/** @locatorType Xpath */
+	public static final String CurrencyHeader = "//input[@id='P161513106041_POH_CURRENCY_1']";
+	/** @locatorType Xpath */
+	public static final String POPrefixHeader = "//span[@id='P161513106041_POH_ORDER_PFX_DISPLAY']";
+
+	/** @locatorType Xpath */
+	public static final String ItemDescription(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[4]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String UOM(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[5]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String HSNSACCode(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[10]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String TaxPercent(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[11]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String LineDetailButton(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[18]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String LineDetailsHeader = "//h1[text()='Line Details']";
+	/** @locatorType Xpath */
+	public static final String SubClass = "//span[@id='P161513106045_POL_PROD_SUB_CLS_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String Class = "//input[@id='P161513106045_POL_PROD_CLS_DESC']";
+	/** @locatorType Xpath */
+	public static final String Wh_Dept_Name = "//input[@id='P161513106045_POL_STORE_NAME']";
+	/** @locatorType Xpath */
+	public static final String CostBasis = "//input[@id='P161513106045_POL_COST_BASIS']";
+	/** @locatorType Xpath */
+	public static final String StockUOM = "//input[@id='P161513106045_POL_PROD_UOM']";
+	/** @locatorType Xpath */
+	public static final String ConversionFactor = "//input[@id='P161513106045_POL_CONV_FACTOR']";
+	/** @locatorType Xpath */
+	public static final String Gl_Acc_No = "//input[@id='P161513106045_POL_PUR_ACCT']";
+	/** @locatorType Xpath */
+	public static final String Gl_Acc_Desc = "//input[@id='P161513106045_POL_PUR_ACCT_DESC']";
+	/** @locatorType Xpath */
+	public static final String CPC_Code = "//input[@id='P161513106045_POL_CC_CODE']";
+	/** @locatorType Xpath */
+	public static final String CPC_Desc = "//input[@id='P161513106045_POL_CC_CODE_DESC']";
+	/** @locatorType Xpath */
+	public static final String Supplier_Item = "//input[@id='P161513106045_POL_SUPLR_PROD_ID']";
+	/** @locatorType Xpath */
+	public static final String Supplier_Item_Desc = "//input[@id='P161513106045_POL_SUPLR_PROD_DESC']";
+	/** @locatorType Xpath */
+	public static final String LineDetailTwoButton = "//label[@for='P161513106045_TYPE_1']";
+	/** @locatorType Xpath */
+	public static final String UnRegisterHeader = "//h2[text()='Unregister RCM Details']";
+	/** @locatorType Xpath */
+	public static final String CurrencyInput = "//*[@id='P1615131061_POH_CURRENCY']";
+	/** @locatorType Xpath */
+	public static final String LineDetailsIframePO = "//iframe[@title='Line Details']";
+	/** @locatorType Xpath */
+	public static final String LineDetailsCloseIcons = "//h1[text()='Line Details']/following-sibling::button[@title='Close']";
+	/** @locatorType Xpath */
+	public static final String ContractId = "//*[@id='P161513106045_POL_CONTRACT_ID']";
+	/** @locatorType Xpath */
+	public static final String ContractPrefix = "//*[@id='P161513106045_POL_CONTR_PFX']";
+	/** @locatorType Xpath */
+	public static final String ContractAmendNumber = "//*[@id='P161513106045_POL_CONTR_AMD_NO']";
+	/** @locatorType Xpath */
+	public static final String POClsQuantity = "//*[@id='P161513106045_POL_CLS_QTY']";
+	/** @locatorType Xpath */
+	public static final String RCMCatId = "//*[@id='P161513106045_POL_RCM_CAT_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String TradePercentage = "//input[@id='P161513106045_POL_TRD_DISC_PCT']";
+	/** @locatorType Xpath */
+	public static final String TradeAssembleValue = "//input[@id='P161513106045_POL_TRD_ASSBL_VAL']";
+	/** @locatorType Xpath */
+	public static final String TradeAmount = "//input[@id='P161513106045_POL_TRD_DISC_AMT']";
+	/** @locatorType Xpath */
+	public static final String SpecialAssembleValue = "//input[@id='P161513106045_POL_SPL_ASSBL_VAL']";
+	/** @locatorType Xpath */
+	public static final String SpecialDiscountPercentage = "//input[@id='P161513106045_POL_SPL_DISC_PCT']";
+	/** @locatorType Xpath */
+	public static final String SpecialDiscountAmount = "//input[@id='P161513106045_POL_SPL_DISC_AMT']";
+	/** @locatorType Xpath */
+	public static final String CashAssembleValue = "//input[@id='P161513106045_POL_CASH_ASSBL_VAL']";
+	/** @locatorType Xpath */
+	public static final String CashDiscountPercentage = "//input[@id='P161513106045_POL_CASH_DISC_PCT']";
+	/** @locatorType Xpath */
+	public static final String CashDiscountAmount = "//input[@id='P161513106045_POL_CASH_DISC_AMT']";
+	/** @locatorType Xpath */
+	public static final String DiscAmountPerQty = "//input[@id='P161513106045_POL_DISC_UNIT_AMT']";
 }
