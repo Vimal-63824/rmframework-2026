@@ -5,6 +5,7 @@ package commonfunctions;
  * @company Galaxy Weblinks January 15, 2025
  */
 import java.io.File;
+import java.math.BigDecimal;
 
 public class VariableHandler {
 	private static ThreadLocal<String> PONumber = new ThreadLocal<>();
@@ -14,6 +15,9 @@ public class VariableHandler {
 	public static String testdataDir = System.getProperty("user.dir") + File.separator + "testdata" + File.separator;
 	private static ThreadLocal<Boolean> Approvalflag = new ThreadLocal<>();
 	private static ThreadLocal<String> POTotalAmount = new ThreadLocal<>();
+	private static ThreadLocal<Boolean> Registerflag = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> LineAmount = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> TotalDiscountAmount = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -54,13 +58,37 @@ public class VariableHandler {
 	public static void setPRCloseShortDocNumber(String data) {
 		PRClsShrt_DocNumber.set(data);
 	}
-	
+
 	public static String getPOTotalAmount() {
 		return POTotalAmount.get();
 	}
 
 	public static void setPOTotalAmount(String data) {
 		POTotalAmount.set(data);
-
 	}
+
+	public static boolean getRegisterFlag() {
+		return Registerflag.get();
+	}
+
+	public static void setRegisterFlag(boolean flag) {
+		Registerflag.set(flag);
+	}
+
+	public static BigDecimal getLineAmount() {
+		return LineAmount.get();
+	}
+
+	public static void setLineAmount(BigDecimal data) {
+		LineAmount.set(data);
+	}
+
+	public static BigDecimal getDiscountAmount() {
+		return TotalDiscountAmount.get();
+	}
+
+	public static void setDiscountAmount(BigDecimal data) {
+		TotalDiscountAmount.set(data);
+	}
+
 }

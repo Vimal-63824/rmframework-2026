@@ -20,6 +20,8 @@ public class ItemDetailsHandler {
 	public ItemDetailsHandler() {
 		PR_LineDetails
 				.set(excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRItemDetailsSheetName")));
+		PO_LineDetails
+				.set(excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("POItemDetailsSheetName")));
 	}
 
 	/**
