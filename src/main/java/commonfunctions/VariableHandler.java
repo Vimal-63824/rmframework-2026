@@ -16,8 +16,12 @@ public class VariableHandler {
 	private static ThreadLocal<Boolean> Approvalflag = new ThreadLocal<>();
 	private static ThreadLocal<String> POTotalAmount = new ThreadLocal<>();
 	private static ThreadLocal<Boolean> Registerflag = new ThreadLocal<>();
-	private static ThreadLocal<BigDecimal> LineAmount = new ThreadLocal<>();
-	private static ThreadLocal<BigDecimal> TotalDiscountAmount = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> LineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> DiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalLineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalDiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> IndividualTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -84,11 +88,42 @@ public class VariableHandler {
 	}
 
 	public static BigDecimal getDiscountAmount() {
-		return TotalDiscountAmount.get();
+		return DiscountAmount.get();
 	}
 
 	public static void setDiscountAmount(BigDecimal data) {
+		DiscountAmount.set(data);
+	}
+
+	public static BigDecimal getTaxAmount() {
+		return TotalTaxAmount.get();
+	}
+
+	public static void setTaxAmount(BigDecimal data) {
+		TotalTaxAmount.set(data);
+	}
+
+	public static BigDecimal getTotalLineAmount() {
+		return TotalLineAmount.get();
+	}
+
+	public static void setTotalLineAmount(BigDecimal data) {
+		TotalLineAmount.set(data);
+	}
+
+	public static BigDecimal getTotalDiscountAmount() {
+		return TotalDiscountAmount.get();
+	}
+
+	public static void setTotalDiscountAmount(BigDecimal data) {
 		TotalDiscountAmount.set(data);
 	}
 
+	public static BigDecimal getIndividualAmount() {
+		return IndividualTaxAmount.get();
+	}
+
+	public static void setIndividualAmount(BigDecimal data) {
+		IndividualTaxAmount.set(data);
+	}
 }
