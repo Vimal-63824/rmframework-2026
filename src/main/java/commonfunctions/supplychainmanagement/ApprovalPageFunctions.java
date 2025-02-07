@@ -1,7 +1,6 @@
 package commonfunctions.supplychainmanagement;
 
 import static org.testng.Assert.assertTrue;
-
 import org.testng.Assert;
 
 /**
