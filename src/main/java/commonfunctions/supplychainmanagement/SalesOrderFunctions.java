@@ -1,7 +1,6 @@
 package commonfunctions.supplychainmanagement;
 
 import static org.testng.Assert.assertTrue;
-
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
@@ -20,7 +19,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
 	 *         SOGeneral With SimilarStock And CustomerUOM
-	 * @return
+	 * @return boolean
 	 */
 	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -63,7 +62,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
 	 *         SOGeneral With DisSimilar Stock And CustomerUOM
-	 * @return
+	 * @return boolean
 	 */
 	public boolean verifyDomesticSOGeneralDisSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -105,7 +104,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
 	 *         With SimilarStock And CustomerUOM
-	 * @return
+	 * @return boolean
 	 */
 	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -148,7 +147,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
 	 *         With DisSimilar Stock And CustomerUOM
-	 * @return
+	 * @return boolean
 	 */
 	public boolean verifyExportSOGeneralDisSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
