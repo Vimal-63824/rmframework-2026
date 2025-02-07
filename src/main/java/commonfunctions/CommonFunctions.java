@@ -1,6 +1,7 @@
 package commonfunctions;
 
 import java.io.File;
+import java.math.BigDecimal;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
@@ -118,7 +119,7 @@ public class CommonFunctions {
 					hardWait(2000);
 					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
-					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath,15);
+					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath, 15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
@@ -202,7 +203,7 @@ public class CommonFunctions {
 				try {
 					if (element.isDisplayed()) {
 						element.clear();
-						//logs.logging("INFO", "Search Field Is Cleared");
+						// logs.logging("INFO", "Search Field Is Cleared");
 						try {
 							flag = fluentWaitClickElement(element);
 							if (flag) {
@@ -212,7 +213,7 @@ public class CommonFunctions {
 							logs.logging("INFO", "Exception is: " + e);
 						}
 						hardWait(500);
-						//logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
+						// logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
 						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 						// TODO WAIT_LOAD_TIME (will remove future)
 						hardWait(2000);
@@ -383,6 +384,9 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAfterMethod() {
+		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
+		VariableHandler.setTotalDiscountAmount(BigDecimal.ZERO);
+		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		enterUrl();
