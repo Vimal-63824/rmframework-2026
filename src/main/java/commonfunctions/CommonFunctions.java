@@ -451,7 +451,7 @@ public class CommonFunctions {
 	 * @return Boolean Flag
 	 */
 	
-	private void navigateSalesOrderPage() {
+	public void navigateSalesOrderPage() {
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
 		clickSalesTab();

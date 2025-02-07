@@ -18,6 +18,8 @@ public class VariableHandler {
 	private static ThreadLocal<Boolean> Registerflag = new ThreadLocal<>();
 	private static ThreadLocal<BigDecimal> LineAmount = new ThreadLocal<>();
 	private static ThreadLocal<BigDecimal> TotalDiscountAmount = new ThreadLocal<>();
+	private static ThreadLocal<String> SONumber = new ThreadLocal<>();
+	private static ThreadLocal <String> SOTotalAmount = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -89,6 +91,22 @@ public class VariableHandler {
 
 	public static void setDiscountAmount(BigDecimal data) {
 		TotalDiscountAmount.set(data);
+	}
+	public static String getSONumber() {
+		return SONumber.get();
+
+}
+	public static void setSONumber(String data) {
+		SONumber.set(data);
+	}
+	
+	public static String getSOTotalAmount() {
+		return SOTotalAmount.get();
+	}
+	
+	public static void setSOTotalAmount(String data) {
+		SOTotalAmount.set(data);
+		
 	}
 
 }

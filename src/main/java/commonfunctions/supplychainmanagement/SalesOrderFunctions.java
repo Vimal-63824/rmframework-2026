@@ -1,12 +1,646 @@
 package commonfunctions.supplychainmanagement;
 
+import static org.testng.Assert.assertTrue;
+
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
+import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
+import utils.WebDriverBase.ElementType;
 
 public class SalesOrderFunctions {
 	private static boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
+	public ApprovalPageFunctions apprpagefunc = new ApprovalPageFunctions();
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
+	 *         SOGeneral With SimilarStock And CustomerUOM
+	 * @return
+	 */
+	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item"));
+		addQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("SO_Qty"),
+				commonFunc.getDataFromTestDataSheet("SO_UnitCost"));
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		// clickLineWiseDetailsButton();
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
+	 *         SOGeneral With DisSimilar Stock And CustomerUOM
+	 * @return
+	 */
+	public boolean verifyDomesticSOGeneralDisSimilarStockAndCustomerUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"));
+		addQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("SO_Qty"),
+				commonFunc.getDataFromTestDataSheet("SO_UnitCost"));
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
+	 *         With SimilarStock And CustomerUOM
+	 * @return
+	 */
+	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item"));
+		addQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("SO_Qty"),
+				commonFunc.getDataFromTestDataSheet("SO_UnitCost"));
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		// clickLineWiseDetailsButton();
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
+	 *         With DisSimilar Stock And CustomerUOM
+	 * @return
+	 */
+	public boolean verifyExportSOGeneralDisSimilarStockAndCustomerUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"));
+		addQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("SO_Qty"),
+				commonFunc.getDataFromTestDataSheet("SO_UnitCost"));
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		// clickLineWiseDetailsButton();
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method is Used to click the Add Button in the Sales order Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void verifyClickAddButtonInSo() {
+		flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderHeader, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add button is Clicked");
+				String text = webDB.getTextFromElement(SalesOrderLocators.SalesOrderHeader, ElementType.Xpath);
+				flag = text.contains(commonFunc.getDataFromTestDataSheet("Sales_Order"));
+				if (flag) {
+					logs.logging("INFO", "Verified Header Text Sales Order From Get Text Value");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is Used to Create a Sales Order
+	 *         Header Records
+	 * 
+	 * @param Location
+	 * @param Unit
+	 * @param SubVoucherType
+	 * @param Customer
+	 */
+	public void verifyCreationOfSalesOrderHeader(String Location, String Unit, String SubVoucherType, String Customer) {
+		verifyClickAddButtonInSo();
+		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.LocationLOV, Location);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.SalesSubVoucherTypeLOV, SubVoucherType);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CustomerLov, Customer);
+		commonFunc.checkRefreshCellsDisappear();
+		clickTickIcon();
+		validateLoactionInSOHeader(Location);
+		validateUnitInSOHeader(Unit);
+		validateCustomerInSOHeader(Customer);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is Used to click the Tick Icon in the
+	 *         Sales Order Page
+	 * 
+	 */
+	private void clickTickIcon() {
+		flag = webDB.waitForElement(SalesOrderLocators.TickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.TickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SoNumber, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "TickIcon Is Clicked");
+				String SONum = webDB.getTextFromElement(SalesOrderLocators.SoNumber, ElementType.Xpath);
+				VariableHandler.setSONumber(SONum);
+				logs.logging("INFO", "Sales Order Number Is :" + VariableHandler.getSONumber());
+				if (webDB.isElementDisplayed(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is used to validate the Loaction Id
+	 *         in the Sales order (Header) Transaction Screen
+	 * 
+	 * @param Location
+	 */
+	private void validateLoactionInSOHeader(String Location) {
+		flag = webDB.waitForElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getTextFromElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+			flag = DisplayText.equalsIgnoreCase(Location);
+			if (flag) {
+				logs.logging("INFO",
+						"Location In Sales Order Header Is Verified, Verified Location ID :" + DisplayText);
+			} else {
+				logs.logging("INFO", "Location Verification failed in Sales order Header");
+				logs.logging("INFO", "Expected Location ID :" + Location + "Actual Location ID :" + DisplayText);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is used to validate the Unit Id in
+	 *         the Sales order (Header) Transaction Screen
+	 * 
+	 * @param Unit
+	 */
+	private void validateUnitInSOHeader(String Unit) {
+		flag = webDB.waitForElement(SalesOrderLocators.HeaderUnitField, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getTextFromElement(SalesOrderLocators.HeaderUnitField, ElementType.Xpath);
+			flag = DisplayText.equalsIgnoreCase(Unit);
+			if (flag) {
+				logs.logging("INFO", "Unit in Sales Order Header IS Verified, Verified Unit Id :" + DisplayText);
+			} else {
+				logs.logging("INFO", "Unit Verification failed in Sales Order Header");
+				logs.logging("INFO", "Expected Unit Id :" + Unit + "Actual Unit Id :" + DisplayText);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is used to validate the Customer in
+	 *         the Sales order (Header) Transaction Screen
+	 * 
+	 * @param Customer
+	 */
+	private void validateCustomerInSOHeader(String Customer) {
+		flag = webDB.waitForElement(SalesOrderLocators.HeaderCustIDField, ElementType.Xpath);
+		if (flag) {
+			String DisplayText = webDB.getTextFromElement(SalesOrderLocators.HeaderCustIDField, ElementType.Xpath);
+			flag = DisplayText.equalsIgnoreCase(Customer);
+			if (flag) {
+				logs.logging("INFO",
+						"Customer in Sales Order Header Is Verified , Verified Customer Id :" + DisplayText);
+			} else {
+				logs.logging("INFO", "Customer Verification failed In Sales Order Header");
+				logs.logging("INFO", "Expected Customer Id :" + Customer + "Actual Customer Id :" + DisplayText);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method Is used To Add Items In Sales order
+	 *         Lines
+	 * @param Item
+	 */
+	private void addItemsInSO(String Item) {
+		flag = webDB.waitForElement(SalesOrderLocators.LineWiseAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.LineWiseAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.ItemField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Line Wise Add Button is Clicked");
+				webDB.clickAnElement(SalesOrderLocators.ItemField, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ItemLov, Item);
+				flag = webDB.waitForElement(SalesOrderLocators.ItemInputField, ElementType.Xpath);
+				if (flag) {
+					String Value = webDB.getAttributeFromElement(SalesOrderLocators.ItemInputField, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO", "Get Text Item Id : " + Value);
+					flag = Value.contains(Item);
+					if (flag) {
+						logs.logging("INFO", "Verified Item Id Successfully");
+					} else {
+						logs.logging("INFO", "Item Id Verification Failed In Sales Order Lines");
+						logs.logging("INFO", "Expected Item Id :" + Item + "Actual Item Id :" + Value);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is Used To Click the Table Field And
+	 *         Pass The Input Value
+	 * 
+	 * @param Field
+	 * @param InputField
+	 * @param InputValue
+	 */
+	public void verifyClickAndEnterValueInTableFields(String Field, String InputField, String InputValue) {
+		flag = webDB.waitForElement(SalesOrderLocators.QtyField, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(Field, ElementType.Xpath);
+			logs.logging("INFO", "Table Input Field is Clicked");
+			webDB.clearTextField(InputField, ElementType.Xpath);
+			logs.logging("INFO", "Input text Is Cleared");
+			flag = webDB.waitForElement(SalesOrderLocators.QtyField, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(Field, ElementType.Xpath);
+				webDB.sendTextToAnElement(InputField, InputValue, ElementType.Xpath);
+				logs.logging("INFO", "Input Value Is :" + InputValue);
+				String Value = webDB.getDomPropertyFromElement(InputField, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Attribute Value Is :" + Value);
+				flag = Value.contains(InputValue);
+				if (flag) {
+					logs.logging("INFO", "Verified Input Value From Get Attribute Value");
+				} else {
+					logs.logging("INFO", "Verification failed for Input Value From Get Attribute Value");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method Is used to Add the Sales Qty And Unit
+	 *         Cost For An Item In Line Wise
+	 * @param Qty
+	 * @param UnitCost
+	 */
+	public void addQuantityAndUnitCost(String Qty, String UnitCost) {
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickAndEnterValueInTableFields(SalesOrderLocators.QtyField, SalesOrderLocators.QtyInputField, Qty);
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickAndEnterValueInTableFields(SalesOrderLocators.UnitCostField, SalesOrderLocators.UnitCostInputField,
+				UnitCost);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method Is Used to Choose the HSNCode And
+	 *         Click the Line Wise Save Icon In Sales Order Page
+	 * 
+	 * @param HSNCode
+	 */
+	public void chooseHsnCodeAndClickLineWiseSaveButton(String HSNCode) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(SalesOrderLocators.HSNCodeField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.HSNCodeField, ElementType.Xpath);
+			logs.logging("INFO", "HSC Code Field Is Clicked");
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.HSNCodeLOV, HSNCode);
+			flag = webDB.waitForElement(SalesOrderLocators.HSNCodeInputField, ElementType.Xpath);
+			if (flag) {
+				String Value = webDB.getDomPropertyFromElement(SalesOrderLocators.HSNCodeInputField, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get text HSNCode Is :" + Value);
+				flag = Value.contains(HSNCode);
+				if (flag) {
+					logs.logging("INFO", "Verified HSNCode Sucessfully");
+				} else {
+					logs.logging("INFO", "HSNCode Verification Failed in Sales OrderLines");
+					logs.logging("INFO", "Expected HSNCode :" + HSNCode + "Actual HSNCode :" + Value);
+				}
+				flag = webDB.waitForElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Line Wise Save Button is Clicked");
+						flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
+						if (flag) {
+							String SOTotAmt = webDB.getDomPropertyFromElement(
+									SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath,
+									commonFunc.getDataFromTestDataSheet("Value"));
+							VariableHandler.setSOTotalAmount(SOTotAmt);
+							logs.logging("INFO", "SalesOrder Total Amount is :" + VariableHandler.getSOTotalAmount());
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is Used To click the Post Button In
+	 *         the Header
+	 */
+	public void clickPostButton() {
+		flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method Is Used to Forward the Doucmnet from
+	 *         One User To Another User
+	 * @return
+	 */
+	public boolean forwardForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov,
+					commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To PO Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is Used to Verify the Sales Order
+	 *         Document is Approved / Not
+	 * @param SONumber
+	 * @param ExpStatus
+	 */
+	public void validateSalesOrderDocumentStatus(String SONumber, String ExpStatus) {
+		flag = webDB.waitForElement(SalesOrderLocators.FindSONumberLOV, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.FindSONumberLOV, SONumber);
+			flag = webDB.waitForElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.FindSearchButton, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(SalesOrderLocators.SOStatusTableText(SONumber), ElementType.Xpath);
+				if (flag) {
+					String Status = webDB.getTextFromElement(SalesOrderLocators.SOStatusTableText(SONumber),
+							ElementType.Xpath);
+					flag = Status.contains(ExpStatus);
+					if (flag) {
+						logs.logging("INFO", "Expected Status :" + ExpStatus);
+						logs.logging("INFO", "Verified Sales Order Document Status");
+
+					} else {
+						logs.logging("INFO", "Sales Order Doucment Status Verification Failed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is used to Validate the Sales order
+	 *         Details in the Document Approval Screen
+	 * @param SONumber
+	 * @param ExpLocation
+	 * @param ExpUnit
+	 * @param ExpCustDesc
+	 */
+	public void validateSalesOrderDetailsInDocApproval(String SONumber, String ExpLocation, String ExpUnit,
+			String ExpCustId) {
+
+		flag = webDB.waitForClickElement(ApprovalPageLocators.SODetailsInfoBtn(SONumber), ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(ApprovalPageLocators.SODetailsInfoBtn(SONumber), ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "View Details Button is Clicked");
+				String DocNum = webDB.getTextFromElement(SalesOrderLocators.SoNumber, ElementType.Xpath);
+				logs.logging("INFO", "GetText SalesOrder Documnet Number is :" + DocNum);
+				flag = DocNum.equals(VariableHandler.getSONumber());
+				if (flag) {
+					logs.logging("INFO", "Verified Expected and Actual Sales Order Document Number");
+				} else {
+					logs.logging("INFO",
+							"Verification Failed, Expected :" + VariableHandler.getSONumber() + "Actual :" + DocNum);
+				}
+				flag = webDB.waitForElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+				if (flag) {
+					String LocId = webDB.getTextFromElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+					logs.logging("INFO", "GetText Location Id is :" + LocId);
+					flag = LocId.equals(ExpLocation);
+					if (flag) {
+						logs.logging("INFO", "Verified Expected And Actual Location Id");
+					} else {
+						logs.logging("INFO", "Verification Failed, Expected :" + ExpLocation + "Actual :" + LocId);
+					}
+					flag = webDB.waitForElement(SalesOrderLocators.HeaderUnitField, ElementType.Xpath);
+					if (flag) {
+						String Unit = webDB.getTextFromElement(SalesOrderLocators.HeaderUnitField, ElementType.Xpath);
+						logs.logging("INFO", "GetText Unit Id is :" + Unit);
+						flag = Unit.equals(ExpUnit);
+						if (flag) {
+							logs.logging("INFO", "Verified Expected And Actual Unit Id");
+						} else {
+							logs.logging("INFO", "Verification Failed, Expected :" + ExpUnit + "Actual " + Unit);
+						}
+						flag = webDB.waitForElement(SalesOrderLocators.HeaderCustDescField, ElementType.Xpath);
+						if (flag) {
+							String Customer = webDB.getTextFromElement(SalesOrderLocators.HeaderCustIDField,
+									ElementType.Xpath);
+							logs.logging("INFO", "GetText Customer Desc is :" + Customer);
+							flag = Customer.equals(ExpCustId);
+							if (flag) {
+								logs.logging("INFO", "Verified Expected And Actual Customer Description");
+								verifyTotalSOAmountCalculationInDocApproval();
+								apprpagefunc.verifyNavigateback();
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS This Method is Used To Verify the Sales Order
+	 *         Total Amount in Doucmnet Approval screen
+	 */
+	public void verifyTotalSOAmountCalculationInDocApproval() {
+		flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldQuery, ElementType.Xpath);
+		if (flag) {
+			String SOTotalAmount = webDB.getTextFromElement(SalesOrderLocators.SOTotalAmountFieldQuery,
+					ElementType.Xpath);
+			logs.logging("INFO", "GetText Total Sales Order Amount is :" + SOTotalAmount);
+			flag = SOTotalAmount.contains(VariableHandler.getSOTotalAmount());
+			if (flag) {
+				logs.logging("INFO", "Verified Sales order Total Amount Calculation");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMIT This Method is Used to Click the Line Wise details
+	 *         Button And Validate the Price Basis Of the Item
+	 */
+	public void clickLineWiseDetailsButton() {
+		flag = webDB.waitForElement(SalesOrderLocators.SOLineWiseDetailsButton, ElementType.CssSelector);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SOLineWiseDetailsButton, ElementType.CssSelector);
+			flag = webDB.waitForElement(SalesOrderLocators.LinewisedetailsHeader, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales order Line Wise Details Button is Clicked");
+				flag = webDB.waitForElement(SalesOrderLocators.PriceBasisField, ElementType.Xpath);
+				if (flag) {
+					String pricebasis = webDB.getDomPropertyFromElement(SalesOrderLocators.PriceBasisField,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO", "GetText PriceBasis of the Item is :" + pricebasis);
+					flag = pricebasis.equalsIgnoreCase("User defined");
+					if (flag) {
+						logs.logging("INFO", "Verified Price Basis of the Item");
+
+					} else {
+						logs.logging("INFO", "Price Basis Verification Failed for the Item");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }
