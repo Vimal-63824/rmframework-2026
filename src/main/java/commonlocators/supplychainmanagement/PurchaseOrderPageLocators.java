@@ -213,7 +213,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[18]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[17]";
 	}
 
 	/** @locatorType Xpath */
@@ -307,4 +307,5 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String TickButtonLineOne = "//button[@id='B1467193366803536440']";
 
+	
 }

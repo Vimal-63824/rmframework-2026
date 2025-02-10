@@ -118,6 +118,7 @@ public class PurchaseOrderFunctions {
 	 * @param Enteredvalue
 	 */
 	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(Tablespec, ElementType.Xpath);
@@ -148,6 +149,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyAddItemInPOWithQuantityAndUnitCost(String quantity, String unitcost) {
 		try {
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
@@ -1959,6 +1961,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("FiveValue"), ElementType.Xpath);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			verifyDomPropertyValidation(PurchaseOrderPageLocators.TradePercentage,
 					commonFunc.getDataFromTestDataSheet("FiveValue"));
 			webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
@@ -1966,6 +1969,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("FiveValue"), ElementType.Xpath);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			verifyDomPropertyValidation(PurchaseOrderPageLocators.SpecialDiscountPercentage,
 					commonFunc.getDataFromTestDataSheet("FiveValue"));
 			webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
@@ -1973,6 +1977,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("FiveValue"), ElementType.Xpath);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			verifyDomPropertyValidation(PurchaseOrderPageLocators.CashDiscountPercentage,
 					commonFunc.getDataFromTestDataSheet("FiveValue"));
 		}
