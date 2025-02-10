@@ -24,6 +24,10 @@ public class VariableHandler {
 	private static ThreadLocal<BigDecimal> TotalLineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TotalDiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> IndividualTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<String> POANumber = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> POALineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> POADiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalPOADiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -142,5 +146,37 @@ public class VariableHandler {
 
 	public static void setIndividualAmount(BigDecimal data) {
 		IndividualTaxAmount.set(data);
+	}
+
+	public static String getPOANumber() {
+		return POANumber.get();
+	}
+
+	public static void setPOANumber(String data) {
+		POANumber.set(data);
+	}
+
+	public static BigDecimal getPOALineAmount() {
+		return POALineAmount.get();
+	}
+
+	public static void setPOALineAmount(BigDecimal data) {
+		POALineAmount.set(data);
+	}
+
+	public static BigDecimal getTotalPOADiscountAmount() {
+		return TotalPOADiscountAmount.get();
+	}
+
+	public static void setTotalPOADiscountAmount(BigDecimal data) {
+		TotalPOADiscountAmount.set(data);
+	}
+
+	public static BigDecimal getPOADiscountAmount() {
+		return POADiscountAmount.get();
+	}
+
+	public static void setPOADiscountAmount(BigDecimal data) {
+		POADiscountAmount.set(data);
 	}
 }

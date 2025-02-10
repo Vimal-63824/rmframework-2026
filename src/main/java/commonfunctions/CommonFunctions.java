@@ -21,6 +21,7 @@ import org.testng.Assert;
 
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
@@ -222,6 +223,10 @@ public class CommonFunctions {
 								ElementType.Xpath)) {
 							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
 									ElementType.Xpath);
+						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
+								ElementType.Xpath)) {
+							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
+									ElementType.Xpath);
 						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
 								ElementType.Xpath)) {
 							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
@@ -412,59 +417,61 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method Is Used To click Sales Tab
+	 * 
 	 * @author Harikrishna -RMITS
 	 * @return boolean flag
 	 */
 	private void clickSalesTab() {
 		flag = webDB.waitForElement(SalesOrderLocators.SalesTab, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.SalesTab, ElementType.Xpath);
-			flag= webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
-			if(flag) {
+			flag = webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+			if (flag) {
 				logs.logging("INFO", "Sales Tab is Clicked");
 			}
 		}
 		Assert.assertTrue(flag);
-		
+
 	}
-	
+
 	/**
 	 * This method is used to click the Sales Transaction Tab
+	 * 
 	 * @author Harikrishna - RMITS
 	 * @return Boolean Flag
 	 */
-	
+
 	private void clickSalesTransactionTab() {
-		flag= webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
-		if(flag) {
+		flag = webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Sales Transaction Tab is Clicked");
 			}
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This method is used to Navigate Sales Order Screen
+	 * 
 	 * @author Harikrishna - RMITS
 	 * @return Boolean Flag
 	 */
-	
 	public void navigateSalesOrderPage() {
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
 		clickSalesTab();
 		clickSalesTransactionTab();
 		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 			}
 		}
@@ -501,5 +508,26 @@ public class CommonFunctions {
 			Thread.sleep(value);
 		} catch (Exception e) {
 		}
+	}
+
+	/**
+	 * This method used to Navigate PO Amendment Page
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigatePoAmendmentPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.POAmendmentTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.POAmendmentTab, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To PO Amendment page Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }
