@@ -16,6 +16,8 @@ public class VariableHandler {
 	private static ThreadLocal<Boolean> Approvalflag = new ThreadLocal<>();
 	private static ThreadLocal<String> POTotalAmount = new ThreadLocal<>();
 	private static ThreadLocal<Boolean> Registerflag = new ThreadLocal<>();
+	private static ThreadLocal<String> SONumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SOTotalAmount = new ThreadLocal<>();
 	private static ThreadLocal<BigDecimal> LineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> DiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TotalTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
@@ -117,6 +119,21 @@ public class VariableHandler {
 
 	public static void setTotalDiscountAmount(BigDecimal data) {
 		TotalDiscountAmount.set(data);
+	}
+	public static String getSONumber() {
+		return SONumber.get();
+  }
+  
+	public static void setSONumber(String data) {
+		SONumber.set(data);
+	}
+	
+	public static String getSOTotalAmount() {
+		return SOTotalAmount.get();
+	}
+	
+	public static void setSOTotalAmount(String data) {
+		SOTotalAmount.set(data);
 	}
 
 	public static BigDecimal getIndividualAmount() {
