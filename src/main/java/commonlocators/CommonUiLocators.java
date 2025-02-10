@@ -1,5 +1,9 @@
 package commonlocators;
 
+/**
+ * @author Deepan-GWL, Sakthi-GWL
+ * @company Galaxy Weblinks January 15, 2025
+ */
 public class CommonUiLocators {
 	// Login Locators
 	/** @locatorType Xpath */
@@ -58,6 +62,24 @@ public class CommonUiLocators {
 	public static final String SearchBarIcon = "//button[contains(@class,'doSearch')]";
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestCloseShortTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[7]";
+	/** @locatorType Xpath */
+	public static final String PayrollTab = "//span[text()='Payroll']/ancestor::li";
+	/** @locatorType Xpath */
+	public static final String PayrollTransactionTab = "//span[text()='Payroll']/ancestor::li/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String PayrollSetupTab = "//span[text()='Payroll']/ancestor::li/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String PayrollEmployeeMasterTab = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String PayrollLeaveAndLoanTab = "//span[text()='Payroll']/ancestor::li/*/li[1]/*/li[4]";
+	/** @locatorType Xpath */
+	public static final String PayrollEmployeeMasterScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[1]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String EmployeePayrollAttendanceLeave = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String EmployeeLeaveRequestScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[2]/*/li[4]";
+	/** @locatorType Xpath */
+	public static final String SuccessToastMessage = "//span[@id='APEX_SUCCESS_MESSAGE']//h2";
 
 	/** @locatorType Xpath */
 	public static String convertXPath(String text) {
