@@ -213,7 +213,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[18]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[17]";
 	}
 
 	/** @locatorType Xpath */
@@ -261,7 +261,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String POClsQuantity = "//*[@id='P161513106045_POL_CLS_QTY']";
 	/** @locatorType Xpath */
-	public static final String RCMCatId = "//*[@id='P161513106045_POL_RCM_CAT_ID_DISPLAY']";
+	public static final String RCMCatId = "//div[@id='P161513106045_POL_RCM_CAT_ID_CONTAINER']/following::input[contains(@id,'P161513106045_POL_RCM_CAT_ID')]";
 	/** @locatorType Xpath */
 	public static final String TradePercentage = "//input[@id='P161513106045_POL_TRD_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -282,4 +282,30 @@ public class PurchaseOrderPageLocators {
 	public static final String CashDiscountAmount = "//input[@id='P161513106045_POL_CASH_DISC_AMT']";
 	/** @locatorType Xpath */
 	public static final String DiscAmountPerQty = "//input[@id='P161513106045_POL_DISC_UNIT_AMT']";
+	/** @locatorType Xpath */
+	public static final String GeneralTab = "//label[@for='P161513106041_TAB_LINE_2']";
+	/** @locatorType Xpath */
+	public static final String MatAmountLabel = "//label[@for='P161513106041_POH_MAT_AMT']";
+	/** @locatorType Xpath */
+	public static final String MatAmountInput = "//input[@id='P161513106041_POH_MAT_AMT']";
+	/** @locatorType Xpath */
+	public static final String TaxAmountInput = "//input[@id='P161513106041_POH_TAX_AMT']";
+	/** @locatorType Xpath */
+	public static final String DiscountAmountInput = "//input[@id='P161513106041_POH_DISC_AMT']";
+	/** @locatorType Xpath */
+	public static final String TotalAmountInput = "//input[@id='P161513106041_POH_TOT_AMT']";
+	/** @locatorType Xpath */
+	public static final String RoundOffInput = "//input[@id='P161513106041_POH_RND_AMT']";
+	/** @locatorType Xpath */
+	public static final String DiscountDetailHeader = "//h2[@id='R1467193047076536437_heading']";
+
+	/** @locatorType Xpath */
+	public static final String DiscountAmount(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[8]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String TickButtonLineOne = "//button[@id='B1467193366803536440']";
+
+	
 }

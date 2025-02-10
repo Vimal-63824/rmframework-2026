@@ -1,6 +1,7 @@
 package commonfunctions;
 
 import java.io.File;
+import java.math.BigDecimal;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
@@ -18,8 +19,11 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
+import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -116,7 +120,7 @@ public class CommonFunctions {
 					hardWait(2000);
 					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
-					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath,15);
+					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath, 15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
@@ -200,7 +204,7 @@ public class CommonFunctions {
 				try {
 					if (element.isDisplayed()) {
 						element.clear();
-						//logs.logging("INFO", "Search Field Is Cleared");
+						// logs.logging("INFO", "Search Field Is Cleared");
 						try {
 							flag = fluentWaitClickElement(element);
 							if (flag) {
@@ -210,7 +214,7 @@ public class CommonFunctions {
 							logs.logging("INFO", "Exception is: " + e);
 						}
 						hardWait(500);
-						//logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
+						// logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
 						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
 						// TODO WAIT_LOAD_TIME (will remove future)
 						hardWait(2000);
@@ -218,6 +222,10 @@ public class CommonFunctions {
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
 								ElementType.Xpath)) {
 							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
+									ElementType.Xpath);
+						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
+								ElementType.Xpath)) {
+							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
 									ElementType.Xpath);
 						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
 								ElementType.Xpath)) {
@@ -381,6 +389,9 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAfterMethod() {
+		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
+		VariableHandler.setTotalDiscountAmount(BigDecimal.ZERO);
+		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		enterUrl();
@@ -402,6 +413,66 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To click Sales Tab
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @return boolean flag
+	 */
+	private void clickSalesTab() {
+		flag = webDB.waitForElement(SalesOrderLocators.SalesTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SalesTab, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Tab is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+
+	}
+
+	/**
+	 * This method is used to click the Sales Transaction Tab
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @return Boolean Flag
+	 */
+
+	private void clickSalesTransactionTab() {
+		flag = webDB.waitForElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SalesTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Transaction Tab is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used to Navigate Sales Order Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @return Boolean Flag
+	 */
+	public void navigateSalesOrderPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -437,5 +508,26 @@ public class CommonFunctions {
 			Thread.sleep(value);
 		} catch (Exception e) {
 		}
+	}
+
+	/**
+	 * This method used to Navigate PO Amendment Page
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigatePoAmendmentPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.POAmendmentTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.POAmendmentTab, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To PO Amendment page Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }

@@ -69,4 +69,12 @@ public class CommonUiLocators {
 		return "(//*[text()='" + text + "'][@class='popup-lov-highlight'])[1]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String POAmendmentTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[10]";
+
+	
+	/** @locatorType Xpath */
+	public static String convertXPathWithLi(String text) {
+		return "(//li[text()='" + text + "'])[1]";
+	}
 }

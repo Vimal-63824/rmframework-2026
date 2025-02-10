@@ -46,4 +46,14 @@ public class ApprovalPageLocators {
 	public static final String POSelectCheckBox(String PONumber) {
 		return "//td[contains(text(),'" + PONumber + "')]/../td[1]/*";
 	}
+	
+	/** @locatorType Xpath*/
+	public static final String SODetailsInfoBtn(String SONumber) {
+		return "//td[contains(text(),'" + SONumber + "')]/../td[3]/*";
+	}
+	/** @locatorType Xpath*/
+	public static final String SOSelectCheckBox(String SONumber) {
+		return "//td[contains(text(),'" + SONumber + "')]/../td[1]/*";
+	}
+
 }

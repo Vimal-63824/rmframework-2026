@@ -1,14 +1,17 @@
 package commonfunctions.supplychainmanagement;
 
-import org.junit.Assert;
+import static org.testng.Assert.assertTrue;
+import org.testng.Assert;
 
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
  */
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -172,6 +175,69 @@ public class ApprovalPageFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method is Used to Validate the Sales Order
+	 *         Details In Document Approval Screen
+	 * @param SONumber
+	 * @param ExpLocation
+	 * @param ExpUnit
+	 * @param ExpCustId
+	 */
+	public void validateSalesOrderDetailsInDocApproval(String SONumber, String ExpLocation, String ExpUnit,
+			String ExpCustId) {
+		flag = webDB.waitForClickElement(ApprovalPageLocators.SODetailsInfoBtn(SONumber), ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(ApprovalPageLocators.SODetailsInfoBtn(SONumber), ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "View Details Button is Clicked");
+				String DocNum = webDB.getTextFromElement(SalesOrderLocators.SoNumber, ElementType.Xpath);
+				logs.logging("INFO", "GetText SalesOrder Documnet Number is :" + DocNum);
+				flag = DocNum.equals(VariableHandler.getSONumber());
+				if (flag) {
+					logs.logging("INFO", "Verified Expected and Actual Sales Order Document Number");
+
+					flag = webDB.waitForElement(SalesOrderLocators.HeaderLocationField, ElementType.Xpath);
+					if (flag) {
+						String LocId = webDB.getTextFromElement(SalesOrderLocators.HeaderLocationField,
+								ElementType.Xpath);
+						logs.logging("INFO", "GetText Location Id is :" + LocId);
+						flag = LocId.equals(ExpLocation);
+						if (flag) {
+							logs.logging("INFO", "Verified Expected And Actual Location Id");
+						} else {
+							logs.logging("INFO", "Verification Failed, Expected :" + ExpLocation + "Actual :" + LocId);
+						}
+						flag = webDB.waitForElement(SalesOrderLocators.HeaderUnitField, ElementType.Xpath);
+						if (flag) {
+							String Unit = webDB.getTextFromElement(SalesOrderLocators.HeaderUnitField,
+									ElementType.Xpath);
+							logs.logging("INFO", "GetText Unit Id is :" + Unit);
+							flag = Unit.equals(ExpUnit);
+							if (flag) {
+								logs.logging("INFO", "Verified Expected And Actual Unit Id");
+							} else {
+								logs.logging("INFO", "Verification Failed, Expected :" + ExpUnit + "Actual " + Unit);
+							}
+							flag = webDB.waitForElement(SalesOrderLocators.HeaderCustDescField, ElementType.Xpath);
+							if (flag) {
+								String Customer = webDB.getTextFromElement(SalesOrderLocators.HeaderCustIDField,
+										ElementType.Xpath);
+								logs.logging("INFO", "GetText Customer Desc is :" + Customer);
+								flag = Customer.equals(ExpCustId);
+								if (flag) {
+									logs.logging("INFO", "Verified Expected And Actual Customer Description");
+									verifyNavigateback();
+								}
+							}
+						}
+					} 
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 
 }

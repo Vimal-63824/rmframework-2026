@@ -16,8 +16,18 @@ public class VariableHandler {
 	private static ThreadLocal<Boolean> Approvalflag = new ThreadLocal<>();
 	private static ThreadLocal<String> POTotalAmount = new ThreadLocal<>();
 	private static ThreadLocal<Boolean> Registerflag = new ThreadLocal<>();
-	private static ThreadLocal<BigDecimal> LineAmount = new ThreadLocal<>();
-	private static ThreadLocal<BigDecimal> TotalDiscountAmount = new ThreadLocal<>();
+	private static ThreadLocal<String> SONumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SOTotalAmount = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> LineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> DiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalLineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalDiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> IndividualTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<String> POANumber = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> POALineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> POADiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalPOADiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -84,11 +94,89 @@ public class VariableHandler {
 	}
 
 	public static BigDecimal getDiscountAmount() {
-		return TotalDiscountAmount.get();
+		return DiscountAmount.get();
 	}
 
 	public static void setDiscountAmount(BigDecimal data) {
-		TotalDiscountAmount.set(data);
+		DiscountAmount.set(data);
 	}
 
+	public static BigDecimal getTaxAmount() {
+		return TotalTaxAmount.get();
+	}
+
+	public static void setTaxAmount(BigDecimal data) {
+		TotalTaxAmount.set(data);
+	}
+
+	public static BigDecimal getTotalLineAmount() {
+		return TotalLineAmount.get();
+	}
+
+	public static void setTotalLineAmount(BigDecimal data) {
+		TotalLineAmount.set(data);
+	}
+
+	public static BigDecimal getTotalDiscountAmount() {
+		return TotalDiscountAmount.get();
+	}
+
+	public static void setTotalDiscountAmount(BigDecimal data) {
+		TotalDiscountAmount.set(data);
+	}
+	public static String getSONumber() {
+		return SONumber.get();
+  }
+  
+	public static void setSONumber(String data) {
+		SONumber.set(data);
+	}
+	
+	public static String getSOTotalAmount() {
+		return SOTotalAmount.get();
+	}
+	
+	public static void setSOTotalAmount(String data) {
+		SOTotalAmount.set(data);
+	}
+
+	public static BigDecimal getIndividualAmount() {
+		return IndividualTaxAmount.get();
+	}
+
+	public static void setIndividualAmount(BigDecimal data) {
+		IndividualTaxAmount.set(data);
+	}
+
+	public static String getPOANumber() {
+		return POANumber.get();
+	}
+
+	public static void setPOANumber(String data) {
+		POANumber.set(data);
+	}
+
+	public static BigDecimal getPOALineAmount() {
+		return POALineAmount.get();
+	}
+
+	public static void setPOALineAmount(BigDecimal data) {
+		POALineAmount.set(data);
+	}
+
+	public static BigDecimal getTotalPOADiscountAmount() {
+		return TotalPOADiscountAmount.get();
+	}
+
+	public static void setTotalPOADiscountAmount(BigDecimal data) {
+		TotalPOADiscountAmount.set(data);
+	}
+
+	public static BigDecimal getPOADiscountAmount() {
+		return POADiscountAmount.get();
+	}
+
+	public static void setPOADiscountAmount(BigDecimal data) {
+		POADiscountAmount.set(data);
+	}
 }
