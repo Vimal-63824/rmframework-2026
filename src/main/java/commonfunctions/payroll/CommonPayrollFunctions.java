@@ -1,11 +1,119 @@
 package commonfunctions.payroll;
 
+/**
+ * @author Sakthi-GWL
+ * @company Galaxy Weblinks February 5, 2025
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+
+import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
+import commonlocators.payroll.CommonPayrollLocators;
+import commonlocators.payroll.EmployeeMasterLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
+import utils.WebDriverBase.ElementType;
 
 public class CommonPayrollFunctions {
 	private static boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
+	private static CommonFunctions commonFunc = new CommonFunctions();
+
+	/**
+	 * This method used to add data in table without lov button
+	 * 
+	 * @author Sakthi-GWL
+	 * @param TableDataLocator
+	 * @param InputBoxLocator
+	 * @param Value
+	 */
+	public void addDetailInTableWithoutLovButton(String TableDataLocator, String InputBoxLocator, String Value) {
+		flag = webDB.waitForElement(TableDataLocator, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(TableDataLocator, ElementType.Xpath);
+			webDB.clickAnElement(TableDataLocator, ElementType.Xpath);
+			flag = webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.sendTextToAnElement(InputBoxLocator, Value, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", Value + " - Added in the Table Data");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to open new tab and store leave entitlement enabled ids in
+	 * variable handler
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void openLeaveLoanSetupInNewTabAndStoreLeaveEntitlement() {
+		commonFunc.clickLeftNavigationBar();
+		commonFunc.clickPayrollTab();
+		commonFunc.clickPayrollSetupTab();
+		flag = webDB.waitForElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
+		if (flag) {
+			Actions action = new Actions(webDB.getDriver());
+			action.keyDown(Keys.CONTROL).build().perform();
+			webDB.clickAnElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
+			logs.logging("INFO", "Leave & Loan Screen clicked");
+			action.keyUp(Keys.CONTROL).build().perform();
+			webDB.switchToChildWindow();
+			logs.logging("INFO", "New Tab Opened and Switched to new tab");
+			flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists, ElementType.Xpath);
+			}
+		}
+		checkLeaveEntitlementForLeaveCategory();
+		webDB.closeExistingTab();
+		webDB.switchToMainTab();
+		logs.logging("INFO", "Switched to Main Tab Successfully");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to store leave entitlement enabled ids in variable handler
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void checkLeaveEntitlementForLeaveCategory() {
+		ArrayList<String> GreenFlagLeaveIDs = new ArrayList<String>();
+		flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists, ElementType.Xpath);
+		if (flag) {
+			List<WebElement> IconElements = webDB.getDriver()
+					.findElements(By.xpath(EmployeeMasterLocators.LeaveEntitlementLists));
+			for (int i = 0; i < IconElements.size(); i++) {
+				i++;
+				flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementIcon(i + 1), ElementType.Xpath);
+				if (flag) {
+					String styleColor = webDB.getDomAttributeFromElement(
+							EmployeeMasterLocators.LeaveEntitlementIcon(i + 1), ElementType.Xpath, "style");
+					if (styleColor.contains("green")) {
+						flag = true;
+						String value = webDB.getTextFromElement(
+								EmployeeMasterLocators.LeaveTypeTableLeaveIDTexts(i + 1), ElementType.Xpath);
+						GreenFlagLeaveIDs.add(value);
+						logs.logging("INFO",
+								"Entitled Leave ID: " + value + ". added in variable handler successfully");
+					}
+				}
+			}
+		}
+		VariableHandler.setEmpSetupScreenGreenFlagLeaveIDs(GreenFlagLeaveIDs);
+		Assert.assertTrue(flag);
+	}
 	
 }

@@ -67,7 +67,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@id='B162750960319221704']";
 	/** @locatorType Xpath */
-	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']";
+	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']/span";
 	/** @locatorType Xpath */
 	public static final String CancelButton = "//button[@id='B3159242843298273062']";
 
@@ -213,7 +213,8 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[18]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td/a/span[contains(@style,'Orange')]";
 	}
 
 	/** @locatorType Xpath */
@@ -307,4 +308,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String TickButtonLineOne = "//button[@id='B1467193366803536440']";
 
+	/** @locatorType Xpath */
+	public static final String ServiceLineDetailButton(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td/a/span[contains(@style,'Orange')]";
+	}
 }

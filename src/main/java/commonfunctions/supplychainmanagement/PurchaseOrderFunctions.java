@@ -118,6 +118,7 @@ public class PurchaseOrderFunctions {
 	 * @param Enteredvalue
 	 */
 	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(Tablespec, ElementType.Xpath);
@@ -148,6 +149,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyAddItemInPOWithQuantityAndUnitCost(String quantity, String unitcost) {
 		try {
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
@@ -315,7 +317,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
 				commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyPOTotalAmountCalculation();
@@ -367,7 +370,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
 				commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyPOTotalAmountCalculation();
@@ -510,7 +514,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("GwlItem_Service"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"), true);
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
 				commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		verifyPOTotalAmountCalculation();
@@ -564,7 +569,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
 				commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyPOTotalAmountCalculation();
@@ -615,7 +621,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
 				commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyPOTotalAmountCalculation();
@@ -666,7 +673,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("GwlItem_Service"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
 				commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
 		verifyPOTotalAmountCalculation();
@@ -925,6 +933,7 @@ public class PurchaseOrderFunctions {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.isElementEnabled(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Select All CheckBox Clicked in Pending PR and Create PO Enabled");
@@ -1201,7 +1210,8 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyLineDetailVerification(commonFunc.getDataFromTestDataSheet("St_Item_Similar"),
-				commonFunc.getDataFromTestDataSheet("QuantityValue"));
+				commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
 				commonFunc.getDataFromTestDataSheet("St_Item_Similar"));
 		verifyPOTotalAmountCalculation();
@@ -1720,7 +1730,7 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 * @param Item
 	 */
-	public void verifyLinePODetailsValidations(String Item) {
+	public void verifyLinePODetailsValidations(String Item, String Currency) {
 		verifyGetTextValidation(PurchaseOrderPageLocators.ItemName(1),
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEMID));
 		verifyGetTextValidation(PurchaseOrderPageLocators.ItemDescription(1),
@@ -1729,8 +1739,13 @@ public class PurchaseOrderFunctions {
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.UOM));
 		verifyGetTextValidation(PurchaseOrderPageLocators.HSNSACCode(1),
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.HSN_CODE));
-		verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(1),
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.TAX));
+		if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
+			verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(1),
+					itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.TAX));
+		} else {
+			verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(1),
+					commonFunc.getDataFromTestDataSheet("ZeroValue"));
+		}
 	}
 
 	/**
@@ -1740,9 +1755,9 @@ public class PurchaseOrderFunctions {
 	 * @param Item
 	 * @param Quantity
 	 */
-	public void verifyLineDetailVerification(String Item, String Quantity) {
-		verifyLinePODetailsValidations(Item);
-		navigateToLineDetailPage();
+	public void verifyLineDetailVerification(String Item, String Quantity, String Currency, boolean... POType) {
+		verifyLinePODetailsValidations(Item, Currency);
+		navigateToLineDetailPage(POType);
 		verifyLineDetailOne(Item, Quantity);
 		verifyNavigateLineDetailTwo();
 		verifyLineDetailTwo(Item);
@@ -1754,16 +1769,24 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 * 
 	 */
-	public void navigateToLineDetailPage() {
+	public void navigateToLineDetailPage(boolean... PoType) {
 		webDB.moveToElement(PurchaseOrderPageLocators.ItemName(1), ElementType.Xpath);
-		webDB.moveToElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
+		if (PoType != null) {
+			webDB.moveToElement(PurchaseOrderPageLocators.ServiceLineDetailButton(1), ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.ServiceLineDetailButton(1), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Navigated To Line Details Page");
+				webDB.clickAnElement(PurchaseOrderPageLocators.ServiceLineDetailButton(1), ElementType.Xpath);
 			}
+		} else {
+			webDB.moveToElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
+			}
+		}
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Navigated To Line Details Page");
 		}
 		assertTrue(flag);
 	}
@@ -1959,6 +1982,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("FiveValue"), ElementType.Xpath);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			verifyDomPropertyValidation(PurchaseOrderPageLocators.TradePercentage,
 					commonFunc.getDataFromTestDataSheet("FiveValue"));
 			webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
@@ -1966,6 +1990,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("FiveValue"), ElementType.Xpath);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			verifyDomPropertyValidation(PurchaseOrderPageLocators.SpecialDiscountPercentage,
 					commonFunc.getDataFromTestDataSheet("FiveValue"));
 			webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
@@ -1973,6 +1998,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("FiveValue"), ElementType.Xpath);
 			webDB.pressEnterKey();
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			verifyDomPropertyValidation(PurchaseOrderPageLocators.CashDiscountPercentage,
 					commonFunc.getDataFromTestDataSheet("FiveValue"));
 		}
