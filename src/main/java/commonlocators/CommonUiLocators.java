@@ -94,9 +94,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String POAmendmentTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[10]";
 
-	
 	/** @locatorType Xpath */
 	public static String convertXPathWithLi(String text) {
 		return "(//li[text()='" + text + "'])[1]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String PricelistTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[2]";
 }

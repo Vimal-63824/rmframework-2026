@@ -45,6 +45,31 @@ public class POAmendmentTest {
 	}
 
 	/**
+	 * 
+	 * 114 Direct PO - Domestic Supplier - Service Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 3, groups = {
+			"Purchase Order Amendment" }, description = "114 Direct PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyDirectPODomesticServiceSimilarStockAndSupplierUOM() {
+		poAmendmentFunc.verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOM();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 4, groups = {
+			"Purchase Order Amendment" }, description = "From PR to PO - Domestic Supplier - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPRToPODomesticGeneralSimilarStockAndSupplierUOM() {
+		poAmendmentFunc.verifyPRToPODomesticGeneralWithSimilarStockAndSupplierUOM();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

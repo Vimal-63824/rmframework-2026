@@ -271,4 +271,13 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String Old_Supplier_Item = "//span[@id='P161513116813_PALC_OLD_SUPLR_PROD_ID_DISPLAY']";
 
+	/** @locatorType Xpath */
+	public static final String ServiceDetails(int i) {
+		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[19]";
+	}
+	
+	/** @locatorType Xpath */
+	public static final String ServiceLineDetailButton(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[21]";
+	}
 }

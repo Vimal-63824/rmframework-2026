@@ -82,6 +82,7 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));
 			flag = commonFunc.logoutUser();
 		}
@@ -136,6 +137,7 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));
 			flag = commonFunc.logoutUser();
 		}
@@ -191,6 +193,7 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));
 			flag = commonFunc.logoutUser();
 		}
@@ -246,6 +249,7 @@ public class POAmendmentFunctions {
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
 					commonFunc.getDataFromTestDataSheet("QuantityValue"));
 			flag = commonFunc.logoutUser();
 		}
@@ -708,15 +712,16 @@ public class POAmendmentFunctions {
 	 * @param currency
 	 * @param Quantity
 	 */
-	public void verifyPurchaseOrderValidationWithAmendment(String currency, String Quantity) {
+	public void verifyPurchaseOrderValidationWithAmendment(String currency, String Quantity, String discount,
+			boolean... Potypeflag) {
 		List<WebElement> OrderedQtyList = webDB.getDriver()
 				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
 		for (int i = 1; i <= OrderedQtyList.size(); i++) {
 			String Item = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
 			verifyItemCalculationWithLineAmount(i);
 			verifyPoUOM(i, Item);
-			verifyLineDetailVerification(Item, Quantity, i);
-			verifyTaxCalculationAfterDiscount(currency, Item);
+			verifyLineDetailVerification(Item, Quantity, i, discount, Potypeflag);
+			verifyTaxCalculationAfterDiscount(currency, Item, i);
 			verifyPOTotalAmountCalculation();
 			verifyTotalAmountCalculation();
 
@@ -780,16 +785,24 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 * 
 	 */
-	public void navigateToLineDetailPage(int i) {
+	public void navigateToLineDetailPage(int i, boolean... Potypeflag) {
 		webDB.moveToElement(PurchaseOrderPageLocators.ItemName(i), ElementType.Xpath);
-		webDB.moveToElement(POAmendmentLocators.LineDetailButton(i), ElementType.Xpath);
-		flag = webDB.waitForElement(POAmendmentLocators.LineDetailButton(i), ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(POAmendmentLocators.LineDetailButton(i), ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
+		if (Potypeflag != null) {
+			webDB.moveToElement(POAmendmentLocators.ServiceLineDetailButton(i), ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.ServiceLineDetailButton(i), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Navigated To Line Details Page");
+				webDB.clickAnElement(POAmendmentLocators.ServiceLineDetailButton(i), ElementType.Xpath);
 			}
+		} else {
+			webDB.moveToElement(POAmendmentLocators.LineDetailButton(i), ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.LineDetailButton(i), ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(POAmendmentLocators.LineDetailButton(i), ElementType.Xpath);
+			}
+		}
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Navigated To Line Details Page");
 		}
 		assertTrue(flag);
 	}
@@ -832,10 +845,11 @@ public class POAmendmentFunctions {
 	 * @param Item
 	 * @param Quantity
 	 */
-	public void verifyLineDetailVerification(String Item, String Quantity, int i) {
+	public void verifyLineDetailVerification(String Item, String Quantity, int i, String discount,
+			boolean... potypeflag) {
 		verifyLinePODetailsValidations(Item, i);
-		navigateToLineDetailPage(i);
-		verifyLineDetailOne(Item, Quantity);
+		navigateToLineDetailPage(i, potypeflag);
+		verifyLineDetailOne(Item, Quantity, discount);
 		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		verifyNavigateLineDetailTwo();
 		webDB.switchToDefaultContent();
@@ -868,14 +882,14 @@ public class POAmendmentFunctions {
 	 * @param Item
 	 * @param Quantity
 	 */
-	public void verifyLineDetailOne(String Item, String Quantity) {
+	public void verifyLineDetailOne(String Item, String Quantity, String discount) {
 		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.SubClass,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.SUBCLASS));
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.Class,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.CLASS));
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.Wh_Dept_Name,
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.WH_DEPTNAME));
+//		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.Wh_Dept_Name,
+//				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.WH_DEPTNAME));
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.CostBasis,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.COST_BASIS));
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.StockUOM,
@@ -890,7 +904,7 @@ public class POAmendmentFunctions {
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.CPC_CODE));
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.CPCDesc,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.CPC_DESC));
-		discountCalculationVerification(Quantity);
+		discountCalculationVerification(Quantity, discount);
 		webDB.switchToDefaultContent();
 	}
 
@@ -900,26 +914,38 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 * @param quantity
 	 */
-	public void discountCalculationVerification(String quantity) {
-		BigDecimal DiscAmountPerQty = new BigDecimal("0");
+	public void discountCalculationVerification(String quantity, String discount) {
+		BigDecimal DiscAmountPerQty = new BigDecimal("0.00");
 		BigDecimal TotalDiscountAmount = new BigDecimal("0");
 		BigDecimal LineAmount = VariableHandler.getLineAmount();
-		BigDecimal TradeAmount = purchaseOrderFunctions.verifyDiscountAmountCalculation(LineAmount,
-				new BigDecimal("5"));
-		BigDecimal SpecAssembleValue = LineAmount.subtract(TradeAmount);
-		SpecAssembleValue = purchaseOrderFunctions.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SpecAssembleValue);
-		BigDecimal SplDiscAmount = purchaseOrderFunctions.verifyDiscountAmountCalculation(SpecAssembleValue,
-				new BigDecimal("5"));
-		BigDecimal CashAssembleValue = SpecAssembleValue.subtract(SplDiscAmount);
-		CashAssembleValue = purchaseOrderFunctions.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CashAssembleValue);
-		BigDecimal cashDiscount = purchaseOrderFunctions.verifyDiscountAmountCalculation(CashAssembleValue,
-				new BigDecimal("5"));
-		BigDecimal Qty = new BigDecimal(quantity);
-		DiscAmountPerQty = (TradeAmount.add(SplDiscAmount).add(cashDiscount)).divide(Qty);
-		DiscAmountPerQty = purchaseOrderFunctions.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DiscAmountPerQty);
-		TotalDiscountAmount = (TradeAmount.add(SplDiscAmount).add(cashDiscount));
-		VariableHandler.setDiscountAmount(TotalDiscountAmount);
-		VariableHandler.setTotalDiscountAmount(VariableHandler.getTotalDiscountAmount().add(TotalDiscountAmount));
+		BigDecimal TradeAmount = new BigDecimal("0");
+		BigDecimal SpecAssembleValue = new BigDecimal("0");
+		BigDecimal SplDiscAmount = new BigDecimal("0");
+		BigDecimal CashAssembleValue = new BigDecimal("0");
+		BigDecimal cashDiscount = new BigDecimal("0");
+		BigDecimal Qty;
+		discount = webDB.getTextFromElement(POAmendmentLocators.TradePercentage, ElementType.Xpath);
+		if (!discount.equals("0")) {
+			TradeAmount = purchaseOrderFunctions.verifyDiscountAmountCalculation(LineAmount, new BigDecimal(discount));
+			SpecAssembleValue = LineAmount.subtract(TradeAmount);
+			SpecAssembleValue = purchaseOrderFunctions
+					.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SpecAssembleValue);
+			SplDiscAmount = purchaseOrderFunctions.verifyDiscountAmountCalculation(SpecAssembleValue,
+					new BigDecimal(discount));
+			CashAssembleValue = SpecAssembleValue.subtract(SplDiscAmount);
+			CashAssembleValue = purchaseOrderFunctions
+					.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CashAssembleValue);
+			cashDiscount = purchaseOrderFunctions.verifyDiscountAmountCalculation(CashAssembleValue,
+					new BigDecimal(discount));
+			Qty = new BigDecimal(quantity);
+			DiscAmountPerQty = (TradeAmount.add(SplDiscAmount).add(cashDiscount)).divide(Qty);
+			DiscAmountPerQty = purchaseOrderFunctions
+					.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DiscAmountPerQty);
+			TotalDiscountAmount = (TradeAmount.add(SplDiscAmount).add(cashDiscount));
+			VariableHandler.setDiscountAmount(TotalDiscountAmount);
+			VariableHandler.setTotalDiscountAmount(VariableHandler.getTotalDiscountAmount().add(TotalDiscountAmount));
+		} else {
+		}
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.TradeAssembleValue,
 				LineAmount.stripTrailingZeros().toPlainString());
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.SpecialAssembleValue,
@@ -932,8 +958,13 @@ public class POAmendmentFunctions {
 				SplDiscAmount.stripTrailingZeros().toPlainString());
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.CashDiscountAmount,
 				cashDiscount.stripTrailingZeros().toPlainString());
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.DiscAmountPerQty,
-				DiscAmountPerQty.stripTrailingZeros().toPlainString());
+		if (!discount.equals("0")) {
+			purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.DiscAmountPerQty,
+					DiscAmountPerQty.stripTrailingZeros().toPlainString());
+		} else {
+			purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.DiscAmountPerQty,
+					DiscAmountPerQty.toString());
+		}
 	}
 
 	/**
@@ -967,13 +998,13 @@ public class POAmendmentFunctions {
 	 * @param Currency
 	 * @param Item
 	 */
-	public void verifyTaxCalculationAfterDiscount(String Currency, String Item) {
+	public void verifyTaxCalculationAfterDiscount(String Currency, String Item, int i) {
 		BigDecimal TaxcalAmount = new BigDecimal("0");
 		BigDecimal TotalTaxAmountd = new BigDecimal("0");
 		BigDecimal LineAmountAfterDiscount = VariableHandler.getLineAmount()
 				.subtract(VariableHandler.getDiscountAmount());
 		commonFunc.checkRefreshCellsDisappear();
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.DiscountAmount(1),
+		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.DiscountAmount(i),
 				VariableHandler.getDiscountAmount().toString());
 		if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
 			flag = webDB.waitForElement(POAmendmentLocators.TaxPercentage(Item), ElementType.Xpath);
@@ -987,7 +1018,7 @@ public class POAmendmentFunctions {
 						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(TotalTaxAmount.divide(new BigDecimal("2")));
 				TotalTaxAmount = IndividualTax.multiply(new BigDecimal("2"));
 				for (int j = 13; j <= 16; j++) {
-					String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(1, j),
+					String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
 							ElementType.Xpath);
 					logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
 					BigDecimal TaxAmountd = new BigDecimal(TaxAmount);
@@ -1006,7 +1037,7 @@ public class POAmendmentFunctions {
 			}
 		} else {
 			for (int j = 12; j <= 15; j++) {
-				String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(1, j),
+				String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
 						ElementType.Xpath);
 				logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
 				flag = TaxAmount.equals(commonFunc.getDataFromTestDataSheet("Zero"));
@@ -1146,4 +1177,281 @@ public class POAmendmentFunctions {
 		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 	}
 
+	/**
+	 * Verify Direct PO Domestic Material With Similar Stock And Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOM() {
+		purchaseOrderFunctions.verifyDirectPODomesticServiceSimilarUOM();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyTickIconSingleAmendment();
+		verifyPOAmendmentHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getPONumber(),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyCreateItemInPoAmendment(commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		LineDetailValidation(commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"));
+		navigateToLineDetailPage();
+		verifyEnterAmountForDiscountCalculation();
+		discountCalculationVerification();
+		verifyLineDetailsUpdation();
+		webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+		verifyNavigateLineDetailTwoPage();
+		verifyLineDetailsTwoVerifications(commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			makingTotalAmountCalculationToZero();
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"), true);
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Direct PO Domestic GEneral With Similar Stock And Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPRToPODomesticGeneralWithSimilarStockAndSupplierUOM() {
+		purchaseOrderFunctions.verifyDomesticGeneralSimilarUOMFromPRtoPO();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyTickIconSingleAmendment();
+		verifyPOAmendmentHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getPONumber(),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyCreateItemInPoAmendment(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		LineDetailValidation(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		navigateToLineDetailPage();
+		verifyEnterAmountForDiscountCalculation();
+		discountCalculationVerification();
+		verifyLineDetailsUpdation();
+		webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+		verifyNavigateLineDetailTwoPage();
+		verifyLineDetailsTwoVerifications(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			makingTotalAmountCalculationToZero();
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
+					commonFunc.getDataFromTestDataSheet("ZeroValue"));
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify PR To PO Import General With Similar Stock And Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPRToPOImportGeneralWithSimilarStockAndSupplierUOM() {
+		purchaseOrderFunctions.verifyImportGeneralSimilarUOMFromPRtoPO();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
+		verifyTickIconSingleAmendment();
+		verifyPOAmendmentHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getPONumber(),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
+		verifyCreateItemInPoAmendment(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		LineDetailValidation(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		navigateToLineDetailPage();
+		verifyEnterAmountForDiscountCalculation();
+		discountCalculationVerification();
+		verifyLineDetailsUpdation();
+		webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+		verifyNavigateLineDetailTwoPage();
+		verifyLineDetailsTwoVerifications(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			makingTotalAmountCalculationToZero();
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyUsd"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
+					commonFunc.getDataFromTestDataSheet("ZeroValue"));
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Direct PO Domestic Material With Similar Stock And Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPRToPODomesticServiceWithSimilarStockAndSupplierUOM() {
+		purchaseOrderFunctions.verifyDomesticServiceSimilarUOMFromPRtoPO();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyTickIconSingleAmendment();
+		verifyPOAmendmentHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getPONumber(),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyCreateItemInPoAmendment(commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		LineDetailValidation(commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"));
+		navigateToLineDetailPage();
+		verifyEnterAmountForDiscountCalculation();
+		discountCalculationVerification();
+		verifyLineDetailsUpdation();
+		webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+		verifyNavigateLineDetailTwoPage();
+		verifyLineDetailsTwoVerifications(commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			makingTotalAmountCalculationToZero();
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"), true);
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Direct PO Domestic GEneral With Similar Stock And Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOM() {
+		purchaseOrderFunctions.verifyDirectPODomesticGeneralDissimilarUOM();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyTickIconSingleAmendment();
+		verifyPOAmendmentHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getPONumber(),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyCreateItemInPoAmendment(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		LineDetailValidation(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		navigateToLineDetailPage();
+		verifyEnterAmountForDiscountCalculation();
+		discountCalculationVerification();
+		verifyLineDetailsUpdation();
+		webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+		verifyNavigateLineDetailTwoPage();
+		verifyLineDetailsTwoVerifications(commonFunc.getDataFromTestDataSheet("Similar_Item_02"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			makingTotalAmountCalculationToZero();
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+			verifyPurchaseOrderValidationWithAmendment(commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"),
+					commonFunc.getDataFromTestDataSheet("QuantityValue"));
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
 }

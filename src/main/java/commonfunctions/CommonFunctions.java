@@ -1,11 +1,11 @@
 package commonfunctions;
 
-import java.io.File;
-import java.math.BigDecimal;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
  */
+import java.io.File;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -18,12 +18,12 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
+import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
@@ -195,9 +195,11 @@ public class CommonFunctions {
 	 * @param Value
 	 */
 	public void searchAndSelectValueInFilters(String locator, String Value) {
+		logs.logging("INFO", "Searched and Select before wait");
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(locator, ElementType.Xpath);
+			logs.logging("INFO", "Searched and Select wait");
+			webDB.javaScriptClickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			checkRefreshCellsDisappear();
 			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
@@ -205,11 +207,13 @@ public class CommonFunctions {
 				WebElement element = searchBar.get(i);
 				try {
 					if (element.isDisplayed()) {
+						logs.logging("INFO", "Is Displayed");
 						element.clear();
 						// logs.logging("INFO", "Search Field Is Cleared");
 						try {
 							flag = fluentWaitClickElement(element);
 							if (flag) {
+								logs.logging("INFO", "Send Key");
 								element.sendKeys(Value);
 							}
 						} catch (Exception e) {
@@ -628,6 +632,26 @@ public class CommonFunctions {
 	}
 
 	/**
+	 * This method used to Navigate Price List Page
+	 * 
+	 * @author Durai
+	 */
+	public void navigatePricelistPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPricelistTransactionTab();
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PricelistTab, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
+			if (flag) {
+				logs.logging("INFO", "Pricelist clicked and navigated successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * This method used to opening AttendanceLeave Tab
 	 * 
 	 * @author Kishore-RMITS
@@ -640,6 +664,38 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "AttendanceLeave Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Click Add Icon in Price List Creation
+	 * 
+	 * @author Durai
+	 */
+
+	public void clickAddIconPricelist() {
+		flag = webDB.waitForElement(PricelistPageLocators.AddPriceList, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.AddPriceList, ElementType.Xpath);
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Price List Transaction Tab
+	 * 
+	 * @author Durai
+	 */
+	private void clickPricelistTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PricelistTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pricelist Transaction Tab Is Clicked");
+
 			}
 		}
 		Assert.assertTrue(flag);
@@ -664,6 +720,94 @@ public class CommonFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigates to SupplyChain Node
+	 * 
+	 * @author Kowshik
+	 * @return boolean flag
+	 */
+	public boolean navigatesSetupNode() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.setup, ElementType.Xpath);
+				flag = webDB.waitForClickElement(SalesOrderLocators.setupSales, ElementType.Xpath);
+				webDB.clickAnElement(SalesOrderLocators.setupSales, ElementType.Xpath);
+
+				if (flag) {
+					logs.logging("INFO", "Navigated to Setup sales screen Successfully");
+				}
+
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * To Click a Salesnode
+	 * 
+	 * @author Kowshik
+	 * @return boolean flag
+	 */
+	public boolean clicksalesnode() {
+		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
+		}
+		return flag;
+	}
+
+	/**
+	 * To Click a Open So Screen
+	 * 
+	 * @author Kowshik
+	 * @return boolean flag
+	 */
+	public boolean clickOpensoNode() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clicksalesnode();
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+
+				if (flag) {
+					logs.logging("INFO", "navigated open so screen successfully");
+				}
+			}
+		}
+
+		return flag;
+	}
+
+	/**
+	 * Click a Add Button Open so
+	 * 
+	 * @author Kowshik
+	 * @return boolean flag
+	 */
+	public boolean clickADDBTNoso() {
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.addBTN, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSalesOrderLocators.addBTN, ElementType.Xpath);
+			if (flag) {
+				logs.logging("info", "ADD button clicked sucessfully ");
+			}
+		}
+
+		return flag;
+
 	}
 
 }
