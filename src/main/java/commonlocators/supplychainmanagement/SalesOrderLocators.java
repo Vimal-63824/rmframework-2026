@@ -101,9 +101,20 @@ public class SalesOrderLocators {
 	public static final String SONetamountField = "//input[@id='P191513134002_SOQ_NET_AMT']";
 	/** @Locator Xpath */
 	public static final String PriceBasisField = "//input[@id='P191513134002_SOQ_PRICE_BASIS_1']";
+
 	/** @Locator Xpath */
 	public static final String SOStatusTableText(String SOno) {
 		return "//a[text()='" + SOno + "']/../../td[24]";
 	}
+
+	public static final String node = "//*[@id='t_Button_navControl']";
+	/** Locator Xpath */
+	public static final String supplychain = "//*[@id='t_TreeNav_4']/div[2]/span[2]";
+	/** Locator Xpath */
+	public static final String sales = "//*[@id='t_TreeNav_19']/div[2]/span[2]";
+	/** Locator Xpath */
+	public static final String setup = "( //span[contains(@class,'fa fa fa-shopping-bag')])[2]";
+	/** Locator Xpath */
+	public static final String setupSales = "(//span[contains(@class,'fa fa fa-columns')])[1]";
 
 }
