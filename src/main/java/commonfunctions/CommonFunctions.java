@@ -22,6 +22,8 @@ import org.testng.Assert;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
+import commonlocators.payroll.AttendanceLeaveLocators;
+import commonlocators.payroll.EmployeeMasterLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
@@ -296,7 +298,7 @@ public class CommonFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	private void clickLeftNavigationBar() {
+	public void clickLeftNavigationBar() {
 		flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
@@ -530,4 +532,138 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * This method used to payroll Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPayrollTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PayrollTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PayrollTab, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PayrollTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PayrollTransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payroll Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Payroll Transaction Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickPayrollTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PayrollTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PayrollTransactionTab, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PayrollTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PayrollEmployeeMasterTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payroll Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Payroll Setup Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPayrollSetupTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PayrollSetupTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PayrollSetupTab, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PayrollSetupTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payroll Setup Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Payroll Employee Master tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickPayrollEmployeeMasterTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PayrollEmployeeMasterTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PayrollEmployeeMasterTab, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PayrollEmployeeMasterTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payroll Employee Master Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Employee Master Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateEmployeeMasterScreenInPayroll() {
+		clickLeftNavigationBar();
+		clickPayrollTab();
+		clickPayrollTransactionTab();
+		clickPayrollEmployeeMasterTab();
+		flag = webDB.waitForElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeMasterAddIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Employee Master Screen Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to opening AttendanceLeave Tab
+	 * 
+	 * @author Kishore-RMITS
+	 */
+
+	private void clickAttendanceLeaveTab() {
+		flag = webDB.waitForElement(CommonUiLocators.EmployeePayrollAttendanceLeave, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.EmployeePayrollAttendanceLeave, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "AttendanceLeave Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate to the Permission Screen
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateLeaveEncashmentScreen() {
+		clickLeftNavigationBar();
+		clickPayrollTab();
+		clickPayrollTransactionTab();
+		clickAttendanceLeaveTab();
+		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "AttendanceLeave Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
 }
