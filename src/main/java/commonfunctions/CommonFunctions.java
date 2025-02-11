@@ -225,29 +225,22 @@ public class CommonFunctions {
 						// TODO WAIT_LOAD_TIME (will remove future)
 						hardWait(2000);
 						checkRefreshCellsDisappear();
-						logs.logging("INFO", "Before if");
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
 								ElementType.Xpath)) {
-							logs.logging("INFO", "in if");
 							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
 									ElementType.Xpath);
 						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
 								ElementType.Xpath)) {
-							logs.logging("INFO", "in elfeif");
 							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
 									ElementType.Xpath);
 						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
 								ElementType.Xpath)) {
-							logs.logging("INFO", "in else if");
 							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
 									ElementType.Xpath);
 						} else {
-
-							logs.logging("INFO", "in else");
 							flag = false;
 						}
 						if (flag) {
-
 							logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
 							break a;
 						}
