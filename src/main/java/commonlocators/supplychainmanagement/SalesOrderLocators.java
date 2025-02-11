@@ -107,6 +107,7 @@ public class SalesOrderLocators {
 		return "//a[text()='" + SOno + "']/../../td[24]";
 	}
 
+	/** Locator Xpath */
 	public static final String node = "//*[@id='t_Button_navControl']";
 	/** Locator Xpath */
 	public static final String supplychain = "//*[@id='t_TreeNav_4']/div[2]/span[2]";
@@ -116,5 +117,7 @@ public class SalesOrderLocators {
 	public static final String setup = "( //span[contains(@class,'fa fa fa-shopping-bag')])[2]";
 	/** Locator Xpath */
 	public static final String setupSales = "(//span[contains(@class,'fa fa fa-columns')])[1]";
+	/** Locator Xpath */
+	public static final String LineDetailsFrame = "//iframe[@title='Line Details']";
 
 }
