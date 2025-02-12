@@ -78,7 +78,11 @@ public class VariableHandler {
 	private static ThreadLocal<String> EmpLeaveElgblMinDay = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> EmpSetupScreenGreenFlagLeaveIDs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<Boolean> AddEmployeDefaultExecution = ThreadLocal.withInitial(() -> false);
-	private static ThreadLocal<Boolean> CheckEmployeeDataPermissionDefaultExecution = ThreadLocal.withInitial(() -> false);
+	private static ThreadLocal<Boolean> CheckEmployeeDataPermissionDefaultExecution = ThreadLocal
+			.withInitial(() -> false);
+	private static ThreadLocal<String> GrnDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PRLISTNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> OSOnumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -175,18 +179,19 @@ public class VariableHandler {
 	public static void setTotalDiscountAmount(BigDecimal data) {
 		TotalDiscountAmount.set(data);
 	}
+
 	public static String getSONumber() {
 		return SONumber.get();
-  }
-  
+	}
+
 	public static void setSONumber(String data) {
 		SONumber.set(data);
 	}
-	
+
 	public static String getSOTotalAmount() {
 		return SOTotalAmount.get();
 	}
-	
+
 	public static void setSOTotalAmount(String data) {
 		SOTotalAmount.set(data);
 	}
@@ -230,7 +235,7 @@ public class VariableHandler {
 	public static void setPOADiscountAmount(BigDecimal data) {
 		POADiscountAmount.set(data);
 	}
-	
+
 	public static void setEmpID(String data) {
 		EmpID.set(data);
 	}
@@ -626,8 +631,33 @@ public class VariableHandler {
 	public static boolean getCheckEmployeeDataPermissionDefaultExecution() {
 		return CheckEmployeeDataPermissionDefaultExecution.get();
 	}
-	
+
 	public static void setCheckEmployeeDataPermissionDefaultExecution(boolean flag) {
 		CheckEmployeeDataPermissionDefaultExecution.set(flag);
+	}
+
+	public static String getGrnDocNumber() {
+		return GrnDocNumber.get();
+	}
+
+	public static void setGrnDocNumber(String data) {
+		GrnDocNumber.set(data);
+	}
+
+	public static String getPRLISTNumber() {
+		return PRLISTNumber.get();
+	}
+
+	public static void setPRLISTNumber(String data) {
+		PRLISTNumber.set(data);
+	}
+
+	public static String getOSONUM() {
+		return OSOnumber.get();
+
+	}
+
+	public static void setOSOdocnum(String data) {
+		OSOnumber.set(data);
 	}
 }
