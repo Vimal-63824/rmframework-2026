@@ -774,6 +774,8 @@ public class SalesOrderFunctions {
 					logs.logging("INFO", "Verified Price Basis of the Item is Cataloug Price");
 				} else if (pricebasis.equalsIgnoreCase("Price List")) {
 					logs.logging("INFO", "Verified Price Basis of the Item is Price List");
+				} else {
+					logs.logging("INFO", "Price Basis Verification Failed for the Item");
 				}
 			}
 		}
