@@ -14,6 +14,7 @@
 			<class name="com.roadmapERP.EmployeeMasterTest" />
 			<class name="com.roadmapERP.EmployeePermissionTest" />
 			<class name="com.roadmapERP.SaleOrderTest" />
+			<class name="com.roadmapERP.SaleInvoiceTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

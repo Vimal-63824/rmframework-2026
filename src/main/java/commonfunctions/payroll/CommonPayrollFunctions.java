@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,9 +44,13 @@ public class CommonPayrollFunctions {
 			webDB.clickAnElement(TableDataLocator, ElementType.Xpath);
 			flag = webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.sendTextToAnElement(InputBoxLocator, Value, ElementType.Xpath);
-				if (flag) {
+				try {
+					JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+					WebElement InputElement = webDB.getDriver().findElement(By.xpath(InputBoxLocator));
+					js.executeScript("arguments[0].value='" + Value + "';", InputElement);
 					logs.logging("INFO", Value + " - Added in the Table Data");
+				} catch (Exception e) {
+					flag = false;
 				}
 			}
 		}
