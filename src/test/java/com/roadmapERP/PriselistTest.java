@@ -21,49 +21,57 @@ public class PriselistTest {
 	static PricelistPageFunctions PriceListfunc = new PricelistPageFunctions();
 
 	/**
-	 * Create pricelist for domestic supplier with similar UOM directly to the system through excel upload
+	 * Create pricelist for domestic supplier with similar UOM directly to the
+	 * system through excel upload
 	 * 
 	 * @author Durai
 	 */
-	@Test(priority=1,groups = {
-	"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM similar")
-	public void verifycreationofpricelistDomesticSimilarUOM() {
-		flag=PriceListfunc.verifycreationofpricelistDomesticSimilarUOM();
+	@Test(priority = 1, groups = {
+			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyCreationOfPricelistDomesticSimilarUOM() {
+		flag = PriceListfunc.verifycreationofpricelistDomesticSimilarUOM();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Create pricelist for domestic supplier with Disssimilar UOM directly to the system through excel upload
+	 * Create pricelist for domestic supplier with Disssimilar UOM directly to the
+	 * system through excel upload
 	 * 
 	 * @author Durai
 	 */
-	@Test(priority=2,groups = {
-	"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM dissimilar")
-	public void verifycreationofpricelistDomesticDissimilarUOM() {
-		flag=PriceListfunc.verifycreationofpricelistDomesticDissimilarUOM();
+	@Test(priority = 2, groups = {
+			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyCreationOfPricelistDomesticDissimilarUOM() {
+		flag = PriceListfunc.verifycreationofpricelistDomesticDissimilarUOM();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Create pricelist for Import supplier with Disssimilar UOM directly to the system through excel upload
+	 * Create pricelist for Import supplier with Disssimilar UOM directly to the
+	 * system through excel upload
 	 * 
 	 * @author Durai
 	 */
-	@Test(priority=3,groups = {
-	"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM similar")
-	public void verifycreationofpricelistImportsimilarUOM() {
-		flag=PriceListfunc.verifycreationofpricelistImportsimilarUOM();
+	@Test(priority = 3, groups = {
+			"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM similar")
+	public void VerifyCreationOfPricelistImportSimilarUOM() {
+		flag = PriceListfunc.verifycreationofpricelistImportsimilarUOM();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Create pricelist for Import supplier with Disssimilar UOM directly to the system through excel upload
+	 * Create pricelist for Import supplier with Disssimilar UOM directly to the
+	 * system through excel upload
 	 * 
 	 * @author Durai
 	 */
-	@Test(priority=4,groups = {
-	"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM dissimilar")
-	public void verifycreationofpricelistImportDissimilarUOM() {
-		flag=PriceListfunc.verifycreationofpricelistImportDissimilarUOM();
+	@Test(priority = 4, groups = {
+			"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyCreationOfPricelistImportDissimilarUOM() {
+		flag = PriceListfunc.verifycreationofpricelistImportDissimilarUOM();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
