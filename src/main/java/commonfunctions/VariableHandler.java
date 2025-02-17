@@ -85,6 +85,10 @@ public class VariableHandler {
 	private static ThreadLocal<String> OSOnumber = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpMaritalStatus = new ThreadLocal<>();
 	private static ThreadLocal<String> SIdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> IDNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> MrvNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PBNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> BpvNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -678,4 +682,35 @@ public class VariableHandler {
 		SIdocno.set(Data);
 	}
 
+	public static String getIDNumber() {
+		return IDNumber.get();
+	}
+
+	public static void setIDNumber(String data) {
+		IDNumber.set(data);
+	}
+
+	public static String getMrvNumber() {
+		return MrvNumber.get();
+	}
+
+	public static void setMrvNumber(String data) {
+		MrvNumber.set(data);
+	}
+
+	public static String getPbNumber() {
+		return PBNumber.get();
+	}
+
+	public static void setPbNumber(String data) {
+		PBNumber.set(data);
+	}
+
+	public static String getBPvNumber() {
+		return BpvNumber.get();
+	}
+
+	public static void setBpvNumber(String data) {
+		BpvNumber.set(data);
+	}
 }

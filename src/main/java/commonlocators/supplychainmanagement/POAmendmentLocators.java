@@ -175,7 +175,8 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[20]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td/a/span[contains(@style,'Orange')]";
 	}
 
 	/** @locatorType Xpath */
@@ -275,7 +276,7 @@ public class POAmendmentLocators {
 	public static final String ServiceDetails(int i) {
 		return "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[19]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String ServiceLineDetailButton(int i) {
 		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[21]";

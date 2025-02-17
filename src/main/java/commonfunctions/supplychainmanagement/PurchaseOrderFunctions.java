@@ -893,20 +893,24 @@ public class PurchaseOrderFunctions {
 					commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_FindPRNo,
 							VariableHandler.getPRNumber());
 					commonFunc.checkRefreshCellsDisappear();
-					webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
-					flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 					if (flag) {
-						webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
-						webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						logs.logging("INFO", "Pending PR Search Button Clicked");
-						List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[3]"));
-						a: for (WebElement webElement : elements) {
-							if (!webElement.getText().equals(VariableHandler.getPRNumber())) {
-								flag = false;
-								break a;
-							} else {
-								flag = true;
+						webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+						flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+							webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SearchBtn, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							logs.logging("INFO", "Pending PR Search Button Clicked");
+							webDB.waitForElement("//table//td[3]", ElementType.Xpath);
+							List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[3]"));
+							a: for (WebElement webElement : elements) {
+								if (!webElement.getText().equals(VariableHandler.getPRNumber())) {
+									flag = false;
+									break a;
+								} else {
+									flag = true;
+								}
 							}
 						}
 					}
@@ -2148,6 +2152,145 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.GeneralTab, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.MatAmountLabel, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To
+	 * CreateverifyDirectPODomesticMaterialSimilarUOMwithLotItem
+	 * 
+	 * @author PremKumar.K-RM IT
+	 * 
+	 */
+	public void verifyDirectPODomesticMaterialSimilarUOMwithLotItem() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("LotItem"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Domestic material with Serial Item
+	 * 
+	 * @author PremKumar.K-RM IT
+	 * @return boolean flag
+	 */
+	public void verifyDirectPODomesticMaterialSimilarUOMwithSerialtItem() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("serial"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * 
+	 * This Method Is Used To Verify Direct PO Domestic material with N/A Item
+	 * 
+	 * @author PremKumar.K-RM IT
+	 * @return boolean flag
+	 */
+	public void verifyDirectPODomesticMaterialSimilarUOMwithN_AItem() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("NAItem"));
+		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("UnitCostValue"));
+		verifyTickIconcreateItem();
+		verifyItemCalculationWithLineAmount();
+		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
 		}
 		assertTrue(flag);
 	}
