@@ -24,7 +24,7 @@ public class CoreProcessE2ETest {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	@Test(priority = 1, groups = { "Core Process" }, description = "Purchase Request to Payment")
+	@Test(priority = 1, groups = { "Core Process" }, description = "Purchase Request to Payment End to End Process")
 	public void VerifyPurchaseRequestToPayment() {
 		coreProcessPageFunctions.verifyPurchaseRequestToPayment();
 	}
