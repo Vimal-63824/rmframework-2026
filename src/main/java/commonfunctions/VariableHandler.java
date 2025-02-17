@@ -82,7 +82,7 @@ public class VariableHandler {
 			.withInitial(() -> false);
 	private static ThreadLocal<String> GrnDocNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> PRLISTNumber = new ThreadLocal<>();
-	private static ThreadLocal<String> OSOnumber = new ThreadLocal<>();
+	private static ThreadLocal<String> OpenSONumber = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpMaritalStatus = new ThreadLocal<>();
 	private static ThreadLocal<String> SIdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> IDNumber = new ThreadLocal<>();
@@ -658,12 +658,12 @@ public class VariableHandler {
 		PRLISTNumber.set(data);
 	}
 
-	public static String getOSONUM() {
-		return OSOnumber.get();
+	public static String getOpenSONumber() {
+		return OpenSONumber.get();
 	}
 
-	public static void setOSOdocnum(String data) {
-		OSOnumber.set(data);
+	public static void setOpenSONumber(String data) {
+		OpenSONumber.set(data);
 	}
 
 	public static String getEmpMaritalStatus() {

@@ -41,7 +41,7 @@ public class CommonPayrollFunctions {
 		flag = webDB.waitForElement(TableDataLocator, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(TableDataLocator, ElementType.Xpath);
-			webDB.clickAnElement(TableDataLocator, ElementType.Xpath);
+			webDB.doubleClickAnElement(TableDataLocator, ElementType.Xpath);
 			flag = webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
 			if (flag) {
 				try {
@@ -120,5 +120,5 @@ public class CommonPayrollFunctions {
 		VariableHandler.setEmpSetupScreenGreenFlagLeaveIDs(GreenFlagLeaveIDs);
 		Assert.assertTrue(flag);
 	}
-	
+
 }

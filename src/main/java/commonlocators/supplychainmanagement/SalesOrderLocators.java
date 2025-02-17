@@ -119,5 +119,19 @@ public class SalesOrderLocators {
 	public static final String setupSales = "(//span[contains(@class,'fa fa fa-columns')])[1]";
 	/** Locator Xpath */
 	public static final String LineDetailsFrame = "//iframe[@title='Line Details']";
+	/** @Locator Xpath */
+	public static final String SOSpecialDiscountAssblValue = "//input[@id='P191513134002_SOQ_SPL_ASSBL_VAL']";
+	/** @Locator Xpath */
+	public static final String SOCashDiscountAssblValue = "//input[@id='P191513134002_SOQ_CASH_ASSBL_VAL']";
+	/** @Locator Xpath */
+	public static final String TaxPercentField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	/** @Locator Xpath */
+	public static final String IGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	/** @Locator Xpath */
+	public static final String CGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
+	/** @Locator Xpath */
+	public static final String SGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	/** @Locator Xpath */
+	public static final String UTGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 
 }

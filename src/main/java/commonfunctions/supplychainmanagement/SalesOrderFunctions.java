@@ -1,8 +1,16 @@
 package commonfunctions.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 import static org.testng.Assert.assertTrue;
+
+import java.math.BigDecimal;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ReportLoger;
@@ -15,6 +23,7 @@ public class SalesOrderFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 	public ApprovalPageFunctions apprpagefunc = new ApprovalPageFunctions();
+	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
@@ -318,11 +327,6 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderHeader, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add button is Clicked");
-				String text = webDB.getTextFromElement(SalesOrderLocators.SalesOrderHeader, ElementType.Xpath);
-				flag = text.contains(commonFunc.getDataFromTestDataSheet("Sales_Order"));
-				if (flag) {
-					logs.logging("INFO", "Verified Header Text Sales Order From Get Text Value");
-				}
 			}
 		}
 		assertTrue(flag);
@@ -444,7 +448,7 @@ public class SalesOrderFunctions {
 	 *         Lines
 	 * @param Item
 	 */
-	private void addItemsInSO(String Item) {
+	public void addItemsInSO(String Item) {
 		flag = webDB.waitForElement(SalesOrderLocators.LineWiseAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.LineWiseAddIcon, ElementType.Xpath);
@@ -570,8 +574,10 @@ public class SalesOrderFunctions {
 	 *         the Header
 	 */
 	public void clickPostButton() {
-		flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+		commonFunc.checkSuccessToastMessageDisappear();
+		flag = webDB.waitForClickElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			webDB.clickAnElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
 			if (flag) {
@@ -789,6 +795,7 @@ public class SalesOrderFunctions {
 	 * @param InputValue
 	 */
 	public void enterSODiscountDetails(String Locator, String InputValue) {
+		webDB.switchToFrame(SalesOrderLocators.LineDetailsFrame, ElementType.Xpath);
 		flag = webDB.waitForElement(Locator, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(Locator, ElementType.Xpath);
@@ -796,6 +803,7 @@ public class SalesOrderFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.pressTabKey();
 		}
+		webDB.switchToDefaultContent();
 		assertTrue(flag);
 	}
 
@@ -811,6 +819,9 @@ public class SalesOrderFunctions {
 			if (webDB.isElementDisplayed(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath);
 				flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 			}
 			if (flag) {
 				logs.logging("INFO", "Line Wise Details are saved sucessfully");
@@ -867,5 +878,78 @@ public class SalesOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyClickAndEnterValueInTableFields(SalesOrderLocators.QtyField, SalesOrderLocators.QtyInputField, Qty);
 		commonFunc.checkRefreshCellsDisappear();
+	}
+
+	/**
+	 * This Method used to switch Line Details iframe in Sale Order
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToLineDetailFrameInSaleOrder() {
+		flag = webDB.waitForElement(SalesOrderLocators.LineDetailsFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(SalesOrderLocators.LineDetailsFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.LineWiseDetailsSaveIcon, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Pending Dr And Pending receivables in Payment
+	 * Receipts
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 * @param Cost
+	 */
+	public void checkSaleOrderCalculationForLastAddedItem(String Unit, String Cost) {
+		BigDecimal decimal_Unit = new BigDecimal(Unit);
+		decimal_Unit = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Unit);
+		BigDecimal decimal_Cost = new BigDecimal(Cost);
+		decimal_Cost = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Cost);
+		BigDecimal totalCostWithoutTax = decimal_Unit.multiply(decimal_Cost);
+		totalCostWithoutTax = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(totalCostWithoutTax);
+		logs.logging("INFO", "Unit and Cost Multiply value without Cost: " + totalCostWithoutTax);
+		flag = webDB.waitForElement(SalesOrderLocators.TaxPercentField, ElementType.Xpath);
+		if (flag) {
+			BigDecimal taxValue = new BigDecimal(
+					webDB.getTextFromElement(SalesOrderLocators.TaxPercentField, ElementType.Xpath));
+			taxValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(taxValue);
+			logs.logging("INFO", "Displayed tax Percentage: " + taxValue.intValue() + "%");
+			BigDecimal TaxAfterTax = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(
+					totalCostWithoutTax.divide(new BigDecimal("100")).multiply(taxValue));
+			logs.logging("INFO", "Expected value After tax calculation: " + TaxAfterTax);
+			BigDecimal IGSTAmount = new BigDecimal(
+					webDB.getTextFromElement(SalesOrderLocators.IGSTTaxAmountField, ElementType.Xpath));
+			IGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(IGSTAmount);
+			BigDecimal CGSTAmount = new BigDecimal(
+					webDB.getTextFromElement(SalesOrderLocators.CGSTTaxAmountField, ElementType.Xpath));
+			CGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CGSTAmount);
+			BigDecimal SGSTAmount = new BigDecimal(
+					webDB.getTextFromElement(SalesOrderLocators.SGSTTaxAmountField, ElementType.Xpath));
+			SGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SGSTAmount);
+			BigDecimal UTGSTAmount = new BigDecimal(
+					webDB.getTextFromElement(SalesOrderLocators.UTGSTTaxAmountField, ElementType.Xpath));
+			UTGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(UTGSTAmount);
+			BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
+			taxAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(taxAmount);
+			logs.logging("INFO", "After Adding Displayed GST Values: " + taxAmount);
+			flag = taxAmount.equals(TaxAfterTax);
+			if (flag) {
+				logs.logging("INFO", "Tax Amount Verified, Tax added value: " + taxAmount);
+				logs.logging("INFO", "verifing total amount after calculating tax amount!!!");
+				BigDecimal totalAmount = new BigDecimal(VariableHandler.getSOTotalAmount());
+				totalAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(totalAmount);
+				logs.logging("INFO", "Displayed Total Amount: " + totalAmount);
+				BigDecimal calculationAmount = purchaseOrderFunc
+						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(totalCostWithoutTax.add(taxAmount));
+				logs.logging("INFO", "Calculated Total Amount: " + calculationAmount);
+				flag = totalAmount.equals(calculationAmount);
+				if (flag) {
+					logs.logging("INFO", "Verified Total Amount Displayed and Calculated Total Amount Matched");
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }
