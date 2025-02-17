@@ -82,9 +82,13 @@ public class VariableHandler {
 			.withInitial(() -> false);
 	private static ThreadLocal<String> GrnDocNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> PRLISTNumber = new ThreadLocal<>();
-	private static ThreadLocal<String> OSOnumber = new ThreadLocal<>();
+	private static ThreadLocal<String> OpenSONumber = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpMaritalStatus = new ThreadLocal<>();
 	private static ThreadLocal<String> SIdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> IDNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> MrvNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PBNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> BpvNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -654,12 +658,12 @@ public class VariableHandler {
 		PRLISTNumber.set(data);
 	}
 
-	public static String getOSONUM() {
-		return OSOnumber.get();
+	public static String getOpenSONumber() {
+		return OpenSONumber.get();
 	}
 
-	public static void setOSOdocnum(String data) {
-		OSOnumber.set(data);
+	public static void setOpenSONumber(String data) {
+		OpenSONumber.set(data);
 	}
 
 	public static String getEmpMaritalStatus() {
@@ -678,4 +682,35 @@ public class VariableHandler {
 		SIdocno.set(Data);
 	}
 
+	public static String getIDNumber() {
+		return IDNumber.get();
+	}
+
+	public static void setIDNumber(String data) {
+		IDNumber.set(data);
+	}
+
+	public static String getMrvNumber() {
+		return MrvNumber.get();
+	}
+
+	public static void setMrvNumber(String data) {
+		MrvNumber.set(data);
+	}
+
+	public static String getPbNumber() {
+		return PBNumber.get();
+	}
+
+	public static void setPbNumber(String data) {
+		PBNumber.set(data);
+	}
+
+	public static String getBPvNumber() {
+		return BpvNumber.get();
+	}
+
+	public static void setBpvNumber(String data) {
+		BpvNumber.set(data);
+	}
 }

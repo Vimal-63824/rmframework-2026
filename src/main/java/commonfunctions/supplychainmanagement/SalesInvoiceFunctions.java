@@ -7,6 +7,7 @@ import static org.testng.Assert.assertTrue;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -428,6 +429,158 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This method used to click pending and search PR no and verify
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingSOAndSearchSONo(String SOnum) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(SalesInvoiceLocators.PendingSORadioBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PendingSORadioBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(SalesInvoiceLocators.PendingSOIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to the Pending SO Successfully");
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.switchToFrame(SalesInvoiceLocators.PendingSOIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.PendingSO_SearchBar, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(SalesInvoiceLocators.PendingSO_SearchBar, SOnum, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(SalesInvoiceLocators.PendingSO_SearchBarGOBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.moveToElement(SalesInvoiceLocators.PendingSO_SearchBarGOBtn, ElementType.Xpath);
+						flag = webDB.clickAnElement(SalesInvoiceLocators.PendingSO_SearchBarGOBtn, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						logs.logging("INFO", "Pending SO Search Button Clicked");
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click select all check box in pending PR and click
+	 * 'create PO'
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void selectAllPendingSOAndClickCreateSI(String SONum) {
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.switchToFrame(SalesInvoiceLocators.PendingSOIframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PendingSO_SOCheckBox(SONum), ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(SalesInvoiceLocators.PendingSO_SOCheckBox(SONum), ElementType.Xpath);
+			webDB.clickAnElement(SalesInvoiceLocators.PendingSO_SOCheckBox(SONum), ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForElement(SalesInvoiceLocators.PendingSO_CreateInvoiceBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.isElementEnabled(SalesInvoiceLocators.PendingSO_CreateInvoiceBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "SONumber Checkbox clicked in Pending SO and Create Sales Invoice Enabled");
+				webDB.clickAnElement(SalesInvoiceLocators.PendingSO_CreateInvoiceBtn, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesInvoiceLocators.Invoice_Pfx, ElementType.Xpath);
+				if (flag) {
+					String SIdocno = webDB.getTextFromElement(SalesInvoiceLocators.SI_Doc_NO, ElementType.Xpath);
+					logs.logging("INFO", "Get SI DocNo Is: " + SIdocno);
+					VariableHandler.setSIdocno(SIdocno);
+					logs.logging("INFO", "Pending SO - 'Create Invoice' Clicked");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void verifyItemFromPendingSaleOrderAndClickAllocLotSerial(String Item) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			String DisplayedText = webDB.getTextFromElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			flag = Item.equalsIgnoreCase(DisplayedText);
+			if (flag) {
+				flag = webDB.waitForElement(SalesInvoiceLocators.Alloc_ls_batch_Btn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.Alloc_ls_batch_Btn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					commonFunc.checkSuccessToastMessageDisappear();
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void switchToLineDetailsIframeInSaleInvoice() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Line_Det_save_Btn, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	public void verifyShipFromWarehouseAndStockAndInvoiceQuantity(String Warehouse) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SaleInvoiceWarehouseShipFrom, ElementType.Xpath);
+		if (flag) {
+			String DisplayWH = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SaleInvoiceWarehouseShipFrom,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Displayed Warehouse ship from: " + DisplayWH);
+			logs.logging("INFO", "Expected Warehouse ship from: " + Warehouse);
+			flag = Warehouse.equalsIgnoreCase(DisplayWH);
+			if (flag) {
+				logs.logging("INFO", "Verified Warehouse of Shiping From");
+				flag = webDB.waitForElement(SalesInvoiceLocators.SaleInvoiceStockQuantity, ElementType.Xpath);
+				if (flag) {
+					String StockQnty = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SaleInvoiceStockQuantity,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					String OrderInvoiceQnty = webDB.getDomPropertyFromElement(
+							SalesInvoiceLocators.SaleInvoiceOrderInvoiceQuantity, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					flag = Integer.parseInt(StockQnty) > Integer.parseInt(OrderInvoiceQnty);
+					if (flag) {
+						logs.logging("INFO", "Displayed Stock Quantity ship from: " + StockQnty);
+						logs.logging("INFO", "Displayed Invoice Order Quantity ship from: " + OrderInvoiceQnty);
+						logs.logging("INFO", "Verified Stock Quantity Greater than Invoice Quantity");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void validateSalesInvoiceDocumentStatus(String SINumber, String ExpStatus) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.FindSalesInvoiceNoLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.FindSalesInvoiceNoLovBtn, SINumber);
+			flag = webDB.waitForElement(SalesInvoiceLocators.FindSalesInvoiceSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.FindSalesInvoiceSearchBtn, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(SalesInvoiceLocators.SIStatusTableText(SINumber), ElementType.Xpath);
+				if (flag) {
+					String Status = webDB.getTextFromElement(SalesInvoiceLocators.SIStatusTableText(SINumber),
+							ElementType.Xpath);
+					flag = Status.contains(ExpStatus);
+					if (flag) {
+						logs.logging("INFO", "Displayed Status :" + Status);
+						logs.logging("INFO", "Expected Status :" + ExpStatus);
+						logs.logging("INFO", "Verified Sales Invoice Document Status");
+
+					} else {
+						logs.logging("INFO", "Sales Invoice Doucment Status Verification Failed");
+					}
+				}
 			}
 		}
 		assertTrue(flag);
