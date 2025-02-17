@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +27,7 @@ import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
+import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -695,7 +698,6 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.PricelistTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pricelist Transaction Tab Is Clicked");
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -743,7 +745,6 @@ public class CommonFunctions {
 				if (flag) {
 					logs.logging("INFO", "Navigated to Setup sales screen Successfully");
 				}
-
 			}
 		}
 		return flag;
@@ -787,7 +788,6 @@ public class CommonFunctions {
 				}
 			}
 		}
-
 		return flag;
 	}
 
@@ -805,9 +805,50 @@ public class CommonFunctions {
 				logs.logging("info", "ADD button clicked sucessfully ");
 			}
 		}
-
 		return flag;
-
+	}
+	
+	/**
+	 * This method is used to Navigate Sales Invoice Screen
+	 * 
+	 * @author Vimal - RMITS
+	 * @return Boolean Flag
+	 */
+	public void navigateSalesInvoicePage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElementUntilGivenTime(SalesInvoiceLocators.Sales_Inv, ElementType.Xpath, 45);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Sales_Inv, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_Inv_Pend_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to Sales Invoice Screen Sucessfully");
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * This Method used to return random Mobile Numbers
+	 * 
+	 * @author Sakthi-GWL
+	 * @return Number
+	 */
+	public String randomMobileNumberGenerator() {
+		String Number = "99".concat(RandomStringUtils.randomNumeric(8));
+		return Number;
+	}
+
+	/**
+	 * This Method used to return random Email
+	 * 
+	 * @author Sakthi-GWL
+	 * @return Mail
+	 */
+	public String randomEmailIdGenerator() {
+		String Email = "testauto".concat(RandomStringUtils.randomNumeric(4)) + "@mail.com";
+		return Email;
+	}
 }
