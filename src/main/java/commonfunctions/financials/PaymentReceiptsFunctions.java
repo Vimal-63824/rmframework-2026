@@ -63,7 +63,7 @@ public class PaymentReceiptsFunctions {
 											"CheckBox Is Clicked And Create Documents Button Is Displayed");
 									webDB.clickAnElement(PaymentReceiptsLocators.CreateButton, ElementType.Xpath);
 									commonFunc.checkRefreshCellsDisappear();
-									commonFunc.hardWait(5000);
+									commonFunc.hardWait(8000);
 									webDB.selectDropDownByText(PaymentReceiptsLocators.PayMode,
 											commonFunc.getDataFromTestDataSheet("Rtgs"), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(
