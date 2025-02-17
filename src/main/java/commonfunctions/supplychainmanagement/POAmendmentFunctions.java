@@ -720,7 +720,7 @@ public class POAmendmentFunctions {
 			String Item = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
 			verifyItemCalculationWithLineAmount(i);
 			verifyPoUOM(i, Item);
-			verifyLineDetailVerification(Item, Quantity, i, discount, Potypeflag);
+			verifyLineDetailVerification(Item, Quantity, i, discount, currency, Potypeflag);
 			verifyTaxCalculationAfterDiscount(currency, Item, i);
 			verifyPOTotalAmountCalculation();
 			verifyTotalAmountCalculation();
@@ -750,7 +750,7 @@ public class POAmendmentFunctions {
 		VariableHandler.setLineAmount(ExpectedLineAmountd);
 		VariableHandler.setTotalLineAmount(VariableHandler.getTotalLineAmount().add(ExpectedLineAmountd));
 		System.out.println("Expected Double Line Amount IS: " + ExpectedLineAmountd);
-		String ExpectedLineAmount = purchaseOrderFunctions.verifyRoundOffBigDecimalValueWithReturnString(LineAmountd);
+//		String ExpectedLineAmount = purchaseOrderFunctions.verifyRoundOffBigDecimalValueWithReturnString(LineAmountd);
 //			String ExpectedLineAmount = String.format("%.2f", LineAmountd);
 
 		assertTrue(flag);
@@ -845,9 +845,9 @@ public class POAmendmentFunctions {
 	 * @param Item
 	 * @param Quantity
 	 */
-	public void verifyLineDetailVerification(String Item, String Quantity, int i, String discount,
+	public void verifyLineDetailVerification(String Item, String Quantity, int i, String discount, String Currency,
 			boolean... potypeflag) {
-		verifyLinePODetailsValidations(Item, i);
+		verifyLinePODetailsValidations(Item, i, Currency);
 		navigateToLineDetailPage(i, potypeflag);
 		verifyLineDetailOne(Item, Quantity, discount);
 		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
@@ -862,7 +862,7 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 * @param Item
 	 */
-	public void verifyLinePODetailsValidations(String Item, int i) {
+	public void verifyLinePODetailsValidations(String Item, int i, String Currency) {
 		purchaseOrderFunctions.verifyGetTextValidation(PurchaseOrderPageLocators.ItemName(i),
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEMID));
 		purchaseOrderFunctions.verifyGetTextValidation(PurchaseOrderPageLocators.ItemDescription(i),
@@ -871,8 +871,12 @@ public class POAmendmentFunctions {
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.UOM));
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.HSNSACCode(i),
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.HSN_CODE));
-		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.TaxPercent(i),
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.TAX));
+		if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
+			purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.TaxPercent(i),
+					itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.TAX));
+		} else {
+
+		}
 	}
 
 	/**

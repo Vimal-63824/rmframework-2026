@@ -35,7 +35,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreateTickIcon = "//span[contains(@class,'check')]/parent::button[contains(@title,'Create')]";
 	/** @locatorType Xpath */
-	public static final String PostToastMessage = "//h6[@class='succ_msg']";
+	public static final String PostToastMessage = "//*[@class='succ_msg']";
 	/** @locatorType Xpath */
 	public static final String searchBar = "//input[@aria-label='Search']";
 	/** @locatorType Xpath */
@@ -101,4 +101,36 @@ public class CommonUiLocators {
 
 	/** @locatorType Xpath */
 	public static final String PricelistTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String QualityControl = "//span[text()='Quality Control']/ancestor::li";
+	/** @locatorType Xpath */
+	public static final String QualityTransactionTab = "//span[text()='Quality Control']/ancestor::li/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String QualityInspectionDocuments = "//span[text()='Quality Control']/ancestor::li/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String PendingInspectionDocuments = "//button[@id='B1239030231502494975']";
+	/** @locatorType Xpath */
+	public static final String Inventory = "//span[text()='Supply Chain']/ancestor::li/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String InventoryTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
+	/** @locatorType Xpath */
+	public static final String PendingReceiptVoucherButton = "//button[@id='B4724987409116632006']";
+	/** @locatorType Xpath */
+	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
+	/** @locatorType Xpath */
+	public static final String FinancialTransactionTab = "//span[text()='Financials']/ancestor::li/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String FinancialPartyDocuments = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String FinancialPurchaseBill = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[2]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String PendingPurchaseBill = "//button[@id='B1552826677951175484']";
+	/** @locatorType Xpath */
+	public static final String PaymentReceiptTab = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]";
+	/** @locatorType Xpath */
+	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String PendingCrDocs = "//button[@id='B1918502594088484019']";
 }

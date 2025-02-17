@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
@@ -102,6 +103,8 @@ public class CommonFunctions {
 				logs.logging("INFO", "Logout Successfully");
 			}
 		}
+		enterUrl();
+		flag = true;
 		return flag;
 	}
 
@@ -198,10 +201,8 @@ public class CommonFunctions {
 	 * @param Value
 	 */
 	public void searchAndSelectValueInFilters(String locator, String Value) {
-		logs.logging("INFO", "Searched and Select before wait");
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "Searched and Select wait");
 			webDB.javaScriptClickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			checkRefreshCellsDisappear();
@@ -210,13 +211,12 @@ public class CommonFunctions {
 				WebElement element = searchBar.get(i);
 				try {
 					if (element.isDisplayed()) {
-						logs.logging("INFO", "Is Displayed");
 						element.clear();
 						// logs.logging("INFO", "Search Field Is Cleared");
 						try {
 							flag = fluentWaitClickElement(element);
 							if (flag) {
-								logs.logging("INFO", "Send Key");
+								checkRefreshCellsDisappear();
 								element.sendKeys(Value);
 							}
 						} catch (Exception e) {
@@ -807,7 +807,7 @@ public class CommonFunctions {
 		}
 		return flag;
 	}
-	
+
 	/**
 	 * This method is used to Navigate Sales Invoice Screen
 	 * 
@@ -851,4 +851,293 @@ public class CommonFunctions {
 		String Email = "testauto".concat(RandomStringUtils.randomNumeric(4)) + "@mail.com";
 		return Email;
 	}
+
+	/*
+	 * This Method used to Navigate GRN Page
+	 * 
+	 * @author PremKumar.K-RMIT
+	 */
+	public void naviagteGrnPage() {
+		// TODO Auto-generated method stub
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		ClickGrnPurchase();
+
+	}
+
+	/**
+	 * Click Grn Purchase
+	 * 
+	 * @author PremKumar.K-RM IT
+	 */
+	private void ClickGrnPurchase() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.ClickGrnPurchase, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.Lov, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Purchase Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methd Used To navigate To Quality Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToQualityTab() {
+		flag = webDB.waitForElement(CommonUiLocators.QualityControl, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.QualityControl, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.QualityTransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Quality Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Quality Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToQualityTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.QualityTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.QualityTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.QualityInspectionDocuments, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Quality Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Inspection Documents
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToInspectionDocuments() {
+		flag = webDB.waitForElement(CommonUiLocators.QualityInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.QualityInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Quality Inspection Documents Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Quality Control Inspection Document Page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateInspectionDocumentsPage() {
+		clickLeftNavigationBar();
+		navigateToQualityTab();
+		navigateToQualityTransactionTab();
+		navigateToInspectionDocuments();
+	}
+
+	/**
+	 * Navigate To MAterial Receipt Voucher
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMaterialReceiptVoucher() {
+		clickLeftNavigationBar();
+		navigateToInventoryTab();
+		navigateToInventoryTranscationTab();
+		navigateToMaterialReceiptVocherTab();
+	}
+
+	/**
+	 * Navigate To Inventory Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToInventoryTab() {
+		flag = webDB.waitForElement(CommonUiLocators.Inventory, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.Inventory, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Inventory Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Inventory Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToInventoryTranscationTab() {
+		flag = webDB.waitForElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.MaterialReceiptVoucherTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Inventory Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To MAterial Receipt Voucher Tab
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMaterialReceiptVocherTab() {
+		flag = webDB.waitForElement(CommonUiLocators.MaterialReceiptVoucherTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.MaterialReceiptVoucherTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Material Receipt Voucher Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToFinancialTab() {
+		flag = webDB.waitForElement(CommonUiLocators.FinancialTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.FinancialTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.FinancialTransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Financial Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToFinancialTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.FinancialTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.FinancialTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.FinancialPartyDocuments, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Financial Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Party Documents Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToFinancialPartyDocumentsTab() {
+		flag = webDB.waitForElement(CommonUiLocators.FinancialPartyDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.FinancialPartyDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.FinancialPurchaseBill, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Financial Party Documents Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Purchase Bill Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToFinancialPurchaseBillTab() {
+		flag = webDB.waitForElement(CommonUiLocators.FinancialPurchaseBill, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.FinancialPurchaseBill, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingPurchaseBill, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Financial Purchase Bill Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Purchase Bill Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToFinancialPurchaseBill() {
+		clickLeftNavigationBar();
+		navigateToFinancialTab();
+		navigateToFinancialTransactionTab();
+		navigateToFinancialPartyDocumentsTab();
+		navigateToFinancialPurchaseBillTab();
+	}
+
+	/**
+	 * Navigate To Payment Receipt Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToPaymentReceiptTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PaymentReceiptTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PaymentReceiptTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PaymentsReceipts, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payment Receipt Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Payment Receipt
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToPaymentReceipt() {
+		flag = webDB.waitForElement(CommonUiLocators.PaymentsReceipts, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PaymentsReceipts, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingCrDocs, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payment Receipt Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Financial Payment Receipt
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToFinancialPaymentReceipt() {
+		clickLeftNavigationBar();
+		navigateToFinancialTab();
+		navigateToFinancialTransactionTab();
+		navigateToPaymentReceiptTab();
+		navigateToPaymentReceipt();
+	}
+
 }

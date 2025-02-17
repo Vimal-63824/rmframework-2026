@@ -12,6 +12,7 @@ public class ItemDetailsHandler {
 			+ "ItemDetails.xlsx";
 	private static ThreadLocal<String[][]> PO_LineDetails = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String[][]> POA_LineDetails = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String[][]> POItem_LineDetails = ThreadLocal.withInitial(() -> null);
 
 	/**
 	 * This Constructor used to set PR_LineDetails data from ItemDetails.xlsx file.
@@ -30,6 +31,10 @@ public class ItemDetailsHandler {
 		if (POA_LineDetails.get() == null) {
 			POA_LineDetails.set(
 					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("POAItemDetailsSheetName")));
+		}
+		if (POItem_LineDetails.get() == null) {
+			POItem_LineDetails.set(excelUtils.readAllDataInExcel(Filepath,
+					webDB.getDataFromProperties("POMultipleItemDetailsSheetName")));
 		}
 	}
 
@@ -56,6 +61,14 @@ public class ItemDetailsHandler {
 	public enum POALineDetailsName {
 		ITEMID, ITEM_DESCRIPTION, UOM, HSN_CODE, WH_DEPTNAME, COST_BASIS, SUPL_UOM, CONVERSION_FACTOR, GL_ACC_NO,
 		GL_ACC_DESC, CPC_CODE, CPC_DESC
+	}
+
+	/**
+	 * This Enum 'PO Line Item Details Name column Name'
+	 */
+	public enum POItemLineDetailsName {
+		ITEM_NAME, QUANTITY, UNIT_COST
+
 	}
 
 	/**
@@ -151,6 +164,39 @@ public class ItemDetailsHandler {
 		for (int i = 1; i < POA_LineDetails.get().length; i++) {
 			if (POA_LineDetails.get()[i][itemColumnIndex].trim().equalsIgnoreCase(itemName.trim())) {
 				result = POA_LineDetails.get()[i][columnIndex];
+				break;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * get POA Line Details for Given Item
+	 * 
+	 * @author Deepan-GWL
+	 * @param itemName
+	 * @param LineDetailName
+	 * @return
+	 */
+	public String getPOItemLineDetailsforGivenItem(String itemName, POItemLineDetailsName LineDetailName) {
+		String result = null;
+		int columnIndex = 0;
+		int itemColumnIndex = 0;
+		if (POItem_LineDetails.get() == null || POItem_LineDetails.get().length == 0) {
+			POItem_LineDetails.set(excelUtils.readAllDataInExcel(Filepath, "PO MULTIPLE ITEM"));
+		}
+		String[] headers = POItem_LineDetails.get()[0];
+		for (int i = 0; i < headers.length; i++) {
+			if (headers[i].trim().equalsIgnoreCase(LineDetailName.name().trim())) {
+				columnIndex = i;
+			}
+			if (headers[i].trim().equalsIgnoreCase(POItemLineDetailsName.ITEM_NAME.name().trim())) {
+				itemColumnIndex = i;
+			}
+		}
+		for (int i = 1; i < POItem_LineDetails.get().length; i++) {
+			if (POItem_LineDetails.get()[i][itemColumnIndex].trim().equalsIgnoreCase(itemName.trim())) {
+				result = POItem_LineDetails.get()[i][columnIndex];
 				break;
 			}
 		}
