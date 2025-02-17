@@ -375,13 +375,9 @@ public class PurchaseRequestFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
 			if (webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)) {
-				flag = webDB.javaScriptClickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				if (flag)
-					logs.logging("INFO", "Save Item Entry Successfully");
+				webDB.javaScriptClickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			} else {
-				flag = webDB.isElementDisplayed(CommonUiLocators.FailedNotifyMessage, ElementType.Xpath);
-				if (flag) {
-					flag = false;
+				if (webDB.isElementDisplayed(CommonUiLocators.FailedNotifyMessage, ElementType.Xpath)) {
 					logs.logging("INFO", "Save Entry Item failed Notification Displayed");
 				}
 			}
