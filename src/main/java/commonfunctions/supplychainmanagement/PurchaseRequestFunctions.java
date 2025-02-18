@@ -177,8 +177,8 @@ public class PurchaseRequestFunctions {
 	 * @param department
 	 * @param requester
 	 */
-	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String Unit, String PRType, String Prefix, String CPCCode,
-			String Department, String Requester) {
+	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String Unit, String PRType, String Prefix,
+			String CPCCode, String Department, String Requester) {
 		commonFunc.clickCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
 		commonFunc.checkRefreshCellsDisappear();
@@ -214,6 +214,7 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
 			if (flag) {
 				String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
@@ -332,7 +333,7 @@ public class PurchaseRequestFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This method used to validate the Line Details - Class, SubClass, Warehouse,
 	 * Convention Factor, Purchase UOM, GL Acc No, GL Acc Desc, CPC Code, CPC Desc
@@ -360,7 +361,6 @@ public class PurchaseRequestFunctions {
 				PRLineDetailsName.CPC_DESC);
 	}
 
-
 	/*----------------------private methods---------------------------*/
 
 	/**
@@ -375,13 +375,9 @@ public class PurchaseRequestFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
 			if (webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)) {
-				flag = webDB.javaScriptClickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				if (flag)
-					logs.logging("INFO", "Save Item Entry Successfully");
+				webDB.javaScriptClickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			} else {
-				flag = webDB.isElementDisplayed(CommonUiLocators.FailedNotifyMessage, ElementType.Xpath);
-				if (flag) {
-					flag = false;
+				if (webDB.isElementDisplayed(CommonUiLocators.FailedNotifyMessage, ElementType.Xpath)) {
 					logs.logging("INFO", "Save Entry Item failed Notification Displayed");
 				}
 			}
@@ -1069,7 +1065,7 @@ public class PurchaseRequestFunctions {
 			flag = DisplayText.equalsIgnoreCase(Unit);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed Unit in PR Header: " + DisplayText);
-			}else {
+			} else {
 				logs.logging("INFO", "Verification failed in PR Header");
 				logs.logging("INFO", "Expected Text: " + Unit + " Displayed: " + DisplayText);
 			}
@@ -1090,7 +1086,7 @@ public class PurchaseRequestFunctions {
 			flag = DisplayText.equalsIgnoreCase(PRType);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed PR Type in PR Header: " + DisplayText);
-			}else {
+			} else {
 				logs.logging("INFO", "Verification failed in PR Header");
 				logs.logging("INFO", "Expected Text: " + PRType + " Displayed: " + DisplayText);
 			}
@@ -1111,7 +1107,7 @@ public class PurchaseRequestFunctions {
 			flag = DisplayText.equalsIgnoreCase(Prefix);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed Prefix in PR Header: " + DisplayText);
-			}else {
+			} else {
 				logs.logging("INFO", "Verification failed in PR Header");
 				logs.logging("INFO", "Expected Text: " + Prefix + " Displayed: " + DisplayText);
 			}
@@ -1140,7 +1136,7 @@ public class PurchaseRequestFunctions {
 			}
 			if (flag) {
 				logs.logging("INFO", "Selected Department in PR Header: " + Department);
-			}else {
+			} else {
 				logs.logging("INFO", "Verification failed in PR Header");
 				logs.logging("INFO", "Expected Department: " + Department);
 			}
@@ -1162,7 +1158,7 @@ public class PurchaseRequestFunctions {
 			flag = DisplayText.equalsIgnoreCase(Rqstr);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed Requester in PR Header: " + DisplayText);
-			}else {
+			} else {
 				logs.logging("INFO", "Verification failed in PR Header");
 				logs.logging("INFO", "Expected Text: " + Rqstr + " Displayed: " + DisplayText);
 			}
@@ -1184,7 +1180,7 @@ public class PurchaseRequestFunctions {
 			flag = DisplayText.equalsIgnoreCase(CPCCode);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed CPC Code in PR Header: " + DisplayText);
-			}else {
+			} else {
 				logs.logging("INFO", "Verification failed in PR Header");
 				logs.logging("INFO", "Expected Text: " + CPCCode + " Displayed: " + DisplayText);
 			}
@@ -1278,7 +1274,7 @@ public class PurchaseRequestFunctions {
 	}
 
 	/**
-	 * This method used to click close icon in the Line Details - PR and verified 
+	 * This method used to click close icon in the Line Details - PR and verified
 	 * 
 	 * @author Sakthi-GWL
 	 */
@@ -1289,7 +1285,7 @@ public class PurchaseRequestFunctions {
 			webDB.clickAnElement(PurchaseRequestLocators.PRLineDetails_CloseIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = !webDB.verifyIsElementDisplayed(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Line Details Close Icon Clicked and verified");
 			}
 		}

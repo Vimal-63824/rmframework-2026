@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -40,12 +41,16 @@ public class CommonPayrollFunctions {
 		flag = webDB.waitForElement(TableDataLocator, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(TableDataLocator, ElementType.Xpath);
-			webDB.clickAnElement(TableDataLocator, ElementType.Xpath);
+			webDB.doubleClickAnElement(TableDataLocator, ElementType.Xpath);
 			flag = webDB.waitForElement(InputBoxLocator, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.sendTextToAnElement(InputBoxLocator, Value, ElementType.Xpath);
-				if (flag) {
+				try {
+					JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+					WebElement InputElement = webDB.getDriver().findElement(By.xpath(InputBoxLocator));
+					js.executeScript("arguments[0].value='" + Value + "';", InputElement);
 					logs.logging("INFO", Value + " - Added in the Table Data");
+				} catch (Exception e) {
+					flag = false;
 				}
 			}
 		}
@@ -115,5 +120,5 @@ public class CommonPayrollFunctions {
 		VariableHandler.setEmpSetupScreenGreenFlagLeaveIDs(GreenFlagLeaveIDs);
 		Assert.assertTrue(flag);
 	}
-	
+
 }

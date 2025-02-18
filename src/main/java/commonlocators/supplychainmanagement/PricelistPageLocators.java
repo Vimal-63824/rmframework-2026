@@ -1,5 +1,9 @@
 package commonlocators.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String AddPriceList = "//button[contains(@id,'B1782709203889982539')]";
@@ -40,8 +44,7 @@ public class PricelistPageLocators {
 	public static final String PricelistForwardlov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String PricelistworkflowOK = "//button[@id='B1612675370193662596']/span";
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String Pricelist_HeaderLoc = "//td[@class='a-GV-cell u-tS is-readonly']";
 	/** @locatorType Xpath */
@@ -54,7 +57,7 @@ public class PricelistPageLocators {
 	public static final String Successmsg = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6";
 
 	public static final String StopAlert = "//li[@class='a-Notification-item htmldbStdErr']";
-	
+
 	/** @locatorType Xpath */
 	public static final String PRLISTDetailsInfoBtn(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[3]/*";
@@ -64,8 +67,5 @@ public class PricelistPageLocators {
 	public static final String PRLISTSelectCheckBox(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[1]/*";
 	}
-	
-}
-	
-	
 
+}

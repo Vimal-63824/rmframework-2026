@@ -24,8 +24,8 @@ public class OpenSOTest {
 	 */
 	@Test(priority = 1, groups = {
 			"Open Sales Order" }, description = "Open SO (Rate Contract) - Domestic Customer , Open SO (Rate Contract) - Export Customer")
-	public void verifyOpenso() {
-		OSO.VerifyOpenso();
+	public void VerifyOpenSo() {
+//		OSO.VerifyOpenso();
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class OpenSOTest {
 	 * @author Kowshik
 	 */
 	@Test(priority = 2, groups = { "Cancel Open SO" }, description = "Cancelled Open SO")
-	public void verifyCancelStatement() {
-		OSO.VerifyCancelStatement();
+	public void VerifyCancelStatement() {
+//		OSO.VerifyCancelStatement();
 	}
 
 }

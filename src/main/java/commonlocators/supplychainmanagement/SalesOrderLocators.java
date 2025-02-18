@@ -14,7 +14,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SalesTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]";
 	/** @Locator Xpath */
-	public static final String SalesOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[5]";
+	public static final String SalesOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[6]";
 	/** @Locator Xpath */
 	public static final String CustomerLov = "//button[@id='P1915131339_SOH_CUST_ID_lov_btn']";
 	/** @Locator Xpath */
@@ -70,9 +70,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String FindSearchButton = "//button[@id='B583508927599524433']";
 	/** @Locator Xpath */
-	public static final String SOTotalAmountFieldTrans = "//INPUT[@ID='P191513134001_SOH_TOT_AMT']";
+	public static final String SOTotalAmountFieldTrans = "//input[@id='P191513134001_SOH_TOT_AMT']";
 	/** @Locator Xpath */
-	public static final String SOTotalAmountFieldQuery = "//span[@ID='P191513134001_SOH_TOT_AMT_DISPLAY']";
+	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
 	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(15) > a";
 	/** @Locator Xpath */
@@ -119,5 +119,21 @@ public class SalesOrderLocators {
 	public static final String setupSales = "(//span[contains(@class,'fa fa fa-columns')])[1]";
 	/** Locator Xpath */
 	public static final String LineDetailsFrame = "//iframe[@title='Line Details']";
+	/** @Locator Xpath */
+	public static final String SOSpecialDiscountAssblValue = "//input[@id='P191513134002_SOQ_SPL_ASSBL_VAL']";
+	/** @Locator Xpath */
+	public static final String SOCashDiscountAssblValue = "//input[@id='P191513134002_SOQ_CASH_ASSBL_VAL']";
+	/** @Locator Xpath */
+	public static final String TaxPercentField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	/** @Locator Xpath */
+	public static final String IGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	/** @Locator Xpath */
+	public static final String CGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
+	/** @Locator Xpath */
+	public static final String SGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	/** @Locator Xpath */
+	public static final String UTGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	/** @Locator Xpath */
+	public static final String DiscountAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 
 }

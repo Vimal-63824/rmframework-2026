@@ -1,11 +1,16 @@
 package commonfunctions.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 import static org.testng.Assert.assertTrue;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.*;
 import utils.ReportLoger;
@@ -13,139 +18,139 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class OpenSalesOrderFunctions {
-
 	private static boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
-	private ApprovalPageFunctions approveFunc = new ApprovalPageFunctions();
+	private CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
 
 	/**
-	 * To click a Radio Button Of Open Sales Order
+	 * This Method used to select Open So Type with radio Type like Amendment or
+	 * Open So
 	 * 
-	 * @author Kowshik
+	 * @author Sakthi-GWL
+	 * @param SOtype
 	 */
-	public void ClickaRadiobtn() {
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSoRadio, ElementType.Xpath);
-		if (flag) {
-			flag = webDB.clickAnElement(OpenSalesOrderLocators.OpenSoRadio, ElementType.Xpath);
+	public void selectOpenSOTypeWithRadioButtons(String SOtype) {
+		if (SOtype.contains("Amendment")) {
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOAmendRadioBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("Info", "Open So Radio Button Clicked Successfully ");
-				flag = webDB.waitForClickElement(OpenSalesOrderLocators.LocLOVBTN, ElementType.Xpath);
+				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOAmendRadioBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.FindHeadingText, ElementType.Xpath);
+				if (flag) {
+					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.FindHeadingText,
+							ElementType.Xpath);
+					logs.logging("INFO", "Page navigate to " + headerText);
+				}
 			}
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * click location Lov Buttn
-	 * 
-	 * @author Kowshik
-	 * @param Locution
-	 * @param CUSTOMER
-	 */
-	public void clicklocLOV(String Locution, String CUSTOMER) {
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.LocLOVBTN, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(OpenSalesOrderLocators.LocLOVBTN, ElementType.Xpath);
-
-			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.LocLOVBTN, Locution);
-			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.cusLOVBTN, CUSTOMER);
-			flag = webDB.moveToElement(OpenSalesOrderLocators.osoPFX, ElementType.Xpath);
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * Click Dft Button
-	 * 
-	 * @author Kowshik
-	 */
-	public void clickDft() {
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.checkedBox, ElementType.Xpath);
-		if (flag) {
-			List<WebElement> checkBox = webDB.getDriver().findElements(By.xpath(OpenSalesOrderLocators.checkedBox));
-			for (int i = 0; i < checkBox.size(); i++) {
-				WebElement element = checkBox.get(i);
-				try {
-					if (element.isDisplayed()) {
-						element.click();
-					}
-				} catch (Exception e) {
+		} else {
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.FindHeadingText, ElementType.Xpath);
+				if (flag) {
+					String headerText = webDB.getTextFromElement(OpenSalesOrderLocators.FindHeadingText,
+							ElementType.Xpath);
+					logs.logging("INFO", "Page navigate to " + headerText);
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
-	 * Open So Prefix
+	 * This Method used to click Add Icon in Open SO
 	 * 
-	 * @author Kowshik
+	 * @author Sakthi-GWL
 	 */
-	public void opensoPFX() {
-		flag = webDB.moveToElement(OpenSalesOrderLocators.osoPFX, ElementType.Xpath);
+	public void clickAddNewOpenSOPlsIcon() {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_CreatePlusIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.selectDropDownByValue(OpenSalesOrderLocators.osoPFX, OpenSalesOrderLocators.pfx, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_CreatePlusIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOCustomerLovBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("Info", "Sucessfully Inserted a Prefix");
-				flag = webDB.waitForElement(OpenSalesOrderLocators.POnum, ElementType.Xpath);
+				logs.logging("INFO", "Open SO Add New Icon Clicked");
 			}
 		}
 		assertTrue(flag);
 	}
 
 	/**
-	 * Inpopup Screen Insert a Purchase Order Doc no
+	 * This Method used to fill location customer prefix in Open SO creation
 	 * 
-	 * @author Kowshik
+	 * @author Sakthi-GWL
+	 * @param location
+	 * @param customer
+	 * @param Prefix
 	 */
-	public void insertPOnumandcreatedate() {
-		flag = webDB.waitForElement(OpenSalesOrderLocators.POnum, ElementType.Xpath);
+	public void fillLocationCustomerPrefixInOpenSO(String location, String customer, String Prefix) {
+		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpenSOLocationLovBtn, location);
+		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpenSOCustomerLovBtn, customer);
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSoPrefixSelect, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(OpenSalesOrderLocators.POnum, OpenSalesOrderLocators.ponumber, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.selectDropDownByText(OpenSalesOrderLocators.OpenSoPrefixSelect, Prefix, ElementType.Xpath);
 			if (flag) {
-				logs.logging("info", "successfully insett a po number");
-				flag = webDB.waitForElement(OpenSalesOrderLocators.poDATE, ElementType.Xpath);
+				logs.logging("INFO", "Selected Prefix in Open SO: " + Prefix);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to fill SO Type and PO Number in Open SO Creation
+	 * 
+	 * @author Sakthi-GWL
+	 * @param SOType
+	 * @param PoNumber
+	 */
+	public void fillSOTypeAndPONumberInOpenSO(String SOType, String PoNumber) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOTypeSelect, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByText(OpenSalesOrderLocators.OpenSOTypeSelect, SOType, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_PONumberInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Selected SO Type in Open SO: " + SOType);
+				flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber,
+						ElementType.Xpath);
 				if (flag) {
-					webDB.sendTextToAnElement(OpenSalesOrderLocators.poDATE, OpenSalesOrderLocators.dateInput,
+					logs.logging("INFO", "Entered PO Number in Open SO: " + PoNumber);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Tick Icon and Fill PO Date in Open SO and Store
+	 * Open SO Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param PODate
+	 */
+	public void clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo(String PODate) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSODisplayDocNumber, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Open SO Tick Icon Clicked");
+				String DocNo = webDB.getTextFromElement(OpenSalesOrderLocators.OpenSODisplayDocNumber,
+						ElementType.Xpath);
+				VariableHandler.setOpenSONumber(DocNo);
+				logs.logging("INFO", "Displayed SO Document Number: " + DocNo);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_PODateInput, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PODateInput, PODate,
 							ElementType.Xpath);
-					webDB.clickAnElement(OpenSalesOrderLocators.POnum, ElementType.Xpath);
-					flag = webDB.waitForClickElement(OpenSalesOrderLocators.saveBTN, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(OpenSalesOrderLocators.saveBTN, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
+						webDB.moveToElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
+						webDB.clickAnElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-							flag = webDB.waitForClickElement(OpenSalesOrderLocators.fetchCUSitemBtn, ElementType.Xpath);
 						}
-					}
-				}
-			}
-
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * Insert a item using Fetch Customer Items
-	 * 
-	 * @author Kowshik
-	 */
-	public void fetchBTN() {
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.fetchCUSitemBtn, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(OpenSalesOrderLocators.fetchCUSitemBtn, ElementType.Xpath);
-			webDB.doubleClickAnElement(OpenSalesOrderLocators.fetchCUSitemBtn, ElementType.Xpath);
-			// ElementType.Xpath);
-			if (flag) {
-				logs.logging("info", "Fetch button clicked successfully ");
-				flag = webDB.waitForElement(OpenSalesOrderLocators.iframe, ElementType.Xpath);
-				if (flag) {
-					webDB.switchToFrame(OpenSalesOrderLocators.iframe, ElementType.Xpath);
-					flag = webDB.waitForClickElement(OpenSalesOrderLocators.checkedBox, ElementType.Xpath);
-					if (flag) {
-						webDB.moveToElement(OpenSalesOrderLocators.checkedBox, ElementType.Xpath);
-						webDB.clickAnElement(OpenSalesOrderLocators.checkedBox, ElementType.Xpath);
+						logs.logging("INFO", "Entered PO Date in Open SO: " + PODate);
 					}
 				}
 			}
@@ -154,65 +159,104 @@ public class OpenSalesOrderFunctions {
 	}
 
 	/**
-	 * To Insert a Item Manually in LineDetails
+	 * This Method used to click Fetch Customer and Select Item checkbox and click
+	 * Ok
 	 * 
+	 * @author Sakthi-GWL
 	 * @param Item
-	 * @param OSOdo
 	 */
-	public void manaullyAdditeminLines(String Item, String OSOdo) {
-		if (flag)
-			OSOdo = webDB.getTextFromElement(OpenSalesOrderLocators.osoDOC, ElementType.Xpath);
-		logs.logging("info", "Get openso DocNo Is: " + OSOdo);
-		VariableHandler.setOSOdocnum(OSOdo);
-
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.PlusBtn, ElementType.Xpath);
+	public void clickFetchCustomerAndSelectItemInOpenSO(String Item) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(OpenSalesOrderLocators.PlusBtn, ElementType.Xpath);
-			flag = webDB.waitForClickElement(OpenSalesOrderLocators.itemLov, ElementType.Xpath);
+			webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(OpenSalesOrderLocators.itemLov, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.itemLov, Item);
-				flag = webDB.waitForElement(OpenSalesOrderLocators.priceFieldcLK, ElementType.Xpath);
+				logs.logging("INFO", "Fetch Customer Item Button Clicked");
+				webDB.switchToFrame(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item),
+						ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(OpenSalesOrderLocators.priceFieldcLK, ElementType.Xpath);
-					webDB.clearText(OpenSalesOrderLocators.priceFieldcLK, ElementType.Xpath);
-					webDB.sendTextToAnElement(OpenSalesOrderLocators.priceField, OpenSalesOrderLocators.price,
-							ElementType.Xpath);
-
-					flag = webDB.waitForClickElement(OpenSalesOrderLocators.DiscperClk, ElementType.Xpath);
+					logs.logging("INFO", "Iframe Displayed and switched successfully");
+					webDB.moveToElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
+					webDB.clickAnElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(OpenSalesOrderLocators.DiscperClk, ElementType.Xpath);
-						webDB.clearText(OpenSalesOrderLocators.DiscperClk, ElementType.Xpath);
-						webDB.sendTextToAnElement(OpenSalesOrderLocators.DiscPercent, OpenSalesOrderLocators.discnumber,
-								ElementType.Xpath);
-						flag = webDB.waitForClickElement(OpenSalesOrderLocators.saveBTN1, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(OpenSalesOrderLocators.saveBTN1, ElementType.Xpath);
-
-							if (flag) {
-								logs.logging("INFO", "SUCCESSFULLY SAVES A LINES DETAILS ");
-								flag = webDB.waitForElement(OpenSalesOrderLocators.effDate, ElementType.Xpath);
-								if (flag) {
-									webDB.sendTextToAnElement(OpenSalesOrderLocators.effDate,
-											OpenSalesOrderLocators.effDates, ElementType.Xpath);
-									flag = webDB.waitForClickElement(OpenSalesOrderLocators.saveOverall,
-											ElementType.Xpath);
-									if (flag) {
-										webDB.clickAnElement(OpenSalesOrderLocators.saveOverall, ElementType.Xpath);
-
-										commonFunc.checkRefreshCellsDisappear();
-										if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath)) {
-											webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-											flag = webDB.waitForClickElement(OpenSalesOrderLocators.POSTbTN,
-													ElementType.Xpath);
-										}
-
-									}
-								}
-							}
-						}
+						webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+						webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
 					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to Fill Price, MRP and HSN Code for Last item and Save the
+	 * line
+	 * 
+	 * @author Sakthi-GWL
+	 * @param price
+	 * @param mrp
+	 * @param HSN
+	 */
+	public void fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(String price, String mrp, String HSN) {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.PriceLastLineData,
+				OpenSalesOrderLocators.PriceLastLineInput, price);
+		VariableHandler.setOpenSOPriceAmount(price);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.MRPLastLineData,
+				OpenSalesOrderLocators.MRPLastLineInput, mrp);
+		flag = webDB.waitForElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.HSNCodeLastLineLovBtn, HSN);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to fill Discount in Last Added Line Open SO
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Discount
+	 */
+	public void fillDiscountAndSaveLinesforAddedLastItemInOpenSO(String Discount) {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.DiscountLastLineData,
+				OpenSalesOrderLocators.DiscountLastLineInput, Discount);
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOLinesSaveBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSOLinesSaveBtn, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSOLinesSaveBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
+				logs.logging("INFO", "Lines Saved Successfully Toast Message Displayed");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to Enter Effective From and to Date in Open So Header
+	 * 
+	 * @author Sakthi-GWL
+	 * @param EffcFromDate
+	 * @param EffcToDate
+	 */
+	public void enterEffectiveFromAndToDate(String EffcFromDate, String EffcToDate) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOEffDateFrom, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSOEffDateFrom, EffcFromDate, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOEffDateTo, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Effective From Date: " + EffcFromDate);
+				flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSOEffDateTo, EffcToDate, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Effective To Date: " + EffcToDate);
 				}
 			}
 		}
@@ -220,140 +264,133 @@ public class OpenSalesOrderFunctions {
 	}
 
 	/**
-	 * Click a Post Button for an Approval
+	 * This Method used to click Header Save Icon In Open SO
 	 * 
-	 * @author Kowshik
+	 * @author Sakthi-GWL
 	 */
-	public void verifyPostBTN() {
-
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.POSTbTN, ElementType.Xpath);
+	public void clickHeaderSaveAndClickPostBtnInOpenSO() {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(OpenSalesOrderLocators.POSTbTN, ElementType.Xpath);
-			webDB.clickAnElement(OpenSalesOrderLocators.POSTbTN, ElementType.Xpath);
-			logs.logging("INFO", "POST");
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-
-				logs.logging("info ", "Successfully Posted  a Record");
-				flag = webDB.waitForElement(OpenSalesOrderLocators.osoDOCnoField, ElementType.Xpath);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+					flag = webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+				}
 			}
 		}
 		assertTrue(flag);
 	}
 
 	/**
-	 * To Click a Cancelled Record
+	 * This Method used to find Status of Open SO Item with Item And Customer
 	 * 
-	 * @author Kowshik
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param Customer
+	 * @param Date
+	 * @return
 	 */
-	public void verifyCancel() {
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.cancelBTN, ElementType.Xpath);
+	public boolean findStatusOfOpenSOWithItemAndCustomer(String Item, String Customer, String Date, String Status) {
+		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOItemLovBtn, Item);
+		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOCustomerLovBtn, Customer);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.FindOpenSODocDateInput,
+				OpenSalesOrderLocators.FindOpenSODocDateInput, Date);
+		flag = webDB.selectDropDownByText(OpenSalesOrderLocators.FindOpenSOStatusSelect, Status, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(OpenSalesOrderLocators.cancelBTN, ElementType.Xpath);
-			logs.logging("info", "Cancel");
-			flag = webDB.waitForElement(OpenSalesOrderLocators.osoDOCnoField, ElementType.Xpath);
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * Searched a Cancelled Record
-	 * 
-	 * 
-	 * @param OSOdo
-	 */
-	public void verifyCancelStatusRecord(String OSOdo) {
-		flag = webDB.waitForElement(OpenSalesOrderLocators.osoDOCnoField, ElementType.Xpath);
-		if (flag) {
-			webDB.sendTextToAnElement(OpenSalesOrderLocators.osoDOCnoField, OSOdo, ElementType.Xpath);
-			logs.logging("Info", "Open So Doc Number Passed Sucessfully ");
-			flag = webDB.waitForClickElement(OpenSalesOrderLocators.osoFindPageSearchBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(OpenSalesOrderLocators.osoFindPageSearchBtn, ElementType.Xpath);
-				logs.logging("Info", "Open So Cancel Doc Clicked Successfully");
+				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindNoDataMessageContainer,
+						ElementType.Xpath)) {
+					logs.logging("INFO", "No Data was in Approved Status");
+					flag = false;
+				}
+				if (flag) {
+					List<WebElement> elements = webDB.getDriver()
+							.findElements(By.xpath(OpenSalesOrderLocators.FindApprovedDateTableList));
+					for (WebElement element : elements) {
+						commonFunc.checkRefreshCellsDisappear();
+						if (element.getText().contains(Date)) {
+							flag = true;
+							String cost = webDB.getTextFromElement(
+									OpenSalesOrderLocators.FindCostOfLastDateApprovedOpenSO(Item), ElementType.Xpath);
+							VariableHandler.setOpenSOPriceAmount(cost);
+							logs.logging("INFO", "Already Item was Approved Status.. Displayed Amount: " + cost);
+							break;
+						} else {
+							flag = false;
+						}
+					}
+				}
 			}
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * waiting for approval
-	 * 
-	 * @author Kowshik
-	 */
-	public boolean verifyWaitingForApproval1() {
-		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath)) {
-			flag = true;
-			VariableHandler.setApprovalFlag(flag);
-			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To Workflow Frame");
-			// commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
-			// commonFunc.getDataFromTestDataSheet("HodValue"));
-			// commonFunc.hardWait(2000);
-			// webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame,
-			// ElementType.Xpath);
-			// logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
-			}
-			assertTrue(flag);
-		} else {
-			flag = false;
-			VariableHandler.setApprovalFlag(flag);
 		}
 		return flag;
-
 	}
 
 	/**
-	 * Verify a Open So Process Pric Fixing
+	 * This Method used to click Cancel Button in Open SO
 	 * 
-	 * @param OSOdo
+	 * @author Sakthi-GWL
 	 */
-	public void VerifyOpenso() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		commonFunc.clickOpensoNode();
-		ClickaRadiobtn();
-		commonFunc.clickADDBTNoso();
-		clicklocLOV(commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CUSName_OSO"));
-		opensoPFX();
-		insertPOnumandcreatedate();
-		// fetchBTN();
-		manaullyAdditeminLines(commonFunc.getDataFromTestDataSheet("ITEM_OSO"), VariableHandler.getOSONUM());
-		// clickDft();
-		verifyPostBTN();
-		verifyWaitingForApproval1();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSONUM());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSONUM());
-		flag = commonFunc.logoutUser();
-
+	public void clickCancelButtonInOpenSO() {
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
+				logs.logging("INFO", "Cancel button clicked Successfully in Open SO");
+			}
+		}
+		assertTrue(flag);
 	}
 
 	/**
-	 * Cancel Open SO
+	 * This Method used to verify Open Sale Order Status With OpenSO Document Number
 	 * 
-	 * 
-	 * @author Kowshik
+	 * @author Sakthi-GWL
+	 * @param OpenSODocNo
+	 * @param Status
 	 */
-	public void VerifyCancelStatement() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		commonFunc.clickOpensoNode();
-		ClickaRadiobtn();
-		commonFunc.clickADDBTNoso();
-		clicklocLOV(commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CUSName_OSO"));
-		opensoPFX();
-		insertPOnumandcreatedate();
-		manaullyAdditeminLines(commonFunc.getDataFromTestDataSheet("ITEM_OSO"), VariableHandler.getOSONUM());
-		verifyCancel();
-		verifyCancelStatusRecord(VariableHandler.getOSONUM());
+	public void validateStatusOfOpenSOWithDocNo(String OpenSODocNo, String Status) {
+		commonFunc.hardWait(2000);
+		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpenSOBackIcon, ElementType.Xpath)) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSOBackIcon, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(OpenSalesOrderLocators.OpenSOBackIcon, ElementType.Xpath);
+		}
+		flag = webDB.waitForElement(OpenSalesOrderLocators.FindOpenSODocNoLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSODocNoLovBtn, OpenSODocNo);
+			logs.logging("Info", "Open So Doc Number Passed Sucessfully ");
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+				flag = webDB.waitForClickElement(OpenSalesOrderLocators.FindStatusTableWithDocNo(OpenSODocNo),
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("Info", "Open So Cancel Doc Clicked Successfully");
+					String DisplayStatus = webDB.getTextFromElement(
+							OpenSalesOrderLocators.FindStatusTableWithDocNo(OpenSODocNo), ElementType.Xpath);
+					logs.logging("INFO", "Displaying Status: " + DisplayStatus);
+					logs.logging("INFO", "Expected Status: " + Status);
+					flag = DisplayStatus.equalsIgnoreCase(Status);
+					if (flag) {
+						logs.logging("Info", "Verified Open SO Status");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

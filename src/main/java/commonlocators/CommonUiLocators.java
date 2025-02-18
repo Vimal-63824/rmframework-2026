@@ -57,7 +57,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
 	/** @locatorType Xpath */
-	public static final String PendingText = "//h1[text()='Pending']";
+	public static final String PendingText = "//h1/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SearchBarIcon = "//button[contains(@class,'doSearch')]";
 	/** @locatorType Xpath */
@@ -101,4 +101,65 @@ public class CommonUiLocators {
 
 	/** @locatorType Xpath */
 	public static final String PricelistTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String QualityControl = "//span[text()='Quality Control']/ancestor::li";
+	/** @locatorType Xpath */
+	public static final String QualityTransactionTab = "//span[text()='Quality Control']/ancestor::li/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String QualityInspectionDocuments = "//span[text()='Quality Control']/ancestor::li/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String PendingInspectionDocuments = "//button[@id='B1239030231502494975']";
+	/** @locatorType Xpath */
+	public static final String Inventory = "//span[text()='Supply Chain']/ancestor::li/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String InventoryTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
+	/** @locatorType Xpath */
+	public static final String PendingReceiptVoucherButton = "//button[@id='B4724987409116632006']";
+	/** @locatorType Xpath */
+	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
+	/** @locatorType Xpath */
+	public static final String FinancialTransactionTab = "//span[text()='Financials']/ancestor::li/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String FinancialPartyDocuments = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String FinancialPurchaseBill = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[2]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String PendingPurchaseBill = "//button[@id='B1552826677951175484']";
+	/** @locatorType Xpath */
+	public static final String PaymentReceiptTab = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]";
+	/** @locatorType Xpath */
+	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String PendingCrDocs = "//button[@id='B1918502594088484019']";
+	/** Locator Xpath */
+	public static final String SalesSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]";
+	/** Locator Xpath */
+	public static final String SalesSetup_SalesScreen = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String OpenSOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
+	/** @locatorType Xpath */
+	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String WorkAppoval_OkBtn = "//*[text()='Ok']/parent::button";
+
+	/** @locatorType Xpath */
+	public static String convertListOfXPath(String text) {
+		return "//*[text()='" + text + "']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String MaterialRequest = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String CreateMaterialRequestButton = "//button[@id='B160814825696813046']";
+	/** @locatorType Xpath */
+	public static final String InventoryReportsTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[9]";
+	/** @locatorType Xpath */
+	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
+
 }
