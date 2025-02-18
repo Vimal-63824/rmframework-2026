@@ -332,7 +332,11 @@ public class CommonFunctions {
 	public void clickLeftNavigationBar() {
 		flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.clickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Left Navigation Bar Is clicked");

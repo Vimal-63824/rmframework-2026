@@ -902,7 +902,8 @@ public class SalesOrderFunctions {
 	 * @param Unit
 	 * @param Cost
 	 */
-	public void checkSaleOrderCalculationForLastAddedItem(String Unit, String Cost) {
+	public void checkSaleOrderTaxCalculationForLastAddedItem(String Unit, String Cost) {
+		logs.logging("INFO", "Sales Order Tax Calculation!!!");
 		BigDecimal decimal_Unit = new BigDecimal(Unit);
 		decimal_Unit = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Unit);
 		BigDecimal decimal_Cost = new BigDecimal(Cost);
