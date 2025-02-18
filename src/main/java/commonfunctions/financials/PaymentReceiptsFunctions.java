@@ -10,7 +10,6 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.PaymentReceiptsLocators;
-import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -328,8 +327,7 @@ public class PaymentReceiptsFunctions {
 		flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField,
-					ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Switched to view Journal Iframe");
 			}
@@ -346,7 +344,7 @@ public class PaymentReceiptsFunctions {
 	 */
 	public void chooseSaleInvoiceDocTypeWithInvoiceNoInFind(String InvoiceNo) {
 		switchToPendingReceivableIframe();
-		flag = webDB.waitForElement(PaymentReceiptsLocators.PendingReceivablesIframe, ElementType.Xpath);
+		flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_FindDocTypeSelect, ElementType.Xpath);
 		if (flag) {
 			webDB.selectDropDownByText(PaymentReceiptsLocators.PendReceive_FindDocTypeSelect, "Sales Invoice",
 					ElementType.Xpath);
@@ -374,8 +372,7 @@ public class PaymentReceiptsFunctions {
 			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBar, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Search Button Clicked in Pending Receivables");
-				webDB.sendTextToAnElement(PaymentReceiptsLocators.PendReceive_SearchBar, InvoiceNo,
-						ElementType.Xpath);
+				webDB.sendTextToAnElement(PaymentReceiptsLocators.PendReceive_SearchBar, InvoiceNo, ElementType.Xpath);
 				flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
@@ -383,13 +380,11 @@ public class PaymentReceiptsFunctions {
 							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Searched with Invoice number: " + InvoiceNo);
-						webDB.moveToElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
-								ElementType.Xpath);
+						webDB.moveToElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo), ElementType.Xpath);
 						webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
 								ElementType.Xpath);
 						commonFunc.hardWait(2000);
-						flag = webDB.isElementEnabled(PaymentReceiptsLocators.PendReceive_CreateBtn,
-								ElementType.Xpath);
+						flag = webDB.isElementEnabled(PaymentReceiptsLocators.PendReceive_CreateBtn, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO",
 									"CheckBox Clicked to Create Bank Receipt for the Invoice number: " + InvoiceNo);
@@ -420,13 +415,18 @@ public class PaymentReceiptsFunctions {
 			webDB.sendTextToAnElement(PaymentReceiptsLocators.BankReceipt_RefNoInput, refNo, ElementType.Xpath);
 			flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_HeaderSaveBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Reference number entered" + refNo);
+				logs.logging("INFO", "Reference number entered: " + refNo);
 				webDB.moveToElement(PaymentReceiptsLocators.BankReceipt_HeaderSaveBtn, ElementType.Xpath);
 				webDB.clickAnElement(PaymentReceiptsLocators.BankReceipt_HeaderSaveBtn, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_VoucherNoText, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Header Saved Successfully");
+					String VocNo = webDB.getTextFromElement(PaymentReceiptsLocators.BankReceipt_VoucherNoText,
+							ElementType.Xpath);
+					VariableHandler.setBankReceiptVouNo(VocNo);
+					logs.logging("INFO", "Displayed Bank Receipt Voucher No " + VocNo);
 				}
 			}
 		}
@@ -452,8 +452,7 @@ public class PaymentReceiptsFunctions {
 				logs.logging("INFO", "Create Journal Button Clicked");
 				webDB.moveToElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn, ElementType.Xpath);
 				webDB.clickAnElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe,
-						ElementType.Xpath);
+				flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "View Journal Button Clicked");
 				}
@@ -470,25 +469,24 @@ public class PaymentReceiptsFunctions {
 	 */
 	public void verifyTotalDebitAndCreditEqualsAndCloseViewJournal() {
 		switchToViewJournalIframe();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField, ElementType.Xpath);
 		if (flag) {
 			String DebitText = webDB.getTextFromElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField,
 					ElementType.Xpath);
 			logs.logging("INFO", "Displayed Debit Total Amount: " + DebitText);
-			flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField,
-					ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField, ElementType.Xpath);
-				String CreditText = webDB.getTextFromElement(
-						PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField, ElementType.Xpath);
+				String CreditText = webDB.getTextFromElement(PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField,
+						ElementType.Xpath);
 				logs.logging("INFO", "Displayed Credit Total Amount: " + CreditText);
 				flag = DebitText.equals(CreditText);
 				if (flag) {
 					logs.logging("INFO", "Verified Credit and Debit Amount in Journal");
 					webDB.switchToDefaultContent();
 					webDB.clickAnElement(PaymentReceiptsLocators.ViewJournal_CloseIcon, ElementType.Xpath);
-					flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn,
-							ElementType.Xpath);
+					flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Journal Close Icon Clicked Successfully");
 					}
@@ -573,13 +571,16 @@ public class PaymentReceiptsFunctions {
 			}
 			commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.PendReceive_BankCashierLovBtn,
 					BankOrCashier);
-			webDB.moveToElement(PaymentReceiptsLocators.PendReceive_PaymentMode, ElementType.Xpath);
-			webDB.moveToElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
-			webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
-			webDB.switchToDefaultContent();
-			flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_RefNoInput, ElementType.Xpath);
+			switchToPendingReceivableIframe();
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Ok Button Clicked in Bank Receipt Creation");
+				webDB.moveToElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
+				webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_RefNoInput, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ok Button Clicked in Bank Receipt Creation");
+				}
 			}
 		}
 		assertTrue(flag);
