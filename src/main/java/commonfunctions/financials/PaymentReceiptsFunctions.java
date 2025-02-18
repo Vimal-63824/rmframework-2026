@@ -1,4 +1,5 @@
 package commonfunctions.financials;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -206,8 +207,8 @@ public class PaymentReceiptsFunctions {
 	 */
 	public void verifyWaitingForApproval() {
 		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath)) {
-			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			flag = webDB.waitForElement(PaymentReceiptsLocators.WorkApprovalOkButton, ElementType.Xpath);
 			if (flag) {
@@ -273,6 +274,340 @@ public class PaymentReceiptsFunctions {
 					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
 				}
 			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Pending Dr And Pending receivables in Payment
+	 * Receipts
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingDrAndPendingReceivables() {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.PendingDrDocsBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PaymentReceiptsLocators.PendingDrDocsBtn, ElementType.Xpath);
+			flag = webDB.waitForClickElement(PaymentReceiptsLocators.PendingReceivablesBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Dr.Docs Button Clicked");
+				webDB.moveToElement(PaymentReceiptsLocators.PendingReceivablesBtn, ElementType.Xpath);
+				webDB.clickAnElement(PaymentReceiptsLocators.PendingReceivablesBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(PaymentReceiptsLocators.PendingReceivablesIframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending Receivables Button Clicked");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to switch Pending Receivables Iframe
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToPendingReceivableIframe() {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.PendingReceivablesIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PaymentReceiptsLocators.PendingReceivablesIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Switched to Pending Receivable Iframe");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to switch view journal Iframe
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToViewJournalIframe() {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Switched to view Journal Iframe");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to Choose sales invoice in Doc Type and Search Invoice No in
+	 * Find page - Pending Receivables
+	 * 
+	 * @author Sakthi-GWL
+	 * @param InvoiceNo
+	 */
+	public void chooseSaleInvoiceDocTypeWithInvoiceNoInFind(String InvoiceNo) {
+		switchToPendingReceivableIframe();
+		flag = webDB.waitForElement(PaymentReceiptsLocators.PendingReceivablesIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByText(PaymentReceiptsLocators.PendReceive_FindDocTypeSelect, "Sales Invoice",
+					ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_FindInvoiceNoLovBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.PendReceive_FindInvoiceNoLovBtn,
+						InvoiceNo);
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click search and create using Invoice No
+	 * 
+	 * @author Sakthi-GWL
+	 * @param InvoiceNo
+	 */
+	public void clickSearchIconAndClickCreateWithInvoiceNo(String InvoiceNo) {
+		switchToPendingReceivableIframe();
+		flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBar, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Clicked in Pending Receivables");
+				webDB.sendTextToAnElement(PaymentReceiptsLocators.PendReceive_SearchBar, InvoiceNo,
+						ElementType.Xpath);
+				flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Searched with Invoice number: " + InvoiceNo);
+						webDB.moveToElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
+								ElementType.Xpath);
+						webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
+								ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.isElementEnabled(PaymentReceiptsLocators.PendReceive_CreateBtn,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"CheckBox Clicked to Create Bank Receipt for the Invoice number: " + InvoiceNo);
+							webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_CreateBtn, ElementType.Xpath);
+							flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SingleRadioBtn,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Create Button Clicked and Bank Receipt Page Navigated");
+							}
+						}
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to enter Reference No and Save Header in Bank Receipts
+	 * 
+	 * @author Sakthi-GWL
+	 * @param refNo
+	 */
+	public void enterRefNoAndSaveHeader(String refNo) {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_RefNoInput, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PaymentReceiptsLocators.BankReceipt_RefNoInput, refNo, ElementType.Xpath);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_HeaderSaveBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Reference number entered" + refNo);
+				webDB.moveToElement(PaymentReceiptsLocators.BankReceipt_HeaderSaveBtn, ElementType.Xpath);
+				webDB.clickAnElement(PaymentReceiptsLocators.BankReceipt_HeaderSaveBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				commonFunc.checkSuccessToastMessageDisappear();
+				if (flag) {
+					logs.logging("INFO", "Header Saved Successfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click create journal and click view journal
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCreateJournalAndClickViewJournel() {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_CreateJournalBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PaymentReceiptsLocators.BankReceipt_CreateJournalBtn, ElementType.Xpath);
+			webDB.clickAnElement(PaymentReceiptsLocators.BankReceipt_CreateJournalBtn, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Create Journal Button Clicked");
+				webDB.moveToElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn, ElementType.Xpath);
+				webDB.clickAnElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalIframe,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "View Journal Button Clicked");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to verify total debit and credit amount equals in view
+	 * journal
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyTotalDebitAndCreditEqualsAndCloseViewJournal() {
+		switchToViewJournalIframe();
+		flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField, ElementType.Xpath);
+		if (flag) {
+			String DebitText = webDB.getTextFromElement(PaymentReceiptsLocators.ViewJournal_TotalAmountDebitField,
+					ElementType.Xpath);
+			logs.logging("INFO", "Displayed Debit Total Amount: " + DebitText);
+			flag = webDB.waitForElement(PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField,
+					ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField, ElementType.Xpath);
+				String CreditText = webDB.getTextFromElement(
+						PaymentReceiptsLocators.ViewJournal_TotalAmountCreditField, ElementType.Xpath);
+				logs.logging("INFO", "Displayed Credit Total Amount: " + CreditText);
+				flag = DebitText.equals(CreditText);
+				if (flag) {
+					logs.logging("INFO", "Verified Credit and Debit Amount in Journal");
+					webDB.switchToDefaultContent();
+					webDB.clickAnElement(PaymentReceiptsLocators.ViewJournal_CloseIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_ViewJournalBtn,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Journal Close Icon Clicked Successfully");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to verify Credits in Dr/Cr in Lines and Total TC and BC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyCreditInDrCrLinesColumnTotalTCAndTotalBC() {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_TableDRCRvalue, ElementType.Xpath);
+		if (flag) {
+			String DrCrText = webDB.getTextFromElement(PaymentReceiptsLocators.BankReceipt_TableDRCRvalue,
+					ElementType.Xpath);
+			logs.logging("INFO", "Party Has " + DrCrText + " in Bank Receipt Line");
+			flag = DrCrText.contains("Cr");
+			if (flag) {
+				String TotalTCText = webDB.getTextFromElement(PaymentReceiptsLocators.BankReceipt_TotalTCvalue,
+						ElementType.Xpath);
+				logs.logging("INFO", "Bank Receipt Total TC: " + TotalTCText);
+				flag = TotalTCText.contains("Cr");
+				if (flag) {
+					String TotalBCText = webDB.getTextFromElement(PaymentReceiptsLocators.BankReceipt_TotalBCvalue,
+							ElementType.Xpath);
+					logs.logging("INFO", "Bank Receipt Total BC: " + TotalBCText);
+					flag = TotalBCText.contains("Cr");
+					if (flag) {
+						logs.logging("INFO", "Verified Party Dr/Cr line detail , Total TC and BC contains Credits");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Post button in Bank Receipts
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPostButtonInBankReceipts() {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_PostBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PaymentReceiptsLocators.BankReceipt_PostBtn, ElementType.Xpath);
+			webDB.clickAnElement(PaymentReceiptsLocators.BankReceipt_PostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked in Bank Receipts");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select BR Type Payment Type and Payment Mode with
+	 * Bank/Cashier in bank Receipt creation
+	 * 
+	 * @author Sakthi-GWL
+	 * @param RadioBtnType
+	 * @param PaymentType
+	 * @param PaymentMode
+	 * @param BankOrCashier
+	 */
+	public void fillFormOfBankReceiptWithBankOrCashTypes(String RadioBtnType, String PaymentType, String PaymentMode,
+			String BankOrCashier) {
+		switchToPendingReceivableIframe();
+		fillRadioButtonTypeInBankReceiptCreation(RadioBtnType);
+		flag = webDB.selectDropDownByText(PaymentReceiptsLocators.PendReceive_PaymentType, PaymentType,
+				ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Payment Type Selected: " + PaymentType);
+			if (PaymentType.contains("Bank")) {
+				flag = webDB.selectDropDownByText(PaymentReceiptsLocators.PendReceive_PaymentMode, PaymentMode,
+						ElementType.Xpath);
+				if (flag)
+					logs.logging("INFO", "Payment Mode Selected: " + PaymentMode);
+			}
+			commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.PendReceive_BankCashierLovBtn,
+					BankOrCashier);
+			webDB.moveToElement(PaymentReceiptsLocators.PendReceive_PaymentMode, ElementType.Xpath);
+			webDB.moveToElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
+			webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_OkBtn, ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(PaymentReceiptsLocators.BankReceipt_RefNoInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Ok Button Clicked in Bank Receipt Creation");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select single or merge Bank Receipt Creation Type
+	 * 
+	 * @author Sakthi-GWL
+	 * @param RadioBtnType
+	 */
+	private void fillRadioButtonTypeInBankReceiptCreation(String RadioBtnType) {
+		flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_MergeRadioBtn, ElementType.Xpath);
+		if (RadioBtnType.equalsIgnoreCase("Merge") & flag) {
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_MergeRadioBtn, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_MergeRadioBtn, ElementType.Xpath);
+				logs.logging("INFO", RadioBtnType + " Clicked Successfully");
+			}
+		} else if (RadioBtnType.equalsIgnoreCase("Single") && flag) {
+			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SingleRadioBtn, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SingleRadioBtn, ElementType.Xpath);
+				logs.logging("INFO", RadioBtnType + " Clicked Successfully");
+			}
+		} else {
+			flag = false;
+			logs.logging("INFO", "Invalid RadioType Button");
 		}
 		assertTrue(flag);
 	}

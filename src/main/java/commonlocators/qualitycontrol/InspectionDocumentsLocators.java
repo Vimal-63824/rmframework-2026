@@ -1,5 +1,9 @@
 package commonlocators.qualitycontrol;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class InspectionDocumentsLocators {
 
 	/** @locatorType Xpath */

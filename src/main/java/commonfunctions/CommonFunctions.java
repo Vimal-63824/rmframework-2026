@@ -20,6 +20,8 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
@@ -40,6 +42,7 @@ public class CommonFunctions {
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static ExcelUtils excelUtils = new ExcelUtils();
+	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 
 	/**
 	 * This method used to open browser with platformName that was set in maven goal
@@ -69,6 +72,7 @@ public class CommonFunctions {
 	 * @return boolean
 	 */
 	public boolean checkRefreshCellsDisappear() {
+		int i = 1;
 		List<WebElement> refreshElements = webDB.getDriver()
 				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
 		try {
@@ -84,6 +88,10 @@ public class CommonFunctions {
 		List<WebElement> AfterWaitrefreshElements = webDB.getDriver()
 				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
 		flag = AfterWaitrefreshElements.isEmpty();
+		if (!flag && (i < 2)) {
+			i++;
+			checkRefreshCellsDisappear();
+		}
 		return flag;
 	}
 
@@ -228,24 +236,40 @@ public class CommonFunctions {
 						// TODO WAIT_LOAD_TIME (will remove future)
 						hardWait(2000);
 						checkRefreshCellsDisappear();
-						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
-								ElementType.Xpath)) {
-							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
-									ElementType.Xpath);
-						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
-								ElementType.Xpath)) {
-							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
-									ElementType.Xpath);
-						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
-								ElementType.Xpath)) {
-							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
-									ElementType.Xpath);
-						} else {
-							flag = false;
-						}
-						if (flag) {
-							logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-							break a;
+						List<WebElement> Elements = webDB.getDriver()
+								.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+						for (WebElement webElement : Elements) {
+							try {
+								if (webElement.isDisplayed()) {
+									webElement.click();
+									flag = true;
+									logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
+									break;
+								} else {
+									flag = false;
+								}
+							} catch (Exception e) {
+								flag = false;
+							}
+//						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
+//								ElementType.Xpath)) {
+//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
+//									ElementType.Xpath);
+//						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
+//								ElementType.Xpath)) {
+//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
+//									ElementType.Xpath);
+//						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
+//								ElementType.Xpath)) {
+//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
+//									ElementType.Xpath);
+//						} else {
+//							flag = false;
+//						}
+							if (flag) {
+								logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
+								break a;
+							}
 						}
 					}
 				} catch (Exception e) {
@@ -725,90 +749,6 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * Navigates to SupplyChain Node
-	 * 
-	 * @author Kowshik
-	 * @return boolean flag
-	 */
-	public boolean navigatesSetupNode() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
-			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SalesOrderLocators.setup, ElementType.Xpath);
-				flag = webDB.waitForClickElement(SalesOrderLocators.setupSales, ElementType.Xpath);
-				webDB.clickAnElement(SalesOrderLocators.setupSales, ElementType.Xpath);
-
-				if (flag) {
-					logs.logging("INFO", "Navigated to Setup sales screen Successfully");
-				}
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * To Click a Salesnode
-	 * 
-	 * @author Kowshik
-	 * @return boolean flag
-	 */
-	public boolean clicksalesnode() {
-		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
-			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
-		}
-		return flag;
-	}
-
-	/**
-	 * To Click a Open So Screen
-	 * 
-	 * @author Kowshik
-	 * @return boolean flag
-	 */
-	public boolean clickOpensoNode() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clicksalesnode();
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
-
-			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
-
-				if (flag) {
-					logs.logging("INFO", "navigated open so screen successfully");
-				}
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * Click a Add Button Open so
-	 * 
-	 * @author Kowshik
-	 * @return boolean flag
-	 */
-	public boolean clickADDBTNoso() {
-		flag = webDB.waitForClickElement(OpenSalesOrderLocators.addBTN, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(OpenSalesOrderLocators.addBTN, ElementType.Xpath);
-			if (flag) {
-				logs.logging("info", "ADD button clicked sucessfully ");
-			}
-		}
-		return flag;
-	}
-
-	/**
 	 * This method is used to Navigate Sales Invoice Screen
 	 * 
 	 * @author Vimal - RMITS
@@ -852,13 +792,12 @@ public class CommonFunctions {
 		return Email;
 	}
 
-	/*
+	/**
 	 * This Method used to Navigate GRN Page
 	 * 
 	 * @author PremKumar.K-RMIT
 	 */
 	public void naviagteGrnPage() {
-		// TODO Auto-generated method stub
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
 		clickPurchaseTab();
@@ -1140,4 +1079,108 @@ public class CommonFunctions {
 		navigateToPaymentReceipt();
 	}
 
+	/**
+	 * This method used to click sales setup tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickSalesSetupTab() {
+		flag = webDB.waitForClickElement(CommonUiLocators.SalesSetupTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SalesSetupTab, ElementType.Xpath);
+			flag = webDB.waitForClickElement(CommonUiLocators.SalesSetup_SalesScreen, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Setup tab Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigates to SupplyChain Node
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean navigateSalesSetupScreen() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesSetupTab();
+		flag = webDB.waitForElement(CommonUiLocators.SalesSetup_SalesScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SalesSetup_SalesScreen, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to Setup sales screen Successfully");
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * To Click a Open So Screen
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean navigateOpenSO() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForClickElement(CommonUiLocators.OpenSOTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.OpenSOTab, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "navigated open so screen successfully");
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method used to check Discounts in Line Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param AssblLocator
+	 * @param PerctLocator
+	 * @param AmountLocator
+	 * @param Discount
+	 */
+	public void checkDiscountInLineDetails(String AssblLocator, String PerctLocator, String AmountLocator,
+			String Discount) {
+		flag = webDB.waitForElement(AssblLocator, ElementType.Xpath);
+		if (flag) {
+			String AssVal = webDB.getDomPropertyFromElement(AssblLocator, ElementType.Xpath,
+					getDataFromTestDataSheet("Value"));
+			BigDecimal BeforeDiscountvalue = purchaseOrderFunc
+					.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(AssVal));
+			logs.logging("INFO", "Assbl.. Value Displayed: " + BeforeDiscountvalue);
+			flag = webDB.waitForElement(PerctLocator, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(PerctLocator, ElementType.Xpath);
+				webDB.sendTextToAnElement(PerctLocator, Discount, ElementType.Xpath);
+				webDB.pressEnterKey();
+				checkRefreshCellsDisappear();
+				BigDecimal percentage = purchaseOrderFunc
+						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(Discount));
+				logs.logging("INFO", "Percentage Value Entered: " + Discount + "%");
+				String AmountVal = webDB.getDomPropertyFromElement(AmountLocator, ElementType.Xpath,
+						getDataFromTestDataSheet("Value"));
+				BigDecimal AfterDiscountvalue = purchaseOrderFunc
+						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(new BigDecimal(AmountVal));
+				logs.logging("INFO", "Amount Value Displayed: " + AfterDiscountvalue);
+				BigDecimal Result = (BeforeDiscountvalue.multiply(percentage)).divide(new BigDecimal("100"));
+				Result = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(Result);
+				logs.logging("INFO", "Expected Amount value: " + Result + " for Assbl: " + BeforeDiscountvalue
+						+ " with Percentage: " + percentage);
+				flag = Result.equals(AfterDiscountvalue);
+				if (flag) {
+					logs.logging("INFO", "Discount calculation verified");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }

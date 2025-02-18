@@ -1,5 +1,9 @@
 package commonlocators.financials;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String PendingGrn = "//button[@id='B1552838491861175540']";

@@ -57,7 +57,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
 	/** @locatorType Xpath */
-	public static final String PendingText = "//h1[text()='Pending']";
+	public static final String PendingText = "//h1/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SearchBarIcon = "//button[contains(@class,'doSearch')]";
 	/** @locatorType Xpath */
@@ -133,4 +133,21 @@ public class CommonUiLocators {
 	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String PendingCrDocs = "//button[@id='B1918502594088484019']";
+	/** Locator Xpath */
+	public static final String SalesSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]";
+	/** Locator Xpath */
+	public static final String SalesSetup_SalesScreen = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String OpenSOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
+	/** @locatorType Xpath */
+	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String WorkAppoval_OkBtn = "//*[@id='B1612723241586671539']";
+
+	/** @locatorType Xpath */
+	public static String convertListOfXPath(String text) {
+		return "//*[text()='" + text + "']";
+	}
 }

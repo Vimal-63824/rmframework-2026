@@ -10,7 +10,6 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.PurchaseBillsLocators;
-import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -129,8 +128,8 @@ public class PurchaseBillsFunctions {
 	 */
 	public void verifyWaitingForApproval() {
 		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath)) {
-			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			flag = webDB.waitForElement(PurchaseBillsLocators.ApproveOkButton, ElementType.Xpath);
 			if (flag) {

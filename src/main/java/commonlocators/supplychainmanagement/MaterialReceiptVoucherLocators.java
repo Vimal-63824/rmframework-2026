@@ -1,5 +1,9 @@
 package commonlocators.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class MaterialReceiptVoucherLocators {
 
 	/** @locatorType Xpath */

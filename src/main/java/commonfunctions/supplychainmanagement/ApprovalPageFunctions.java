@@ -145,7 +145,8 @@ public class ApprovalPageFunctions {
 	 * @param PONumber
 	 */
 	public void verifyApproveWithDocNumber(String Number) {
-		commonFunc.hardWait(1000);
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
@@ -233,9 +234,36 @@ public class ApprovalPageFunctions {
 								}
 							}
 						}
-					} 
+					}
 				}
 			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select forwarder in WorkApproval and click Ok button
+	 * 
+	 * @author Sakthi-GWL
+	 * @param user
+	 */
+	public void waitingForApprovalWithFordwarder(String user) {
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
+		if (flag) {
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				commonFunc.checkSuccessToastMessageDisappear();
+			}
+		} else {
+			VariableHandler.setApprovalFlag(flag);
 		}
 		assertTrue(flag);
 	}

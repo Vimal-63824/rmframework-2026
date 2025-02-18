@@ -104,4 +104,53 @@ public class SalesInvoiceLocators {
 	public static final String Price_Basis_Field = "//span[contains(@id,'P191513109011_SILN_PRICE_BASIS_DISPLAY')]";
 	/** @Locator XPATH */
 	public static final String Line_Det_save_Btn = "//button[contains(@id,'B1674942967321665734')]";
+	/** @Locator XPATH */
+	public static final String PendingSORadioBtn = "//button[@id='B990529693486838107']";
+	/** @Locator XPATH */
+	public static final String PendingSOIframe = "//iframe[@title='Pending Invoice']";
+	/** @Locator XPATH */
+	public static final String PendingSO_SearchBar = "//input[@title='Search Report']";
+	/** @Locator XPATH */
+	public static final String PendingSO_SearchBarGOBtn = "//button[@id='sales_order_search_button']";
+	/** @Locator XPATH */
+	public static final String PendingSO_CreateInvoiceBtn = "//span[text()='Create Invoice']/parent::button";
+
+	/** @Locator XPATH */
+	public static final String PendingSO_SOCheckBox(String SONum) {
+		return "//input[@id='checkbox_" + SONum + "1']";
+	}
+
+	/** @Locator XPATH */
+	public static final String SalesInvoiceTradeAssemblePrice = "//input[@id='P191513109011_SILN_TRD_ASSBL_VAL']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceTradeDiscountPrice = "//input[@id='P191513109011_SILN_DISC_PCT']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceTradeAssembleAmount = "//input[@id='P191513109011_SILN_DISC_AMT']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceSpecialAssblPrice = "//input[@id='P191513109011_SILN_SPL_ASSBL_VAL']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceSpecialDiscountPrice = "//input[@id='P191513109011_SILN_SPL_DISC_PCT']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceSpecialAssblAmount = "//input[@id='P191513109011_SILN_SPL_DISC_AMT']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceCashAssemblePrice = "//input[@id='P191513109011_SILN_CASH_ASSBL_VAL']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceCashDiscountPrice = "//input[@id='P191513109011_SILN_CASH_DISC_PCT']";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceCashAssembleAmount = "//input[@id='P191513109011_SILN_CASH_DISC_AMT']";
+	/** @Locator XPATH */
+	public static final String SaleInvoiceWarehouseShipFrom = "//input[@id='P191513109011_SILN_STORE_ID']";
+	/** @Locator XPATH */
+	public static final String SaleInvoiceStockQuantity = "//input[@id='P191513109011_ONHAND_QTY']";
+	/** @Locator XPATH */
+	public static final String SaleInvoiceOrderInvoiceQuantity = "//input[@id='P191513109011_SILN_STK_INV_QTY']";
+	/** @Locator XPATH */
+	public static final String FindSalesInvoiceNoLovBtn = "//button[@id='P1915131343_INV_NO_1_lov_btn']";
+	/** @Locator XPATH */
+	public static final String FindSalesInvoiceSearchBtn = "//button[@id='B612291637658061723']";
+
+	/** @Locator XPATH */
+	public static final String SIStatusTableText(String SINumber) {
+		return "//*[text()='" + SINumber + "']/../td[11]/div";
+	}
 }

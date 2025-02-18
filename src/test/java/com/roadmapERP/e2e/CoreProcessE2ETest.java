@@ -30,6 +30,17 @@ public class CoreProcessE2ETest {
 	}
 
 	/**
+	 * Open Sale Order to Payment Receipts ETE
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 2, groups = {
+			"Core Process" }, description = "Open Sales Order to Payment Receipt End to End Process")
+	public void VerifySalesOrderToPaymentReceipts() {
+		coreProcessPageFunctions.verifySalesOrderToPaymentReceipts();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

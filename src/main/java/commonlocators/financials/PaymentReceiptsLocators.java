@@ -1,5 +1,9 @@
 package commonlocators.financials;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPayable = "//button[@id='B1540712450699548671']";
@@ -54,5 +58,65 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String CheckBox(String PbNo) {
 		return "//td[text()='" + PbNo + "']/../td[13]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PendingDrDocsBtn = "//button[@id='B1918502607122484020']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesBtn = "//span[text()='Pending Receivable']/parent::button";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesIframe = "//iframe[@title='Pending Receivables']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_FindInvoiceNoLovBtn = "//button[@id='P3413101003_INV_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_FindDocTypeSelect = "//select[@id='P3413101003_DOC_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_SearchBar = "//input[@id='PEND_search_field']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_SearchGoBtn = "//button[@id='PEND_search_button']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_SearchBtn = "//button[@id='B1889773523896176533']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_CreateBtn = "//button[@id='B1']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_SingleRadioBtn = "//label[@for='P3413101003_GLOBAL_TYPE_0']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_MergeRadioBtn = "//label[@for='P3413101003_GLOBAL_TYPE_1']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_PaymentType = "//select[@id='P3413101003_SUPHD_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_PaymentMode = "//select[@id='P3413101003_SUPHD_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_BankCashierLovBtn = "//button[@id='P3413101003_BANK_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PendReceive_OkBtn = "//button[@id='B1547715561905421086']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_RefNoInput = "//input[@id='P3413103005_BTRANS_TRANS_REF_N']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_HeaderSaveBtn = "//button[@id='SAVE']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_CreateJournalBtn = "//button[@id='CREATE_JOURNAL']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_ViewJournalBtn = "//button[@id='B1269680928025184394']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_PostBtn = "//button[@id='POST']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_ViewJournalIframe = "//iframe[@title='View Journal']";
+	/** @locatorType Xpath */
+	public static final String ViewJournal_TotalAmountDebitField = "(//td[@headers='db']/span)[last()]";
+	/** @locatorType Xpath */
+	public static final String ViewJournal_TotalAmountCreditField = "(//td[@headers='cr']/span)[last()]";
+	/** @locatorType Xpath */
+	public static final String ViewJournal_CloseIcon = "//h1[text()='View Journal']/../child::button";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_TableDRCRvalue = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_TotalTCvalue = "//span[@id='tc']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_TotalBCvalue = "//span[@id='bc']";
+
+	/** @locatorType Xpath */
+	public static final String PendReceive_CheckBox(String text) {
+		return "//td[text()='" + text + "']/../td[13]";
 	}
 }
