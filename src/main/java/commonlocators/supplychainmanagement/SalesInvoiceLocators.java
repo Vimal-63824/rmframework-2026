@@ -148,6 +148,24 @@ public class SalesInvoiceLocators {
 	public static final String FindSalesInvoiceNoLovBtn = "//button[@id='P1915131343_INV_NO_1_lov_btn']";
 	/** @Locator XPATH */
 	public static final String FindSalesInvoiceSearchBtn = "//button[@id='B612291637658061723']";
+	/** @Locator XPATH */
+	public static final String InvoiceQntyTableData = "//table/tbody/tr/td[8]";
+	/** @Locator XPATH */
+	public static final String UnitPriceTableData = "//table/tbody/tr/td[9]";
+	/** @Locator XPATH */
+	public static final String DiscountAmountTableData = "//table/tbody/tr/td[10]";
+	/** @Locator XPATH */
+	public static final String LineAmountTableData = "//table/tbody/tr/td[11]";
+	/** @Locator XPATH */
+	public static final String TaxPercentField = "//table/tbody/tr/td[13]";
+	/** @Locator XPATH */
+	public static final String IGSTTaxAmountField = "//table/tbody/tr/td[14]";
+	/** @Locator XPATH */
+	public static final String CGSTTaxAmountField = "//table/tbody/tr/td[15]";
+	/** @Locator XPATH */
+	public static final String SGSTTaxAmountField = "//table/tbody/tr/td[16]";
+	/** @Locator XPATH */
+	public static final String UTGSTTaxAmountField = "//table/tbody/tr/td[17]";
 
 	/** @Locator XPATH */
 	public static final String SIStatusTableText(String SINumber) {

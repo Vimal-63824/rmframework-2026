@@ -183,8 +183,8 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				flag = (webDB.waitForElementUntilGivenTime(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath,
+						10) || webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
 			}
 		}
 		assertTrue(flag);

@@ -206,6 +206,7 @@ public class OpenSalesOrderFunctions {
 	public void fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(String price, String mrp, String HSN) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.PriceLastLineData,
 				OpenSalesOrderLocators.PriceLastLineInput, price);
+		VariableHandler.setOpenSOPriceAmount(price);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.MRPLastLineData,
 				OpenSalesOrderLocators.MRPLastLineInput, mrp);
 		flag = webDB.waitForElement(OpenSalesOrderLocators.HSNCodeLastLineData, ElementType.Xpath);
@@ -298,22 +299,38 @@ public class OpenSalesOrderFunctions {
 	 * @param Date
 	 * @return
 	 */
-	public boolean findStatusOfOpenSOWithItemAndCustomer(String Item, String Customer, String Date) {
+	public boolean findStatusOfOpenSOWithItemAndCustomer(String Item, String Customer, String Date, String Status) {
 		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOItemLovBtn, Item);
 		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOCustomerLovBtn, Customer);
-		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.FindOpenSODocDateInput,
+				OpenSalesOrderLocators.FindOpenSODocDateInput, Date);
+		flag = webDB.selectDropDownByText(OpenSalesOrderLocators.FindOpenSOStatusSelect, Status, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(OpenSalesOrderLocators.FindApprovedDateTableList, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 			if (flag) {
-				List<WebElement> elements = webDB.getDriver()
-						.findElements(By.xpath(OpenSalesOrderLocators.FindApprovedDateTableList));
-				for (WebElement element : elements) {
-					if (element.getText().contains(Date)) {
-						flag = true;
-						break;
-					} else {
-						flag = false;
+				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindNoDataMessageContainer,
+						ElementType.Xpath)) {
+					logs.logging("INFO", "No Data was in Approved Status");
+					flag = false;
+				}
+				if (flag) {
+					List<WebElement> elements = webDB.getDriver()
+							.findElements(By.xpath(OpenSalesOrderLocators.FindApprovedDateTableList));
+					for (WebElement element : elements) {
+						commonFunc.checkRefreshCellsDisappear();
+						if (element.getText().contains(Date)) {
+							flag = true;
+							String cost = webDB.getTextFromElement(
+									OpenSalesOrderLocators.FindCostOfLastDateApprovedOpenSO(Item), ElementType.Xpath);
+							VariableHandler.setOpenSOPriceAmount(cost);
+							logs.logging("INFO", "Already Item was Approved Status.. Displayed Amount: " + cost);
+							break;
+						} else {
+							flag = false;
+						}
 					}
 				}
 			}

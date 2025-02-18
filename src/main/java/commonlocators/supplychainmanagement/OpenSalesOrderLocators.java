@@ -93,10 +93,21 @@ public class OpenSalesOrderLocators {
 	public static final String OpenSO_CancelHeaderBtn = "//button[@id='B6857350295074038183']";
 	/** @locatorType Xpath */
 	public static final String OpenSOBackIcon = "//button[@id='B1758893841899309612']";
+	/** @locatorType Xpath */
+	public static final String FindOpenSODocDateInput = "//input[@id='P19151310131_DOC_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String FindOpenSOStatusSelect = "//select[@id='P19151310131_STATUS']";
+	/** @locatorType Xpath */
+	public static final String FindNoDataMessageContainer = "//div[@class='a-IRR-noDataMsg-icon']";
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithDocNo(String Docno) {
 		return "//*[text()='" + Docno + "']/../../td[15]/div";
+	}
+
+	/** @locatorType Xpath */
+	public static final String FindCostOfLastDateApprovedOpenSO(String text) {
+		return "//*[text()='" + text + "']/../td[14]";
 	}
 
 }
