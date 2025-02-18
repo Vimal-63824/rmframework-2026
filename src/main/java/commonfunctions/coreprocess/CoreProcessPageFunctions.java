@@ -153,8 +153,14 @@ public class CoreProcessPageFunctions {
 		String CustomerID = commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedID");
 		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
 		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
 		String Cost = RandomStringUtils.randomNumeric(2);
-		String MRP = String.valueOf(Integer.parseInt(Cost + 10));
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
 		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
@@ -198,7 +204,7 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.addItemsInSO(Item);
 			saleOrderFunc.addLineItemQty(Unit);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem(Unit, Cost);
+			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
 			saleOrderFunc.clickLineWiseDetailsButton();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
@@ -260,9 +266,12 @@ public class CoreProcessPageFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
+					commonFunc.navigateSalesInvoicePage();
+					saleInvoiceFunc.validateSalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+							commonFunc.getDataFromTestDataSheet("InvoicedStatus"));
 					commonFunc.navigateToFinancialPaymentReceipt();
 					paymentReceiptFunc.clickPendingDrAndPendingReceivables();
-//					paymentReceiptFunc.chooseSaleInvoiceDocTypeWithInvoiceNoInFind(VariableHandler.getSIdocno());
+					paymentReceiptFunc.chooseSaleInvoiceDocTypeWithInvoiceNoInFind(VariableHandler.getSIdocno());
 					paymentReceiptFunc.clickSearchIconAndClickCreateWithInvoiceNo(VariableHandler.getSIdocno());
 					paymentReceiptFunc.fillFormOfBankReceiptWithBankOrCashTypes(
 							commonFunc.getDataFromTestDataSheet("SinglePaymentType"),
@@ -280,8 +289,8 @@ public class CoreProcessPageFunctions {
 						commonFunc.validCommonLogin(System.getProperty("HodUsername"),
 								System.getProperty("HodPassword"), "HodUsername");
 						approvalFunc.navigateToApprovals();
-						approvalFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+						approvalFunc.filterDocumentsforApproval(VariableHandler.getBankReceiptVouNo());
+						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBankReceiptVouNo());
 						flag = commonFunc.logoutUser();
 					}
 				}

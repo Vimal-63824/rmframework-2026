@@ -67,7 +67,7 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesIframe = "//iframe[@title='Pending Receivables']";
 	/** @locatorType Xpath */
-	public static final String PendReceive_FindInvoiceNoLovBtn = "//button[@id='P3413101003_INV_NO_lov_btn']";
+	public static final String PendReceive_FindInvoiceNoLovBtn = "//button[@id='P3413101003_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String PendReceive_FindDocTypeSelect = "//select[@id='P3413101003_DOC_TYPE']";
 	/** @locatorType Xpath */
@@ -85,7 +85,7 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String PendReceive_PaymentType = "//select[@id='P3413101003_SUPHD_TYPE']";
 	/** @locatorType Xpath */
-	public static final String PendReceive_PaymentMode = "//select[@id='P3413101003_SUPHD_TYPE']";
+	public static final String PendReceive_PaymentMode = "//select[@id='P3413101003_PAY_MODE']";
 	/** @locatorType Xpath */
 	public static final String PendReceive_BankCashierLovBtn = "//button[@id='P3413101003_BANK_lov_btn']";
 	/** @locatorType Xpath */
@@ -103,9 +103,9 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceipt_ViewJournalIframe = "//iframe[@title='View Journal']";
 	/** @locatorType Xpath */
-	public static final String ViewJournal_TotalAmountDebitField = "(//td[@headers='db']/span)[last()]";
+	public static final String ViewJournal_TotalAmountDebitField = "(//td[@headers='db'])[last()]/span[@class='a-IRR-aggregate-value']";
 	/** @locatorType Xpath */
-	public static final String ViewJournal_TotalAmountCreditField = "(//td[@headers='cr']/span)[last()]";
+	public static final String ViewJournal_TotalAmountCreditField = "(//td[@headers='cr'])[last()]/span[@class='a-IRR-aggregate-value']";
 	/** @locatorType Xpath */
 	public static final String ViewJournal_CloseIcon = "//h1[text()='View Journal']/../child::button";
 	/** @locatorType Xpath */
@@ -114,6 +114,8 @@ public class PaymentReceiptsLocators {
 	public static final String BankReceipt_TotalTCvalue = "//span[@id='tc']";
 	/** @locatorType Xpath */
 	public static final String BankReceipt_TotalBCvalue = "//span[@id='bc']";
+	/** @locatorType Xpath */
+	public static final String BankReceipt_VoucherNoText = "//span[@id='P3413103005_BTRANS_ORD_NO_DISPLAY']";
 
 	/** @locatorType Xpath */
 	public static final String PendReceive_CheckBox(String text) {

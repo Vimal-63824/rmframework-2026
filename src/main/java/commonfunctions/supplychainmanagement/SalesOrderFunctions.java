@@ -551,7 +551,10 @@ public class SalesOrderFunctions {
 				flag = webDB.waitForElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 					if (flag) {
 						logs.logging("INFO", "Line Wise Save Button is Clicked");
 						flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
@@ -575,6 +578,7 @@ public class SalesOrderFunctions {
 	 */
 	public void clickPostButton() {
 		commonFunc.checkSuccessToastMessageDisappear();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForClickElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(SalesOrderLocators.PostButton, ElementType.Xpath);
@@ -816,15 +820,12 @@ public class SalesOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.LineWiseDetailsSaveIcon, ElementType.Xpath);
 			webDB.switchToDefaultContent();
-			if (webDB.isElementDisplayed(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElement(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath);
-				flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Line Wise Details are saved sucessfully");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-			}
-			if (flag) {
-				logs.logging("INFO", "Line Wise Details are saved sucessfully");
 			}
 		}
 		assertTrue(flag);
@@ -858,6 +859,8 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Wise Save Button is Clicked");
+				commonFunc.checkSuccessToastMessageDisappear();
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
 				if (flag) {
 					String SOTotAmt = webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans,
@@ -902,24 +905,39 @@ public class SalesOrderFunctions {
 	 * @param Unit
 	 * @param Cost
 	 */
-	public void checkSaleOrderTaxCalculationForLastAddedItem(String Unit, String Cost) {
+	public void checkSaleOrderTaxCalculationForLastAddedItem() {
 		logs.logging("INFO", "Sales Order Tax Calculation!!!");
-		BigDecimal decimal_Unit = new BigDecimal(Unit);
-		decimal_Unit = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Unit);
-		BigDecimal decimal_Cost = new BigDecimal(Cost);
+		BigDecimal decimal_Qnty = new BigDecimal(
+				webDB.getTextFromElement(SalesOrderLocators.QtyField, ElementType.Xpath));
+		decimal_Qnty = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Qnty);
+		logs.logging("INFO", "Quantity Passed for Calculation without tax: " + decimal_Qnty);
+		BigDecimal decimal_Cost = new BigDecimal(
+				webDB.getTextFromElement(SalesOrderLocators.UnitCostField, ElementType.Xpath));
 		decimal_Cost = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(decimal_Cost);
-		BigDecimal totalCostWithoutTax = decimal_Unit.multiply(decimal_Cost);
-		totalCostWithoutTax = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(totalCostWithoutTax);
-		logs.logging("INFO", "Unit and Cost Multiply value without Cost: " + totalCostWithoutTax);
-		flag = webDB.waitForElement(SalesOrderLocators.TaxPercentField, ElementType.Xpath);
+		logs.logging("INFO", "Cost Passed for Calculation without tax: " + decimal_Cost);
+		BigDecimal totalCostWithoutTax = decimal_Qnty.multiply(decimal_Cost);
+		logs.logging("INFO", "Multiply value Cost and Quantity without tax: " + totalCostWithoutTax);
+		flag = webDB.waitForElement(SalesOrderLocators.DiscountAmountField, ElementType.Xpath);
 		if (flag) {
-			BigDecimal taxValue = new BigDecimal(
+			BigDecimal DiscountAmnt = new BigDecimal(
+					webDB.getTextFromElement(SalesOrderLocators.DiscountAmountField, ElementType.Xpath));
+			DiscountAmnt = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DiscountAmnt);
+			logs.logging("INFO", "Discount Amount Displayed without tax: " + DiscountAmnt);
+			totalCostWithoutTax = totalCostWithoutTax.subtract(DiscountAmnt);
+			logs.logging("INFO", "After Subtract Discount in Calculation Amount without tax: " + totalCostWithoutTax);
+
+			BigDecimal PerValue = new BigDecimal(
 					webDB.getTextFromElement(SalesOrderLocators.TaxPercentField, ElementType.Xpath));
-			taxValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(taxValue);
-			logs.logging("INFO", "Displayed tax Percentage: " + taxValue.intValue() + "%");
-			BigDecimal TaxAfterTax = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(
-					totalCostWithoutTax.divide(new BigDecimal("100")).multiply(taxValue));
-			logs.logging("INFO", "Expected value After tax calculation: " + TaxAfterTax);
+			PerValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(PerValue);
+			logs.logging("INFO", "Displayed tax Percentage: " + PerValue.intValue() + "%");
+
+			BigDecimal TaxValue = totalCostWithoutTax.divide(new BigDecimal("100")).multiply(PerValue);
+			BigDecimal IndividualTax = purchaseOrderFunc
+					.verifyRoundOffBigDecimalValueWithReturnBigDecimal(TaxValue.divide(new BigDecimal("2")));
+			logs.logging("INFO", "Individual Tax Amount: " + IndividualTax);
+			TaxValue = IndividualTax.multiply(new BigDecimal("2"));
+			logs.logging("INFO", "Expected Tax Value After Tax calculation: " + TaxValue);
+
 			BigDecimal IGSTAmount = new BigDecimal(
 					webDB.getTextFromElement(SalesOrderLocators.IGSTTaxAmountField, ElementType.Xpath));
 			IGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(IGSTAmount);
@@ -932,20 +950,24 @@ public class SalesOrderFunctions {
 			BigDecimal UTGSTAmount = new BigDecimal(
 					webDB.getTextFromElement(SalesOrderLocators.UTGSTTaxAmountField, ElementType.Xpath));
 			UTGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(UTGSTAmount);
+
 			BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
-			taxAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(taxAmount);
 			logs.logging("INFO", "After Adding Displayed GST Values: " + taxAmount);
-			flag = taxAmount.equals(TaxAfterTax);
+
+			flag = taxAmount.equals(TaxValue);
 			if (flag) {
 				logs.logging("INFO", "Tax Amount Verified, Tax added value: " + taxAmount);
 				logs.logging("INFO", "verifing total amount after calculating tax amount!!!");
-				BigDecimal totalAmount = new BigDecimal(VariableHandler.getSOTotalAmount());
-				totalAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(totalAmount);
-				logs.logging("INFO", "Displayed Total Amount: " + totalAmount);
-				BigDecimal calculationAmount = purchaseOrderFunc
+				BigDecimal DisplayLineAmnt = new BigDecimal(
+						webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath,
+								commonFunc.getDataFromTestDataSheet("Value")));
+				DisplayLineAmnt = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(DisplayLineAmnt);
+				logs.logging("INFO", "Displayed Total Amount: " + DisplayLineAmnt);
+
+				BigDecimal TotalAmountAddedTax = purchaseOrderFunc
 						.verifyRoundOffBigDecimalValueWithReturnBigDecimal(totalCostWithoutTax.add(taxAmount));
-				logs.logging("INFO", "Calculated Total Amount: " + calculationAmount);
-				flag = totalAmount.equals(calculationAmount);
+				logs.logging("INFO", "Calculated Total Amount with Added Tax: " + TotalAmountAddedTax);
+				flag = DisplayLineAmnt.equals(TotalAmountAddedTax);
 				if (flag) {
 					logs.logging("INFO", "Verified Total Amount Displayed and Calculated Total Amount Matched");
 				}

@@ -133,5 +133,7 @@ public class SalesOrderLocators {
 	public static final String SGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator Xpath */
 	public static final String UTGSTTaxAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	/** @Locator Xpath */
+	public static final String DiscountAmountField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 
 }
