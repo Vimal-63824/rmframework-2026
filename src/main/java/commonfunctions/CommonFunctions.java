@@ -1096,6 +1096,23 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/*
+	 * Navigate To Material Request
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMaterialRequest() {
+		flag = webDB.waitForElement(CommonUiLocators.MaterialRequest, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.MaterialRequest, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Material Request Button Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
 	/**
 	 * Navigates to SupplyChain Node
 	 * 
@@ -1182,5 +1199,65 @@ public class CommonFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+	/*
+	 * Navigate To Inventory Material Request
+	 * 
+	 * @author Deepan-GWL
+	 */
+
+	public void navigateToInventoryMaterialRequest() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		navigateToInventoryTranscationTab();
+		navigateToMaterialRequest();
+	}
+
+	/**
+	 * Navigate To Reports Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToInventoryReportsTab() {
+		flag = webDB.waitForElement(CommonUiLocators.InventoryReportsTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.InventoryReportsTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.StocksTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Reports Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Stocks Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToStocksTab() {
+		flag = webDB.waitForElement(CommonUiLocators.StocksTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.StocksTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.StocksCheckBox, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Stocks Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Inventory Stocks Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToInventoryStocksTab() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		navigateToInventoryReportsTab();
+		navigateToStocksTab();
 	}
 }
