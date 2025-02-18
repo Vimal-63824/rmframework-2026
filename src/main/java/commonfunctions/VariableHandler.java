@@ -89,6 +89,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> MrvNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> PBNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> BpvNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> OpenSOPriceAmount = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -712,5 +713,13 @@ public class VariableHandler {
 
 	public static void setBpvNumber(String data) {
 		BpvNumber.set(data);
+	}
+
+	public static String getOpenSOPriceAmount() {
+		return OpenSOPriceAmount.get();
+	}
+
+	public static void setOpenSOPriceAmount(String data) {
+		OpenSOPriceAmount.set(data);
 	}
 }

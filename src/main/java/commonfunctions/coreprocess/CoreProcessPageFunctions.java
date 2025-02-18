@@ -154,8 +154,7 @@ public class CoreProcessPageFunctions {
 		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
 		String Unit = RandomStringUtils.randomNumeric(2);
 		String Cost = RandomStringUtils.randomNumeric(2);
-		String Price = RandomStringUtils.randomNumeric(2);
-		String MRP = String.valueOf(Integer.parseInt(Price + 10));
+		String MRP = String.valueOf(Integer.parseInt(Cost + 10));
 		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
@@ -164,7 +163,8 @@ public class CoreProcessPageFunctions {
 					"TvsUsername");
 			commonFunc.navigateOpenSO();
 			openSOFunc.selectOpenSOTypeWithRadioButtons("Open SO");
-			flag = openSOFunc.findStatusOfOpenSOWithItemAndCustomer(Item, CustomerID, Today);
+			flag = openSOFunc.findStatusOfOpenSOWithItemAndCustomer(Item, CustomerID, Today,
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			if (!flag) {
 				openSOFunc.clickAddNewOpenSOPlsIcon();
 				openSOFunc.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -172,8 +172,8 @@ public class CoreProcessPageFunctions {
 				openSOFunc.fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
 				openSOFunc.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo(Today);
 				openSOFunc.clickFetchCustomerAndSelectItemInOpenSO(Item);
-				openSOFunc.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Price, MRP, OpenSOHSN);
-				openSOFunc.fillDiscountAndSaveLinesforAddedLastItemInOpenSO(RandomStringUtils.randomNumeric(1));
+				openSOFunc.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+				openSOFunc.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 				openSOFunc.enterEffectiveFromAndToDate(Today, Today);
 				openSOFunc.clickHeaderSaveAndClickPostBtnInOpenSO();
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -190,6 +190,7 @@ public class CoreProcessPageFunctions {
 				openSOFunc.validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			}
+			Cost = VariableHandler.getOpenSOPriceAmount();
 			commonFunc.navigateSalesOrderPage();
 			saleOrderFunc.verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
@@ -197,7 +198,7 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.addItemsInSO(Item);
 			saleOrderFunc.addLineItemQty(Unit);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
-			saleOrderFunc.checkSaleOrderCalculationForLastAddedItem(Unit, Cost);
+			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem(Unit, Cost);
 			saleOrderFunc.clickLineWiseDetailsButton();
 			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
 			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
@@ -231,6 +232,8 @@ public class CoreProcessPageFunctions {
 				saleInvoiceFunc.verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
 				saleInvoiceFunc.verifyHeaderTickIcon();
 				saleInvoiceFunc.verifyItemFromPendingSaleOrderAndClickAllocLotSerial(Item);
+				saleInvoiceFunc.validateLineAmountOfLastAddedItem();
+				saleInvoiceFunc.checkSaleInvoiceTaxCalculationForLastAddedItem();
 				saleInvoiceFunc.verifyLineWiseDetailsButton();
 				saleInvoiceFunc.switchToLineDetailsIframeInSaleInvoice();
 				commonFunc.checkDiscountInLineDetails(SalesInvoiceLocators.SalesInvoiceSpecialAssblPrice,

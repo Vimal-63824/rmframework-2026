@@ -14,7 +14,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SalesTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]";
 	/** @Locator Xpath */
-	public static final String SalesOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[5]";
+	public static final String SalesOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[6]";
 	/** @Locator Xpath */
 	public static final String CustomerLov = "//button[@id='P1915131339_SOH_CUST_ID_lov_btn']";
 	/** @Locator Xpath */
@@ -70,9 +70,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String FindSearchButton = "//button[@id='B583508927599524433']";
 	/** @Locator Xpath */
-	public static final String SOTotalAmountFieldTrans = "//INPUT[@ID='P191513134001_SOH_TOT_AMT']";
+	public static final String SOTotalAmountFieldTrans = "//input[@id='P191513134001_SOH_TOT_AMT']";
 	/** @Locator Xpath */
-	public static final String SOTotalAmountFieldQuery = "//span[@ID='P191513134001_SOH_TOT_AMT_DISPLAY']";
+	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
 	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(15) > a";
 	/** @Locator Xpath */
