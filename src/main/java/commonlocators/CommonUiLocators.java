@@ -150,4 +150,16 @@ public class CommonUiLocators {
 	public static String convertListOfXPath(String text) {
 		return "//*[text()='" + text + "']";
 	}
+
+	/** @locatorType Xpath */
+	public static final String MaterialRequest = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String CreateMaterialRequestButton = "//button[@id='B160814825696813046']";
+	/** @locatorType Xpath */
+	public static final String InventoryReportsTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[9]";
+	/** @locatorType Xpath */
+	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
+
 }
