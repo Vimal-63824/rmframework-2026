@@ -1,6 +1,8 @@
 package com.roadmapERP;
 
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -83,5 +85,84 @@ public class SaleOrderTest {
 	public void VerifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralRateContractSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Rate
+	 *         contract- Dissimilar Stock and Customer UOM
+	 */
+	@Test(priority = 7, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is Rate
+	 *         contract- Dissimilar Stock and Customer UOM
+	 */
+	@Test(priority = 8, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
+	public void verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Standard
+	 *         Price- Similar Stock and Customer UOM
+	 */
+	@Test(priority = 9, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is Standard
+	 *         Price- Similar Stock and Customer UOM
+	 */
+	@Test(priority = 10, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
+	public void verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Standard
+	 *         Price- DisSimilar Stock and Customer UOM
+	 */
+	@Test(priority = 11, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is Standard
+	 *         Price- DisSimilar Stock and Customer UOM
+	 */
+	@Test(priority = 12, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
+	public void verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+
+	}
+/**
+ * @author Harikrishna -RMITS
+ *Is Used to set the Variable Handler To
+	 *         Zero After Finishing One Test Scenarios
+ * @param result
+ */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result) {
+		SalesOrdFunc.verifyAfterMethod();
 	}
 }
