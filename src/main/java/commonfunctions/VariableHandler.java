@@ -91,6 +91,12 @@ public class VariableHandler {
 	private static ThreadLocal<String> BpvNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> OpenSOPriceAmount = new ThreadLocal<>();
 	private static ThreadLocal<String> BankReceiptVouNo = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> TotalSOLineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> SOLineAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> SODiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalSODiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> SOGrossAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TotalSOGrossAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -730,5 +736,53 @@ public class VariableHandler {
 	
 	public static void setBankReceiptVouNo(String data) {
 		BankReceiptVouNo.set(data);
+	}
+	
+	public static BigDecimal getSOLineAmount() {
+		return SOLineAmount.get();
+	}
+
+	public static void setSOLineAmount(BigDecimal data) {
+		SOLineAmount.set(data);
+	}
+	
+	public static BigDecimal getSOTotalLineAmount() {
+		return TotalSOLineAmount.get();
+	}
+
+	public static void setSOTotalLineAmount(BigDecimal data) {
+		TotalSOLineAmount.set(data);
+	}
+	
+	public static BigDecimal getSODiscountAmount() {
+		return SODiscountAmount.get();
+	}
+
+	public static void setSODiscountAmount(BigDecimal data) {
+		SODiscountAmount.set(data);
+	}
+	
+	public static BigDecimal getSOTotalDiscountAmount() {
+		return TotalSODiscountAmount.get();
+	}
+
+	public static void setSOTotalDiscountAmount(BigDecimal data) {
+		TotalSODiscountAmount.set(data);
+	}
+	
+	public static BigDecimal getSOGrossAmount() {
+		return SOGrossAmount.get();
+	}
+	
+	public static void setSOGrossAmount(BigDecimal data) {
+		SOGrossAmount.set(data);
+	}
+	
+	public static BigDecimal getSOTotalGrossAmount() {
+		return TotalSOGrossAmount.get();
+	}
+	
+	public static void setSOTotalGrossAmount(BigDecimal data) {
+		TotalSOGrossAmount.set(data);
 	}
 }

@@ -13,6 +13,8 @@ public class ItemDetailsHandler {
 	private static ThreadLocal<String[][]> PO_LineDetails = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String[][]> POA_LineDetails = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String[][]> POItem_LineDetails = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String[][]> SO_LineDetails = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String[][]> SO_CustDetails = ThreadLocal.withInitial(() -> null);
 
 	/**
 	 * This Constructor used to set PR_LineDetails data from ItemDetails.xlsx file.
@@ -201,6 +203,69 @@ public class ItemDetailsHandler {
 			}
 		}
 		return result;
+	}
+	
+	public enum SOLineDetailsName {
+		ITEM_ID, ITEM_REV, ITEM_DESC, SALE_UOM, HSN_CODE, TAX_PCT, PRICE_BASIS_TYPE, CONTRACT_NO, CATALOG_PRICELIST_NO,
+		STOCK_UOM, CONV_FACT, TOLERANCE_TYPE, CUST_ITEM_ID, CUST_ITEM_DESC, WAREHOUSE_DESC, SUB_CLASS, CLASS,
+		PRICECLASS, PROMOTIONAL
+
+	}
+
+	public String getSOLineDetailsforGivenItem(String itemName, SOLineDetailsName LineDetailName) {
+		String result1 = null;
+		int columnIndex = 0;
+		int itemColumnIndex = 0;
+		if (SO_LineDetails.get() == null || SO_LineDetails.get().length == 0) {
+			SO_LineDetails.set(excelUtils.readAllDataInExcel(Filepath, "SO Details"));
+		}
+		String[] headers = SO_LineDetails.get()[0];
+		for (int i = 0; i < headers.length; i++) {
+			if (headers[i].trim().equalsIgnoreCase(LineDetailName.name().trim())) {
+				columnIndex = i;
+			}
+			if (headers[i].trim().equalsIgnoreCase(SOLineDetailsName.ITEM_ID.name().trim())) {
+				itemColumnIndex = i;
+			}
+		}
+		for (int i = 1; i < SO_LineDetails.get().length; i++) {
+			if (SO_LineDetails.get()[i][itemColumnIndex].trim().equalsIgnoreCase(itemName.trim())) {
+				result1 = SO_LineDetails.get()[i][columnIndex];
+				break;
+			}
+		}
+		return result1;
+	}
+
+	public enum SOCustomerDetailsName {
+		CUST_ID, CUST_DESC, GST_TYPE, SALES_GST_TYPE, GST_CLASSIFICATION, CUST_PRINT_NAME, SALES_ZONE, SALES_REGION,
+		CUST_SUB_GRP, CUST_GRP, SALES_PERSON
+
+	}
+
+	public String getSOCustomerDetails(String CustomerName, SOCustomerDetailsName CustomerDetailName) {
+		String result2 = null;
+		int columnIndex = 0;
+		int itemColumnIndex = 0;
+		if (SO_CustDetails.get() == null || SO_CustDetails.get().length == 0) {
+			SO_CustDetails.set(excelUtils.readAllDataInExcel(Filepath, "Customer SO Details"));
+		}
+		String[] headers = SO_CustDetails.get()[0];
+		for (int i = 0; i < headers.length; i++) {
+			if (headers[i].trim().equalsIgnoreCase(CustomerDetailName.name().trim())) {
+				columnIndex = i;
+			}
+			if (headers[i].trim().equalsIgnoreCase(SOCustomerDetailsName.CUST_ID.name().trim())) {
+				itemColumnIndex = i;
+			}
+		}
+		for (int i = 1; i < SO_CustDetails.get().length; i++) {
+			if (SO_CustDetails.get()[i][itemColumnIndex].trim().equalsIgnoreCase(CustomerName.trim())) {
+				result2 = SO_CustDetails.get()[i][columnIndex];
+				break;
+			}
+		}
+		return result2;
 	}
 
 }
