@@ -1769,9 +1769,6 @@ public class SalesInvoiceFunctions {
 		}
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
-		if(flag) {
-			logs.logging("INFO", "Switched Sucessfully To default Content");
-		}
 		assertTrue(flag);
 	}
 
@@ -1792,9 +1789,6 @@ public class SalesInvoiceFunctions {
 		}
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
-		if(flag) {
-			logs.logging("INFO", "Switched Sucessfully To default Content");
-		}
 		assertTrue(flag);
 	}
 
