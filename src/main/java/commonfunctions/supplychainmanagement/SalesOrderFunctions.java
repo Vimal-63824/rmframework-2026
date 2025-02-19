@@ -241,7 +241,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
 	 *         SOGeneral Rate Contract With Similar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralRateContractSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -291,7 +291,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
 	 *         Rate Contract With Similar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -341,7 +341,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
 	 *         SOGeneral Rate Contract With DisSimilar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -391,7 +391,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
 	 *         Rate Contract With Similar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -441,7 +441,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
 	 *         SOGeneral Standard Price With Similar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -492,7 +492,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
 	 *         Standard Price With Similar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -543,7 +543,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
 	 *         SOGeneral Standard Price With DisSimilar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -594,7 +594,7 @@ public class SalesOrderFunctions {
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Export SOGeneral
 	 *         Standard Price With DisSimilar Stock And CustomerUOM
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
