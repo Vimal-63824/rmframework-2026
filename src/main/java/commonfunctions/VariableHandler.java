@@ -97,6 +97,7 @@ public class VariableHandler {
 	private static ThreadLocal<BigDecimal> TotalSODiscountAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> SOGrossAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TotalSOGrossAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<String> PI_DocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -784,5 +785,13 @@ public class VariableHandler {
 	
 	public static void setSOTotalGrossAmount(BigDecimal data) {
 		TotalSOGrossAmount.set(data);
+	}
+	
+	public static String getPI_DocNo() {
+		return PI_DocNo.get();
+	}
+
+	public static void setPI_DocNo(String Data) {
+		PI_DocNo.set(Data);
 	}
 }

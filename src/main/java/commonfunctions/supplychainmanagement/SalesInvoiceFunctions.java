@@ -1711,4 +1711,606 @@ public class SalesInvoiceFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
+	
+	/**
+	 * verify FindPage Add Button
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void verifyFindPageAddButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Loc_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Proforma Invoice Add Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used for verify Proforma Invoice PendingSO Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoicePendingSO() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Pend_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Proforma_Inv_Pend_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Proforma Invoice Pending Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for verify Proforma Invoice Pending SaleOrderNo
+	 * 
+	 * @author Vimal - RMITS
+	 * @param PI_Pend_SO_No
+	 */
+	public void verifyProformaInvoicePendingSaleOrderNo(String PI_Pend_SO_No) {
+		webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.clickAnElement(SalesInvoiceLocators.PI_Pend_SO_No_Column, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Pend_SO_No, PI_Pend_SO_No);
+			webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+			logs.logging("INFO", "Proforma Invoice Pending SaleOrder No Inserted Sucessfully");
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for verify Proforma Invoice Pending Search Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoicePendingSearchButton() {
+		webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_Search_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Pend_Search_Btn, ElementType.Xpath);
+			logs.logging("INFO", "Proforma Invoice Pending Search Button Clicked Sucessfully");
+			commonFunc.hardWait(2000);
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used for verify Proforma Invoice Pending SelectAll
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoicePendingSelectAll() {
+		webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_SelectAll, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Pend_SelectAll, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_Create_PI, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Proforma Invoice Pending SelectAll Button Clicked Sucessfully");
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for verify Proforma Invoice Pending Clicking Create Proforma
+	 * Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoicePendingClickingCreateProformaInvoice() {
+		webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_Create_PI, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Pend_Create_PI, ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Pfx_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Proforma Invoice Pending Create Proforma Invoice Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method Used To Verify Proforma Invoice Parameter
+	 * 
+	 * @author Vimal - RMITS
+	 * @param PI_Loc_Id
+	 * @param PI_Type
+	 * @param PI_Domestic_Customer
+	 */
+	public void VerifyProformaInvoiceParameter(String PI_Loc_Id, String PI_Type, String PI_Domestic_Customer) {
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Proforma_Inv_Loc_Btn, PI_Loc_Id);
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Type_Field, PI_Type);
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Customer_Name, PI_Domestic_Customer);
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_TickIcon, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Proforma Invoice Parameter Inserted Sucessfully");
+			webDB.clickAnElement(SalesInvoiceLocators.PI_TickIcon, ElementType.Xpath);
+			logs.logging("INFO", "Proforma Invoice Creation Tick Icon CLicked Sucessfully");
+			commonFunc.hardWait(2000);
+			if (webDB.isElementDisplayed(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath)) {
+				webDB.clickAnElement(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath);
+				logs.logging("INFO", "Navigated Sucessfully To Proforma Invoice Transaction Screen");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used verify Header Proforma Invoice Prefix
+	 * 
+	 * @author Vimal - RMITS
+	 * @param Proforma_Inv_Pfx
+	 */
+	public void verifyHeaderProformaInvoicePrefix(String Proforma_Inv_Pfx) {
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Proforma_Inv_Pfx_Btn, Proforma_Inv_Pfx);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_inv_Header_TickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Proforma_inv_Header_TickIcon, ElementType.Xpath);
+			logs.logging("INFO", "Proforma Invoice Prefix Inserted Sucessfully");
+			if (webDB.isElementDisplayed(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath)) {
+				webDB.clickAnElement(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath);
+				logs.logging("INFO", "Note Alert Close icon Is Clicked");
+			}
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
+			if (flag) {
+				String PI_DocNo = webDB.getTextFromElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
+				VariableHandler.setPI_DocNo(PI_DocNo);
+				logs.logging("INFO", "Get SI DocNo Is: " + VariableHandler.getPI_DocNo());
+				commonFunc.hardWait(5000);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used verify Proforma Invoice LineWise AddIcon Click
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoiceLineWiseAddIconClick() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_Add_Icon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Line_Add_Icon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "LineWise Add Icon Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used for verify Proforma Invoice ItemID
+	 * 
+	 * @author Vimal - RMITS
+	 * @param PI_Item_ID
+	 */
+	public void verifyProformaInvoiceItemID(String PI_Item_ID) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Item_Id_Btn, PI_Item_ID);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Qty_Column, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "LineWise Item Inserted Sucessfully - " + PI_Item_ID);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is Used For verify Proforma Invoice Advance SOReference
+	 * 
+	 * @param PI_SO_Ref_Advance
+	 */
+	public void verifyProformaInvoiceAdvanceSOReference(String PI_SO_Ref_Advance) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_SO_Ref_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_SO_Ref_Column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_SO_Ref_Btn, PI_SO_Ref_Advance);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "LineWise SO Reference Inserted Sucessfully - " + PI_SO_Ref_Advance);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used For verify Proforma Invoice Advance LineItem
+	 * 
+	 * @param PI_SO_Ref_Advance_Item_ID
+	 */
+	public void verifyProformaInvoiceAdvanceLineItem(String PI_SO_Ref_Advance_Item_ID) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Item_Id_Btn, PI_SO_Ref_Advance_Item_ID);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Qty_Column, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "LineWise Item Inserted Sucessfully - " + PI_SO_Ref_Advance_Item_ID);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used for verify Proforma InvoiceQty Unitcost
+	 * 
+	 * @author Vimal - RMITS
+	 * @param PI_Inv_Qty
+	 * @param PI_Inv_UnitCost
+	 */
+	public void verifyProformaInvoiceQtyUnitcost(String PI_Inv_Qty, String PI_Inv_UnitCost) {
+		commonFunc.hardWait(1000);
+		verifyAddTableSpecs(SalesInvoiceLocators.PI_Qty_Column, SalesInvoiceLocators.PI_Inv_Qty, PI_Inv_Qty);
+		verifyAddTableSpecs(SalesInvoiceLocators.PI_UnitCost_Column, SalesInvoiceLocators.PI_UnitCost, PI_Inv_UnitCost);
+	}
+
+	/**
+	 * This Method is used for verify Proforma Invoice HSNCode
+	 * 
+	 * @author Vimal - RMITS
+	 * @param PI_HSN_code
+	 */
+	public void verifyProformaInvoiceHSNCode(String PI_HSN_code) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_HSN_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_HSN_Column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_HSN_Btn, PI_HSN_code);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Linewise HSN Code Inserted Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used for verify Proforma Invoice LineWise TickIcon
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoiceLineWiseTickIcon() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Post_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "LineWise TickIcon Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used For Clicking Post Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyProformaInvoicePostButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Post_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.PI_Post_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify forwardForApproval
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ProformaInvoiceforwardForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.ForwardApprovalLov,
+					commonFunc.getDataFromTestDataSheet("SI_HOD"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(SalesInvoiceLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To PO Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * verify Direct Proforma Invoice Creation
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectProformaInvoiceCreation() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyFindPageAddButton();
+		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+				commonFunc.getDataFromTestDataSheet("PI_Type"),
+				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyProformaInvoiceLineWiseAddIconClick();
+		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_Item_ID"));
+		verifyProformaInvoiceQtyUnitcost(commonFunc.getDataFromTestDataSheet("PI_Inv_Qty"),
+				commonFunc.getDataFromTestDataSheet("PI_Inv_UnitCost"));
+		verifyProformaInvoiceHSNCode(commonFunc.getDataFromTestDataSheet("PI_HSN_code"));
+		verifyProformaInvoiceLineWiseTickIcon();
+		commonFunc.hardWait(2000);
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct Advance Proforma Invoice Creation
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectAdvanceProformaInvoiceCreation() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyFindPageAddButton();
+		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+				commonFunc.getDataFromTestDataSheet("PI_Advance_Type"),
+				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Adv_Pfx"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyProformaInvoiceLineWiseAddIconClick();
+		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance"));
+		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Item_ID"));
+		verifyProformaInvoiceLineWiseTickIcon();
+		commonFunc.hardWait(2000);
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct PreDispatch Proforma Invoice Creation
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectPreDispatchProformaInvoiceCreation() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyFindPageAddButton();
+		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+				commonFunc.getDataFromTestDataSheet("PI_PreDispatch_Type"),
+				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_PreDisp_Pfx"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyProformaInvoiceLineWiseAddIconClick();
+		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance"));
+		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Item_ID"));
+		verifyProformaInvoiceLineWiseTickIcon();
+		commonFunc.hardWait(2000);
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct Export Proforma Invoice Creation
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectExportProformaInvoiceCreation() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyFindPageAddButton();
+		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+				commonFunc.getDataFromTestDataSheet("PI_Type"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyProformaInvoiceLineWiseAddIconClick();
+		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_Item_ID"));
+		verifyProformaInvoiceQtyUnitcost(commonFunc.getDataFromTestDataSheet("PI_Inv_Qty"),
+				commonFunc.getDataFromTestDataSheet("PI_Inv_UnitCost"));
+		verifyProformaInvoiceHSNCode(commonFunc.getDataFromTestDataSheet("PI_HSN_code"));
+		verifyProformaInvoiceLineWiseTickIcon();
+		commonFunc.hardWait(2000);
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct Export Advance Proforma Invoice Creation
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectExportAdvanceProformaInvoiceCreation() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyFindPageAddButton();
+		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+				commonFunc.getDataFromTestDataSheet("PI_Advance_Type"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Adv_Pfx"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyProformaInvoiceLineWiseAddIconClick();
+		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Export"));
+		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Export_Item_ID"));
+		verifyProformaInvoiceLineWiseTickIcon();
+		commonFunc.hardWait(2000);
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct Export PreDispatch Proforma Invoice Creation
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectExportPreDispatchProformaInvoiceCreation() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyFindPageAddButton();
+		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+				commonFunc.getDataFromTestDataSheet("PI_PreDispatch_Type"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_PreDisp_Pfx"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyProformaInvoiceLineWiseAddIconClick();
+		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Export"));
+		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Export_Item_ID"));
+		verifyProformaInvoiceLineWiseTickIcon();
+		commonFunc.hardWait(2000);
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct Domestic Proforma Invoice Creation PendingSO
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectDomesticProformaInvoiceCreationPendingSO() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyProformaInvoicePendingSO();
+		verifyProformaInvoicePendingSaleOrderNo(commonFunc.getDataFromTestDataSheet("PI_Pend_Domestic_SO_No"));
+		verifyProformaInvoicePendingSearchButton();
+		verifyProformaInvoicePendingSelectAll();
+		verifyProformaInvoicePendingClickingCreateProformaInvoice();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * verify Direct Export Proforma Invoice Creation PendingSO
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectExportProformaInvoiceCreationPendingSO() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateProformaInvoice();
+		verifyProformaInvoicePendingSO();
+		verifyProformaInvoicePendingSaleOrderNo(commonFunc.getDataFromTestDataSheet("PI_Pend_Export_SO_No"));
+		verifyProformaInvoicePendingSearchButton();
+		verifyProformaInvoicePendingSelectAll();
+		verifyProformaInvoicePendingClickingCreateProformaInvoice();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		verifyProformaInvoicePostButton();
+		ProformaInvoiceforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
 }

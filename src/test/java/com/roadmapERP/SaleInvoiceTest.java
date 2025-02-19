@@ -281,6 +281,98 @@ public class SaleInvoiceTest {
 	}
 
 	/**
+	 * Proforma Invoice creation - Direct
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 21, groups = { "SalesInvoice" }, description = "127 - Proforma Invoice creation - Direct")
+	public void VerifyDirectProformaInvoiceCreation() {
+		flag = salesInvoiceFunc.verifyDirectProformaInvoiceCreation();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Proforma Invoice - Advance
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 22, groups = { "SalesInvoice" }, description = "128 - Proforma Invoice - Advance")
+	public void VerifyDirectAdvanceProformaInvoiceCreation() {
+		flag = salesInvoiceFunc.verifyDirectAdvanceProformaInvoiceCreation();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Proforma Invoice - Pre Dispatch
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 23, groups = { "SalesInvoice" }, description = "129 - Proforma Invoice - Pre Dispatch")
+	public void VerifyDirectPreDispatchProformaInvoiceCreation() {
+		flag = salesInvoiceFunc.verifyDirectPreDispatchProformaInvoiceCreation();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Proforma Invoice creation Export - Direct
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 24, groups = {
+			"SalesInvoice" }, description = "195 - Proforma Invoice creation Export - Direct")
+	public void VerifyDirectExportProformaInvoiceCreation() {
+		flag = salesInvoiceFunc.verifyDirectExportProformaInvoiceCreation();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Proforma Invoice Export - Advance
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 25, groups = { "SalesInvoice" }, description = "196 - Proforma Invoice Export - Advance")
+	public void VerifyDirectExportAdvanceProformaInvoiceCreation() {
+		flag = salesInvoiceFunc.verifyDirectExportAdvanceProformaInvoiceCreation();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Proforma Invoice Export - Pre Dispatch
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 26, groups = {
+			"SalesInvoice" }, description = "197 - Proforma Invoice Export - Pre Dispatch")
+	public void VerifyDirectExportPreDispatchProformaInvoiceCreation() {
+		flag = salesInvoiceFunc.verifyDirectExportPreDispatchProformaInvoiceCreation();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Direct Proforma Invoice creation pending SO
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 27, groups = {
+			"SalesInvoice" }, description = "126 - Direct Proforma Invoice creation pending SO")
+	public void VerifyDirectDomesticProformaInvoiceCreationPendingSO() {
+		flag = salesInvoiceFunc.verifyDirectDomesticProformaInvoiceCreationPendingSO();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Direct Proforma Invoice creation pending SO Export
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 28, groups = {
+			"SalesInvoice" }, description = "194 - Direct Proforma Invoice creation pending SO Export")
+	public void VerifyDirectExportProformaInvoiceCreationPendingSO() {
+		flag = salesInvoiceFunc.verifyDirectExportProformaInvoiceCreationPendingSO();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

@@ -1264,4 +1264,25 @@ public class CommonFunctions {
 		navigateToInventoryReportsTab();
 		navigateToStocksTab();
 	}
+
+	/**
+	 * This method is used to Navigate Proforma Invoice Screen
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void navigateProformaInvoice() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Node, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Proforma_Inv_Node, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Pend_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to Proforma Invoice Screen Sucessfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }
