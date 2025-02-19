@@ -1718,13 +1718,15 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * 
 	 */
-	public void verifyFindPageAddButton() {
+		public void verifyFindPageAddButton() {
 		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Loc_Btn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Proforma Invoice Add Button Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed To Click the Add Button In the Find Screen");
 			}
 		}
 		assertTrue(flag);
@@ -1742,6 +1744,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Proforma Invoice Pending Button Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed To Click the Pending Button In the Find Screen");
 			}
 		}
 		assertTrue(flag);
@@ -1760,8 +1764,14 @@ public class SalesInvoiceFunctions {
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Pend_SO_No, PI_Pend_SO_No);
 			webDB.switchToFrame(SalesInvoiceLocators.PI_Pend_Iframe, ElementType.Xpath);
 			logs.logging("INFO", "Proforma Invoice Pending SaleOrder No Inserted Sucessfully");
+		}else {
+			logs.logging("INFO", "Failed To Insert Sales Order Number In the pending Screen");
 		}
 		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
+		if(flag) {
+			logs.logging("INFO", "Switched Sucessfully To default Content");
+		}
 		assertTrue(flag);
 	}
 
@@ -1777,8 +1787,14 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.PI_Pend_Search_Btn, ElementType.Xpath);
 			logs.logging("INFO", "Proforma Invoice Pending Search Button Clicked Sucessfully");
 			commonFunc.hardWait(2000);
+		}else {
+			logs.logging("INFO", "Failed To Click the Search Button In The Pending Screen");
 		}
 		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_FindPage_Add_Btn, ElementType.Xpath);
+		if(flag) {
+			logs.logging("INFO", "Switched Sucessfully To default Content");
+		}
 		assertTrue(flag);
 	}
 
@@ -1795,6 +1811,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Pend_Create_PI, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Proforma Invoice Pending SelectAll Button Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed To Click the Select All button");
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -1816,6 +1834,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Pfx_Btn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Proforma Invoice Pending Create Proforma Invoice Button Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed to Click the Create Proforma Invoice Button");
 			}
 		}
 		assertTrue(flag);
@@ -1842,6 +1862,8 @@ public class SalesInvoiceFunctions {
 			if (webDB.isElementDisplayed(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath)) {
 				webDB.clickAnElement(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath);
 				logs.logging("INFO", "Navigated Sucessfully To Proforma Invoice Transaction Screen");
+			}else {
+				logs.logging("INFO", "Failed To Navigate To Proforma Invoice Transaction Screen");
 			}
 		}
 		assertTrue(flag);
@@ -1862,13 +1884,15 @@ public class SalesInvoiceFunctions {
 			if (webDB.isElementDisplayed(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath)) {
 				webDB.clickAnElement(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath);
 				logs.logging("INFO", "Note Alert Close icon Is Clicked");
-			}
-			flag = webDB.waitForElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
-			if (flag) {
-				String PI_DocNo = webDB.getTextFromElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
-				VariableHandler.setPI_DocNo(PI_DocNo);
-				logs.logging("INFO", "Get SI DocNo Is: " + VariableHandler.getPI_DocNo());
-				commonFunc.hardWait(5000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
+				if (flag) {
+					String PI_DocNo = webDB.getTextFromElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
+					VariableHandler.setPI_DocNo(PI_DocNo);
+					logs.logging("INFO", "Get SI DocNo Is: " + VariableHandler.getPI_DocNo());
+					commonFunc.hardWait(5000);
+				}
+			}else {
+				logs.logging("INFO", "Failed To Click Note Alert CloseIcon");
 			}
 		}
 		assertTrue(flag);
@@ -1886,6 +1910,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise Add Icon Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed To Click LineWise Add Icon");
 			}
 		}
 		assertTrue(flag);
@@ -1905,6 +1931,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Qty_Column, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise Item Inserted Sucessfully - " + PI_Item_ID);
+			}else {
+				logs.logging("INFO", "Failed To Insert LineWise Item");
 			}
 		}
 		assertTrue(flag);
@@ -1923,6 +1951,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Item_ID_column, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise SO Reference Inserted Sucessfully - " + PI_SO_Ref_Advance);
+			}else {
+				logs.logging("INFO", "Failed To Insert LineWise SO Reference");
 			}
 		}
 		assertTrue(flag);
@@ -1941,6 +1971,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Qty_Column, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise Item Inserted Sucessfully - " + PI_SO_Ref_Advance_Item_ID);
+			}else {
+				logs.logging("INFO", "Failed To Insert LineWise Item");
 			}
 		}
 		assertTrue(flag);
@@ -1973,6 +2005,8 @@ public class SalesInvoiceFunctions {
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Linewise HSN Code Inserted Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed To Insert LineWise HSN Code");
 			}
 		}
 		assertTrue(flag);
@@ -1983,13 +2017,15 @@ public class SalesInvoiceFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void verifyProformaInvoiceLineWiseTickIcon() {
+		public void verifyProformaInvoiceLineWiseTickIcon() {
 		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.PI_Line_tickIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesInvoiceLocators.PI_Post_Btn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LineWise TickIcon Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed to Click The Line Wise Tick Icon");
 			}
 		}
 		assertTrue(flag);
@@ -2000,13 +2036,15 @@ public class SalesInvoiceFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void verifyProformaInvoicePostButton() {
+		public void verifyProformaInvoicePostButton() {
 		flag = webDB.waitForElement(SalesInvoiceLocators.PI_Post_Btn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.PI_Post_Btn, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}else {
+				logs.logging("INFO", "Failed To Click The Post Button");
 			}
 		}
 		assertTrue(flag);
