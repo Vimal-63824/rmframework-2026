@@ -25,6 +25,7 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
+import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
@@ -1285,10 +1286,9 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
-	 * @author Kowshikan - RMITS
-	 * This Method IS used To Click the Sales Node
+	 * @author Kowshik This Method IS used To Click the Sales Node
 	 * @return Boolean
 	 */
 	public boolean clicksalesnode() {
@@ -1299,12 +1299,11 @@ public class CommonFunctions {
 		}
 		return flag;
 	}
-	
-/**
- * @author Kowshikan - Rmits
- * This Method Is used To Navigate Open Sales Order Main Screen
- * @return boolean
- */
+
+	/**
+	 * @author Kowshik This Method Is used To Navigate Open Sales Order Main Screen
+	 * @return boolean
+	 */
 	public boolean clickOpensoNode() {
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
@@ -1312,17 +1311,15 @@ public class CommonFunctions {
 		flag = webDB.waitForClickElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
-
 			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
-
+				flag = webDB.waitForElement(OpenSoAmdLocators.OpenSoAmdRadio, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "navigated open so screen successfully");
 				}
 			}
 		}
-
 		return flag;
 	}
 }
