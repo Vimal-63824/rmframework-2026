@@ -378,7 +378,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * @author @author Kowshik
 	 * 
-	 * This Method is used to Click And Enter A Value In A Table
+	 *         This Method is used to Click And Enter A Value In A Table
 	 * 
 	 * @param Tablespec
 	 * @param InputParameter
