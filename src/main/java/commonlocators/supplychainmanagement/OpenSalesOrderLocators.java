@@ -99,6 +99,14 @@ public class OpenSalesOrderLocators {
 	public static final String FindOpenSOStatusSelect = "//select[@id='P19151310131_STATUS']";
 	/** @locatorType Xpath */
 	public static final String FindNoDataMessageContainer = "//div[@class='a-IRR-noDataMsg-icon']";
+	/** @locatorType Xpath */
+	public static final String OpsoWorkApprovalFrame = "//iframe[@title='Workflow Approval']";
+	/** @locatorType Xpath */
+	public static final String OpsoOkButtonForward = "//*[@id='B1612723241586671539']";
+	/** @locatorType Xpath */
+	public static final String Transactions = "//span[contains(text(),'Transaction')]";
+	/** @locatorType Xpath */
+	public static final String OpensoScreens = "//a[contains(text(),'Open SO')]";
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithDocNo(String Docno) {
