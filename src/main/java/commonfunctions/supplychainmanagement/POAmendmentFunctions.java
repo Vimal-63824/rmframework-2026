@@ -668,7 +668,6 @@ public class POAmendmentFunctions {
 					logs.logging("INFO", "Verified Navigate To POA Home Page");
 				}
 			}
-			webDB.switchToDefaultContent();
 			assertTrue(flag);
 		} else {
 			flag = false;
@@ -787,7 +786,7 @@ public class POAmendmentFunctions {
 	 */
 	public void navigateToLineDetailPage(int i, boolean... Potypeflag) {
 		webDB.moveToElement(PurchaseOrderPageLocators.ItemName(i), ElementType.Xpath);
-		if (Potypeflag != null) {
+		if (Potypeflag.length == 0) {
 			webDB.moveToElement(POAmendmentLocators.ServiceLineDetailButton(i), ElementType.Xpath);
 			flag = webDB.waitForElement(POAmendmentLocators.ServiceLineDetailButton(i), ElementType.Xpath);
 			if (flag) {
@@ -814,7 +813,6 @@ public class POAmendmentFunctions {
 	 * @param Item
 	 */
 	public void verifyLineDetailTwo(String Item) {
-		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.Supplier_Item,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEMID));
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.Supplier_Item_Desc,
@@ -850,9 +848,7 @@ public class POAmendmentFunctions {
 		verifyLinePODetailsValidations(Item, i, Currency);
 		navigateToLineDetailPage(i, potypeflag);
 		verifyLineDetailOne(Item, Quantity, discount);
-		webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 		verifyNavigateLineDetailTwo();
-		webDB.switchToDefaultContent();
 		verifyLineDetailTwo(Item);
 	}
 
@@ -909,7 +905,6 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyGetTextValidation(POAmendmentLocators.CPCDesc,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.CPC_DESC));
 		discountCalculationVerification(Quantity, discount);
-		webDB.switchToDefaultContent();
 	}
 
 	/**

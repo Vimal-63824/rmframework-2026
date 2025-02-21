@@ -1,20 +1,16 @@
 package commonfunctions.supplychainmanagement;
 
 /**
- * @author Durai
- * @company Galaxy Weblinks Feburary 05, 2025
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
  */
 import static org.testng.Assert.assertTrue;
-import java.io.File;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
-import commonfunctions.ItemDetailsHandler;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
-import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
-import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -31,34 +27,31 @@ public class PricelistPageFunctions {
 	 * This Methods Is Used To Verify Creation Of PRICE LIST for Domestic Supplier
 	 * Similar UOM
 	 * 
-	 * @author Durai
-	 * @return boolean flag
+	 * @author Durai-RMITS
 	 */
-	public boolean verifycreationofpricelistDomesticSimilarUOM() {
+
+	public void verifyCreationOfPriceListDomesticSimilarUom() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
-		clickAddIconFillDetailsOfPricelist(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
-		EnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
-		EnterEffFromandToo();
-		Findcreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
-		EnterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickPost();
-		WaitingForApproval();
+		waitingForApproval();
 		commonFunc.hardWait(1000);
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			Forwardapprovalscreen();
-			filterDocumentsforPriceistApproval(VariableHandler.getPRLISTNumber());
-			verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
-		}
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
 
-		return flag;
+		assertTrue(flag);
 
 	}
 
@@ -66,69 +59,71 @@ public class PricelistPageFunctions {
 	 * This Methods Is Used To Verify Creation Of PRICE LIST for Domestic Supplier
 	 * DisSimilar UOM
 	 * 
-	 * @author Durai
-	 * @return boolean flag
+	 * @author Durai-RMITS
 	 */
-	public boolean verifycreationofpricelistDomesticDissimilarUOM() {
+
+	public void verifyCreationOfPriceListDomesticDissimilarUom() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
-		clickAddIconFillDetailsOfPricelist(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
-		EnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
-		EnterEffFromandToo();
-		Findcreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
-		EnterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
-		WaitingForApproval();
+		waitingForApproval();
 		commonFunc.hardWait(1000);
 		flag = commonFunc.logoutUser();
-		Forwardapprovalscreen();
-		filterDocumentsforPriceistApproval(VariableHandler.getPRLISTNumber());
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
 		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
 
-		return flag;
+		assertTrue(flag);
 
 	}
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PRICE LIST for Import Supplier
-	 * DisSimilar UOM
+	 * Similar UOM
 	 * 
-	 * @author Durai
-	 * @return boolean flag
+	 * @author Durai-RMITS
 	 */
-	public boolean verifycreationofpricelistImportsimilarUOM() {
+
+	public void verifyCreationOfPriceListImportSimilarUom() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
-		clickAddIconFillDetailsOfPricelist(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
-		EnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
-		EnterEffFromandToo();
-		Findcreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
-		EnterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
-		WaitingForApproval();
+		waitingForApproval();
 		commonFunc.hardWait(1000);
 		flag = commonFunc.logoutUser();
-		Forwardapprovalscreen();
-		filterDocumentsforPriceistApproval(VariableHandler.getPRLISTNumber());
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
 		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
 
-		return flag;
+		assertTrue(flag);
 
 	}
 
@@ -136,67 +131,451 @@ public class PricelistPageFunctions {
 	 * This Methods Is Used To Verify Creation Of PRICE LIST for Import Supplier
 	 * DisSimilar UOM
 	 * 
-	 * @author Durai
-	 * @return boolean flag
+	 * @author Durai-RMITS
 	 */
-	public boolean verifycreationofpricelistImportDissimilarUOM() {
+
+	public void verifyCreationOfPriceListImportDissimilarUom() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
-		clickAddIconFillDetailsOfPricelist(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
-		EnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
-		EnterEffFromandToo();
-		Findcreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
 				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
-		EnterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
-		WaitingForApproval();
+		waitingForApproval();
 		commonFunc.hardWait(1000);
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			Forwardapprovalscreen();
-			filterDocumentsforPriceistApproval(VariableHandler.getPRLISTNumber());
-			verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
-		}
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
 
-		return flag;
+		assertTrue(flag);
 
+	}
+
+	/**
+	 * This Methods Is Used To Verify Cancel of pricelist
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void priceListEntryCancel() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("CnclSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("CnclSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		saveHeaderAndClickCancel();
+		enterPriceListNumForCheckingStatus(VariableHandler.getPRLISTNumber());
+
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify find screen checking
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void priceListEntryFindScreenChecking() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickLocationLov(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		clickUnitLov(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		clickItemLov(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		clickSupplierLov(commonFunc.getDataFromTestDataSheet("DomSupplier_ID"));
+		clickFindEffectiveFromDate(commonFunc.getDataFromTestDataSheet("Efffrom_Date"));
+		clickFindEffectiveToDate(commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		verifyStatusInFindPage();
+		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment for Domestic
+	 * Supplier Similar UOM
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListAmendmentDomesticSimilarUom() {
+		verifyCreationOfPriceListDomesticSimilarUomAmd();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
+		verifyDrilldownTheDocNum();
+		verifyAmendmentOkButton();
+		verifyEnterAmndCloseDate(commonFunc.getDataFromTestDataSheet("Close_Date"),
+				commonFunc.getDataFromTestDataSheet("Efffrom_Date"), commonFunc.getDataFromTestDataSheet("Effto_Date"),
+				commonFunc.getDataFromTestDataSheet("Amnd_Reason"));
+		verifyEnterAmndCreation();
+		ExtractDocumentNumber();
+		verifyAmendDocNoInFindPage(VariableHandler.getAmendmentDocNumber());
+		verifyDrilldownTheDocNum();
+		enterDiscount(commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
+		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment for Domestic
+	 * Supplier DisSimilar UOM
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListAmendmentDomesticDisSimilarUom() {
+		verifyCreationOfPriceListDomesticDissimilarUomAmd();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
+		verifyDrilldownTheDocNum();
+		verifyAmendmentOkButton();
+		verifyEnterAmndCloseDate(commonFunc.getDataFromTestDataSheet("Close_Date"),
+				commonFunc.getDataFromTestDataSheet("Efffrom_Date"), commonFunc.getDataFromTestDataSheet("Effto_Date"),
+				commonFunc.getDataFromTestDataSheet("Amnd_Reason"));
+		verifyEnterAmndCreation();
+		ExtractDocumentNumber();
+		verifyAmendDocNoInFindPage(VariableHandler.getAmendmentDocNumber());
+		verifyDrilldownTheDocNum();
+		enterDiscount(commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
+		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment for Import
+	 * Supplier Similar UOM
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListAmendmentImportSimilarUom() {
+		verifyCreationOfPriceListImportSimilarUomAmd();
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
+		verifyDrilldownTheDocNum();
+		verifyAmendmentOkButton();
+		verifyEnterAmndCloseDate(commonFunc.getDataFromTestDataSheet("Close_Date"),
+				commonFunc.getDataFromTestDataSheet("Efffrom_Date"), commonFunc.getDataFromTestDataSheet("Effto_Date"),
+				commonFunc.getDataFromTestDataSheet("Amnd_Reason"));
+		verifyEnterAmndCreation();
+		ExtractDocumentNumber();
+		verifyAmendDocNoInFindPage(VariableHandler.getAmendmentDocNumber());
+		verifyDrilldownTheDocNum();
+		enterDiscount(commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
+		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment for Import
+	 * Supplier Similar UOM
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListAmendmentImportDisSimilarUom() {
+		verifyCreationOfPriceListImportDissimilarUomAmd();
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
+		verifyDrilldownTheDocNum();
+		verifyAmendmentOkButton();
+		verifyEnterAmndCloseDate(commonFunc.getDataFromTestDataSheet("Close_Date"),
+				commonFunc.getDataFromTestDataSheet("Efffrom_Date"), commonFunc.getDataFromTestDataSheet("Effto_Date"),
+				commonFunc.getDataFromTestDataSheet("Amnd_Reason"));
+		verifyEnterAmndCreation();
+		ExtractDocumentNumber();
+		verifyAmendDocNoInFindPage(VariableHandler.getAmendmentDocNumber());
+		verifyDrilldownTheDocNum();
+		enterDiscount(commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
+		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment Cancel
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListAmendmentCancel() {
+		verifyCreationOfPriceListDomesticSimilarUomAmdCancel();
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
+		verifyDrilldownTheDocNum();
+		verifyAmendmentOkButton();
+		verifyEnterAmndCloseDate(commonFunc.getDataFromTestDataSheet("Close_Date"),
+				commonFunc.getDataFromTestDataSheet("Efffrom_Date"), commonFunc.getDataFromTestDataSheet("Effto_Date"),
+				commonFunc.getDataFromTestDataSheet("Amnd_Reason"));
+		verifyEnterAmndCreation();
+		ExtractDocumentNumber();
+		verifyAmendDocNoInFindPage(VariableHandler.getAmendmentDocNumber());
+		verifyDrilldownTheDocNum();
+		enterDiscount(commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
+		saveHeaderAndClickCancel();
+		enterPriceListNumForCheckingStatus(VariableHandler.getAmendmentDocNumber());
+
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Cancel
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListDomesticSimilarUomAmdCancel() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("CnclSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("CnclSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment Domestic
+	 * Similar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListDomesticSimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment Domestic
+	 * DisSimilar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListDomesticDissimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		commonFunc.hardWait(3000);
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment Import
+	 * Similar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListImportSimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		commonFunc.hardWait(3000);
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRICE LIST Amendment Import
+	 * Similar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPriceListImportDissimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		commonFunc.hardWait(3000);
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		commonFunc.hardWait(1000);
+		flag = commonFunc.logoutUser();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		assertTrue(flag);
 	}
 
 	/**
 	 * This Methods Is Used To Add Location Supplier Item Discount
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
+	 * @param Location
+	 * @param Supplier
+	 * @param Item
+	 * @param Discount
 	 */
 
-	public void clickAddIconFillDetailsOfPricelist(String Location, String Supplier, String Item, String Discount) {
+	public void clickAddIconFillDetailsOfPriceList(String Location, String Supplier, String Item, String Discount) {
 		commonFunc.clickAddIconPricelist();
 		flag = webDB.waitForElement(PricelistPageLocators.LocationLov, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.LocationLov, Location);
+			logs.logging("INFO", "Location is Entered");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PricelistPageLocators.SuppliernameLov, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Location is Entered");
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(PricelistPageLocators.SuppliernameLov, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.SuppliernameLov, Supplier);
+				logs.logging("INFO", "Supplier is Entered");
+				flag = webDB.waitForElement(PricelistPageLocators.ItemLov, ElementType.Xpath);
 				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.SuppliernameLov, Supplier);
+					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLov, Item);
+					logs.logging("INFO", "Item is Entered");
+					flag = webDB.waitForElement(PricelistPageLocators.PriceField, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Supplier is Entered");
-						flag = webDB.waitForElement(PricelistPageLocators.ItemLov, ElementType.Xpath);
-						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLov, Item);
-							if (flag) {
-								logs.logging("INFO", "Item is Entered");
-							}
-						}
+						logs.logging("INFO", "Price Field is clicked");
 					}
 				}
 			}
@@ -207,15 +586,44 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Enter Price
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
+	 * @param Cost
 	 */
-	public void EnterPrice(String Cost) {
+
+	public void verifyEnterPrice(String Cost) {
 		flag = webDB.waitForElement(PricelistPageLocators.PriceField, ElementType.Xpath);
-		webDB.clearText(PricelistPageLocators.PriceField, ElementType.Xpath);
 		if (flag) {
+			webDB.clearText(PricelistPageLocators.PriceField, ElementType.Xpath);
 			webDB.sendTextToAnElement(PricelistPageLocators.PriceField, Cost, ElementType.Xpath);
+			logs.logging("INFO", "Cost is Entered" + Cost);
+			enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+					commonFunc.getDataFromTestDataSheet("Effto_Date"));
+			flag = webDB.waitForElement(PricelistPageLocators.PricelistBody, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Cost is Entered" + Cost);
+				logs.logging("INFO", "PriceList Page is Clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Enter Price Inside the Transaction
+	 * 
+	 * @author Durai-RMITS
+	 * @param Cost1
+	 */
+
+	public void verifyEnterPriceInsideTransaction(String Cost1) {
+		flag = webDB.waitForElement(PricelistPageLocators.CostField, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(PricelistPageLocators.CostField, ElementType.Xpath);
+			logs.logging("INFO", "Cost Field is Clicked");
+			webDB.clearText(PricelistPageLocators.Costinput, ElementType.Xpath);
+			webDB.sendTextToAnElement(PricelistPageLocators.Costinput, Cost1, ElementType.Xpath);
+			logs.logging("INFO", "Cost is Entered" + Cost1);
+			flag = webDB.waitForElement(PricelistPageLocators.PricelistOverallsave, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overall Save is Clicked");
 			}
 		}
 		assertTrue(flag);
@@ -225,55 +633,63 @@ public class PricelistPageFunctions {
 	 * This Methods Is Used To Create find and giving Effective From Date and Too
 	 * Date
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
+	 * @param Date1
+	 * @param Date2
 	 */
 
-	public void EnterEffFromandToo() {
-		System.out.println("Input Eff");
+	public void enterEffFromAndToo(String Date1, String Date2) {
 		flag = webDB.waitForElement(PricelistPageLocators.EffFrom, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(PricelistPageLocators.EffFrom, PricelistPageLocators.FromDate, ElementType.Xpath);
+			webDB.sendTextToAnElement(PricelistPageLocators.EffFrom, Date1, ElementType.Xpath);
+			logs.logging("INFO", "From Date Is Entered");
+			flag = webDB.waitForElement(PricelistPageLocators.EffTo, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "From Date Is Entered");
-				flag = webDB.waitForElement(PricelistPageLocators.EffTo, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.EffTo, ElementType.Xpath);
+				logs.logging("INFO", "To Date Field is Clicked");
+				webDB.sendTextToAnElement(PricelistPageLocators.EffTo, Date2, ElementType.Xpath);
+				logs.logging("INFO", "To Date Is Entered");
+				flag = webDB.waitForElement(PricelistPageLocators.PriceField, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(PricelistPageLocators.EffTo, ElementType.Xpath);
-					webDB.sendTextToAnElement(PricelistPageLocators.EffTo, PricelistPageLocators.ToDate,
-							ElementType.Xpath);
+					webDB.clickAnElement(PricelistPageLocators.PriceField, ElementType.Xpath);
+					logs.logging("INFO", "Price Field is Clicked");
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(PricelistPageLocators.PricelistBody, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "To Date Is Entered");
-						webDB.clickAnElement(PricelistPageLocators.PriceField, ElementType.Xpath);
-						commonFunc.hardWait(2000);
-						System.out.println("Input To");
+						logs.logging("INFO", "Pricelist Page is clicked");
 					}
 				}
 			}
 		}
+
 		assertTrue(flag);
 	}
 
 	/**
 	 * This Methods Is Used To Verify to create New Record for Pricelist
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Location
 	 * @param Supplier
 	 * @param Item
 	 * @param Discount
 	 */
 
-	public void Findcreate(String Location, String Supplier, String Item, String Discount) {
+	public void findCreate(String Location, String Supplier, String Item, String Discount) {
 		flag = webDB.waitForElement(PricelistPageLocators.FindCreateButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.FindCreateButton, ElementType.Xpath);
-			webDB.waitForElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
-			String PRLISTNum = webDB.getTextFromElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
-			VariableHandler.setPRLISTNumber(PRLISTNum);
-			logs.logging("INFO", "Price List Number Is :" + VariableHandler.getPRLISTNumber());
-			validateLocationInPricelistHeader(Location);
-			validateSupplierInPricelistHeader(Supplier);
-			validateItemInPricelistHeader(Item);
+			logs.logging("INFO", "Find Create Button is Clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
+			if (flag) {
+				String PRLISTNum = webDB.getTextFromElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
+				VariableHandler.setPRLISTNumber(PRLISTNum);
+				logs.logging("INFO", "Price List Number Is :" + VariableHandler.getPRLISTNumber());
+				validateLocationInPriceListHeader(Location);
+				validateSupplierInPriceListHeader(Supplier);
+				validateItemInPriceListHeader(Item);
 
+			}
 		}
 		assertTrue(flag);
 	}
@@ -281,41 +697,36 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Verify Enter Discount
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Discount
 	 */
 
-	public void EnterDiscount(String Discount) {
+	public void enterDiscount(String Discount) {
 		flag = webDB.waitForClickElement(PricelistPageLocators.DiscountField, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(PricelistPageLocators.DiscountField, ElementType.Xpath);
+			logs.logging("INFO", "Discount Field is clicked");
 			webDB.clearText(PricelistPageLocators.Discountinput, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Discount Field is clicked");
-			}
 			webDB.doubleClickAnElement(PricelistPageLocators.DiscountField, ElementType.Xpath);
 			webDB.sendTextToAnElement(PricelistPageLocators.Discountinput, Discount, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Discount value Is Entered" + Discount);
-			}
+			logs.logging("INFO", "Discount value Is Entered" + Discount);
 		}
+
 		assertTrue(flag);
 	}
 
 	/**
 	 * This Methods Is Used To Validate the Location Filed is correctly eneterd
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Location
 	 */
 
-	private void validateLocationInPricelistHeader(String Location) {
+	private void validateLocationInPriceListHeader(String Location) {
 		flag = webDB.waitForElement(PricelistPageLocators.Pricelist_HeaderLoc, ElementType.Xpath);
 		if (flag) {
 			String DisplayText = webDB.getTextFromElement(PricelistPageLocators.Pricelist_HeaderLoc, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Expected Text: " + Location + " Displayed: " + DisplayText);
-			}
+			logs.logging("INFO", "Expected Text: " + Location + " Displayed: " + DisplayText);
 			flag = DisplayText.equalsIgnoreCase(Location);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed Location in PRICELIST Header: " + DisplayText);
@@ -323,6 +734,7 @@ public class PricelistPageFunctions {
 				logs.logging("INFO", "Verification failed in Location PRICELIST Header");
 				logs.logging("INFO", "Expected Text: " + Location + " Displayed: " + DisplayText);
 			}
+
 		}
 		Assert.assertTrue(flag);
 	}
@@ -330,19 +742,16 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Validate the Supplier Filed is correctly eneterd
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Supplier
 	 */
 
-	private void validateSupplierInPricelistHeader(String Supplier) {
+	private void validateSupplierInPriceListHeader(String Supplier) {
 		flag = webDB.waitForElement(PricelistPageLocators.Pricelist_HeaderSupplier, ElementType.Xpath);
 		if (flag) {
 			String DisplayText = webDB.getTextFromElement(PricelistPageLocators.Pricelist_HeaderSupplier,
 					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Expected Text: " + Supplier + " Displayed: " + DisplayText);
-			}
-
+			logs.logging("INFO", "Expected Text: " + Supplier + " Displayed: " + DisplayText);
 			flag = DisplayText.equalsIgnoreCase(Supplier);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed Supplier in PRICELIST Header: " + DisplayText);
@@ -357,18 +766,16 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Validate the Item Filed is correctly eneterd
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Item
 	 */
 
-	private void validateItemInPricelistHeader(String Item) {
+	private void validateItemInPriceListHeader(String Item) {
 		flag = webDB.waitForElement(PricelistPageLocators.Pricelist_HeaderItem, ElementType.Xpath);
 		if (flag) {
 			String DisplayText = webDB.getTextFromElement(PricelistPageLocators.Pricelist_HeaderItem,
 					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Expected Text: " + Item + " Displayed: " + DisplayText);
-			}
+			logs.logging("INFO", "Expected Text: " + Item + " Displayed: " + DisplayText);
 			flag = DisplayText.equalsIgnoreCase(Item);
 			if (flag) {
 				logs.logging("INFO", "verified Displayed Item in PRICELIST Header: " + DisplayText);
@@ -383,9 +790,8 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Verify Save the Document And click on Active Button
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 */
-
 	public void saveHeaderAndClickPost() {
 		flag = webDB.waitForClickElement(PricelistPageLocators.SAVEBtn, ElementType.Xpath);
 		if (flag) {
@@ -395,14 +801,12 @@ public class PricelistPageFunctions {
 			flag = webDB.waitForElement(PricelistPageLocators.ActiveButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.ActiveButton, ElementType.Xpath);
-//				flag = webDB.waitForElement(PricelistPageLocators.StopAlert, ElementType.Xpath);
-//				if(flag) {
-//					String Alert = webDB.getTextFromElement(PricelistPageLocators.StopAlert, ElementType.Xpath);
-//					logs.logging("INFO", "STOP ALERT : " +Alert);
-//					webDB.tearDown();
-//				}else {
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Header Post Icon Is Clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.PriceListWorkflowFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Frame is Checked");
+				}
 			}
 
 		}
@@ -413,11 +817,10 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Verify Waiting for Approval Dialog Box
 	 * 
-	 * @author Durai
-	 * @return boolean flag
+	 * @author Durai-RMITS
 	 */
 
-	public boolean WaitingForApproval() {
+	public void waitingForApproval() {
 		commonFunc.hardWait(3000);
 		if (webDB.verifyIsElementDisplayed(PricelistPageLocators.PriceListWorkflowFrame, ElementType.Xpath)) {
 			flag = true;
@@ -434,42 +837,43 @@ public class PricelistPageFunctions {
 				webDB.clickAnElement(PricelistPageLocators.PricelistworkflowOK, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
-//				flag = webDB.waitForElement(PurchaseOrderPageLocators.AddButtonPurchaseOrder, ElementType.Xpath);
-//				if (flag) {
-//					logs.logging("INFO", "Verified Navigate To PO Home Page");
-//				}
+				flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button is Clicked");
+				}
 			}
-			assertTrue(flag);
 		} else {
 			flag = false;
 			VariableHandler.setApprovalFlag(flag);
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
 	 * This Methods Is Used To Verify Forward Screen is Opening
 	 * 
-	 * @author Durai
-	 * @return boolean flag
+	 * @author Durai-RMITS
 	 */
-	public boolean Forwardapprovalscreen() {
-		commonFunc.hardWait(1000);
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
 
+	public void forwardApprovalScreen() {
+		commonFunc.hardWait(1000);
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		flag = webDB.waitForElement(ApprovalPageLocators.UserNotifyIcon, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "User Notify Icon is Clicked");
 		}
-		return flag;
+		assertTrue(flag);
 	}
 
 	/**
 	 * This Methods Is Used To Verify Approve the document
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Number
 	 */
-	public void filterDocumentsforPriceistApproval(String Number) {
+
+	public void filterDocumentsForPriceListApproval(String Number) {
 		flag = webDB.waitForElement(ApprovalPageLocators.SearchBox, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Search Box IS Displayed");
@@ -496,14 +900,16 @@ public class PricelistPageFunctions {
 	/**
 	 * This Methods Is Used To Verify Approve The Document
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param Number
 	 */
+
 	public void verifyApproveWithDocNumber(String Number) {
 		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(PricelistPageLocators.PRLISTSelectCheckBox(Number), ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(PricelistPageLocators.PRLISTSelectCheckBox(Number), ElementType.Xpath);
+			logs.logging("INFO", "Select Box is Checked");
 			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
@@ -531,4 +937,473 @@ public class PricelistPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * This Methods Is Used To Verify Save the Document And click on cancell Button
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCancelThePricelist() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePricelistPage();
+		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
+		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
+				commonFunc.getDataFromTestDataSheet("Effto_Date"));
+		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
+				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+		commonFunc.hardWait(1000);
+		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
+		saveHeaderAndClickCancel();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Save the Document And click on Active Button
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void saveHeaderAndClickCancel() {
+		flag = webDB.waitForClickElement(PricelistPageLocators.SAVEBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.SAVEBtn, ElementType.Xpath);
+			logs.logging("INFO", "Header Saved Successfully.");
+			commonFunc.hardWait(3500);
+			flag = webDB.waitForElement(PricelistPageLocators.CancellButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.CancellButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Header Cancell Icon Is Clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button is Clicked");
+				}
+			}
+
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify status
+	 * 
+	 * @author Durai-RMITS
+	 * @param Number
+	 */
+	public void enterPriceListNumForCheckingStatus(String Number) {
+		flag = webDB.waitForElement(PricelistPageLocators.PricelistNumField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.PricelistNumField, Number, ElementType.Xpath);
+			logs.logging("INFO", "Entered Document Number Is: " + Number);
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button is clicked");
+				commonFunc.hardWait(1000);
+				String canclsts = webDB.getTextFromElement(PricelistPageLocators.CancellStatus, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
+					flag = canclsts.equalsIgnoreCase("Cancelled");
+					if (flag) {
+						logs.logging("INFO", "verified Displayed Status is: " + canclsts);
+					} else {
+						logs.logging("INFO", "Verification failed in Status");
+						logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);
+						flag = webDB.waitForElement(PricelistPageLocators.find, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PricelistPageLocators.find, ElementType.Xpath);
+							logs.logging("INFO", "Find Button is clicked");
+							flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Search Button is clicked");
+							}
+						}
+					}
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To click location lov in find screen
+	 * 
+	 * @author Durai-RMITS
+	 * @param Location
+	 */
+	public void clickLocationLov(String Location) {
+		flag = webDB.waitForClickElement(PricelistPageLocators.FindLocLov, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.FindLocLov, Location);
+			logs.logging("INFO", "Location is filtered");
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Find Search Button is clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify unit lov in find screen
+	 * 
+	 * @author Durai-RMITS
+	 * @param Unit
+	 */
+	public void clickUnitLov(String Unit) {
+		flag = webDB.waitForClickElement(PricelistPageLocators.FindUnitLov, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.FindUnitLov, Unit);
+			logs.logging("INFO", "Unit is filtered");
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Find Search Button is clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify item lov in find screen
+	 * 
+	 * @author Durai-RMITS
+	 * @param Item
+	 */
+	public void clickItemLov(String Item) {
+		flag = webDB.waitForClickElement(PricelistPageLocators.FindItemLov, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.FindItemLov, Item);
+			logs.logging("INFO", "Item is Filtered");
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Find Search Button is clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
+					logs.logging("INFO", "Filtered Fields are cleared");
+					flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Search button is clicked");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify supplier lov in find screen
+	 * 
+	 * @author Durai-RMITS
+	 * @param Supplier
+	 */
+	public void clickSupplierLov(String Supplier) {
+		flag = webDB.waitForClickElement(PricelistPageLocators.FindSupplierlov, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.FindSupplierlov, Supplier);
+			logs.logging("INFO", "Supplier is Filtered");
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Find Search Button is clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.FindClearButton, ElementType.Xpath);
+					logs.logging("INFO", "Filtered Fields are cleared");
+					flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Search Button is clicked");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify effective from date
+	 * 
+	 * @author Durai-RMITS
+	 * @param Date
+	 */
+	public void clickFindEffectiveFromDate(String Date) {
+		flag = webDB.waitForElement(PricelistPageLocators.FindEfffromDate, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindEfffromDate, Date, ElementType.Xpath);
+			logs.logging("INFO", "Effective From Date is Entered:" + Date);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify effective to date
+	 * 
+	 * @author Durai-RMITS
+	 * @param Date
+	 */
+	public void clickFindEffectiveToDate(String Date) {
+		flag = webDB.waitForElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+			logs.logging("INFO", "Item Description is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.FindEffToDate, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(PricelistPageLocators.FindEffToDate, Date, ElementType.Xpath);
+				logs.logging("INFO", "Effective To Date is entered:" + Date);
+				flag = webDB.waitForElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+					logs.logging("INFO", "Item Description is clicked");
+					flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+						logs.logging("INFO", "Search Button is Clicked");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify status field in find page
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyStatusInFindPage() {
+		flag = webDB.waitForElement(PricelistPageLocators.FindStatusField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.FindStatusField, ElementType.Xpath);
+			logs.logging("INFO", "Status Field is Clicked");
+			webDB.selectDropDownByValue(PricelistPageLocators.FindStatusField, "A", ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+				logs.logging("INFO", "Item Description is Clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Search Button is Clicked");
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Document Number field in find page
+	 * 
+	 * @author Durai-RMITS
+	 * @param Number
+	 */
+	public void verifyDocNoInFindPage(String Number) {
+		flag = webDB.waitForElement(PricelistPageLocators.PricelistNumField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.PricelistNumField, Number, ElementType.Xpath);
+			logs.logging("INFO", "Doc Number Is Filtered" + Number);
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button is clicked");
+				commonFunc.hardWait(1000);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify status in Find
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyStatusInFindPageforAmendment() {
+		flag = webDB.waitForElement(PricelistPageLocators.FindStatusField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.FindStatusField, ElementType.Xpath);
+			logs.logging("INFO", "Status Field is Clicked");
+			webDB.selectDropDownByValue(PricelistPageLocators.FindStatusField, "A", ElementType.Xpath);
+			logs.logging("INFO", "Status is Filterd");
+			flag = webDB.waitForElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindItemDesc, ElementType.Xpath);
+				logs.logging("INFO", "Item Description Filed is Clicked");
+				flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Search Button is clicked");
+				}
+
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Drilldown the document number
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyDrilldownTheDocNum() {
+		flag = webDB.waitForElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.Xpath);
+			logs.logging("INFO", "Document NO is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Document Num Field is checked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To click ok Button for Amendment Button
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyAmendmentOkButton() {
+		flag = webDB.waitForElement(PricelistPageLocators.AmendmentButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.AmendmentButton, ElementType.Xpath);
+			logs.logging("INFO", "Amendment Button is Clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.PriceListAmndFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Amendment OK button is Checked");
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To enter Amendment Close Date
+	 * 
+	 * @author Durai-RMITS
+	 * @param CloseDate
+	 * @param FromDate
+	 * @param ToDate
+	 * @param Reason
+	 */
+	public void verifyEnterAmndCloseDate(String CloseDate, String FromDate, String ToDate, String Reason) {
+		flag = webDB.waitForElement(PricelistPageLocators.PriceListAmndFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PricelistPageLocators.PriceListAmndFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched to Amendment Frame");
+			flag = webDB.waitForElement(PricelistPageLocators.AmendcloseDate, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(PricelistPageLocators.AmendcloseDate, CloseDate, ElementType.Xpath);
+				logs.logging("INFO", "Close Date Is Entered:" + CloseDate);
+				flag = webDB.waitForElement(PricelistPageLocators.AmendFromDate, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.AmendFromDate, ElementType.Xpath);
+					webDB.sendTextToAnElement(PricelistPageLocators.AmendFromDate, FromDate, ElementType.Xpath);
+					logs.logging("INFO", "From date is Eneterd:" + ToDate);
+					webDB.clickAnElement(PricelistPageLocators.AmendReason, ElementType.Xpath);
+					flag = webDB.waitForElement(PricelistPageLocators.AmendToDate, ElementType.Xpath);
+					if (flag) {
+						webDB.sendTextToAnElement(PricelistPageLocators.AmendToDate, ToDate, ElementType.Xpath);
+						logs.logging("INFO", "To Date Is Eneterd:" + ToDate);
+						flag = webDB.waitForElement(PricelistPageLocators.AmendReason, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PricelistPageLocators.AmendReason, ElementType.Xpath);
+							webDB.sendTextToAnElement(PricelistPageLocators.AmendReason, Reason, ElementType.Xpath);
+							logs.logging("INFO", "Amendment Reason is Entered");
+							flag = webDB.waitForElement(PricelistPageLocators.PriceListAmndOk, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Amendment Ok Buttton is checked");
+							}
+						}
+					}
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Create Amendment
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyEnterAmndCreation() {
+		flag = webDB.waitForElement(PricelistPageLocators.PriceListAmndOk, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.PriceListAmndOk, ElementType.Xpath);
+			logs.logging("INFO", "Amendment Button is Clicked");
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is checked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Document Number Toast Message
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void ExtractDocumentNumber() {
+		flag = webDB.waitForElement(PricelistPageLocators.SucessMsg, ElementType.Xpath);
+		if (flag) {
+			String fullText = webDB.getTextFromElement(PricelistPageLocators.SucessMsg, ElementType.Xpath);
+			String AmendmentDocNumber = extractDocumentNumber(fullText);
+			System.out.println("Document Number: " + AmendmentDocNumber);
+			VariableHandler.setAmendmentDocNumber(AmendmentDocNumber);
+			logs.logging("INFO", "Price List Amendment Doc Number Is :" + VariableHandler.getAmendmentDocNumber());
+		}
+
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Document Number field in Toast Message
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private static String extractDocumentNumber(String text) {
+		String regex = "\\b[A-Za-z]+\\d+/\\d+/\\d+-\\d+\\b";
+		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+		java.util.regex.Matcher matcher = pattern.matcher(text);
+		if (matcher.find()) {
+		}
+		return matcher.group(0);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Amendment Document Number field in find page
+	 * 
+	 * @author Durai-RMITS
+	 * @param Docnumber
+	 */
+	public void verifyAmendDocNoInFindPage(String Docnumber) {
+		flag = webDB.waitForElement(PricelistPageLocators.FindDocNumFieldlov, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.FindDocNumFieldlov, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.FindDocNumsearchField, Docnumber);
+			logs.logging("INFO", "Document Nymber is:" + Docnumber);
+			flag = webDB.waitForElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button is Clicked");
+				commonFunc.hardWait(1000);
+			}
+		}
+		assertTrue(flag);
+	}
+
 }

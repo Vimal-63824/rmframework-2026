@@ -1,5 +1,8 @@
 package commonlocators.supplychainmanagement;
-
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String POPendingIcon = "//button[@id='B1542579773567124656']";
@@ -150,7 +153,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String POANumberStatus(String POno) {
-		return "//a[text()='" + POno + "']/../../td[18]";
+		return "//a[text()='" + POno + "']/../../td[19]";
 	}
 
 	/** @locatorType Xpath */
@@ -176,7 +179,7 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
 		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
-				+ "]/td/a/span[contains(@style,'Orange')]";
+				+ "]/td/a/span[contains(@style,'orange')]";
 	}
 
 	/** @locatorType Xpath */
@@ -279,6 +282,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String ServiceLineDetailButton(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[21]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td/a/span[contains(@style,'orange')]";
 	}
 }

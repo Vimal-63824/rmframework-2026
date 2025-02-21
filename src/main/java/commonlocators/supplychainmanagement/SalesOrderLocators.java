@@ -1,5 +1,8 @@
 package commonlocators.supplychainmanagement;
-
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String AddButtonSalesOrder = "//button[@id='B583506114587524405']";

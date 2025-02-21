@@ -17,6 +17,8 @@
 			<class name="com.roadmapERP.SaleInvoiceTest" />
 			<class name="com.roadmapERP.PriselistTest" />
 			<class name="com.roadmapERP.OpenSOTest" />
+			<class name="com.roadmapERP.GrnTest" />
+			<class name="com.roadmapERP.OpenSoAmdTest" />
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test>
+</suite>

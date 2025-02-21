@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 /**
- * @author Durai
+ * @author Durai-RMITS
  */
 import commonfunctions.CommonFunctions;
 import utils.Mailer;
@@ -24,58 +24,132 @@ public class PriselistTest {
 	 * Create pricelist for domestic supplier with similar UOM directly to the
 	 * system through excel upload
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS-RMITS
 	 */
 	@Test(priority = 1, groups = {
 			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM similar")
-	public void VerifyCreationOfPricelistDomesticSimilarUOM() {
-		flag = PriceListfunc.verifycreationofpricelistDomesticSimilarUOM();
-		Assert.assertTrue(flag);
+	public void VerifyCreationOfPriceListDomesticSimilarUOM() {
+		PriceListfunc.verifyCreationOfPriceListDomesticSimilarUom();
 	}
 
 	/**
 	 * Create pricelist for domestic supplier with Disssimilar UOM directly to the
 	 * system through excel upload
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 */
 	@Test(priority = 2, groups = {
 			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM dissimilar")
-	public void VerifyCreationOfPricelistDomesticDissimilarUOM() {
-		flag = PriceListfunc.verifycreationofpricelistDomesticDissimilarUOM();
-		Assert.assertTrue(flag);
+	public void VerifyCreationOfPriceListDomesticDissimilarUOM() {
+		PriceListfunc.verifyCreationOfPriceListDomesticDissimilarUom();
 	}
 
 	/**
 	 * Create pricelist for Import supplier with Disssimilar UOM directly to the
 	 * system through excel upload
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 */
 	@Test(priority = 3, groups = {
 			"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM similar")
-	public void VerifyCreationOfPricelistImportSimilarUOM() {
-		flag = PriceListfunc.verifycreationofpricelistImportsimilarUOM();
-		Assert.assertTrue(flag);
+	public void VerifyCreationOfPriceListImportSmilarUOM() {
+		PriceListfunc.verifyCreationOfPriceListImportSimilarUom();
 	}
 
 	/**
 	 * Create pricelist for Import supplier with Disssimilar UOM directly to the
 	 * system through excel upload
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 */
 	@Test(priority = 4, groups = {
 			"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM dissimilar")
-	public void VerifyCreationOfPricelistImportDissimilarUOM() {
-		flag = PriceListfunc.verifycreationofpricelistImportDissimilarUOM();
-		Assert.assertTrue(flag);
+	public void VerifyCreationOfPriceListImportDissimilarUOM() {
+		PriceListfunc.verifyCreationOfPriceListImportDissimilarUom();
 	}
 
 	/**
+	 * PriceListEntryCancel
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 5, groups = { "PriceList" }, description = "PriceListEntryCancel")
+	public void VerifyPriceListEntryCancel() {
+		PriceListfunc.priceListEntryCancel();
+	}
+
+	/**
+	 * PriceListEntry Find Checking
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 6, groups = { "PriceList" }, description = "Check whether all the filter fields are working?")
+	public void VerifyCheckingOfPriceListFindScreenChecking() {
+		PriceListfunc.priceListEntryFindScreenChecking();
+	}
+
+	/**
+	 * Create Price List entry for Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 7, groups = {
+			"PriceList" }, description = "Amend Price List entry for Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyCreationOfPriceListAmendmentDomesticSimilarUom() {
+		PriceListfunc.verifyCreationOfPriceListAmendmentDomesticSimilarUom();
+	}
+
+	/**
+	 * Create Price List entry for Domestic Supplier with Stock and Supplier UOM
+	 * Dissimilar
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 8, groups = {
+			"PriceList" }, description = "Amend Price List entry for Domestic Supplier with Stock and Supplier UOM Dissimilar")
+	public void VerifyCreationOfPriceListAmendmentDomesticDisSimilarUom() {
+		PriceListfunc.verifyCreationOfPriceListAmendmentDomesticDisSimilarUom();
+	}
+
+	/**
+	 * Create Price List entry for Import Supplier with Stock and Supplier UOM
+	 * Dissimilar
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 9, groups = {
+			"PriceList" }, description = "Amend Price List entry for Import Supplier with Stock and Supplier UOM similar")
+	public void VerifyCreationOfPriceListAmendmentImportSimilarUom() {
+		PriceListfunc.verifyCreationOfPriceListAmendmentImportSimilarUom();
+	}
+
+	/**
+	 * Create Price List entry for Import Supplier with Stock and Supplier UOM
+	 * Dissimilar
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 10, groups = {
+			"PriceList" }, description = "Amend Price List entry for Import Supplier with Stock and Supplier UOM Dissimilar")
+	public void VerifyCreationOfPriceListAmendmentImportDisSimilarUom() {
+		PriceListfunc.verifyCreationOfPriceListAmendmentImportDisSimilarUom();
+	}
+
+	/**
+	 * Create Price List entry for Import Supplier with Stock and Supplier UOM
+	 * Dissimilar
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 11, groups = { "PriceList" }, description = "Amend Price List entry Cancel")
+	public void VerifyCreationOfPriceListAmendmentCancel() {
+		PriceListfunc.verifyCreationOfPriceListAmendmentCancel();
+	}
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
-	 * @author Durai
+	 * @author Durai-RMITS
 	 * @param result
 	 */
 	@AfterMethod
