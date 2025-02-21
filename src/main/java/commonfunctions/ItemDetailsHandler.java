@@ -96,6 +96,7 @@ public class ItemDetailsHandler {
 	 * This method used to return specific items particular Line Detail Data from
 	 * Item Details Sheet.
 	 * 
+  	 * @author Sakthi-GWL
 	 * @param itemName
 	 * @param LineDetailName
 	 * @return String resultData
@@ -131,7 +132,7 @@ public class ItemDetailsHandler {
 	 * @author Deepan-GWL
 	 * @param itemName
 	 * @param LineDetailName
-	 * @return
+	 * @return String result
 	 */
 	public String getPOLineDetailsforGivenItem(String itemName, POLineDetailsName LineDetailName) {
 		String result = null;
@@ -164,7 +165,7 @@ public class ItemDetailsHandler {
 	 * @author Deepan-GWL
 	 * @param itemName
 	 * @param LineDetailName
-	 * @return
+	 * @return String result
 	 */
 	public String getPOALineDetailsforGivenItem(String itemName, POALineDetailsName LineDetailName) {
 		String result = null;
@@ -197,7 +198,7 @@ public class ItemDetailsHandler {
 	 * @author Deepan-GWL
 	 * @param itemName
 	 * @param LineDetailName
-	 * @return
+	 * @return String result
 	 */
 	public String getPOItemLineDetailsforGivenItem(String itemName, POItemLineDetailsName LineDetailName) {
 		String result = null;
@@ -240,7 +241,7 @@ public class ItemDetailsHandler {
 	 *         Details
 	 * @param itemName
 	 * @param LineDetailName
-	 * @return
+	 * @return String result
 	 */
 	public String getSOLineDetailsforGivenItem(String itemName, SOLineDetailsName LineDetailName) {
 		String result1 = null;
@@ -282,7 +283,7 @@ public class ItemDetailsHandler {
 	 *         Customer Details
 	 * @param CustomerName
 	 * @param CustomerDetailName
-	 * @return
+	 * @return String result
 	 */
 	public String getSOCustomerDetails(String CustomerName, SOCustomerDetailsName CustomerDetailName) {
 		String result2 = null;
@@ -322,7 +323,7 @@ public class ItemDetailsHandler {
 	 * @author Vimal - RMITS
 	 * @param Customer_Name
 	 * @param LineDetailName
-	 * @return
+	 * @return String result
 	 */
 	public String getSILineDetailsforGivenItem(String Customer_Name, SICustomerDetailsName LineDetailName) {
 		String result = null;
@@ -370,7 +371,7 @@ public class ItemDetailsHandler {
 	 * 
 	 * @param Location
 	 * @param LineDetailName
-	 * @return boolean
+	 * @return String result
 	 */
 	public String getOpensalesOrderAmdforGivenItem(String Location, OpenSOAmdDetails LineDetailName) {
 		String result = null;
@@ -404,7 +405,7 @@ public class ItemDetailsHandler {
 	 * 
 	 * @param ItemID
 	 * @param LineDetailName
-	 * @return boolean
+	 * @return String result
 	 */
 	public String getLinesDetailsforGivenItem(String ItemID, OpenSoAmdLinesDetails LineDetailName) {
 		String result = null;
