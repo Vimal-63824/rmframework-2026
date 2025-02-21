@@ -432,6 +432,7 @@ public class CommonFunctions {
 		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
+		webDB.switchToMainTab();
 		enterUrl();
 	}
 
@@ -1286,6 +1287,28 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	/*
+	 * This method used to Navigate Purchase Order Page By Using Purchase User
+	 * 
+	 * @authorPremkumar.K-RMITS
+	 */
+
+	public void navigatePurchaseOrderPageForPurchaseUser() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTabForPurchaseUser, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseOrderTabForPurchaseUser, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * @author Kowshik This Method IS used To Click the Sales Node
@@ -1322,4 +1345,5 @@ public class CommonFunctions {
 		}
 		return flag;
 	}
+
 }

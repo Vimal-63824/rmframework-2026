@@ -1,5 +1,8 @@
 package commonlocators.supplychainmanagement;
-
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
@@ -73,7 +76,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String DeleteLineItemPO(String ItemName) {
-		return "//td[text()='" + ItemName + "']/../td[17]/a";
+		return "//td[text()='" + ItemName + "']/../td[18]/a";
 	}
 
 	/** @locatorType Xpath */
@@ -313,4 +316,23 @@ public class PurchaseOrderPageLocators {
 		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
 				+ "]/td/a/span[contains(@style,'Orange')]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String PoItemSelect = "//*[@id=\"PopupLov_161513106041_C3750778132967408970_dlg\"]/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
+	/** @locatorType Xpath */
+	public static final String POItemInput = "//*[@id=\"PopupLov_161513106041_C3750778132967408970_dlg\"]/div[1]/input";
+	/** @locatorType Xpath */
+	public static final String PoQtyInput = "//input[@id='C3135022162127842865']";
+	/** @locatorType Xpath */
+	public static final String PoQtyFieldClick = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[6]";
+	/** @locatorType Xpath */
+	public static final String PoUnitCost = "//input[@id='cost']";
+	/** @locatorType Xpath */
+	public static final String PoUnitCostClick = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String PolinewiseSave = "//button[@id='B3146205337803717780']";
+	/** @locatorType Xpath */
+	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[16]";
+	/** @locatorType Xpath */
+	public static final String PoseriviceWithGrnSelectedValues = "//*[@id=\"C2522028662001049402\"]";
 }

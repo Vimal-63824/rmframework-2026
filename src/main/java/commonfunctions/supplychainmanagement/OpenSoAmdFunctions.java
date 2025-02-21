@@ -1,5 +1,8 @@
 package commonfunctions.supplychainmanagement;
-
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 import static org.testng.Assert.assertTrue;
 import java.math.BigDecimal;
 import commonfunctions.CommonFunctions;

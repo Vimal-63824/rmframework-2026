@@ -1,5 +1,8 @@
 package commonfunctions.supplychainmanagement;
-
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 import static org.testng.Assert.assertTrue;
 import org.testng.Assert;
 
@@ -129,8 +132,7 @@ public class ApprovalPageFunctions {
 		flag = webDB.waitForElement(ApprovalPageLocators.BackButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ApprovalPageLocators.BackButton, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath,
-					45);
+			flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath, 45);
 			if (flag) {
 				logs.logging("INFO", "Back Button Is Clicked Verified Navigate To Approval Table Page");
 			}
