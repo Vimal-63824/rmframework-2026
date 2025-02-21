@@ -349,21 +349,27 @@ public class ItemDetailsHandler {
 		return result;
 	}
 
+	/**
+	 *This Enum 'Open So Amendment Header Details Name column Name'
+	 */
 	public enum OpenSOAmdDetails {
 		LOCATION_ID, UNIT, CUSTOMER_ID, CUSTOMER_NAME, OSO_NO
 	}
 
+	/**
+	 * This Enum 'Open So Amendment Line Details Name column Name'
+	 */
 	public enum OpenSoAmdLinesDetails {
 		Item_ID, Item_Desc, UOM, Existing_Price,
 	}
 
 	/**
 	 * Get Open So Amd Header Details
-	 * 
+	 * @author Kowshik
 	 * 
 	 * @param Location
 	 * @param LineDetailName
-	 * @return
+	 * @return boolean
 	 */
 	public String getOpensalesOrderAmdforGivenItem(String Location, OpenSOAmdDetails LineDetailName) {
 		String result = null;
@@ -392,11 +398,11 @@ public class ItemDetailsHandler {
 
 	/**
 	 * Get Open so Line Details
-	 * 
+	 * @author Kowshik
 	 * 
 	 * @param ItemID
 	 * @param LineDetailName
-	 * @return
+	 * @return boolean
 	 */
 	public String getLinesDetailsforGivenItem(String ItemID, OpenSoAmdLinesDetails LineDetailName) {
 		String result = null;
