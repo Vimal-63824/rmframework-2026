@@ -1285,4 +1285,44 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * @author Kowshikan - RMITS
+	 * This Method IS used To Click the Sales Node
+	 * @return Boolean
+	 */
+	public boolean clicksalesnode() {
+		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
+		}
+		return flag;
+	}
+	
+/**
+ * @author Kowshikan - Rmits
+ * This Method Is used To Navigate Open Sales Order Main Screen
+ * @return boolean
+ */
+	public boolean clickOpensoNode() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clicksalesnode();
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+
+				if (flag) {
+					logs.logging("INFO", "navigated open so screen successfully");
+				}
+			}
+		}
+
+		return flag;
+	}
 }
