@@ -27,7 +27,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyDomesticCustomerLocalGstTypePriceChange();
 	}
 
-	/**Amend Sales Order -Price Class Change - Domestic Customer - Local
+	/**
+	 * Amend Sales Order -Price Class Change - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
 	 */
@@ -37,7 +38,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyDomesticCustomerLocalGstTypePriceClassChange();
 	}
 
-	/**Amend Sales Order - Addition of Item - Domestic Customer - Local
+	/**
+	 * Amend Sales Order - Addition of Item - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
 	 */
@@ -47,7 +49,8 @@ public class OpenSoAmdTest {
 		OSOA.veriftyLocalCustomerDomesticAdditionofItem();
 	}
 
-	/**Amend Sales Order - Deletion of Item - Domestic Customer - Local
+	/**
+	 * Amend Sales Order - Deletion of Item - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
 	 */
@@ -68,7 +71,8 @@ public class OpenSoAmdTest {
 
 	}
 
-	/**Amend Sales Order -Price Change - Domestic Customer - Interstate
+	/**
+	 * Amend Sales Order -Price Change - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
 	 */
@@ -78,7 +82,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyDomesticCustomerInterstateGstTypePriceChange();
 	}
 
-	/**Amend Sales Order -Price Change - Domestic Customer - Interstate
+	/**
+	 * Amend Sales Order -Price Change - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
 	 */
@@ -88,7 +93,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyDomesticCustomerInterstateGstTypePriceClassChange();
 	}
 
-	/**Amend Sales Order - Addition of Item - Domestic Customer - Interstate
+	/**
+	 * Amend Sales Order - Addition of Item - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
 	 */
@@ -98,7 +104,8 @@ public class OpenSoAmdTest {
 		OSOA.veriftyInterStateCustomerDomesticAdditionofItem();
 	}
 
-	/**Amend Sales Order - Deletion of Item - Domestic Customer - Interstate
+	/**
+	 * Amend Sales Order - Deletion of Item - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
 	 */
@@ -108,7 +115,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyInterStateCustomerDomesticDeletationofItem();
 	}
 
-	/**Amend Sales Order -Price Change - Export Customer
+	/**
+	 * Amend Sales Order -Price Change - Export Customer
 	 * 
 	 * @author Kowshik
 	 */
@@ -118,7 +126,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyExportCustomerPriceChange();
 	}
 
-	/**Amend Sales Order -Price Class Change - Export Customer
+	/**
+	 * Amend Sales Order -Price Class Change - Export Customer
 	 * 
 	 * @author Kowshik
 	 */
@@ -128,7 +137,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyExportCustomerPriceClassChanges();
 	}
 
-	/**Amend Sales Order - Addition of Item - Export Customer
+	/**
+	 * Amend Sales Order - Addition of Item - Export Customer
 	 * 
 	 * @author Kowshik
 	 */
@@ -138,7 +148,8 @@ public class OpenSoAmdTest {
 		OSOA.verifyExportCustomerAdditionOfItem();
 	}
 
-	/**Amend Sales Order - Deletion of Item - Export Customer
+	/**
+	 * Amend Sales Order - Deletion of Item - Export Customer
 	 * 
 	 * @author Kowshik
 	 */
