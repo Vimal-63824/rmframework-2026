@@ -25,6 +25,7 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
+import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
@@ -1263,5 +1264,62 @@ public class CommonFunctions {
 		navigateToInventoryTab();
 		navigateToInventoryReportsTab();
 		navigateToStocksTab();
+	}
+
+	/**
+	 * This method is used to Navigate Proforma Invoice Screen
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void navigateProformaInvoice() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Node, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Proforma_Inv_Node, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Pend_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to Proforma Invoice Screen Sucessfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Kowshik This Method IS used To Click the Sales Node
+	 * @return Boolean
+	 */
+	public boolean clicksalesnode() {
+		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Kowshik This Method Is used To Navigate Open Sales Order Main Screen
+	 * @return boolean
+	 */
+	public boolean clickOpensoNode() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clicksalesnode();
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSoAmdLocators.OpenSoAmdRadio, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "navigated open so screen successfully");
+				}
+			}
+		}
+		return flag;
 	}
 }

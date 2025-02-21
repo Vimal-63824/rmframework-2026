@@ -34,7 +34,7 @@ public class ApprovalPageFunctions {
 			flag = webDB.waitForElement(ApprovalPageLocators.ApprovalNotifyOption, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(ApprovalPageLocators.ApprovalNotifyOption, ElementType.Xpath);
-				flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.DocumentsTypeDropDown, ElementType.Xpath,
+				flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath,
 						45);
 				if (flag)
 					logs.logging("INFO", "Navigated to Doc Approvals page successfully");
@@ -129,7 +129,7 @@ public class ApprovalPageFunctions {
 		flag = webDB.waitForElement(ApprovalPageLocators.BackButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ApprovalPageLocators.BackButton, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.DocumentsTypeDropDown, ElementType.Xpath,
+			flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath,
 					45);
 			if (flag) {
 				logs.logging("INFO", "Back Button Is Clicked Verified Navigate To Approval Table Page");

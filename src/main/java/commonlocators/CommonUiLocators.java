@@ -144,7 +144,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String WorkAppoval_OkBtn = "//*[@id='B1612723241586671539']";
+	public static final String WorkAppoval_OkBtn = "//*[text()='Ok']/parent::button";
 
 	/** @locatorType Xpath */
 	public static String convertListOfXPath(String text) {
