@@ -376,8 +376,9 @@ public class OpenSoAmdFunctions {
 	}
 
 	/**
-	 * @author Kowshikan - RMITS This Method is used to Click And Enter A Value In A
-	 *         Table
+	 * @author @author Kowshik
+	 * 
+	 * This Method is used to Click And Enter A Value In A Table
 	 * 
 	 * @param Tablespec
 	 * @param InputParameter
@@ -411,7 +412,7 @@ public class OpenSoAmdFunctions {
 	 * verify Waiting For Aprorval
 	 * 
 	 * @author Kowshik
-	 * @return
+	 * @return boolean
 	 */
 	public boolean verifyWaitingForApproval1() {
 		commonFunc.hardWait(3000);
@@ -686,6 +687,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Validates Header Details in Open SO Amd
 	 * 
+	 * @author Kowshik
 	 * 
 	 * @param Location
 	 */
@@ -716,6 +718,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Change - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -756,6 +759,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Class Change - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceClassChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -796,6 +800,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Addition of Item - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean veriftyLocalCustomerDomesticAdditionofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -838,6 +843,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Deletion of Item - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyLocalCustomerDomesticDeletationofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -873,6 +879,7 @@ public class OpenSoAmdFunctions {
 	 * Verify a Cancel Scenrios With Line Items
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyaCancelStagesRecord() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -901,6 +908,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Change - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -940,6 +948,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Class Change - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceClassChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -979,6 +988,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Addition of Item - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean veriftyInterStateCustomerDomesticAdditionofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1021,6 +1031,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Deletion of Item - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyInterStateCustomerDomesticDeletationofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1055,6 +1066,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Change - Export Customer
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyExportCustomerPriceChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1092,6 +1104,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Class Change - Export Customer
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyExportCustomerPriceClassChanges() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1132,6 +1145,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Addition of Item - Export Customer
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyExportCustomerAdditionOfItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1174,6 +1188,7 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Deletion of Item - Export Customer
 	 * 
 	 * @author Kowshik
+	 * @return boolean
 	 */
 	public boolean verifyExportCustomerDeletationOfItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
