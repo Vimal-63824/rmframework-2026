@@ -350,7 +350,7 @@ public class ItemDetailsHandler {
 	}
 
 	/**
-	 *This Enum 'Open So Amendment Header Details Name column Name'
+	 * This Enum 'Open So Amendment Header Details Name column Name'
 	 */
 	public enum OpenSOAmdDetails {
 		LOCATION_ID, UNIT, CUSTOMER_ID, CUSTOMER_NAME, OSO_NO
@@ -365,6 +365,7 @@ public class ItemDetailsHandler {
 
 	/**
 	 * Get Open So Amd Header Details
+	 * 
 	 * @author Kowshik
 	 * 
 	 * @param Location
@@ -398,6 +399,7 @@ public class ItemDetailsHandler {
 
 	/**
 	 * Get Open so Line Details
+	 * 
 	 * @author Kowshik
 	 * 
 	 * @param ItemID
