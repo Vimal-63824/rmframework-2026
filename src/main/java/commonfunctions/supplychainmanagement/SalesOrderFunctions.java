@@ -1782,7 +1782,7 @@ public class SalesOrderFunctions {
 		BigDecimal LineAmount = VariableHandler.getSOLineAmount();
 		logs.logging("INFO", "Sales Order Line Amount :" + LineAmount);
 		String PriceBasis = verifyItemPriceBasis();
-		if (PriceBasis.equalsIgnoreCase("Open Order")) {
+		if (PriceBasis.equalsIgnoreCase("Open Order") || PriceBasis.equalsIgnoreCase("Price List")) {
 			flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath);
 			if (flag) {
 				String TradeDiscountPercentage = webDB.getTextFromElement(
@@ -2068,7 +2068,7 @@ public class SalesOrderFunctions {
 							+ itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.PRICE_BASIS_TYPE)
 							+ "Get Text Value :" + PriceBasis);
 		}
-		if (!"Open Order".equals(PriceBasis)) {
+		if ((!"Open Order".equals(PriceBasis)) && (!"Price List".equals(PriceBasis))) {
 			enterSODiscountDetails(SalesOrderLocators.SOTradeDiscountpercentageField, TradeDiscount);
 			commonFunc.checkRefreshCellsDisappear();
 		}
