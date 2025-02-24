@@ -218,7 +218,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateSalesOrderPage();
-				saleOrderFunc.validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+				saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				commonFunc.navigateSalesInvoicePage();
 				commonFunc.clickPendingIcon();

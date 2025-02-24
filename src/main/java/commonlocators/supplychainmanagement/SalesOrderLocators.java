@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -185,7 +186,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String CustSubGroup = "//input[@id='P191513134001_SOH_CUST_SUB_GRP']";
 	/** @Locator Xpath */
-	public static final String CustGroup= "//input[@id='P191513134001_CUST_GROUP']";
+	public static final String CustGroup = "//input[@id='P191513134001_CUST_GROUP']";
 	/** @Locator Xpath */
 	public static final String GeneralTab = "//label[@for='P191513134001_OVERALL_REG_PRM_3']";
 	/** @Locator Xpath */
@@ -210,21 +211,32 @@ public class SalesOrderLocators {
 	public static final String SGSTtable = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator Xpath */
 	public static final String UTGSTtable = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[14]";
-	
 	/** @Locator Xpath */
-	public static final String SOStatusTableText(String SOno) {
+	public static final String HeaderCancelButton = "//button[@id='B6827454401045500662']";
+	/** @Locator Xpath */
+	public static final String NoteAlertMessage = "//h6[@class='succ_msg']";
+	/** @Locator Xpath */
+	public static final String FindHeaderRadioButton = "//label[@for='P1915131339_RADIO_0']";
+
+	/** @Locator Xpath */
+	public static final String SOStatusLineTableText(String SOno) {
 		return "//a[text()='" + SOno + "']/../../td[24]";
+	}
+
+	/** @Locator Xpath */
+	public static final String SOStatusHeaderTableText(String SOno) {
+		return "//a[text()='" + SOno + "']/../../td[12]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String ItemRev(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[3]";
-	}	
+	}
 
 	/** @locatorType Xpath */
 	public static final String OrderedQty(int i) {
@@ -235,12 +247,12 @@ public class SalesOrderLocators {
 	public static final String UnitCostTable(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[7]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String DiscountAmountTable(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[8]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String TaxPercentage(String text) {
 		return "//td[text()='" + text + "']/../td[10]";
@@ -255,7 +267,7 @@ public class SalesOrderLocators {
 	public static final String TaxCGST(String text) {
 		return "//td[text()='" + text + "']/../td[12]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String TaxSGST(String text) {
 		return "//td[text()='" + text + "']/../td[13]";
@@ -265,7 +277,7 @@ public class SalesOrderLocators {
 	public static final String TaxUTGST(String text) {
 		return "//td[text()='" + text + "']/../td[14]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String ItemDescription(int i) {
 		return "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + " ]/td[4]";
@@ -285,10 +297,10 @@ public class SalesOrderLocators {
 	public static final String TaxPercent(int i) {
 		return "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[10]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "(//*[@id=\"ig_line_ig_grid_vc\"]/div/div/table[1])[2]/tbody/tr[" + i + "]/td[15]/a/span[contains(@style,'blue')]";
+		return "(//*[@id=\"ig_line_ig_grid_vc\"]/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td[15]/a/span[contains(@style,'blue')]";
 	}
-	
 }
