@@ -98,7 +98,8 @@ public class VariableHandler {
 	private static ThreadLocal<BigDecimal> SOGrossAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TotalSOGrossAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<String> PI_DocNo = new ThreadLocal<>();
-	private static ThreadLocal<String>OSOAnumber = new ThreadLocal<String>();
+	private static ThreadLocal<String> OSOAnumber = new ThreadLocal<String>();
+	private static ThreadLocal<String> AmendmentDocNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -731,15 +732,15 @@ public class VariableHandler {
 	public static void setOpenSOPriceAmount(String data) {
 		OpenSOPriceAmount.set(data);
 	}
-	
+
 	public static String getBankReceiptVouNo() {
 		return BankReceiptVouNo.get();
 	}
-	
+
 	public static void setBankReceiptVouNo(String data) {
 		BankReceiptVouNo.set(data);
 	}
-	
+
 	public static BigDecimal getSOLineAmount() {
 		return SOLineAmount.get();
 	}
@@ -747,7 +748,7 @@ public class VariableHandler {
 	public static void setSOLineAmount(BigDecimal data) {
 		SOLineAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOTotalLineAmount() {
 		return TotalSOLineAmount.get();
 	}
@@ -755,7 +756,7 @@ public class VariableHandler {
 	public static void setSOTotalLineAmount(BigDecimal data) {
 		TotalSOLineAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSODiscountAmount() {
 		return SODiscountAmount.get();
 	}
@@ -763,7 +764,7 @@ public class VariableHandler {
 	public static void setSODiscountAmount(BigDecimal data) {
 		SODiscountAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOTotalDiscountAmount() {
 		return TotalSODiscountAmount.get();
 	}
@@ -771,23 +772,23 @@ public class VariableHandler {
 	public static void setSOTotalDiscountAmount(BigDecimal data) {
 		TotalSODiscountAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOGrossAmount() {
 		return SOGrossAmount.get();
 	}
-	
+
 	public static void setSOGrossAmount(BigDecimal data) {
 		SOGrossAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOTotalGrossAmount() {
 		return TotalSOGrossAmount.get();
 	}
-	
+
 	public static void setSOTotalGrossAmount(BigDecimal data) {
 		TotalSOGrossAmount.set(data);
 	}
-	
+
 	public static String getPI_DocNo() {
 		return PI_DocNo.get();
 	}
@@ -795,11 +796,20 @@ public class VariableHandler {
 	public static void setPI_DocNo(String Data) {
 		PI_DocNo.set(Data);
 	}
-	
+
 	public static String getOSOAdocnum() {
 		return OSOAnumber.get();
 	}
-	public static void setOSOAdocnum (String data) {
+
+	public static void setOSOAdocnum(String data) {
 		OSOAnumber.set(data);
+	}
+
+	public static String getAmendmentDocNumber() {
+		return AmendmentDocNumber.get();
+	}
+
+	public static void setAmendmentDocNumber(String data) {
+		AmendmentDocNumber.set(data);
 	}
 }

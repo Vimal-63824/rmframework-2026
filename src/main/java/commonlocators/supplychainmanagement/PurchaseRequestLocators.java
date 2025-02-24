@@ -1,5 +1,8 @@
 package commonlocators.supplychainmanagement;
-
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
 public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseIDHeader = "//span[contains(@id,'PRH_RQST_NO_DISPLAY')]";

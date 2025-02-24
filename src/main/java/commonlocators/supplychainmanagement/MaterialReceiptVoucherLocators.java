@@ -44,6 +44,6 @@ public class MaterialReceiptVoucherLocators {
 
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptStatusTableText(String Mrno) {
-		return "//a[text()='" + Mrno + "']/../../td[last()]";
+		return "//a[text()='" + Mrno + "']/../../td[19]";
 	}
 }
