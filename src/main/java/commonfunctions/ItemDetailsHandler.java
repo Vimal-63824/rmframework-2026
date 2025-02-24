@@ -57,6 +57,10 @@ public class ItemDetailsHandler {
 			Open_Sale_Order.set(excelUtils.readAllDataInExcel(Filepath,
 					webDB.getDataFromProperties("OpenSOHeaderDetailsSheetName")));
 		}
+		if (SI_CustomerDetails.get() == null) {
+			SI_CustomerDetails.set(
+					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SICustomerDetailsSheetName")));
+		}
 	}
 
 	/**
@@ -96,7 +100,7 @@ public class ItemDetailsHandler {
 	 * This method used to return specific items particular Line Detail Data from
 	 * Item Details Sheet.
 	 * 
-  	 * @author Sakthi-GWL
+	 * @author Sakthi-GWL
 	 * @param itemName
 	 * @param LineDetailName
 	 * @return String resultData
