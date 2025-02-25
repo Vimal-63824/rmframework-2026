@@ -35,7 +35,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreateTickIcon = "//span[contains(@class,'check')]/parent::button[contains(@title,'Create')]";
 	/** @locatorType Xpath */
-	public static final String PostToastMessage = "//h6[@class='succ_msg']";
+	public static final String PostToastMessage = "//*[@class='succ_msg']";
 	/** @locatorType Xpath */
 	public static final String searchBar = "//input[@aria-label='Search']";
 	/** @locatorType Xpath */

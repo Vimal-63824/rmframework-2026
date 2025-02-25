@@ -156,12 +156,42 @@ public class ApprovalPageFunctions {
 			if (flag) {
 				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
 				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO",
 							"CheckBox select for Document Number " + Number + " and Process button clicked");
 					commonFunc.checkRefreshCellsDisappear();
 					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(3000);
+					if (webDB.verifyIsElementDisplayed(ApprovalPageLocators.AjaxMultiDocSelectWarning,
+							ElementType.Xpath)) {
+						logs.logging("INFO", "Ajax Message Displayed... Attempt to Approve Document Again");
+						webDB.navigateToRefresh();
+						logs.logging("INFO", "Page Refreshed..");
+						filterDocumentsforApproval(Number);
+						flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number),
+								ElementType.Xpath);
+						if (flag) {
+							webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number),
+									ElementType.Xpath);
+							flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
+								webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "CheckBox select for Document Number " + Number
+											+ " and Process button clicked");
+									commonFunc.checkRefreshCellsDisappear();
+									webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+									commonFunc.checkRefreshCellsDisappear();
+								}
+							}
+						}
+					}
 					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Approval Process Button IS Displayed");

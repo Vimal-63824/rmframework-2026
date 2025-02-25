@@ -35,7 +35,7 @@ public class InspectionDocumentsLocators {
 
 	/** @locatorType Xpath */
 	public static final String InspectionCheckBox(String GrnNo) {
-		return "//td[text()='" + GrnNo + "']/../td[18]";
+		return "//td[text()='" + GrnNo + "']/../td/input[@type='checkbox']";
 	}
 
 	/** @locatorType Xpath */

@@ -102,6 +102,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> AmendmentDocNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> MRPNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> ProductionOrderNumber = new ThreadLocal<>();
+	private static ThreadLocal<String[][]> DBTestdata = ThreadLocal.withInitial(() -> null);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -814,7 +815,7 @@ public class VariableHandler {
 	public static void setAmendmentDocNumber(String data) {
 		AmendmentDocNumber.set(data);
 	}
-	
+
 	public static String getMRPNumber() {
 		return MRPNumber.get();
 	}
@@ -829,5 +830,13 @@ public class VariableHandler {
 
 	public static void setProductionOrderNumber(String data) {
 		ProductionOrderNumber.set(data);
+	}
+
+	public static String[][] getDBTestData() {
+		return DBTestdata.get();
+	}
+
+	public static void setDBTestData(String[][] data) {
+		DBTestdata.set(data);
 	}
 }
