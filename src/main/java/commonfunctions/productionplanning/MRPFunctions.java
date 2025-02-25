@@ -284,12 +284,14 @@ public class MRPFunctions {
 		flag = webDB.waitForElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Check Exception Button Clicked");
 				webDB.clickAnElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 					}
@@ -348,8 +350,9 @@ public class MRPFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickRunMRPButton() {
-		flag = webDB.waitForElement(MRPLocators.MRP_RunMRPBtn, ElementType.Xpath);
+		flag = webDB.waitForClickElement(MRPLocators.MRP_RunMRPBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(MRPLocators.MRP_RunMRPBtn, ElementType.Xpath);
 			webDB.clickAnElement(MRPLocators.MRP_RunMRPBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);

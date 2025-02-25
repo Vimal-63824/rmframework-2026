@@ -44,4 +44,11 @@ public class PurchaseBillsLocators {
 	public static final String ApprovedStatus(String PbNo) {
 		return "//a[text()='" + PbNo + "']/../../td[13]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String TableData = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[8]";
+	/** @locatorType Xpath */
+	public static final String TDSU_S = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[26]";
+	/** @locatorType Xpath */
+	public static final String TDSLovButton = "//button[@id='C2385207596614310967_lov_btn']";
 }

@@ -1,5 +1,6 @@
 package com.roadmapERP.e2e;
 
+
 import org.testng.Assert;
 /**
  * @author Deepan-GWL, Sakthi
@@ -38,7 +39,8 @@ public class CoreProcessE2ETest {
 	@Test(priority = 2, groups = {
 			"Core Process" }, description = "Open Sales Order to Payment Receipt End to End Process")
 	public void VerifySalesOrderToPaymentReceipts() {
-		coreProcessPageFunctions.verifySalesOrderToPaymentReceipts();
+		flag = coreProcessPageFunctions.verifySalesOrderToPaymentReceipts();
+		Assert.assertTrue(flag);
 	}
 
 	/**

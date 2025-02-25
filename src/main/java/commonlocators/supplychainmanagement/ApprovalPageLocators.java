@@ -58,4 +58,7 @@ public class ApprovalPageLocators {
 	public static final String SOSelectCheckBox(String SONumber) {
 		return "//td[contains(text(),'" + SONumber + "')]/../td[1]/*";
 	}
+
+	/** @locatorType Xpath */
+	public static final String AjaxMultiDocSelectWarning = "//div[@role='alertdialog']";
 }

@@ -20,6 +20,7 @@ import java.math.RoundingMode;
 import java.time.Duration;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.VariableHandler;
 import commonfunctions.ItemDetailsHandler.POLineDetailsName;
@@ -39,6 +40,7 @@ public class PurchaseOrderFunctions {
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static PurchaseRequestFunctions PR_Func = new PurchaseRequestFunctions();
 	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
+	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 
 	/**
 	 * Verify Create Direct PO Adding Parameter
@@ -934,10 +936,12 @@ public class PurchaseOrderFunctions {
 		webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		if (flag) {
+			commonFunc.hardWait(3000);
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			flag = webDB.isElementEnabled(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Select All CheckBox Clicked in Pending PR and Create PO Enabled");
