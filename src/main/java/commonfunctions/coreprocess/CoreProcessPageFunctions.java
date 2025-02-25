@@ -15,6 +15,8 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.financials.PaymentReceiptsFunctions;
 import commonfunctions.financials.PurchaseBillsFunctions;
+import commonfunctions.productionplanning.MRPFunctions;
+import commonfunctions.productionplanning.ProductionOrderFunctions;
 import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
@@ -45,6 +47,8 @@ public class CoreProcessPageFunctions {
 	private static OpenSalesOrderFunctions openSOFunc = new OpenSalesOrderFunctions();
 	private static SalesOrderFunctions saleOrderFunc = new SalesOrderFunctions();
 	private static SalesInvoiceFunctions saleInvoiceFunc = new SalesInvoiceFunctions();
+	private static MRPFunctions mrpFunc = new MRPFunctions();
+	private static ProductionOrderFunctions productionOrderFunc = new ProductionOrderFunctions();
 
 	/**
 	 * This Method Is Used To Verify Purchase Request To Payment
@@ -218,7 +222,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateSalesOrderPage();
-				saleOrderFunc.validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+				saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				commonFunc.navigateSalesInvoicePage();
 				commonFunc.clickPendingIcon();
@@ -287,6 +291,114 @@ public class CoreProcessPageFunctions {
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occurs while executing 'verifySalesOrderToPaymentReceipts': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This Method used to verify Sale Order to MRP ETE Flow
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifySaleOrderToMRP() {
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			LocalDate date = LocalDate.now();
+			String Today = date.format(formatter);
+			LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+			String NextMonthToday = nextmonthdate.format(formatter);
+			String CustomerID = "CUS0015";
+			String Item = "HK-TVS-FG-10001";
+			String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+			String Qnty = RandomStringUtils.randomNumeric(2);
+			if (Qnty.equals("00")) {
+				Qnty = "10";
+			}
+			String Cost = RandomStringUtils.randomNumeric(2);
+			if (Cost.equals("00")) {
+				Cost = "10";
+			}
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateSalesOrderPage();
+			saleOrderFunc.verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+					CustomerID);
+			saleOrderFunc.addItemsInSO(Item);
+			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
+			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
+			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
+			saleOrderFunc.clickLineWiseDetailsButton();
+			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
+			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
+					SalesOrderLocators.SOSpecialDiscountpercentageField,
+					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
+			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
+					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
+					RandomStringUtils.randomNumeric(1));
+			saleOrderFunc.clickLineWiseDetailsSaveButton();
+			webDB.switchToDefaultContent();
+			saleOrderFunc.getSalesOrderTotalAmount();
+			saleOrderFunc.clickPostButton();
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.navigateToMRPScreenInProdPlanning();
+				mrpFunc.clickAddIconInMRP();
+				mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, "TEST MRP - 1", Today, "ALL");
+				mrpFunc.clickAddLinePlusIconInSources();
+				mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"),
+						NextMonthToday);
+				mrpFunc.clickSalesOrderDemandCheckBoxInSourceLines();
+				mrpFunc.clickSaveIconInSourcesTab();
+				mrpFunc.clickLoadDemandButtonInMRP();
+				mrpFunc.navigateToDemandTabInMRPScreen();
+				mrpFunc.searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+				mrpFunc.clickCheckExceptionAndSaveHeaderInMRP();
+				mrpFunc.navigateToExceptionTabInMRPScreen();
+				mrpFunc.validateNoExceptionDataShownInTableData();
+				mrpFunc.clickRunMRPButton();
+				mrpFunc.navigateToResultsTabInMRPScreen();
+				mrpFunc.verifyUnitResultsDetails(new String[] { "U100", "U100" });
+				mrpFunc.verifyItemResultsDetails(new String[] { "HK-TVS-FG-10001", "HK-TVS-RM-10001" });
+				mrpFunc.verifyUOMResultsDetails(new String[] { "NOS", "KGS" });
+//				mrpFunc.validateCalculationOfRawMaterialQuantity(Qnty, "0.432", "HK-TVS-RM-10001");
+				mrpFunc.clickHeaderSaveAndClickPost();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRPNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRPNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMRPScreenInProdPlanning();
+				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(), "Approved");
+				mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+				mrpFunc.clickReleaseButtonInMRP();
+				mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", Today, Today);
+				mrpFunc.clickReleaseButtonInReleaseFrame();
+				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(), "Released");
+				commonFunc.navigateToProductionOrderInProdPlanning();
+				productionOrderFunc.searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(), "Unreleased");
+				commonFunc.logoutUser();
+			}
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occurs while executing 'verifySaleOrderToMRP': " + e);
 			return false;
 		}
 	}

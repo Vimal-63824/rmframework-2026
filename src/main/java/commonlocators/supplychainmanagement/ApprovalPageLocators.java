@@ -36,6 +36,8 @@ public class ApprovalPageLocators {
 	public static final String BackButton = "//button[@id='B720942771947006229']";
 	/** @locatorType Xpath */
 	public static final String ApproveProcessButton = "//button[@id='B6042422688967462464']";
+	/** @locatorType Xpath */
+	public static final String Backicon = "//button[@id='B6827450002098500659']/span";
 
 	/** @locatorType Xpath */
 	public static final String PODetailsInfoBtn(String PONumber) {
@@ -46,14 +48,14 @@ public class ApprovalPageLocators {
 	public static final String POSelectCheckBox(String PONumber) {
 		return "//td[contains(text(),'" + PONumber + "')]/../td[1]/*";
 	}
-	
-	/** @locatorType Xpath*/
+
+	/** @locatorType Xpath */
 	public static final String SODetailsInfoBtn(String SONumber) {
 		return "//td[contains(text(),'" + SONumber + "')]/../td[3]/*";
 	}
-	/** @locatorType Xpath*/
+
+	/** @locatorType Xpath */
 	public static final String SOSelectCheckBox(String SONumber) {
 		return "//td[contains(text(),'" + SONumber + "')]/../td[1]/*";
 	}
-
 }

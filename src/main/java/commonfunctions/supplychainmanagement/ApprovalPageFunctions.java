@@ -1,4 +1,5 @@
 package commonfunctions.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -129,9 +130,9 @@ public class ApprovalPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyNavigateback() {
-		flag = webDB.waitForElement(ApprovalPageLocators.BackButton, ElementType.Xpath);
+		flag = webDB.waitForElement(ApprovalPageLocators.Backicon, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(ApprovalPageLocators.BackButton, ElementType.Xpath);
+			webDB.clickAnElement(ApprovalPageLocators.Backicon, ElementType.Xpath);
 			flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath, 45);
 			if (flag) {
 				logs.logging("INFO", "Back Button Is Clicked Verified Navigate To Approval Table Page");
@@ -147,8 +148,7 @@ public class ApprovalPageFunctions {
 	 * @param PONumber
 	 */
 	public void verifyApproveWithDocNumber(String Number) {
-		commonFunc.hardWait(2000);
-		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);

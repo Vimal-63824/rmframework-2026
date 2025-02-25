@@ -96,7 +96,6 @@ public class SaleOrderTest {
 	public void verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
-
 	}
 
 	/**
@@ -130,7 +129,6 @@ public class SaleOrderTest {
 	public void verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
-
 	}
 
 	/**
@@ -153,14 +151,77 @@ public class SaleOrderTest {
 	public void verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
-
 	}
-/**
- * @author Harikrishna -RMITS
- *Is Used to set the Variable Handler To
-	 *         Zero After Finishing One Test Scenarios
- * @param result
- */
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Catalog
+	 *         Price- Similar Stock and Customer UOM
+	 */
+	@Test(priority = 13, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Catalog
+	 *         Price- DisSimilar Stock and Customer UOM
+	 */
+	@Test(priority = 14, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is Catalog
+	 *         Price- Similar Stock and Customer UOM
+	 */
+	@Test(priority = 15, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
+	public void verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is Catalog
+	 *         Price- DisSimilar Stock and Customer UOM
+	 */
+	@Test(priority = 16, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
+	public void verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Cancel Sales Order Header Document
+	 */
+	@Test(priority = 17, groups = { "SalesOrder" }, description = "Cancel Sales Order Header Document")
+	public void verifyCancelSalesOrder() {
+		flag = SalesOrdFunc.verifyCancelSalesOrder();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is PriceList-
+	 *         Similar Stock and Customer UOM
+	 */
+	@Test(priority = 18, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna -RMITS Is Used to set the Variable Handler To Zero After
+	 *         Finishing One Test Scenarios
+	 * @param result
+	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result) {
 		SalesOrdFunc.verifyAfterMethod();
