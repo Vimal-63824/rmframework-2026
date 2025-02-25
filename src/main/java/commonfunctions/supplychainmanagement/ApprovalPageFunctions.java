@@ -148,8 +148,7 @@ public class ApprovalPageFunctions {
 	 * @param PONumber
 	 */
 	public void verifyApproveWithDocNumber(String Number) {
-		commonFunc.hardWait(2000);
-		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
