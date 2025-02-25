@@ -499,7 +499,6 @@ public class CommonFunctions {
 	 * This method is used to Navigate Sales Order Screen
 	 * 
 	 * @author Harikrishna - RMITS
-	 * @return Boolean Flag
 	 */
 	public void navigateSalesOrderPage() {
 		clickLeftNavigationBar();
@@ -507,10 +506,10 @@ public class CommonFunctions {
 		clickSalesTab();
 		clickSalesTransactionTab();
 		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-		if (flag) {
+		if(flag) {
 			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-			if (flag) {
+			if(flag) {
 				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 			}
 		}

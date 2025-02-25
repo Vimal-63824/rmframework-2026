@@ -207,6 +207,17 @@ public class SaleOrderTest {
 	}
 
 	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is PriceList-
+	 *         Similar Stock and Customer UOM
+	 */
+	@Test(priority = 18, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
+	public void verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * @author Harikrishna -RMITS Is Used to set the Variable Handler To Zero After
 	 *         Finishing One Test Scenarios
 	 * @param result
