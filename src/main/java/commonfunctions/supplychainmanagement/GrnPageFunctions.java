@@ -89,6 +89,7 @@ public class GrnPageFunctions {
 			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
 			flag = webDB.waitForClickElement(GrnLocators.PendingPOSelectAllButton, ElementType.Xpath);
 			if (flag) {
+				commonFunc.hardWait(3000);
 				webDB.clickAnElement(GrnLocators.PendingPOSelectAllButton, ElementType.Xpath);
 				logs.logging("INFO", " Document Fully Selected");
 				flag = webDB.waitForElement(GrnLocators.PendingPOCreateGRN, ElementType.Xpath);
@@ -819,7 +820,7 @@ public class GrnPageFunctions {
 										webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 										if (flag) {
 											logs.logging("INFO", "Lot Item Successfully Saved");
-											commonFunc.hardWait(3000);
+											commonFunc.hardWait(5000);
 											if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
 													ElementType.Xpath)) {
 												webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,

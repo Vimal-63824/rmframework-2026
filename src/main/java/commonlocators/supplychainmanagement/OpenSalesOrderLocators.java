@@ -80,7 +80,7 @@ public class OpenSalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSOOkButtonForward = "//*[@id='B1612723241586671539']";
 	/** @locatorType Xpath */
-	public static final String OpenSOFindPageSearchBtn = "//button[contains(@id,'B844395320575281167')]";
+	public static final String OpenSOFindPageSearchBtn = "//button[@id='B844395320575281167']";
 	/** @locatorType Xpath */
 	public static final String FindOpenSOItemLovBtn = "//button[@id='P19151310131_ITEM_1_lov_btn']";
 	/** @locatorType Xpath */
@@ -110,7 +110,7 @@ public class OpenSalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithDocNo(String Docno) {
-		return "//*[text()='" + Docno + "']/../../td[15]/div";
+		return "//*[text()='" + Docno + "']/../td[15]/div";
 	}
 
 	/** @locatorType Xpath */

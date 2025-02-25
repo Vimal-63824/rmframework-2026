@@ -1,4 +1,5 @@
 package commonfunctions.financials;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -68,6 +69,7 @@ public class PurchaseBillsFunctions {
 										flag = webDB.waitForElement(PurchaseBillsLocators.LocationId,
 												ElementType.Xpath);
 										storePurchaseVoucherNumber();
+										verifyAddTDSNumber();
 										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
 												ElementType.Xpath)) {
 											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
@@ -82,6 +84,25 @@ public class PurchaseBillsFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * verify Add TDS Number
+	 * 
+	 * @author Deepan
+	 */
+	public void verifyAddTDSNumber() {
+		webDB.moveToElement(PurchaseBillsLocators.TableData, ElementType.Xpath);
+		webDB.moveToElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocators.TDSLovButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.TDSLovButton,
+						commonFunc.getDataFromTestDataSheet("TDSValue"));
+			}
+		}
 	}
 
 	/**

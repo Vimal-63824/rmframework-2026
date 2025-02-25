@@ -305,11 +305,13 @@ public class CoreProcessPageFunctions {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate date = LocalDate.now();
+			String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
 			String Today = date.format(formatter);
 			LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
 			String NextMonthToday = nextmonthdate.format(formatter);
-			String CustomerID = "CUS0015";
-			String Item = "HK-TVS-FG-10001";
+			String CustomerID = commonFunc.getDataFromTestDataSheet("Customer");
+			String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+			String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 			String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 			String Qnty = RandomStringUtils.randomNumeric(2);
 			if (Qnty.equals("00")) {
@@ -325,7 +327,7 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 					CustomerID);
-			saleOrderFunc.addItemsInSO(Item);
+			saleOrderFunc.addItemsInSO(FGItem);
 			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
 			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
@@ -357,7 +359,7 @@ public class CoreProcessPageFunctions {
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				commonFunc.navigateToMRPScreenInProdPlanning();
 				mrpFunc.clickAddIconInMRP();
-				mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, "TEST MRP - 1", Today, "ALL");
+				mrpFunc.fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
 				mrpFunc.clickAddLinePlusIconInSources();
 				mrpFunc.enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"),
 						NextMonthToday);
@@ -371,11 +373,14 @@ public class CoreProcessPageFunctions {
 				mrpFunc.validateNoExceptionDataShownInTableData();
 				mrpFunc.clickRunMRPButton();
 				mrpFunc.navigateToResultsTabInMRPScreen();
-				mrpFunc.verifyUnitResultsDetails(new String[] { "U100", "U100" });
-				mrpFunc.verifyItemResultsDetails(new String[] { "HK-TVS-FG-10001", "HK-TVS-RM-10001" });
-				mrpFunc.verifyUOMResultsDetails(new String[] { "NOS", "KGS" });
-//				mrpFunc.validateCalculationOfRawMaterialQuantity(Qnty, "0.432", "HK-TVS-RM-10001");
+				mrpFunc.verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+						commonFunc.getDataFromTestDataSheet("Unit_100") });
+				mrpFunc.verifyItemResultsDetails(new String[] { FGItem, RMItem });
+				mrpFunc.verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+						commonFunc.getDataFromTestDataSheet("Kgs") });
+//				mrpFunc.validateCalculationOfRawMaterialQuantity(Qnty, "0.432", RMItem);
 				mrpFunc.clickHeaderSaveAndClickPost();
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername");
@@ -386,14 +391,17 @@ public class CoreProcessPageFunctions {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateToMRPScreenInProdPlanning();
-				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(), "Approved");
+				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
 				mrpFunc.clickReleaseButtonInMRP();
 				mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", Today, Today);
 				mrpFunc.clickReleaseButtonInReleaseFrame();
-				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(), "Released");
+				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
+						commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
 				commonFunc.navigateToProductionOrderInProdPlanning();
-				productionOrderFunc.searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(), "Unreleased");
+				productionOrderFunc.searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+						commonFunc.getDataFromTestDataSheet("UnreleasedStatus"));
 				commonFunc.logoutUser();
 			}
 			return true;
