@@ -68,34 +68,23 @@ public class CoreProcessPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
-		flag = grnPageFunctions.clickPendingPoAndSearchPoNo();
+		grnPageFunctions.clickPendingPoAndSearchPoNo();
+		grnPageFunctions.clickSelectAllButton();
+		grnPageFunctions.createGrn();
+		grnPageFunctions.supplierBillNumberAndDcNumber();
+		grnPageFunctions.AddLotNumber(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
+				commonFunc.getDataFromTestDataSheet("LotNo"));
+		grnPageFunctions.overAllSaveAndPost();
+		grnPageFunctions.waitingForApproval();
 		if (flag) {
-			flag = grnPageFunctions.ClickSelectAllButton();
-			if (flag) {
-				flag = grnPageFunctions.CreateGrn();
-				if (flag) {
-					flag = grnPageFunctions.SupplierBillNumberAndDcNumber();
-					if (flag) {
-						flag = grnPageFunctions.AddLotNumber(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"),
-								commonFunc.getDataFromTestDataSheet("LotNo"));
-						if (flag) {
-							flag = grnPageFunctions.OverAllSaveAndPost();
-							if (flag) {
-								flag = grnPageFunctions.WaitingForApproval();
-								if (flag) {
-									flag = commonFunc.logoutUser();
-									commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-											System.getProperty("SelvaPassword"), "SelvaUsername");
-									commonFunc.naviagteGrnPage();
-									verifyValidateGrnStatus(VariableHandler.getGrnDocNumber(),
-											commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-									flag = commonFunc.logoutUser();
-								}
-							}
-						}
-					}
-				}
-			}
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+					"SelvaUsername");
+			commonFunc.naviagteGrnPage();
+			verifyValidateGrnStatus(VariableHandler.getGrnDocNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			flag = commonFunc.logoutUser();
+
 		}
 		assertTrue(flag);
 	}
@@ -229,7 +218,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateSalesOrderPage();
-				saleOrderFunc.validateSalesOrderDocumentStatus(VariableHandler.getSONumber(),
+				saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				commonFunc.navigateSalesInvoicePage();
 				commonFunc.clickPendingIcon();

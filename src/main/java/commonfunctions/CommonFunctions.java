@@ -25,6 +25,7 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
+import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
@@ -431,6 +432,7 @@ public class CommonFunctions {
 		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
+		webDB.switchToMainTab();
 		enterUrl();
 	}
 
@@ -497,7 +499,6 @@ public class CommonFunctions {
 	 * This method is used to Navigate Sales Order Screen
 	 * 
 	 * @author Harikrishna - RMITS
-	 * @return Boolean Flag
 	 */
 	public void navigateSalesOrderPage() {
 		clickLeftNavigationBar();
@@ -505,10 +506,10 @@ public class CommonFunctions {
 		clickSalesTab();
 		clickSalesTransactionTab();
 		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-		if (flag) {
+		if(flag) {
 			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-			if (flag) {
+			if(flag) {
 				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 			}
 		}
@@ -1264,4 +1265,84 @@ public class CommonFunctions {
 		navigateToInventoryReportsTab();
 		navigateToStocksTab();
 	}
+
+	/**
+	 * This method is used to Navigate Proforma Invoice Screen
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void navigateProformaInvoice() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Node, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Proforma_Inv_Node, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_Inv_Pend_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated to Proforma Invoice Screen Sucessfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+	/*
+	 * This method used to Navigate Purchase Order Page By Using Purchase User
+	 * 
+	 * @authorPremkumar.K-RMITS
+	 */
+
+	public void navigatePurchaseOrderPageForPurchaseUser() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseOrderTabForPurchaseUser, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseOrderTabForPurchaseUser, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Kowshik This Method IS used To Click the Sales Node
+	 * @return Boolean
+	 */
+	public boolean clicksalesnode() {
+		flag = webDB.waitForClickElement(SalesOrderLocators.sales, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.sales, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesOrderLocators.setup, ElementType.Xpath);
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Kowshik This Method Is used To Navigate Open Sales Order Main Screen
+	 * @return boolean
+	 */
+	public boolean clickOpensoNode() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clicksalesnode();
+		flag = webDB.waitForClickElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSalesOrderLocators.Transactions, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSalesOrderLocators.OpensoScreens, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSoAmdLocators.OpenSoAmdRadio, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "navigated open so screen successfully");
+				}
+			}
+		}
+		return flag;
+	}
+
 }

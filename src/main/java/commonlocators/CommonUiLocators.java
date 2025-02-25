@@ -161,5 +161,7 @@ public class CommonUiLocators {
 	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[9]";
 	/** @locatorType Xpath */
 	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderTabForPurchaseUser = "//*[@id=\"t_TreeNav_19\"]/div[2]/a";
 
 }
