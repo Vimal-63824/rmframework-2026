@@ -254,10 +254,12 @@ public class PaymentReceiptsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPaymentReceiptApprovalStatus() {
+		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.VoucherNumberLovButton,
 				VariableHandler.getBPvNumber());
 		flag = webDB.waitForElement(PaymentReceiptsLocators.ApproveSearchButton, ElementType.Xpath);
 		if (flag) {
+			commonFunc.hardWait(2000);
 			webDB.clickAnElement(PaymentReceiptsLocators.ApproveSearchButton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
 			commonFunc.hardWait(1000);

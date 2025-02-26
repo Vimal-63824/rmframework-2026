@@ -1,4 +1,7 @@
 package commonfunctions.supplychainmanagement;
+
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -23,6 +26,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.ItemDetailsHandler.PRLineDetailsName;
 import commonfunctions.VariableHandler;
@@ -38,6 +42,7 @@ public class PurchaseRequestFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static ItemDetailsHandler itmDtlHandler = new ItemDetailsHandler();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General
@@ -200,6 +205,7 @@ public class PurchaseRequestFunctions {
 		validateDepartmentInPRHeader(Department);
 		validateRequestorInPRHeader(Requester);
 		validateCPCCodeInPRHeader(CPCCode);
+		purchaseRequestHeaderValidation(Location, Unit, PRType, Prefix, CPCCode, Department, Requester);
 	}
 
 	/**
@@ -1293,5 +1299,55 @@ public class PurchaseRequestFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.contains(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual And Expected Values");
+		} else {
+			logs.logging("INFO", "Mismatch With Actual And Expected");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Purchase Request Header Validation
+	 * 
+	 * @author Deepan-GWL
+	 * @param Location
+	 * @param Unit
+	 * @param PRType
+	 * @param Prefix
+	 * @param CPCCode
+	 * @param Department
+	 * @param Requester
+	 */
+	public void purchaseRequestHeaderValidation(String Location, String Unit, String PRType, String Prefix,
+			String CPCCode, String Department, String Requester) {
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("UnitValue")), Unit);
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("LocationValue")), Location);
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("SourceValue")), PRType);
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("PrhValue")), Prefix);
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("CCCode")), CPCCode);
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("DeptValue")), Department);
+		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("RequestorValue")), Requester);
+
 	}
 }

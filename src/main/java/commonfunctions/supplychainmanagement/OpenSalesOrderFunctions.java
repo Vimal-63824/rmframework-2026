@@ -300,14 +300,15 @@ public class OpenSalesOrderFunctions {
 	 * @return
 	 */
 	public boolean findStatusOfOpenSOWithItemAndCustomer(String Item, String Customer, String Date, String Status) {
-		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOItemLovBtn, Item);
-		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOCustomerLovBtn, Customer);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.FindOpenSODocDateInput,
 				OpenSalesOrderLocators.FindOpenSODocDateInput, Date);
+		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOItemLovBtn, Item);
+		commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.FindOpenSOCustomerLovBtn, Customer);
 		flag = webDB.selectDropDownByText(OpenSalesOrderLocators.FindOpenSOStatusSelect, Status, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
+			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
@@ -315,6 +316,14 @@ public class OpenSalesOrderFunctions {
 						ElementType.Xpath)) {
 					logs.logging("INFO", "No Data was in Approved Status");
 					flag = false;
+				} else {
+					flag = webDB.waitForElement(OpenSalesOrderLocators.FindStatusTableWithDocNo(Item),
+							ElementType.Xpath);
+					if (flag) {
+						String StatusText = webDB.getTextFromElement(
+								OpenSalesOrderLocators.FindStatusTableWithDocNo(Item), ElementType.Xpath);
+						flag = Status.equalsIgnoreCase(StatusText);
+					}
 				}
 				if (flag) {
 					List<WebElement> elements = webDB.getDriver()
@@ -375,6 +384,7 @@ public class OpenSalesOrderFunctions {
 			logs.logging("Info", "Open So Doc Number Passed Sucessfully ");
 			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 				flag = webDB.waitForClickElement(OpenSalesOrderLocators.FindStatusTableWithDocNo(OpenSODocNo),
 						ElementType.Xpath);

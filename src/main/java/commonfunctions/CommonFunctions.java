@@ -29,6 +29,8 @@ import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
+import commonlocators.productionplanning.MRPLocators;
+import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
@@ -1101,7 +1103,7 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
-	/*
+	/**
 	 * Navigate To Material Request
 	 * 
 	 * @author Deepan-GWL
@@ -1145,7 +1147,7 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 * @return boolean flag
 	 */
-	public boolean navigateOpenSO() {
+	public void navigateOpenSO() {
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
 		clickSalesTab();
@@ -1158,7 +1160,7 @@ public class CommonFunctions {
 				logs.logging("INFO", "navigated open so screen successfully");
 			}
 		}
-		return flag;
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1343,6 +1345,80 @@ public class CommonFunctions {
 			}
 		}
 		return flag;
+	}
+
+	/**
+	 * To Click a Production Planning Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickProductionPlanningTab() {
+		flag = webDB.waitForElement(CommonUiLocators.ProductionPlanningTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ProductionPlanningTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Production Planning Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Click a Production Planning Transaction Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickProductionPlanningTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Production Planning Tansaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Navigate MRP Screen In Production Planning
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToMRPScreenInProdPlanning() {
+		clickLeftNavigationBar();
+		clickProductionPlanningTab();
+		clickProductionPlanningTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
+			flag = webDB.waitForElement(MRPLocators.FindMRPNoLovBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Production Planning MRP Screen Navigated Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Navigate Production Order Screen In Production Planning
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToProductionOrderInProdPlanning() {
+		clickLeftNavigationBar();
+		clickProductionPlanningTab();
+		clickProductionPlanningTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_ProductionOrder, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_ProductionOrder, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.FindMRPNoLovBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Production Planning - Production Order Screen Navigated Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
 }

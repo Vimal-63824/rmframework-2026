@@ -35,7 +35,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreateTickIcon = "//span[contains(@class,'check')]/parent::button[contains(@title,'Create')]";
 	/** @locatorType Xpath */
-	public static final String PostToastMessage = "//h6[@class='succ_msg']";
+	public static final String PostToastMessage = "//*[@class='succ_msg']";
 	/** @locatorType Xpath */
 	public static final String searchBar = "//input[@aria-label='Search']";
 	/** @locatorType Xpath */
@@ -163,5 +163,15 @@ public class CommonUiLocators {
 	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTabForPurchaseUser = "//*[@id=\"t_TreeNav_19\"]/div[2]/a";
+	/** @locatorType Xpath */
+	public static final String ProductionPlanningTab = "//span[contains(text(),'Production Planning')]/ancestor::li/span";
+	/** @locatorType Xpath */
+	public static final String ProdPlan_TransactionTab = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/span";
+	/** @locatorType Xpath */
+	public static final String ProdPlan_Transaction_MRPScreen = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String ProdPlan_Transaction_ProductionOrder = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[4]";
+	/** @locatorType Xpath */
+	public static final String NoDataFoundContainerLists = "//div[@aria-label='No data found']";
 
 }

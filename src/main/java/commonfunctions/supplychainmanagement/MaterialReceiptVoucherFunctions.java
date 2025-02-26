@@ -41,6 +41,7 @@ public class MaterialReceiptVoucherFunctions {
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+					commonFunc.hardWait(3000);
 					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
@@ -59,6 +60,7 @@ public class MaterialReceiptVoucherFunctions {
 										ElementType.Xpath);
 								flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 								if (flag) {
+									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
 									webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 									webDB.switchToDefaultContent();

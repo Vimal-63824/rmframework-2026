@@ -46,11 +46,13 @@ public class InspectionDocumentFunctions {
 						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
 								ElementType.Xpath);
 						if (flag) {
+							commonFunc.hardWait(3000);
 							logs.logging("INFO", "Inspection CheckBox Is Displayed");
 							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
 									ElementType.Xpath);
 							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 							if (flag) {
+								commonFunc.hardWait(3000);
 								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
 								if (flag) {

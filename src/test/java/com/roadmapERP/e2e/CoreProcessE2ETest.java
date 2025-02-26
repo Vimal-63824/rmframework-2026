@@ -1,5 +1,7 @@
 package com.roadmapERP.e2e;
 
+
+import org.testng.Assert;
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -37,7 +39,19 @@ public class CoreProcessE2ETest {
 	@Test(priority = 2, groups = {
 			"Core Process" }, description = "Open Sales Order to Payment Receipt End to End Process")
 	public void VerifySalesOrderToPaymentReceipts() {
-		coreProcessPageFunctions.verifySalesOrderToPaymentReceipts();
+		flag = coreProcessPageFunctions.verifySalesOrderToPaymentReceipts();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Sale Order to MRP ETE
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 3, groups = { "Core Process" }, description = "Sales Order to MRP End to End Process")
+	public void VerifySaleOrderToMRP() {
+		flag = coreProcessPageFunctions.verifySaleOrderToMRP();
+		Assert.assertTrue(flag);
 	}
 
 	/**
