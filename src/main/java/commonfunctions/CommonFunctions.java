@@ -432,6 +432,8 @@ public class CommonFunctions {
 		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setTotalDiscountAmount(BigDecimal.ZERO);
 		VariableHandler.setTaxAmount(BigDecimal.ZERO);
+		VariableHandler.setIndividualAmount(BigDecimal.ZERO);
+		VariableHandler.setDiscountAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
@@ -508,10 +510,10 @@ public class CommonFunctions {
 		clickSalesTab();
 		clickSalesTransactionTab();
 		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 			}
 		}
