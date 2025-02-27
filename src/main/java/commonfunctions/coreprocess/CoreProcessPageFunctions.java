@@ -169,11 +169,11 @@ public class CoreProcessPageFunctions {
 				openSOFunc.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"),
 						CustomerID, OpenSOPrefix);
 				openSOFunc.fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
-				openSOFunc.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo(Today);
+				openSOFunc.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
 				openSOFunc.clickFetchCustomerAndSelectItemInOpenSO(Item);
 				openSOFunc.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
 				openSOFunc.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
-				openSOFunc.enterEffectiveFromAndToDate(Today, Today);
+				openSOFunc.enterEffectiveFromAndToDate(Today, Today, Today);
 				openSOFunc.clickHeaderSaveAndClickPostBtnInOpenSO();
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
@@ -409,5 +409,15 @@ public class CoreProcessPageFunctions {
 			logs.logging("INFO", "Exception occurs while executing 'verifySaleOrderToMRP': " + e);
 			return false;
 		}
+	}
+
+	public static void main(String[] args) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		System.out.println(Today);
+		LocalDate date1 = LocalDate.now().minusDays(1);
+		String YesterDay = date1.format(formatter);
+		System.out.println(YesterDay);
 	}
 }

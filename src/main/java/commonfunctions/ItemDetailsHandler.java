@@ -18,6 +18,7 @@ public class ItemDetailsHandler {
 	private static ThreadLocal<String[][]> SI_CustomerDetails = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String[][]> Open_SO_Lines_details = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String[][]> Open_Sale_Order = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String[][]> Open_SO_HeaderDetails = ThreadLocal.withInitial(() -> null);
 
 	/**
 	 * This Constructor used to set PR_LineDetails data from ItemDetails.xlsx file.
@@ -434,5 +435,47 @@ public class ItemDetailsHandler {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * This Enum of get Columns Of Open SO Amendment
+	 * 
+	 * @author Kowshik
+	 */
+	public enum OpenSOHeaderDetailsName {
+		LOCATION_ID, UNIT, CUSTOMER_ID, CUSTOMER_NAME, OSO_NO
+	}
+
+	/**
+	 * get Header Details Open So Amd
+	 * 
+	 * @param Location
+	 * @param HeaderDetailName
+	 * @return String
+	 * @author Kowshik
+	 */
+	public String getOpenSOHeaderDetails(String Location, OpenSOHeaderDetailsName HeaderDetailName) {
+		String result2 = null;
+		int columnIndex = 0;
+		int itemColumnIndex = 0;
+		if (Open_SO_HeaderDetails.get() == null || Open_SO_HeaderDetails.get().length == 0) {
+			Open_SO_HeaderDetails.set(excelUtils.readAllDataInExcel(Filepath, "OPEN SALES"));
+		}
+		String[] headers = Open_SO_HeaderDetails.get()[0];
+		for (int i = 0; i < headers.length; i++) {
+			if (headers[i].trim().equalsIgnoreCase(HeaderDetailName.name().trim())) {
+				columnIndex = i;
+			}
+			if (headers[i].trim().equalsIgnoreCase(OpenSOHeaderDetailsName.LOCATION_ID.name().trim())) {
+				itemColumnIndex = i;
+			}
+		}
+		for (int i = 1; i < Open_SO_HeaderDetails.get().length; i++) {
+			if (Open_SO_HeaderDetails.get()[i][itemColumnIndex].trim().equalsIgnoreCase(Location.trim())) {
+				result2 = Open_SO_HeaderDetails.get()[i][columnIndex];
+				break;
+			}
+		}
+		return result2;
 	}
 }

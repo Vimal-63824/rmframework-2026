@@ -12,7 +12,7 @@ public class OpenSOTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
-	static OpenSalesOrderFunctions OSO = new OpenSalesOrderFunctions();
+	static OpenSalesOrderFunctions OpenSOFunc = new OpenSalesOrderFunctions();
 
 	/**
 	 * Open SO (Rate Contract) - Export Customer
@@ -25,7 +25,7 @@ public class OpenSOTest {
 	@Test(priority = 1, groups = {
 			"Open Sales Order" }, description = "Open SO (Rate Contract) - Domestic Customer , Open SO (Rate Contract) - Export Customer")
 	public void VerifyOpenSo() {
-//		OSO.VerifyOpenso();
+//		OpenSOFunc.verifyOpenSO();
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class OpenSOTest {
 	 */
 	@Test(priority = 2, groups = { "Cancel Open SO" }, description = "Cancelled Open SO")
 	public void VerifyCancelStatement() {
-//		OSO.VerifyCancelStatement();
+		OpenSOFunc.verifyCancelStatement();
 	}
 
 }

@@ -1518,18 +1518,27 @@ public class EmployeeMasterFunctions {
 			int a = 0;
 			List<WebElement> LeaveIDs = webDB.getDriver()
 					.findElements(By.xpath(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveData));
-			for (int i = 0; i < LeaveIDs.size(); i++) {
-				if (LeaveIDs.size() == VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().size()) {
-					for (String leaveentitle : VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs()) {
-						if (LeaveIDs.get(i).getText().equals(leaveentitle)) {
-							flag = true;
-							a++;
-						} else {
-							flag = false;
+			flag = LeaveIDs.size() == VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().size();
+			if (flag) {
+				aa: for (int i = 0; i < LeaveIDs.size(); i++) {
+					if (flag) {
+						bb: for (int j = 0; j < VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().size(); j++) {
+							if (VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().get(j)
+									.equalsIgnoreCase(LeaveIDs.get(i).getText())) {
+								logs.logging("INFO",
+										"Verified With Entitled Leave and Displayed Leave ID in Leave Details: "
+												+ LeaveIDs.get(i).getText());
+								flag = true;
+								a++;
+								break bb;
+							} else {
+								flag = false;
+							}
 						}
+					} else {
+						flag = false;
+						break aa;
 					}
-				} else {
-					flag = false;
 				}
 			}
 			flag = (a == VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().size());
@@ -2244,6 +2253,7 @@ public class EmployeeMasterFunctions {
 				logs.logging("INFO", "Shift Updated for the Employee: " + Shift);
 				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_UpdateZoneLovbtn, Zone);
 				VariableHandler.setEmpZone(Zone);
+				switchToUpdateIframe();
 				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateMaritalStatus, ElementType.Xpath);
 				if (flag) {
 					flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_UpdateMaritalStatus, MaritalStatus,
@@ -2271,6 +2281,7 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_UpdateCategoryLovbtn, Category);
 			VariableHandler.setEmpCompanyCategory(Category);
+			switchToUpdateIframe();
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateAccountCategoryLovbtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_UpdateAccountCategoryLovbtn,
@@ -2296,6 +2307,7 @@ public class EmployeeMasterFunctions {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_UpdatePayrollGroupLovbtn,
 					PayrollGrp);
 			VariableHandler.setEmpPayrollGroup(PayrollGrp);
+			switchToUpdateIframe();
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateNoticePeriod, ElementType.Xpath);
 			if (flag) {
 				webDB.clearText(EmployeeMasterLocators.AddEmp_UpdateNoticePeriod, ElementType.Xpath);
@@ -2380,6 +2392,7 @@ public class EmployeeMasterFunctions {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateAddressCityLovBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_UpdateAddressCityLovBtn, City);
+			switchToUpdateIframe();
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateAddressZipCode, ElementType.Xpath);
 			if (flag) {
 				webDB.clearText(EmployeeMasterLocators.AddEmp_UpdateAddressZipCode, ElementType.Xpath);
