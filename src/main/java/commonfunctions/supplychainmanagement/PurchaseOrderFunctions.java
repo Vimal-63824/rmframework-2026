@@ -936,7 +936,7 @@ public class PurchaseOrderFunctions {
 		webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(5000);
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);

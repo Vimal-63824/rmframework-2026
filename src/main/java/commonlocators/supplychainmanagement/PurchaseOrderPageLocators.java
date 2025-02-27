@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -76,7 +77,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String DeleteLineItemPO(String ItemName) {
-		return "//td[text()='" + ItemName + "']/../td[18]/a";
+		return "//td[text()='" + ItemName + "']/../td/a/span[contains(@style,'tomato')]";
 	}
 
 	/** @locatorType Xpath */

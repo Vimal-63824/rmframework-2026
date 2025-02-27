@@ -206,7 +206,7 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyDirectPOImportMaterialWithSimilarStockAndSupplierUOM() {
-		purchaseOrderFunctions.verifyDirectPODomesticMaterialSimilarUOM();
+		purchaseOrderFunctions.verifyDirectPOImportMaterialSimilarUOM();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
@@ -1035,11 +1035,11 @@ public class POAmendmentFunctions {
 				assertTrue(flag);
 			}
 		} else {
-			for (int j = 12; j <= 15; j++) {
+			for (int j = 13; j <= 16; j++) {
 				String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
 						ElementType.Xpath);
 				logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
-				flag = TaxAmount.equals(commonFunc.getDataFromTestDataSheet("Zero"));
+				flag = TaxAmount.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
 				if (flag) {
 
 				} else {
