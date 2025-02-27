@@ -7,8 +7,8 @@ import static org.testng.Assert.assertTrue;
 import java.math.BigDecimal;
 import commonfunctions.CommonFunctions;
 import commonfunctions.ItemDetailsHandler;
+import commonfunctions.ItemDetailsHandler.OpenSOHeaderDetailsName;
 import commonfunctions.ItemDetailsHandler.OpenSOAmdDetails;
-import commonfunctions.ItemDetailsHandler.OpenSoAmdLinesDetails;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
@@ -729,16 +729,16 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PC_Local"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
 				commonFunc.getDataFromTestDataSheet("MRP_Price"));
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
-		validatesOpenSoAmendmenHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		validateTaxAmountInLineDetails();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
@@ -762,7 +762,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Class Change - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceClassChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -770,17 +769,17 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PCC_Local"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
 				commonFunc.getDataFromTestDataSheet("MRP_Price"));
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
-		validatesOpenSoAmendmenHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
@@ -803,7 +802,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Addition of Item - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean veriftyLocalCustomerDomesticAdditionofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -811,11 +809,12 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Add_Local"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		closeAlertMessage();
+		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("LOC_01"));
 		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
 		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
 		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
@@ -823,7 +822,6 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
-		validatesOpenSoAmendmenHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
@@ -846,15 +844,15 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Deletion of Item - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyLocalCustomerDomesticDeletationofItem() {
+
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Delete"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -862,7 +860,6 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		validatesOpenSoAmendmenHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
@@ -875,6 +872,7 @@ public class OpenSoAmdFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
+
 		return flag;
 	}
 
@@ -882,7 +880,6 @@ public class OpenSoAmdFunctions {
 	 * Verify a Cancel Scenrios With Line Items
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyaCancelStagesRecord() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -890,11 +887,12 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Cancel"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		closeAlertMessage();
+		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("L30"));
 		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
 		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
 		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
@@ -904,6 +902,7 @@ public class OpenSoAmdFunctions {
 		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
 		cancelStageinTransactions();
 		verifyCancelRecordDocInFindPage(VariableHandler.getOSOAdocnum());
+		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
@@ -911,7 +910,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Change - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -919,7 +917,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PC_IS"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -928,7 +926,6 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
-
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
@@ -951,7 +948,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Class Change - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceClassChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -959,7 +955,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PCC_IS"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -991,7 +987,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Addition of Item - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean veriftyInterStateCustomerDomesticAdditionofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -999,7 +994,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Add_IS"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1034,7 +1029,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Deletion of Item - Domestic Customer - Interstate
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyInterStateCustomerDomesticDeletationofItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1042,7 +1036,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Delete_IS"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1069,7 +1063,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Change - Export Customer
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyExportCustomerPriceChange() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1077,7 +1070,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PC_EX"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1107,7 +1100,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Class Change - Export Customer
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyExportCustomerPriceClassChanges() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1115,7 +1107,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PCC_EX"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1148,7 +1140,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Addition of Item - Export Customer
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyExportCustomerAdditionOfItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1156,8 +1147,8 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
-		clickSoAmdendmentButtonInCurrentRateContract();
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Add_EX"));
+		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		closeAlertMessage();
@@ -1191,7 +1182,6 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order - Deletion of Item - Export Customer
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyExportCustomerDeletationOfItem() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -1199,8 +1189,8 @@ public class OpenSoAmdFunctions {
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum"));
-		clickSoAmdendmentButtonInCurrentRateContract();
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Delete_EX"));
+		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		closeAlertMessage();
@@ -1218,7 +1208,32 @@ public class OpenSoAmdFunctions {
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
-		commonFunc.logoutUser();
+		flag = commonFunc.logoutUser();
 		return flag;
+	}
+
+	/**
+	 * Validate Header Details Open so Amd
+	 * 
+	 * @author Kowshik
+	 * @param Location
+	 */
+	public void validateHeaderDetails(String Location) {
+		commonFunc.hardWait(2000);
+		verifyGetTextValidation(OpenSoAmdLocators.LocationId,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.LOCATION_ID));
+		logs.logging("Info", "Location Id is verfied " + Location);
+		verifyGetTextValidation(OpenSoAmdLocators.UnitField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.UNIT));
+		logs.logging("Info", "Unit is Verified ");
+		verifyGetTextValidation(OpenSoAmdLocators.CustomerIdField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_ID));
+		logs.logging("Info", "Customer Id is verified");
+		verifyDomPropertyValidation(OpenSoAmdLocators.CustomerNameField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_NAME));
+		logs.logging("Info", "Customer name is verifed ");
+		verifyDomPropertyValidation(OpenSoAmdLocators.OpenSoDocumentNumber,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.OSO_NO));
+		logs.logging("Info", "Osoc Documnet is verified ");
 	}
 }

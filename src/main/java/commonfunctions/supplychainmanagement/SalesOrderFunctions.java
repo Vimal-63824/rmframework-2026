@@ -113,6 +113,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"));
 		addQuantityAndUnitCost(Qty, UnitCost);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
