@@ -69,23 +69,34 @@ public class CommonPayrollFunctions {
 		commonFunc.clickPayrollSetupTab();
 		flag = webDB.waitForElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
 		if (flag) {
-			Actions action = new Actions(webDB.getDriver());
-			action.keyDown(Keys.CONTROL).build().perform();
 			webDB.clickAnElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
-			logs.logging("INFO", "Leave & Loan Screen clicked");
-			action.keyUp(Keys.CONTROL).build().perform();
-			webDB.switchToChildWindow();
-			logs.logging("INFO", "New Tab Opened and Switched to new tab");
 			flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
-				flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists, ElementType.Xpath);
+				logs.logging("INFO", "Leave & Loan Screen clicked");
+				String LeaveLoanURL = webDB.getDriver().getCurrentUrl();
+				logs.logging("INFO", "Leave And Loan Setup Page URL getted: " + LeaveLoanURL);
+				webDB.navigateToBack();
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Navigated Back to Employee Creation Page");
+					webDB.openNewTabWithUrl(LeaveLoanURL);
+					flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "New Tab Opened With Leave Loan Page URL: " + LeaveLoanURL);
+						webDB.clickAnElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
+						flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists, ElementType.Xpath);
+					}
+				}
 			}
 		}
 		checkLeaveEntitlementForLeaveCategory();
 		webDB.closeExistingTab();
 		webDB.switchToMainTab();
-		logs.logging("INFO", "Switched to Main Tab Successfully");
+		flag = webDB.getDriver().getTitle().contains("Employee");
+		if (flag) {
+			logs.logging("INFO", "Switched to Main Tab Successfully");
+		}
 		Assert.assertTrue(flag);
 	}
 
@@ -96,12 +107,12 @@ public class CommonPayrollFunctions {
 	 */
 	private void checkLeaveEntitlementForLeaveCategory() {
 		ArrayList<String> GreenFlagLeaveIDs = new ArrayList<String>();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists, ElementType.Xpath);
 		if (flag) {
 			List<WebElement> IconElements = webDB.getDriver()
 					.findElements(By.xpath(EmployeeMasterLocators.LeaveEntitlementLists));
-			for (int i = 0; i < IconElements.size(); i++) {
-				i++;
+			a: for (int i = 1; i < IconElements.size() + 1; i++) {
 				flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementIcon(i + 1), ElementType.Xpath);
 				if (flag) {
 					String styleColor = webDB.getDomAttributeFromElement(
@@ -111,13 +122,16 @@ public class CommonPayrollFunctions {
 						String value = webDB.getTextFromElement(
 								EmployeeMasterLocators.LeaveTypeTableLeaveIDTexts(i + 1), ElementType.Xpath);
 						GreenFlagLeaveIDs.add(value);
-						logs.logging("INFO",
-								"Entitled Leave ID: " + value + ". added in variable handler successfully");
+						logs.logging("INFO", "Entitled Leave ID: " + value + " added in variable handler successfully");
 					}
+				} else {
+					flag = false;
+					break a;
 				}
 			}
 		}
 		VariableHandler.setEmpSetupScreenGreenFlagLeaveIDs(GreenFlagLeaveIDs);
+		flag = VariableHandler.getEmpSetupScreenGreenFlagLeaveIDs().size() != 0;
 		Assert.assertTrue(flag);
 	}
 
