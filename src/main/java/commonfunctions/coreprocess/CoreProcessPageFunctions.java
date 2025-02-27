@@ -307,6 +307,8 @@ public class CoreProcessPageFunctions {
 			LocalDate date = LocalDate.now();
 			String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
 			String Today = date.format(formatter);
+			LocalDate previousDate = LocalDate.now().minusDays(1);
+			String YesterDay = previousDate.format(formatter);
 			LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
 			String NextMonthToday = nextmonthdate.format(formatter);
 			String CustomerID = commonFunc.getDataFromTestDataSheet("Customer");
@@ -395,7 +397,7 @@ public class CoreProcessPageFunctions {
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
 				mrpFunc.clickReleaseButtonInMRP();
-				mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", Today, Today);
+				mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
 				mrpFunc.clickReleaseButtonInReleaseFrame();
 				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
 						commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
@@ -410,14 +412,5 @@ public class CoreProcessPageFunctions {
 			return false;
 		}
 	}
-
-	public static void main(String[] args) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate date = LocalDate.now();
-		String Today = date.format(formatter);
-		System.out.println(Today);
-		LocalDate date1 = LocalDate.now().minusDays(1);
-		String YesterDay = date1.format(formatter);
-		System.out.println(YesterDay);
-	}
+	
 }
