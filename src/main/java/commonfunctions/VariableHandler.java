@@ -7,6 +7,7 @@ package commonfunctions;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class VariableHandler {
 	private static ThreadLocal<String> PONumber = new ThreadLocal<>();
@@ -103,6 +104,9 @@ public class VariableHandler {
 	private static ThreadLocal<String> MRPNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> ProductionOrderNumber = new ThreadLocal<>();
 	private static ThreadLocal<String[][]> DBTestdata = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<Map<String, String>> StockQty = new ThreadLocal<Map<String, String>>();
+	private static ThreadLocal<Map<String, String>> StockCost = new ThreadLocal<Map<String, String>>();
+	private static ThreadLocal<String> GrnStatus = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -838,5 +842,29 @@ public class VariableHandler {
 
 	public static void setDBTestData(String[][] data) {
 		DBTestdata.set(data);
+	}
+
+	public static Map<String, String> getStockQty() {
+		return StockQty.get();
+	}
+
+	public static void setStockQty(Map<String, String> data) {
+		StockQty.set(data);
+	}
+
+	public static Map<String, String> getStockCost() {
+		return StockCost.get();
+	}
+
+	public static void setStockCost(Map<String, String> data) {
+		StockCost.set(data);
+	}
+
+	public static String getGrnStatus() {
+		return GrnStatus.get();
+	}
+
+	public static void setGrnStatus(String data) {
+		GrnStatus.set(data);
 	}
 }

@@ -12,6 +12,7 @@ import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.VariableHandler;
+import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
@@ -29,6 +30,8 @@ public class GrnPageFunctions {
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
+	static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
+	static MaterialReceiptVoucherFunctions mrvFunc = new MaterialReceiptVoucherFunctions();
 
 	/**
 	 * This Methods Is Used To Click Pending PO and Search PO Number in Header
@@ -197,72 +200,6 @@ public class GrnPageFunctions {
 	}
 
 	/**
-	 * This Methods Is Used for Approve the Document
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void waitingForApproval() {
-		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(GrnLocators.DocAprovalIfrmae, ElementType.Xpath)) {
-			flag = true;
-			VariableHandler.setApprovalFlag(flag);
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-					commonFunc.getDataFromTestDataSheet("AshokValue"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
-				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
-				if (flag) {
-					commonFunc.hardWait(3000);
-					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"));
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getGrnDocNumber());
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getGrnDocNumber());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getGrnDocNumber());
-					commonFunc.hardWait(7000);
-					flag = commonFunc.logoutUser();
-				}
-
-			}
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN Document from PO With and Without
-	 * Inspection for UserDefined Item(Material)
-	 * 
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-
-	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotAndSerialItem();
-		LotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		assertTrue(flag);
-	}
-
-	/**
 	 * This Methods Is Used To Add Lot and Serial Number for Multiple Item
 	 * 
 	 * @author PremKumar.K-RMITS
@@ -322,129 +259,6 @@ public class GrnPageFunctions {
 	}
 
 	/**
-	 * This Methods Method to handle LOT_NUMBER input logic for Lot Item
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void inputLotNumber(String ITEM_NAME, String LOT_NUMBER) {
-		flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(GrnLocators.LotserialitemsInput, ITEM_NAME, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-				flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					logs.logging("INFO", "item Successfully Added");
-					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnLocators.LotclickInput, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(GrnLocators.LotclickInput, ElementType.Xpath);
-						commonFunc.hardWait(3000);
-						flag = webDB.isElementDisplayed(GrnLocators.LotNumberInput, ElementType.Xpath);
-						if (flag) {
-							webDB.sendTextToAnElement(GrnLocators.LotNumberInput, LOT_NUMBER, ElementType.Xpath);
-							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Lot Number Insert Successfully");
-								flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
-								if (!flag) {
-									logs.logging("info", "verified serial is disabled");
-								} else {
-									logs.logging("INFO", "Serial I Enabled");
-								}
-								flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-								commonFunc.hardWait(7000);
-								if (flag) {
-									webDB.sendTextToAnElement(GrnLocators.LotSerialDate, GrnLocators.DateInput,
-											ElementType.Xpath);
-									logs.logging("INFO", "Lot Date Insert Successfully");
-									commonFunc.hardWait(2000);
-									flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-									if (flag) {
-										webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-										commonFunc.hardWait(3000);
-										closeToastIfDisplayed();
-										flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-										if (flag) {
-											commonFunc.hardWait(2000);
-											webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-											logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * This Methods Method to handle Serial_Number input logic for Lot Item
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	private void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
-		flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(GrnLocators.LotserialitemsInput, ITEM_NAME, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-				flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					logs.logging("INFO", "item Successfully Added");
-					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnLocators.SerialClickInput, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(GrnLocators.SerialClickInput, ElementType.Xpath);
-						flag = webDB.isElementDisplayed(GrnLocators.SerialNumberInput, ElementType.Xpath);
-						if (flag) {
-							webDB.sendTextToAnElement(GrnLocators.SerialNumberInput, SERIAL_NUMBER, ElementType.Xpath);
-							logs.logging("INFO", "Serial Number Insert Successfully");
-							flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
-							if (!flag) {
-								logs.logging("info", "verified lot is disabled");
-							} else {
-								logs.logging("INFO", "lot Is Enabled");
-							}
-							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-							if (flag) {
-								commonFunc.hardWait(5000);
-								webDB.sendTextToAnElement(GrnLocators.LotSerialDate, GrnLocators.DateInput,
-										ElementType.Xpath);
-								logs.logging("INFO", "Serial Date Insert Successfully");
-								commonFunc.hardWait(2000);
-								flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-									closeToastIfDisplayed();
-									flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-									if (flag) {
-										commonFunc.hardWait(2000);
-										webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-										logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-									}
-								}
-							}
-						}
-					}
-
-				}
-			}
-		}
-	}
-
-	/**
 	 * This Methods Method to handle Toast Message Closed
 	 * 
 	 * @author PremKumar.K-RMITS
@@ -461,7 +275,7 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void LotSerialQtyApportion() {
+	public void lotSerialQtyApportion() {
 		if (flag) {
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
@@ -481,73 +295,6 @@ public class GrnPageFunctions {
 				}
 			}
 		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN From PO With Service Type
-	 * Document(Single Item)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void verifyGrnPODomesticServiceSimilarUOMfromPo() {
-		POfunc.verifyDirectPODomesticServiceSimilarUOMMultiple();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		overAllSaveAndPost();
-		waitingForApproval();
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN From PO With General With And
-	 * Without Inspection Document(Multiple Item)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
-		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotandSerialWithGeneralType();
-		LotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN Document from PO With and Without
-	 * Inspection for Contract Item(General Type)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType() {
-		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multpleLotSerialWithRateContractItem();
-		LotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
 		assertTrue(flag);
 	}
 
@@ -753,29 +500,6 @@ public class GrnPageFunctions {
 	}
 
 	/**
-	 * This Methods Method to handle Create the GRN Document from PO with and
-	 * Without Inspection for RateContract Item(Material)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterial() {
-		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotSerialItemWithMaterialTypeForRatecontractItem();
-		LotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		assertTrue(flag);
-	}
-
-	/**
 	 * This Methods Is Used To Give Lot Number Details
 	 * 
 	 * @author PremKumar.K-RM IT
@@ -850,6 +574,363 @@ public class GrnPageFunctions {
 		}
 
 		return flag;
+
+	}
+
+	/**
+	 * This Methods Is Used for Approve the Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(GrnLocators.DocAprovalIfrmae, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
+					commonFunc.getDataFromTestDataSheet("AshokValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(3000);
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
+							System.getProperty("AshokPassword"));
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getGrnDocNumber());
+					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getGrnDocNumber());
+					commonFunc.hardWait(3000);
+					flag = commonFunc.logoutUser();
+				}
+
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(Material)
+	 * 
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem();
+		lotSerialQtyApportion();
+		overAllSaveAndPost();
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN From PO With General With And
+	 * Without Inspection Document(Multiple Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
+		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotandSerialWithGeneralType();
+		lotSerialQtyApportion();
+		overAllSaveAndPost();
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN From PO With Service Type
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyGrnPODomesticServiceSimilarUOMfromPo() {
+		POfunc.verifyDirectPODomesticServiceSimilarUOMMultiple();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		overAllSaveAndPost();
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType() {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multpleLotSerialWithRateContractItem();
+		lotSerialQtyApportion();
+		overAllSaveAndPost();
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create the GRN Document from PO with and
+	 * Without Inspection for RateContract Item(Material)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterial() {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotSerialItemWithMaterialTypeForRatecontractItem();
+		lotSerialQtyApportion();
+		overAllSaveAndPost();
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle LOT_NUMBER input logic for Lot Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void inputLotNumber(String ITEM_NAME, String LOT_NUMBER) {
+		flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
+			webDB.sendTextToAnElement(GrnLocators.LotserialitemsInput, ITEM_NAME, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+				flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					logs.logging("INFO", "Item Successfully Added");
+					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(GrnLocators.LotclickInput, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.LotclickInput, ElementType.Xpath);
+						commonFunc.hardWait(3000);
+						flag = webDB.isElementDisplayed(GrnLocators.LotNumberInput, ElementType.Xpath);
+						if (flag) {
+							webDB.sendTextToAnElement(GrnLocators.LotNumberInput, LOT_NUMBER, ElementType.Xpath);
+							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Lot Number Insert Successfully");
+								flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
+								if (!flag) {
+									logs.logging("info", "Verified Serial Is Disabled");
+								} else {
+									logs.logging("INFO", "Serial Is Enabled");
+								}
+								flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+									flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
+									if (flag) {
+										commonFunc.hardWait(5000);
+										webDB.sendTextToAnElement(GrnLocators.DateInput,
+												commonFunc.getDataFromTestDataSheet("LotSerialDate"),
+												ElementType.Xpath);
+										logs.logging("INFO", "Lot Date Insert Successfully");
+										commonFunc.hardWait(2000);
+										flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+											commonFunc.hardWait(3000);
+											closeToastIfDisplayed();
+											flag = webDB.waitForElement(GrnLocators.LotSerialQtyField,
+													ElementType.Xpath);
+											if (flag) {
+												commonFunc.hardWait(2000);
+												webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
+												logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Methods Method to handle Serial_Number input logic for Lot Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	private void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
+		flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
+			webDB.sendTextToAnElement(GrnLocators.LotserialitemsInput, ITEM_NAME, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+				flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					logs.logging("INFO", "item Successfully Added");
+					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(GrnLocators.SerialClickInput, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.SerialClickInput, ElementType.Xpath);
+						flag = webDB.isElementDisplayed(GrnLocators.SerialNumberInput, ElementType.Xpath);
+						if (flag) {
+							webDB.sendTextToAnElement(GrnLocators.SerialNumberInput, SERIAL_NUMBER, ElementType.Xpath);
+							logs.logging("INFO", "Serial Number Insert Successfully");
+							flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
+							if (!flag) {
+								logs.logging("info", "verified lot is disabled");
+							} else {
+								logs.logging("INFO", "lot Is Enabled");
+							}
+							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+								flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(5000);
+									webDB.sendTextToAnElement(GrnLocators.DateInput,
+											commonFunc.getDataFromTestDataSheet("LotSerialDate"), ElementType.Xpath);
+									logs.logging("INFO", "Serial Date Insert Successfully");
+									commonFunc.hardWait(2000);
+									flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+										closeToastIfDisplayed();
+										flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
+										if (flag) {
+											commonFunc.hardWait(2000);
+											webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
+											logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
+										}
+									}
+								}
+							}
+						}
+
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method to handle After Approve the Status Document Move to QC or MRV
+	 * Screen
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void afterVerifyTheStatusDocumentMoveToQcOrMrv() {
+		if (VariableHandler.getGrnStatus().equals(commonFunc.getDataFromTestDataSheet("Draft"))) {
+			qcFunc.AcceptInspectionDocuments();
+			mrvFunc.verifyPostMaterialReceipt();
+		} else {
+			mrvFunc.verifyPostMaterialReceipt();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle After Approve the Document to Verify the
+	 * Document Header Status
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void verifyReturnToGrnPageHeaderStatus() {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		flag = webDB.waitForElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.GrnNumberInput, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(GrnLocators.GrnNumberInput, VariableHandler.getGrnDocNumber());
+				logs.logging("INFO", "Document Number Search And Selected Successfully");
+				flag = webDB.waitForElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+					logs.logging("INFO", "Header Button Clicked");
+					flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+						logs.logging("INFO", "Document Searched SuccessFully");
+						flag = webDB.waitForElement(GrnLocators.GrnDocumentStatus, ElementType.Xpath);
+						if (flag) {
+							String GRNSTATUS = webDB.getTextFromElement(GrnLocators.GrnDocumentStatus,
+									ElementType.Xpath);
+							VariableHandler.setGrnStatus(GRNSTATUS);
+							logs.logging("INFO", "GRN ProcesWise STATUS:" + VariableHandler.getGrnStatus());
+							flag = commonFunc.logoutUser();
+						}
+					}
+				}
+			}
+			assertTrue(flag);
+		}
 
 	}
 
