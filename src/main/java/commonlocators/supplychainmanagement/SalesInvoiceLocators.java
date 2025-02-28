@@ -173,7 +173,7 @@ public class SalesInvoiceLocators {
 	public static final String SIStatusTableText(String SINumber) {
 		return "//*[text()='" + SINumber + "']/../td[11]/div";
 	}
-	
+
 	/** @Locator XPATH */
 	public static final String Proforma_Inv_Node = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[9]";
 	/** @Locator XPATH */
@@ -274,4 +274,8 @@ public class SalesInvoiceLocators {
 	public static final String SI_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
 	public static final String SI_Pend_CreateInvoice_Btn = "//button[@id='B1']";
+	/** @Locator XPATH */
+	public static final String PI_Header_PaymentTermColumn = "//input[@id='P191513108501_PIHD_PAY_TERM']";
+	/** @Locator XPATH */
+	public static final String PI_Header_PaymentTerm_LOV_Btn = "//button[@id='P191513108501_PIHD_PAY_TERM_lov_btn']";
 }

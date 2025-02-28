@@ -1,4 +1,5 @@
 package commonfunctions.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -721,10 +722,9 @@ public class OpenSoAmdFunctions {
 	 * Amend Sales Order -Price Change - Domestic Customer - Local
 	 * 
 	 * @author Kowshik
-	 * @return boolean
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceChange() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -746,10 +746,10 @@ public class OpenSoAmdFunctions {
 		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(1000);
+		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
-		commonFunc.hardWait(1000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.hardWait(2000);
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -764,7 +764,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceClassChange() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -789,7 +789,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -804,7 +804,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean veriftyLocalCustomerDomesticAdditionofItem() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -831,7 +831,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -847,7 +847,7 @@ public class OpenSoAmdFunctions {
 	 */
 	public boolean verifyLocalCustomerDomesticDeletationofItem() {
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -866,7 +866,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -882,7 +882,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyaCancelStagesRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -912,7 +912,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceChange() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -935,7 +935,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -950,7 +950,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceClassChange() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -974,7 +974,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -989,7 +989,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean veriftyInterStateCustomerDomesticAdditionofItem() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -1016,7 +1016,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -1031,7 +1031,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyInterStateCustomerDomesticDeletationofItem() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -1050,7 +1050,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -1065,7 +1065,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyExportCustomerPriceChange() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -1087,7 +1087,7 @@ public class OpenSoAmdFunctions {
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -1102,7 +1102,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyExportCustomerPriceClassChanges() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -1127,7 +1127,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -1142,7 +1142,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik
 	 */
 	public boolean verifyExportCustomerAdditionOfItem() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -1169,7 +1169,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
@@ -1183,8 +1183,8 @@ public class OpenSoAmdFunctions {
 	 * 
 	 * @author Kowshik
 	 */
-	public boolean verifyExportCustomerDeletationOfItem() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+	public void verifyExportCustomerDeletationOfItem() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
@@ -1203,13 +1203,13 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
-		flag = commonFunc.logoutUser();
-		return flag;
+		commonFunc.logoutUser();
+
 	}
 
 	/**
@@ -1236,4 +1236,5 @@ public class OpenSoAmdFunctions {
 				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.OSO_NO));
 		logs.logging("Info", "Osoc Documnet is verified ");
 	}
+
 }

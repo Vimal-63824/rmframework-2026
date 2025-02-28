@@ -1,16 +1,17 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 public class OpenSoAmdLocators {
-	
+
 	/** @locatorType Xpath */
 	public static final String Transactions = "//span[contains(text(),'Transaction')]";
 	/** @locatorType Xpath */
 	public static final String OpensoScreens = "//a[contains(text(),'Open SO')]";
 	/** @locatorType Xpath */
-	public static final String OpenSoAmdRadio = "//label[contains(text(),'Open SO Amendent')]";
+	public static final String OpenSoAmdRadio = "//label[contains(text(),'Open SO Amendment')]";
 	/** @locatorType Xpath */
 	public static final String OpensoAmdPlusBtn = "//*[@id=\"B1283084872747241843\"]/span";
 	/** @locatorType Xpath */
@@ -104,19 +105,18 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String CustomerNameField = "//*[@id='P1915131013016_CUSTOMER_NAME']";
 	/** @locatorType Xpath */
-	public static final String OpenSoDocumentNumber = "//*[@id=\"P1915131013016_SRCAHD_CONTR_NO\"]" ;
+	public static final String OpenSoDocumentNumber = "//*[@id=\"P1915131013016_SRCAHD_CONTR_NO\"]";
 	/** @locatorType Xpath */
-	public static final String RevPriceField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]" ;
+	public static final String RevPriceField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String TaxPercent = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]" ;
+	public static final String TaxPercent = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
-	public static final String ItemIDField = "//*[@id=\'ig_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr/td[3]" ;
+	public static final String ItemIDField = "//*[@id=\'ig_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String ItemDescField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]" ;
+	public static final String ItemDescField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
 	/** @locatorType Xpath */
-	public static final String ItemUOM = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]" ;
+	public static final String ItemUOM = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String ExistingPrice = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]" ;
-	
+	public static final String ExistingPrice = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 
 }
