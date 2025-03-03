@@ -10,7 +10,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPO = "//span[contains(@class,'t-Icon t-Icon--left fa fa-dot-circle-o')]";
 	/** @locatorType Xpath */
-	public static final String PendingPOIframe = "//iframe[@title='Pending PO/SS/ST/GE']";
+	public static final String PendingPOIframe = "//iframe[@title='Pending Details']";
 	/** @locatorType Xpath */
 	public static final String PendingPOheader = "//h2[contains(@id,'R2323283483953540029_heading')]/..";
 	/** @locatorType Xpath */
