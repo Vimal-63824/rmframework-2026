@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -116,10 +117,7 @@ public class PricelistPageLocators {
 	public static final String Pricelistfind = "//*[@id=\"B1719063767977320601\"]/span";
 	/** @locatorType Xpath */
 	public static final String PricelistNumField = "//*[@id=\"P1615131025212_DOCP_NO\"]";
-	
-	
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String PRLISTDetailsInfoBtn(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[3]/*";
@@ -129,9 +127,31 @@ public class PricelistPageLocators {
 	public static final String PRLISTSelectCheckBox(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[1]/*";
 	}
-	
-	
-}
-	
-	
 
+	/** @locatorType Xpath */
+	public static final String ItemMasterAdd = "//*[@id=\"B1284581566305961864\"]/span";
+	/** @locatorType Xpath */
+	public static final String FindScreenItemField = "//input[@id='P3670200_ITEM_1']";
+	/** @locatorType Xpath */
+	public static final String ItemSearchBtn = "//*[@id=\"B1284581952089961873\"]/span";
+	/** @locatorType Xpath */
+	public static final String ItemDrillDownBtn = "//*[@id=\"15686651324419853443_orig\"]/tbody/tr[2]/td[2]/a";
+	/** @locatorType Xpath */
+	public static final String ItemGeneral = "//*[@id=\"P367020004_TAB\"]/div/div/div[3]/label";
+	/** @locatorType Xpath */
+	public static final String ItemCopy = "//*[@id=\"B215754246394063050\"]/span[2]";
+	/** @locatorType Xpath */
+	public static final String ItemIdInputCopy = "//input[@id='P367020004_ITEM']";
+	/** @locatorType Xpath */
+	public static final String ItemDescInputCopy = "//input[@id='P367020004_ITEM_DESC']";
+	/** @locatorType Xpath */
+	public static final String ItemOkCopy = "//*[@id=\"B215751033222063042\"]/span";
+	/** @locatorType Xpath */
+	public static final String ItemPost = "//*[@id=\"B215434526869062034\"]/span[2]";
+	/** @locatorType Xpath */
+	public static final String ItemFindBtn = "//*[@id=\"B215430562028062028\"]/span";
+	/** @locatorType Xpath */
+	public static final String ItemGetText = "//input[@id='P367020004_PROD_ID']";
+	/** @locatorType Xpath */
+	public static final String ItemPostSucessMsg = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6/span";
+}

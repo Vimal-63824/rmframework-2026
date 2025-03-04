@@ -814,7 +814,7 @@ public class OpenSoAmdFunctions {
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		closeAlertMessage();
-		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("LOC_01"));
+		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("L0001"));
 		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
 		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
 		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
@@ -1086,7 +1086,9 @@ public class OpenSoAmdFunctions {
 		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
+		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
+		commonFunc.hardWait(2000);
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approveFunc.navigateToApprovals();

@@ -1374,6 +1374,5 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("DeptValue")), Department);
 		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("RequestorValue")), Requester);
-
 	}
 }

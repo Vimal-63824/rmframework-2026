@@ -61,4 +61,16 @@ public class ApprovalPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String AjaxMultiDocSelectWarning = "//div[@role='alertdialog']";
+	/** @locatorType Xpath */
+	public static final String MRLocationID = "//span[@id='P9313101002_IMRHD_PLNT_LOC_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String MRUnitId = "//span[@id='P9313101002_IMRHD_PLNT_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String MRRequestor = "//span[@id='P9313101002_IMRHD_RQSTBY_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String MREmployee = "//span[@id='P9313101002_IMRHD_EMP_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String MRSource = "//span[@id='P9313101002_IMRHD_REC_SOURCE_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String MRStatus = "//span[@id='P9313101002_STATUS_DISPLAY']";
 }

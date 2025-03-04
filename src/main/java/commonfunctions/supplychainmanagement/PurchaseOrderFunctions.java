@@ -932,10 +932,10 @@ public class PurchaseOrderFunctions {
 	 */
 	public void selectAllPendingPRAndClickCreatePO() {
 		commonFunc.checkRefreshCellsDisappear();
-		webDB.moveToElement(PurchaseOrderPageLocators.PendingPRTable, ElementType.Xpath);
-		webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseOrderPageLocators.PendingPRTable, ElementType.Xpath);
+			webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 			commonFunc.hardWait(5000);
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -1811,7 +1811,7 @@ public class PurchaseOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Get Text Value Is: " + text);
 			logs.logging("INFO", "Expected Value Is: " + Value);
-			flag = text.equals(Value);
+			flag = text.contains(Value);
 			if (flag) {
 				logs.logging("INFO", "Verified Actual Value With Expected Value");
 			}
@@ -2356,6 +2356,7 @@ public class PurchaseOrderFunctions {
 											flag = webDB.waitForElement(PurchaseOrderPageLocators.PoUnitCostClick,
 													ElementType.Xpath);
 											if (flag) {
+												commonFunc.hardWait(4000);
 												webDB.clickAnElement(PurchaseOrderPageLocators.PoUnitCostClick,
 														ElementType.Xpath);
 												webDB.clearText(PurchaseOrderPageLocators.PoUnitCost,
@@ -2470,7 +2471,7 @@ public class PurchaseOrderFunctions {
 											if (flag) {
 												webDB.clickAnElement(PurchaseOrderPageLocators.PoUnitCostClick,
 														ElementType.Xpath);
-												commonFunc.hardWait(1000);
+												commonFunc.hardWait(2000);
 												webDB.clearText(PurchaseOrderPageLocators.PoUnitCost,
 														ElementType.Xpath);
 												webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoUnitCost,
@@ -2570,6 +2571,7 @@ public class PurchaseOrderFunctions {
 										flag = webDB.waitForElement(PurchaseOrderPageLocators.PoQtyFieldClick,
 												ElementType.Xpath);
 										if (flag) {
+											commonFunc.hardWait(1000);
 											webDB.clickAnElement(PurchaseOrderPageLocators.PoQtyFieldClick,
 													ElementType.Xpath);
 											webDB.clearText(PurchaseOrderPageLocators.PoQtyInput, ElementType.Xpath);

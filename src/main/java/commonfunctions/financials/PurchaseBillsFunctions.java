@@ -168,7 +168,7 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseBillsApproval() {
-		commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"Sathi Ganesh");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
@@ -182,7 +182,7 @@ public class PurchaseBillsFunctions {
 		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getPbNumber());
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"Sathi Ganesh");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();

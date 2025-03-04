@@ -225,7 +225,7 @@ public class PaymentReceiptsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPaymentReceiptApproval() {
-		commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"Sathi Ganesh");
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyPendingCrDocs(VariableHandler.getPbNumber());
@@ -240,7 +240,7 @@ public class PaymentReceiptsFunctions {
 		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getBPvNumber());
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"Sathi Ganesh");
 			commonFunc.navigateToFinancialPaymentReceipt();
 			verifyPaymentReceiptApprovalStatus();

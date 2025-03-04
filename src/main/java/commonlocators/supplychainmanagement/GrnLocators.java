@@ -52,7 +52,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerailButton = "//button[contains(@id,'B3157814851916052373')]";
 	/** @locatorType Xpath */
-	public static final String AddLotSerialItem = "//*[@id=\"B3161024549306520630\"]/span";
+	public static final String AddLotSerialItem = "//*[@id=\"B3161024549306520630\"]";
 	/** @locatorType Xpath */
 	public static final String LotSerialItemLov = "//button[contains(@id,'C1869923325925966449_lov_btn')]";
 	/** @locatorType Xpath */
