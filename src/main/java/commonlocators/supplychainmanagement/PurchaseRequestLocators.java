@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -17,7 +18,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRRequesterSelect = "//select[contains(@id,'PRH_REQSTR_ID')]";
 	/** @locatorType Xpath */
-	public static final String PRPrefixSelect = "//select[contains(@id,'PRH_RQST_PFX')]";
+	public static final String PRPrefixSelect = "//button[@id='P161513103_PRH_RQST_PFX_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String FindPR_PRNoButton = "//button[contains(@id,'DOC_NO')]";
 	/** @locatorType Xpath */

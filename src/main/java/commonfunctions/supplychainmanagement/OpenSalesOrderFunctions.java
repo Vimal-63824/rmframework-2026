@@ -5,14 +5,20 @@ package commonfunctions.supplychainmanagement;
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 import static org.testng.Assert.assertTrue;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
-import commonlocators.*;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -23,6 +29,7 @@ public class OpenSalesOrderFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
+	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 
 	/**
 	 * This Method used to select Open So Type with radio Type like Amendment or
@@ -126,33 +133,22 @@ public class OpenSalesOrderFunctions {
 	 * Open SO Number
 	 * 
 	 * @author Sakthi-GWL
-	 * @param PODate
 	 */
-	public void clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo(String PODate) {
+	public void clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo() {
 		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSODisplayDocNumber, ElementType.Xpath);
 			if (flag) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				logs.logging("INFO", "Open SO Tick Icon Clicked");
 				String DocNo = webDB.getTextFromElement(OpenSalesOrderLocators.OpenSODisplayDocNumber,
 						ElementType.Xpath);
 				VariableHandler.setOpenSONumber(DocNo);
 				logs.logging("INFO", "Displayed SO Document Number: " + DocNo);
-				flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_PODateInput, ElementType.Xpath);
-				if (flag) {
-					flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PODateInput, PODate,
-							ElementType.Xpath);
-					if (flag) {
-						webDB.moveToElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
-						webDB.clickAnElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
-						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-						}
-						logs.logging("INFO", "Entered PO Date in Open SO: " + PODate);
-					}
-				}
 			}
 		}
 		assertTrue(flag);
@@ -241,13 +237,14 @@ public class OpenSalesOrderFunctions {
 	}
 
 	/**
-	 * This Method used to Enter Effective From and to Date in Open So Header
+	 * This Method used to Enter Effective From, To and PO Date in Open So Header
 	 * 
 	 * @author Sakthi-GWL
 	 * @param EffcFromDate
 	 * @param EffcToDate
+	 * @param PODate
 	 */
-	public void enterEffectiveFromAndToDate(String EffcFromDate, String EffcToDate) {
+	public void enterEffectiveFromAndToDate(String EffcFromDate, String EffcToDate, String PODate) {
 		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOEffDateFrom, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSOEffDateFrom, EffcFromDate, ElementType.Xpath);
@@ -257,6 +254,9 @@ public class OpenSalesOrderFunctions {
 				flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSOEffDateTo, EffcToDate, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Effective To Date: " + EffcToDate);
+					commonPayrollFunc.addDetailInTableWithoutLovButton(OpenSalesOrderLocators.OpenSO_PODateInput,
+							OpenSalesOrderLocators.OpenSO_PODateInput, PODate);
+					logs.logging("INFO", "Entered PO Date in Open SO: " + PODate);
 				}
 			}
 		}
@@ -317,11 +317,11 @@ public class OpenSalesOrderFunctions {
 					logs.logging("INFO", "No Data was in Approved Status");
 					flag = false;
 				} else {
-					flag = webDB.waitForElement(OpenSalesOrderLocators.FindStatusTableWithDocNo(Item),
+					flag = webDB.waitForElement(OpenSalesOrderLocators.FindStatusTableWithText(Item),
 							ElementType.Xpath);
 					if (flag) {
 						String StatusText = webDB.getTextFromElement(
-								OpenSalesOrderLocators.FindStatusTableWithDocNo(Item), ElementType.Xpath);
+								OpenSalesOrderLocators.FindStatusTableWithText(Item), ElementType.Xpath);
 						flag = Status.equalsIgnoreCase(StatusText);
 					}
 				}
@@ -355,6 +355,7 @@ public class OpenSalesOrderFunctions {
 	public void clickCancelButtonInOpenSO() {
 		flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
 			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_CancelHeaderBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 			if (flag) {
@@ -401,6 +402,117 @@ public class OpenSalesOrderFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click header save Icon in Open Sale Order
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickHeaderSaveIconInOpenSO() {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSOHeaderSaveBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Header Save Icon Clicked");
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * @author Sakthi-GWL
+	 */
+	public void verifyOpenSO() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedID");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSO(Item);
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveAndClickPostBtnInOpenSO();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+	}
+
+	/**
+	 * @author Sakthi-GWL
+	 */
+	public void verifyCancelStatement() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedID");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSO(Item);
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveIconInOpenSO();
+		clickCancelButtonInOpenSO();
+		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+				commonFunc.getDataFromTestDataSheet("CancelStatus"));
+		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
 }

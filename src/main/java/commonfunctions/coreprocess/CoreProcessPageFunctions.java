@@ -169,11 +169,11 @@ public class CoreProcessPageFunctions {
 				openSOFunc.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"),
 						CustomerID, OpenSOPrefix);
 				openSOFunc.fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
-				openSOFunc.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo(Today);
+				openSOFunc.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
 				openSOFunc.clickFetchCustomerAndSelectItemInOpenSO(Item);
 				openSOFunc.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
 				openSOFunc.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
-				openSOFunc.enterEffectiveFromAndToDate(Today, Today);
+				openSOFunc.enterEffectiveFromAndToDate(Today, Today, Today);
 				openSOFunc.clickHeaderSaveAndClickPostBtnInOpenSO();
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
@@ -307,6 +307,8 @@ public class CoreProcessPageFunctions {
 			LocalDate date = LocalDate.now();
 			String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
 			String Today = date.format(formatter);
+			LocalDate previousDate = LocalDate.now().minusDays(1);
+			String YesterDay = previousDate.format(formatter);
 			LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
 			String NextMonthToday = nextmonthdate.format(formatter);
 			String CustomerID = commonFunc.getDataFromTestDataSheet("Customer");
@@ -395,7 +397,7 @@ public class CoreProcessPageFunctions {
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				mrpFunc.searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
 				mrpFunc.clickReleaseButtonInMRP();
-				mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", Today, Today);
+				mrpFunc.chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
 				mrpFunc.clickReleaseButtonInReleaseFrame();
 				mrpFunc.checkStatusOfMRP(VariableHandler.getMRPNumber(),
 						commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
@@ -410,4 +412,5 @@ public class CoreProcessPageFunctions {
 			return false;
 		}
 	}
+	
 }

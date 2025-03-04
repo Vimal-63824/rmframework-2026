@@ -10,7 +10,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPO = "//span[contains(@class,'t-Icon t-Icon--left fa fa-dot-circle-o')]";
 	/** @locatorType Xpath */
-	public static final String PendingPOIframe = "//iframe[@title='Pending PO/SS/ST/GE']";
+	public static final String PendingPOIframe = "//iframe[@title='Pending Details']";
 	/** @locatorType Xpath */
 	public static final String PendingPOheader = "//h2[contains(@id,'R2323283483953540029_heading')]/..";
 	/** @locatorType Xpath */
@@ -134,4 +134,16 @@ public class GrnLocators {
 				+ "]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String FindPageGrnNoLov = "//button[@id='P1615131103_GRN_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String GrnNumberInput = "//*[@id=\"PopupLov_1615131103_P1615131103_GRN_NO_dlg\"]/div[1]/input";
+	/** @locatorType Xpath */
+	public static String GrnSearchButton = "//*[@id=\"B1177499091828681684\"]";
+	/** @locatorType Xpath */
+	public static String GrnProcessFlowStatus = "//*[@id=\"11310267490929766564\"]/tbody/tr[2]/td[16]/div";
+	/** @locatorType Xpath */
+	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
+	/** @locatorType Xpath */
+	public static String GrnDocumentStatus = "//*[@id=\"11310267490929766564\"]/tbody/tr[2]/td[16]/div";
 }

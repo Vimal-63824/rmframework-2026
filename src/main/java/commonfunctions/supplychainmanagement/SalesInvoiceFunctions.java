@@ -818,6 +818,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -879,6 +880,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -938,6 +940,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -998,6 +1001,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1057,6 +1061,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1118,6 +1123,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1177,6 +1183,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1237,6 +1244,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1296,6 +1304,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1356,6 +1365,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1415,6 +1425,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1475,6 +1486,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1534,6 +1546,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1594,6 +1607,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1653,6 +1667,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1713,6 +1728,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1772,6 +1788,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1832,6 +1849,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1891,6 +1909,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1951,6 +1970,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
 		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
 		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
 		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
@@ -2123,6 +2143,7 @@ public class SalesInvoiceFunctions {
 			if (webDB.isElementDisplayed(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath)) {
 				webDB.clickAnElement(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath);
 				logs.logging("INFO", "Navigated Sucessfully To Proforma Invoice Transaction Screen");
+				commonFunc.checkRefreshCellsDisappear();
 			} else {
 				logs.logging("INFO", "Failed To Navigate To Proforma Invoice Transaction Screen");
 			}
@@ -2136,12 +2157,14 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @param Proforma_Inv_Pfx
 	 */
-	public void verifyHeaderProformaInvoicePrefix(String Proforma_Inv_Pfx) {
+	public void verifyHeaderProformaInvoicePrefix(String Proforma_Inv_Pfx, String PI_PaymentTerm) {
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Proforma_Inv_Pfx_Btn, Proforma_Inv_Pfx);
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Header_PaymentTerm_LOV_Btn, PI_PaymentTerm);
 		flag = webDB.waitForElement(SalesInvoiceLocators.Proforma_inv_Header_TickIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.Proforma_inv_Header_TickIcon, ElementType.Xpath);
-			logs.logging("INFO", "Proforma Invoice Prefix Inserted Sucessfully");
+			logs.logging("INFO", "Proforma Invoice Prefix and Payment Term Inserted Sucessfully");
+			commonFunc.hardWait(2000);
 			if (webDB.isElementDisplayed(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath)) {
 				webDB.clickAnElement(SalesInvoiceLocators.PI_Header_Close_Success_msg, ElementType.Xpath);
 				logs.logging("INFO", "Note Alert Close icon Is Clicked");
@@ -2150,7 +2173,7 @@ public class SalesInvoiceFunctions {
 					String PI_DocNo = webDB.getTextFromElement(SalesInvoiceLocators.PI_DocNo, ElementType.Xpath);
 					VariableHandler.setPI_DocNo(PI_DocNo);
 					logs.logging("INFO", "Get SI DocNo Is: " + VariableHandler.getPI_DocNo());
-					commonFunc.hardWait(5000);
+					commonFunc.hardWait(3000);
 				}
 			} else {
 				logs.logging("INFO", "Failed To Click Note Alert CloseIcon");
@@ -2249,6 +2272,7 @@ public class SalesInvoiceFunctions {
 	public void verifyProformaInvoiceQtyUnitcost(String PI_Inv_Qty, String PI_Inv_UnitCost) {
 		commonFunc.hardWait(1000);
 		verifyAddTableSpecs(SalesInvoiceLocators.PI_Qty_Column, SalesInvoiceLocators.PI_Inv_Qty, PI_Inv_Qty);
+		commonFunc.hardWait(1000);
 		verifyAddTableSpecs(SalesInvoiceLocators.PI_UnitCost_Column, SalesInvoiceLocators.PI_UnitCost, PI_Inv_UnitCost);
 	}
 
@@ -2362,7 +2386,8 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("PI_Type"),
 				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyProformaInvoiceLineWiseAddIconClick();
 		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_Item_ID"));
@@ -2398,7 +2423,8 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("PI_Advance_Type"),
 				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Adv_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyProformaInvoiceLineWiseAddIconClick();
 		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance"));
@@ -2432,7 +2458,8 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("PI_PreDispatch_Type"),
 				commonFunc.getDataFromTestDataSheet("PI_Domestic_Customer"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_PreDisp_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyProformaInvoiceLineWiseAddIconClick();
 		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance"));
@@ -2466,7 +2493,8 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("PI_Type"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyProformaInvoiceLineWiseAddIconClick();
 		verifyProformaInvoiceItemID(commonFunc.getDataFromTestDataSheet("PI_Item_ID"));
@@ -2502,7 +2530,8 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("PI_Advance_Type"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Adv_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyProformaInvoiceLineWiseAddIconClick();
 		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Export"));
@@ -2536,7 +2565,8 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("PI_PreDispatch_Type"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_PreDisp_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyProformaInvoiceLineWiseAddIconClick();
 		verifyProformaInvoiceAdvanceSOReference(commonFunc.getDataFromTestDataSheet("PI_SO_Ref_Advance_Export"));
@@ -2571,7 +2601,8 @@ public class SalesInvoiceFunctions {
 		verifyProformaInvoicePendingSelectAll();
 		verifyProformaInvoicePendingClickingCreateProformaInvoice();
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		verifyProformaInvoicePostButton();
 		ProformaInvoiceforwardForApproval();
 		commonFunc.logoutUser();
@@ -2600,7 +2631,8 @@ public class SalesInvoiceFunctions {
 		verifyProformaInvoicePendingSelectAll();
 		verifyProformaInvoicePendingClickingCreateProformaInvoice();
 		commonFunc.checkRefreshCellsDisappear();
-		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"));
+		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
+				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		verifyProformaInvoicePostButton();
 		ProformaInvoiceforwardForApproval();
 		commonFunc.logoutUser();
@@ -2653,6 +2685,7 @@ public class SalesInvoiceFunctions {
 			flag = Ship_From.equalsIgnoreCase(DisplayWH);
 			if (flag) {
 				logs.logging("INFO", "Verified Warehouse of Shiping From");
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(SalesInvoiceLocators.SaleInvoiceStockQuantity, ElementType.Xpath);
 				if (flag) {
 					String StockQnty = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SaleInvoiceStockQuantity,
@@ -2660,10 +2693,11 @@ public class SalesInvoiceFunctions {
 					String OrderInvoiceQnty = webDB.getDomPropertyFromElement(
 							SalesInvoiceLocators.SaleInvoiceOrderInvoiceQuantity, ElementType.Xpath,
 							commonFunc.getDataFromTestDataSheet("Value"));
-					flag = Integer.parseInt(StockQnty) > Integer.parseInt(OrderInvoiceQnty);
+					logs.logging("INFO", "Displayed Stock Quantity ship from: " + StockQnty);
+					logs.logging("INFO", "Displayed Invoice Order Quantity ship from: " + OrderInvoiceQnty);
+//					flag = Integer.parseInt(StockQnty) > Integer.parseInt(OrderInvoiceQnty);
+					flag = (new BigDecimal(StockQnty).compareTo(new BigDecimal(OrderInvoiceQnty))) == 1;
 					if (flag) {
-						logs.logging("INFO", "Displayed Stock Quantity ship from: " + StockQnty);
-						logs.logging("INFO", "Displayed Invoice Order Quantity ship from: " + OrderInvoiceQnty);
 						logs.logging("INFO", "Verified Stock Quantity Greater than Invoice Quantity");
 					}
 				}

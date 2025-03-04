@@ -37,7 +37,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveProcessButton = "//button[@id='B6042422688967462464']";
 	/** @locatorType Xpath */
-	public static final String Backicon = "//button[@id='B6827450002098500659']/span";
+	public static final String Backicon = "//button[@title='Back']/span";
 
 	/** @locatorType Xpath */
 	public static final String PODetailsInfoBtn(String PONumber) {
