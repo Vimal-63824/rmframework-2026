@@ -333,7 +333,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@id='B3146205337803717780']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[16]";
+	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[18]";
 	/** @locatorType Xpath */
 	public static final String PoseriviceWithGrnSelectedValues = "//*[@id=\"C2522028662001049402\"]";
 }

@@ -92,6 +92,9 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan
 	 */
 	public void verifyAddTDSNumber() {
+		if (webDB.verifyIsElementDisplayed(PurchaseBillsLocators.ExpandButton, ElementType.Xpath)) {
+			webDB.clickAnElement(PurchaseBillsLocators.ExpandButton, ElementType.Xpath);
+		}
 		webDB.moveToElement(PurchaseBillsLocators.TableData, ElementType.Xpath);
 		webDB.moveToElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);

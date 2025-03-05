@@ -187,6 +187,9 @@ public class PaymentReceiptsFunctions {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
+			if (webDB.isElementDisplayed(PaymentReceiptsLocators.ExpandButton, ElementType.Xpath)) {
+				webDB.clickAnElement(PaymentReceiptsLocators.ExpandButton, ElementType.Xpath);
+			}
 			flag = webDB.waitForClickElement(PaymentReceiptsLocators.PostButton, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();

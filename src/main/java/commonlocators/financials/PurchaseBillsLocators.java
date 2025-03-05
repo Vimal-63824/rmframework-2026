@@ -51,4 +51,6 @@ public class PurchaseBillsLocators {
 	public static final String TDSU_S = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[26]";
 	/** @locatorType Xpath */
 	public static final String TDSLovButton = "//button[@id='C2385207596614310967_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ExpandButton = "//button[@id='t_Button_rightControlButton'][@aria-expanded='true']";
 }

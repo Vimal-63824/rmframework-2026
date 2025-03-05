@@ -442,6 +442,7 @@ public class CommonFunctions {
 		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 		VariableHandler.setIndividualAmount(BigDecimal.ZERO);
 		VariableHandler.setDiscountAmount(BigDecimal.ZERO);
+		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
@@ -750,7 +751,6 @@ public class CommonFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void navigateLeaveEncashmentScreen() {
-		clickLeftNavigationBar();
 		clickPayrollTab();
 		clickPayrollTransactionTab();
 		clickAttendanceLeaveTab();
@@ -1519,6 +1519,19 @@ public class CommonFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Material Issuance Voucher
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMaterialIssuanceVoucher() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		navigateToInventoryTranscationTab();
+		navigateToMivTab();
 	}
 
 }

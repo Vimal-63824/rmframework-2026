@@ -121,4 +121,7 @@ public class PaymentReceiptsLocators {
 	public static final String PendReceive_CheckBox(String text) {
 		return "//td[text()='" + text + "']/../td[13]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String ExpandButton = "//button[@id='t_Button_rightControlButton'][@aria-expanded='true']";
 }
