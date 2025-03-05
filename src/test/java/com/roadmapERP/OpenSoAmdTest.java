@@ -1,5 +1,6 @@
 package com.roadmapERP;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.CommonFunctions;
@@ -158,4 +159,17 @@ public class OpenSoAmdTest {
 	public void verifyOpenDeletationOfItemsExportCustomer() {
 		OSOA.verifyExportCustomerDeletationOfItem();
 	}
+	
+	/**
+	 * Logout The Portal If Testcases Failed
+	 * 
+	 * @author Kowshik
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod() {
+		commonFunc.verifyAfterMethod();
+	}
+
+	
 }

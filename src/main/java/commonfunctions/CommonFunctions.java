@@ -356,7 +356,11 @@ public class CommonFunctions {
 	private void clickSupplyChainTab() {
 		flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.SupplyChainTabCheck, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.clickAnElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Supply Chain Management Tab Is Clicked");
@@ -373,7 +377,11 @@ public class CommonFunctions {
 	private void clickPurchaseTab() {
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.PurchaseTabCheck, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.clickAnElement(CommonUiLocators.PurchaseTab, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Purchase Tab Is Clicked");
@@ -903,6 +911,7 @@ public class CommonFunctions {
 	 */
 	public void navigateToMaterialReceiptVoucher() {
 		clickLeftNavigationBar();
+		clickSupplyChainTab();
 		navigateToInventoryTab();
 		navigateToInventoryTranscationTab();
 		navigateToMaterialReceiptVocherTab();
@@ -916,7 +925,11 @@ public class CommonFunctions {
 	public void navigateToInventoryTab() {
 		flag = webDB.waitForElement(CommonUiLocators.Inventory, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.Inventory, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.InventoryCheck, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.clickAnElement(CommonUiLocators.Inventory, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Inventory Tab Is Clicked");
@@ -1231,7 +1244,11 @@ public class CommonFunctions {
 	public void navigateToInventoryReportsTab() {
 		flag = webDB.waitForElement(CommonUiLocators.InventoryReportsTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.InventoryReportsTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.InventoryReportsTabCheck,
+					ElementType.Xpath, "aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.clickAnElement(CommonUiLocators.InventoryReportsTab, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.StocksTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Reports Tab Is Clicked");
@@ -1418,6 +1435,87 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(ProductionOrderLocators.FindMRPNoLovBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Production Planning - Production Order Screen Navigated Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Material Issuance Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMivTab() {
+		flag = webDB.waitForElement(CommonUiLocators.MIVTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.MIVTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Material Issuance Voucher Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Rfq Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateItemPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventory();
+		clickInventorySetupTab();
+		clickItemmaster();
+	}
+
+	/**
+	 * Navigate To Inventory Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateToInventory() {
+		flag = webDB.waitForElement(CommonUiLocators.Invt, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.Invt, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Item Setup Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Inventory setup tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickInventorySetupTab() {
+		flag = webDB.waitForElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.ItemTab, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Item Tab is Checked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Item master tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickItemmaster() {
+		flag = webDB.waitForElement(CommonUiLocators.ItemTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ItemTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ItemMasterAdd, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Item Add Is Clicked");
 			}
 		}
 		Assert.assertTrue(flag);
