@@ -186,11 +186,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PendingMIV = "//button[@id='B1493255748221256227']";
 	/** @locatorType Xpath */
-	public static final String ItemTab = "//*[@id=\"t_TreeNav_249\"]/div[2]/a";
+	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[3]";
 	/** @locatorType Xpath */
 	public static final String ItemMasterAdd = "//*[@id=\"B1284581566305961864\"]/span";
 	/** @locatorType Xpath */
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */
-	public static final String InvSetupTab = "//*[@id=\"t_TreeNav_244\"]/div[2]";
+	public static final String InvSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]";
 }
