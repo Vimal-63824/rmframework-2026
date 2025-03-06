@@ -72,7 +72,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerialDate = "//div[@id='grn_lot_ig_grid_vc']/*[3]/*[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String DateInput = "08-02-2027";
+	public static final String DateInput = "//input[@id='C1885842449099241908_input']";
 	/** @locatorType Xpath */
 	public static final String LotSerialSave = "//button[contains(@id,'B3161025382308520635')]";
 	/** @locatorType Xpath */

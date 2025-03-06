@@ -692,13 +692,15 @@ public class MRPFunctions {
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.MRP_Release_ReleaseBtn, ElementType.Xpath);
 			webDB.switchToDefaultContent();
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForClickElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "MRP Release Button Clicked Successfully");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(MRPLocators.FindLinesBtn, ElementType.Xpath);
 			}
 		}

@@ -442,6 +442,7 @@ public class CommonFunctions {
 		VariableHandler.setTaxAmount(BigDecimal.ZERO);
 		VariableHandler.setIndividualAmount(BigDecimal.ZERO);
 		VariableHandler.setDiscountAmount(BigDecimal.ZERO);
+		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
@@ -750,7 +751,6 @@ public class CommonFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void navigateLeaveEncashmentScreen() {
-		clickLeftNavigationBar();
 		clickPayrollTab();
 		clickPayrollTransactionTab();
 		clickAttendanceLeaveTab();
@@ -1465,26 +1465,9 @@ public class CommonFunctions {
 	public void navigateItemPage() {
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
-		navigateToInventory();
+		navigateToInventoryTab();
 		clickInventorySetupTab();
 		clickItemmaster();
-	}
-
-	/**
-	 * Navigate To Inventory Tab
-	 * 
-	 * @author Durai-RMITS
-	 */
-	public void navigateToInventory() {
-		flag = webDB.waitForElement(CommonUiLocators.Invt, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.Invt, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Item Setup Tab Is Clicked");
-			}
-		}
-		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1519,6 +1502,19 @@ public class CommonFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Material Issuance Voucher
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMaterialIssuanceVoucher() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		navigateToInventoryTranscationTab();
+		navigateToMivTab();
 	}
 
 }

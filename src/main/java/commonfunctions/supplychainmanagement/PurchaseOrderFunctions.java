@@ -2747,7 +2747,8 @@ public class PurchaseOrderFunctions {
 			logs.logging("INFO", "With GRN Click successfully");
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, ElementType.Xpath);
 			if (flag) {
-				webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, "Y",
+				commonFunc.hardWait(1000);
+				webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, commonFunc.getDataFromTestDataSheet("Y"),
 						ElementType.Xpath);
 				logs.logging("INFO", "With GRN Changed successfully");
 			}

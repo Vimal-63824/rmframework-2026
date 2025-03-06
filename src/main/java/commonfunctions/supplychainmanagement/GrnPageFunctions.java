@@ -536,8 +536,8 @@ public class GrnPageFunctions {
 							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-								webDB.sendTextToAnElement(GrnLocators.ExpiryDate, GrnLocators.DateInput,
-										ElementType.Xpath);
+								webDB.sendTextToAnElement(GrnLocators.ExpiryDate,
+										commonFunc.getDataFromTestDataSheet("ExpiryDate"), ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Date Insert Successfully");
 									flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);

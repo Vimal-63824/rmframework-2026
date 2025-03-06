@@ -38,11 +38,11 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickPost();
@@ -70,14 +70,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -107,13 +107,13 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_Value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(3000);
@@ -142,14 +142,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -428,12 +428,12 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -459,14 +459,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -493,14 +493,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -527,14 +527,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));

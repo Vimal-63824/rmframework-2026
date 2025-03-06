@@ -113,6 +113,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> DisItemName = new ThreadLocal<>();
 	private static ThreadLocal<String> AmdSimItemName = new ThreadLocal<>();
 	private static ThreadLocal<String> AmdDisItemName = new ThreadLocal<>();
+	private static ThreadLocal<String> MIVNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -912,5 +913,13 @@ public class VariableHandler {
 
 	public static void setAmdDisItemName(String data) {
 		AmdDisItemName.set(data);
+	}
+
+	public static String getMIVNumber() {
+		return MIVNumber.get();
+	}
+
+	public static void setMIVNumber(String data) {
+		MIVNumber.set(data);
 	}
 }
