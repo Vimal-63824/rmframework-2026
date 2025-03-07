@@ -529,6 +529,8 @@ public class EmployeeMasterFunctions {
 			updateEmpCityZipCodeAndTelephoneInAddressTab(commonFunc.getDataFromTestDataSheet("Emp_City"),
 					RandomStringUtils.randomNumeric(6), commonFunc.randomMobileNumberGenerator());
 			clickSaveIconInAddress();
+			closeUpdateIframe();
+			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateAddressDetails': " + e);
@@ -1250,6 +1252,7 @@ public class EmployeeMasterFunctions {
 	private void clickActivateIconInLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData, ElementType.Xpath);
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
@@ -1276,6 +1279,7 @@ public class EmployeeMasterFunctions {
 	private void clickDeleteIconInLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData, ElementType.Xpath);
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
@@ -2434,6 +2438,24 @@ public class EmployeeMasterFunctions {
 			}
 		}
 		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click close Icon in update Employee
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void closeUpdateIframe() {
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateIframeCloseIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateIframeCloseIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateIframeCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Update Frame Closed Successfully");
+			}
+		}
 		Assert.assertTrue(flag);
 	}
 }

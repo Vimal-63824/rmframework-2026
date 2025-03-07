@@ -100,7 +100,7 @@ public class EmployeePermissionTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result) {
-		if (result.getStatus() == ITestResult.FAILURE) {
+		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
 			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(false);
 			commonFunc.verifyAfterMethod();
 		}
