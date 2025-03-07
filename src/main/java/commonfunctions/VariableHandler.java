@@ -7,6 +7,7 @@ package commonfunctions;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class VariableHandler {
@@ -104,9 +105,15 @@ public class VariableHandler {
 	private static ThreadLocal<String> MRPNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> ProductionOrderNumber = new ThreadLocal<>();
 	private static ThreadLocal<String[][]> DBTestdata = ThreadLocal.withInitial(() -> null);
-	private static ThreadLocal<Map<String, String>> StockQty = new ThreadLocal<Map<String, String>>();
-	private static ThreadLocal<Map<String, String>> StockCost = new ThreadLocal<Map<String, String>>();
+	private static ThreadLocal<Map<String, String>> StockQty = ThreadLocal.withInitial(HashMap::new);
+	private static ThreadLocal<Map<String, String>> StockCost = ThreadLocal.withInitial(HashMap::new);
 	private static ThreadLocal<String> GrnStatus = new ThreadLocal<>();
+	private static ThreadLocal<String> MRNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SimItemName = new ThreadLocal<>();
+	private static ThreadLocal<String> DisItemName = new ThreadLocal<>();
+	private static ThreadLocal<String> AmdSimItemName = new ThreadLocal<>();
+	private static ThreadLocal<String> AmdDisItemName = new ThreadLocal<>();
+	private static ThreadLocal<String> MIVNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -866,5 +873,53 @@ public class VariableHandler {
 
 	public static void setGrnStatus(String data) {
 		GrnStatus.set(data);
+	}
+
+	public static String getMRNumber() {
+		return MRNumber.get();
+	}
+
+	public static void setMRNumber(String data) {
+		MRNumber.set(data);
+	}
+
+	public static String getItemName() {
+		return SimItemName.get();
+	}
+
+	public static void setItemName(String data) {
+		SimItemName.set(data);
+	}
+
+	public static String getDisItemName() {
+		return DisItemName.get();
+	}
+
+	public static void setDisItemName(String data) {
+		DisItemName.set(data);
+	}
+
+	public static String getAmdSimItemName() {
+		return AmdSimItemName.get();
+	}
+
+	public static void setAmdSimItemName(String data) {
+		AmdSimItemName.set(data);
+	}
+
+	public static String getAmdDisItemName() {
+		return AmdDisItemName.get();
+	}
+
+	public static void setAmdDisItemName(String data) {
+		AmdDisItemName.set(data);
+	}
+
+	public static String getMIVNumber() {
+		return MIVNumber.get();
+	}
+
+	public static void setMIVNumber(String data) {
+		MIVNumber.set(data);
 	}
 }

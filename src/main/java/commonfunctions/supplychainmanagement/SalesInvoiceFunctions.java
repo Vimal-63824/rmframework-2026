@@ -2134,6 +2134,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Proforma_Inv_Loc_Btn, PI_Loc_Id);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Type_Field, PI_Type);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Customer_Name, PI_Domestic_Customer);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(SalesInvoiceLocators.PI_TickIcon, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Proforma Invoice Parameter Inserted Sucessfully");

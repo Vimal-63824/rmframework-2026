@@ -187,6 +187,9 @@ public class PaymentReceiptsFunctions {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
+			if (webDB.isElementDisplayed(PaymentReceiptsLocators.ExpandButton, ElementType.Xpath)) {
+				webDB.clickAnElement(PaymentReceiptsLocators.ExpandButton, ElementType.Xpath);
+			}
 			flag = webDB.waitForClickElement(PaymentReceiptsLocators.PostButton, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
@@ -225,7 +228,7 @@ public class PaymentReceiptsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPaymentReceiptApproval() {
-		commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"Sathi Ganesh");
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyPendingCrDocs(VariableHandler.getPbNumber());
@@ -240,7 +243,7 @@ public class PaymentReceiptsFunctions {
 		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getBPvNumber());
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"Sathi Ganesh");
 			commonFunc.navigateToFinancialPaymentReceipt();
 			verifyPaymentReceiptApprovalStatus();

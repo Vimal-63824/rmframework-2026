@@ -231,7 +231,7 @@ public class GrnPageFunctions {
 						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
 							continue;
 						}
-						commonFunc.hardWait(3000);
+						commonFunc.hardWait(5000);
 						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
@@ -264,6 +264,7 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	private void closeToastIfDisplayed() {
+		commonFunc.hardWait(3000);
 		if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 			webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			logs.logging("INFO", "Toast Alert Successfully Catched");
@@ -535,8 +536,8 @@ public class GrnPageFunctions {
 							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-								webDB.sendTextToAnElement(GrnLocators.ExpiryDate, GrnLocators.DateInput,
-										ElementType.Xpath);
+								webDB.sendTextToAnElement(GrnLocators.ExpiryDate,
+										commonFunc.getDataFromTestDataSheet("ExpiryDate"), ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Date Insert Successfully");
 									flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
@@ -795,7 +796,7 @@ public class GrnPageFunctions {
 											flag = webDB.waitForElement(GrnLocators.LotSerialQtyField,
 													ElementType.Xpath);
 											if (flag) {
-												commonFunc.hardWait(2000);
+												commonFunc.hardWait(5000);
 												webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
 												logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
 											}
@@ -860,7 +861,7 @@ public class GrnPageFunctions {
 										closeToastIfDisplayed();
 										flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
 										if (flag) {
-											commonFunc.hardWait(2000);
+											commonFunc.hardWait(5000);
 											webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
 											logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
 										}

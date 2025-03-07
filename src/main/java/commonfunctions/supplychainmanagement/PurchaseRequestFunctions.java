@@ -936,7 +936,8 @@ public class PurchaseRequestFunctions {
 	 */
 	private void clickLoadPRAndSelectAllItemstoLines() {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
+		commonFunc.checkSuccessToastMessageDisappear();
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -1374,6 +1375,5 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("DeptValue")), Department);
 		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("RequestorValue")), Requester);
-
 	}
 }

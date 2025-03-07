@@ -92,6 +92,9 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan
 	 */
 	public void verifyAddTDSNumber() {
+		if (webDB.verifyIsElementDisplayed(PurchaseBillsLocators.ExpandButton, ElementType.Xpath)) {
+			webDB.clickAnElement(PurchaseBillsLocators.ExpandButton, ElementType.Xpath);
+		}
 		webDB.moveToElement(PurchaseBillsLocators.TableData, ElementType.Xpath);
 		webDB.moveToElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseBillsLocators.TDSU_S, ElementType.Xpath);
@@ -168,7 +171,7 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseBillsApproval() {
-		commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"Sathi Ganesh");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
@@ -182,7 +185,7 @@ public class PurchaseBillsFunctions {
 		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getPbNumber());
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("GanesUsername"), System.getProperty("GaneshPassword"),
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"Sathi Ganesh");
 			commonFunc.navigateToFinancialPurchaseBill();
 			verifyPurchaseBillApprovalStatus();

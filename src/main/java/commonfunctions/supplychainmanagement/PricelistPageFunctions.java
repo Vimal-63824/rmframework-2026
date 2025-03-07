@@ -5,6 +5,8 @@ package commonfunctions.supplychainmanagement;
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 import static org.testng.Assert.assertTrue;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
@@ -36,11 +38,11 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickPost();
@@ -68,14 +70,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -105,13 +107,13 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("SimItem_ID"), commonFunc.getDataFromTestDataSheet("Disc_Value"));
+				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(3000);
@@ -140,14 +142,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("DissimItem_ID"),
+				VariableHandler.getDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -426,12 +428,12 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -457,14 +459,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -491,14 +493,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"),
+				VariableHandler.getAmdSimItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -525,14 +527,14 @@ public class PricelistPageFunctions {
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"),
+				VariableHandler.getAmdDisItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -1404,6 +1406,360 @@ public class PricelistPageFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Searching Item in Find Screen
+	 * 
+	 * @author Durai-RMITS
+	 * @param Item1
+	 */
+	public void verifySearchOfItem(String Item1) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
+			logs.logging("INFO", "Search is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is clicked ");
+				verifySearchButtonClicking();
+				verifyClickingGeneralTab();
+				verifyGenerateItemSim(commonFunc.getDataFromTestDataSheet("Sim"));
+				verifyItemPost();
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Search Button Clicking
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifySearchButtonClicking() {
+		flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			logs.logging("INFO", "Search Button is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				logs.logging("INFO", "Drill Down item");
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Clicking General Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyClickingGeneralTab() {
+		flag = webDB.waitForElement(PricelistPageLocators.ItemGeneral, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.ItemGeneral, ElementType.Xpath);
+			logs.logging("INFO", "General  Button is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemCopy, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.ItemCopy, ElementType.Xpath);
+				logs.logging("INFO", "Item Copy is Clicked");
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Generate Item for Dissimilar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyGenerateItemDis(String Itm) {
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
+		if (ItemSeqNo.equals("000")) {
+			ItemSeqNo = "10";
+		}
+		String DisItemId = Itm + ItemSeqNo;
+
+		flag = webDB.waitForElement(PricelistPageLocators.ItemIdInputCopy, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.ItemIdInputCopy, DisItemId, ElementType.Xpath);
+			logs.logging("INFO", "Item ID is Entered");
+
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDescInputCopy, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(PricelistPageLocators.ItemDescInputCopy, DisItemId, ElementType.Xpath);
+				logs.logging("INFO", "Item Desc is Entered");
+
+				flag = webDB.waitForElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button is clicked ");
+
+					flag = webDB.waitForElement(PricelistPageLocators.ItemGetText, ElementType.Xpath);
+					if (flag) {
+						String DisItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						VariableHandler.setDisItemName(DisItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getDisItemName());
+					}
+				}
+
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Generate Item for similar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyGenerateItemSim(String Itm) {
+		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		if (ItemSeqNo.equals("000")) {
+			ItemSeqNo = "10";
+		}
+		String SimItemId = Itm + ItemSeqNo;
+
+		flag = webDB.waitForElement(PricelistPageLocators.ItemIdInputCopy, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.ItemIdInputCopy, SimItemId, ElementType.Xpath);
+			logs.logging("INFO", "Item ID is Entered");
+
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDescInputCopy, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(PricelistPageLocators.ItemDescInputCopy, SimItemId, ElementType.Xpath);
+				logs.logging("INFO", "Item Desc is Entered");
+
+				flag = webDB.waitForElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button is clicked ");
+
+					flag = webDB.waitForElement(PricelistPageLocators.ItemGetText, ElementType.Xpath);
+					if (flag) {
+						String SimItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						VariableHandler.setItemName(SimItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
+					}
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Generate Item for Amendment similar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyGenerateItemAmdSim(String Itm) {
+		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		if (ItemSeqNo.equals("000")) {
+			ItemSeqNo = "10";
+		}
+		String AmdSimItemId = Itm + ItemSeqNo;
+
+		flag = webDB.waitForElement(PricelistPageLocators.ItemIdInputCopy, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.ItemIdInputCopy, AmdSimItemId, ElementType.Xpath);
+			logs.logging("INFO", "Item ID is Entered");
+
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDescInputCopy, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(PricelistPageLocators.ItemDescInputCopy, AmdSimItemId, ElementType.Xpath);
+				logs.logging("INFO", "Item Desc is Entered");
+
+				flag = webDB.waitForElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button is clicked ");
+
+					flag = webDB.waitForElement(PricelistPageLocators.ItemGetText, ElementType.Xpath);
+					if (flag) {
+						String AmdSimItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						VariableHandler.setAmdSimItemName(AmdSimItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getAmdSimItemName());
+					}
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Generate Item for Amendment Dissimilar Uom
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyGenerateItemAmdDis(String Itm) {
+		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		if (ItemSeqNo.equals("000")) {
+			ItemSeqNo = "10";
+		}
+		String AmdDisItemId = Itm + ItemSeqNo;
+		flag = webDB.waitForElement(PricelistPageLocators.ItemIdInputCopy, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.ItemIdInputCopy, AmdDisItemId, ElementType.Xpath);
+			logs.logging("INFO", "Item ID is Entered");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDescInputCopy, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(PricelistPageLocators.ItemDescInputCopy, AmdDisItemId, ElementType.Xpath);
+				logs.logging("INFO", "Item Desc is Entered");
+				flag = webDB.waitForElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button is clicked ");
+					flag = webDB.waitForElement(PricelistPageLocators.ItemGetText, ElementType.Xpath);
+					if (flag) {
+						String AmdDisItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						VariableHandler.setAmdDisItemName(AmdDisItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getAmdDisItemName());
+					}
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Post Item
+	 * 
+	 * @author Durai-RMITS
+	 */
+
+	public void verifyItemPost() {
+		flag = webDB.waitForElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
+			logs.logging("INFO", "Item is Posted");
+			webDB.waitForElement(PricelistPageLocators.ItemPostSucessMsg, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Item Add Button is Clicked");
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Verify Clicking Find Button
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyClickingFindBtnOfItem() {
+		commonFunc.hardWait(4000);
+		flag = webDB.waitForElement(PricelistPageLocators.ItemFindBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PricelistPageLocators.ItemFindBtn, ElementType.Xpath);
+			logs.logging("INFO", "Find Button is clicked");
+			webDB.waitForElement(PricelistPageLocators.ItemMasterAdd, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Item Add Button is Clicked");
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Searching for Item
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifySearchOfItem2(String Item2) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item2, ElementType.Xpath);
+			logs.logging("INFO", "Search is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is clicked ");
+				verifySearchButtonClicking();
+				verifyClickingGeneralTab();
+				verifyGenerateItemDis(commonFunc.getDataFromTestDataSheet("Dis"));
+				verifyItemPost();
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Searching for Item
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifySearchOfItem3(String Item3) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item3, ElementType.Xpath);
+			logs.logging("INFO", "Search is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is clicked ");
+				verifySearchButtonClicking();
+				verifyClickingGeneralTab();
+				verifyGenerateItemAmdSim(commonFunc.getDataFromTestDataSheet("Amd_Sim"));
+				verifyItemPost();
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Searching for Item
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifySearchOfItem4(String Item4) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item4, ElementType.Xpath);
+			logs.logging("INFO", "Search is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is clicked ");
+				verifySearchButtonClicking();
+				verifyClickingGeneralTab();
+				verifyGenerateItemAmdDis(commonFunc.getDataFromTestDataSheet("Amd_Dis"));
+				verifyItemPost();
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Item
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfItemforPriceList() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		verifyClickingFindBtnOfItem();
+		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		verifyClickingFindBtnOfItem();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
+		verifyClickingFindBtnOfItem();
+		verifySearchOfItem4(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
 	}
 
 }

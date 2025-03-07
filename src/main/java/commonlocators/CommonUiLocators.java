@@ -158,7 +158,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String InventoryReportsTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[9]";
+	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[14]";
 	/** @locatorType Xpath */
 	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
 	/** @locatorType Xpath */
@@ -173,5 +173,24 @@ public class CommonUiLocators {
 	public static final String ProdPlan_Transaction_ProductionOrder = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[4]";
 	/** @locatorType Xpath */
 	public static final String NoDataFoundContainerLists = "//div[@aria-label='No data found']";
-
+	/** @locatorType Xpath */
+	public static final String SupplyChainTabCheck = "//span[text()='Supply Chain']";
+	/** @locatorType Xpath */
+	public static final String PurchaseTabCheck = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/span[2]";
+	/** @locatorType Xpath */
+	public static final String InventoryCheck = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/span[2]";
+	/** @locatorType Xpath */
+	public static final String InventoryReportsTabCheck = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/span[2]";
+	/** @locatorType Xpath */
+	public static final String MIVTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String PendingMIV = "//button[@id='B1493255748221256227']";
+	/** @locatorType Xpath */
+	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String ItemMasterAdd = "//*[@id=\"B1284581566305961864\"]/span";
+	/** @locatorType Xpath */
+	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
+	/** @locatorType Xpath */
+	public static final String InvSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]";
 }
