@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -76,7 +77,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String DeleteLineItemPO(String ItemName) {
-		return "//td[text()='" + ItemName + "']/../td[18]/a";
+		return "//td[text()='" + ItemName + "']/../td/a/span[contains(@style,'tomato')]";
 	}
 
 	/** @locatorType Xpath */
@@ -95,7 +96,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPR_SearchBtn = "//button[@id='B2403556419484961039']";
 	/** @locatorType Xpath */
-	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all']/parent::span)[1]";
+	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all'])[1]";
 	/** @locatorType Xpath */
 	public static final String PendingPR_CreatePO_Btn = "//button[@id='B1']";
 	/** @locatorType Xpath */
@@ -332,7 +333,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@id='B3146205337803717780']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[16]";
+	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[18]";
 	/** @locatorType Xpath */
 	public static final String PoseriviceWithGrnSelectedValues = "//*[@id=\"C2522028662001049402\"]";
 }

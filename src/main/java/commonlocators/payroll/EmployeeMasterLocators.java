@@ -392,4 +392,6 @@ public class EmployeeMasterLocators {
 		return "//table[@id='4101162321820191783_orig']//tr[" + i + "]/td[1]/a";
 	}
 
+	/** @locatorType XPATH */
+	public static final String AddEmp_UpdateIframeCloseIcon = "//span[@class='ui-dialog-title']/following-sibling::button";
 }

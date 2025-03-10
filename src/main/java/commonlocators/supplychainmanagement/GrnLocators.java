@@ -10,7 +10,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPO = "//span[contains(@class,'t-Icon t-Icon--left fa fa-dot-circle-o')]";
 	/** @locatorType Xpath */
-	public static final String PendingPOIframe = "//iframe[@title='Pending PO/SS/ST/GE']";
+	public static final String PendingPOIframe = "//iframe[@title='Pending Details']";
 	/** @locatorType Xpath */
 	public static final String PendingPOheader = "//h2[contains(@id,'R2323283483953540029_heading')]/..";
 	/** @locatorType Xpath */
@@ -52,7 +52,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerailButton = "//button[contains(@id,'B3157814851916052373')]";
 	/** @locatorType Xpath */
-	public static final String AddLotSerialItem = "//*[@id=\"B3161024549306520630\"]/span";
+	public static final String AddLotSerialItem = "//*[@id=\"B3161024549306520630\"]";
 	/** @locatorType Xpath */
 	public static final String LotSerialItemLov = "//button[contains(@id,'C1869923325925966449_lov_btn')]";
 	/** @locatorType Xpath */
@@ -72,7 +72,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerialDate = "//div[@id='grn_lot_ig_grid_vc']/*[3]/*[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String DateInput = "08-02-2027";
+	public static final String DateInput = "//input[@id='C1885842449099241908_input']";
 	/** @locatorType Xpath */
 	public static final String LotSerialSave = "//button[contains(@id,'B3161025382308520635')]";
 	/** @locatorType Xpath */
@@ -134,4 +134,16 @@ public class GrnLocators {
 				+ "]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String FindPageGrnNoLov = "//button[@id='P1615131103_GRN_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String GrnNumberInput = "//*[@id=\"PopupLov_1615131103_P1615131103_GRN_NO_dlg\"]/div[1]/input";
+	/** @locatorType Xpath */
+	public static String GrnSearchButton = "//*[@id=\"B1177499091828681684\"]";
+	/** @locatorType Xpath */
+	public static String GrnProcessFlowStatus = "//*[@id=\"11310267490929766564\"]/tbody/tr[2]/td[16]/div";
+	/** @locatorType Xpath */
+	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
+	/** @locatorType Xpath */
+	public static String GrnDocumentStatus = "//*[@id=\"11310267490929766564\"]/tbody/tr[2]/td[16]/div";
 }

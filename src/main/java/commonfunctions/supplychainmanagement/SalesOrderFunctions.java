@@ -910,7 +910,7 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
-	
+
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic Sales
 	 *         Order - price basis is PriceList- Similar Stock and Customer UOM
@@ -1602,7 +1602,7 @@ public class SalesOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Line Wise Save Button is Clicked");
 				commonFunc.checkSuccessToastMessageDisappear();
-				webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath,60);
+				webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath, 60);
 				flag = webDB.waitForClickElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
 				if (flag) {
 					String SOTotAmt = webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans,
@@ -2501,6 +2501,6 @@ public class SalesOrderFunctions {
 		VariableHandler.setSOTotalLineAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
-//			commonFunc.enterUrl();
+		commonFunc.enterUrl();
 	}
 }

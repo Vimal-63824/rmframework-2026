@@ -352,22 +352,32 @@ public class PurchaseRequestFunctions {
 	 */
 	public void checkPRLineDetailsForLastUpdateItem(String Item) {
 		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_SubClass, Item,
-				PRLineDetailsName.SUBCLASS);
-		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_Class, Item, PRLineDetailsName.CLASS);
+				PRLineDetailsName.SUBCLASS, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("SubClassValue")));
+		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_Class, Item, PRLineDetailsName.CLASS,
+				dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("ClassValue")));
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_Warehouse, Item,
-				PRLineDetailsName.WAREHOUSE);
+				PRLineDetailsName.WAREHOUSE, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("WHValue")));
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ConventionFactor, Item,
-				PRLineDetailsName.CONVENTION_FACTOR);
+				PRLineDetailsName.CONVENTION_FACTOR, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("ConvValue")));
 		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_PurchaseUOM, Item,
-				PRLineDetailsName.PURCHASE_UOM);
+				PRLineDetailsName.PURCHASE_UOM, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("UOMValue")));
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccNo, Item,
-				PRLineDetailsName.GL_ACC_NO);
+				PRLineDetailsName.GL_ACC_NO, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("GLValue")));
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccDesc, Item,
-				PRLineDetailsName.GL_ACC_DESC);
+				PRLineDetailsName.GL_ACC_DESC, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("GLDescValue")));
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCCode, Item,
-				PRLineDetailsName.CPC_CODE);
+				PRLineDetailsName.CPC_CODE, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("CCCodeLineValue")));
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCDesc, Item,
-				PRLineDetailsName.CPC_DESC);
+				PRLineDetailsName.CPC_DESC, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+						commonFunc.getDataFromTestDataSheet("CCDescValue")));
 	}
 
 	/*----------------------private methods---------------------------*/
@@ -576,7 +586,7 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.waitForClickElement(PurchaseRequestLocators.PRPrefixSelect, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PRPrefixSelect, Prefix, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRPrefixSelect, Prefix);
 			if (flag) {
 				logs.logging("INFO", "PR Prefix: " + Prefix + " selected");
 			}
@@ -926,7 +936,8 @@ public class PurchaseRequestFunctions {
 	 */
 	private void clickLoadPRAndSelectAllItemstoLines() {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
+		commonFunc.checkSuccessToastMessageDisappear();
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_LoadPRBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -1224,7 +1235,8 @@ public class PurchaseRequestFunctions {
 	 * @param Item
 	 * @param lineDtlName
 	 */
-	private void validatePRLineDetailsWithGetText(String Locator, String Item, PRLineDetailsName lineDtlName) {
+	private void validatePRLineDetailsWithGetText(String Locator, String Item, PRLineDetailsName lineDtlName,
+			String DBData) {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
@@ -1237,6 +1249,13 @@ public class PurchaseRequestFunctions {
 				logs.logging("INFO", "Expected Text: " + expectedName);
 				if (flag) {
 					logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
+					if (flag) {
+						logs.logging("INFO", "DB Value Is: " + DBData);
+						flag = DBData.contains(DisplayText);
+						if (flag) {
+							logs.logging("INFO", "Verified Actual Value With DB Value");
+						}
+					}
 				} else {
 					logs.logging("INFO", "Verification Failed!!... Displayed and Expected Text for "
 							+ lineDtlName.name().toString());
@@ -1257,7 +1276,8 @@ public class PurchaseRequestFunctions {
 	 * @param Item
 	 * @param lineDtlName
 	 */
-	private void validatePRLineDetailsWithDomPropertyValue(String Locator, String Item, PRLineDetailsName lineDtlName) {
+	private void validatePRLineDetailsWithDomPropertyValue(String Locator, String Item, PRLineDetailsName lineDtlName,
+			String DBData) {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
@@ -1271,6 +1291,13 @@ public class PurchaseRequestFunctions {
 				logs.logging("INFO", "Expected Text: " + expectedName);
 				if (flag) {
 					logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
+					if (flag) {
+						logs.logging("INFO", "DB Value Is: " + DBData);
+						flag = DBData.contains(DisplayText);
+						if (flag) {
+							logs.logging("INFO", "Verified Actual Value With DB Value");
+						}
+					}
 				} else {
 					logs.logging("INFO", "Verification Failed!!... Displayed and Expected Text for "
 							+ lineDtlName.name().toString());
@@ -1348,6 +1375,5 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("DeptValue")), Department);
 		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("RequestorValue")), Requester);
-
 	}
 }
