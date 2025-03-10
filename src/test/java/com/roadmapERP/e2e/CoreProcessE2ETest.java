@@ -55,6 +55,18 @@ public class CoreProcessE2ETest {
 	}
 
 	/**
+	 * Production Order to Completion to MRV ETE
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 4, groups = {
+			"Core Process" }, description = "Production Order to Completion to MRV End to End Process")
+	public void VerifyProductionOrderToCompletionToMaterialReceiptVoucher() {
+		flag = coreProcessPageFunctions.verifyProductionOrderToCompletionToMaterialReceiptVoucher();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

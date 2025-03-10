@@ -141,6 +141,8 @@ public class MRPLocators {
 	public static final String MRP_Release_LotSizeDays = "//input[@id='P1318161010003_LOT_SIZE_DAYS']";
 	/** @locatorType XPATH */
 	public static final String MRP_Release_ReleaseBtn = "//button[@id='B1421566413936647875']";
+	/** @locatorType XPATH */
+	public static final String MRP_ExceptionNoDataFoundContainer = "//div[@id='R1401289497759360278_ig_content_container']//span[text()='No data found']";
 
 	/** @locatorType XPATH */
 	public static final String MRP_ResultSummary_TotalDemandWithItem(String Item) {

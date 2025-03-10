@@ -371,6 +371,143 @@ public class SaleInvoiceTest {
 		flag = salesInvoiceFunc.verifyDirectExportProformaInvoiceCreationPendingSO();
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * Create SI - Domestic - Local Customer
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 29, groups = { "SalesInvoice" }, description = "      158 - Create SI - Domestic - Local Customer")
+	public void VerifyCreateSalesInvoiceDomesticLocalCustomer() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticLocalCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SI - Domestic - Interstate Customer
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 30, groups = {
+			"SalesInvoice" }, description = "      159 - Create SI - Domestic - Interstate Customer")
+	public void VerifyCreateSalesInvoiceDomesticInterStateCustomer() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticInterStateCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SI - Domestic - UTGST Customer
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 31, groups = { "SalesInvoice" }, description = "      160 - Create SI - Domestic - UTGST Customer")
+	public void VerifyCreateSalesInvoiceDomesticUTGSTCustomer() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticUTGSTCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SI - Domestic - SEZ Customer
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 32, groups = { "SalesInvoice" }, description = "      161 - Create SI - Domestic - SEZ Customer")
+	public void VerifyCreateSalesInvoiceDomesticSEZCustomer() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticSEZCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Sales Invoice Domestic from approved sales orders
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 33, groups = {
+			"SalesInvoice" }, description = "      130 - Create Sales Invoice from approved sales orders")
+	public void VerifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Sales Invoice Export from approved sales orders
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 34, groups = {
+			"SalesInvoice" }, description = "      144 - Create Sales Invoice from approved sales orders")
+	public void VerifyCreateSalesInvoiceExportFromApprovedSalesorders() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceExportFromApprovedSalesorders();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Free Sample Type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 37, groups = {
+			"SalesInvoice" }, description = "      164 -  create Free Sample type of Sales Invoice")
+	public void VerifyCreateFreeSampletypeofSalesInvoice() {
+		flag = salesInvoiceFunc.verifyCreateFreeSampletypeofSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Free Replacement type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 38, groups = {
+			"SalesInvoice" }, description = "      165 - create Free Replacement type of Sales Invoice")
+	public void VerifyCreateFreeReplacementTypeofSalesInvoice() {
+		flag = salesInvoiceFunc.verifyCreateFreeReplacementTypeofSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Scrap type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 39, groups = { "SalesInvoice" }, description = "      168 -  create Scrap type of Sales Invoice")
+	public void VerifyCreateScrapTypeofSalesInvoice() {
+		flag = salesInvoiceFunc.verifyCreateScrapTypeofSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Unpick the Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 40, groups = { "SalesInvoice" }, description = "      177 -  Unpick the Sales Invoice")
+	public void VerifyUnpickTheSalesInvoice() {
+		flag = salesInvoiceFunc.verifyUnpickTheSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Cancel the Sales Invoice document
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 41, groups = { "SalesInvoice" }, description = "       175 - Cancel the Sales Invoice document")
+	public void VerifyCancelTheSalesInvoiceDocument() {
+		flag = salesInvoiceFunc.verifyCancelTheSalesInvoiceDocument();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Cancel the Sales Invoice Lines
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 42, groups = { "SalesInvoice" }, description = "       178 - Cancel Invoice Lines")
+	public void VerifyCancelSalesInvoiceLines() {
+		flag = salesInvoiceFunc.verifyCancelSalesInvoiceLines();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Logout The Portal If Testcases Failed

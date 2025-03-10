@@ -57,7 +57,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
 	/** @locatorType Xpath */
-	public static final String PendingText = "//h1/following-sibling::button";
+	public static final String PendingText = "//h1[contains(text(),'Pending')]";
 	/** @locatorType Xpath */
 	public static final String SearchBarIcon = "//button[contains(@class,'doSearch')]";
 	/** @locatorType Xpath */
@@ -164,9 +164,9 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTabForPurchaseUser = "//*[@id=\"t_TreeNav_19\"]/div[2]/a";
 	/** @locatorType Xpath */
-	public static final String ProductionPlanningTab = "//span[contains(text(),'Production Planning')]/ancestor::li/span";
+	public static final String ProductionPlanningTab = "//span[contains(text(),'Production Planning')]/ancestor::li";
 	/** @locatorType Xpath */
-	public static final String ProdPlan_TransactionTab = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/span";
+	public static final String ProdPlan_TransactionTab = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String ProdPlan_Transaction_MRPScreen = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[3]";
 	/** @locatorType Xpath */
@@ -193,4 +193,7 @@ public class CommonUiLocators {
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */
 	public static final String InvSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String ProdPlan_Transaction_CompletionProductionOrder = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[10]";
+
 }

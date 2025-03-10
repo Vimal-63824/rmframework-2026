@@ -325,14 +325,14 @@ public class MRPFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void validateNoExceptionDataShownInTableData() {
-		flag = webDB.waitForElement(MRPLocators.MRP_ExceptionMessageTableHeader, ElementType.Xpath);
+		flag = webDB.waitForElement(MRPLocators.MRP_ExceptionNoDataFoundContainer, ElementType.Xpath);
 		if (flag) {
 			List<WebElement> elements = webDB.getDriver()
-					.findElements(By.xpath(CommonUiLocators.NoDataFoundContainerLists));
-			for (WebElement webElement : elements) {
+					.findElements(By.xpath(MRPLocators.MRP_ExceptionNoDataFoundContainer));
+			a: for (WebElement webElement : elements) {
 				if (webElement.isDisplayed()) {
 					flag = true;
-					break;
+					break a;
 				} else {
 					flag = false;
 				}
@@ -612,9 +612,11 @@ public class MRPFunctions {
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.FindSearchBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
+			flag = webDB.waitForClickElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Search Button clicked and MRP No: " + MRPNo + " Displayed");
+				webDB.moveToElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
 				webDB.clickAnElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
 				flag = webDB.waitForElement(MRPLocators.MRP_SubTab_Sources, ElementType.Xpath);
 				if (flag) {
