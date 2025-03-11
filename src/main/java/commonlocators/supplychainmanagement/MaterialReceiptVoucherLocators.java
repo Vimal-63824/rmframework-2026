@@ -46,4 +46,14 @@ public class MaterialReceiptVoucherLocators {
 	public static final String MaterialReceiptStatusTableText(String Mrno) {
 		return "//a[text()='" + Mrno + "']/../../td/div[contains(@style,'Green')]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String PendingCreateMRV_TableRecipientWH(String CompletionProdNo) {
+		return "//div[@id='PEND_data_panel']//table/tbody/tr/td[text()='" + CompletionProdNo + "']/../td[16]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PendingCreateMRV_TableProcess(String CompletionProdNo) {
+		return "//div[@id='PEND_data_panel']//table/tbody/tr/td[text()='" + CompletionProdNo + "']/../td[21]";
+	}
 }

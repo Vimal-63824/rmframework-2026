@@ -1,5 +1,7 @@
 package commonlocators.payroll;
 
+import commonfunctions.VariableHandler;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -182,7 +184,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityAddBtn = "//button[@id='B799548269663093051']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityLeaveLovBtn = "//button[@id='B799548269663093051']";
+	public static final String AddEmp_LeaveEligibilityLeaveLovBtn = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[1]//button";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityLeaveData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[1]";
 	/** @locatorType XPATH */
@@ -190,11 +192,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityDaysData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityDaysInput = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[1]//input";
+	public static final String AddEmp_LeaveEligibilityDaysInput = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[3]//input";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityEveryData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityEverySelect = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[4]//select";
+	public static final String AddEmp_LeaveEligibilityEverySelect = "//select[@id='C12198251242724219547']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityEligibleDaysData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[5]";
 	/** @locatorType XPATH */
@@ -202,27 +204,27 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityRoundOffData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[6]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityRoundOffSelect = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[6]//select";
+	public static final String AddEmp_LeaveEligibilityRoundOffSelect = "//select[@id='C12198251616011219551']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMaxCarryFreqData = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[7]";
+	public static final String AddEmp_LeaveEligibilityMaxCarryFreqData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[7]";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityMaxCarryFreqSelect = "//select[@id='C12199221611839593521']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMaxCarryDayData = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[8]";
+	public static final String AddEmp_LeaveEligibilityMaxCarryDayData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[8]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMaxCarryDayInput = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[8]//input";
+	public static final String AddEmp_LeaveEligibilityMaxCarryDayInput = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[8]//input";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityEffYearData = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[9]";
+	public static final String AddEmp_LeaveEligibilityEffYearData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[9]";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilityEffYearSelect = "//select[@id='C12198250191175219537']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMaxDaysData = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[12]";
+	public static final String AddEmp_LeaveEligibilityMaxDaysData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[12]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMaxDaysInput = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[12]";
+	public static final String AddEmp_LeaveEligibilityMaxDaysInput = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[12]//input";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMinDaysData = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[13]";
+	public static final String AddEmp_LeaveEligibilityMinDaysData = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[13]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_LeaveEligibilityMinDaysInput = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[13]";
+	public static final String AddEmp_LeaveEligibilityMinDaysInput = "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[13]//input";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LeaveEligibilitySaveIcon = "//button[@id='B799548644291093051']";
 	/** @locatorType XPATH */
@@ -393,5 +395,23 @@ public class EmployeeMasterLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateIframeCloseIcon = "//span[@class='ui-dialog-title']/following-sibling::button";
+	public static final String AddEmp_UpdateIframeCloseIcon = "//iframe[@title='Update Employee Details']/preceding::button[@title='Close'][1]";
+	/** @locatorType XPATH */
+	public static final String AddEmp_LeaveEligibilityMinEncashData = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[14]";
+	/** @locatorType XPATH */
+	public static final String AddEmp_LeaveEligibilityMinEncashInput = "//span[text()='Leave Eligibility']/following::table[2]//tr/td[14]//input";
+	/** @locatorType XPATH */
+	public static final String AddEmp_LeaveEligibilityMaximizeIcon = "//div[@aria-label='Leave Eligibility']//button[@title='Maximize']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_LeaveEligibilityRestoreIcon = "//div[@aria-label='Leave Eligibility']//button[@title='Restore']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_SalaryAdjustmentsMaximizeIcon = "//div[contains(@aria-label,'Adjustments')]//button[@title='Maximize']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_SalaryAdjustmentsRestoreIcon = "//div[contains(@aria-label,'Adjustments')]//button[@title='Restore']";
+
+	/** @locatorType XPATH */
+	public static final String AddEmp_LeaveEligibilityActiveIcon(String LeaveType) {
+		return "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[text()='" + LeaveType + "']/../td[11]//span";
+	}
+
 }
