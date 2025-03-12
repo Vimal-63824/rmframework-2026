@@ -932,12 +932,22 @@ public class PurchaseOrderFunctions {
 	 */
 	public void selectAllPendingPRAndClickCreatePO() {
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPRTable, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseOrderPageLocators.PendingPRTable, ElementType.Xpath);
-			webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
 			commonFunc.hardWait(5000);
-			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox, ElementType.Xpath);
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						element.click();
+						flag = true;
+						break;
+					}
+				} catch (Exception e) {
+
+				}
+			}
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -1540,6 +1550,11 @@ public class PurchaseOrderFunctions {
 				if (flag) {
 					webDB.clickAnElement(PurchaseOrderPageLocators.IncludeCharges, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
+					if (webDB.isElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
+						logs.logging("INFO", "Close Toast Icon Is Displayed");
+						webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon,
+								ElementType.Xpath);
+					}
 					flag = webDB.waitForElement(PurchaseOrderPageLocators.LineTab, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Include Charges Is Clicked");

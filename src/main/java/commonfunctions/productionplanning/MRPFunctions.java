@@ -325,14 +325,14 @@ public class MRPFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void validateNoExceptionDataShownInTableData() {
-		flag = webDB.waitForElement(MRPLocators.MRP_ExceptionMessageTableHeader, ElementType.Xpath);
+		flag = webDB.waitForElement(MRPLocators.MRP_ExceptionNoDataFoundContainer, ElementType.Xpath);
 		if (flag) {
 			List<WebElement> elements = webDB.getDriver()
-					.findElements(By.xpath(CommonUiLocators.NoDataFoundContainerLists));
-			for (WebElement webElement : elements) {
+					.findElements(By.xpath(MRPLocators.MRP_ExceptionNoDataFoundContainer));
+			a: for (WebElement webElement : elements) {
 				if (webElement.isDisplayed()) {
 					flag = true;
-					break;
+					break a;
 				} else {
 					flag = false;
 				}
@@ -612,9 +612,11 @@ public class MRPFunctions {
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.FindSearchBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
+			flag = webDB.waitForClickElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Search Button clicked and MRP No: " + MRPNo + " Displayed");
+				webDB.moveToElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
 				webDB.clickAnElement(MRPLocators.Find_MRPNo_TableData(MRPNo), ElementType.Xpath);
 				flag = webDB.waitForElement(MRPLocators.MRP_SubTab_Sources, ElementType.Xpath);
 				if (flag) {
@@ -693,15 +695,20 @@ public class MRPFunctions {
 			webDB.clickAnElement(MRPLocators.MRP_Release_ReleaseBtn, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForClickElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForClickElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 			if (flag) {
-				commonFunc.checkRefreshCellsDisappear();
-				logs.logging("INFO", "MRP Release Button Clicked Successfully");
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				webDB.moveToElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
+				webDB.clickAnElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					logs.logging("INFO", "MRP Release Button Clicked Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					flag = webDB.waitForElement(MRPLocators.FindLinesBtn, ElementType.Xpath);
 				}
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(MRPLocators.FindLinesBtn, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);

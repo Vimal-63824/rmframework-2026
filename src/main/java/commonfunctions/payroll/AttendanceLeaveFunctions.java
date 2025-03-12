@@ -62,6 +62,7 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
+			commonFunc.hardWait(1000);
 			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, PermFromDate,
 					ElementType.Xpath);
 			if (flag) {
@@ -115,6 +116,7 @@ public class AttendanceLeaveFunctions {
 	public void permissionSaveAndPostDocument() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
 		if (flag) {
+			commonFunc.hardWait(2000);
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
 			logs.logging("INFO", "Permission Entry is Saved");
@@ -166,6 +168,7 @@ public class AttendanceLeaveFunctions {
 	public void checkOnDutyBasedonDateWise(String OnDutyFromDate) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, OnDutyFromDate,
 					ElementType.Xpath);
 			if (flag) {
@@ -185,6 +188,7 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReferenceField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReferenceField, ElementType.Xpath);
+			commonFunc.hardWait(1000);
 			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReferenceField,
 					PermissionReference, ElementType.Xpath);
 			if (flag) {

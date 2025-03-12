@@ -118,5 +118,9 @@ public class OpenSoAmdLocators {
 	public static final String ItemUOM = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String ExistingPrice = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String PoDate = "//input[@id='P1915131013016_SRCAHD_PO_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String PoDateField = "//input[@id='P1915131013016_SRCAHD_PO_DATE_input']";
 
 }

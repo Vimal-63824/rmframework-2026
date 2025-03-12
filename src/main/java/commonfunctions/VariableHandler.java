@@ -114,6 +114,12 @@ public class VariableHandler {
 	private static ThreadLocal<String> AmdSimItemName = new ThreadLocal<>();
 	private static ThreadLocal<String> AmdDisItemName = new ThreadLocal<>();
 	private static ThreadLocal<String> MIVNumber = new ThreadLocal<>();
+	private static ThreadLocal<Boolean> SaleOrderToMRPExecution = ThreadLocal.withInitial(() -> false);
+	private static ThreadLocal<String> MaterialRequestNo = new ThreadLocal<>();
+	private static ThreadLocal<String> MaterialIssuanceVoucherNo = new ThreadLocal<>();
+	private static ThreadLocal<String> ProductionCompletionOrderNo = new ThreadLocal<>();
+	private static ThreadLocal<String[][]> ProcessAndWarehousesBOM = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> CustomerSaleGSTType = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -921,5 +927,53 @@ public class VariableHandler {
 
 	public static void setMIVNumber(String data) {
 		MIVNumber.set(data);
+	}
+
+	public static boolean getSaleOrderToMRPExecution() {
+		return SaleOrderToMRPExecution.get();
+	}
+
+	public static void setSaleOrderToMRPExecution(boolean flag) {
+		SaleOrderToMRPExecution.set(flag);
+	}
+
+	public static String getMaterialRequestNo() {
+		return MaterialRequestNo.get();
+	}
+
+	public static void setMaterialRequestNo(String data) {
+		MaterialRequestNo.set(data);
+	}
+
+	public static String getMaterialIssuanceVoucherNo() {
+		return MaterialIssuanceVoucherNo.get();
+	}
+
+	public static void setMaterialIssuanceVoucherNo(String data) {
+		MaterialIssuanceVoucherNo.set(data);
+	}
+
+	public static String getProductionCompletionOrderNo() {
+		return ProductionCompletionOrderNo.get();
+	}
+
+	public static void setProductionCompletionOrderNo(String data) {
+		ProductionCompletionOrderNo.set(data);
+	}
+
+	public static String[][] getProcessAndWarehousesBOM() {
+		return ProcessAndWarehousesBOM.get();
+	}
+
+	public static void setProcessAndWarehousesBOM(String[][] data) {
+		ProcessAndWarehousesBOM.set(data);
+	}
+
+	public static String getCustomerSaleGSTType() {
+		return CustomerSaleGSTType.get();
+	}
+
+	public static void setCustomerSaleGSTType(String data) {
+		CustomerSaleGSTType.set(data);
 	}
 }

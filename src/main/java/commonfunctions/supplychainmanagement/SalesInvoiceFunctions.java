@@ -8,13 +8,14 @@ import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.ItemDetailsHandler.SICustomerDetailsName;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
-import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -27,6 +28,7 @@ public class SalesInvoiceFunctions {
 	private ApprovalPageFunctions approveFunc = new ApprovalPageFunctions();
 	PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
+	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 
 	/**
 	 * Verify Clicking Add Button
@@ -527,6 +529,13 @@ public class SalesInvoiceFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This method used to verify Item From Pending Sale Order and Click Alloc
+	 * Serial
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 */
 	public void verifyItemFromPendingSaleOrderAndClickAllocLotSerial(String Item) {
 		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
 		if (flag) {
@@ -545,6 +554,23 @@ public class SalesInvoiceFunctions {
 					}
 				}
 			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to store Sale GST Type in variable handler
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void storeSaleGSTType() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Sale_GST_cls, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(SalesInvoiceLocators.Sale_GST_cls, ElementType.Xpath);
+			String GSTType = webDB.getDomPropertyFromElement(SalesInvoiceLocators.Sale_GST_cls, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setCustomerSaleGSTType(GSTType);
+			logs.logging("INFO", "Customer Sale GST Type: " + GSTType);
 		}
 		assertTrue(flag);
 	}
@@ -2134,7 +2160,6 @@ public class SalesInvoiceFunctions {
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Proforma_Inv_Loc_Btn, PI_Loc_Id);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Type_Field, PI_Type);
 		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.PI_Customer_Name, PI_Domestic_Customer);
-		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(SalesInvoiceLocators.PI_TickIcon, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Proforma Invoice Parameter Inserted Sucessfully");
@@ -2804,6 +2829,44 @@ public class SalesInvoiceFunctions {
 				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.Unit));
 		commonFunc.hardWait(2000);
 		verifyLocationDetailsButton();
+		storeSaleGSTType();
+		verifyDomPropertyValidation(SalesInvoiceLocators.Sale_GST_cls, itemDetailHandler
+				.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.GST_Classification));
+		verifyDomPropertyValidation(SalesInvoiceLocators.Sale_GST_Type,
+				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.GST_Type));
+		flag = webDB.waitForElement(SalesInvoiceLocators.Location_det_tickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Location_det_tickIcon, ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Location Detail Tickicon Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Location Details with Customer Name
+	 * 
+	 * @author Vimal - RMITS
+	 * @param Customer_Name
+	 */
+	public void LocationDetailsVerification(String Customer_Name) {
+		verifyGetTextValidation(SalesInvoiceLocators.Pend_From_Saleinvoice_Customer,
+				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.Customer_Name));
+		verifyGetTextValidation(SalesInvoiceLocators.SI_Currency,
+				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.Currency));
+		verifyGetTextValidation(SalesInvoiceLocators.SI_Header_Type,
+				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.SI_Type));
+		verifyGetTextValidation(SalesInvoiceLocators.SI_Header_Loc_ID,
+				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.Loc_Id));
+		verifyDomPropertyValidation(SalesInvoiceLocators.SI_Header_Unit,
+				itemDetailHandler.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.Unit));
+		commonFunc.hardWait(2000);
+		verifyLocationDetailsButton();
+		storeSaleGSTType();
 		verifyDomPropertyValidation(SalesInvoiceLocators.Sale_GST_cls, itemDetailHandler
 				.getSILineDetailsforGivenItem(Customer_Name, SICustomerDetailsName.GST_Classification));
 		verifyDomPropertyValidation(SalesInvoiceLocators.Sale_GST_Type,
@@ -2862,21 +2925,39 @@ public class SalesInvoiceFunctions {
 			logs.logging("INFO", "Discount Amount Displayed without tax: " + DiscountAmnt);
 			totalCostWithoutTax = totalCostWithoutTax.subtract(DiscountAmnt);
 			logs.logging("INFO", "After Subtract Discount in Calculation Amount without tax: " + totalCostWithoutTax);
-			if (getTextCurrencyInHeader().equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
+			if ((getTextCurrencyInHeader().equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("CurrencyInr")))
+					&& !VariableHandler.getCustomerSaleGSTType().contains("SEZ")) {
 				flag = webDB.waitForElement(SalesInvoiceLocators.TaxPercentField, ElementType.Xpath);
 				if (flag) {
 					BigDecimal PerValue = new BigDecimal(
 							webDB.getTextFromElement(SalesInvoiceLocators.TaxPercentField, ElementType.Xpath));
 					PerValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(PerValue);
 					logs.logging("INFO", "Displayed tax Percentage: " + PerValue.intValue() + "%");
+
+					BigDecimal IGSTAmount = new BigDecimal(
+							webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField, ElementType.Xpath));
+					IGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(IGSTAmount);
+					BigDecimal CGSTAmount = new BigDecimal(
+							webDB.getTextFromElement(SalesInvoiceLocators.CGSTTaxAmountField, ElementType.Xpath));
+					CGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(CGSTAmount);
+					BigDecimal SGSTAmount = new BigDecimal(
+							webDB.getTextFromElement(SalesInvoiceLocators.SGSTTaxAmountField, ElementType.Xpath));
+					SGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(SGSTAmount);
+					BigDecimal UTGSTAmount = new BigDecimal(
+							webDB.getTextFromElement(SalesInvoiceLocators.UTGSTTaxAmountField, ElementType.Xpath));
+					UTGSTAmount = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(UTGSTAmount);
+
+					BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
 					BigDecimal TaxValue = totalCostWithoutTax.divide(new BigDecimal("100")).multiply(PerValue);
-					BigDecimal IndividualTax = purchaseOrderFunc
-							.verifyRoundOffBigDecimalValueWithReturnBigDecimal(TaxValue.divide(new BigDecimal("2")));
-					logs.logging("INFO", "Individual Tax Amount: " + IndividualTax);
-					TaxValue = IndividualTax.multiply(new BigDecimal("2"));
+					if (!IGSTAmount.equals(taxAmount)) {
+						BigDecimal IndividualTax = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(
+								TaxValue.divide(new BigDecimal("2")));
+						logs.logging("INFO", "Individual Tax Amount: " + IndividualTax);
+						TaxValue = IndividualTax.multiply(new BigDecimal("2"));
+					} else {
+						TaxValue = purchaseOrderFunc.verifyRoundOffBigDecimalValueWithReturnBigDecimal(TaxValue);
+					}
 					logs.logging("INFO", "Expected Tax Value After Tax calculation: " + TaxValue);
-					BigDecimal taxAmount = purchaseOrderFunc
-							.verifyRoundOffBigDecimalValueWithReturnBigDecimal(getTaxValue());
 					logs.logging("INFO", "After Adding Displayed GST Values: " + taxAmount);
 					flag = taxAmount.equals(TaxValue);
 					if (flag) {
@@ -2906,6 +2987,13 @@ public class SalesInvoiceFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This method used to add IGST,CGST,SGST and UTGST Amounts Displayed in Sales
+	 * Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 * @return BigDecimal
+	 */
 	public BigDecimal getTaxValue() {
 		BigDecimal IGSTAmount = new BigDecimal(
 				webDB.getTextFromElement(SalesInvoiceLocators.IGSTTaxAmountField, ElementType.Xpath));
@@ -2947,5 +3035,1264 @@ public class SalesInvoiceFunctions {
 			webDB.switchToFrame(SalesInvoiceLocators.Location_Detail_Iframe, ElementType.Xpath);
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For PendingSO Click SalesOrder No
+	 * 
+	 * @param SI_Pend_Domestic_SO_No
+	 * @author Vimal - RMITS
+	 */
+	public void verifySIPendingSOSaleorderNo(String SI_Pend_Domestic_SO_No) {
+		webDB.switchToFrame(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_SO_No_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_SO_No_Column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Pend_SO_No_Lov, SI_Pend_Domestic_SO_No);
+			logs.logging("INFO", "Sales Invoice PendingSO SaleOrder No Inserted Successfully");
+			commonFunc.hardWait(1000);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For PendingSO Click SalesOrder No
+	 * 
+	 * @param SI_Pend_Export_SO_No
+	 * @author Vimal - RMITS
+	 */
+	public void verifySIPendingCSSaleorderNo(String SI_Pend_Export_SO_No) {
+		webDB.switchToFrame(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_SO_No_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_SO_No_Column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Pend_SO_No_Lov, SI_Pend_Export_SO_No);
+			logs.logging("INFO", "Sales Invoice PendingSO SaleOrder No Inserted Successfully");
+			commonFunc.hardWait(1000);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for Verify PeningSO Search Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyPendingSoSearchButton() {
+		webDB.switchToFrame(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_Search_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_Search_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_SelectAll, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Invoice PendingSO Search Button Clicked Successfully");
+				commonFunc.hardWait(1000);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for Verify Pening CS Search Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyPendingCSSearchButton() {
+		webDB.switchToFrame(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_Search_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_Search_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CS_SelectAll, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Invoice PendingSO Search Button Clicked Successfully");
+				commonFunc.hardWait(1000);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for Verify PeningSO SelectAll Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyPendingSOSelectAllButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_SelectAll, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_SelectAll, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CreateInvoice_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Invoice PendingSO SelectAll Button Successfully");
+				commonFunc.hardWait(2000);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for Verify Pening CS SelectAll Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyPendingCSSelectAllButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CS_SelectAll, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_CS_SelectAll, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CS_CreateInvoice_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sales Invoice PendingSO SelectAll Button Successfully");
+				commonFunc.hardWait(2000);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used for Verify PeningSO Create Invoice Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyPendingSOCreateInvoiceButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CreateInvoice_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_CreateInvoice_Btn, ElementType.Xpath);
+			logs.logging("INFO", "Sales Invoice PendingSO Create Invoice Button Clicked Successfully");
+			webDB.switchToDefaultContent();
+			commonFunc.hardWait(3000);
+			String SIdocno = webDB.getTextFromElement(SalesInvoiceLocators.SI_Doc_NO, ElementType.Xpath);
+			logs.logging("INFO", "Get SI DocNo Is: " + SIdocno);
+			VariableHandler.setSIdocno(SIdocno);
+		}
+	}
+
+	/**
+	 * This Method used for Verify Pening CS Create Invoice Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyPendingCSCreateInvoiceButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CS_CreateInvoice_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_CS_CreateInvoice_Btn, ElementType.Xpath);
+			logs.logging("INFO", "Sales Invoice PendingSO Create Invoice Button Clicked Successfully");
+			webDB.switchToDefaultContent();
+			commonFunc.hardWait(3000);
+			String SIdocno = webDB.getTextFromElement(SalesInvoiceLocators.SI_Doc_NO, ElementType.Xpath);
+			logs.logging("INFO", "Get SI DocNo Is: " + SIdocno);
+			VariableHandler.setSIdocno(SIdocno);
+		}
+	}
+
+	/**
+	 * Verify SI Pending Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifySalesInvoicePendingCSButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Sales_Inv_Pend_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Sales_Inv_Pend_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_CS_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_CS_Btn, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Sales Invoice Pending Button Clicked Successfully");
+					commonFunc.hardWait(2000);
+				} else {
+					logs.logging("INFO", "Failed to click Sales Invoice Pending Button");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Sales Free Sample Invoice Prefix
+	 * 
+	 * @author Vimal - RMITS
+	 * @param FS_Invoice_Pfx
+	 */
+	public void verifyFreeSampleInvoicePfx(String FS_Invoice_Pfx) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, FS_Invoice_Pfx);
+			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
+			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Sales Free Replacement Invoice Prefix
+	 * 
+	 * @author Vimal - RMITS
+	 * @param FR_Invoice_Pfx
+	 */
+	public void verifyFreeReplacementInvoicePfx(String FR_Invoice_Pfx) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, FR_Invoice_Pfx);
+			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
+			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Sales Free Replacement Invoice Prefix
+	 * 
+	 * @author Vimal - RMITS
+	 * @param FR_Invoice_Pfx
+	 */
+	public void verifyScrapInvoicePfx(String SCR_Invoice_Pfx) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Invoice_column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Invoice_Pfx, SCR_Invoice_Pfx);
+			logs.logging("INFO", "Invoice Prefix Is Displayed Successfully");
+			flag = webDB.waitForElement(SalesInvoiceLocators.Header_CPC_LOV_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CPC Header Lov Is Displayed Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Sales Invoice Adding Parameter
+	 * 
+	 * @author Vimal - RMITS
+	 * @param LocationId
+	 * @param CustomerName
+	 * @param SI_FS_Type
+	 */
+	public void verifyCreateDirectSalesInvoiceFreeSampleAddingParameters(String LocationId, String SI_FS_Type,
+			String CustomerName) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Loc_ID_Btn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Loc_ID_Btn, LocationId);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Type_Btn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Type_Btn, SI_FS_Type);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Customer_ID_Btn, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Customer_ID_Btn, CustomerName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Sales Invoice Adding Parameter
+	 * 
+	 * @author Vimal - RMITS
+	 * @param LocationId
+	 * @param CustomerName
+	 * @param SI_FR_Type
+	 */
+	public void verifyCreateDirectSalesInvoiceFreeReplacementAddingParameters(String LocationId, String SI_FR_Type,
+			String CustomerName) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Loc_ID_Btn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Loc_ID_Btn, LocationId);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Type_Btn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Type_Btn, SI_FR_Type);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Customer_ID_Btn, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Customer_ID_Btn, CustomerName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Sales Invoice Adding Parameter
+	 * 
+	 * @author Vimal - RMITS
+	 * @param LocationId
+	 * @param CustomerName
+	 * @param SI_Scrarp_Type
+	 */
+	public void verifyCreateDirectSalesInvoiceScrapAddingParameters(String LocationId, String SI_Scrarp_Type,
+			String CustomerName) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Loc_ID_Btn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Loc_ID_Btn, LocationId);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Type_Btn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Type_Btn, SI_Scrarp_Type);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Customer_ID_Btn, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Customer_ID_Btn, CustomerName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify SaleInvoice Scarp Item ID
+	 * 
+	 * @author Vimal - RMITS
+	 * @param SI_Scrarp_Item
+	 */
+	public void verifySaleInvoiceScarpItemID(String SI_Scrarp_Item) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, SI_Scrarp_Item);
+			logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + SI_Scrarp_Item);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify UnpickButton
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyUnpickButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Unpick_Btn, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pick Button Displayed Successfully");
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Unpick_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			if (flag) {
+				logs.logging("INFO", "Unpick Button clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to check Stock and Invoice Quantity with Warehouse
+	 * 
+	 * @author Sakthi-GWL,Vimal-RMITS
+	 * @param Warehouse
+	 */
+	public void verifyLineDetailsShipFromScrapWarehouseAndStockAndInvoiceQuantity(String SI_Ship_From_WH) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SaleInvoiceWarehouseShipFrom, ElementType.Xpath);
+		if (flag) {
+			String DisplayWH = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SaleInvoiceWarehouseShipFrom,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Displayed Warehouse ship from: " + DisplayWH);
+			logs.logging("INFO", "Expected Warehouse ship from: " + SI_Ship_From_WH);
+			flag = SI_Ship_From_WH.equalsIgnoreCase(DisplayWH);
+			if (flag) {
+				logs.logging("INFO", "Verified Warehouse of Shiping From");
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.SaleInvoiceStockQuantity, ElementType.Xpath);
+				if (flag) {
+					String StockQnty = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SaleInvoiceStockQuantity,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					String OrderInvoiceQnty = webDB.getDomPropertyFromElement(
+							SalesInvoiceLocators.SaleInvoiceOrderInvoiceQuantity, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO", "Displayed Stock Quantity ship from: " + StockQnty);
+					logs.logging("INFO", "Displayed Invoice Order Quantity ship from: " + OrderInvoiceQnty);
+//					flag = Integer.parseInt(StockQnty) > Integer.parseInt(OrderInvoiceQnty);
+					flag = (new BigDecimal(StockQnty).compareTo(new BigDecimal(OrderInvoiceQnty))) == 1;
+					if (flag) {
+						logs.logging("INFO", "Verified Stock Quantity Greater than Invoice Quantity");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Cancel Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyCancelButton(String SI_Cancel_Reason) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Cancel_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Cancel_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Cancel_OK_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(SalesInvoiceLocators.SI_Cancel_Reason, SI_Cancel_Reason, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.SI_Cancel_OK_Btn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.SI_Cancel_OK_Btn, ElementType.Xpath);
+					logs.logging("INFO", "Sales Invoice Document Cancelled Sucessfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Sales Invoice LineWise Delete Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void VerifySalesInvoiceLineWiseDeleteButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Linewise_Delete_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Linewise_Delete_Btn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Linewise Delete Icon Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Verify Sales Invoice Document Cancelled Status
+	 * 
+	 * @param SIdocno
+	 * @param Exp_Cancel_Status
+	 */
+	public void verifySalesInvoiceDocumentCancelStatus(String SIdocno, String Exp_Cancel_Status) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.FindSalesInvoiceNoLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.FindSalesInvoiceNoLovBtn, SIdocno);
+			flag = webDB.waitForElement(SalesInvoiceLocators.FindSalesInvoiceSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.FindSalesInvoiceSearchBtn, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(SalesInvoiceLocators.SIStatusTableText(SIdocno), ElementType.Xpath);
+				if (flag) {
+					String Status = webDB.getTextFromElement(SalesInvoiceLocators.SIStatusTableText(SIdocno),
+							ElementType.Xpath);
+					logs.logging("INFO", "get text from Sales Invoice status :" + Status);
+
+					flag = Status.contains(Exp_Cancel_Status);
+					if (flag) {
+						logs.logging("INFO", "Displayed Status :" + Status);
+						logs.logging("INFO", "Expected Status :" + Exp_Cancel_Status);
+						logs.logging("INFO", "Verified Sales Invoice Document Status");
+
+					} else {
+						logs.logging("INFO", "Sales Invoice Doucment Status Verification Failed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Domestic Local Customer
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceDomesticLocalCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(commonFunc.getDataFromTestDataSheet("InvoiceQty"),
+				commonFunc.getDataFromTestDataSheet("UnitPrice"));
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Domestic InterState
+	 * Customer
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceDomesticInterStateCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_InterState_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_InterState_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(commonFunc.getDataFromTestDataSheet("InvoiceQty"),
+				commonFunc.getDataFromTestDataSheet("UnitPrice"));
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Domestic UTGST Customer
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceDomesticUTGSTCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_UTGST_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_UTGST_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(commonFunc.getDataFromTestDataSheet("InvoiceQty"),
+				commonFunc.getDataFromTestDataSheet("UnitPrice"));
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Domestic SEZ Customer
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceDomesticSEZCustomer() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_SEZ_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyLUTNO(commonFunc.getDataFromTestDataSheet("LUT_No"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_SEZ_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSN_SEZ"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Domestic From Approved
+	 * Salesorder
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOM();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoicePendingButton();
+		verifySIPendingSOSaleorderNo(VariableHandler.getSONumber());
+		verifyPendingSoSearchButton();
+		verifyPendingSOSelectAllButton();
+		verifyPendingSOCreateInvoiceButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Export From Approved
+	 * Salesorder
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders() {
+		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOM();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoicePendingButton();
+		verifySIPendingSOSaleorderNo(VariableHandler.getSONumber());
+		verifyPendingSoSearchButton();
+		verifyPendingSOSelectAllButton();
+		verifyPendingSOCreateInvoiceButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyLUTNO(commonFunc.getDataFromTestDataSheet("LUT_No"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Domestic From Approved
+	 * Customer Schedules
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceFromApprovedDomesticCustomerSchedules() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoicePendingCSButton();
+		verifySIPendingSOSaleorderNo(commonFunc.getDataFromTestDataSheet("SI_Pend_Domestic_SO_No"));
+		verifyPendingCSSearchButton();
+		verifyPendingCSSelectAllButton();
+		verifyPendingCSCreateInvoiceButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Create Sales Invoice Export From Approved
+	 * Customer Schedules
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateSalesInvoiceFromApprovedExportCustomerSchedules() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoicePendingCSButton();
+		verifySIPendingCSSaleorderNo(commonFunc.getDataFromTestDataSheet("SI_Pend_Export_SO_No"));
+		verifyPendingCSSearchButton();
+		verifyPendingCSSelectAllButton();
+		verifyPendingCSCreateInvoiceButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify create Free Sample type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateFreeSampletypeofSalesInvoice() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceFreeSampleAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_FS_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_FS_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyFreeSampleInvoicePfx(commonFunc.getDataFromTestDataSheet("FS_Invoice_Pfx"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_FS_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify create FREE REPLACEMENT type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateFreeReplacementTypeofSalesInvoice() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceFreeReplacementAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_FR_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_FR_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyFreeReplacementInvoicePfx(commonFunc.getDataFromTestDataSheet("FR_Invoice_Pfx"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_FR_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify create ScrapType of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCreateScrapTypeofSalesInvoice() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceFreeReplacementAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Scrarp_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Scarp_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyFreeReplacementInvoicePfx(commonFunc.getDataFromTestDataSheet("SCR_Invoice_Pfx"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Scarp_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifySaleInvoiceScarpItemID(commonFunc.getDataFromTestDataSheet("SI_Scrarp_Item"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromScrapWarehouseAndStockAndInvoiceQuantity(
+				commonFunc.getDataFromTestDataSheet("SI_Ship_From_WH"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Status"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Unpick The Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyUnpickTheSalesInvoice() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
+		verifyLineWiseDetailsButton();
+		switchToLineDetailsIframeInSaleInvoice();
+		verifyLineDetailsShipFromWarehouseAndStockAndInvoiceQuantity(commonFunc.getDataFromTestDataSheet("Ship_From"));
+		verifyLineDetailsSaveIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyUnpickButton();
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Cancel The Sales Invoice Document
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCancelTheSalesInvoiceDocument() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCancelButton(commonFunc.getDataFromTestDataSheet("SI_Cancel_Reason"));
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifySalesInvoiceDocumentCancelStatus(VariableHandler.getSIdocno(),
+				commonFunc.getDataFromTestDataSheet("Exp_Cancel_Status"));
+		return flag;
+	}
+
+	/**
+	 * This Method is Used To verify Cancel The Sales Invoice Lines
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyCancelSalesInvoiceLines() {
+		String InvoiceQty = RandomStringUtils.randomNumeric(3);
+		if (InvoiceQty.equals("000")) {
+			InvoiceQty = "10";
+		}
+		String UnitPrice = RandomStringUtils.randomNumeric(3);
+		if (UnitPrice.equals("000")) {
+			UnitPrice = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		verifyLinewiseAddButton();
+		verifyItemID(commonFunc.getDataFromTestDataSheet("Item_ID"));
+		verifySalesGlAccount(commonFunc.getDataFromTestDataSheet("SalesGL_Acct"));
+		verifyItemQtyUnitcost(InvoiceQty, UnitPrice);
+		verifyHSNcode(commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
+		verifyHeaderwiseTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		VerifySalesInvoiceLineWiseDeleteButton();
+		return flag;
 	}
 }

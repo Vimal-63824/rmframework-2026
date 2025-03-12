@@ -23,6 +23,7 @@ import org.testng.Assert;
 
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
@@ -1307,12 +1308,12 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	/*
+
+	/**
 	 * This method used to Navigate Purchase Order Page By Using Purchase User
 	 * 
 	 * @authorPremkumar.K-RMITS
 	 */
-
 	public void navigatePurchaseOrderPageForPurchaseUser() {
 		clickLeftNavigationBar();
 		clickSupplyChainTab();
@@ -1374,7 +1375,11 @@ public class CommonFunctions {
 	public void clickProductionPlanningTab() {
 		flag = webDB.waitForElement(CommonUiLocators.ProductionPlanningTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.ProductionPlanningTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.ProductionPlanningTab, ElementType.Xpath,
+					"class");
+			if (value.contains("is-expandable")) {
+				webDB.clickAnElement(CommonUiLocators.ProductionPlanningTab, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Production Planning Tab Is Clicked");
@@ -1391,7 +1396,11 @@ public class CommonFunctions {
 	public void clickProductionPlanningTransactionTab() {
 		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath,
+					"class");
+			if (value.contains("is-expandable")) {
+				webDB.clickAnElement(CommonUiLocators.ProdPlan_TransactionTab, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Production Planning Tansaction Tab Is Clicked");
@@ -1515,6 +1524,69 @@ public class CommonFunctions {
 		navigateToInventoryTab();
 		navigateToInventoryTranscationTab();
 		navigateToMivTab();
+	}
+
+	/**
+	 * To Navigate Completion Production Order Screen In Production Planning
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToCompletionProductionOrderInProdPlanning() {
+		clickLeftNavigationBar();
+		clickProductionPlanningTab();
+		clickProductionPlanningTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_CompletionProductionOrder, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_CompletionProductionOrder, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Production Planning - Completion Production Order Screen Navigated Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Material Issuance Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToMaterialIssuanceVoucherTab() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		navigateToInventoryTranscationTab();
+		flag = webDB.waitForElement(CommonUiLocators.MIVTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.MIVTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Material Issuance Voucher Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to verify and set Approval Flag while click Post Icon
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean checkAutoApprovalOrForwardedWhilePost() {
+		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 20)) {
+			VariableHandler.setApprovalFlag(true);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			return true;
+		} else if (webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			VariableHandler.setApprovalFlag(false);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
