@@ -110,6 +110,34 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, HeaderValue);
 		return value;
 	}
+	
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String SOHeaderDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String SOLineDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
 
 	/**
 	 * This Method Is Used To Get Data From DB Test Data Sheet
