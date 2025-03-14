@@ -161,6 +161,52 @@ public class OpenSoAmdTest {
 	}
 	
 	/**
+	 * Amend Sales Order -Price Change - Domestic Customer - UTGST
+	 *
+	 * @author Kowshik
+	 */
+	@Test(priority = 14, groups = {
+			"Open Sales Order " }, description = "Amend Sales Order -Price Change - Domestic Customer - UTGST")
+	public void verifyOpenSoAmdUTGSTpriceChange() {
+		OSOA.verifyUTGSTpriceChanges();
+	}
+
+	/**
+	 * Amend Sales Order -Price Class Change - Domestic Customer - UTGST
+	 *
+	 * @author Kowshik
+	 */
+	@Test(priority = 15, groups = {
+			"Open Sales Order " }, description = "Amend Sales Order -Price Class Change - Domestic Customer - UTGST")
+	public void verifyOpenSoAmdUTGSTCustomerPriceClassChanges() {
+		OSOA.verifyUTGSTpriceclassChanges();
+	}
+
+	/**
+	 * Amend Sales Order - Addition of Item - Domestic Customer - UTGST
+	 *
+	 * @author Kowshik
+	 */
+
+	@Test(priority = 16, groups = {
+			"Open Sales Order " }, description = "Amend Sales Order - Addition of Item - Domestic Customer - UTGST")
+	public void veriftyOpenSoAmdUTGSTCustomerAdditionOfItem() {
+		OSOA.verifyUTGSTAdditionOfItem();
+	}
+
+	/**
+	 * Amend Sales Order - Deletion of Item - Domestic Customer - UTGST
+	 *
+	 * @author Kowshik
+	 */
+
+	@Test(priority = 17, groups = {
+			"Open Sales Order " }, description = "Amend Sales Order - Deletion of Item - Domestic Customer - UTGST")
+	public void verifyOpenSoAmdUTGSTCustomerDeletationOfitem() {
+		OSOA.verifyUTGSTDeletationOfItem();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Kowshik

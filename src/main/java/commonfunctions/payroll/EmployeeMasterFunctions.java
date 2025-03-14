@@ -189,6 +189,16 @@ public class EmployeeMasterFunctions {
 				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
 			clickSalarySideNavBar();
@@ -270,8 +280,10 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("EmpLeaveElgblMaxCarryDay"),
 					commonFunc.getDataFromTestDataSheet("EmpLeaveElgblEffYear"));
 			fillMaxDaysAndMinDaysInLeaveEligibility(commonFunc.getDataFromTestDataSheet("EmpLeaveElgblMaxDay"),
-					commonFunc.getDataFromTestDataSheet("EmpLeaveElgblMinDay"));
+					commonFunc.getDataFromTestDataSheet("EmpLeaveElgblMinDay"),
+					commonFunc.getDataFromTestDataSheet("EmpLeaveElgblMinEncashDay"));
 			clickSaveIconInLeaveEligibility();
+			clickActiveIconForLeaveType(commonFunc.getDataFromTestDataSheet("LeaveElgblLeave"));
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationLeaveDetails': " + e);
@@ -1250,20 +1262,25 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickActivateIconInLastAddedAdjustment() {
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData, ElementType.Xpath);
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				logs.logging("INFO", "Salary Adjustment Maximize Icon Clicked Successfully");
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked and Toast Message Displayed");
-				}
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked and Toast Message Displayed");
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
 				}
 			}
 		}
@@ -1292,6 +1309,18 @@ public class EmployeeMasterFunctions {
 				}
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				commonFunc.hardWait(3000);
+				commonFunc.checkSuccessToastMessageDisappear();
+				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon,
+						ElementType.Xpath)) {
+					webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Restore Button Clicked and Minimized Successfully");
+					}
 				}
 			}
 		}
@@ -1323,13 +1352,20 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickAddIconLeaveEligibilityInLeaveDetails() {
-		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
-			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn, ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Leave Eligibility Add Icon Clicked");
+				logs.logging("INFO", "Maximize Button Clicked and Maximized Successfully");
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityAddBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Leave Eligibility Add Icon Clicked");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1369,8 +1405,8 @@ public class EmployeeMasterFunctions {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
-			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
-			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, Every,
+			webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEverySelect, ElementType.Xpath);
+			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_LeaveEligibilityEverySelect, Every,
 					ElementType.Xpath);
 			if (flag) {
 				VariableHandler.setEmpLeaveElgblEvery(Every);
@@ -1459,13 +1495,15 @@ public class EmployeeMasterFunctions {
 	 * @param MaxDay
 	 * @param MinDay
 	 */
-	private void fillMaxDaysAndMinDaysInLeaveEligibility(String MaxDay, String MinDay) {
+	private void fillMaxDaysAndMinDaysInLeaveEligibility(String MaxDay, String MinDay, String MinEncashDay) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysData,
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysInput, MaxDay);
 		VariableHandler.setEmpLeaveElgblMaxDay(MaxDay);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData,
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysInput, MinDay);
 		VariableHandler.setEmpLeaveElgblMinDay(MinDay);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashData,
+				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashInput, MinEncashDay);
 	}
 
 	/**
@@ -2454,6 +2492,42 @@ public class EmployeeMasterFunctions {
 			flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Update Frame Closed Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Active Icon in Leave Details with Leave Type
+	 * 
+	 * @author Sakthi-GWL
+	 * @param LeaveType
+	 */
+	public void clickActiveIconForLeaveType(String LeaveType) {
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
+				ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType), ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
+					ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(3000);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				logs.logging("INFO", "Active Icon Clicked and Toast Message Displayed");
+				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon,
+						ElementType.Xpath)) {
+					webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Restore Button Clicked and Minimized Successfully");
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);

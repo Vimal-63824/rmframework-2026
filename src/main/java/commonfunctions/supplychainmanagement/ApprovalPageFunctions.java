@@ -293,6 +293,7 @@ public class ApprovalPageFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				commonFunc.checkSuccessToastMessageDisappear();
+				commonFunc.hardWait(3000);
 			}
 		} else {
 			VariableHandler.setApprovalFlag(flag);

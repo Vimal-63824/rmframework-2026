@@ -5,11 +5,17 @@ package commonfunctions.supplychainmanagement;
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 import static org.testng.Assert.assertTrue;
+
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.ItemDetailsHandler;
-import commonfunctions.ItemDetailsHandler.OpenSOHeaderDetailsName;
 import commonfunctions.ItemDetailsHandler.OpenSOAmdDetails;
+import commonfunctions.ItemDetailsHandler.OpenSOHeaderDetailsName;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
@@ -25,11 +31,12 @@ public class OpenSoAmdFunctions {
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private ApprovalPageFunctions approveFunc = new ApprovalPageFunctions();
 	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
+	private static OpenSalesOrderFunctions openso = new OpenSalesOrderFunctions();
 
 	/**
 	 * To Click a Open Sales Order Amd
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void ClickOpenSoAmdendmentButton() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.OpenSoAmdRadio, ElementType.Xpath);
@@ -48,7 +55,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click a Add button in Find Page
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void clickAddButtoninFindPage() {
 		webDB.waitForElement(OpenSoAmdLocators.OpensoAmdPlusBtn, ElementType.Xpath);
@@ -65,7 +72,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Passes a Open Sales Order Document In Search Box & Click Go Button
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void takenOpenSoDocumentFromCurrentRateContract(String oso_Docnum) {
 		commonFunc.hardWait(3000);
@@ -85,7 +92,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Select a Check Flag
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void clickSelectFlagInCurrentRateContract() {
 		commonFunc.hardWait(3000);
@@ -103,7 +110,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click a So Amdendment Button In Current Rate Contract Screen
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void clickSoAmdendmentButtonInCurrentRateContract() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.soAmdBtn, ElementType.Xpath);
@@ -123,7 +130,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Changes a Price Class in Open So Amdendment Screen
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param OsoamdReason
 	 */
 	public void clickPriceChanges(String OsoamdReason) {
@@ -152,7 +159,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click a Addition Of Item Radio Button in Current Rate Screen
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param OsoamdReason
 	 */
 	public void clickAdditionfItemOfRadioButton(String OsoamdReason) {
@@ -181,7 +188,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click a Deletion Of Item in Current Rate Contract Screen
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param OsoamdReason
 	 */
 	public void clickDeletationofItem(String OsoamdReason) {
@@ -210,7 +217,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Close a Popup Alert Messages
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void closeAlertMessage() {
 		commonFunc.checkRefreshCellsDisappear();
@@ -224,7 +231,7 @@ public class OpenSoAmdFunctions {
 	 * Update a Open So Linedetails In Revision Price & Mrp Price InModifiacation
 	 * Type
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Revisised_Price
 	 * @param Mrp
 	 */
@@ -243,7 +250,7 @@ public class OpenSoAmdFunctions {
 	 * Update a Open So Linedetails In Revision Price & Mrp Price InModifiacation
 	 * Type
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Revisised_Price
 	 * @param Mrp
 	 */
@@ -268,7 +275,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Insert a Discount Percent Field in Line Details in Addition Type
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Disc_Perent
 	 */
 	public void insertDiscPercentInAdditionType(String Disc_Perent) {
@@ -286,7 +293,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click a Save Button
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void toClickaSaveButton() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.SaveBtnLineWise, ElementType.Xpath);
@@ -301,7 +308,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Update a Effective Date & Effective To Date
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Effdate
 	 * @param EffTo
 	 */
@@ -328,7 +335,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click a Save Button in Header Details
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void toClickSaveButtonInHeader() {
 		commonFunc.checkRefreshCellsDisappear();
@@ -348,7 +355,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click A Post Button In Header Details
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void ToClickPostButtonInHeader() {
 		commonFunc.hardWait(1000);
@@ -366,7 +373,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Get Document Number In Transaction Screen
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param OsoaDoc
 	 */
 	public void GetDocumentFromScreen(String OsoaDoc) {
@@ -380,7 +387,7 @@ public class OpenSoAmdFunctions {
 	}
 
 	/**
-	 * @author @author Kowshik
+	 * @author @author Kowshik-RMITS
 	 * 
 	 *         This Method is used to Click And Enter A Value In A Table
 	 * 
@@ -415,7 +422,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * verify Waiting For Aprorval
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @return boolean
 	 */
 	public boolean verifyWaitingForApproval1() {
@@ -448,7 +455,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Updated a Price Class In Line Details
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Price_Class_OSOA
 	 */
 	public void ToChangesPriceChanges1(String Price_Class_OSOA) {
@@ -467,7 +474,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Click A Add Button Item In Line Details In Addition Type
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void clickAddButtonItemWiseInLineDetailsinAdditionMethod() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.AddButtoninAdditionType, ElementType.Xpath);
@@ -484,7 +491,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Insert A Item In Line Details In Addition Type
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Item_Add_Type
 	 */
 	public void insertIteminLineDetailsinAdditionMethod(String Item_Add_Type) {
@@ -503,7 +510,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Cancel Stage In Transaction Screen While Navigates To Find Page
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void cancelStageinTransactions() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.CancelButton, ElementType.Xpath);
@@ -520,7 +527,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Verify Cancel Status Record In Find Page
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param OsoaDoc
 	 */
 	public void verifyCancelRecordDocInFindPage(String OsoaDoc) {
@@ -541,7 +548,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Verify Hsn Code Field Null or Not
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * @param Hsn_Code
 	 */
 	public void verifyHsnCodeFieldIsNullOrNot(String Hsn_Code) {
@@ -567,7 +574,7 @@ public class OpenSoAmdFunctions {
 	 * To Valid Tax Amount In Curcy Against To The Customer
 	 * 
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void validTaxAmountInLineDetailsForExportCustomerbigdecimal() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.CurcyField, ElementType.Xpath);
@@ -653,7 +660,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Verify Revision Amoount Against to the Tax Amount
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 */
 	public void validateTaxAmountInLineDetails() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.RevPriceField, ElementType.Xpath);
@@ -691,7 +698,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * To Validates Header Details in Open SO Amd
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
 	 * 
 	 * @param Location
 	 */
@@ -719,11 +726,49 @@ public class OpenSoAmdFunctions {
 	}
 
 	/**
+	 * Validate Header Details Open so Amd
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param Location
+	 */
+	public void validateHeaderDetails(String Location) {
+		commonFunc.hardWait(2000);
+		verifyGetTextValidation(OpenSoAmdLocators.LocationId,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.LOCATION_ID));
+		logs.logging("Info", "Location Id is verfied " + Location);
+		verifyGetTextValidation(OpenSoAmdLocators.UnitField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.UNIT));
+		logs.logging("Info", "Unit is Verified ");
+		verifyGetTextValidation(OpenSoAmdLocators.CustomerIdField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_ID));
+		logs.logging("Info", "Customer Id is verified");
+		verifyDomPropertyValidation(OpenSoAmdLocators.CustomerNameField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_NAME));
+		logs.logging("Info", "Customer name is verifed ");
+		verifyDomPropertyValidation(OpenSoAmdLocators.OpenSoDocumentNumber,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.OSO_NO));
+		logs.logging("Info", "Osoc Documnet is verified ");
+	}
+
+	/**
 	 * Amend Sales Order -Price Change - Domestic Customer - Local
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceChange() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -734,8 +779,7 @@ public class OpenSoAmdFunctions {
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
@@ -761,9 +805,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order -Price Class Change - Domestic Customer - Local
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticCustomerLocalGstTypePriceClassChange() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -774,8 +831,7 @@ public class OpenSoAmdFunctions {
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
 		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
@@ -801,9 +857,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order - Addition of Item - Domestic Customer - Local
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean veriftyLocalCustomerDomesticAdditionofItem() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -817,8 +886,7 @@ public class OpenSoAmdFunctions {
 		validateHeaderDetails(commonFunc.getDataFromTestDataSheet("L0001"));
 		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
 		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
@@ -843,16 +911,17 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order - Deletion of Item - Domestic Customer - Local
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyLocalCustomerDomesticDeletationofItem() {
-
+		createOpenSoDocLocalCustomer();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Delete"));
+		takenOpenSoDocumentFromCurrentRateContract(VariableHandler.getOpenSONumber());
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -879,7 +948,8 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Verify a Cancel Scenrios With Line Items
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyaCancelStagesRecord() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -909,9 +979,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order -Price Change - Domestic Customer - Interstate
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceChange() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -921,8 +1004,7 @@ public class OpenSoAmdFunctions {
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
@@ -947,9 +1029,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order -Price Class Change - Domestic Customer - Interstate
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyDomesticCustomerInterstateGstTypePriceClassChange() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -959,8 +1054,7 @@ public class OpenSoAmdFunctions {
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
@@ -986,9 +1080,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order - Addition of Item - Domestic Customer - Interstate
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean veriftyInterStateCustomerDomesticAdditionofItem() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -1001,8 +1108,7 @@ public class OpenSoAmdFunctions {
 		closeAlertMessage();
 		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
 		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
@@ -1028,15 +1134,17 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order - Deletion of Item - Domestic Customer - Interstate
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyInterStateCustomerDomesticDeletationofItem() {
+		createOpenSoDocInterstateCustomer();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Delete_IS"));
+		takenOpenSoDocumentFromCurrentRateContract(VariableHandler.getOpenSONumber());
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1062,9 +1170,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order -Price Change - Export Customer
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyExportCustomerPriceChange() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -1074,8 +1195,7 @@ public class OpenSoAmdFunctions {
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
@@ -1101,9 +1221,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order -Price Class Change - Export Customer
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyExportCustomerPriceClassChanges() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -1113,8 +1246,7 @@ public class OpenSoAmdFunctions {
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
@@ -1141,9 +1273,22 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order - Addition of Item - Export Customer
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyExportCustomerAdditionOfItem() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
@@ -1156,10 +1301,154 @@ public class OpenSoAmdFunctions {
 		closeAlertMessage();
 		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
 		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
-		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(commonFunc.getDataFromTestDataSheet("Revisised_Price"),
-				commonFunc.getDataFromTestDataSheet("MRP_Price"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		toClickaSaveButton();
+		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
+		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+		toClickSaveButtonInHeader();
+		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		ToClickPostButtonInHeader();
+		verifyWaitingForApproval1();
+		commonFunc.hardWait(3000);
+		commonFunc.logoutUser();
+		commonFunc.hardWait(2000);
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"AshokUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+		flag = commonFunc.logoutUser();
+
+		return flag;
+	}
+
+	/**
+	 * Amend Sales Order - Deletion of Item - Export Customer
+	 * 
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyExportCustomerDeletationOfItem() {
+		createOpenSoExportCustomer();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.clickOpensoNode();
+		ClickOpenSoAmdendmentButton();
+		clickAddButtoninFindPage();
+		takenOpenSoDocumentFromCurrentRateContract(VariableHandler.getOpenSONumber());
+		clickSelectFlagInCurrentRateContract();
+		clickSoAmdendmentButtonInCurrentRateContract();
+		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		closeAlertMessage();
+		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+		toClickSaveButtonInHeader();
+		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		ToClickPostButtonInHeader();
+		verifyWaitingForApproval1();
+		commonFunc.hardWait(2000);
+		commonFunc.logoutUser();
+		commonFunc.hardWait(2000);
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"AshokUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+		commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * Amend Sales Order -Price Change - Domestic Customer - UTGST
+	 * 
+	 * @author Kowshik-RMITSan
+	 * @return boolean flag
+	 */
+
+	public boolean verifyUTGSTpriceChanges() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.clickOpensoNode();
+		ClickOpenSoAmdendmentButton();
+		clickAddButtoninFindPage();
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PC_UTGST"));
+		clickSelectFlagInCurrentRateContract();
+		clickSoAmdendmentButtonInCurrentRateContract();
+		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
+		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
+		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		toClickaSaveButton();
+		validateTaxAmountInLineDetails();
+		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+		verifyPoDateNullOrNot(commonFunc.getDataFromTestDataSheet("PO_Date"));
+		toClickSaveButtonInHeader();
+		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		ToClickPostButtonInHeader();
+		verifyWaitingForApproval1();
+		commonFunc.hardWait(1000);
+		commonFunc.logoutUser();
+		commonFunc.hardWait(1000);
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"AshokUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+		commonFunc.logoutUser();
+
+		return flag;
+
+	}
+
+	/**
+	 * Amend Sales Order -Price Class Change - Domestic Customer - UTGST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
+	 */
+
+	public boolean verifyUTGSTpriceclassChanges() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.clickOpensoNode();
+		ClickOpenSoAmdendmentButton();
+		clickAddButtoninFindPage();
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_PCC_UTGST"));
+		clickSelectFlagInCurrentRateContract();
+		clickSoAmdendmentButtonInCurrentRateContract();
+		clickPriceChanges(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
+		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
+		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
@@ -1177,21 +1466,82 @@ public class OpenSoAmdFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
+
 		return flag;
+
 	}
 
 	/**
-	 * Amend Sales Order - Deletion of Item - Export Customer
+	 * Amend Sales Order - Addition of Item - Domestic Customer - UTGST
 	 * 
-	 * @author Kowshik
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
-	public void verifyExportCustomerDeletationOfItem() {
+	public boolean verifyUTGSTAdditionOfItem() {
+
+		String Revisised_Price = RandomStringUtils.randomNumeric(3);
+		if (Revisised_Price.equals("000")) {
+			Revisised_Price = "100";
+		}
+		String Mrp = RandomStringUtils.randomNumeric(3);
+		if (Mrp.equals("000")) {
+			Mrp = "100";
+		}
+
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
+
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.clickOpensoNode();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Delete_EX"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_ADD_UTGST"));
+		clickSelectFlagInCurrentRateContract();
+		clickSoAmdendmentButtonInCurrentRateContract();
+		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		closeAlertMessage();
+		clickAddButtonItemWiseInLineDetailsinAdditionMethod();
+		insertIteminLineDetailsinAdditionMethod(commonFunc.getDataFromTestDataSheet("Item_Add_Type"));
+		verifyOSOAInsertedRevisiedPriceAndMrpPriceInAdditionType(Revisised_Price, MrpValue);
+		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
+		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		toClickaSaveButton();
+		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
+		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+		toClickSaveButtonInHeader();
+		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		ToClickPostButtonInHeader();
+		verifyWaitingForApproval1();
+		commonFunc.hardWait(3000);
+		commonFunc.logoutUser();
+		commonFunc.hardWait(2000);
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"AshokUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+		flag = commonFunc.logoutUser();
+
+		return flag;
+	}
+
+	/**
+	 * Amend Sales Order - Deletion of Item - Domestic Customer - UTGST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
+	 */
+
+	public boolean verifyUTGSTDeletationOfItem() {
+
+		createOpenSoExportCustomer();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.clickOpensoNode();
+		ClickOpenSoAmdendmentButton();
+		clickAddButtoninFindPage();
+		takenOpenSoDocumentFromCurrentRateContract(VariableHandler.getOpenSONumber());
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickDeletationofItem(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1212,31 +1562,178 @@ public class OpenSoAmdFunctions {
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
 
+		return flag;
 	}
 
 	/**
-	 * Validate Header Details Open so Amd
+	 * Creates Open So Document Locul Customer For Deletation Scenrios
 	 * 
-	 * @author Kowshik
-	 * @param Location
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
 	 */
-	public void validateHeaderDetails(String Location) {
-		commonFunc.hardWait(2000);
-		verifyGetTextValidation(OpenSoAmdLocators.LocationId,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.LOCATION_ID));
-		logs.logging("Info", "Location Id is verfied " + Location);
-		verifyGetTextValidation(OpenSoAmdLocators.UnitField,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.UNIT));
-		logs.logging("Info", "Unit is Verified ");
-		verifyGetTextValidation(OpenSoAmdLocators.CustomerIdField,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_ID));
-		logs.logging("Info", "Customer Id is verified");
-		verifyDomPropertyValidation(OpenSoAmdLocators.CustomerNameField,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_NAME));
-		logs.logging("Info", "Customer name is verifed ");
-		verifyDomPropertyValidation(OpenSoAmdLocators.OpenSoDocumentNumber,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.OSO_NO));
-		logs.logging("Info", "Osoc Documnet is verified ");
+	public boolean createOpenSoDocLocalCustomer() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Local");
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String ItemDelete = commonFunc.getDataFromTestDataSheet("ItemDelete");
+		String Cost1 = RandomStringUtils.randomNumeric(2);
+		if (Cost1.equals("00"))
+			Cost1 = "10";
+		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
+		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		fetchingOpenSoDoc();
+		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
+				OpenSOPrefix1);
+		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		openso.clickFetchCustomerAndSelectItemInOpenSO(commonFunc.getDataFromTestDataSheet("ItemDelete"));
+		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
+		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		openso.enterEffectiveFromAndToDate(Today, Today, Today);
+		openso.clickHeaderSaveAndClickPostBtnInOpenSO();
+		approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+		commonFunc.logoutUser();
+
+		return flag;
+	}
+
+	/**
+	 * Creates Open So Document Interstate Customer For Deletation Scenrios
+	 * 
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
+	 */
+
+	public boolean createOpenSoDocInterstateCustomer() {
+
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Interstate");
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String ItemDelete = commonFunc.getDataFromTestDataSheet("ItemDelete");
+		String Cost1 = RandomStringUtils.randomNumeric(2);
+		if (Cost1.equals("00"))
+			Cost1 = "10";
+		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
+		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		fetchingOpenSoDoc();
+		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
+				OpenSOPrefix1);
+		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		openso.clickFetchCustomerAndSelectItemInOpenSO(commonFunc.getDataFromTestDataSheet("ItemDelete"));
+		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
+		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		openso.enterEffectiveFromAndToDate(Today, Today, Today);
+		openso.clickHeaderSaveAndClickPostBtnInOpenSO();
+		approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+		commonFunc.logoutUser();
+
+		return flag;
+
+	}
+
+	/**
+	 * Creates Open So Document Export Customer For Deletation Scenrios
+	 * 
+	 * @author Kowshik-RMITS
+	 * @return boolean flag
+	 */
+
+	public boolean createOpenSoExportCustomer() {
+
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Export");
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String ItemDelete = commonFunc.getDataFromTestDataSheet("ItemDelete");
+		String Cost1 = RandomStringUtils.randomNumeric(2);
+		if (Cost1.equals("00"))
+			Cost1 = "10";
+		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
+		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		fetchingOpenSoDoc();
+		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
+				OpenSOPrefix1);
+		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		openso.clickFetchCustomerAndSelectItemInOpenSO(commonFunc.getDataFromTestDataSheet("ItemDelete"));
+		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
+		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		openso.enterEffectiveFromAndToDate(Today, Today, Today);
+		openso.clickHeaderSaveAndClickPostBtnInOpenSO();
+		approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+		commonFunc.logoutUser();
+
+		return flag;
+	}
+	
+	/**
+	 * Fetching Open So Document Deletation 
+	 * @author Kowshik-RMITS
+	 */
+
+	public void fetchingOpenSoDoc() {
+
+		commonFunc.navigateOpenSO();
+		openso.selectOpenSOTypeWithRadioButtons("Open SO");
+		openso.clickAddNewOpenSOPlsIcon();
+
+	}
+	
+	/**Verify Purchase Order Date Null Or Not
+	 * 
+	 * @author Kowshik - RMITS
+	 * @param POdate
+	 */
+
+	public void verifyPoDateNullOrNot(String POdate) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(OpenSoAmdLocators.PoDate, ElementType.Xpath);
+		if (flag) {
+			String Text1 = webDB.getDomPropertyFromElement(OpenSoAmdLocators.PoDate, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("Info", "PO Date: " + Text1);
+			if (Text1 == null || Text1.trim().isEmpty()) {
+				webDB.clickAnElement(OpenSoAmdLocators.PoDateField, ElementType.Xpath);
+				webDB.sendTextToAnElement(OpenSoAmdLocators.PoDate, POdate, ElementType.Xpath);
+				logs.logging("Info", "POdate is Inserted " + POdate);
+			} else {
+				logs.logging("Info", "No PO date provided to insert.");
+			}
+			assertTrue(flag);
+		}
 	}
 
 }

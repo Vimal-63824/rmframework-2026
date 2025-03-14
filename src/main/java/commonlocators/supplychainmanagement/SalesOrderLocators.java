@@ -217,6 +217,177 @@ public class SalesOrderLocators {
 	public static final String NoteAlertMessage = "//h6[@class='succ_msg']";
 	/** @Locator Xpath */
 	public static final String FindHeaderRadioButton = "//label[@for='P1915131339_RADIO_0']";
+	/** @Locator Xpath */
+	public static final String ChargesTab = "//label[@for='P191513134001_OVERALL_REG_PRM_1']";
+	/** @Locator Xpath */
+	public static final String ChargesAddButton = "//button[@id='B1710251629897318145']";
+	/** @Locator Xpath */
+	public static final String ChargeSavebutton = "//button[@id='B1710251993742318151']";
+	/** @Locator Xpath */
+	public static final String ChargeItemField = "//*[@id=\"HC_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
+	/** @Locator Xpath */
+	public static final String ChargeItemLov = "//button[@id='C8551632305947610159_lov_btn']/span";
+	/** @Locator Xpath */
+	public static final String ChargeItemInputField = "//input[@id='C8551632305947610159']";
+	/** @Locator Xpath */
+	public static final String ChargeBasisDropDown = "//SELECT[@ID='C8551636304666610163']";
+	/** @Locator Xpath */
+	public static final String ChargePercentageInputField = "//input[@data-testid='SOTC_CHRG_PCT1']";
+	/** @Locator Xpath */
+	public static final String Chargepercentagefield = "//*[@id='HC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
+	/** @Locator Xpath */
+	public static final String ChargeItemLineDeletebutton = "#HC_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td.a-GV-cell.u-tC.is-readonly > a";
+	/** @Locator Xpath */
+	public static final String ChargeBasisField = "//*[@id='HC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @Locator Xpath */
+	public static final String ChargeValueField = "//*[@id='HC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
+	/** @Locator Xpath */
+	public static final String ChargeValueInputField = "//input[@data-testid='SOTC_CHRG_AMT1']";
+	/** @Locator Xpath */
+	public static final String IncludeChargesButton = "//button[@id='inctax']";
+	/** @Locator Xpath */
+	public static final String includeChargescheckBox = "//span[@class='t-Icon t-Icon--left fa fa-check-square']";
+	/** @Locator Xpath */
+	public static final String AdvanceReceiptsAddButton = "//button[@id='B423790259775949576']";
+	/** @Locator Xpath */
+	public static final String AdvanceReceiptsPostButton = "//button[@id='B1507544529784076681']";
+	/** @Locator Xpath */
+	public static final String AdvanceTypeDropDownButton = "//select[@id='P11813101101_PARD_ORD_TYPE']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsCustomerLov = "//button[@id='P11813101101_PARD_PARTY_ID_lov_btn']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsSOLov = "//button[@id='P11813101101_ORD_PFX_NO_lov_btn']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsPercentageField = "//input[@id='P11813101101_PARD_PROP_ADV_PCT']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsCPCcodeLov = "//button[@id='P11813101101_PROJECT_LVL_DESC_lov_btn']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsHeaderWiseSaveButton = "//button[@id='B1494912032205698090']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsLocationLov = "//button[@id='P11813101101_PARD_PLNT_LOC_ID_lov_btn']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsDocumentNumber = "//span[@id='P11813101101_PARD_DOC_NO_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsCPCcodeField = "//input[@id='P11813101101_PROJECT_LVL_DESC']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsLovSearchField = "(//input[@aria-label='Search'])[3]";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsOrderAmount = "//input[@id='P11813101101_PARD_ORD_AMT']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsAdvanceAmount = "//input[@id='P11813101101_PARD_PROP_ADV_AMT']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsBalanceAmount = "//input[@id='P11813101101_RECEIVED_AMT']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsDocumentNoteAlertCloseIcon = "//span[@class='t-Icon icon-close']";
+	/** @Locator Xpath */
+	public static final String AdvancereceiptsworkflowOkButton = "//button[@id='B1457704718951134857']";
+	/** @Locator Xpath */
+	public static final String SalesOrderGeneralTab = "//label[@for='P191513134001_OVERALL_REG_PRM_3']";
+	/** @Locator Xpath */
+	public static final String SalesOrderincludeAdvAmtCheckBox = "//label[@id='P191513134001_SOH_ADV_REQ_FLAG_LABEL']";
+	/** @Locator Xpath */
+	public static final String SalesOrderHeaderSaveButton = "//button[@id='B6827452363240500661']";
+	/** @Locator Xpath */
+	public static final String SalesOrderInputIncludeAdvAmtCheckBox = "//input[@data-testid='P191513134001_SOH_ADV_REQ_FLAG']";
+	/** @Locator Xpath */
+	public static final String PaymentTermLov = "//button[@id='P191513134001_SOH_TERM_ID_lov_btn']";
+	/** @Locator Xpath */
+	public static final String PaymentTermLOVSearchField = "//input[@aria-label='Search']";
+	/** @Locator Xpath */
+	public static final String PaymentTermClickSearchIcon = "//button[@class='a-Button a-PopupLOV-doSearch']";
+	/** @Locator Xpath */
+	public static final String PaymentTermClickHighLightText = "//span[@class='popup-lov-highlight']";
+	/** Locator @CssSelector */
+	public static final String SalesOrderDocumentDrillDown = "#\\31 960290421519866117_orig > tbody > tr:nth-child(2) > td:nth-child(8) > a";
+	/** @Locator Xpath */
+	public static final String AdvDocNumberFieldInso = "//span[@data-testid='P191513134001_SOH_ADV_DOC_NO']";
+	/** @Locator Xpath */
+	public static final String AdvPercentage = "//span[@data-testid='P191513134001_SOH_ADV_PCT']";
+	/** @Locator Xpath */
+	public static final String AdvtoBeReceived = "//span[@data-testid='P191513134001_SOH_ADV_TO_RCVD']";
+	/** @Locator Xpath */
+	public static final String SalesOrderHeaderFindButton = "//button[@id='B1252630236654900444']";
+	/** @Locator Xpath */
+	public static final String AdvReceiptDocumentNumberLovInFind = "//button[@id='P11813101102_DOC_NO_lov_btn']";
+	/** @Locator Xpath */
+	public static final String AdvReceiptsFindSearchButton = "//button[@id='B423796573044949621']";
+	/** Locator @CssSelector */
+	public static final String AdvReciptsDocumentDrillDown = "#\\31 648622322342378747_orig > tbody > tr:nth-child(2) > td:nth-child(5) > a";
+	/** @Locator Xpath */
+	public static final String AdvreceiptWorkFlowHistoryButton = "//button[@id='B2671428328286964510']";
+	/** @Locator Xpath */
+	public static final String AdvReceiptsQueryOrderAmount = "//span[@id='P11813101101_PARD_ORD_AMT_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String AdvreceiptsQueryAdvanceAmount = "//span[@id='P11813101101_PARD_PROP_ADV_AMT_1_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String AdvreceiptsQueryBalanceAmount = "//span[@id='P11813101101_PARD_BAL_AMT_SUM_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String PendingReceivablesAdvance = "//button[@id='B1540950383586752251']";
+	/** @Locator Xpath */
+	public static final String PendingReceivableFrame = "//iframe[@title='Pend. Receivable - Advance']";
+	/** @Locator Xpath */
+	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
+	/** @Locator Xpath */
+	public static final String PaymentReceiptSearchButton = "//button[@id='B1894928456582770620']";
+	/** @Locator Xpath */
+	public static final String PayementReceiptCreateButton = "//button[@id='B1566669550507577884']";
+	/** @Locator Xpath */
+	public static final String BankReceiptsLovButton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
+	/** @Locator Xpath */
+	public static final String BankReceiptsOkButton = "//button[@id='B1566670435579577893']";
+	/** @Locator Xpath */
+	public static final String BankReceiptpostButton = "//button[@id='POST']";
+	/** @Locator Xpath */
+	public static final String AdvanceReceiptsFindButton = "//button[@id='SEARCH']";
+	/** @Locator Xpath */
+	public static final String BankReceiptsRefNumber = "//input[@id='P3413103005_BTRANS_TRANS_REF_N']";
+	/** @Locator Xpath */
+	public static final String BankReceiptsHeaderSave = "//button[@id='SAVE']";
+	/** @Locator Xpath */
+	public static final String BankReceiptCreateJournalButton = "//button[@id='CREATE_JOURNAL']";
+	/** @Locator Xpath */
+	public static final String BankReceiptDocumentNumber = "//span[@id='P3413103005_BTRANS_ORD_NO_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String BankReceiptPendingBalanceAmtField = "//*[@id=\"1566221334302514474_orig\"]/tbody/tr[2]/td[11]";
+	/** @Locator Xpath */
+	public static final String AdvInprogressFieldInSO = "//span[@data-testid='P191513134001_SOH_ADV_RC_INPRG']";
+	/** @Locator Xpath */
+	public static final String AdvReceivedFieldInSO = "//span[@data-testid='P191513134001_SOH_ADV_RCVD']";
+	/** @Locator Xpath */
+	public static final String BankReceiptDocumentLovInFind = "//button[@id='P341310009_ORD_PFXNO_lov_btn']";
+	/** @Locator Xpath */
+	public static final String BankReceiptsSearchButtonInFind = "//button[@id='B175959722172441265']";
+	/** Locator @CssSelector */
+	public static final String BankReceiptsdDocumentDrillDownField = "#\\31 863229930614390233_orig > tbody > tr:nth-child(2) > td:nth-child(3) > a";
+	/** @Locator Xpath */
+	public static final String SONumberClickInLov = "//li[@class='a-IconList-item']";
+	/** @Locator Xpath */
+	public static final String SONumberFieldInFind = "//input[@id='P1915131339_SO_NO']";
+	/** @Locator Xpath */
+	public static final String HeaderSubVoucherType = "//span[@id='P191513134001_SOH_ORDER_TYPE_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String HeaderSOPrefixField = "//span[@id='P191513134001_SOH_ORDER_PFX_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String HeaderSONumberField = "//span[@id='P191513134001_SOH_ORDER_NO_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String HeaderExchangeRateField = "//input[@id='P191513134001_SOH_EXRATE']";
+	/** @Locator Xpath */
+	public static final String HeaderCPCcodeIDField = "//input[@id='P191513134001_SOH_CC_ID']";
+	/** @Locator Xpath */
+	public static final String HeaderCPCcodeDescField = "//input[@id='P191513134001_SOH_CC_DESC']";
+	/** @Locator Xpath */
+	public static final String HeaderCustomerIDField = "//span[@id='P191513134001_SOH_CUST_ID_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String HeaderCustomerDescField = "//span[@id='P191513134001_SOH_CUST_NAME_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String LineWiseItemIDField = "//TD[@CLASS='a-GV-cell u-tS a-GV-frozen a-GV-frozen--start2']";
+	/** @Locator Xpath */
+	public static final String HeaderPaymentTermField = "//input[@id='P191513134001_SOH_TERM_ID']";
+	/** @Locator Xpath */
+	public static final String HeaderINCOTermField = "//span[@id='P191513134001_SOH_FOB_ID_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String HeaderShipViaField = "//span[@id='P191513134001_SOH_SHIPVIA_ID_DISPLAY']";
+	
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
@@ -302,5 +473,20 @@ public class SalesOrderLocators {
 	public static final String LineDetails(int i) {
 		return "(//*[@id=\"ig_line_ig_grid_vc\"]/div/div/table[1])[2]/tbody/tr[" + i
 				+ "]/td[15]/a/span[contains(@style,'blue')]";
+	}
+	
+	/** @Locator Xpath */
+	public static final String AdvreceiptsStatusLineTableText(String Advno) {
+		return "//a[text()='" + Advno + "']/../../td[14]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PendingPaymentReceiptCheckBox(String AdvRecDocNum) {
+		return "//td[text()='" + AdvRecDocNum + "']/../td[13]";
+	}
+	
+	/** @Locator Xpath */
+	public static final String BankReceiptStatusLineTableText(String BRVno) {
+		return "//a[text()='" + BRVno + "']/../../td[9]";
 	}
 }

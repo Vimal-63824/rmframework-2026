@@ -10,6 +10,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
+import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.MaterialReceiptVoucherLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
@@ -97,31 +98,43 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyReceiptLocatorsAndPutAway() {
-		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath);
-		if (flag) {
-			logs.logging("INFO", "Receptor Locators Is Displayed");
-			webDB.clickAnElement(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.TransferFrame, ElementType.Xpath);
+		commonFunc.checkSuccessToastMessageDisappear();
+		if (webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath)) {
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Transfer Frame Is Displayed");
-				webDB.switchToFrame(MaterialReceiptVoucherLocators.TransferFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PutAway, ElementType.Xpath);
+				logs.logging("INFO", "Receptor Locators Is Displayed");
+				webDB.moveToElement(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.TransferFrame, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(MaterialReceiptVoucherLocators.PutAway, ElementType.Xpath);
-					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
-					webDB.switchToDefaultContent();
-					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CloseIcon, ElementType.Xpath);
+					logs.logging("INFO", "Transfer Frame Is Displayed");
+					webDB.switchToFrame(MaterialReceiptVoucherLocators.TransferFrame, ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PutAway, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Put Amay Is Clicked");
-						webDB.clickAnElement(MaterialReceiptVoucherLocators.CloseIcon, ElementType.Xpath);
-						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId, ElementType.Xpath);
+						webDB.moveToElement(MaterialReceiptVoucherLocators.PutAway, ElementType.Xpath);
+						webDB.clickAnElement(MaterialReceiptVoucherLocators.PutAway, ElementType.Xpath);
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CloseIcon, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "Location Id Is Displayed");
+							logs.logging("INFO", "Put Amay Is Clicked");
+							webDB.clickAnElement(MaterialReceiptVoucherLocators.CloseIcon, ElementType.Xpath);
+							flag = webDB.waitForClickElement(MaterialReceiptVoucherLocators.LocationId,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Location Id Is Displayed");
+							}
 						}
 					}
 				}
+			}
+		} else {
+			flag = !webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.RecptorLocators, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Receipt Locators Button Not Display for the Process...");
 			}
 		}
 		assertTrue(flag);
@@ -136,6 +149,7 @@ public class MaterialReceiptVoucherFunctions {
 		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
+			webDB.moveToElement(MaterialReceiptVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(MaterialReceiptVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -201,4 +215,124 @@ public class MaterialReceiptVoucherFunctions {
 		commonFunc.logoutUser();
 	}
 
+	/**
+	 * This Method used to click Pending Issuance Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingInssuanceBtn() {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select voucher No and click create receipt button
+	 * 
+	 * @author Sakthi-GWL
+	 * @param VoucherNo
+	 */
+	public void selectVoucherNoAndClickCreateReceipt(String VoucherNo) {
+		switchMRVPendingIframe();
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(VoucherNo), ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Search Go Button Clicked and Filtered with " + VoucherNo);
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(VoucherNo), ElementType.Xpath);
+			webDB.waitForClickElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+			flag = webDB.isElementEnabled(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId, ElementType.Xpath);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				if (flag) {
+					storeMRVDocumentsNumber();
+					logs.logging("INFO", "Create Qc Doc is clicked");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to switch pending MRV frame
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchMRVPendingIframe() {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+			flag = webDB.waitForClickElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to search with voucher no in Pending MRV
+	 * 
+	 * @author Sakthi-GWL
+	 * @param VoucherNo
+	 */
+	public void searchWithVoucherNumber(String VoucherNo) {
+		switchMRVPendingIframe();
+		logs.logging("INFO", "Material Receipt Voucher Frame Switched");
+		webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField, VoucherNo, ElementType.Xpath);
+		flag = webDB.waitForClickElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(VoucherNo), ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Go Button Clicked and Filtered with " + VoucherNo);
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to validate Process Recipient Warehouse with Completion
+	 * Production Order No
+	 * 
+	 * @author Sakthi-GWL
+	 * @param CompProOdrNo
+	 * @param Process
+	 * @param RecipientWH
+	 */
+	public void validateProcessRecipientWarehouseWithCompletionProdNo(String CompProOdrNo, String Process,
+			String RecipientWH) {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingCreateMRV_TableProcess(CompProOdrNo),
+				ElementType.Xpath);
+		if (flag) {
+			String DisplayProcess = webDB.getTextFromElement(
+					MaterialReceiptVoucherLocators.PendingCreateMRV_TableProcess(CompProOdrNo), ElementType.Xpath);
+			flag = DisplayProcess.equalsIgnoreCase(Process);
+			logs.logging("INFO", "Expected Process: " + Process);
+			logs.logging("INFO", "Displayed Status: " + DisplayProcess);
+			if (flag) {
+				logs.logging("INFO", "Verified Process Displayed in Create MRV Screen");
+				flag = webDB.waitForElement(
+						MaterialReceiptVoucherLocators.PendingCreateMRV_TableRecipientWH(CompProOdrNo),
+						ElementType.Xpath);
+				if (flag) {
+					String DisplayWarehouse = webDB.getTextFromElement(
+							MaterialReceiptVoucherLocators.PendingCreateMRV_TableRecipientWH(CompProOdrNo),
+							ElementType.Xpath);
+					flag = DisplayWarehouse.equalsIgnoreCase(RecipientWH);
+					logs.logging("INFO", "Expected Consumption Warehouse: " + RecipientWH);
+					logs.logging("INFO", "Displayed Consumption Warehouse: " + DisplayWarehouse);
+					if (flag) {
+						logs.logging("INFO", "Verified Recipient Warehouse Displayed in Create MRV Screen");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

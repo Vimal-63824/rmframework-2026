@@ -96,7 +96,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPR_SearchBtn = "//button[@id='B2403556419484961039']";
 	/** @locatorType Xpath */
-	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all'])[1]";
+	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all'])";
 	/** @locatorType Xpath */
 	public static final String PendingPR_CreatePO_Btn = "//button[@id='B1']";
 	/** @locatorType Xpath */
