@@ -6,6 +6,7 @@ package commonfunctions.coreprocess;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -20,6 +21,7 @@ import commonfunctions.productionplanning.MRPFunctions;
 import commonfunctions.productionplanning.ProductionOrderFunctions;
 import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.DeliveryChallanFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.MaterialIssuanceVoucherFunctions;
 import commonfunctions.supplychainmanagement.MaterialReceiptVoucherFunctions;
@@ -28,9 +30,13 @@ import commonfunctions.supplychainmanagement.OpenSalesOrderFunctions;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
+import commonfunctions.supplychainmanagement.StockTransactionPageFunctions;
+import commonfunctions.supplychainmanagement.StocksPageFunctions;
 import commonlocators.supplychainmanagement.GrnLocators;
+import commonlocators.supplychainmanagement.MaterialRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -55,6 +61,11 @@ public class CoreProcessPageFunctions {
 	private static CompletionProductionOrderFunctions completionProductionOrderFunc = new CompletionProductionOrderFunctions();
 	private static MaterialRequestFunctions materialRequestFunc = new MaterialRequestFunctions();
 	private static MaterialIssuanceVoucherFunctions materialIssuanceVoucherFunc = new MaterialIssuanceVoucherFunctions();
+	private static StocksPageFunctions stockPageFunc = new StocksPageFunctions();
+	private static MaterialIssuanceVoucherFunctions materialIssuanceFunc = new MaterialIssuanceVoucherFunctions();
+	private static MaterialReceiptVoucherFunctions materialReceiptVoucherFunc = new MaterialReceiptVoucherFunctions();
+	private static StockTransactionPageFunctions stockTransactionPageFunc = new StockTransactionPageFunctions();
+	private static DeliveryChallanFunctions deliveryChallanFunc = new DeliveryChallanFunctions();
 
 	/**
 	 * This Method Is Used To Verify Purchase Request To Payment
@@ -624,5 +635,272 @@ public class CoreProcessPageFunctions {
 			logs.logging("INFO", "Exception occurs while executing 'verifyProductionOrderToCompletionToMRV': " + e);
 			return false;
 		}
+	}
+
+	/*
+	 * This Method Used To Verify Material Request To Material Receipt Voucher**
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyMaterialRequestToMaterialReceiptVoucherIntraday() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("MRTMRVSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("FGWareHouse"));
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+		}
+		commonFunc.logoutUser();
+		materialRequestFunc.verifyCreateMaterialRequest();
+		materialIssuanceFunc.createMaterialIssuanceVoucher();
+		materialReceiptVoucherFunc.verifyPostMaterialRequestFromMiv();
+	}
+
+	/**
+	 * This Method Used To Verify Material Request To Material Receipt Voucher Inter
+	 * Transfer
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyMaterialRequestToMaterialReceiptVoucherInterday() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("MRTMRVSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("EmpWareHouseId"));
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+		}
+		commonFunc.logoutUser();
+		materialRequestFunc.verifyCreateMaterialRequestIntertype();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+		materialIssuanceFunc.createJournalAndViewJournal();
+		materialIssuanceFunc.verifyTableDataMiv();
+		materialIssuanceFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("EmpWareHouse"),
+				commonFunc.getDataFromTestDataSheet("Inter Transfer"));
+		materialIssuanceFunc.headerTickAndPostIcon();
+		materialIssuanceFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
+		commonFunc.logoutUser();
+		deliveryChallanFunc.verifyDeliveryChallan();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialReceiptVoucher();
+		materialReceiptVoucherFunc.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+		materialReceiptVoucherFunc.createJournalAndViewJournal();
+		materialReceiptVoucherFunc.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+		materialReceiptVoucherFunc.clickTickAndPostIcon();
+		materialReceiptVoucherFunc.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		materialReceiptVoucherFunc.verifyAfterStockDataUpdation(commonFunc.getDataFromTestDataSheet("EmpWareHouseId"),
+				webDB.getDataFromProperties("MRTMRVSheet"));
+		commonFunc.logoutUser();
+		stockPageFunc.validateStockCount(webDB.getDataFromProperties("MRTMRVSheet"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTransactionTab();
+		stockTransactionPageFunc.verifyMRVStockTransaction(commonFunc.getDataFromTestDataSheet("EmpWareHouseId"));
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Used To Verify Material Request To Material Receipt Voucher Inter
+	 * Transfer
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyMaterialRequestToMaterialReceiptVoucherDepartmentType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("MRTMRVSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+		}
+		commonFunc.logoutUser();
+		materialRequestFunc.verifyCreateMaterialRequestDepartmenttype();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+		materialIssuanceFunc.createJournalAndViewJournal();
+		materialIssuanceFunc.verifyTableDataMiv();
+		materialIssuanceFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Production100"),
+				commonFunc.getDataFromTestDataSheet("DepartmentValue"));
+		materialIssuanceFunc.headerTickAndPostIcon();
+		materialIssuanceFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTransactionTab();
+		stockTransactionPageFunc.verifyStockTransactionWithDocNumber(commonFunc.getDataFromTestDataSheet("Prod100"),
+				VariableHandler.getMIVNumber());
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Used To Verify Material Request To Material Receipt Voucher Inter
+	 * Transfer
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyMaterialRequestToMaterialReceiptVoucherWipType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("MRToMRVWipSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("WIP100"));
+			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+		}
+		commonFunc.logoutUser();
+		materialRequestFunc.verifyCreateMaterialRequestWipType();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+		materialIssuanceFunc.createJournalAndViewJournal();
+		materialIssuanceFunc.verifyTableDataMivForWip();
+		materialIssuanceFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WorkInProgressWH"),
+				commonFunc.getDataFromTestDataSheet("WipType"));
+		materialIssuanceFunc.headerTickAndPostIcon();
+		materialIssuanceFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialReceiptVoucher();
+		materialReceiptVoucherFunc.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+		materialReceiptVoucherFunc.createJournalAndViewJournal();
+		materialReceiptVoucherFunc.verifyReceiptLocatorsAndPutAway();
+		materialReceiptVoucherFunc.verifyTableDataMiv(webDB.getDataFromProperties("MRToMRVWipSheet"));
+		materialReceiptVoucherFunc.clickTickAndPostIcon();
+		materialReceiptVoucherFunc.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		materialReceiptVoucherFunc.verifyAfterStockDataUpdation(commonFunc.getDataFromTestDataSheet("WIP100"),
+				webDB.getDataFromProperties("MRToMRVWipSheet"));
+		commonFunc.logoutUser();
+		stockPageFunc.validateStockCount(webDB.getDataFromProperties("MRToMRVWipSheet"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTransactionTab();
+		stockTransactionPageFunc.verifyMRVStockTransaction(commonFunc.getDataFromTestDataSheet("WIP100"));
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Used To Verify Material Request To Material Receipt Voucher Inter
+	 * Transfer
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyMaterialRequestToMaterialReceiptVoucherSubContract() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("MRToMRVWipSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			stockPageFunc.getItemStockValue(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+//			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("EmpWareHouseId"));
+//			stockPageFunc.removeFilterStock();
+			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
+			stockPageFunc.removeFilterStock();
+		}
+		commonFunc.logoutUser();
+		materialRequestFunc.verifyCreateMaterialRequestSubcontractor();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+		materialIssuanceFunc.createJournalAndViewJournal();
+		materialIssuanceFunc.verifyTableDataMivForWip();
+		materialIssuanceFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("Subcontractor"));
+		materialIssuanceFunc.headerTickAndPostIcon();
+		materialIssuanceFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+				commonFunc.getDataFromTestDataSheet("PostedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToGateEntryDeliveryChallan();
+		deliveryChallanFunc.verifyTableData(webDB.getDataFromProperties("MRToMRVWipSheet"));
+		deliveryChallanFunc.verifyStatusOfDeliveryChallan(VariableHandler.getDCNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialReceiptVoucher();
+		materialReceiptVoucherFunc.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+		materialReceiptVoucherFunc.createJournalAndViewJournal();
+		materialReceiptVoucherFunc.verifyTableDataMiv(webDB.getDataFromProperties("MRToMRVWipSheet"));
+		materialReceiptVoucherFunc.clickTickAndPostIcon();
+		materialReceiptVoucherFunc.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTab();
+		materialReceiptVoucherFunc.verifyAfterStockDataUpdation(commonFunc.getDataFromTestDataSheet("POSupplier"),
+				webDB.getDataFromProperties("MRToMRVWipSheet"));
+		commonFunc.logoutUser();
+		stockPageFunc.validateStockCount(webDB.getDataFromProperties("MRToMRVWipSheet"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToInventoryStocksTransactionTab();
+		stockTransactionPageFunc.verifyMRVStockTransaction(commonFunc.getDataFromTestDataSheet("POSupplier"));
+		commonFunc.logoutUser();
 	}
 }

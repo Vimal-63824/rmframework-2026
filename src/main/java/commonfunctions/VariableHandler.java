@@ -135,6 +135,10 @@ public class VariableHandler {
 	private static ThreadLocal<BigDecimal> SODiscountAmountPerQty = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> SOTaxAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> SOTotExpOrderAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<Map<String, String>> AfterStockQty = ThreadLocal.withInitial(HashMap::new);
+	private static ThreadLocal<Map<String, String>> AfterStockCost = ThreadLocal.withInitial(HashMap::new);
+	private static ThreadLocal<String> DCNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PermissionDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -991,7 +995,7 @@ public class VariableHandler {
 	public static void setCustomerSaleGSTType(String data) {
 		CustomerSaleGSTType.set(data);
 	}
-	
+
 	public static BigDecimal getSOChargeAmount() {
 		return SOChargeAmount.get();
 	}
@@ -1016,7 +1020,7 @@ public class VariableHandler {
 	public static void setAdvReceiptDocNumber(String data) {
 		AdvReceiptDocNumber.set(data);
 	}
-	
+
 	public static String getAdvReceiptDocNumberInSO() {
 		return AdvReceiptDocNumberInSO.get();
 
@@ -1025,7 +1029,7 @@ public class VariableHandler {
 	public static void setAdvReceiptDocNumberInSO(String data) {
 		AdvReceiptDocNumberInSO.set(data);
 	}
-	
+
 	public static String getExpectedAdvReceiptBalanceAmountInSO() {
 		return AdvReceiptsBalanceAmountInSO.get();
 
@@ -1034,7 +1038,7 @@ public class VariableHandler {
 	public static void setExpectedAdvReceiptBalanceAmountInSO(String data) {
 		AdvReceiptsBalanceAmountInSO.set(data);
 	}
-	
+
 	public static String getExpectedAdvToBeReceivedInSO() {
 		return AdvReceiptsToBeReceivedInSO.get();
 
@@ -1043,7 +1047,7 @@ public class VariableHandler {
 	public static void setExpectedAdvToBeReceivedInSO(String data) {
 		AdvReceiptsToBeReceivedInSO.set(data);
 	}
-	
+
 	public static String getBankReceiptDocNumber() {
 		return BankReceiptDocNumber.get();
 
@@ -1052,7 +1056,7 @@ public class VariableHandler {
 	public static void setBankReceiptDocNumber(String data) {
 		BankReceiptDocNumber.set(data);
 	}
-	
+
 	public static BigDecimal getSOSpecialAssesableValue() {
 		return SOSpecAssesableVal.get();
 	}
@@ -1060,7 +1064,7 @@ public class VariableHandler {
 	public static void setSOSpecialAssesableValue(BigDecimal data) {
 		SOSpecAssesableVal.set(data);
 	}
-	
+
 	public static BigDecimal getSOCashAssesableValue() {
 		return SOCashAssesableVal.get();
 	}
@@ -1068,7 +1072,7 @@ public class VariableHandler {
 	public static void setSOCashAssesableValue(BigDecimal data) {
 		SOCashAssesableVal.set(data);
 	}
-	
+
 	public static BigDecimal getSOTradeDiscountAmount() {
 		return SOTradeDiscountAmount.get();
 	}
@@ -1076,7 +1080,7 @@ public class VariableHandler {
 	public static void setSOTradeDiscountAmount(BigDecimal data) {
 		SOTradeDiscountAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOSpecialDiscountAmount() {
 		return SOSpecialDiscountAmount.get();
 	}
@@ -1084,7 +1088,7 @@ public class VariableHandler {
 	public static void setSOSpecialDiscountAmount(BigDecimal data) {
 		SOSpecialDiscountAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOCashDiscountAmount() {
 		return SOCashDiscountAmount.get();
 	}
@@ -1092,7 +1096,7 @@ public class VariableHandler {
 	public static void setSOCashDiscountAmount(BigDecimal data) {
 		SOCashDiscountAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSODiscountAmountPerQty() {
 		return SODiscountAmountPerQty.get();
 	}
@@ -1100,7 +1104,7 @@ public class VariableHandler {
 	public static void setSODiscountAmountPerQty(BigDecimal data) {
 		SODiscountAmountPerQty.set(data);
 	}
-	
+
 	public static BigDecimal getSOTaxAmount() {
 		return SOTaxAmount.get();
 	}
@@ -1108,12 +1112,44 @@ public class VariableHandler {
 	public static void setSOTaxAmount(BigDecimal data) {
 		SOTaxAmount.set(data);
 	}
-	
+
 	public static BigDecimal getSOEXPTotalOrderAmount() {
 		return SOTotExpOrderAmount.get();
 	}
 
 	public static void setSOEXPTotalOrderAmount(BigDecimal data) {
 		SOTotExpOrderAmount.set(data);
+	}
+
+	public static Map<String, String> getAfterStockQty() {
+		return AfterStockQty.get();
+	}
+
+	public static void setAfterStockQty(Map<String, String> data) {
+		AfterStockQty.set(data);
+	}
+
+	public static Map<String, String> getAfterStockCost() {
+		return AfterStockCost.get();
+	}
+
+	public static void setAfterStockCost(Map<String, String> data) {
+		AfterStockCost.set(data);
+	}
+
+	public static String getDCNumber() {
+		return DCNumber.get();
+	}
+
+	public static void setDCNumber(String data) {
+		DCNumber.set(data);
+	}
+
+	public static String getPermissionDocNo() {
+		return PermissionDocNo.get();
+	}
+
+	public static void setPermssionDocNo(String data) {
+		PermissionDocNo.set(data);
 	}
 }

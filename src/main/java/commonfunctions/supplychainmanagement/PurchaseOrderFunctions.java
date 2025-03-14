@@ -1023,6 +1023,7 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
@@ -1058,6 +1059,7 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
@@ -1094,6 +1096,7 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
@@ -1129,6 +1132,7 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
@@ -1164,6 +1168,7 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
@@ -1199,6 +1204,7 @@ public class PurchaseOrderFunctions {
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
 		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
 		return flag;
@@ -2763,8 +2769,8 @@ public class PurchaseOrderFunctions {
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, ElementType.Xpath);
 			if (flag) {
 				commonFunc.hardWait(1000);
-				webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues, commonFunc.getDataFromTestDataSheet("Y"),
-						ElementType.Xpath);
+				webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoseriviceWithGrnSelectedValues,
+						commonFunc.getDataFromTestDataSheet("Y"), ElementType.Xpath);
 				logs.logging("INFO", "With GRN Changed successfully");
 			}
 			verifyTickIconcreateItem();
@@ -2798,5 +2804,23 @@ public class PurchaseOrderFunctions {
 			flag = commonFunc.logoutUser();
 			assertTrue(flag);
 		}
+	}
+
+	/**
+	 * This Method Is Used To Verify Approve PR Using Ashok User
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyApprovePOUsingAshokUser() {
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseOrderPage();
 	}
 }
