@@ -10,6 +10,7 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.PaymentReceiptsLocators;
+import commonlocators.supplychainmanagement.MaterialIssuanceVoucherLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -51,11 +52,11 @@ public class PaymentReceiptsFunctions {
 						if (flag) {
 							logs.logging("INFO", "Switched To Pending Payable Frame");
 							webDB.clickAnElement(PaymentReceiptsLocators.SearchButton, ElementType.Xpath);
-							flag = webDB.waitForElement(PaymentReceiptsLocators.CheckBox(DocNo), ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "CheckBox Is Displayed");
 								commonFunc.hardWait(3000);
-								webDB.clickAnElement(PaymentReceiptsLocators.CheckBox(DocNo), ElementType.Xpath);
+								webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 								verifyEnableCreateButton();
 								flag = webDB.waitForElement(PaymentReceiptsLocators.CreateButton, ElementType.Xpath);
 								if (flag) {

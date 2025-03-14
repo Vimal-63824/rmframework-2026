@@ -158,7 +158,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String InventoryReportsTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[14]";
+	public static final String StocksTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li[15]";
 	/** @locatorType Xpath */
 	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
 	/** @locatorType Xpath */
@@ -195,5 +195,19 @@ public class CommonUiLocators {
 	public static final String InvSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]";
 	/** @locatorType Xpath */
 	public static final String ProdPlan_Transaction_CompletionProductionOrder = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[10]";
+	/** @locatorType Xpath */
+	public static final String StockTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li/div/a[text()='Stock Transaction']";
+	/** @locatorType Xpath */
+	public static final String StockTransactionCheckBox = "//input[@id='P93132310_BS_STOCK_0']/..";
+	/** @locatorType Xpath */
+	public static final String ToastMessagePopup = "//h6[@class='succ_msg']";
+	/** @locatorType Xpath */
+	public static final String DeliveryChallan = "//span[text()='Supply Chain']/ancestor::li/*/li[5]/*/li[2]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String GateEntry = "//span[text()='Supply Chain']/ancestor::li/*/li[5]";
+	/** @locatorType Xpath */
+	public static final String GateEntryTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[5]/*/li[2]";
+	/** @locatorType Xpath */
+	public static final String PendingChallan = "//button[@id='B1790356342430100439']";
 
 }

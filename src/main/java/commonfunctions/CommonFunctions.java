@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -20,7 +19,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
@@ -444,6 +442,10 @@ public class CommonFunctions {
 		VariableHandler.setIndividualAmount(BigDecimal.ZERO);
 		VariableHandler.setDiscountAmount(BigDecimal.ZERO);
 		VariableHandler.setLineAmount(BigDecimal.ZERO);
+		VariableHandler.getStockQty().clear();
+		VariableHandler.getStockCost().clear();
+		VariableHandler.getAfterStockCost().clear();
+		VariableHandler.getAfterStockQty().clear();
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
@@ -1563,6 +1565,25 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Material Issuance Voucher Tab Is Clicked");
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/*
+	 * Navigate To Stock Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+
+	public void navigateToStockTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.StockTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.StockTransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.StockTransactionCheckBox, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Stock Transaction Tab Is Clicked");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1589,4 +1610,80 @@ public class CommonFunctions {
 		}
 	}
 
+	/*
+	 * Navigate To Inventory Stocks Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToInventoryStocksTransactionTab() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		navigateToInventoryReportsTab();
+		navigateToStockTransactionTab();
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Gate Entry Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToGateEntryTab() {
+		flag = webDB.waitForElement(CommonUiLocators.GateEntry, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.GateEntry, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Gate Entry Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Gate Entry Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToGateEntryTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.DeliveryChallan, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Gate Entry Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Delivery Challan Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToDeliverChallanTab() {
+		flag = webDB.waitForElement(CommonUiLocators.DeliveryChallan, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.DeliveryChallan, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingChallan, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Delivery Challan Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigate To Inventory Stocks Transaction Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToGateEntryDeliveryChallan() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToGateEntryTab();
+		navigateToGateEntryTransactionTab();
+		navigateToDeliverChallanTab();
+	}
 }

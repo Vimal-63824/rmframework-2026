@@ -1,5 +1,8 @@
 package com.roadmapERP;
-
+/**
+ * @author Sakthi-GWL, Deepan-GWL
+ * @company Galaxy Weblinks March 04, 2025
+ */
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -159,7 +162,7 @@ public class OpenSoAmdTest {
 	public void verifyOpenDeletationOfItemsExportCustomer() {
 		OSOA.verifyExportCustomerDeletationOfItem();
 	}
-	
+
 	/**
 	 * Amend Sales Order -Price Change - Domestic Customer - UTGST
 	 *
@@ -217,5 +220,4 @@ public class OpenSoAmdTest {
 		commonFunc.verifyAfterMethod();
 	}
 
-	
 }

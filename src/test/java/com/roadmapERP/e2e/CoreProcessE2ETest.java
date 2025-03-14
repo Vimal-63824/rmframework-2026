@@ -1,6 +1,9 @@
 package com.roadmapERP.e2e;
 
-
+/**
+ * @author Sakthi-GWL, Deepan-GWL
+ * @company Galaxy Weblinks March 04, 2025
+ */
 import org.testng.Assert;
 /**
  * @author Deepan-GWL, Sakthi
@@ -11,6 +14,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import commonfunctions.CommonFunctions;
 import commonfunctions.coreprocess.CoreProcessPageFunctions;
+import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
@@ -55,6 +59,7 @@ public class CoreProcessE2ETest {
 	}
 
 	/**
+	 *
 	 * Production Order to Completion to MRV ETE
 	 * 
 	 * @author Sakthi-GWL
@@ -64,6 +69,50 @@ public class CoreProcessE2ETest {
 	public void VerifyProductionOrderToCompletionToMaterialReceiptVoucher() {
 		flag = coreProcessPageFunctions.verifyProductionOrderToCompletionToMaterialReceiptVoucher();
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Material Request To MRV Intra Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 5, groups = {
+			"Core Process" }, description = "Material Request to Material Receipt voucher (Intra Transfer) End to End Process")
+	public void VerifyMaterialRequestToMRVIntraTransferType() {
+		coreProcessPageFunctions.verifyMaterialRequestToMaterialReceiptVoucherIntraday();
+	}
+
+	/**
+	 * This Method Is Used To Verify Material Request To MRV Inter Transfer Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 6, groups = {
+			"Core Process" }, description = "Material Request to Material Receipt voucher (Inter Transfer) End to End Process")
+	public void VerifyMaterialRequestToMRVInterTransferType() {
+		coreProcessPageFunctions.verifyMaterialRequestToMaterialReceiptVoucherInterday();
+	}
+
+	/**
+	 * This Method Is Used To Verify Material Request To MRV Department Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 7, groups = {
+			"Core Process" }, description = "Material Request to Material Issuance voucher (Department)")
+	public void VerifyMaterialRequestToMRVDepartmentType() {
+		coreProcessPageFunctions.verifyMaterialRequestToMaterialReceiptVoucherDepartmentType();
+	}
+
+	/**
+	 * This Method Is Used To Verify Material Request To MRV WIP Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 8, groups = {
+			"Core Process" }, description = "Material Request to Material Receipt voucher (production-WIP)")
+	public void VerifyMaterialRequestToMRVWipType() {
+		coreProcessPageFunctions.verifyMaterialRequestToMaterialReceiptVoucherWipType();
 	}
 
 	/**

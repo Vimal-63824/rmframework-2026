@@ -36,6 +36,8 @@ public class MaterialReceiptVoucherLocators {
 	public static final String HeaderTickIcon = "//button[@id='B4583439391238641038']";
 	/** @locatorType Xpath */
 	public static final String HeaderPostIcon = "//button[@id='B4670097921149921905']";
+	/** @locatorType Xpath */
+	public static final String AllCheckBox = "//table[@id='1636069529759209034']//input[@id='check_all']";
 
 	/** @locatorType Xpath */
 	public static final String MRVCheckBox(String GrnNo) {
@@ -56,4 +58,26 @@ public class MaterialReceiptVoucherLocators {
 	public static final String PendingCreateMRV_TableProcess(String CompletionProdNo) {
 		return "//div[@id='PEND_data_panel']//table/tbody/tr/td[text()='" + CompletionProdNo + "']/../td[21]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String ListItemTable = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
+
+	/** @locatorType Xpath */
+	public static final String ItemTable(int i) {
+		return "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String UnitcostTable(int i) {
+		return "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[9]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String CreateJournal = "//button[@id='B1648817004038529035']";
+	/** @locatorType Xpath */
+	public static final String ViewJournal = "//button[@id='B4670098219152921908']";
+	/** @locatorType Xpath */
+	public static final String MIVNumberLovButton = "//button[@id='P9313117703_DOC_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String MRVSearchButton = "//button[@id='B2057629649584279009']";
 }
