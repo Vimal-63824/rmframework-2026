@@ -1,9 +1,5 @@
 package com.roadmapERP.e2e;
 
-/**
- * @author Sakthi-GWL, Deepan-GWL
- * @company Galaxy Weblinks March 04, 2025
- */
 import org.testng.Assert;
 /**
  * @author Deepan-GWL, Sakthi
@@ -14,7 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import commonfunctions.CommonFunctions;
 import commonfunctions.coreprocess.CoreProcessPageFunctions;
-import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
@@ -113,6 +108,18 @@ public class CoreProcessE2ETest {
 			"Core Process" }, description = "Material Request to Material Receipt voucher (production-WIP)")
 	public void VerifyMaterialRequestToMRVWipType() {
 		coreProcessPageFunctions.verifyMaterialRequestToMaterialReceiptVoucherWipType();
+	}
+
+	/**
+	 * Production Order to Completion to MRV ETE
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 9, groups = {
+			"Core Process" }, description = "Production Order to Completion to MRV End to End Process")
+	public void VerifyCreationOfBillOfMaterials() {
+		flag = coreProcessPageFunctions.verifyCreationOfBillOfMaterials();
+		Assert.assertTrue(flag);
 	}
 
 	/**

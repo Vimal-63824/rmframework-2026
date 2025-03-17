@@ -209,5 +209,17 @@ public class CommonUiLocators {
 	public static final String GateEntryTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[5]/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String PendingChallan = "//button[@id='B1790356342430100439']";
+	/** @locatorType Xpath */
+	public static final String ProdPlan_Transaction_BillOfMaterials = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String ClickGateEntryNode = "//*[@id='t_TreeNav_208']/div[2]/span[2]";
+	/** @locatorType Xpath */
+	public static final String ClickSupplyChaintabForAdminUser = "//*[@id='t_TreeNav_4']/span";
+	/** @locatorType Xpath */
+	public static final String InventoryTabForAdminUser = "//*[@id='t_TreeNav_18']/span";
+	/** @locatorType Xpath */
+	public static final String InventoryTransactionTabForAdminUser = "//*[@id='t_TreeNav_22']/span";
+	/** @locatorType Xpath */
+	public static final String MaterialReceiptVoucherTabForAdminUser = "//*[@id='t_TreeNav_29']/div[2]/a";
 
 }

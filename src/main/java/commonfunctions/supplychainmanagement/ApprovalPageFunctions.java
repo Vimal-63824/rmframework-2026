@@ -5,6 +5,10 @@ package commonfunctions.supplychainmanagement;
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 import static org.testng.Assert.assertTrue;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.testng.Assert;
 
 /**
@@ -299,6 +303,31 @@ public class ApprovalPageFunctions {
 			VariableHandler.setApprovalFlag(flag);
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To ExtractStocktransferDocNumber
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public boolean ExtractStocktransferDocNumber() {
+		flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+		if (flag) {
+			String text = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			logs.logging("INFO", "Get Text From Note Alert Is :" + text);
+			String regex = "SOST-\\d{4}-\\d{5}";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher SaleOrderDocNumber = pattern.matcher(text);
+			if (SaleOrderDocNumber.find()) {
+				String SONumber = SaleOrderDocNumber.group();
+				VariableHandler.setSalesOrdertDocNumber(SONumber);
+				logs.logging("INFO", "Sales Order number Is :" + VariableHandler.getSalesOrdertDocNumber());
+			} else {
+				logs.logging("INFO", "No match found for Sale Order Number in Extract Stock transfer.");
+			}
+		}
+		return flag;
 	}
 
 }

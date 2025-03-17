@@ -30,7 +30,6 @@ public class GrnTest {
 			"GRN" }, description = "228 PO to GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void PoToGrnServiceUserDefinedSameStockAndSupplierUOMWOInspectionPlan() {
 		grnPageFunc.verifyGrnPODomesticServiceSimilarUOMfromPo();
-
 	}
 
 	/**
@@ -43,7 +42,6 @@ public class GrnTest {
 			"GRN" }, description = "231 And 232 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - With And Without Inspection Plan")
 	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType() {
 		grnPageFunc.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType();
-
 	}
 
 	/**
@@ -56,7 +54,6 @@ public class GrnTest {
 			"GRN" }, description = "233 And 234 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With and Without Inspection Plan")
 	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterial() {
 		grnPageFunc.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterial();
-
 	}
 
 	/**
@@ -69,7 +66,6 @@ public class GrnTest {
 			"GRN" }, description = "226 And 227 PO to GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
 		grnPageFunc.poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan();
-
 	}
 
 	/**
@@ -83,7 +79,90 @@ public class GrnTest {
 
 	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithWithoutInspectionPlan() throws IOException {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan();
+	}
 
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * RateContract Document for Service Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 6, groups = {
+			"GRN" }, description = "235 PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void PoToGrnServiceRateContractSameStockandSupplierUOMWoInspectionPlan() {
+		grnPageFunc.poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection PriceList Document for General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 7, groups = {
+			"GRN" }, description = "238 And 239 PO to GRN-General-Price List-Same Stock and Supplier UOM - With And WithOut Inspection Plan")
+	public void PotoGrnGeneralPriceListSameStockAndSupplierUOMWithInspection() {
+		grnPageFunc.poToGrnGeneralPriceListSameStockAndSupplierUOMWithInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection Stock Transfer Rate Contract Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 8, groups = {
+			"GRN" }, description = "236 And 237 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With And Without Inspection Plan")
+	public void PoToGrnStockTransferRateContractSameStockAndSupplierUomWithAndWithoutInspection() {
+		grnPageFunc.PoToGrnStockTransferRateContractSameStockAndSupplierUomWithAndWithoutInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection Stock Transfer User Defined Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 9, groups = {
+			"GRN" }, description = "229 And 230 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With And Without Inspection Plan")
+	public void POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection() {
+		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection Service Type(Price List Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 10, groups = {
+			"GRN" }, description = "240 PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlan() {
+		grnPageFunc.poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection Stock Transfer Price List Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 11, groups = {
+			"GRN" }, description = "243 And 244 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With And Without Inspection Plan")
+	public void POToGrnStockTransferPriceListSameStockandSupplierUOMWithAndWOInspection() {
+		grnPageFunc.poToGrnStockTransferPriceListSameStockandSupplierUOMWithAndWOInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection PriceList Document for General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 12, groups = {
+			"GRN" }, description = "245 And 246 PO to GRN-General-User Defined-Different Stock and Supplier UOM - With And Without Inspection Plan")
+	public void PoToGrnGeneralUserDefinedStockAndSupplierDisUomWithWithoutInspectionPlan() {
+		grnPageFunc.poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlan();
 	}
 
 	/**
@@ -95,7 +174,6 @@ public class GrnTest {
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result) {
 		commonFunc.verifyAfterMethod();
-
 	}
 
 }

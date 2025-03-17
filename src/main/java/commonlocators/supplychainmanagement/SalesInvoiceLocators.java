@@ -298,4 +298,16 @@ public class SalesInvoiceLocators {
 	public static final String SI_Linewise_Delete_Btn = "(//span[@class='fa fa-trash-o'])[1]";
 	/** @Locator XPATH */
 	public static final String SI_LineWise_NoteAlert = "(//button[@title='Close'])[1]";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceTabForHodUser = "//*[@id='t_TreeNav_291']/div[2]/a";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceSelectAllBtn = "//*[@id='check_all']";
+	/** @Locator XPATH */
+	public static final String PendingSalesOrderSearchLOVBTN = "//*[@id='P1915131087_ORD_NO_lov_btn']";
+	/** @Locator XPATH */
+	public static final String PendingSalesOrderSearchBtn = "//*[@id='B2628575661799932495']/span";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceOverAllSaveBtn = "//*[@id='B5998922505015564483']/span";
+	/** @Locator XPATH */
+	public static final String SalesInvoiceNumberTextField = "//*[@id='P191513109001_SIHD_EXC_INV_NO_DISPLAY']";
 }
