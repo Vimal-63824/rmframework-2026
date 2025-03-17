@@ -55,14 +55,62 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String SaveHeaderIcon = "//button[@id='B3110868619550418445']";
 	/** @locatorType XPATH */
 	public static final String MIVPostBtn = "//button[@id='B4710641233459306429']";
+
+	/** @locatorType Xpath */
+	public static final String PendingMrIframe = "//iframe[@title='Pending MR Lines']";
+	/** @locatorType Xpath */
+	public static final String MRLovButton = "//button[@id='P93131020_MR_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String SearchButton = "//button[@id='B2247675926419084803']";
+	/** @locatorType Xpath */
+	public static final String CheckBox = "//input[@id='check_all']";
+	/** @locatorType Xpath */
+	public static final String CreateMiButton = "//button[@id='B1']";
+	/** @locatorType Xpath */
+	public static final String MILocationId = "//span[@id='P931311701_ISTHD_PLNT_LOC_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String MIVNo = "//span[@id='P931311701_ISTHD_DOC_NO_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String ReceiverWH = "//span[@id='P931311701_STORE_DESC_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String CreateJnl = "//button[@id='B4710641419071306431']";
+	/** @locatorType Xpath */
+	public static final String ViewJournal = "//button[@id='B4710641635025306433']";
+	/** @locatorType Xpath */
+	public static final String DebitTable = "//table[@id='4579198317374253820_orig']/tbody/tr[last()]/td[last()-1]";
+	/** @locatorType Xpath */
+	public static final String CreditTable = "//table[@id='4579198317374253820_orig']/tbody/tr[last()]/td[last()]";
+	/** @locatorType Xpath */
+	public static final String ViewJournalFrame = "//iframe[@title='View Journal']";
+	/** @locatorType Xpath */
+	public static final String CloseJournal = "//h1[text()='View Journal']/../button[@title='Close']";
+	/** @locatorType Xpath */
+	public static final String ListElements = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
+	/** @locatorType Xpath */
+	public static final String HeaderTickIcon = "//button[@id='B3110868619550418445']";
+	/** @locatorType Xpath */
+	public static final String HeaderPostIcon = "//button[@id='B4710641233459306429']";
 	/** @locatorType Xpath */
 	public static final String VoucherNoLovButton = "//button[@id='P93131628_REQ_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String MivSearchButton = "//button[@id='B166256573623807506']";
 
 	/** @locatorType Xpath */
+	public static final String TypeText = "//span[@id='P931311701_ISTHD_ISSUETO_TYPE_DISPLAY']";
+
+	/** @locatorType Xpath */
 	public static final String PostedMiv(String MINO) {
-		return "//div[@id='ld_data_panel']//table/tbody//td/a[text()='" + MINO + "']/../../td/div";
+		return "(//a[text()='" + MINO + "']/../../td/div[contains(@style,'Green')])[1]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ItemTable(int i) {
+		return "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ItemCostTable(int i) {
+		return "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[14]";
 	}
 
 }

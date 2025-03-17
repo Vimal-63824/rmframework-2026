@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.ItemDetailsHandler.SOCustomerDetailsName;
 import commonfunctions.ItemDetailsHandler.SOLineDetailsName;
@@ -34,6 +35,7 @@ public class SalesOrderFunctions {
 	public ApprovalPageFunctions apprpagefunc = new ApprovalPageFunctions();
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic
@@ -55,15 +57,21 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();// TODO
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item"));
 		addQuantityAndUnitCost(Qty, UnitCost);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();// TODO
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();// TODO
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -87,6 +95,9 @@ public class SalesOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 //				clickPrintButtonInFindScreen();
 				flag = commonFunc.logoutUser();
+//				if (flag) {
+//					verifyCreationOfAdvanceReceipts();
+//				}
 			}
 		}
 		return flag;
@@ -97,6 +108,7 @@ public class SalesOrderFunctions {
 	 *         SOGeneral With DisSimilar Stock And CustomerUOM
 	 * @return boolean flag
 	 */
+
 	public boolean verifyDomesticSOGeneralDisSimilarStockAndCustomerUOM() {
 		String Qty = RandomStringUtils.randomNumeric(2);
 		if (Qty.equals("00")) {
@@ -112,16 +124,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"));
 		addQuantityAndUnitCost(Qty, UnitCost);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"), getTextCurrencyInHeader(),
 				Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -145,7 +160,9 @@ public class SalesOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 //				clickPrintButtonInFindScreen();
 				flag = commonFunc.logoutUser();
+
 			}
+
 		}
 		return flag;
 	}
@@ -170,15 +187,18 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item"));
 		addQuantityAndUnitCost(Qty, UnitCost);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -227,16 +247,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"));
 		addQuantityAndUnitCost(Qty, UnitCost);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilarItem"), getTextCurrencyInHeader(),
 				Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -281,16 +304,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Rate_Contract"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Rate_Contract"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -334,16 +360,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Rate_Contract"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Rate_Contract"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -387,16 +416,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Rate_Contract"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Rate_Contract"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -440,16 +472,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Rate_Contract"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Rate_Contract"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -493,16 +528,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_StandardPrice"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_StandardPrice"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -547,16 +585,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_StandardPrice"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_StandardPrice"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -601,16 +642,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_StandardPrice"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_StandardPrice"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -655,16 +699,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_StandardPrice"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_StandardPrice"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -709,16 +756,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Catalog"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Catalog"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -764,16 +814,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Catalog"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Catalog"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -818,16 +871,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Catalog"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_Catalog"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -873,16 +929,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Catalog"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_Catalog"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -927,16 +986,19 @@ public class SalesOrderFunctions {
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
 		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_PriceList"));
 		addLineItemQty(Qty);
 		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
 		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
 		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_PriceList"),
 				getTextCurrencyInHeader(), Qty);
 		clickLineWiseDetailsSaveButton();
 		getSalesOrderTotalAmount();
 		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
 //		clickPrintButton();
 		clickPostButton();
 		forwardForApproval();
@@ -966,6 +1028,199 @@ public class SalesOrderFunctions {
 	}
 
 	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Export Sales
+	 *         Order - price basis is PriceList- Similar Stock and Customer UOM
+	 * @return boolean flag
+	 */
+	public boolean verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
+		String Qty = RandomStringUtils.randomNumeric(2);
+		if (Qty.equals("00")) {
+			Qty = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_PriceList"));
+		addLineItemQty(Qty);
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
+		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_Similar_Item_PriceList"),
+				getTextCurrencyInHeader(), Qty);
+		clickLineWiseDetailsSaveButton();
+		getSalesOrderTotalAmount();
+		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
+//		clickPrintButton();
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+//				clickPrintButtonInFindScreen();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Domestic Sales
+	 *         Order - price basis is PriceList- DisSimilar Stock and Customer UOM
+	 * @return boolean flag
+	 */
+	public boolean verifyDomesticSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
+		String Qty = RandomStringUtils.randomNumeric(2);
+		if (Qty.equals("00")) {
+			Qty = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_PriceList"));
+		addLineItemQty(Qty);
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
+		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_PriceList"),
+				getTextCurrencyInHeader(), Qty);
+		clickLineWiseDetailsSaveButton();
+		getSalesOrderTotalAmount();
+		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
+//		clickPrintButton();
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+//				clickPrintButtonInFindScreen();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is used to Verify the Export Sales
+	 *         Order - price basis is PriceList- DisSimilar Stock and Customer UOM
+	 * @return boolean flag
+	 */
+	public boolean verifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
+		String Qty = RandomStringUtils.randomNumeric(2);
+		if (Qty.equals("00")) {
+			Qty = "10";
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		addItemsInSO(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_PriceList"));
+		addLineItemQty(Qty);
+		chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("SO_HSNCode"));
+		verifyItemCalculationWithLineAmount();
+		checkSOLineDetailsDataBaseValuesWithUIValues();
+		lineDetailVerification(commonFunc.getDataFromTestDataSheet("SO_DisSimilar_Item_PriceList"),
+				getTextCurrencyInHeader(), Qty);
+		clickLineWiseDetailsSaveButton();
+		getSalesOrderTotalAmount();
+		verifySalesOrderTaxCalculation();
+		checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues();
+//		clickPrintButton();
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateSalesOrderPage();
+				validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+//				clickPrintButtonInFindScreen();
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is Used To Click the Header Wise
+	 *         Cancel Button And Validate The Sales Order Document status
+	 * 
+	 * @return boolean flag
+	 */
+	public boolean verifyCancelSalesOrder() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		clickCancelButtonInSalesOrderHeader();
+		validateSalesOrderHeaderDocumentStatus(VariableHandler.getSONumber(),
+				commonFunc.getDataFromTestDataSheet("CancelStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
 	 * @author Harikrishna - RMITS This Method Is used To Click The Sales order
 	 *         Cancel Button
 	 */
@@ -982,27 +1237,6 @@ public class SalesOrderFunctions {
 			}
 		}
 		assertTrue(flag);
-	}
-
-	/**
-	 * @author Harikrishna -RMITS This Method Is Used To Click the Header Wise
-	 *         Cancel Button And Validate The Sales Order Document status
-	 * 
-	 * @return boolean flag
-	 */
-	public boolean verifyCancelSalesOrder() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateSalesOrderPage();
-		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
-				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-		customerDetailsVerification(commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-		clickCancelButtonInSalesOrderHeader();
-		validateSalesOrderHeaderDocumentStatus(VariableHandler.getSONumber(),
-				commonFunc.getDataFromTestDataSheet("CancelStatus"));
-		flag = commonFunc.logoutUser();
-		return flag;
 	}
 
 	/**
@@ -1860,29 +2094,35 @@ public class SalesOrderFunctions {
 				logs.logging("INFO", "Get Text Trade Discount Percentage is " + TradeDiscountPercentage);
 				BigDecimal TradeAmountOA = verifyDiscountAmountCalculation(LineAmount,
 						new BigDecimal(TradeDiscountPercentage));
+				VariableHandler.setSOTradeDiscountAmount(TradeAmountOA);
 				BigDecimal SpecAssesableValue = LineAmount.subtract(TradeAmountOA);
 				logs.logging("INFO", "Expected Special Assesable Value :" + SpecAssesableValue);
 
 				SpecAssesableValue = verifyRoundOffBigDecimalValueWithReturnBigDecimal(SpecAssesableValue);
+				VariableHandler.setSOSpecialAssesableValue(SpecAssesableValue);
 				BigDecimal SplDiscAmount = verifyDiscountAmountCalculation(SpecAssesableValue,
 						new BigDecimal(SpecialDiscount));
 				logs.logging("INFO", "Expected Special Discount Amount :" + SplDiscAmount);
 				logs.logging("INFO", "Expected Special Discount Percentage :" + SpecialDiscount);
+				VariableHandler.setSOSpecialDiscountAmount(SplDiscAmount);
 
 				BigDecimal CashAssesableValue = SpecAssesableValue.subtract(SplDiscAmount);
 				logs.logging("INFO", "Expected Cash Assesable Value : " + CashAssesableValue);
 
 				CashAssesableValue = verifyRoundOffBigDecimalValueWithReturnBigDecimal(CashAssesableValue);
+				VariableHandler.setSOCashAssesableValue(CashAssesableValue);
 				BigDecimal cashDiscountAmount = verifyDiscountAmountCalculation(CashAssesableValue,
 						new BigDecimal(CashDiscount));
 				logs.logging("INFO", "Expected Cash Discount Amount :" + cashDiscountAmount);
 				logs.logging("INFO", "Expected Cash Discount Percentage :" + CashDiscount);
+				VariableHandler.setSOCashDiscountAmount(cashDiscountAmount);
 
 				BigDecimal Qty = new BigDecimal(quantity);
 
 				DiscAmountPerQty = (TradeAmountOA.add(SplDiscAmount).add(cashDiscountAmount)).divide(Qty, 2,
 						RoundingMode.HALF_UP);
 				logs.logging("INFO", "Expected Discount Amt Per Qty :" + DiscAmountPerQty);
+				VariableHandler.setSODiscountAmountPerQty(DiscAmountPerQty);
 
 				TotalDiscountAmount = (TradeAmountOA.add(SplDiscAmount).add(cashDiscountAmount));
 				VariableHandler.setSODiscountAmount(TotalDiscountAmount);
@@ -1932,6 +2172,8 @@ public class SalesOrderFunctions {
 								+ "Actual Gross Amount :" + ActGrossAmt);
 					}
 				}
+//				verifyDomPropertyValidation(SalesOrderLocators.SOGrossAmountField, GrossAmount.toPlainString());
+//				logs.logging("INFO", "Gross Amount is Verified");
 			}
 		} else {
 			commonFunc.checkRefreshCellsDisappear();
@@ -1939,30 +2181,36 @@ public class SalesOrderFunctions {
 			BigDecimal TradeAmount = verifyDiscountAmountCalculation(LineAmount, new BigDecimal(TradeDiscount));
 			logs.logging("INFO", "Expected Trade Discount Amount :" + TradeAmount);
 			logs.logging("INFO", "Expected Trade Discount Percentage :" + TradeDiscount);
+			VariableHandler.setSOTradeDiscountAmount(TradeAmount);
 
 			BigDecimal SpecAssesableValue = LineAmount.subtract(TradeAmount);
 			logs.logging("INFO", "Expected Special Assesable Value :" + SpecAssesableValue);
 
 			SpecAssesableValue = verifyRoundOffBigDecimalValueWithReturnBigDecimal(SpecAssesableValue);
+			VariableHandler.setSOSpecialAssesableValue(SpecAssesableValue);
 			BigDecimal SplDiscAmount = verifyDiscountAmountCalculation(SpecAssesableValue,
 					new BigDecimal(SpecialDiscount));
 			logs.logging("INFO", "Expected Special Discount Amount :" + SplDiscAmount);
 			logs.logging("INFO", "Expected Special Discount Percentage :" + SpecialDiscount);
+			VariableHandler.setSOSpecialDiscountAmount(SplDiscAmount);
 
 			BigDecimal CashAssesableValue = SpecAssesableValue.subtract(SplDiscAmount);
 			logs.logging("INFO", "Expected Cash Assesable Value : " + CashAssesableValue);
 
 			CashAssesableValue = verifyRoundOffBigDecimalValueWithReturnBigDecimal(CashAssesableValue);
+			VariableHandler.setSOCashAssesableValue(CashAssesableValue);
 			BigDecimal cashDiscountAmount = verifyDiscountAmountCalculation(CashAssesableValue,
 					new BigDecimal(CashDiscount));
 			logs.logging("INFO", "Expected Cash Discount Amount :" + cashDiscountAmount);
 			logs.logging("INFO", "Expected Cash Discount Percentage :" + CashDiscount);
+			VariableHandler.setSOCashDiscountAmount(cashDiscountAmount);
 
 			BigDecimal Qty = new BigDecimal(quantity);
 
 			DiscAmountPerQty = (TradeAmount.add(SplDiscAmount).add(cashDiscountAmount)).divide(Qty, 2,
 					RoundingMode.HALF_UP);
 			logs.logging("INFO", "Expected Discount Amt Per Qty :" + DiscAmountPerQty);
+			VariableHandler.setSODiscountAmountPerQty(DiscAmountPerQty);
 
 			TotalDiscountAmount = (TradeAmount.add(SplDiscAmount).add(cashDiscountAmount));
 			VariableHandler.setSODiscountAmount(TotalDiscountAmount);
@@ -2438,6 +2686,7 @@ public class SalesOrderFunctions {
 				BigDecimal ExpTaxAmt = verifyRoundOffBigDecimalValueWithReturnBigDecimal(
 						TotalGrossAmount.divide(new BigDecimal("100")).multiply(taxPercentage));
 				logs.logging("INFO", "Expected Tax Amount : " + ExpTaxAmt);
+				VariableHandler.setSOTaxAmount(ExpTaxAmt);
 
 				BigDecimal IGSTAmount = new BigDecimal(
 						webDB.getTextFromElement(SalesOrderLocators.IGSTtable, ElementType.Xpath));
@@ -2458,6 +2707,7 @@ public class SalesOrderFunctions {
 				BigDecimal taxAmount = IGSTAmount.add(CGSTAmount).add(SGSTAmount).add(UTGSTAmount);
 				taxAmount = verifyRoundOffBigDecimalValueWithReturnBigDecimal(taxAmount);
 				logs.logging("INFO", "After Adding Displayed Tax Amounts: " + taxAmount);
+
 				flag = taxAmount.equals(ExpTaxAmt);
 				if (flag) {
 					logs.logging("INFO", "Tax Amount Verified, Tax added value: " + taxAmount);
@@ -2468,6 +2718,7 @@ public class SalesOrderFunctions {
 					BigDecimal calculationAmount = verifyRoundOffBigDecimalValueWithReturnBigDecimal(
 							VariableHandler.getSOTotalGrossAmount().add(taxAmount));
 					logs.logging("INFO", "Calculated Total Amount : " + calculationAmount);
+					VariableHandler.setSOEXPTotalOrderAmount(calculationAmount);
 					flag = totalAmount.equals(calculationAmount);
 					if (flag) {
 						logs.logging("INFO", "Verified Total Amount Displayed and Calculated Total Amount Matched");
@@ -2483,6 +2734,7 @@ public class SalesOrderFunctions {
 			BigDecimal calculationAmount = verifyRoundOffBigDecimalValueWithReturnBigDecimal(
 					VariableHandler.getSOTotalGrossAmount());
 			logs.logging("INFO", "Calculated Total Amount : " + calculationAmount);
+			VariableHandler.setSOEXPTotalOrderAmount(calculationAmount);
 			flag = totalAmount.equals(calculationAmount);
 			if (flag) {
 				logs.logging("INFO", "Verified Total Amount Displayed and Calculated Total Amount Matched");
@@ -2496,11 +2748,320 @@ public class SalesOrderFunctions {
 	 *         Zero After Finishing One Test Scenarios
 	 */
 	public void verifyAfterMethod() {
+		VariableHandler.setSOEXPTotalOrderAmount(BigDecimal.ZERO);
+		VariableHandler.setSOTaxAmount(BigDecimal.ZERO);
 		VariableHandler.setSOTotalDiscountAmount(BigDecimal.ZERO);
 		VariableHandler.setSOTotalGrossAmount(BigDecimal.ZERO);
 		VariableHandler.setSOTotalLineAmount(BigDecimal.ZERO);
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		commonFunc.enterUrl();
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value : " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify The Header Creation Datas With Database Values
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param Location
+	 * @param Unit
+	 * @param CustomerID
+	 * @param CustomerDesc
+	 * @param SubVoucherType
+	 */
+	public void salesOrderDBHeaderValidation(String Location, String Unit, String CustomerID, String CustomerDesc,
+			String SubVoucherType) {
+		verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+				commonFunc.getDataFromTestDataSheet("SoDBLocationColumnName")), Location);
+		verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+				commonFunc.getDataFromTestDataSheet("SoDBUnitColumnName")), Unit);
+		verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+				commonFunc.getDataFromTestDataSheet("SoDBCustomerIDColumnName")), CustomerID);
+		verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+				commonFunc.getDataFromTestDataSheet("SoDBCustomerDescColumnName")), CustomerDesc);
+		verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+				commonFunc.getDataFromTestDataSheet("SOSubVoucherTypeDBColumnName")), SubVoucherType);
+	}
+
+	/**
+	 * This Method Is Used To Compare UI Values With the Database Column Name
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param ActualUIvalue
+	 * @param ExpectedDBValue
+	 */
+	public void verifyAssertionUIValuesAndDBValues(String ActualUIvalue, String ExpectedDBValue) {
+		logs.logging("INFO", "Get Text Actual UI Value Is: " + ActualUIvalue);
+		logs.logging("INFO", "Expected DataBase Value Is: " + ExpectedDBValue);
+		flag = ActualUIvalue.equals(ExpectedDBValue);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value And Expected Values");
+		} else {
+			logs.logging("INFO", "Mismatch With Actual DataBase And Expected Values");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Get The Text From UI And Compare With the Database
+	 * Column Name
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param UIFieldLocator
+	 * @param ExpectedDBValue
+	 */
+	public void verifyAssertionGetTextValidation(String UIFieldLocator, String ExpectedDBValue) {
+		flag = webDB.waitForElement(UIFieldLocator, ElementType.Xpath);
+		if (flag) {
+			String text = webDB.getTextFromElement(UIFieldLocator, ElementType.Xpath);
+			logs.logging("INFO", "Get Text Actual UI Value Is: " + text);
+			logs.logging("INFO", "Expected DataBase Value Is: " + ExpectedDBValue);
+			flag = text.equals(ExpectedDBValue);
+			if (flag) {
+				logs.logging("INFO",
+						"Verified Actual UI Value : " + text + " With Expected DataBase Value :" + ExpectedDBValue);
+			} else {
+				logs.logging("INFO", "Verification Failed Expected DataBase Value : " + ExpectedDBValue
+						+ "Get Text Actual UI Value : " + text);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Get The Text From An Locator Attribute And Compare
+	 * With the Database Column Name
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param UIFieldLocator
+	 * @param ExpectedDBValue
+	 */
+	public void verifyAssertionDomPropertyValidation(String UIFieldLocator, String ExpectedDBValue) {
+		flag = webDB.waitForElement(UIFieldLocator, ElementType.Xpath);
+		if (flag) {
+			String text = webDB.getDomPropertyFromElement(UIFieldLocator, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Get Text Actual UI Value Is: " + text);
+			logs.logging("INFO", "Expected DataBase Value Is: " + ExpectedDBValue);
+			flag = text.equals(ExpectedDBValue);
+			if (flag) {
+				logs.logging("INFO",
+						"Verified Actual UI Value : " + text + " With Expected DataBase Value :" + ExpectedDBValue);
+			} else {
+				logs.logging("INFO", "Verification Failed Expected DataBase Value : " + ExpectedDBValue
+						+ "Get Text Actual UI Value : " + text);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify The Header Details UI Values With Database
+	 * Values
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void checkSOHeaderDetailsDataBaseValuesWithUIValues() {
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderLocationField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBLocationColumnName")));
+		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderUnitField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBUnitColumnName")));
+		logs.logging("INFO", "Header Unit Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderSubVoucherType, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SOSubVoucherTypeDBColumnName")));
+		logs.logging("INFO", "Header Sales Order SubVoucher Type Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderSOPrefixField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBPrefixColumnName")));
+		logs.logging("INFO", "Header SOPrefix Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderSONumberField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBDocNumberColumnName")));
+		logs.logging("INFO", "Header SO Document Number Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.Currency, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBCurrencyColumnName")));
+		logs.logging("INFO", "Header Currency Details Matched With DataBase Values");
+		
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderExchangeRateField,
+				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBExchangeRateColumnName")));
+		logs.logging("INFO", "Header ExchangeRate Details Matched With DataBase Values");
+		
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderPaymentTermField,
+				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBPaymentTermColumnName")));
+		logs.logging("INFO", "Header Payment Term Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderINCOTermField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBINCOTermColumnName")));
+		logs.logging("INFO", "Header INCO Term Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderShipViaField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBShipViaColumnName")));
+		logs.logging("INFO", "Header Ship Via Details Matched With DataBase Values");
+		
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeIDField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBCpcCodeIDColumnName")));
+		logs.logging("INFO", "Header CPCcode ID Details Matched With DataBase Values");
+		
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeDescField,
+				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBCpcCodeDescColumnName")));
+		logs.logging("INFO", "Header CPCcode Desc Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderCustIDField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBCustomerIDColumnName")));
+		logs.logging("INFO", "Header Customer ID Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderCustDescField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBCustomerDescColumnName")));
+		logs.logging("INFO", "Header Customer Description Details Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Is Used To Verify The Line Details UI Values With Database Values
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void checkSOLineDetailsDataBaseValuesWithUIValues() {
+		verifyAssertionGetTextValidation(SalesOrderLocators.ItemName(1), dbCommonFunctions.SOLineDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBItemIDColumnName")));
+		logs.logging("INFO", "Line ItemID Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.ItemRev(1), dbCommonFunctions.SOLineDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBItemRevColumnName")));
+		logs.logging("INFO", "Line Item Rev Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.ItemDescription(1), dbCommonFunctions.SOLineDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBItemDescColumnName")));
+		logs.logging("INFO", "Line Item Description Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.UOM(1), dbCommonFunctions.SOLineDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBSaleUOMColumnName")));
+		logs.logging("INFO", "Line Sale UOM Details Matched With DataBase Values");
+		
+		verifyAssertionGetTextValidation(SalesOrderLocators.HSNSACCode(1), dbCommonFunctions.SOLineDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBHSNCodeColumnName")));
+		logs.logging("INFO", "Line HSN Code Details Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Is Used To Verify The Expected Discount,Gross,Tax And Total Sales
+	 * Order Amount With Database Values
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void checkSODiscountTaxAndTotalAmountDetailsDataBaseValuesWithExpectedValues() {
+		BigDecimal TradeAssesableValue = VariableHandler.getSOLineAmount();
+		BigDecimal SpecAssesableValue = VariableHandler.getSOSpecialAssesableValue();
+		BigDecimal CashAssesableValue = VariableHandler.getSOCashAssesableValue();
+		BigDecimal TradeAmount = VariableHandler.getSOTradeDiscountAmount();
+		BigDecimal SplDiscAmount = VariableHandler.getSOSpecialDiscountAmount();
+		BigDecimal cashDiscountAmount = VariableHandler.getSOCashDiscountAmount();
+		BigDecimal DiscountAmountPerQty = VariableHandler.getSODiscountAmountPerQty();
+		BigDecimal TotalGrossAmount = VariableHandler.getSOTotalGrossAmount();
+		BigDecimal TotalDiscountAmount = VariableHandler.getSOTotalDiscountAmount();
+		BigDecimal TaxAmount = VariableHandler.getSOTaxAmount();
+		BigDecimal TotalOrderAmount = VariableHandler.getSOEXPTotalOrderAmount();
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBTradeAssesableValueColumnName")),
+				TradeAssesableValue.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Trade Assesable Value Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBSpecialAssesableValueColumnName")),
+				SpecAssesableValue.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Special Assesable Value Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBCashAssesableValueColumnName")),
+				CashAssesableValue.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Cash Assesable Value Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBTradeDiscountAmountColumnName")),
+				TradeAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Trade Discount Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBSpecialDiscountAmountColumnName")),
+				SplDiscAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Special Discount Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBCashDiscountAmountColumnName")),
+				cashDiscountAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Cash Discount Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBDiscountAmountPerQtyColumnName")),
+				DiscountAmountPerQty.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Discount Amount Per Qty Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBGrossAmountColumnName")),
+				TotalGrossAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Gross Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBTotalDiscountAmountColumnName")),
+				TotalDiscountAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Total Discount Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBTaxAmountColumnName")),
+				TaxAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Tax Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
+
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+						commonFunc.getDataFromTestDataSheet("SODBNetAmountColumnName")),
+				TotalOrderAmount.stripTrailingZeros().toPlainString());
+		logs.logging("INFO", "Database Value Matched With Expected Total Order Amount Against This Sales Order "
+				+ VariableHandler.getSONumber());
 	}
 }

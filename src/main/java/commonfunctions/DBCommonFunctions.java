@@ -1,5 +1,8 @@
 package commonfunctions;
-
+/**
+ * @author Sakthi-GWL, Deepan-GWL
+ * @company Galaxy Weblinks March 04, 2025
+ */
 import java.io.File;
 /**
  * @author Deepan-GWL, Sakthi
@@ -108,6 +111,34 @@ public class DBCommonFunctions {
 	public String PRLineDetails(String PrNo, String HeaderValue) {
 		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PRLineQuery"),
 				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, HeaderValue);
+		return value;
+	}
+	
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String SOHeaderDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String SOLineDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
 

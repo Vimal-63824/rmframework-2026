@@ -1,5 +1,8 @@
 package com.roadmapERP;
-
+/**
+ * @author Sakthi-GWL, Deepan-GWL
+ * @company Galaxy Weblinks March 04, 2025
+ */
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -93,7 +96,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 7, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
-	public void verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
+	public void VerifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -104,7 +107,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 8, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
-	public void verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
+	public void VerifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -115,7 +118,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 9, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
-	public void verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
+	public void VerifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -126,7 +129,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 10, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
-	public void verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
+	public void VerifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -137,7 +140,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 11, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
-	public void verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
+	public void VerifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -148,7 +151,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 12, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
-	public void verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
+	public void VerifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -159,7 +162,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 13, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
-	public void verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
+	public void VerifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -170,7 +173,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 14, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
-	public void verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
+	public void VerifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -181,7 +184,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 15, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
-	public void verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
+	public void VerifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -192,7 +195,7 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 16, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
-	public void verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
+	public void VerifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -201,7 +204,7 @@ public class SaleOrderTest {
 	 * @author Harikrishna - RMITS Cancel Sales Order Header Document
 	 */
 	@Test(priority = 17, groups = { "SalesOrder" }, description = "Cancel Sales Order Header Document")
-	public void verifyCancelSalesOrder() {
+	public void VerifyCancelSalesOrder() {
 		flag = SalesOrdFunc.verifyCancelSalesOrder();
 		Assert.assertTrue(flag);
 	}
@@ -212,8 +215,41 @@ public class SaleOrderTest {
 	 */
 	@Test(priority = 18, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
-	public void verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
+	public void VerifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is PriceList-
+	 *         Similar Stock and Customer UOM
+	 */
+	@Test(priority = 19, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
+	public void VerifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is PriceList-
+	 *         DisSimilar Stock and Customer UOM
+	 */
+	@Test(priority = 20, groups = {
+			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
+	public void VerifyDomesticSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyDomesticSOGeneralPriceListDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * @author Harikrishna - RMITS Export Sales Order - price basis is PriceList-
+	 *         DisSimilar Stock and Customer UOM
+	 */
+	@Test(priority = 21, groups = {
+			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
+	public void VerifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
+		flag = SalesOrdFunc.verifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
 
