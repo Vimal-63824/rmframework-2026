@@ -139,6 +139,15 @@ public class VariableHandler {
 	private static ThreadLocal<Map<String, String>> AfterStockCost = ThreadLocal.withInitial(HashMap::new);
 	private static ThreadLocal<String> DCNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> PermissionDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> BOMNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> GateEntryNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SalesOrderDocuNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SalesInvoiceNumber = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> AllDocumentNumber = new ThreadLocal<ArrayList<String>>();
+	private static ThreadLocal<String> InspectionPlanNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> IDAlertMessage = new ThreadLocal<>();
+	private static ThreadLocal<String> ReceiptLocator = new ThreadLocal<>();
+	private static ThreadLocal<String> MRVDocumentNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1151,5 +1160,75 @@ public class VariableHandler {
 
 	public static void setPermssionDocNo(String data) {
 		PermissionDocNo.set(data);
+	}
+
+	public static String getBOMNumber() {
+		return BOMNumber.get();
+	}
+
+	public static void setBOMNumber(String data) {
+		BOMNumber.set(data);
+	}
+	
+	public static String getGateEntryNumber() {
+		return GateEntryNumber.get();
+	}
+
+	public static void setGateEntryNumber(String data) {
+		GateEntryNumber.set(data);
+	}
+
+	public static String getSalesOrdertDocNumber() {
+		return SalesOrderDocuNumber.get();
+	}
+
+	public static void setSalesOrdertDocNumber(String data) {
+		SalesOrderDocuNumber.set(data);
+	}
+
+	public static String getSalesInvoiceNumber() {
+		return SalesInvoiceNumber.get();
+	}
+
+	public static void setSalesInvoiceNumber(String data) {
+		SalesInvoiceNumber.set(data);
+	}
+
+	public static ArrayList<String> getAllDocumentNumber() {
+		return AllDocumentNumber.get();
+	}
+
+	public static void setAllDocumentNumber(ArrayList<String> data) {
+		AllDocumentNumber.set(data);
+	}
+	
+	
+	public static void setInspectionPlanNumber(String data) {
+		InspectionPlanNumber.set(data);
+	}
+
+	public static String getInspectionPlanNumber() {
+		return InspectionPlanNumber.get();
+	}
+	public static void setIDAlertMessage(String data) {
+		IDAlertMessage.set(data);
+	}
+
+	public static String getIDAlertMessage() {
+		return IDAlertMessage.get();
+	}
+	public static void setReceiptLocator(String data) {
+		ReceiptLocator.set(data);
+	}
+
+	public static String getReceiptLocator() {
+		return ReceiptLocator.get();
+	}
+	public static void setMRVDocumentNumber(String data) {
+		MRVDocumentNumber.set(data);
+	}
+
+	public static String getMRVDocumentNumber() {
+		return MRVDocumentNumber.get();
 	}
 }

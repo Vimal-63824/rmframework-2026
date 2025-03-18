@@ -62,4 +62,50 @@ public class ProductionOrderLocators {
 	public static final String ExceptionTableContainer = "//div[@id='R967011785583947865_ig']";
 	/** @locatorType XPATH */
 	public static final String ExceptionNoDataFoundContainer = "//div[@id='R967011785583947865_ig']//span[text()='No data found']";
+	/** @locatorType XPATH */
+	public static final String DisplayOrderQuantityInput = "//input[@id='P19631010001_PROHD_ORDER_QTY']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrderAddIcon = "//button[@id='B1126880384972304449']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrderIframe = "//iframe[@title='Production Order']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrderIframeCloseIcon = "//h1[text()='Production Order']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_LocationLovbtn = "//button[@id='P64196310101_LOC_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_OrderTypeLovbtn = "//button[@id='P64196310101_TYPE_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_PrefixLovbtn = "//button[@id='P64196310101_PFX_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_ItemLovbtn = "//button[@id='P64196310101_ITEM_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_BOMTypeSelect = "//select[@id='P64196310101_BOM_TYPE_1']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_OrderQntyInput = "//input[@id='P64196310101_ORDER_QTY']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrd_TickIcon = "//button[@id='B1134381614013977530']";
+	/** @locatorType XPATH */
+	public static final String DisplayProdOrderNo = "//span[@id='P19631010001_PROHD_ORD_NO_DISPLAY']";
+	/** @locatorType XPATH */
+	public static final String ScrapProductTableContainer = "//div[@id='scrap_ig_grid_vc']";
+
+	/** @locatorType XPATH */
+	public static final String MaterialRqrdmntDisplayBOMQty(String Process, String RMItem) {
+		return "//td[text()='" + Process + "']/../td[text()='" + RMItem + "']/../td[10]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String MaterialRqrdmntDisplayRequiredQty(String Process, String RMItem) {
+		return "//td[text()='" + Process + "']/../td[text()='" + RMItem + "']/../td[12]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String ScrapReceiptDisplayRqrdQty(String Process, String Item) {
+		return "//td[text()='" + Process + "']/../td[text()='" + Item + "']/../td[9]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String ScrapReceiptDisplayRcptQty(String Process, String Item) {
+		return "//td[text()='" + Process + "']/../td[text()='" + Item + "']/../td[10]";
+	}
 }
