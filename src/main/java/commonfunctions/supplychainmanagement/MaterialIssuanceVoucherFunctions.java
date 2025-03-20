@@ -131,8 +131,9 @@ public class MaterialIssuanceVoucherFunctions {
 		webDB.waitForClickElement(MaterialIssuanceVoucherLocators.PendingMRCreateMIBtn, ElementType.Xpath);
 		flag = webDB.isElementEnabled(MaterialIssuanceVoucherLocators.PendingMRCreateMIBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "CheckBox Clicked for MR No: " + MRNo);
-			webDB.clickAnElement(MaterialIssuanceVoucherLocators.PendingMRCreateMIBtn, ElementType.Xpath);
+			webDB.doubleClickAnElement(MaterialIssuanceVoucherLocators.PendingMRCreateMIBtn, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.DisplayMIVNo, ElementType.Xpath);
@@ -358,7 +359,7 @@ public class MaterialIssuanceVoucherFunctions {
 	 */
 	public void getDeliveryhallanNumber() {
 		String ChallanNo = null;
-		flag = webDB.waitForElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.ToastMessagePopup, ElementType.Xpath, 60);
 		if (flag) {
 			String MessagePopup = webDB.getTextFromElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
 			Pattern pattern = Pattern.compile("DC\\d{2}-\\d{4}-\\d{5}");
@@ -366,6 +367,7 @@ public class MaterialIssuanceVoucherFunctions {
 			if (matcher.find()) {
 				System.out.println("Extracted Number: " + matcher.group());
 				ChallanNo = matcher.group();
+				logs.logging("INFO", "Delivery Challan Number Is: " + ChallanNo);
 				VariableHandler.setDCNumber(ChallanNo);
 			} else {
 				System.out.println("Pattern not found!");

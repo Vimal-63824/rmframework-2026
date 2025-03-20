@@ -7,6 +7,7 @@ package commonfunctions.productionplanning;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -325,12 +326,13 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			webDB.moveToElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
+			commonFunc.checkSuccessToastMessageDisappear();
+			commonFunc.hardWait(5000);
 			flag = webDB.waitForClickElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
 			if (flag) {
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-				commonFunc.checkSuccessToastMessageDisappear();
 				logs.logging("INFO", "Header Saved Successfully");
 				flag = webDB.waitForClickElement(ProductionOrderLocators.ProdOrderPostBtn, ElementType.Xpath);
 				if (flag) {
@@ -491,6 +493,7 @@ public class ProductionOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(ProductionOrderLocators.CreateProdOrd_TickIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			webDB.switchToDefaultContent();
 			flag = webDB.waitForClickElement(ProductionOrderLocators.DisplayProdOrderNo, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkSuccessToastMessageDisappear();
@@ -560,4 +563,153 @@ public class ProductionOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method used to fill form details in Production Order Creation
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Loc
+	 * @param OrdType
+	 * @param Pfx
+	 * @param BOMType
+	 * @param Item
+	 * @param OrdQnty
+	 */
+	public void createProdOrderAndFillFormDetailsWithSORef(String Loc, String OrdType, String Pfx, String BOMType,
+			String Item, String OrdQnty, String SoDesc) {
+		switchToCreateProductionOrderFrame();
+		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_LocationLovbtn, Loc);
+		logs.logging("INFO", "Location Selected in Prod Order: " + Loc);
+		switchToCreateProductionOrderFrame();
+		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_OrderTypeLovbtn, OrdType);
+		logs.logging("INFO", "Order Type Selected in Prod Order: " + OrdType);
+		switchToCreateProductionOrderFrame();
+		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_PrefixLovbtn, Pfx);
+		logs.logging("INFO", "Prefix Selected in Prod Order: " + Pfx);
+		switchToCreateProductionOrderFrame();
+		flag = webDB.waitForElement(ProductionOrderLocators.CreateProdOrd_BOMTypeSelect, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.selectDropDownByText(ProductionOrderLocators.CreateProdOrd_BOMTypeSelect, BOMType,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "BOM Type Selected in Prod Order: " + BOMType);
+				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_ItemLovbtn, Item);
+				logs.logging("INFO", "Item Selected in Prod Order: " + Item);
+				switchToCreateProductionOrderFrame();
+				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
+						ProductionOrderLocators.CreateProdOrd_OrderQntyInput, OrdQnty);
+				logs.logging("INFO", "Order Quantity Entered in Prod Order: " + OrdQnty);
+				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.SoDesc, SoDesc);
+				logs.logging("INFO", "So Desc Entered in Prod Order: " + SoDesc);
+				switchToCreateProductionOrderFrame();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Select Ordered releases In Po
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifySelectOrderedReleasesInPO() {
+		ArrayList<String> TotalProcess = new ArrayList<>();
+		List<WebElement> TotalElement = webDB.getDriver().findElements(By.xpath(ProductionOrderLocators.TotalProcess));
+		for (WebElement element : TotalElement) {
+			TotalProcess.add(element.getText());
+		}
+		VariableHandler.setTotalProductionProcess(TotalProcess);
+		flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Show More Button Is Displayed");
+			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
+				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect,
+						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
+				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect,
+						commonFunc.getDataFromTestDataSheet("ComQty"), ElementType.Xpath);
+				flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Show Less Button Is Displayed");
+					webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * This Method used to verify Status of Production Order with MRP Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param MRPNo
+	 * @param ExpectedStatus
+	 */
+	public void searchAndVerifyStatusOfPONo(String PONo, String ExpectedStatus) {
+		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.FindProdOrderNoLovBtn, PONo);
+		flag = webDB.waitForElement(ProductionOrderLocators.FindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(ProductionOrderLocators.FindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(ProductionOrderLocators.TableData_Status(PONo), ElementType.Xpath);
+			if (flag) {
+				String DisplayedStatus = webDB.getTextFromElement(ProductionOrderLocators.TableData_Status(PONo),
+						ElementType.Xpath);
+				logs.logging("INFO", "Displayed Status: " + DisplayedStatus);
+				flag = DisplayedStatus.equalsIgnoreCase(ExpectedStatus);
+				if (flag) {
+					logs.logging("INFO", "Production Order Status Verified");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select First and Rest Operation Event values And Save
+	 * Header in Production Order
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FOpr
+	 * @param ROpr
+	 */
+	public void selectFirstRestOprEventvaluesAndSaveHeader(String FOpr, String ROpr) {
+		flag = webDB.waitForClickElement(ProductionOrderLocators.ShowMoreHeaderBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(ProductionOrderLocators.ShowMoreHeaderBtn, ElementType.Xpath);
+			webDB.clickAnElement(ProductionOrderLocators.ShowMoreHeaderBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprMREventSelect, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Show more button clicked and First Operation Event Select Displayed");
+				flag = webDB.selectDropDownByText(ProductionOrderLocators.FirstOprMREventSelect, FOpr,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "First Operation Event Selected: " + FOpr);
+					flag = webDB.selectDropDownByText(ProductionOrderLocators.RestOprMREventSelect, ROpr,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Rest Operation Event Selected: " + ROpr);
+						flag = webDB.waitForElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
+							webDB.clickAnElement(ProductionOrderLocators.HeaderSaveIcon, ElementType.Xpath);
+							flag = webDB.waitForClickElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+							if (flag) {
+								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
+								}
+								logs.logging("INFO", "Header Save Icon Clicked and Toast Displayed");
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }

@@ -320,7 +320,21 @@ public class CommonFunctions {
 			checkRefreshCellsDisappear();
 			webDB.moveToElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PendingText, ElementType.Xpath);
+			checkRefreshCellsDisappear();
+			hardWait(5000);
+			List<WebElement> elements = webDB.getDriver().findElements(By.xpath(CommonUiLocators.PendingText));
+			for (WebElement webElement : elements) {
+				hardWait(500);
+				try {
+					if (webElement.isDisplayed()) {
+						flag = true;
+						break;
+					} else {
+						flag = false;
+					}
+				} catch (Exception e) {
+				}
+			}
 			if (flag)
 				logs.logging("INFO", "Pending Icon is Displayed and Clicked");
 		}
@@ -1596,14 +1610,16 @@ public class CommonFunctions {
 	 * @return boolean
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
-		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 20)) {
+		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			logs.logging("INFO", "Toast Message Displayed Approved successfully");
 			return true;
 		} else if (webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
+			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
 			return false;
@@ -1708,6 +1724,23 @@ public class CommonFunctions {
 	}
 
 	/**
+	 * This Method Is Used To Navigate To Subcontracting
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToSubcontracting() {
+		flag = webDB.waitForElement(CommonUiLocators.Subcontracting, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.Subcontracting, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SubcontractingTransaction, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontracting Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * This Methods Is Used To Navigate MRV Tab For ADMIN User
 	 * 
 	 * @author PremKumar.K-RMITS
@@ -1746,6 +1779,122 @@ public class CommonFunctions {
 						}
 					}
 				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Navigate To Subcontracting Transaction
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToSubcontractingTransaction() {
+		flag = webDB.waitForElement(CommonUiLocators.SubcontractingTransaction, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SubcontractingTransaction, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SubcontractOrder, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract Transaction Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Subcontract Order
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToSubcontractOrderTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SubcontractOrder, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SubcontractOrder, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingSubcontractOrder, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract Order Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To SubCntarct Order
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void navigateToSubContractOrder() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToSubcontracting();
+		navigateToSubcontractingTransaction();
+		navigateToSubcontractOrderTab();
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Grn Sco Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToGrnScoTab() {
+		flag = webDB.waitForElement(CommonUiLocators.GrnSco, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.GrnSco, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PendingGrn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Grn Sco Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Grn SCO Tab
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void navigateToGrnSco() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToSubcontracting();
+		navigateToSubcontractingTransaction();
+		navigateToGrnScoTab();
+	}
+
+	/**
+	 * This method used to Navigate Rfq Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateRfqPage() {
+		// clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickRfqTransactionTab();
+	}
+
+	/**
+	 * This method used to Navigate RFQ Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickRfqTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+			logs.logging("INFO", "Purchase Transaction tab is clicked");
+			flag = webDB.waitForElement(CommonUiLocators.RfqTab, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.RfqTab, ElementType.Xpath);
+				logs.logging("INFO", "Rfq Tab Is Clicked");
+				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
+				if (flag) {
+					logs.logging("INFO", "Rfq clicked and navigated successfully");
+
+				}
+
 			}
 		}
 		Assert.assertTrue(flag);

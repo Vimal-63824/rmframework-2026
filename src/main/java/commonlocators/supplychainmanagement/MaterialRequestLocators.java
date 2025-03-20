@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -101,4 +102,16 @@ public class MaterialRequestLocators {
 		return "(//a[text()='" + MRNumber + "']/../../td/div[contains(@style,'green')])[last()]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String ReqNo = "//button[@id='P93131019_REQ_DOC_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String HeaderType = "//span[@id='P9313101001_IMRHD_RQSTBY_TYPE_DISPLAY']";
+
+	/** @locatorType Xpath */
+	public static final String RequestMRNo(String MRNumber) {
+		return "//a[text()='" + MRNumber + "']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String OrderNo = "//span[@id='P9313101003_IMRLN_ORD_NO_DISPLAY']";
 }

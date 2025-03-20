@@ -1,4 +1,5 @@
 package commonfunctions.productionplanning;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -288,6 +289,7 @@ public class MRPFunctions {
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.MRP_CheckExceptionLabel, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
 			flag = webDB.waitForElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Check Exception Button Clicked");
@@ -594,6 +596,7 @@ public class MRPFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(MRPLocators.Find_Status_TableData(MRPNo), ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(MRPLocators.Find_Status_TableData(MRPNo), ElementType.Xpath);
 				logs.logging("INFO", "Search Button clicked and MRP No: " + MRPNo + " Displayed");
 				String Status = webDB.getTextFromElement(MRPLocators.Find_Status_TableData(MRPNo), ElementType.Xpath);
 				logs.logging("INFO", "MRP Number: '" + MRPNo + "' searched and displaying status: " + Status);

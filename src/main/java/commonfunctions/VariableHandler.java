@@ -148,6 +148,11 @@ public class VariableHandler {
 	private static ThreadLocal<String> IDAlertMessage = new ThreadLocal<>();
 	private static ThreadLocal<String> ReceiptLocator = new ThreadLocal<>();
 	private static ThreadLocal<String> MRVDocumentNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> ScoNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> ScoGrnNumber = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> TotalProductionProcess = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> RfqDocNum = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> PONumbers = new ThreadLocal<ArrayList<String>>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1169,7 +1174,7 @@ public class VariableHandler {
 	public static void setBOMNumber(String data) {
 		BOMNumber.set(data);
 	}
-	
+
 	public static String getGateEntryNumber() {
 		return GateEntryNumber.get();
 	}
@@ -1201,8 +1206,7 @@ public class VariableHandler {
 	public static void setAllDocumentNumber(ArrayList<String> data) {
 		AllDocumentNumber.set(data);
 	}
-	
-	
+
 	public static void setInspectionPlanNumber(String data) {
 		InspectionPlanNumber.set(data);
 	}
@@ -1210,6 +1214,7 @@ public class VariableHandler {
 	public static String getInspectionPlanNumber() {
 		return InspectionPlanNumber.get();
 	}
+
 	public static void setIDAlertMessage(String data) {
 		IDAlertMessage.set(data);
 	}
@@ -1217,6 +1222,7 @@ public class VariableHandler {
 	public static String getIDAlertMessage() {
 		return IDAlertMessage.get();
 	}
+
 	public static void setReceiptLocator(String data) {
 		ReceiptLocator.set(data);
 	}
@@ -1224,11 +1230,53 @@ public class VariableHandler {
 	public static String getReceiptLocator() {
 		return ReceiptLocator.get();
 	}
+
 	public static void setMRVDocumentNumber(String data) {
 		MRVDocumentNumber.set(data);
 	}
 
 	public static String getMRVDocumentNumber() {
 		return MRVDocumentNumber.get();
+	}
+
+	public static String getScoNumber() {
+		return ScoNumber.get();
+	}
+
+	public static void setScoNumber(String data) {
+		ScoNumber.set(data);
+	}
+
+	public static String getScoGrnNumber() {
+		return ScoGrnNumber.get();
+	}
+
+	public static void setScoGrnNumber(String data) {
+		ScoGrnNumber.set(data);
+	}
+
+	public static ArrayList<String> getTotalProductionProcess() {
+		return TotalProductionProcess.get();
+	}
+
+	public static void setTotalProductionProcess(ArrayList<String> data) {
+		TotalProductionProcess.set(data);
+	}
+
+	public static String getRfqDocNum() {
+		return RfqDocNum.get();
+	}
+
+	public static void setRfqDocNum(String data) {
+		RfqDocNum.set(data);
+
+	}
+
+	public static ArrayList<String> getPONumbers() {
+		return PONumbers.get();
+	}
+
+	public static void setPONumbers(ArrayList<String> data) {
+		PONumbers.set(data);
 	}
 }

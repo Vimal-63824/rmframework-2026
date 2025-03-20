@@ -71,6 +71,7 @@ public class ApprovalPageFunctions {
 				flag = webDB.waitForClickElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
+					commonFunc.hardWait(4000);
 					flag = webDB.waitForElement(ApprovalPageLocators.SearchTableResult, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Search Go Button Is Clicked");
@@ -140,75 +141,6 @@ public class ApprovalPageFunctions {
 			flag = webDB.waitForElementUntilGivenTime(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath, 45);
 			if (flag) {
 				logs.logging("INFO", "Back Button Is Clicked Verified Navigate To Approval Table Page");
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Verify Approve PO Number
-	 * 
-	 * @author Deepan-GWL
-	 * @param PONumber
-	 */
-	public void verifyApproveWithDocNumber(String Number) {
-		commonFunc.hardWait(1000);
-		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-		if (flag) {
-			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
-				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO",
-							"CheckBox select for Document Number " + Number + " and Process button clicked");
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
-					if (webDB.verifyIsElementDisplayed(ApprovalPageLocators.AjaxMultiDocSelectWarning,
-							ElementType.Xpath)) {
-						logs.logging("INFO", "Ajax Message Displayed... Attempt to Approve Document Again");
-						webDB.navigateToRefresh();
-						logs.logging("INFO", "Page Refreshed..");
-						filterDocumentsforApproval(Number);
-						flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number),
-								ElementType.Xpath);
-						if (flag) {
-							webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number),
-									ElementType.Xpath);
-							flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
-								webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-								commonFunc.checkRefreshCellsDisappear();
-								flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "CheckBox select for Document Number " + Number
-											+ " and Process button clicked");
-									commonFunc.checkRefreshCellsDisappear();
-									webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-									commonFunc.checkRefreshCellsDisappear();
-								}
-							}
-						}
-					}
-					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Approval Process Button IS Displayed");
-						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
-							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-								webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-							}
-						}
-					}
-				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -301,6 +233,7 @@ public class ApprovalPageFunctions {
 			}
 		} else {
 			VariableHandler.setApprovalFlag(flag);
+			flag = true;
 		}
 		assertTrue(flag);
 	}
@@ -328,6 +261,105 @@ public class ApprovalPageFunctions {
 			}
 		}
 		return flag;
+	}
+
+	/**
+	 * This Method is used to click check box of Doc Number and process button in
+	 * Approval Screen
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Number
+	 */
+	private void clickCheckBoxForDocument(String Number) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+		if (flag) {
+			flag = webDB.IsElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+			if (!flag) {
+				webDB.moveToElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+				webDB.clickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.IsElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+			}
+			if (flag) {
+				logs.logging("INFO", "CheckBox Is Clicked ");
+				flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+				if (flag) {
+					webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+					flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO",
+								"CheckBox select for Document Number " + Number + " and Process button clicked");
+						commonFunc.checkRefreshCellsDisappear();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is used to click Approve radio button with retrying if ajax or
+	 * error toast displayed
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Number
+	 */
+	private void clickApproveRadioBtn(String Number) {
+		int i = 1;
+		a: do {
+			flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				flag = webDB.verifyIsElementDisplayed(ApprovalPageLocators.AjaxMultiDocSelectWarning, ElementType.Xpath)
+						|| webDB.verifyIsElementDisplayed(ApprovalPageLocators.ApproveErrorToast, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ajax and Error Toast Displayed.. Retrying..." + i);
+					i++;
+					webDB.navigateToRefresh();
+					filterDocumentsforApproval(Number);
+					clickCheckBoxForDocument(Number);
+				} else {
+					logs.logging("INFO", "Approve Radio Button Clicked");
+					flag = true;
+					break a;
+				}
+			}
+		} while ((i <= 5));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Approve PO Number
+	 * 
+	 * @author Deepan-GWL
+	 * @param PONumber
+	 */
+	public void verifyApproveWithDocNumber(String Number) {
+		int i = 1;
+		logs.logging("INFO", "Trying to approval times.. " + i);
+		a: do {
+			clickCheckBoxForDocument(Number);
+			clickApproveRadioBtn(Number);
+			flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Approval Process Button Is Displayed");
+				webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
+					break a;
+				} else {
+					i++;
+					webDB.navigateToRefresh();
+					filterDocumentsforApproval(Number);
+					logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
+				}
+			}
+		} while ((i <= 3));
+		assertTrue(flag);
 	}
 
 }

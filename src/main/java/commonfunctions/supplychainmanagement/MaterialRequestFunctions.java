@@ -100,7 +100,6 @@ public class MaterialRequestFunctions {
 	 * @param Item
 	 * @param Warehouse
 	 * @param ReqName
-	 * @param ReqQuantity
 	 */
 	public void validateItemWHReqNameQuantityWithProdNo(String MRNo, String Item, String Warehouse, String ReqName) {
 		commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.FindProdNoLovBtn, MRNo);
@@ -108,6 +107,7 @@ public class MaterialRequestFunctions {
 		if (flag) {
 			webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(3000);
 			flag = webDB.waitForElement(MaterialRequestLocators.Find_Item_TableData(MRNo), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Search Button clicked and MR No: " + MRNo + " Displayed");
@@ -137,7 +137,7 @@ public class MaterialRequestFunctions {
 		assertTrue(flag);
 	}
 
-	/*
+	/**
 	 * This Methos Is Used To Verify Add Item
 	 * 
 	 * @author Deepan-GWL
@@ -651,5 +651,133 @@ public class MaterialRequestFunctions {
 		commonFunc.navigateToInventoryMaterialRequest();
 		checkStatusOfMRNo(VariableHandler.getMRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Is Used To Verify Create Material Request Document
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyCreateMaterialRequestDocument(String DocNo) {
+		commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.ReqNo, DocNo);
+		flag = webDB.waitForElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Is Clicked");
+				webDB.clickAnElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialRequestLocators.HeaderType, ElementType.Xpath);
+				if (flag) {
+					String text = webDB.getTextFromElement(MaterialRequestLocators.HeaderType, ElementType.Xpath);
+					logs.logging("INFO", "Get Text Header Value Is: " + text);
+					logs.logging("INFO", "Expected Value Is: " + commonFunc.getDataFromTestDataSheet("Subcontractor"));
+					flag = text.equals(commonFunc.getDataFromTestDataSheet("Subcontractor"));
+					if (flag) {
+						logs.logging("INFO", "Verified Actual Value With Expected Value");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Navigate To Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void verifyNavigateToLineDetail(String DocNo) {
+		webDB.moveToElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "View Line Details Is Displayed");
+			webDB.clickAnElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
+			flag = webDB.waitForClickElement(MaterialRequestLocators.IFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Iframe Is Displayed");
+				webDB.switchToFrame(MaterialRequestLocators.IFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
+				if (flag) {
+					String text = webDB.getTextFromElement(MaterialRequestLocators.OrderNo, ElementType.Xpath);
+					logs.logging("INFO", "Get Text Order Number Is: " + text);
+					flag = text.equals(DocNo);
+					if (flag) {
+						logs.logging("INFO", "Verified Doc No With Actual And Expected");
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Close Line Details Is Displayed");
+							webDB.clickAnElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Location Id Is Displayed");
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to store Material Request Number And check Status approve
+	 * with Production Order Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdNo
+	 * @param ExpectedStatus
+	 */
+	public void storeMRNoAndCheckStatusApproveWithProdNo(String ProdNo) {
+		commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.FindProdNoLovBtn, ProdNo);
+		flag = webDB.waitForElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button clicked and Prod No: " + ProdNo + " Displayed");
+				String MRNo = webDB.getTextFromElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo),
+						ElementType.Xpath);
+				VariableHandler.setMaterialRequestNo(MRNo);
+				logs.logging("INFO", "Material Number: '" + VariableHandler.getMaterialRequestNo() + "'");
+				flag = webDB.waitForElement(MaterialRequestLocators.Find_Status_TableData(ProdNo), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button clicked and MRP No: " + ProdNo + " Displayed");
+					String Status = webDB.getTextFromElement(MaterialRequestLocators.Find_Status_TableData(ProdNo),
+							ElementType.Xpath);
+					logs.logging("INFO",
+							"Production Number: '" + ProdNo + "' searched and displaying status: " + Status);
+					flag = Status.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+					if (flag) {
+						logs.logging("INFO", "Status was approved for Material request");
+					} else {
+						webDB.moveToElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+						webDB.clickAnElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+						flag = webDB.waitForElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "MR Status not Approve selected the Document to post");
+							headerSaveAndPost();
+							commonFunc.logoutUser();
+							commonFunc.validCommonLogin(System.getProperty("HodUsername"),
+									System.getProperty("HodPassword"), "HodUsername-Admin");
+							approvalPageFunc.navigateToApprovals();
+							approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMaterialRequestNo());
+							approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getMaterialRequestNo());
+							flag = commonFunc.logoutUser();
+							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
+									System.getProperty("TvsPassword"), "TvsUsername");
+							commonFunc.navigateToInventoryMaterialRequest();
+							checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
+									commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }
