@@ -1263,7 +1263,6 @@ public class SalesOrderFunctions {
 					if (flag) {
 						String Status = webDB.getTextFromElement(SalesOrderLocators.SOStatusHeaderTableText(SONumber),
 								ElementType.Xpath);
-						System.out.println(Status);
 						flag = Status.contains(ExpStatus);
 						if (flag) {
 							logs.logging("INFO", "Expected Status :" + ExpStatus);

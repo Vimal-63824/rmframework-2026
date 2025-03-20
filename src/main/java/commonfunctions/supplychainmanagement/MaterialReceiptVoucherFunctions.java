@@ -1,4 +1,5 @@
 package commonfunctions.supplychainmanagement;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -18,7 +19,6 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
-import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.MaterialIssuanceVoucherLocators;
 import commonlocators.supplychainmanagement.MaterialReceiptVoucherLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
@@ -268,12 +268,12 @@ public class MaterialReceiptVoucherFunctions {
 		}
 		assertTrue(flag);
 	}
-	/*
+
+	/**
 	 * This Method IS Used To Verify Post Material Request From MIV
 	 * 
 	 * @author Deepan-GWL
 	 */
-
 	public void verifyPostMaterialRequestFromMiv() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
@@ -397,12 +397,12 @@ public class MaterialReceiptVoucherFunctions {
 		}
 		assertTrue(flag);
 	}
-	/*
+
+	/**
 	 * This Method Is Used To Verify Data MIV
 	 * 
 	 * @author Deepan-GWL
 	 */
-
 	public void verifyTableDataMiv(String Sheet) {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -491,7 +491,6 @@ public class MaterialReceiptVoucherFunctions {
 						}
 					}
 				}
-
 			}
 		}
 		assertTrue(flag);
@@ -517,7 +516,6 @@ public class MaterialReceiptVoucherFunctions {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					commonFunc.hardWait(3000);
-
 					commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MIVNumberLovButton, DocNo);
 					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					if (flag) {
@@ -554,5 +552,95 @@ public class MaterialReceiptVoucherFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Create MRV Document from Pending Issuance Voucher
+	 * From GRN Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyToCreateMrvDocumentFromPendingMivWithGrnDocument() {
+		flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Insurance IS Displayed");
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Mrv Frame Is Displayed");
+					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.VoucherNoLov, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.VoucherNoLov,
+								VariableHandler.getGrnDocNumber());
+						webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvPendingVoucherSearchBtn,
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvPendingVoucherSearchBtn,
+									ElementType.Xpath);
+							commonFunc.hardWait(4000);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvSelectAllBtn,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvSelectAllBtn, ElementType.Xpath);
+								commonFunc.hardWait(4000);
+								commonFunc.checkRefreshCellsDisappear();
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+											ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(
+											MaterialReceiptVoucherLocators.MrvDocumentNumberToastAlert,
+											ElementType.Xpath);
+									if (flag) {
+										String MRVDocumentNumber = webDB.getTextFromElement(
+												MaterialReceiptVoucherLocators.MrvDocumentNumberToastAlert,
+												ElementType.Xpath);
+										VariableHandler.setMRVDocumentNumber(MRVDocumentNumber);
+										logs.logging("INFO", "MRV Toast Alert:" + MRVDocumentNumber);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Post With or Without Locator Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyToPostWithOrWithoutLocator() {
+		if (webDB.waitForElement(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath)) {
+			webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath);
+			verifyReceiptLocatorsAndPutAway();
+		}
+		clickTickAndPostIcon();
+	}
+
+	/**
+	 * This Methods Is To Post MRV Document From Pending Issuance Voucher for With
+	 * And Without Locator
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyPostMaterialReceiptWithAndWithoutLocator() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
+		verifyToCreateMrvDocumentFromPendingMivWithGrnDocument();
+		verifyToPostWithOrWithoutLocator();
 	}
 }

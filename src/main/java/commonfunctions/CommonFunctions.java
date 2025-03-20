@@ -28,6 +28,7 @@ import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
+import commonlocators.productionplanning.BillOfMaterialsLocators;
 import commonlocators.productionplanning.MRPLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
@@ -1571,12 +1572,11 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
-	/*
+	/**
 	 * Navigate To Stock Transaction Tab
 	 * 
 	 * @author Deepan-GWL
 	 */
-
 	public void navigateToStockTransactionTab() {
 		flag = webDB.waitForElement(CommonUiLocators.StockTransactionTab, ElementType.Xpath);
 		if (flag) {
@@ -1685,5 +1685,69 @@ public class CommonFunctions {
 		navigateToGateEntryTab();
 		navigateToGateEntryTransactionTab();
 		navigateToDeliverChallanTab();
+	}
+
+	/**
+	 * To Navigate Bill of Materials Screen In Production Planning
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToBillOfMaterialsPage() {
+		clickLeftNavigationBar();
+		clickProductionPlanningTab();
+		clickProductionPlanningTransactionTab();
+		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_BillOfMaterials, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_BillOfMaterials, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.BOM_FindSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Production Planning - Completion Production Order Screen Navigated Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Navigate MRV Tab For ADMIN User
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void navigateToMaterialReceiptVoucherAdminUser() {
+		clickLeftNavigationBar();
+		navigateToInventoryTabForAdminUser();
+	}
+
+	/**
+	 * This Methods Is Used To Navigate Inventory Tab for ADMIN User
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void navigateToInventoryTabForAdminUser() {
+		flag = webDB.waitForElement(CommonUiLocators.ClickSupplyChaintabForAdminUser, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ClickSupplyChaintabForAdminUser, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.InventoryTabForAdminUser, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.InventoryTabForAdminUser, ElementType.Xpath);
+				logs.logging("INFO", "Inventory Tab Is Clicked");
+
+				flag = webDB.waitForElement(CommonUiLocators.InventoryTransactionTabForAdminUser, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CommonUiLocators.InventoryTransactionTabForAdminUser, ElementType.Xpath);
+					logs.logging("INFO", "Transaction Tab Is Clicked");
+					flag = webDB.waitForElement(CommonUiLocators.MaterialReceiptVoucherTabForAdminUser,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(CommonUiLocators.MaterialReceiptVoucherTabForAdminUser, ElementType.Xpath);
+						logs.logging("INFO", "Material Voucher Tab Is Clicked");
+						flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Material Receipt Voucher Tab Is Clicked");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }

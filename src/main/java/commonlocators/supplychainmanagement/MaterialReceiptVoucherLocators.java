@@ -80,4 +80,16 @@ public class MaterialReceiptVoucherLocators {
 	public static final String MIVNumberLovButton = "//button[@id='P9313117703_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String MRVSearchButton = "//button[@id='B2057629649584279009']";
+	/** @locatorType Xpath */
+	public static final String VoucherNoLov = "//button[@id='P9313117703_VOU_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String MrvSelectAllBtn = "//input[@id='check_all']";
+	/** @locatorType Xpath */
+	public static final String MrvPendingVoucherSearchBtn = "//button[@id='B2057629649584279009']";
+	/** @locatorType Xpath */
+	public static final String CreateMrvBtn = "//button[@id='B1']";
+	/** @locatorType Xpath */
+	public static final String ReceiptLocatorfield = "//button[@id='B1869920545287966421']";
+	/** @locatorType Xpath */
+	public static final String MrvDocumentNumberToastAlert = "//h6[@class='succ_msg']";
 }

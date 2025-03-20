@@ -43,4 +43,46 @@ public class InspectionDocumentsLocators {
 		return "//a[text()='" + Idno + "']/../../td[20]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String VoucherLov = "//*[@id='P20171310150_VOU_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PendingInspectionSearchBtn = "//*[@id='B2195636680544488712']";
+	/** @locatorType Xpath */
+	public static final String PendingInspectionSelectAllBtn = "//*[@id='check_all']";
+	/** @locatorType Xpath */
+	public static final String InspectionPlanNumber = "//*[@id='P20171310201_TQHD_INSP_PLAN_NO_1']";
+	/** @locatorType Xpath */
+	public static final String InspectiondocumentShowMore = "//*[@id='SHOW_MORE']";
+	/** @locatorType Xpath */
+	public static final String observationTab = "//*[@id='P20171310201_TAB']/div/div/div[5]/label";
+	/** @locatorType Xpath */
+	public static final String Observationvalue = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]";
+	/** @locatorType Xpath */
+	public static final String ObservationSaveBtn = "//*[@id='B2163567216713391242']";
+	/** @locatorType Xpath */
+	public static final String ObservationValueInput = "//*[@id='C5659279342068436784']";
+	/** @locatorType Xpath */
+	public static final String InspectiondocumentShowLess = "//*[@id='SHOW_LESS']/span[2]";
+	/** @locatorType Xpath */
+	public static final String InspectionDocumentSuccessMsg = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
+	/** @locatorType Xpath */
+	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String InspectionDocumentNumberDrillDown = "//*[@id='11572094511624389335_orig']/tbody/tr[2]/td[7]/a";
+	/** @locatorType Xpath */
+	public static final String FindPageSearchBtn = "//*[@id='B1239031076426494989']";
+
+	/** @locatorType Xpath */
+	public static final String InspectionCheckBox(int i) {
+		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[4]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String Observationvalue(int i) {
+		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[10]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ObsLineNumber = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
+
 }
