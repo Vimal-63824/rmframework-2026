@@ -712,4 +712,35 @@ public class ProductionOrderFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method used to search and Verify Production Order Status with Production
+	 * Order no
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdOrderNo
+	 * @param ExpectedStatus
+	 */
+	public void searchAndVerifyStatusWithProdOrderNo(String ProdOrderNo, String ExpectedStatus) {
+		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.FindProdOrderNoLovBtn, ProdOrderNo);
+		flag = webDB.waitForElement(ProductionOrderLocators.FindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(ProductionOrderLocators.FindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(ProductionOrderLocators.FindTableStatusWithProdOrderNo(ProdOrderNo),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Clicked in Production Order Find Page");
+				String DisplayStatus = webDB.getTextFromElement(
+						ProductionOrderLocators.FindTableStatusWithProdOrderNo(ProdOrderNo), ElementType.Xpath);
+				logs.logging("INFO", "Displayed Status: " + DisplayStatus);
+				logs.logging("INFO", "Expected Status: " + ExpectedStatus);
+				flag = ExpectedStatus.equalsIgnoreCase(DisplayStatus);
+				if (flag) {
+					logs.logging("INFO", "Status verified with expected and displayed");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

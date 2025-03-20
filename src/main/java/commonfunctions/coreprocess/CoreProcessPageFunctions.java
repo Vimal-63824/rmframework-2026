@@ -1211,6 +1211,9 @@ public class CoreProcessPageFunctions {
 				String ProcessName = VariableHandler.getProcessAndWarehousesBOM()[i][0];
 				String RecipientWH = VariableHandler.getProcessAndWarehousesBOM()[i][1];
 				String ConsumptionWH = VariableHandler.getProcessAndWarehousesBOM()[i][2];
+				if (i == (VariableHandler.getProcessAndWarehousesBOM().length - 1)) {
+					ConsumptionWH = commonFunc.getDataFromTestDataSheet("FG-WH-KD");
+				}
 				logs.logging("INFO", "ProcessName: " + ProcessName);
 				logs.logging("INFO", "RecipientWH: " + RecipientWH);
 				logs.logging("INFO", "ConsumptionWH: " + ConsumptionWH);
@@ -1241,7 +1244,7 @@ public class CoreProcessPageFunctions {
 				materialReceiptFunctions.clickTickAndPostIcon();
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
-			productionOrderFunc.searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
+			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getMRPNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			return true;
 		} catch (Exception e) {

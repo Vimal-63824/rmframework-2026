@@ -133,4 +133,9 @@ public class ProductionOrderLocators {
 	public static final String FirstOprMREventSelect = "//select[@id='P19631010001_PROHD_FO_OPRN_MR_']";
 	/** @locatorType XPATH */
 	public static final String RestOprMREventSelect = "//select[@id='P19631010001_PROHD_RO_OPRN_MR_']";
+
+	/** @locatorType XPATH */
+	public static final String FindTableStatusWithProdOrderNo(String DocNo) {
+		return "//a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
+	}
 }
