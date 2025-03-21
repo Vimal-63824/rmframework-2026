@@ -167,7 +167,7 @@ public class MRPFunctions {
 			webDB.clickAnElement(MRPLocators.MRP_Source_SalesOrderTableData, ElementType.Xpath);
 			commonFunc.hardWait(2000);
 			webDB.javaScriptClickAnElement(MRPLocators.MRP_Source_SalesOrderCheckbox, ElementType.Xpath);
-			flag = webDB.IsElementSelected(MRPLocators.MRP_Source_SalesOrderCheckbox, ElementType.Xpath);
+			flag = webDB.isElementSelected(MRPLocators.MRP_Source_SalesOrderCheckbox, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "'Sales Order' Demand Checkbox Clicked in Sources Line");
 			}
@@ -266,7 +266,7 @@ public class MRPFunctions {
 				flag = webDB.waitForElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
-					flag = webDB.IsElementSelected(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
+					flag = webDB.isElementSelected(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Select All CheckBox Clicked and Verfied");
 					}

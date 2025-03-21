@@ -274,12 +274,12 @@ public class ApprovalPageFunctions {
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 		if (flag) {
-			flag = webDB.IsElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+			flag = webDB.isElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 			if (!flag) {
 				webDB.moveToElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 				webDB.clickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 				commonFunc.hardWait(3000);
-				flag = webDB.IsElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+				flag = webDB.isElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 			}
 			if (flag) {
 				logs.logging("INFO", "CheckBox Is Clicked ");
