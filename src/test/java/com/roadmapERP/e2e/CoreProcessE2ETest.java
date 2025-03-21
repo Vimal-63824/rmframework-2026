@@ -123,6 +123,17 @@ public class CoreProcessE2ETest {
 	}
 
 	/**
+	 * This Method Is Used To Verify Material Request To MRV SubContract Type
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 10, groups = {
+			"Core Process" }, description = "Material Request to Material Receipt voucher (Subcontract) End to End Process")
+	public void VerifyMaterialRequestToMRVSubcontractType() {
+		coreProcessPageFunctions.verifyMaterialRequestToMaterialReceiptVoucherSubContract();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

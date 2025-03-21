@@ -13,6 +13,7 @@ import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
+import commonlocators.supplychainmanagement.RfqLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -1633,11 +1634,26 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
 			logs.logging("INFO", "Item is Posted");
-			webDB.waitForElement(PricelistPageLocators.ItemPostSucessMsg, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(PricelistPageLocators.ItemPostSucessMsg, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Item Add Button is Clicked");
+			} else {
+				flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+				if (flag) {
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername");
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
+					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1770,6 +1786,39 @@ public class PricelistPageFunctions {
 				verifyGenerateItemSim(CopyItemName);
 				verifyItemPost();
 			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Waiting for Approval Dialog Box
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void waitingForApprovalOpo() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(RfqLocators.RfqWorkflowFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(RfqLocators.PRForwardlov,
+					commonFunc.getDataFromTestDataSheet("AshokValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(RfqLocators.ItmworkflowOK, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.ItmworkflowOK, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				commonFunc.hardWait(7000);
+				flag = commonFunc.logoutUser();
+			}
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
 		}
 
 		assertTrue(flag);

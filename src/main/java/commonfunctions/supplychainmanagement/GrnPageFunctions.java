@@ -8,6 +8,10 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.ItemDetailsHandler;
@@ -91,27 +95,37 @@ public class GrnPageFunctions {
 	 */
 
 	public void clickSelectAllButton() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
-			flag = webDB.waitForClickElement(GrnLocators.PendingPOSelectAllButton, ElementType.Xpath);
-			if (flag) {
-				commonFunc.hardWait(3000);
-				webDB.clickAnElement(GrnLocators.PendingPOSelectAllButton, ElementType.Xpath);
-				logs.logging("INFO", " Document Fully Selected");
-				flag = webDB.waitForElement(GrnLocators.PendingPOCreateGRN, ElementType.Xpath);
-				if (flag) {
-					webDB.switchToDefaultContent();
-					flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", " Document Fully Selected And Create GRN Button Shown");
-					} else {
-						logs.logging("INFO", " Document Not Selected And Create GRN Button Not Shown");
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						element.click();
+						flag = true;
+						break;
 					}
+				} catch (Exception e) {
+
 				}
 			}
-
+			logs.logging("INFO", " Document Fully Selected");
+			flag = webDB.waitForElement(GrnLocators.PendingPOCreateGRN, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", " Document Fully Selected And Create GRN Button Shown");
+				} else {
+					logs.logging("INFO", " Document Not Selected And Create GRN Button Not Shown");
+				}
+			}
 		}
+
 		assertTrue(flag);
 
 	}

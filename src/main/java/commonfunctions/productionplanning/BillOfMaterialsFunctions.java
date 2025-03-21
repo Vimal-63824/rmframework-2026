@@ -181,18 +181,19 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForClickElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				}
-				flag = webDB.waitForElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
-				if (flag) {
-					webDB.moveToElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
-					webDB.clickAnElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
-					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-				}
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.moveToElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
+				webDB.clickAnElement(BillOfMaterialsLocators.BOMPostBtn, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		assertTrue(flag);
@@ -267,9 +268,9 @@ public class BillOfMaterialsFunctions {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingProcSeqNoData,
 				BillOfMaterialsLocators.RoutingProcSeqNoInput, ProcessNo);
 		logs.logging("INFO", "Process No Entered: " + ProcessNo);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingOprnNoData,
-				BillOfMaterialsLocators.RoutingOprnNoInput, OprnNo);
-		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
+//		commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.RoutingOprnNoData,
+//				BillOfMaterialsLocators.RoutingOprnNoInput, OprnNo);
+//		logs.logging("INFO", "Oprn No Entered: " + OprnNo);
 		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingProcessIdData, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(BillOfMaterialsLocators.RoutingProcessIdData, ElementType.Xpath);
@@ -534,13 +535,11 @@ public class BillOfMaterialsFunctions {
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.BORSaveLineBtn, ElementType.Xpath);
 			webDB.clickAnElement(BillOfMaterialsLocators.BORSaveLineBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-			if (flag) {
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				}
-				logs.logging("INFO", "Save Line Icon Clicked in BOR tab");
+			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			logs.logging("INFO", "Save Line Icon Clicked in BOR tab");
 		}
 		assertTrue(flag);
 	}

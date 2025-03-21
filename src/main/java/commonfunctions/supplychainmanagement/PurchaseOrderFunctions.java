@@ -25,6 +25,7 @@ import commonfunctions.ItemDetailsHandler;
 import commonfunctions.VariableHandler;
 import commonfunctions.ItemDetailsHandler.POLineDetailsName;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ExcelUtils;
@@ -188,8 +189,7 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = (webDB.waitForElementUntilGivenTime(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath,
-						10) || webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		assertTrue(flag);
@@ -2812,16 +2812,18 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyApprovePOUsingAshokUser() {
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		commonFunc.navigatePurchaseOrderPage();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			commonFunc.navigatePurchaseOrderPage();
+		}
 	}
 
 	/**
@@ -2925,7 +2927,7 @@ public class PurchaseOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("STTYPE"), commonFunc.getDataFromTestDataSheet("UomNos"));
 				approvalFunc.verifyNavigateback();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
 					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
@@ -3036,7 +3038,7 @@ public class PurchaseOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("STTYPE"), commonFunc.getDataFromTestDataSheet("UomNos"));
 				approvalFunc.verifyNavigateback();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
 					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
@@ -3267,7 +3269,7 @@ public class PurchaseOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("STTYPE"), commonFunc.getDataFromTestDataSheet("UomNos"));
 				approvalFunc.verifyNavigateback();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
 					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
@@ -3624,5 +3626,45 @@ public class PurchaseOrderFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify Approve With Doc Number
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyApproveWithDocNumber(String Number) {
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
+				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO",
+							"CheckBox select for Document Number " + Number + " and Process button clicked");
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Approval Process Button IS Displayed");
+						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+						approvalFunc.ExtractStocktransferDocNumber();
+						if (flag) {
+							logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+								logs.logging("INFO", "Note Alert Closed");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }

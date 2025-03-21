@@ -1,0 +1,1502 @@
+package commonfunctions.supplychainmanagement;
+
+import static org.testng.Assert.assertTrue;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import commonlocators.supplychainmanagement.RfqLocators;
+import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.PricelistPageLocators;
+import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
+import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
+import utils.ExcelUtils;
+import utils.ReportLoger;
+import utils.WebDriverBase;
+import utils.WebDriverBase.ElementType;
+
+public class RfqPageFunctions {
+	private static boolean flag = false;
+	private static WebDriverBase webDB = new WebDriverBase();
+	private static ReportLoger logs = new ReportLoger();
+	private static CommonFunctions commonFunc = new CommonFunctions();
+	private static PurchaseRequestFunctions PrFunc = new PurchaseRequestFunctions();
+	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPRGeneralRfq() {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequestRfq(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		verifyMultipleLinesPR();
+		saveHeaderAndClickPost();
+		waitingForApproval();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getPRNumber());
+		verifyApproveWithDocNumber(VariableHandler.getPRNumber());
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Pending RFQ Domestic
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPendingRfqDomestic() {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigateRfqPage();
+		pendingRfq();
+		pendingRfqPRNumber(VariableHandler.getPRNumber());
+		createRfq();
+		verifyRfqSupplierAddDomestic();
+		verifyRfqSendRfq();
+		verifyNavigateToSupplierTab();
+		verifysSupplierCost1(commonFunc.getDataFromTestDataSheet("Cost_Value1"), getTextCurrencyInLine1(),
+				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
+				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
+				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		verifysSupplierCost2(commonFunc.getDataFromTestDataSheet("Cost_Value2"), getTextCurrencyInLine2(),
+				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
+				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
+				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		verifyRfqRateFinalize();
+		verifysRfqSobButton();
+		waitingForApproval();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getRfqDocNum());
+		verifyApproveWithDocNumber(VariableHandler.getRfqDocNum());
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PRFQ Domestic and Import
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPendingRfqDomesticAndImport() {
+		verifyCreationOfPRGeneralRfq();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigateRfqPage();
+		pendingRfq();
+		pendingRfqPRNumber(VariableHandler.getPRNumber());
+		createRfq();
+		verifyRfqSupplierAddDomesticAndImport();
+		verifyRfqSendRfq();
+		verifyNavigateToSupplierTab();
+		verifysSupplierCost1(commonFunc.getDataFromTestDataSheet("Cost_Value1"), getTextCurrencyInLine1(),
+				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
+				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
+				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		verifysSupplierCost2(commonFunc.getDataFromTestDataSheet("Cost_Value2"), getTextCurrencyInLine2(),
+				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
+				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
+				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		verifyRfqRateFinalize();
+		verifysRfqSobButton();
+		waitingForApproval();
+		forwardApprovalScreen();
+		filterDocumentsForPriceListApproval(VariableHandler.getRfqDocNum());
+		verifyApproveWithDocNumber(VariableHandler.getRfqDocNum());
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Pending Po From Rfq
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyCreationOfPendingPOFromRfq() {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigatePurchaseOrderPage();
+		verifyClickingPndPo();
+	}
+
+	/**
+	 * This Methods Is Used To Verify PO From Rfq POst
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyPoRfqPost() {
+		commonFunc.hardWait(4000);
+		flag = webDB.waitForElement(RfqLocators.PORfqPost, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.PORfqPost, ElementType.Xpath);
+			logs.logging("INFO", "Po Rfq Document Is Posted");
+			flag = webDB.waitForElement(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Frame is Finded");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Clicking Pending PO
+	 * 
+	 * @author Durai-RMITS
+	 */
+
+	public void verifyClickingPndPo() {
+		flag = webDB.waitForElement(RfqLocators.PendingPo, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.PendingPo, ElementType.Xpath);
+			logs.logging("INFO", "Pending PO Is Clicked");
+			flag = webDB.waitForElement(RfqLocators.PendingRfq, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.PendingRfq, ElementType.Xpath);
+				logs.logging("INFO", "Pending RFQ Is Clicked");
+				verifySelectTheRfqDocument(VariableHandler.getRfqDocNum());
+				selectTheDocumentRfq();
+				createPOButton();
+				getDocNumPoFromRfqMulti();
+				verifyRfqNumInPoDetails();
+				verifyPoRfqPost();
+				waitingForApproval();
+				forwardApprovalScreen();
+				filterDocumentsForPriceListApproval(VariableHandler.getPONumber());
+				verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+						"SelvaUsername");
+				commonFunc.navigatePurchaseOrderPage();
+				verifyPoRefind();
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Clicking Purchase Order Refind
+	 * 
+	 * @author Durai-RMITS
+	 */
+
+	public void verifyPoRefind() {
+		ArrayList<String> PONumbers = VariableHandler.getPONumbers();
+		logs.logging("INFO", "PO Number Is:"+ PONumbers.size());
+		for (int i = 1; i <= PONumbers.size(); i++) {
+			String PORfqNum = PONumbers.get(i);
+			PONumbers.get(i);
+			flag = webDB.waitForElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
+				webDB.sendTextToAnElement(RfqLocators.FindPoSearchField,PORfqNum, ElementType.Xpath);
+				logs.logging("INFO", "PONumbers Is Entered:" + PORfqNum);
+				
+				flag = webDB.waitForElement(RfqLocators.POSearchBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.POSearchBtn, ElementType.Xpath);
+					logs.logging("INFO", "Search Button Is Clicked");
+					flag = webDB.waitForElement(RfqLocators.PODrillDown, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(RfqLocators.PODrillDown, ElementType.Xpath);
+						logs.logging("INFO", "Document Is Moved ");
+						verifyRfqNumInPoDetails();
+						verifyPoRfqPost();
+						waitingForApproval();
+						forwardApprovalScreen();
+						filterDocumentsForPriceListApproval(VariableHandler.getPONumber());
+						verifyApproveWithDocNumber(VariableHandler.getPONumber());
+						flag = commonFunc.logoutUser();
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Entering Purchase Number
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyEnteringPoNumber() {
+		ArrayList<String> PONumbers = new ArrayList<>();
+		for (int i = 0; i < PONumbers.size(); i++) {
+			PONumbers.get(i);
+			flag = webDB.waitForElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
+				webDB.sendTextToAnElement(RfqLocators.FindPoSearchField, PONumbers.get(1), ElementType.Xpath);
+				logs.logging("INFO", "PONumbers Is Entered:" + PONumbers);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Select the RFQ Document
+	 * 
+	 * @author Durai-RMITS
+	 * @param Number
+	 */
+	public void verifySelectTheRfqDocument(String Number) {
+		flag = webDB.waitForElement(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Frame");
+			flag = webDB.waitForElement(RfqLocators.PendingRfQNum, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(RfqLocators.PendingRfQNum, Number, ElementType.Xpath);
+				logs.logging("INFO", "Document Number Is :");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Select the Document in Pending
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void selectTheDocumentRfq() {
+		flag = webDB.waitForElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
+			logs.logging("INFO", "Search Button Is Clicked");
+
+			flag = webDB.waitForElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
+				logs.logging("INFO", "Select All Is Checked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Create PO from RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void createPOButton() {
+		commonFunc.hardWait(500);
+		flag = webDB.waitForElement(RfqLocators.CreatePoBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.CreatePoBtn, ElementType.Xpath);
+			logs.logging("INFO", "PO is Created");
+			commonFunc.hardWait(2000);
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Rfq Number in Purchase order Details
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyRfqNumInPoDetails() {
+		commonFunc.hardWait(2000);
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
+				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+		VariableHandler.setPONumber(PONumbervalue);
+		logs.logging("INFO", "Get PO Number Is: " + VariableHandler.getPONumber());
+		flag = webDB.waitForElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
+			logs.logging("INFO", "PO Details Button is Clicked");
+			webDB.switchToFrame(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched to Frame");
+			flag = webDB.waitForElement(RfqLocators.PoLineDetails2, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.PoLineDetails2, ElementType.Xpath);
+				logs.logging("INFO", "DETAILS 2 is Clicked");
+				flag = webDB.waitForElement(RfqLocators.DetailsRfqNum, ElementType.Xpath);
+				if (flag) {
+					String DisplayText = webDB.getDomPropertyFromElement(RfqLocators.DetailsRfqNum, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO",
+							"Expected Text: " + VariableHandler.getRfqDocNum() + " Displayed: " + DisplayText);
+					flag = DisplayText.equalsIgnoreCase(VariableHandler.getRfqDocNum());
+					if (flag) {
+						logs.logging("INFO", "verified Displayed  Rfq Num Header: " + DisplayText);
+					} else {
+						logs.logging("INFO", "Verification failed In Rfq Document Num");
+						logs.logging("INFO",
+								"Expected Text: " + VariableHandler.getRfqDocNum() + " Displayed: " + DisplayText);
+					}
+						commonFunc.hardWait(5000);
+						webDB.pressEscapeKey();
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(RfqLocators.PORfqPost, ElementType.Xpath);
+						if(flag) {
+							logs.logging("INFO", "Post Button  Is Searched");
+						}
+					}
+				}
+			}
+		Assert.assertTrue(flag);
+		}
+	
+	/**
+	 * This Methods Is Used To Get Document Number From Alert message
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public static void getDocNumPoFromRfq() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
+		String successMessage = webDB.getTextFromElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
+		Pattern pattern = Pattern.compile("PO\\d+/\\d+/\\d{2}-\\d{2}");
+		Matcher matcher = pattern.matcher(successMessage);
+		while (matcher.find()) {
+			logs.logging("INFO", "Extracted Document Number: " + matcher.group());
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Get Document Number From Alert message
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public static void getDocNumPoFromRfqMulti() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
+		String PoRfqNumtext = webDB.getTextFromElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
+		String regex = "PO\\d{3}/\\d{5}/\\d{2}-\\d{2,3}";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(PoRfqNumtext);
+		ArrayList<String> PONumbers = new ArrayList<>();
+		while (matcher.find()) {
+			PONumbers.add(matcher.group());
+		}
+		logs.logging("INFO", "PO Number Is:"+PONumbers);
+		VariableHandler.setPONumbers(PONumbers);
+		PONumbers.size();
+	}
+
+	/**
+	 * This method used to verify Adding Supplier
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyRfqSupplierAddDomesticAndImport() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(RfqLocators.RfqDocNum, ElementType.Xpath);
+		if (flag) {
+			String RfqDocNum = webDB.getDomPropertyFromElement(RfqLocators.RfqDocNum, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setRfqDocNum(RfqDocNum);
+			logs.logging("INFO", "RFQ Document number Is:" + VariableHandler.getRfqDocNum());
+			commonFunc.hardWait(1000);
+			List<WebElement> LineNumber = webDB.getDriver()
+					.findElements(By.xpath(RfqLocators.RfqLineNum));
+			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			for (int i = 1; i <= LineNumber.size(); i++) {
+				flag = webDB.waitForElement(RfqLocators.ItemName(i), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.ItemName(i), ElementType.Xpath);
+					logs.logging("INFO", "Item Field Is Clicked");
+					commonFunc.hardWait(1000);
+					String[][] Suppliermultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+					ExcelUtils excelUtils = new ExcelUtils();
+					String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+							+ "TestDatas.xlsx";
+					Suppliermultiple = excelUtils.readAllDataInExcel(Filepath,
+							webDB.getDataFromProperties("Suppliermultiple"));
+					for (int j = 1; j < Suppliermultiple.length; j++) {
+						flag = webDB.waitForElement(RfqLocators.ItemName(i), ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(RfqLocators.ItemName(i), ElementType.Xpath);
+							String Supplier = Suppliermultiple[j][0];
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(RfqLocators.RfqSupplierAdd, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(RfqLocators.RfqSupplierAdd, ElementType.Xpath);
+								logs.logging("INFO", "Supplier Add Button Is Clicked");
+								flag = webDB.waitForElement(RfqLocators.RfqlineSupplierfield, ElementType.Xpath);
+								if (flag) {
+									webDB.doubleClickAnElement(RfqLocators.RfqlineSupplierfield, ElementType.Xpath);
+									logs.logging("INFO", "Supplier Field Is Clicked");
+									flag = webDB.waitForElement(RfqLocators.RfqSupplierLov, ElementType.Xpath);
+									if (flag) {
+										commonFunc.searchAndSelectValueInFilters(RfqLocators.RfqSupplierLov, Supplier);
+										logs.logging("INFO", "Supplier Is Entered:" + Supplier);
+										webDB.waitForElement(RfqLocators.RfqlineSupplierSaveButton, ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(RfqLocators.RfqlineSupplierSaveButton,
+													ElementType.Xpath);
+											logs.logging("INFO", "Supplier Is Saved");
+											commonFunc.hardWait(3000);
+										}
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to verify Adding Supplier Domestic
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyRfqSupplierAddDomestic() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(RfqLocators.RfqDocNum, ElementType.Xpath);
+		if (flag) {
+			String RfqDocNum = webDB.getDomPropertyFromElement(RfqLocators.RfqDocNum, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setRfqDocNum(RfqDocNum);
+			logs.logging("INFO", "RFQ Document number Is:" + VariableHandler.getRfqDocNum());
+			commonFunc.hardWait(1000);
+			List<WebElement> LineNumber = webDB.getDriver()
+					.findElements(By.xpath(RfqLocators.RfqLineNum));
+			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			for (int i = 1; i <= LineNumber.size(); i++) {
+				flag = webDB.waitForElement(RfqLocators.ItemName(i), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.ItemName(i), ElementType.Xpath);
+					logs.logging("INFO", "Item Field Is Clicked");
+					commonFunc.hardWait(1000);
+					String[][] SuppliermultipleDOM = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+					ExcelUtils excelUtils = new ExcelUtils();
+					String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+							+ "TestDatas.xlsx";
+					SuppliermultipleDOM = excelUtils.readAllDataInExcel(Filepath,
+							webDB.getDataFromProperties("SuppliermultipleDOM"));
+					for (int j = 1; j < SuppliermultipleDOM.length; j++) {
+						flag = webDB.waitForElement(RfqLocators.ItemName(i), ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(RfqLocators.ItemName(i), ElementType.Xpath);
+							String Supplier = SuppliermultipleDOM[j][0];
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(RfqLocators.RfqSupplierAdd, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(RfqLocators.RfqSupplierAdd, ElementType.Xpath);
+								logs.logging("INFO", "Supplier Add Button Is Clicked");
+								flag = webDB.waitForElement(RfqLocators.RfqlineSupplierfield, ElementType.Xpath);
+								if (flag) {
+									webDB.doubleClickAnElement(RfqLocators.RfqlineSupplierfield, ElementType.Xpath);
+									logs.logging("INFO", "Supplier field Is Clicked");
+									flag = webDB.waitForElement(RfqLocators.RfqSupplierLov, ElementType.Xpath);
+									if (flag) {
+										commonFunc.searchAndSelectValueInFilters(RfqLocators.RfqSupplierLov, Supplier);
+										logs.logging("INFO", "Supplier Is Entered:" + Supplier);
+										webDB.waitForElement(RfqLocators.RfqlineSupplierSaveButton, ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(RfqLocators.RfqlineSupplierSaveButton,
+													ElementType.Xpath);
+											logs.logging("INFo", "Supplier Is Saved");
+											commonFunc.hardWait(3000);
+										}
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Create Rate Finalize In RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyRfqRateFinalize() {
+		commonFunc.hardWait(3000);
+		flag = webDB.waitForElement(RfqLocators.RfqRateFinalize, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqRateFinalize, ElementType.Xpath);
+			logs.logging("INFO", "Rate Finalized Button Is Clicked");
+			flag = webDB.waitForElement(RfqLocators.RateFinalMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "SOB Button Is Enabled");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Create SOB In RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifysRfqSobButton() {
+		flag = webDB.waitForElement(RfqLocators.RateFinalMessage, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RateFinalMessage, ElementType.Xpath);
+			logs.logging("INFO", "Alert Success Message Is Closed");
+		}
+		flag = webDB.waitForElementUntilGivenTime(RfqLocators.RfqHeaderSOB, ElementType.Xpath, 50);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqHeaderSOB, ElementType.Xpath);
+			logs.logging("INFO", "SOB Button Is Clicked");
+			verifySobPercentageInRfq(commonFunc.getDataFromTestDataSheet("Perc_1"));
+			verifySobPercentageSave();
+			verifySobPagePost();
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Share of Buisnesss Percentage For Supplier
+	 * 
+	 * @author Durai-RMITS
+	 * @param Percent
+	 */
+	public void verifySobPercentageInRfq(String Percent) {
+		flag = webDB.switchToFrame(RfqLocators.RfqSobFrame, ElementType.Xpath);
+		logs.logging("INFO", "Switched To Frame");
+		for (int i = 1; i <= 2; i++) {
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(RfqLocators.SobItemField(i), ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.SobItemField(i), ElementType.Xpath);
+				logs.logging("INFO", "SOB Header Item Is Clicked");
+				commonFunc.hardWait(500);
+				flag = webDB.waitForElement(RfqLocators.RfqSobSupplierField1, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.RfqSobSupplierField1, ElementType.Xpath);
+					logs.logging("INFO", "Supplier Field In SOB Is Clicked");
+					flag = webDB.waitForElement(RfqLocators.RfqSobPercField1, ElementType.Xpath);
+					if (flag) {
+						webDB.doubleClickAnElement(RfqLocators.RfqSobPercField1, ElementType.Xpath);
+						logs.logging("INFO", "SOB Percentage Field Is Clicked");
+						webDB.clearText(RfqLocators.RfqSobPercInput, ElementType.Xpath);
+						webDB.sendTextToAnElement(RfqLocators.RfqSobPercInput, Percent, ElementType.Xpath);
+
+						flag = webDB.waitForElement(RfqLocators.RfqSobSupplierField2, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(RfqLocators.RfqSobSupplierField2, ElementType.Xpath);
+							logs.logging("INFO", "Supplier Field In SOB Is Clicked");
+							commonFunc.hardWait(500);
+							flag = webDB.waitForElement(RfqLocators.RfqSobPercField2, ElementType.Xpath);
+							if (flag) {
+								webDB.doubleClickAnElement(RfqLocators.RfqSobPercField2, ElementType.Xpath);
+								logs.logging("INFO", "SOB Percentage Field Is Clicked");
+								webDB.clearText(RfqLocators.RfqSobPercInput2, ElementType.Xpath);
+								webDB.sendTextToAnElement(RfqLocators.RfqSobPercInput2, Percent, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Share of Buisnesss Percentage For Supplier1
+	 * 
+	 * @author Durai-RMITS
+	 * @param Percent
+	 */
+	public void verifySobPercentageinRfqSupplier1(String Percent) {
+		flag = webDB.waitForElement(RfqLocators.RfqSobSupplierField1, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqSobSupplierField1, ElementType.Xpath);
+			logs.logging("INFO", "Supplier Field In SOB Is Clicked");
+			flag = webDB.waitForElement(RfqLocators.RfqSobPercField1, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(RfqLocators.RfqSobPercField1, ElementType.Xpath);
+				logs.logging("INFO", "SOB Percentage Field Is Clicked");
+				webDB.clearText(RfqLocators.RfqSobPercInput, ElementType.Xpath);
+				webDB.sendTextToAnElement(RfqLocators.RfqSobPercInput, Percent, ElementType.Xpath);
+			}
+		}
+
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Share of Business Percentage For Supplier2
+	 * 
+	 * @author Durai-RMITS
+	 * @param Percent
+	 */
+	public void verifySobPercentageinRfqSupplier2(String Percent) {
+		flag = webDB.waitForElement(RfqLocators.RfqSobSupplierField2, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqSobSupplierField2, ElementType.Xpath);
+			logs.logging("INFO", "Supplier Field In SOB Is Clicked");
+			flag = webDB.waitForElement(RfqLocators.RfqSobPercField2, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(RfqLocators.RfqSobPercField2, ElementType.Xpath);
+				logs.logging("INFO", "SOB Percentage Field Is Clicked");
+				webDB.clearText(RfqLocators.RfqSobPercInput2, ElementType.Xpath);
+				webDB.sendTextToAnElement(RfqLocators.RfqSobPercInput2, Percent, ElementType.Xpath);
+			}
+		}
+
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Share of Business Post
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifySobPagePost() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(RfqLocators.RfqPost, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqPost, ElementType.Xpath);
+			logs.logging("INFO", "DOcument Posted Successfully");
+			flag = webDB.waitForElement(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Frame Is Displayed");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Share of Business's Percentage Save
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifySobPercentageSave() {
+		flag = webDB.waitForElement(RfqLocators.RfqSobSave, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqSobSave, ElementType.Xpath);
+			logs.logging("INFO", "SOB line Is saved");
+			commonFunc.hardWait(2000);
+			webDB.pressEscapeKey();
+
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Cost For Item in line wise
+	 * 
+	 * @author Durai-RMITS
+	 * @param Cost1
+	 * @param Currency
+	 * @param TrdDiscount
+	 * @param SpclDiscount
+	 * @param CashDiscount
+	 */
+	public void verifysSupplierCost1(String Cost1, String Currency, String TrdDiscount, String SpclDiscount,
+			String CashDiscount, String HSN) {
+		flag = webDB.waitForElement(RfqLocators.RfqInsideSupplierField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqInsideSupplierField, ElementType.Xpath);
+			logs.logging("INFO", "Supplier Field 1 Is Clicked");
+			getTextCurrencyInLine1();
+			logs.logging("INFO", "Currency is:" + Currency);
+			commonFunc.hardWait(1000);
+			List<WebElement> LineNumber = webDB.getDriver()
+					.findElements(By.xpath(RfqLocators.SupLineNum));
+			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			for (int i = 1; i <= LineNumber.size(); i++) {
+				webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+				flag = webDB.waitForElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+					logs.logging("INFO", "Inside Item Field Is Clicked");
+					webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+					flag = webDB.waitForElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+					if (flag) {
+						webDB.doubleClickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+						webDB.clearText(RfqLocators.RfqSupplierCostInput, ElementType.Xpath);
+						webDB.sendTextToAnElement(RfqLocators.RfqSupplierCostInput, Cost1, ElementType.Xpath);
+						logs.logging("INFO", "Cost Is entered:" + Cost1);
+						flag = webDB.waitForElement(RfqLocators.QuoteQty, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(RfqLocators.QuoteQty, ElementType.Xpath);
+							logs.logging("INFO", "Quote Qty Is Clicked");
+							commonFunc.hardWait(700);
+							chooseTradeDiscForParticularSupllierItem(
+									commonFunc.getDataFromTestDataSheet("Trd_Discount"), i);
+							chooseSpclDiscForParticularSupllierItem(
+									commonFunc.getDataFromTestDataSheet("Spcl_Discount"), i);
+							chooseCashDiscForParticularSupllierItem(
+									commonFunc.getDataFromTestDataSheet("Cash_Discount"), i);
+							if (Currency.equals(commonFunc.getDataFromTestDataSheet("Cur_Inr"))) {
+								chooseHsnForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Hsn_code"), i);
+								verifysSupplierLineSave();
+								commonFunc.hardWait(1000);
+							} else {
+								verifysSupplierLineSave();
+								commonFunc.hardWait(1000);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(flag);
+
+	}
+
+	/**
+	 * This method used to Save Line
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifysSupplierLineSave() {
+		flag = webDB.waitForElement(RfqLocators.Rfqsuplinesave, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.Rfqsuplinesave, ElementType.Xpath);
+			logs.logging("INFO", "Supplier1 Line Is Saved");
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(RfqLocators.RfqOverallSave, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Over All Save Is Checked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Cost For Item in line wise
+	 * 
+	 * @author Durai-RMITS
+	 * @param Cost2
+	 * @param Currency
+	 * @param TrdDiscount
+	 * @param SpclDiscount
+	 * @param CashDiscount
+	 */
+	public void verifysSupplierCost2(String Cost2, String Currency, String TrdDiscount, String SpclDiscount,
+			String CashDiscount, String HSN) {
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(RfqLocators.RfqInsideSupplierField2, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqInsideSupplierField2, ElementType.Xpath);
+			logs.logging("INFO", "Supplier Field 2 Is Clicked");
+			Currency = getTextCurrencyInLine2();
+			logs.logging("INFO", "Currency is:" + Currency);
+			List<WebElement> LineNumber = webDB.getDriver()
+					.findElements(By.xpath(RfqLocators.SupLineNum));
+			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			for (int i = 1; i <= LineNumber.size(); i++) {
+				webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+				webDB.scrollDown(1000);
+				flag = webDB.waitForElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+				webDB.moveToElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+					logs.logging("INFO", "Inside Item Field Is Clicked");
+					commonFunc.hardWait(2000);
+					webDB.scrollDown(1000);
+					webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+					flag = webDB.waitForElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+					if (flag) {
+						webDB.doubleClickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+						webDB.clearText(RfqLocators.RfqSupplierCostInput, ElementType.Xpath);
+						webDB.sendTextToAnElement(RfqLocators.RfqSupplierCostInput, Cost2, ElementType.Xpath);
+						logs.logging("INFO", "Cost Is Entered:" + Cost2);
+						flag = webDB.waitForElement(RfqLocators.QuoteQty, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(RfqLocators.QuoteQty, ElementType.Xpath);
+							logs.logging("INFO", "Quote Qty Is Clicked");
+						commonFunc.hardWait(1000);
+						chooseTradeDiscForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Trd_Discount"),
+								i);
+						chooseSpclDiscForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
+								i);
+						chooseCashDiscForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Cash_Discount"),
+								i);
+						if (Currency.equals(commonFunc.getDataFromTestDataSheet("Cur_Inr"))) {
+							chooseHsnForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Hsn_code"), i);
+							verifysSupplierLineSave();
+							commonFunc.hardWait(1000);
+						} else {
+							verifysSupplierLineSave();
+							commonFunc.hardWait(1000);
+						}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+
+	}
+	/**
+	 * This method used to Giving Trade Discount
+	 * 
+	 * @author Durai-RMITS
+	 * @param TrdDiscount
+	 */
+	public void chooseTradeDiscForParticularSupllierItem(String TrdDiscount, int i) {
+		flag = webDB.waitForElement(RfqLocators.TrdDiscField(i), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.TrdDiscField(i), ElementType.Xpath);
+			logs.logging("INFO", "Trade Discount Field Is Clicked");
+			webDB.clearText(RfqLocators.RfqsuplineTrdDisinput, ElementType.Xpath);
+			webDB.sendTextToAnElement(RfqLocators.RfqsuplineTrdDisinput, TrdDiscount, ElementType.Xpath);
+			logs.logging("INFO", "Entered Trade Discount Is: " + TrdDiscount);
+		}
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * This method used to Giving Trade Discount
+	 * 
+	 * @author Durai-RMITS
+	 * @param SpclDiscount
+	 */
+	public void chooseSpclDiscForParticularSupllierItem(String SpclDiscount, int i) {
+		flag = webDB.waitForElement(RfqLocators.SpclDiscField(i), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.SpclDiscField(i), ElementType.Xpath);
+			logs.logging("INFO", "Trade Discount Field Is Clicked");
+			webDB.clearText(RfqLocators.RfqsuplineSpclDisinput, ElementType.Xpath);
+			webDB.sendTextToAnElement(RfqLocators.RfqsuplineSpclDisinput, SpclDiscount, ElementType.Xpath);
+			logs.logging("INFO", "Entered Trade Discount Is: " + SpclDiscount);
+		}
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * This method used to Giving Trade Discount
+	 * 
+	 * @author Durai-RMITS
+	 * @param CashDiscount
+	 */
+	public void chooseCashDiscForParticularSupllierItem(String CashDiscount, int i) {
+		flag = webDB.waitForElement(RfqLocators.CashDiscField(i), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.CashDiscField(i), ElementType.Xpath);
+			logs.logging("INFO", "Trade Discount Field Is Clicked");
+			webDB.clearText(RfqLocators.RfqsuplineCashlDisinput, ElementType.Xpath);
+			webDB.sendTextToAnElement(RfqLocators.RfqsuplineCashlDisinput, CashDiscount, ElementType.Xpath);
+			logs.logging("INFO", "Entered Trade Discount Is: " + CashDiscount);
+		}
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * This method used to Giving HSN Code
+	 * 
+	 * @author Durai-RMITS
+	 * @param HSN
+	 */
+	public void chooseHsnForParticularSupllierItem(String HSN, int i) {
+		flag = webDB.waitForElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
+			flag = webDB.waitForElement(RfqLocators.BaseLineField(i), ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.BaseLineField(i), ElementType.Xpath);
+				flag = webDB.waitForElement(RfqLocators.HsnField(i), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.HsnField(i), ElementType.Xpath);
+					webDB.clickAnElement(RfqLocators.HsnInput, ElementType.Xpath);
+					logs.logging("INFO", "Supplier HSN Field Is Clicked");
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(RfqLocators.RfqsuplineHsnlov, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(RfqLocators.RfqsuplineHsnlov, HSN);
+						logs.logging("INFO", "Entered Hsn Code Is:" + HSN);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Supplier Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyNavigateToSupplierTab() {
+		flag = webDB.waitForElement(RfqLocators.RfqSupplierTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqSupplierTab, ElementType.Xpath);
+			logs.logging("INFO", "Supplier Tab Moved Sucessfully");
+			flag = webDB.waitForElement(RfqLocators.RfqOverallSave, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Over All Save Is Finded");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Send RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyRfqSendRfq() {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(RfqLocators.RfqHeaderSendRfq, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqHeaderSendRfq, ElementType.Xpath);
+			logs.logging("INFO", "RFQ Send Succesfully");
+			commonFunc.hardWait(3000);
+			flag = webDB.waitForElement(RfqLocators.RfqRateFinalize, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Rfq Rate Finalize Button is Checked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Clicking Pending Rfq Icon
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void pendingRfq() {
+		flag = webDB.waitForElement(RfqLocators.RfqPending, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqPending, ElementType.Xpath);
+			logs.logging("INFO", "Pending Button is Clicked");
+
+			flag = webDB.waitForElement(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched to Frame");
+				flag = webDB.waitForElement(RfqLocators.RfqpendPRNumField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "PR Number Field Is Searched");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to clicking Pending Rfq Icon and giving Purchase Request
+	 * Number
+	 * 
+	 * @author Durai-RMITS
+	 * @param Number
+	 */
+	public void pendingRfqPRNumber(String Number) {
+
+		flag = webDB.waitForElement(RfqLocators.RfqpendPRNumField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(RfqLocators.RfqpendPRNumField, Number, ElementType.Xpath);
+			logs.logging("INFO", "PR number is:" + Number);
+			flag = webDB.waitForElement(RfqLocators.RfqPendingSearchbutton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.RfqPendingSearchbutton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+			}
+		}
+
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to clicking Create Rfq
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void createRfq() {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(RfqLocators.RfqPendingSelectall, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.RfqPendingSelectall, ElementType.Xpath);
+			logs.logging("INFO", "Select all Is Checked");
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElementUntilGivenTime(RfqLocators.CreateRfq, ElementType.Xpath, 70);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.CreateRfq, ElementType.Xpath);
+				logs.logging("INFO", "Create Rfq Is Clicked");
+
+				flag = webDB.waitForElement(RfqLocators.CreateRfqDateField, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.CreateRfqDateField, ElementType.Xpath);
+					logs.logging("INFO", "Date Field Is Clicked");
+					flag = webDB.waitForElement(RfqLocators.CreateRfqOK, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(RfqLocators.CreateRfqOK, ElementType.Xpath);
+						logs.logging("INFO", "Rfq Is Created");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(RfqLocators.RfqHeaderSendRfq, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Rfq Send Button Is Checked");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Click Add Icon and Fill The details Of Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 * @param Location
+	 * @param Unit
+	 * @param PRType
+	 * @param Prefix
+	 * @param CPCCode
+	 * @param Department
+	 * @param Requester
+	 * 
+	 */
+	public void clickAddIconFillDetailsOfPurchaseRequestRfq(String Location, String Unit, String PRType, String Prefix,
+			String CPCCode, String Department, String Requester) {
+		commonFunc.clickCreateIcon();
+		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickTickIconCreateRequestRfq();
+	}
+
+	/**
+	 * This method used to click tick icon after fill form
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickTickIconCreateRequestRfq() {
+		flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Create Tick Icon Clicked");
+				String PRNum = webDB.getTextFromElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
+				VariableHandler.setPRNumber(PRNum);
+				logs.logging("INFO", "Purchase Request ID: " + VariableHandler.getPRNumber());
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Item Quantity cost and Save line in Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 * @param Item
+	 * @param Qnty
+	 * @param Cost
+	 * @param addIcon
+	 */
+	public void fillItemsQuantityCostAndSaveLine(String Item, String Qnty, String Cost, boolean... addIcon) {
+		if (addIcon != null) {
+			flag = webDB.waitForElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Add Lines Icon Clicked.");
+				}
+			}
+		}
+		searchAndSelectItems(Item);
+		enterQuantityForLastItem(Qnty);
+		enterCostForLastItem(Cost);
+		saveLinesEntry();
+	}
+
+	/**
+	 * This method used to Search and Select Item
+	 * 
+	 * @author Durai-RMITS
+	 * @param Item
+	 */
+	private void searchAndSelectItems(String Item) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath, 60);
+			if (flag) {
+				webDB.clickAnElement(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataPopupSearchBox, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clearTextField(PurchaseRequestLocators.ItemDataPopupSearchBox, ElementType.Xpath);
+					webDB.sendTextToAnElement(PurchaseRequestLocators.ItemDataPopupSearchBox, Item, ElementType.Xpath);
+					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.convertXPath(Item), ElementType.Xpath,
+							60);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.clickAnElement(CommonUiLocators.convertXPath(Item), ElementType.Xpath);
+						String value = webDB.getAttributeFromElement(PurchaseRequestLocators.ItemDataLastRowInput,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						logs.logging("INFO", "Get Text Item Name Value from Table Is: " + value);
+						flag = value.contains(Item);
+						if (flag) {
+							logs.logging("INFO", Item + "- Item Searched and Selected");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to giving Quantity
+	 * 
+	 * @author Durai-RMITS
+	 * @param Quantity
+	 */
+	private void enterQuantityForLastItem(String Quantity) {
+		commonFunc.checkRefreshCellsDisappear();
+		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+		if (flag) {
+			webDB.scrollToAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.QuantityDataLastRowInput, ElementType.Xpath);
+			if (flag) {
+				WebElement element = webDB.getDriver()
+						.findElement(By.xpath(PurchaseRequestLocators.QuantityDataLastRowInput));
+				try {
+					js.executeScript("arguments[0].value='" + Quantity + "';", element);
+					String value = webDB.getAttributeFromElement(PurchaseRequestLocators.QuantityDataLastRowInput,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO", "Get Text Quantity Name Value from Table Is: " + value);
+					flag = value.contains(Quantity);
+					if (flag) {
+						logs.logging("INFO", "Quantity Entered: " + Quantity);
+					}
+				} catch (Exception e) {
+					flag = false;
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Giving Cost
+	 * 
+	 * @author Durai-RMITS
+	 * @param Cost
+	 */
+	private void enterCostForLastItem(String Cost) {
+		commonFunc.checkRefreshCellsDisappear();
+		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRowInput, ElementType.Xpath);
+			if (flag) {
+				WebElement element1 = webDB.getDriver()
+						.findElement(By.xpath(PurchaseRequestLocators.UnitCostDataLastRowInput));
+				try {
+					js.executeScript("arguments[0].value='" + Cost + "';", element1);
+					String value = webDB.getAttributeFromElement(PurchaseRequestLocators.UnitCostDataLastRowInput,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					logs.logging("INFO", "Get Text Cost Name Value from Table Is: " + value);
+					flag = value.contains(Cost);
+					if (flag) {
+						logs.logging("INFO", "Cost Entered: " + Cost);
+					}
+				} catch (Exception e) {
+					flag = false;
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Save Lines Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void saveLinesEntry() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.SaveLineBtn, ElementType.Xpath);
+			if (webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath)) {
+				flag = webDB.javaScriptClickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag)
+					logs.logging("INFO", "Save Item Entry Successfully");
+			} else {
+				flag = webDB.isElementDisplayed(CommonUiLocators.FailedNotifyMessage, ElementType.Xpath);
+				if (flag) {
+					flag = false;
+					logs.logging("INFO", "Save Entry Item failed Notification Displayed");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Save Header and Post Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void saveHeaderAndClickPost() {
+		commonFunc.hardWait(4000);
+		flag = webDB.waitForElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
+			logs.logging("INFO", "Header Saved Successfully.");
+			flag = webDB.waitForClickElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Waiting for Approval Dialog Box
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void waitingForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(RfqLocators.RfqWorkflowFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			flag = webDB.waitForElement(RfqLocators.PRForwardlov, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Lov Button Is Finded");
+			commonFunc.searchAndSelectValueInFilters(RfqLocators.PRForwardlov,
+					commonFunc.getDataFromTestDataSheet("AshokValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(RfqLocators.PRworkflowOK, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.PRworkflowOK, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				commonFunc.hardWait(7000);
+				flag = commonFunc.logoutUser();
+			}
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Forward Screen is Opening
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void forwardApprovalScreen() {
+		commonFunc.hardWait(1000);
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		flag = webDB.waitForElement(ApprovalPageLocators.UserNotifyIcon, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "User Notify Icon Is Clicked");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Approve the document
+	 * 
+	 * @author Durai-RMITS
+	 * @param Number
+	 */
+	public void filterDocumentsForPriceListApproval(String Number) {
+		flag = webDB.waitForElement(ApprovalPageLocators.SearchBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Search Box IS Displayed");
+			webDB.clickAnElement(ApprovalPageLocators.SearchBoxContainer, ElementType.Xpath);
+			flag = webDB.waitForElement(ApprovalPageLocators.SearchBox, ElementType.Xpath);
+			if (flag) {
+				webDB.clearTextField(ApprovalPageLocators.SearchBox, ElementType.Xpath);
+				logs.logging("INFO", "Clear Text Search Box");
+				webDB.sendTextToAnElement(ApprovalPageLocators.SearchBox, Number, ElementType.Xpath);
+				logs.logging("INFO", "Entered Document Number Is: " + Number);
+				flag = webDB.waitForClickElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(ApprovalPageLocators.SearchTableResult, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Search Go Button Is Clicked");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Approve The Document
+	 * 
+	 * @author Durai-RMITS
+	 * @param Number
+	 */
+	public void verifyApproveWithDocNumber(String Number) {
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForClickElement(PricelistPageLocators.PRLISTSelectCheckBox(Number), ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(PricelistPageLocators.PRLISTSelectCheckBox(Number), ElementType.Xpath);
+			logs.logging("INFO", "Select Box Is Checked");
+			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
+				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO",
+							"CheckBox select for Document Number " + Number + " and Process button clicked");
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Approval Process Button IS Displayed");
+						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Save Header and Post Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public static String getTextCurrencyInLine1() {
+		String HeaderCurrency1 = null;
+		flag = webDB.waitForElement(RfqLocators.RfqSupplcurrField1, ElementType.Xpath);
+		if (flag) {
+			HeaderCurrency1 = webDB.getTextFromElement(RfqLocators.RfqSupplcurrField1, ElementType.Xpath);
+			logs.logging("INFO", "Get Text Header Currency Is : " + HeaderCurrency1);
+		}
+		return HeaderCurrency1;
+	}
+
+	/**
+	 * This method used to Save Header and Post Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public static String getTextCurrencyInLine2() {
+		String HeaderCurrency2 = null;
+		flag = webDB.waitForElement(RfqLocators.RfqSupplcurrField2, ElementType.Xpath);
+		if (flag) {
+			HeaderCurrency2 = webDB.getTextFromElement(RfqLocators.RfqSupplcurrField2, ElementType.Xpath);
+			logs.logging("INFO", "Get Text Header Currency Is : " + HeaderCurrency2);
+		}
+		return HeaderCurrency2;
+	}
+
+	/**
+	 * This method used to Add Lines Purchase Request
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void verifyMultipleLinesPR() {
+		flag = webDB.waitForElement(RfqLocators.PRHeaderUnit, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.PRHeaderUnit, ElementType.Xpath);
+			logs.logging("INFO", "Unit Is Clicked");
+			flag = webDB.waitForElement(RfqLocators.PurchaseIDHeader, ElementType.Xpath);
+			if (flag) {
+				String PRNum = webDB.getTextFromElement(RfqLocators.PurchaseIDHeader, ElementType.Xpath);
+				VariableHandler.setPRNumber(PRNum);
+				logs.logging("INFO", "Purchase Request ID: " + VariableHandler.getPRNumber());
+				String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+				ExcelUtils excelUtils = new ExcelUtils();
+				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+						+ "TestDatas.xlsx";
+				PRMultipleline = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRMultipleline"));
+				for (int i = 1; i < PRMultipleline.length; i++) {
+					String ITEM = PRMultipleline[i][0];
+					String QTY = PRMultipleline[i][1];
+					if (!ITEM.equals(""))
+						flag = webDB.waitForElement(RfqLocators.PRAdd, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(RfqLocators.PRAdd, ElementType.Xpath);
+						logs.logging("INFO", "Add Button Is Clicked");
+						flag = webDB.waitForElement(RfqLocators.PRItemLov, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(RfqLocators.PRItemLov, ElementType.Xpath);
+							logs.logging("INFO", "Item Lov Is Clicked");
+							flag = webDB.waitForElement(RfqLocators.PRItemsearch, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(RfqLocators.PRItemsearch, ElementType.Xpath);
+								logs.logging("INFO", "Search Filed Is Clicked");
+								commonFunc.hardWait(4000);
+								webDB.sendTextToAnElement(RfqLocators.PRItemsearch, ITEM, ElementType.Xpath);
+								logs.logging("INFO", "Item Is Entered" + ITEM);
+								flag = webDB.waitForElement(RfqLocators.PRItemSelect, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(RfqLocators.PRItemSelect, ElementType.Xpath);
+									logs.logging("INFO", "Item Is Selected");
+									commonFunc.hardWait(4000);
+									flag = webDB.waitForElement(RfqLocators.PRQtyField, ElementType.Xpath);
+									if (flag) {
+										webDB.doubleClickAnElement(RfqLocators.PRQtyField, ElementType.Xpath);
+										logs.logging("INFO", "QTY Field Is Clicked");
+										webDB.clearText(RfqLocators.PRQtyInput, ElementType.Xpath);
+										webDB.sendTextToAnElement(RfqLocators.PRQtyInput, QTY, ElementType.Xpath);
+										logs.logging("INFO", "Entered Qty Is:" + QTY);
+										commonFunc.hardWait(2000);
+										webDB.pressTabKey();
+										commonFunc.hardWait(2000);
+										flag = webDB.waitForElement(RfqLocators.PRLineSave, ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(RfqLocators.PRLineSave, ElementType.Xpath);
+											logs.logging("INFO", "Line Is Saved");
+											commonFunc.hardWait(3000);
+										}
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+}
