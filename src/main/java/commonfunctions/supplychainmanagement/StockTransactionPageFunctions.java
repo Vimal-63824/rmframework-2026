@@ -35,8 +35,8 @@ public class StockTransactionPageFunctions {
 		flag = webDB.waitForElement(StockTransactionPageLocators.VoucherNumber, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Voucher Number Is Displayed");
-			commonFunc.searchAndSelectValueInFilters(StockTransactionPageLocators.VoucherNumber,
-					VariableHandler.getMrvNumber());
+			webDB.sendTextToAnElement(StockTransactionPageLocators.VoucherNumber, VariableHandler.getMrvNumber(),
+					ElementType.Xpath);
 			flag = webDB.waitForElement(StockTransactionPageLocators.GenerateButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Generate Button Is Displayed");

@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
@@ -964,7 +965,11 @@ public class CommonFunctions {
 	public void navigateToInventoryTranscationTab() {
 		flag = webDB.waitForElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath,
+					"class");
+			if (value.contains("is-expandable")) {
+				webDB.clickAnElement(CommonUiLocators.InventoryTransactionTab, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.MaterialReceiptVoucherTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Inventory Transaction Tab Is Clicked");
@@ -1504,8 +1509,11 @@ public class CommonFunctions {
 	private void clickInventorySetupTab() {
 		flag = webDB.waitForElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
-			webDB.waitForElement(CommonUiLocators.ItemTab, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.InvSetupTab, ElementType.Xpath, "class");
+			if (value.contains("is-expandable")) {
+				webDB.clickAnElement(CommonUiLocators.InvSetupTab, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(CommonUiLocators.ItemTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Item Tab is Checked");
 			}
@@ -1617,7 +1625,7 @@ public class CommonFunctions {
 			}
 			logs.logging("INFO", "Toast Message Displayed Approved successfully");
 			return true;
-		} else if (webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath)) {
+		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;

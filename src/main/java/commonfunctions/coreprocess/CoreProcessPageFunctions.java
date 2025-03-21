@@ -960,8 +960,8 @@ public class CoreProcessPageFunctions {
 					commonFunc.getDataFromTestDataSheet("SubcontractorName"));
 			subContractOrderFunc.verifyMRPDetailsVerification(commonFunc.getDataFromTestDataSheet("RawMaterialSco"),
 					commonFunc.getDataFromTestDataSheet("Kgs"), process);
-			subContractOrderFunc.verifyDetailsValidation(commonFunc.getDataFromTestDataSheet("Source"),
-					commonFunc.getDataFromTestDataSheet("Target"), process);
+			subContractOrderFunc.verifyDetailsValidation(commonFunc.getDataFromTestDataSheet("Source" + process),
+					commonFunc.getDataFromTestDataSheet("Target" + process), process);
 			subContractOrderFunc.verifyProcessQuantityCalculation();
 			subContractOrderFunc.verifyAddGlAccNumberValue();
 			subContractOrderFunc.verifyIncludeChargesAndPostIcon();
@@ -1023,6 +1023,7 @@ public class CoreProcessPageFunctions {
 			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 			grnScoPageFunc.verifyViewLineDetails();
 			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername-Admin");
@@ -1032,11 +1033,18 @@ public class CoreProcessPageFunctions {
 			flag = commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.verifyValidateGrnScoStatus(VariableHandler.getScoGrnNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
 			commonFunc.navigateToMaterialReceiptVoucher();
 			commonFunc.clickPendingIcon();
 			materialReceiptFunctions.clickPendingInssuanceBtn();
 			materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getScoGrnNumber());
 			materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getScoGrnNumber());
+			materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 			materialReceiptFunctions.clickTickAndPostIcon();
 			materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 					commonFunc.getDataFromTestDataSheet("IssuedStatus"));

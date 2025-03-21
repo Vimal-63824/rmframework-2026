@@ -170,7 +170,7 @@ public class MaterialReceiptVoucherFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(MaterialReceiptVoucherLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 20)
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 30)
 						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
 			}
 		}
