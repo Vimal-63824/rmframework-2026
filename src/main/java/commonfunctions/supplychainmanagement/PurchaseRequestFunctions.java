@@ -1,4 +1,5 @@
 package commonfunctions.supplychainmanagement;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -287,8 +288,12 @@ public class PurchaseRequestFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.moveToElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
-				approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-				verifyApprovePRUsingAshokUser();
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalPageFunc
+							.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+					verifyApprovePRUsingAshokUser();
+				}
 			}
 		}
 		Assert.assertTrue(flag);

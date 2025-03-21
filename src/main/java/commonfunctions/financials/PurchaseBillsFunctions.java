@@ -59,7 +59,7 @@ public class PurchaseBillsFunctions {
 								flag = webDB.waitForElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Create Documents Is Displayed");
-									commonFunc.hardWait(3000);
+									commonFunc.hardWait(5000);
 									webDB.clickAnElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 									flag = webDB.waitForElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 									if (flag) {

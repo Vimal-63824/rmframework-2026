@@ -15,7 +15,7 @@ public class ProductionOrderLocators {
 	public static final String Find_TableData_ProdNoWithMRPNo(String MRPNo) {
 		return "//*[contains(text(),'" + MRPNo + "')]/../td[4]/a";
 	}
-	
+
 	/** @locatorType XPATH */
 	public static final String Find_TableData_ProdNo(String ProdNo) {
 		return "//*[contains(text(),'" + ProdNo + "')]/../../td[4]/a";
@@ -107,5 +107,35 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ScrapReceiptDisplayRcptQty(String Process, String Item) {
 		return "//td[text()='" + Process + "']/../td[text()='" + Item + "']/../td[10]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String SoDesc = "//button[@id='P64196310101_P_SO_SCHLD_DESC_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String ShowMore = "//button[@id='show']";
+	/** @locatorType XPATH */
+	public static final String FirstOprSelect = "//select[@id='P19631010001_PROHD_FO_OPRN_MR_']";
+	/** @locatorType XPATH */
+	public static final String RestOprSelect = "//select[@id='P19631010001_PROHD_RO_OPRN_MR_']";
+	/** @locatorType XPATH */
+	public static final String ShowLess = "//button[@id='hide']";
+	/** @locatorType XPATH */
+	public static final String TotalProcess = "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+
+	/** @locatorType XPATH */
+	public static final String TableData_Status(String DocNo) {
+		return "//td/a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
+	}
+
+	/** @locatorType XPATH */
+	public static final String ShowMoreHeaderBtn = "//button[@id='show']";
+	/** @locatorType XPATH */
+	public static final String FirstOprMREventSelect = "//select[@id='P19631010001_PROHD_FO_OPRN_MR_']";
+	/** @locatorType XPATH */
+	public static final String RestOprMREventSelect = "//select[@id='P19631010001_PROHD_RO_OPRN_MR_']";
+
+	/** @locatorType XPATH */
+	public static final String FindTableStatusWithProdOrderNo(String DocNo) {
+		return "//a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
 	}
 }

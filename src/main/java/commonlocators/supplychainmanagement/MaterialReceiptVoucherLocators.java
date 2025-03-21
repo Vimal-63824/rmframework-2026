@@ -92,4 +92,6 @@ public class MaterialReceiptVoucherLocators {
 	public static final String ReceiptLocatorfield = "//button[@id='B1869920545287966421']";
 	/** @locatorType Xpath */
 	public static final String MrvDocumentNumberToastAlert = "//h6[@class='succ_msg']";
+	/** @locatorType Xpath */
+	public static final String VoucherNo = "//button[@id='P9313117703_VOU_NO_lov_btn']";
 }

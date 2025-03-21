@@ -58,12 +58,11 @@ public class MaterialReceiptVoucherFunctions {
 					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
-						webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField, DocNo,
-								ElementType.Xpath);
-						flag = webDB.waitForElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.VoucherNo, DocNo);
+						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Go Button Is Displayed");
-							webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+							webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 							if (flag) {
@@ -171,7 +170,7 @@ public class MaterialReceiptVoucherFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(MaterialReceiptVoucherLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 20)
 						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
 			}
 		}
@@ -247,6 +246,8 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public void selectVoucherNoAndClickCreateReceipt(String VoucherNo) {
 		switchMRVPendingIframe();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(3000);
 		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(VoucherNo), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Search Go Button Clicked and Filtered with " + VoucherNo);
@@ -343,12 +344,14 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public void searchWithVoucherNumber(String VoucherNo) {
 		switchMRVPendingIframe();
+		commonFunc.hardWait(2000);
 		logs.logging("INFO", "Material Receipt Voucher Frame Switched");
 		webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField, VoucherNo, ElementType.Xpath);
 		flag = webDB.waitForClickElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
 			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(VoucherNo), ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Search Go Button Clicked and Filtered with " + VoucherNo);
@@ -369,6 +372,8 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public void validateProcessRecipientWarehouseWithCompletionProdNo(String CompProOdrNo, String Process,
 			String RecipientWH) {
+		switchMRVPendingIframe();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingCreateMRV_TableProcess(CompProOdrNo),
 				ElementType.Xpath);
 		if (flag) {
@@ -395,6 +400,7 @@ public class MaterialReceiptVoucherFunctions {
 				}
 			}
 		}
+		webDB.switchToDefaultContent();
 		assertTrue(flag);
 	}
 

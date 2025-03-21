@@ -206,7 +206,7 @@ public class InspectionDocumentFunctions {
 		} else {
 			enterObservationValue();
 		}
-		clickTickAndPostIcon();
+		clickTickAndPostIconForGrnDocument();
 		waitingForApproval();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
@@ -470,6 +470,37 @@ public class InspectionDocumentFunctions {
 					logs.logging("INFO", "PASSED");
 					flag = commonFunc.logoutUser();
 				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To click Tick And Post Icon For GRN Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void clickTickAndPostIconForGrnDocument() {
+		commonFunc.hardWait(2000);
+		storeInspectionDocumentsNumber();
+		flag = webDB.waitForElement(InspectionDocumentsLocators.HeaderTickIcon, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header Tick Icon Is Displayed");
+			webDB.clickAnElement(InspectionDocumentsLocators.HeaderTickIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(2000);
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForClickElement(InspectionDocumentsLocators.HeaderPostIcon, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(InspectionDocumentsLocators.HeaderPostIcon, ElementType.Xpath);
+				logs.logging("INFO", "Header Post Icon Is Clicked");
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+
 			}
 		}
 		assertTrue(flag);
