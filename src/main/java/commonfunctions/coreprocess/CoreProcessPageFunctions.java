@@ -848,8 +848,8 @@ public class CoreProcessPageFunctions {
 	}
 
 	/**
-	 * This Method Used To Verify Material Request To Material Receipt Voucher Inter
-	 * Transfer
+	 * This Method Used To Verify Material Request To Material Receipt Voucher
+	 * SubContract
 	 * 
 	 * @author Deepan-GWL
 	 */
@@ -865,8 +865,6 @@ public class CoreProcessPageFunctions {
 		for (int i = 1; i < itemmultiple.length; i++) {
 			stockPageFunc.getItemStockValue(itemmultiple[i][0], itemmultiple[i][1]);
 			stockPageFunc.removeFilterStock();
-//			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("EmpWareHouseId"));
-//			stockPageFunc.removeFilterStock();
 			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
 			stockPageFunc.removeFilterStock();
 		}
@@ -892,23 +890,6 @@ public class CoreProcessPageFunctions {
 		deliveryChallanFunc.verifyStatusOfDeliveryChallan(VariableHandler.getDCNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateToMaterialReceiptVoucher();
-		materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-		materialReceiptFunctions.createJournalAndViewJournal();
-		materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRToMRVWipSheet"));
-		materialReceiptFunctions.clickTickAndPostIcon();
-		materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
-				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateToInventoryStocksTab();
-		materialReceiptFunctions.verifyAfterStockDataUpdation(commonFunc.getDataFromTestDataSheet("POSupplier"),
-				webDB.getDataFromProperties("MRToMRVWipSheet"));
-		commonFunc.logoutUser();
-		stockPageFunc.validateStockCount(webDB.getDataFromProperties("MRToMRVWipSheet"));
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToInventoryStocksTransactionTab();
@@ -1049,6 +1030,49 @@ public class CoreProcessPageFunctions {
 			materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 					commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 			commonFunc.logoutUser();
+
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"Sathi Ganesh");
+			commonFunc.navigateToFinancialPurchaseBill();
+			purchaseBillsFunc.verifyPendingScoPurchaseBill(VariableHandler.getScoGrnNumber());
+			purchaseBillsFunc.verifyCreateJournalAndPost();
+			purchaseBillsFunc.verifyWaitingForApproval();
+			commonFunc.logoutUser();
+
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoPurchaseNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoPurchaseNumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"Sathi Ganesh");
+				commonFunc.navigateToFinancialPurchaseBill();
+				purchaseBillsFunc.verifyPurchaseBillApprovalStatus(VariableHandler.getScoPurchaseNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"Sathi Ganesh");
+			commonFunc.navigateToFinancialPaymentReceipt();
+			paymentReceiptFunc.verifyPendingCrDocs(VariableHandler.getScoPurchaseNumber());
+			paymentReceiptFunc.clickTickAndPostIcon();
+			paymentReceiptFunc.verifyWaitingForApproval();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getBPvNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBPvNumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"Sathi Ganesh");
+				commonFunc.navigateToFinancialPaymentReceipt();
+				paymentReceiptFunc.verifyPaymentReceiptApprovalStatus();
+				flag = commonFunc.logoutUser();
+			}
 		}
 	}
 

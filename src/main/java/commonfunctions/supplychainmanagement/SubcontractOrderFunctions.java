@@ -40,52 +40,50 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				commonFunc.hardWait(3000);
-				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+//				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+//				if (flag) {
+//					logs.logging("INFO", "Switched To Pending Frame");
+//					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
+				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Switched To Pending Frame");
-					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
-					webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Go Button Is Displayed");
+					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Go Button Is Displayed");
-						webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 							commonFunc.hardWait(2000);
-							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
-							if (flag) {
-								commonFunc.hardWait(2000);
-								logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
-								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 
-								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
-										ElementType.Xpath);
+							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(
+										SubcontractOrderLocators.SubcontractorLovButton,
+										commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+								webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+								flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
 								if (flag) {
-									commonFunc.searchAndSelectValueInFilters(
-											SubcontractOrderLocators.SubcontractorLovButton,
-											commonFunc.getDataFromTestDataSheet("SubcontractorName"));
-									webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-									flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-									if (flag) {
-										commonFunc.hardWait(2000);
-										logs.logging("INFO", "Ok Button Is Displayed");
-										webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-										webDB.switchToDefaultContent();
-										flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+									storeSCODocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 												ElementType.Xpath);
-										storeSCODocumentsNumber();
-										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath)) {
-											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-													ElementType.Xpath);
-										}
 									}
 								}
 							}
+//							}
 						}
 					}
 				}
@@ -236,8 +234,9 @@ public class SubcontractOrderFunctions {
 					BigDecimal TaxValueBD = purchaseOrderFunc
 							.verifyRoundOffBigDecimalValueWithReturnBigDecimal(TaxValue);
 					logs.logging("INFO", "Calculated Tax Value Is: " + TaxValueBD.stripTrailingZeros().toPlainString());
-					String IgstValue = webDB.getTextFromElement(SubcontractOrderLocators.IgstValue, ElementType.Xpath);
-					flag = TaxValueBD.stripTrailingZeros().toPlainString().equals(IgstValue);
+					BigDecimal Individualvalue = TaxValueBD.stripTrailingZeros().divide(new BigDecimal(2));
+					String CgstValue = webDB.getTextFromElement(SubcontractOrderLocators.CgstValue, ElementType.Xpath);
+					flag = Individualvalue.stripTrailingZeros().toPlainString().equals(CgstValue);
 					System.out.println(TaxValueBD.stripTrailingZeros().toPlainString());
 					logs.logging("INFO", "Verified Tax Value Actual And Expected");
 				}
@@ -261,6 +260,16 @@ public class SubcontractOrderFunctions {
 			webDB.doubleClickAnElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.GLAccNoLovButton,
 					commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
 		}
 		assertTrue(flag);
 	}
