@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class StockTransactionPageLocators {
 
 	/** @locatorType Xpath */
-	public static final String VoucherNumber = "//button[@id='P93132310_BS_VOU_NO_lov_btn']";
+	public static final String VoucherNumber = "//input[@id='P93132310_BS_VOU_NO']";
 	/** @locatorType Xpath */
 	public static final String GenerateButton = "//button[@id='B2174703010114270614']";
 	/** @locatorType Xpath */

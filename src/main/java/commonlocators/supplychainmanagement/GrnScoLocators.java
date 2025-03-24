@@ -83,4 +83,18 @@ public class GrnScoLocators {
 	public static final String DCNumber(int i) {
 		return "//div[@id='R4641908672885934946_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String GRNLovButton = "//button[@id='P193151040_GRN_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String GrnSearchButton = "//button[@id='B1188356911522632446']";
+	/** @locatorType Xpath */
+	public static final String GRNNumberSelect(String Number) {
+		return "//a[text()='"+Number+"']";
+	}
+	/** @locatorType Xpath */
+	public static final String GRNNumberStatus(String Number) {
+		return "//a[text()='"+Number+"']/../../td/div[contains(@style,'green')]";
+	}
+
 }

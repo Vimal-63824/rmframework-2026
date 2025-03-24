@@ -75,5 +75,7 @@ public class ApprovalPageLocators {
 	public static final String MRStatus = "//span[@id='P9313101002_STATUS_DISPLAY']";
 	/** @locatorType Xpath */
 	public static final String ApproveErrorToast = "//div[contains(text(),'error has occurred')]";
+	/** @locatorType Xpath */
+	public static final String ApprovalTitle = "//h1[text()='Workflow Approval']";
 
 }

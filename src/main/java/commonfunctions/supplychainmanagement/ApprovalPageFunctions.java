@@ -291,6 +291,10 @@ public class ApprovalPageFunctions {
 						logs.logging("INFO",
 								"CheckBox select for Document Number " + Number + " and Process button clicked");
 						commonFunc.checkRefreshCellsDisappear();
+					} else {
+						webDB.navigateToRefresh();
+						filterDocumentsforApproval(Number);
+						logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
 					}
 				}
 			}
@@ -347,7 +351,7 @@ public class ApprovalPageFunctions {
 			if (flag) {
 				logs.logging("INFO", "Approval Process Button Is Displayed");
 				webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 60);
 				if (flag) {
 					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
 					break a;
