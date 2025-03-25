@@ -1,4 +1,5 @@
 package commonfunctions;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -113,7 +114,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, HeaderValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Header Details
 	 * 
@@ -127,7 +128,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Header Details
 	 * 
@@ -178,6 +179,21 @@ public class DBCommonFunctions {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Open Sales Order Amdendment DataBase
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param OSOANO
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String OSOAdetails(String OSOANO, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("OsoaQuery"),
+				commonFunc.getDataFromTestDataSheet("OSOANO"), OSOANO, DetailsValue);
+		return value;
+
 	}
 
 }

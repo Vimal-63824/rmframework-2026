@@ -154,6 +154,8 @@ public class VariableHandler {
 	private static ThreadLocal<String> RfqDocNum = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> PONumbers = new ThreadLocal<ArrayList<String>>();
 	private static ThreadLocal<String> ScoPurchaseNumber = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> RevisiedValue = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TaxPercent = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1287,5 +1289,22 @@ public class VariableHandler {
 
 	public static void setScoPurchaseNumber(String data) {
 		ScoPurchaseNumber.set(data);
+	}
+
+	public static BigDecimal getRevisiedValue() {
+		return RevisiedValue.get();
+	}
+
+	public static void setRevisiedValue(BigDecimal data) {
+		RevisiedValue.set(data);
+
+	}
+
+	public static BigDecimal getTaxPercent() {
+		return TaxPercent.get();
+	}
+
+	public static void setTaxPercent(BigDecimal data) {
+		TaxPercent.set(data);
 	}
 }

@@ -36,7 +36,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String grnheader = "//*[@id=\"t_TreeNav_226\"]/div[2]/a";
 	/** @locatorType Xpath */
-	public static final String ClickGrnPurchase = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[11]";
+	public static final String ClickGrnPurchase = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li/*[2]/a[text()='GRN - Purchase']";
 	/** @locatorType Xpath */
 	public static final String Lov = "//button[contains(@id,'P1615131103_UNIT_LOCATION_lov_btn')]";
 	/** @locatorType Xpath */

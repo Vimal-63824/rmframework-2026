@@ -116,6 +116,7 @@ public class PurchaseBillsFunctions {
 	public void verifyCreateJournalAndPost() {
 		flag = webDB.waitForElement(PurchaseBillsLocators.CreateJournal, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseBillsLocators.CreateJournal, ElementType.Xpath);
 			logs.logging("INFO", "Create Journal Button Is Displayed");
 			webDB.clickAnElement(PurchaseBillsLocators.CreateJournal, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();

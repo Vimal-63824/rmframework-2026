@@ -289,6 +289,7 @@ public class MaterialRequestFunctions {
 		flag = webDB.waitForElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
+			webDB.moveToElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
