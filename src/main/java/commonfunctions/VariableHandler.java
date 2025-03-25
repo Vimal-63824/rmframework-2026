@@ -153,6 +153,7 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> TotalProductionProcess = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> RfqDocNum = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> PONumbers = new ThreadLocal<ArrayList<String>>();
+	private static ThreadLocal<String> ScoPurchaseNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1278,5 +1279,13 @@ public class VariableHandler {
 
 	public static void setPONumbers(ArrayList<String> data) {
 		PONumbers.set(data);
+	}
+
+	public static String getScoPurchaseNumber() {
+		return ScoPurchaseNumber.get();
+	}
+
+	public static void setScoPurchaseNumber(String data) {
+		ScoPurchaseNumber.set(data);
 	}
 }

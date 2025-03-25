@@ -215,7 +215,7 @@ public class CommonFunctions {
 	public void searchAndSelectValueInFilters(String locator, String Value) {
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
-			webDB.javaScriptClickAnElement(locator, ElementType.Xpath);
+			webDB.clickAnElement(locator, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			checkRefreshCellsDisappear();
 			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));

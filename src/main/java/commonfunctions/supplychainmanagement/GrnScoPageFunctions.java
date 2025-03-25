@@ -104,7 +104,7 @@ public class GrnScoPageFunctions {
 		if (flag) {
 			logs.logging("INFO", "Consump Button Is Displayed");
 			webDB.clickAnElement(GrnScoLocators.Consmp, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
+			flag = webDB.waitForClickElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Consumption Frame Is Displayed");
 				webDB.switchToFrame(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
@@ -187,10 +187,6 @@ public class GrnScoPageFunctions {
 				String text = webDB.getTextFromElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
 				flag = text.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
 				if (!flag) {
-					purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.AllatedQty,
-							commonFunc.getDataFromTestDataSheet("AllocatedValue"));
-					purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.DCNumber(1),
-							VariableHandler.getDCNumber());
 					flag = webDB.waitForElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);
 					if (flag) {
 						String text1 = webDB.getTextFromElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);

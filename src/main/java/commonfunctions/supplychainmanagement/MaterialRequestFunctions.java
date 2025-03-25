@@ -666,6 +666,7 @@ public class MaterialRequestFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
 			if (flag) {
+				commonFunc.hardWait(2000);
 				logs.logging("INFO", "Search Button Is Clicked");
 				webDB.clickAnElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialRequestLocators.HeaderType, ElementType.Xpath);

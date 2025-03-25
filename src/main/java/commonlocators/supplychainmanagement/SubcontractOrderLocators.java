@@ -88,4 +88,9 @@ public class SubcontractOrderLocators {
 	public static final String CheckBox(String PONumber) {
 		return "//a[text()='" + PONumber + "']/../../td[13]";
 	}
+
+	/** @locatorType XPATH */
+	public static final String CgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[16]";
+	/** @locatorType XPATH */
+	public static final String SgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[17]";
 }

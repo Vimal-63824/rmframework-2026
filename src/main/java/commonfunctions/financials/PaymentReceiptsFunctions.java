@@ -43,8 +43,7 @@ public class PaymentReceiptsFunctions {
 				if (flag) {
 					logs.logging("INFO", "Pending Payable Frame Is Displayed");
 					webDB.switchToFrame(PaymentReceiptsLocators.PendingPayableFrame, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.PendDocumentsNoLovBtn,
-							VariableHandler.getPbNumber());
+					commonFunc.searchAndSelectValueInFilters(PaymentReceiptsLocators.PendDocumentsNoLovBtn, DocNo);
 					flag = webDB.waitForElement(PaymentReceiptsLocators.PendingPayableFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(PaymentReceiptsLocators.PendingPayableFrame, ElementType.Xpath);
@@ -84,6 +83,9 @@ public class PaymentReceiptsFunctions {
 											flag = webDB.waitForElement(PaymentReceiptsLocators.BankAC,
 													ElementType.Xpath);
 											VerifyStoreVoucherNumber();
+											commonFunc.hardWait(2000);
+											webDB.sendTextToAnElement(PaymentReceiptsLocators.ReferenceInputNumber,
+													DocNo, ElementType.Xpath);
 											if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
 													ElementType.Xpath)) {
 												webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
@@ -151,9 +153,7 @@ public class PaymentReceiptsFunctions {
 							flag = webDB.waitForElement(PaymentReceiptsLocators.OtherDetails, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Close Icon Is Clicked");
-								commonFunc.hardWait(2000);
-								webDB.sendTextToAnElement(PaymentReceiptsLocators.ReferenceInputNumber,
-										VariableHandler.getGrnDocNumber(), ElementType.Xpath);
+
 							}
 						}
 					}

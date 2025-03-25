@@ -422,7 +422,7 @@ public class InspectionDocumentFunctions {
 						} else {
 							enterObservationValue();
 						}
-						clickTickAndPostIcon();
+						clickTickAndPostIconForGrnDocument();
 						waitingForApproval();
 						commonFunc.hardWait(2000);
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),

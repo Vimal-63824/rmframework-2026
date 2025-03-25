@@ -134,6 +134,16 @@ public class CoreProcessE2ETest {
 	}
 
 	/**
+	 * This Method Is Used To Verify SubContract To Payment
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 11, groups = { "Core Process" }, description = "Subcontract Order to Payment End to End Process")
+	public void VerifySubcontractToPayment() {
+		coreProcessPageFunctions.subcontractToPayment();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL
