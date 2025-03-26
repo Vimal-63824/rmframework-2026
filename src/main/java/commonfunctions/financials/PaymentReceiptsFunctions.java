@@ -182,6 +182,7 @@ public class PaymentReceiptsFunctions {
 		flag = webDB.waitForElement(PaymentReceiptsLocators.SaveButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
+			webDB.moveToElement(PaymentReceiptsLocators.SaveButton, ElementType.Xpath);
 			webDB.clickAnElement(PaymentReceiptsLocators.SaveButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

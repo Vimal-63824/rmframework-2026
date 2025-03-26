@@ -270,35 +270,39 @@ public class ApprovalPageFunctions {
 	 * @author Sakthi-GWL
 	 * @param Number
 	 */
-	private void clickCheckBoxForDocument(String Number) {
+	public void clickCheckBoxForDocument(String Number) {
+		int i = 1;
 		commonFunc.hardWait(2000);
-		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-		if (flag) {
-			flag = webDB.isElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-			if (!flag) {
-				webDB.moveToElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-				webDB.clickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-				commonFunc.hardWait(3000);
-				flag = webDB.isElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-			}
+		a: do {
+			flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CheckBox Is Clicked ");
-				flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+				flag = webDB.isElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+				if (!flag) {
+					webDB.moveToElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+					webDB.clickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					flag = webDB.isElementSelected(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+				}
 				if (flag) {
-					webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-					flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+					logs.logging("INFO", "CheckBox Is Clicked ");
+					flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO",
-								"CheckBox select for Document Number " + Number + " and Process button clicked");
-						commonFunc.checkRefreshCellsDisappear();
-					} else {
-						webDB.navigateToRefresh();
-						filterDocumentsforApproval(Number);
-						logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
+						webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+						flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"CheckBox select for Document Number " + Number + " and Process button clicked");
+							commonFunc.checkRefreshCellsDisappear();
+							break a;
+						} else {
+							webDB.navigateToRefresh();
+							filterDocumentsforApproval(Number);
+							logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
+						}
 					}
 				}
 			}
-		}
+		} while (i < 5);
 		assertTrue(flag);
 	}
 
@@ -309,7 +313,7 @@ public class ApprovalPageFunctions {
 	 * @author Sakthi-GWL
 	 * @param Number
 	 */
-	private void clickApproveRadioBtn(String Number) {
+	public void clickApproveRadioBtn(String Number) {
 		int i = 1;
 		a: do {
 			flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
@@ -321,7 +325,7 @@ public class ApprovalPageFunctions {
 						|| webDB.verifyIsElementDisplayed(ApprovalPageLocators.ApproveErrorToast, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Ajax and Error Toast Displayed.. Retrying..." + i);
-					i++;
+
 					webDB.navigateToRefresh();
 					filterDocumentsforApproval(Number);
 					clickCheckBoxForDocument(Number);
@@ -331,6 +335,7 @@ public class ApprovalPageFunctions {
 					break a;
 				}
 			}
+			i++;
 		} while ((i <= 5));
 		assertTrue(flag);
 	}
@@ -356,12 +361,12 @@ public class ApprovalPageFunctions {
 					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
 					break a;
 				} else {
-					i++;
 					webDB.navigateToRefresh();
 					filterDocumentsforApproval(Number);
 					logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
 				}
 			}
+			i++;
 		} while ((i <= 3));
 		assertTrue(flag);
 	}

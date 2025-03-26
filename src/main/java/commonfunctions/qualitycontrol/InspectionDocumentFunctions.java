@@ -183,6 +183,19 @@ public class InspectionDocumentFunctions {
 		commonFunc.navigateInspectionDocumentsPage();
 		verifyPendingInspectionDocuments(VariableHandler.getGrnDocNumber());
 		clickTickAndPostIcon();
+		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			commonFunc.navigateInspectionDocumentsPage();
+		}
 		verifyValidateInspectionDocumentsStatus(VariableHandler.getIDNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();

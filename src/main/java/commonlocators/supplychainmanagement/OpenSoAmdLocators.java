@@ -84,10 +84,14 @@ public class OpenSoAmdLocators {
 	public static final String HsnCodeLov = "//*[@id='C882951430504082823_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String IgstFieldInLineDetails = "//*[@id=\'ig_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr/td[13]";
+
 	/** @locatorType Xpath */
 	public static final String CgstFieldLineDetails = "//*[@id=\'ig_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @locatorType Xpath */
 	public static final String SgstFieldLineDetails = "//*[@id=\'ig_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr/td[15]";
+	/** @locatorType Xpath */
+	public static final String UTgstFieldLineDetails = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[16]";
+
 	/** @locatorType Xpath */
 	public static final String CurcyField = "//*[@id='P1915131013016_SRCAHD_CURCY_ID']";
 	/** @locatorType Xpath */
@@ -103,7 +107,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String CustomerIdField = "//*[@id='P1915131013016_SRCAHD_CUST_ID_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String CustomerNameField = "//*[@id='P1915131013016_CUSTOMER_NAME']";
+	public static final String CustomerNameField = "//input[@data-testid='P1915131013016_CUSTOMER_NAME']";
 	/** @locatorType Xpath */
 	public static final String OpenSoDocumentNumber = "//*[@id=\"P1915131013016_SRCAHD_CONTR_NO\"]";
 	/** @locatorType Xpath */
@@ -111,16 +115,58 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String TaxPercent = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
-	public static final String ItemIDField = "//*[@id=\'ig_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String ItemIDField = " //td[@class='a-GV-cell u-tS a-GV-frozen a-GV-frozen--start3']";
 	/** @locatorType Xpath */
 	public static final String ItemDescField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
 	/** @locatorType Xpath */
 	public static final String ItemUOM = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String ExistingPrice = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+
+	public static final String CurrentRateContractSelectAll = "//*[@id=\"check_all\"]";
 	/** @locatorType Xpath */
 	public static final String PoDate = "//input[@id='P1915131013016_SRCAHD_PO_DATE_input']";
 	/** @locatorType Xpath */
 	public static final String PoDateField = "//input[@id='P1915131013016_SRCAHD_PO_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String contractNo = "//button[@id='P1915131012028_CONTRACT_NO_lov_btn']";
+
+	/** @locatorType Xpath */
+	public static final String CustomerLovButton = "//button[contains(@id,'P1915131012028_CUSTOMER_lov_btn')]";
+
+	/** @locatorType Xpath */
+	public static final String AmdNo = "//span[@data-testid='P1915131013016_SRCAHD_AMD_NO']";
+	/** @locatorType Xpath */
+	public static final String OpenSoDocNo = "//input[@data-testid='P1915131013016_SRCAHD_CONTR_NO']";
+
+	/** @locatorType Xpath */
+	public static final String ItemIdField(int i) {
+		return "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[3]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ItemDesField(int i) {
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ItemUom(int i) {
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[6]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String RevPriceField(int i) {
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[7]";
+	}
+
+	public static final String UtgstField(int i) {
+		return "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[" + i + "]/td[16]";
+
+	}
+
+	public static final String OpensoDoc(int i) {
+		return "/html/body/form/div[1]/div[2]/div[2]/main/div[2]/div/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div["
+				+ i + "]/input";
+	}
 
 }

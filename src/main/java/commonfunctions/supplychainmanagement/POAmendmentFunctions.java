@@ -1321,7 +1321,6 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
 		approvalFunc.navigateToApprovals();
 		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
@@ -1399,7 +1398,7 @@ public class POAmendmentFunctions {
 	}
 
 	/**
-	 * Verify Direct PO Domestic GEneral With Similar Stock And Supplier UOM
+	 * Verify Direct PO Domestic GEneral With Dissimilar Stock And Supplier UOM
 	 * 
 	 * @author Deepan-GWL
 	 */

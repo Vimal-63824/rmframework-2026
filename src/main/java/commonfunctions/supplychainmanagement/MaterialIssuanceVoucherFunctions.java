@@ -329,6 +329,7 @@ public class MaterialIssuanceVoucherFunctions {
 		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
+			webDB.moveToElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 			commonFunc.hardWait(3000);
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
