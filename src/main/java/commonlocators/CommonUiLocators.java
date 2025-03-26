@@ -162,7 +162,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderTabForPurchaseUser = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
+	public static final String PurchaseOrderTabForPurchaseUser = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*//a[text()='Purchase Order']";
 	/** @locatorType Xpath */
 	public static final String ProductionPlanningTab = "//span[contains(text(),'Production Planning')]/ancestor::li";
 	/** @locatorType Xpath */
@@ -214,13 +214,13 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ClickGateEntryNode = "//*[@id='t_TreeNav_208']/div[2]/span[2]";
 	/** @locatorType Xpath */
-	public static final String ClickSupplyChaintabForAdminUser = "//*[@id='t_TreeNav_4']/span";
+	public static final String ClickSupplyChaintabForAdminUser = "//span[text()='Supply Chain']";
 	/** @locatorType Xpath */
-	public static final String InventoryTabForAdminUser = "//*[@id='t_TreeNav_18']/span";
+	public static final String InventoryTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String InventoryTransactionTabForAdminUser = "//*[@id='t_TreeNav_22']/span";
+	public static final String InventoryTransactionTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String MaterialReceiptVoucherTabForAdminUser = "//*[@id='t_TreeNav_29']/div[2]/a";
+	public static final String MaterialReceiptVoucherTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*//a[text()='Material Receipt Voucher']";
 	public static final String Subcontracting = "//span[text()='Supply Chain']/ancestor::li/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String SubcontractingTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]";

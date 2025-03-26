@@ -142,6 +142,8 @@ public class GrnPageFunctions {
 			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(GrnLocators.PendingPOCreateGRN, ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
 				webDB.clickAnElement(GrnLocators.PendingPOCreateGRN, ElementType.Xpath);
 				logs.logging("INFO", "GRN Document Created");
 				flag = webDB.waitForElement(GrnLocators.PendingPOClickSupplierBillnumber, ElementType.Xpath);
