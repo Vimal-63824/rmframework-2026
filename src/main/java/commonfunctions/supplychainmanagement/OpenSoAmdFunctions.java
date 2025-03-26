@@ -1,5 +1,10 @@
 package commonfunctions.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks Feburary 12, 2025
+ */
+
 import static org.testng.Assert.assertTrue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -383,6 +388,14 @@ public class OpenSoAmdFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * @author @author Kowshik-RMITS
+	 * This Method is used to Click And Enter A Value In A Table
+	 * 
+	 * @param Tablespec
+	 * @param InputParameter
+	 * @param Enteredvalue
+	 */
 	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
@@ -697,6 +710,12 @@ public class OpenSoAmdFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * To Click All Radio Button
+	 * 
+	 * @author Kowshik-RMITS
+	 *
+	 */
 	public void clickSelectAllRatioButton() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.CurrentRateContractSelectAll, ElementType.Xpath);
 		if (flag) {
@@ -711,6 +730,12 @@ public class OpenSoAmdFunctions {
 		}
 	}
 
+	/**
+	 * To Click All Radio Button
+	 * 
+	 * @author Kowshik-RMITS
+	 *
+	 */
 	public void multiplesLinesInsert(String Hsn_code2) {
 
 		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
