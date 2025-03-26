@@ -186,7 +186,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PendingMIV = "//button[@id='B1493255748221256227']";
 	/** @locatorType Xpath */
-	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[3]";
+	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
 	public static final String ItemMasterAdd = "//*[@id=\"B1284581566305961864\"]/span";
 	/** @locatorType Xpath */
