@@ -43,6 +43,7 @@ public class CompletionProductionOrderFunctions {
 	 */
 	public void searchProductionOrderNoAndVerifyFilter(String ProdNo) {
 		switchToPendingProdOrderIframe();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForClickElement(CompletionProductionOrderLocators.PendingProdOrderSearchBar,
 				ElementType.Xpath);
 		if (flag) {
@@ -53,6 +54,7 @@ public class CompletionProductionOrderFunctions {
 					ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
 						ElementType.Xpath);
 				if (flag) {
@@ -83,9 +85,11 @@ public class CompletionProductionOrderFunctions {
 	 */
 	public void validateItemAndProcessInPendingProdOrderTable(String Item, String Process) {
 		switchToPendingProdOrderIframe();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ItemTableData,
 				ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.PendingProdOrder_ItemTableData, ElementType.Xpath);
 			String DisplayItem = webDB.getTextFromElement(
 					CompletionProductionOrderLocators.PendingProdOrder_ItemTableData, ElementType.Xpath);
 			logs.logging("INFO", "Expected Item: " + Item);
@@ -128,7 +132,7 @@ public class CompletionProductionOrderFunctions {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn, ElementType.Xpath);
-			webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn, ElementType.Xpath);
+			webDB.doubleClickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn, ElementType.Xpath);
 			flag = webDB.waitForClickElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
 					ElementType.Xpath);
 			commonFunc.hardWait(2000);

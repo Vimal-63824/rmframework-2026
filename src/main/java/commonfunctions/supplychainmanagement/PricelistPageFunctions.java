@@ -13,6 +13,7 @@ import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
+import commonlocators.supplychainmanagement.RfqLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -33,16 +34,21 @@ public class PricelistPageFunctions {
 	 */
 
 	public void verifyCreationOfPriceListDomesticSimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickPost();
@@ -65,19 +71,22 @@ public class PricelistPageFunctions {
 	 */
 
 	public void verifyCreationOfPriceListDomesticDissimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -102,18 +111,23 @@ public class PricelistPageFunctions {
 	 */
 
 	public void verifyCreationOfPriceListImportSimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_value"));
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
+				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("Disc_Value"));
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
+				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(3000);
@@ -137,19 +151,22 @@ public class PricelistPageFunctions {
 	 */
 
 	public void verifyCreationOfPriceListImportDissimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -423,17 +440,20 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticSimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -454,19 +474,22 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticDissimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -488,19 +511,22 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportSimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -522,19 +548,22 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportDissimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
+		
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
-				VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -1504,8 +1533,8 @@ public class PricelistPageFunctions {
 					if (flag) {
 						String DisItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setDisItemName(DisItemName);
-						logs.logging("INFO", "Item ID is:" + VariableHandler.getDisItemName());
+						VariableHandler.setItemName(DisItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
 					}
 				}
 
@@ -1521,7 +1550,7 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGenerateItemSim(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
@@ -1562,7 +1591,7 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGenerateItemAmdSim(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
@@ -1587,8 +1616,8 @@ public class PricelistPageFunctions {
 					if (flag) {
 						String AmdSimItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setAmdSimItemName(AmdSimItemName);
-						logs.logging("INFO", "Item ID is:" + VariableHandler.getAmdSimItemName());
+						VariableHandler.setItemName(AmdSimItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
 					}
 				}
 			}
@@ -1603,7 +1632,7 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGenerateItemAmdDis(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
@@ -1624,8 +1653,8 @@ public class PricelistPageFunctions {
 					if (flag) {
 						String AmdDisItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setAmdDisItemName(AmdDisItemName);
-						logs.logging("INFO", "Item ID is:" + VariableHandler.getAmdDisItemName());
+						VariableHandler.setItemName(AmdDisItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
 					}
 				}
 			}
@@ -1645,11 +1674,28 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
 			logs.logging("INFO", "Item is Posted");
-			webDB.waitForElement(PricelistPageLocators.ItemPostSucessMsg, ElementType.Xpath);
+			commonFunc.hardWait(3000);
+			flag = webDB.waitForElementUntilGivenTime(PricelistPageLocators.ItemPostSucessMsg, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Item Add Button is Clicked");
+			} else {
+				flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+				if (flag) {
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
+							System.getProperty("AshokPassword"), "AshokUsername");
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
+					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
+					commonFunc.logoutUser();
+//					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//							"TvsUsername");
+//					commonFunc.navigateItemPage();
+				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1750,16 +1796,71 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfItemforPriceList() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		verifyClickingFindBtnOfItem();
 		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		verifyClickingFindBtnOfItem();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
-		verifyClickingFindBtnOfItem();
 		verifySearchOfItem4(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
+	}
+
+	/**
+	 * This Method is used to search and create Item using copy function
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param CopyItemName
+	 */
+	public void searchItemAndCopyWithName(String Item, String CopyItemName) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is clicked ");
+				verifySearchButtonClicking();
+				verifyClickingGeneralTab();
+				verifyGenerateItemSim(CopyItemName);
+				verifyItemPost();
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Waiting for Approval Dialog Box
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void waitingForApprovalOpo() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(RfqLocators.RfqWorkflowFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(RfqLocators.PRForwardlov,
+					commonFunc.getDataFromTestDataSheet("AshokValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(RfqLocators.ItmworkflowOK, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.ItmworkflowOK, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				commonFunc.hardWait(7000);
+				flag = commonFunc.logoutUser();
+			}
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+
+		assertTrue(flag);
 	}
 
 }

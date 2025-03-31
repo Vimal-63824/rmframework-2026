@@ -1,5 +1,9 @@
 package commonfunctions.supplychainmanagement;
 
+/**
+ * @author Sakthi-GWL, Deepan-GWL
+ * @company Galaxy Weblinks March 04, 2025
+ */
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -43,6 +47,7 @@ public class PurchaseRequestFunctions {
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static ItemDetailsHandler itmDtlHandler = new ItemDetailsHandler();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	private static ApprovalPageFunctions approvalPageFunc = new ApprovalPageFunctions();
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General
@@ -283,12 +288,11 @@ public class PurchaseRequestFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.moveToElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
-					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalPageFunc
+							.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+					verifyApprovePRUsingAshokUser();
 				}
 			}
 		}
@@ -1375,5 +1379,22 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("DeptValue")), Department);
 		verifyAssertionBothValues(dbCommonFunctions.PRHeaderDetails(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("RequestorValue")), Requester);
+	}
+
+	/**
+	 * This Method Is Used To Verify Approve PR Using Ashok User
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyApprovePRUsingAshokUser() {
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalPageFunc.navigateToApprovals();
+		approvalPageFunc.filterDocumentsforApproval(VariableHandler.getPRNumber());
+		approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getPRNumber());
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
 	}
 }
