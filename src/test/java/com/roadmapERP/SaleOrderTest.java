@@ -1,4 +1,7 @@
 package com.roadmapERP;
+
+import java.io.IOException;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -250,6 +253,162 @@ public class SaleOrderTest {
 			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
 	public void VerifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO with Advance Process(PaymentTerm Change)
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 22, groups = { "SalesOrder" }, description = "Create SO with Advance Process(PaymentTerm Change)")
+	public void verifyAdvanceSalesOrderWithAdvancePaymentTerm() throws IOException {
+		flag = SalesOrdFunc.verifyAdvanceSalesOrderWithAdvancePaymentTerm();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Cancel SO Lines
+	 * 
+	 * @author Harikrishna -RMITS
+	 * 
+	 */
+	@Test(priority = 23, groups = { "SalesOrder" }, description = "Cancel SO Lines")
+	public void verifySalesOrderLineWiseCancel() {
+		flag = SalesOrdFunc.verifyCancelSalesOrderLines();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO - Domestic - Interstate Customer
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 24, groups = { "SalesOrder" }, description = "Create SO - Domestic - Interstate Customer")
+	public void SoGeneral() throws IOException {
+		flag = SalesOrdFunc.SoGeneral();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Free Sample type of Sales Order
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 25, groups = { "SalesOrder" }, description = " create Free Sample type of Sales Order")
+	public void SoFreeSample() throws IOException {
+		flag = SalesOrdFunc.SoFreeSample();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Free Replacement type of Sales Order
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 26, groups = { "SalesOrder" }, description = " create Free Replacement type of Sales Order")
+	public void SoFreeReplacement() throws IOException {
+		flag = SalesOrdFunc.SoFreeReplacement();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Scrap type of Sales Order
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 27, groups = { "SalesOrder" }, description = " create Scrap type of Sales Order")
+	public void SoScrap() throws IOException {
+		flag = SalesOrdFunc.SoScrap();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Service type of Sales Order
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 28, groups = { "SalesOrder" }, description = " create Service type of Sales Order")
+	public void SoService() throws IOException {
+		flag = SalesOrdFunc.SoService();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO with Promotional Items
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 29, groups = { "SalesOrder" }, description = "Create SO with Promotional Items")
+	public void SoPromotional() throws IOException {
+		flag = SalesOrdFunc.SoPromotional();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO - Domestic - Local Customer
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 30, groups = { "SalesOrder" }, description = "Create SO - Domestic - Local Customer")
+	public void SoGeneralLocalCustomer() throws IOException {
+		flag = SalesOrdFunc.SoGeneralLocalCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO - Domestic - SEZ Customer
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 31, groups = { "SalesOrder" }, description = "Create SO - Domestic - SEZ  Customer")
+	public void SoGeneralSEZCustomer() throws IOException {
+		flag = SalesOrdFunc.SoGeneralSEZCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Demo Exhibition type of Sales Order
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 32, groups = { "SalesOrder" }, description = " Create Demo Exhibition type of Sales Order")
+	public void SoDemoExhibition() throws IOException {
+		flag = SalesOrdFunc.SoDemoExhibition();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO - Domestic - CESS Customer
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 33, groups = { "SalesOrder" }, description = "Create SO - Domestic - CESS  Customer")
+	public void SoCESS() throws IOException {
+		flag = SalesOrdFunc.SoCESS();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO - Domestic - With Charges
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 34, groups = { "SalesOrder" }, description = "Create SO - Domestic - With Charges")
+	public void SoCharges() throws IOException {
+		flag = SalesOrdFunc.SoCharges();
 		Assert.assertTrue(flag);
 	}
 

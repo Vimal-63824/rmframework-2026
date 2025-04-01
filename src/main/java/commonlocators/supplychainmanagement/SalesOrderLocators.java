@@ -387,7 +387,22 @@ public class SalesOrderLocators {
 	public static final String HeaderINCOTermField = "//span[@id='P191513134001_SOH_FOB_ID_DISPLAY']";
 	/** @Locator Xpath */
 	public static final String HeaderShipViaField = "//span[@id='P191513134001_SOH_SHIPVIA_ID_DISPLAY']";
-	
+	/** @Locator Xpath */
+	public static final String AdvMaterialPercentage = "//input[@id='P191513134001_SOH_ADV_PCT']";
+	/** @Locator Xpath */
+	public static final String AdvTaxPercentage = "//input[@id='P191513134001_SOH_ADV_TAX_PCT']";
+	/** @Locator Xpath */
+	public static final String CESSPct = "//input[@id='P191513134002_SOQ_CESS_PCT']";
+	/** @Locator Xpath */
+	public static final String CESSAmt = "//input[@id='P191513134002_SOQ_CESS_AMT']";
+	/** @Locator Xpath */
+	public static final String Promotional1 = "//span[@id='P191513134002_SOQ_PROMOTION_FLAG_DISPLAY']";
+	/** @Locator Xpath */
+	public static final String LovPopupHighlight = "//span[@class='popup-lov-highlight']";
+	/** @Locator Xpath */
+	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
+	/** Locator @CssSelector */
+	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
@@ -474,7 +489,7 @@ public class SalesOrderLocators {
 		return "(//*[@id=\"ig_line_ig_grid_vc\"]/div/div/table[1])[2]/tbody/tr[" + i
 				+ "]/td[15]/a/span[contains(@style,'blue')]";
 	}
-	
+
 	/** @Locator Xpath */
 	public static final String AdvreceiptsStatusLineTableText(String Advno) {
 		return "//a[text()='" + Advno + "']/../../td[14]";
@@ -484,7 +499,7 @@ public class SalesOrderLocators {
 	public static final String PendingPaymentReceiptCheckBox(String AdvRecDocNum) {
 		return "//td[text()='" + AdvRecDocNum + "']/../td[13]";
 	}
-	
+
 	/** @Locator Xpath */
 	public static final String BankReceiptStatusLineTableText(String BRVno) {
 		return "//a[text()='" + BRVno + "']/../../td[9]";
