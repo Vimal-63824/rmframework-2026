@@ -55,7 +55,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
-	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
+	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[7]/*/a[text()='Purchase Request(PR)']";
 	/** @locatorType Xpath */
 	public static final String PendingText = "//h1";
 	/** @locatorType Xpath */

@@ -1325,6 +1325,7 @@ public class SalesOrderFunctions {
 		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CustomerLov, Customer);
 		commonFunc.checkRefreshCellsDisappear();
 		clickTickIcon();
+		verifySalesOrderDocumentStatusDraftWithDB();
 		validateLoactionInSOHeader(Location);
 		validateUnitInSOHeader(Unit);
 //		validateCustomerInSOHeader(Customer);
