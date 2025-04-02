@@ -142,7 +142,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Header Details
 	 * 
@@ -280,7 +280,7 @@ public class DBCommonFunctions {
 		}
 		return returnname;
 	}
-	
+
 	/**
 	 * StockQuery
 	 * 
@@ -294,7 +294,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONumber, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Charges Details
 	 * 
