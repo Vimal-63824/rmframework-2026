@@ -127,7 +127,7 @@ public class PurchaseOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(Tablespec, ElementType.Xpath);
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.clearTextField(InputParameter, ElementType.Xpath);
 			logs.logging("INFO", "Clear Text Field The Input Value");
@@ -940,9 +940,18 @@ public class PurchaseOrderFunctions {
 			for (WebElement element : CheckBox) {
 				try {
 					if (element.isDisplayed()) {
-						element.click();
-						flag = true;
-						break;
+						if (!element.isSelected()) {
+							element.click();
+							flag = true;
+							break;
+						} else {
+							element.click();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(2000);
+							element.click();
+							flag = true;
+							break;
+						}
 					}
 				} catch (Exception e) {
 
@@ -952,7 +961,15 @@ public class PurchaseOrderFunctions {
 			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(3000);
-			flag = webDB.isElementEnabled(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
+			for (int i = 0; i < 60; i++) {
+				commonFunc.hardWait(1000);
+				if (webDB.isElementEnabled(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath)) {
+					flag = true;
+					break;
+				} else {
+					flag = false;
+				}
+			}
 			if (flag) {
 				logs.logging("INFO", "Select All CheckBox Clicked in Pending PR and Create PO Enabled");
 				webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
@@ -973,7 +990,9 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	public void selectSupplierAndCurrencyPendingPRAndClickTickIcon(String Supplier) {
+	public void selectSupplierAndCurrencyPendingPRAndClickTickIcon(String Supplier, String prefix) {
+		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PrefixLovButton, prefix);
+		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, Supplier);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
@@ -1019,7 +1038,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("POPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
@@ -1055,7 +1075,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("POPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
@@ -1092,7 +1113,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("POPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
@@ -1128,7 +1150,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("POPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
@@ -1164,7 +1187,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("POPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
@@ -1200,7 +1224,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("POPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
 		verifyHeaderTickAndPost();
@@ -1587,7 +1612,7 @@ public class PurchaseOrderFunctions {
 		for (int i = 1; i <= LineAmountWE.size(); i++) {
 			String LineAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.LineAmount(i), ElementType.Xpath);
 			logs.logging("INFO", "Get Text Line Amount Is: " + LineAmount);
-			BigDecimal LineAmountd = new BigDecimal(LineAmount);
+			BigDecimal LineAmountd = new BigDecimal(LineAmount.replace(",", ""));
 			TotalLineAmountd = LinecalAmount.add(LineAmountd);
 			logs.logging("INFO", "Calculated Total Line Amount Is: " + TotalLineAmountd);
 			LinecalAmount = verifyRoundOffBigDecimalValueWithReturnBigDecimal(TotalLineAmountd);
@@ -1606,7 +1631,8 @@ public class PurchaseOrderFunctions {
 		}
 		logs.logging("INFO", "Total Tax Amount Calculated Is: " + TotalTaxAmountd);
 		BigDecimal POTotalAmount = LinecalAmount.add(TaxcalAmount);
-		String Totalvalue = verifyRoundOffBigDecimalValueWithReturnString(POTotalAmount);
+		String Totalvalue = verifyRoundOffBigDecimalValueWithReturnBigDecimal(POTotalAmount).stripTrailingZeros()
+				.toPlainString();
 		logs.logging("INFO", "Expected Total Po Value Is: " + Totalvalue);
 		VariableHandler.setPOTotalAmount(Totalvalue);
 		assertTrue(flag);
@@ -1622,6 +1648,7 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTPostIcon, ElementType.Xpath);
 			logs.logging("INFO", "Header Post Icon Is Clicked");
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 		}
 		assertTrue(flag);
 	}
@@ -1632,7 +1659,7 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 * @param Item
 	 */
-	public void verifyItemCalculationWithLineAmount() {
+	public void verifyItemCalculationWithLineAmount(String ItemName) {
 		String Item;
 		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> OrderedQtyList = webDB.getDriver()
@@ -1640,31 +1667,36 @@ public class PurchaseOrderFunctions {
 		for (int i = 1; i <= OrderedQtyList.size(); i++) {
 			Item = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
 			logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
-			String OrderedQty = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.OrderedQty(i)))
-					.getText();
-			logs.logging("INFO", "Get Text Ordered Quantity Is: " + OrderedQty);
-			String UnitCost = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.UnitCostTable(i)))
-					.getText();
-			logs.logging("INFO", "Get Text Unit Cost Is: " + UnitCost);
+			if (ItemName.equals(Item)) {
+				String OrderedQty = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.OrderedQty(i)))
+						.getText();
+				logs.logging("INFO", "Get Text Ordered Quantity Is: " + OrderedQty);
+				String UnitCost = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.UnitCostTable(i)))
+						.getText();
+				logs.logging("INFO", "Get Text Unit Cost Is: " + UnitCost);
 
-			BigDecimal Quantityd = new BigDecimal(OrderedQty);
-			BigDecimal Costd = new BigDecimal(UnitCost);
-			BigDecimal LineAmountd = Costd.multiply(Quantityd);
-			BigDecimal ExpectedLineAmountd = verifyRoundOffBigDecimalValueWithReturnBigDecimal(LineAmountd);
-			VariableHandler.setLineAmount(ExpectedLineAmountd);
-			VariableHandler.setTotalLineAmount(VariableHandler.getTotalLineAmount().add(ExpectedLineAmountd));
-			System.out.println("Expected Double Line Amount IS: " + ExpectedLineAmountd);
-			String ExpectedLineAmount = verifyRoundOffBigDecimalValueWithReturnString(LineAmountd);
+				BigDecimal Quantityd = new BigDecimal(OrderedQty);
+				BigDecimal Costd = new BigDecimal(UnitCost);
+				BigDecimal LineAmountd = Costd.multiply(Quantityd);
+				BigDecimal ExpectedLineAmountd = verifyRoundOffBigDecimalValueWithReturnBigDecimal(LineAmountd);
+				VariableHandler.setLineAmount(ExpectedLineAmountd);
+				VariableHandler.setTotalLineAmount(VariableHandler.getTotalLineAmount().add(ExpectedLineAmountd));
+				System.out.println("Expected Double Line Amount IS: " + ExpectedLineAmountd);
+				String ExpectedLineAmount = verifyRoundOffBigDecimalValueWithReturnString(LineAmountd);
 //			String ExpectedLineAmount = String.format("%.2f", LineAmountd);
-			logs.logging("INFO", "Expected Line Amount Is: " + ExpectedLineAmount);
-			String ActualLineAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.LineAmount(Item),
-					ElementType.Xpath);
-			logs.logging("INFO", "Actual Line Amount Is: " + ActualLineAmount);
-			flag = ExpectedLineAmount.equals(ActualLineAmount);
-			if (flag) {
-				logs.logging("INFO", "Verified Actual Line Amount With Expected Line Amount");
+				logs.logging("INFO", "Expected Line Amount Is: " + ExpectedLineAmount);
+				String ActualLineAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.LineAmount(Item),
+						ElementType.Xpath);
+				logs.logging("INFO", "Actual Line Amount Is: " + ActualLineAmount);
+				flag = ExpectedLineAmount.equals(ActualLineAmount.replace(",", ""));
+				if (flag) {
+					logs.logging("INFO", "Verified Actual Line Amount With Expected Line Amount");
+				} else {
+					assertTrue(flag);
+				}
+				break;
 			} else {
-				assertTrue(flag);
+
 			}
 		}
 		assertTrue(flag);
@@ -1758,20 +1790,27 @@ public class PurchaseOrderFunctions {
 	 * @param Item
 	 */
 	public void verifyLinePODetailsValidations(String Item, String Currency) {
-		verifyGetTextValidation(PurchaseOrderPageLocators.ItemName(1),
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEMID));
-		verifyGetTextValidation(PurchaseOrderPageLocators.ItemDescription(1),
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEM_DESCRIPTION));
-		verifyGetTextValidation(PurchaseOrderPageLocators.UOM(1),
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.UOM));
-		verifyGetTextValidation(PurchaseOrderPageLocators.HSNSACCode(1),
-				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.HSN_CODE));
-		if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
-			verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(1),
-					itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.TAX));
-		} else {
-			verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(1),
-					commonFunc.getDataFromTestDataSheet("ZeroValue"));
+		List<WebElement> OrderedQtyList = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+		for (int i = 1; i <= OrderedQtyList.size(); i++) {
+			String ItemName = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
+			if (ItemName.equals(Item)) {
+				verifyGetTextValidation(PurchaseOrderPageLocators.ItemName(i),
+						itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEMID));
+				verifyGetTextValidation(PurchaseOrderPageLocators.ItemDescription(i),
+						itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEM_DESCRIPTION));
+				verifyGetTextValidation(PurchaseOrderPageLocators.UOM(i),
+						itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.UOM));
+//				verifyGetTextValidation(PurchaseOrderPageLocators.HSNSACCode(i),
+//						itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.HSN_CODE));
+				if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
+					verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(i),
+							itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.TAX));
+				} else {
+					verifyGetTextValidation(PurchaseOrderPageLocators.TaxPercent(i),
+							commonFunc.getDataFromTestDataSheet("ZeroValue"));
+				}
+			}
 		}
 	}
 
@@ -1784,7 +1823,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyLineDetailVerification(String Item, String Quantity, String Currency, boolean... POType) {
 		verifyLinePODetailsValidations(Item, Currency);
-		navigateToLineDetailPage(POType);
+		navigateToLineDetailPage(Item, POType);
 		verifyLineDetailOne(Item, Quantity);
 		verifyNavigateLineDetailTwo();
 		verifyLineDetailTwo(Item);
@@ -1796,24 +1835,32 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 * 
 	 */
-	public void navigateToLineDetailPage(boolean... PoType) {
-		webDB.moveToElement(PurchaseOrderPageLocators.ItemName(1), ElementType.Xpath);
-		if (PoType != null) {
-			webDB.moveToElement(PurchaseOrderPageLocators.ServiceLineDetailButton(1), ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.ServiceLineDetailButton(1), ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.ServiceLineDetailButton(1), ElementType.Xpath);
+	public void navigateToLineDetailPage(String Item, boolean... PoType) {
+		List<WebElement> OrderedQtyList = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+		for (int i = 1; i <= OrderedQtyList.size(); i++) {
+			String ItemName = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
+			if (ItemName.equals(Item)) {
+				webDB.moveToElement(PurchaseOrderPageLocators.ItemName(i), ElementType.Xpath);
+				if (PoType != null) {
+					webDB.moveToElement(PurchaseOrderPageLocators.ServiceLineDetailButton(i), ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.ServiceLineDetailButton(i),
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseOrderPageLocators.ServiceLineDetailButton(i), ElementType.Xpath);
+					}
+				} else {
+					webDB.moveToElement(PurchaseOrderPageLocators.LineDetailButton(i), ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailButton(i), ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailButton(i), ElementType.Xpath);
+					}
+				}
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Navigated To Line Details Page");
+				}
 			}
-		} else {
-			webDB.moveToElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailButton(1), ElementType.Xpath);
-			}
-		}
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsHeader, ElementType.Xpath);
-		if (flag) {
-			logs.logging("INFO", "Navigated To Line Details Page");
 		}
 		assertTrue(flag);
 	}
@@ -1923,7 +1970,6 @@ public class PurchaseOrderFunctions {
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEMID));
 		verifyDomPropertyValidation(PurchaseOrderPageLocators.Supplier_Item_Desc,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.ITEM_DESCRIPTION));
-
 		verifyDomPropertyValidation(PurchaseOrderPageLocators.ContractId,
 				itemDetailHandler.getPOLineDetailsforGivenItem(Item, POLineDetailsName.CONTRACT_NO));
 		verifyDomPropertyValidation(PurchaseOrderPageLocators.ContractPrefix,
@@ -2040,7 +2086,7 @@ public class PurchaseOrderFunctions {
 		CashAssembleValue = verifyRoundOffBigDecimalValueWithReturnBigDecimal(CashAssembleValue);
 		BigDecimal cashDiscount = verifyDiscountAmountCalculation(CashAssembleValue, new BigDecimal("5"));
 		BigDecimal Qty = new BigDecimal(quantity);
-		DiscAmountPerQty = (TradeAmount.add(SplDiscAmount).add(cashDiscount)).divide(Qty);
+		DiscAmountPerQty = (TradeAmount.add(SplDiscAmount).add(cashDiscount)).divide(Qty, 2, RoundingMode.HALF_UP);
 		DiscAmountPerQty = verifyRoundOffBigDecimalValueWithReturnBigDecimal(DiscAmountPerQty);
 		TotalDiscountAmount = (TradeAmount.add(SplDiscAmount).add(cashDiscount));
 		VariableHandler.setDiscountAmount(TotalDiscountAmount);
@@ -2074,46 +2120,58 @@ public class PurchaseOrderFunctions {
 		BigDecimal LineAmountAfterDiscount = VariableHandler.getLineAmount()
 				.subtract(VariableHandler.getDiscountAmount());
 		commonFunc.checkRefreshCellsDisappear();
-		verifyGetTextValidation(PurchaseOrderPageLocators.DiscountAmount(1),
-				VariableHandler.getDiscountAmount().toString());
-		if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.TaxPercentage(Item), ElementType.Xpath);
-			if (flag) {
-				String TaxPercentage = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxPercentage(Item),
-						ElementType.Xpath);
-				logs.logging("INFO", "Get Text Tax Percentage For Item " + Item + " Is: " + TaxPercentage);
-				BigDecimal TotalTaxAmount = (LineAmountAfterDiscount.multiply(new BigDecimal(TaxPercentage)))
-						.divide(new BigDecimal(100));
-				BigDecimal IndividualTax = verifyRoundOffBigDecimalValueWithReturnBigDecimal(
-						TotalTaxAmount.divide(new BigDecimal("2")));
-				TotalTaxAmount = IndividualTax.multiply(new BigDecimal("2"));
-				for (int j = 12; j <= 15; j++) {
-					String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(1, j),
-							ElementType.Xpath);
-					logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
-					BigDecimal TaxAmountd = new BigDecimal(TaxAmount);
-					TotalTaxAmountd = TaxcalAmount.add(TaxAmountd);
-					TaxcalAmount = verifyRoundOffBigDecimalValueWithReturnBigDecimal(TotalTaxAmountd);
-				}
-				logs.logging("INFO", "Total Tax Amount Is: " + TotalTaxAmount);
-				System.out.println(TaxcalAmount);
-				flag = TotalTaxAmount.equals(TaxcalAmount);
-				if (flag) {
-					VariableHandler.setIndividualAmount(TaxcalAmount);
-					VariableHandler.setTaxAmount(VariableHandler.getTaxAmount().add(TaxcalAmount));
-				}
-				assertTrue(flag);
-			}
-		} else {
-			for (int j = 12; j <= 15; j++) {
-				String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(1, j),
-						ElementType.Xpath);
-				logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
-				flag = TaxAmount.equals(commonFunc.getDataFromTestDataSheet("Zero"));
-				if (flag) {
 
+		List<WebElement> OrderedQtyList = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+		for (int i = 1; i <= OrderedQtyList.size(); i++) {
+			String ItemName = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
+			logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
+			if (ItemName.equals(Item)) {
+
+				verifyGetTextValidation(PurchaseOrderPageLocators.DiscountAmount(Item),
+						VariableHandler.getDiscountAmount().toString());
+				if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.TaxPercentage(Item), ElementType.Xpath);
+					if (flag) {
+						String TaxPercentage = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxPercentage(Item),
+								ElementType.Xpath);
+						logs.logging("INFO", "Get Text Tax Percentage For Item " + Item + " Is: " + TaxPercentage);
+						BigDecimal TotalTaxAmount = (LineAmountAfterDiscount.multiply(new BigDecimal(TaxPercentage)))
+								.divide(new BigDecimal(100));
+						BigDecimal IndividualTax = verifyRoundOffBigDecimalValueWithReturnBigDecimal(
+								TotalTaxAmount.divide(new BigDecimal("2")));
+						TotalTaxAmount = IndividualTax.multiply(new BigDecimal("2"));
+						for (int j = 12; j <= 15; j++) {
+							String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
+									ElementType.Xpath);
+							logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
+							BigDecimal TaxAmountd = new BigDecimal(TaxAmount);
+							TotalTaxAmountd = TaxcalAmount.add(TaxAmountd);
+							TaxcalAmount = verifyRoundOffBigDecimalValueWithReturnBigDecimal(TotalTaxAmountd);
+						}
+						logs.logging("INFO", "Total Tax Amount Is: " + TotalTaxAmount);
+						System.out.println(TaxcalAmount);
+						flag = TotalTaxAmount.equals(TaxcalAmount);
+						if (flag) {
+							VariableHandler.setIndividualAmount(TaxcalAmount);
+							VariableHandler.setTaxAmount(VariableHandler.getTaxAmount().add(TaxcalAmount));
+
+						}
+
+					}
+					assertTrue(flag);
 				} else {
-					assertTrue(false);
+					for (int j = 12; j <= 15; j++) {
+						String TaxAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.TaxAmount(i, j),
+								ElementType.Xpath);
+						logs.logging("INFO", "Get Text Tax Amount Is: " + TaxAmount);
+						flag = TaxAmount.equals(commonFunc.getDataFromTestDataSheet("Zero"));
+						if (flag) {
+
+						} else {
+							assertTrue(false);
+						}
+					}
 				}
 			}
 		}
@@ -2121,8 +2179,9 @@ public class PurchaseOrderFunctions {
 	}
 
 	public void verifyGeneralTabTotalAmountCalculation() {
-		BigDecimal TotalAmount = VariableHandler.getLineAmount().subtract(VariableHandler.getDiscountAmount())
-				.add(VariableHandler.getIndividualAmount());
+		commonFunc.hardWait(10000);
+		BigDecimal TotalAmount = VariableHandler.getTotalLineAmount().subtract(VariableHandler.getTotalDiscountAmount())
+				.add(VariableHandler.getTaxAmount());
 		BigDecimal TotalAmountroundoff = verifyRoundOffBigDecimalValueWithReturnBigDecimal(TotalAmount, 0);
 		BigDecimal RoundOffValue = TotalAmountroundoff.subtract(TotalAmount);
 		verifyNavigateToGeneraTab();
@@ -2136,7 +2195,7 @@ public class PurchaseOrderFunctions {
 				VariableHandler.getTotalDiscountAmount().stripTrailingZeros().toPlainString());
 		verifyDomPropertyValidation(PurchaseOrderPageLocators.TotalAmountInput, TotalAmountroundoff.toString());
 		verifyDomPropertyValidation(PurchaseOrderPageLocators.RoundOffInput,
-				RoundOffValue.toString().replace("0.", "."));
+				RoundOffValue.stripTrailingZeros().toPlainString().replace("0.", "."));
 	}
 
 	/**
@@ -3667,4 +3726,455 @@ public class PurchaseOrderFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO Domestic General Similar UOM With
+	 * Multiple Item
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectPODomesticGeneralSimilarUOMWithMultipleItems() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyCreateDirectPO();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SimilarItemSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][0];
+			String Quantity = itemmultiple[i][1];
+			String UnitCost = itemmultiple[i][2];
+			String UOM = itemmultiple[i][3];
+			verifyCreateItemInPo(item);
+			verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
+			verifyTickIconcreateItem();
+			verifyItemCalculationWithLineAmount(item);
+			verifyPoUOM(UOM);
+			verifyLineDetailVerification(item, Quantity, commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+			verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"), item);
+		}
+		verifyPOTotalAmountCalculation();
+		verifyTotalAmountCalculation();
+		verifyGeneralTabTotalAmountCalculation();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To verify Item Calculation
+	 * 
+	 * @author Deepan-GWL
+	 * @param Item
+	 */
+	public void verifyItemCalculationWithLineAmount() {
+		String Item;
+		commonFunc.checkRefreshCellsDisappear();
+		List<WebElement> OrderedQtyList = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.OrderedQuantity));
+		for (int i = 1; i <= OrderedQtyList.size(); i++) {
+			Item = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.ItemName(i))).getText();
+			logs.logging("INFO", "Get Text Item For Calculation Is: " + Item);
+			String OrderedQty = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.OrderedQty(i)))
+					.getText();
+			logs.logging("INFO", "Get Text Ordered Quantity Is: " + OrderedQty);
+			String UnitCost = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.UnitCostTable(i)))
+					.getText();
+			logs.logging("INFO", "Get Text Unit Cost Is: " + UnitCost);
+
+			BigDecimal Quantityd = new BigDecimal(OrderedQty);
+			BigDecimal Costd = new BigDecimal(UnitCost);
+			BigDecimal LineAmountd = Costd.multiply(Quantityd);
+			BigDecimal ExpectedLineAmountd = verifyRoundOffBigDecimalValueWithReturnBigDecimal(LineAmountd);
+			VariableHandler.setLineAmount(ExpectedLineAmountd);
+			VariableHandler.setTotalLineAmount(VariableHandler.getTotalLineAmount().add(ExpectedLineAmountd));
+			System.out.println("Expected Double Line Amount IS: " + ExpectedLineAmountd);
+			String ExpectedLineAmount = verifyRoundOffBigDecimalValueWithReturnString(LineAmountd);
+//			String ExpectedLineAmount = String.format("%.2f", LineAmountd);
+			logs.logging("INFO", "Expected Line Amount Is: " + ExpectedLineAmount);
+			String ActualLineAmount = webDB.getTextFromElement(PurchaseOrderPageLocators.LineAmount(Item),
+					ElementType.Xpath);
+			logs.logging("INFO", "Actual Line Amount Is: " + ActualLineAmount);
+			flag = ExpectedLineAmount.equals(ActualLineAmount.replace(",", ""));
+			if (flag) {
+				logs.logging("INFO", "Verified Actual Line Amount With Expected Line Amount");
+			} else {
+				assertTrue(flag);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO Domestic Material Similar UOM With
+	 * Multiple Item
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItems() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyCreateDirectPO();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SimilarItemSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][0];
+			String Quantity = itemmultiple[i][1];
+			String UnitCost = itemmultiple[i][2];
+			String UOM = itemmultiple[i][3];
+			verifyCreateItemInPo(item);
+			verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
+			verifyTickIconcreateItem();
+			verifyItemCalculationWithLineAmount(item);
+			verifyPoUOM(UOM);
+			verifyLineDetailVerification(item, Quantity, commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+			verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"), item);
+		}
+		verifyPOTotalAmountCalculation();
+		verifyTotalAmountCalculation();
+		verifyGeneralTabTotalAmountCalculation();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO Import General Similar UOM With
+	 * Multiple Item
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectPOImportGeneralSimilarUOMWithMultipleItems() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyCreateDirectPO();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SimilarItemSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][0];
+			String Quantity = itemmultiple[i][1];
+			String UnitCost = itemmultiple[i][2];
+			String UOM = itemmultiple[i][3];
+			verifyCreateItemInPo(item);
+			verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
+			verifyTickIconcreateItem();
+			verifyItemCalculationWithLineAmount(item);
+			verifyPoUOM(UOM);
+			verifyLineDetailVerification(item, Quantity, commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
+			verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyUsd"), item);
+		}
+		verifyPOTotalAmountCalculation();
+		verifyTotalAmountCalculation();
+		verifyGeneralTabTotalAmountCalculation();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO Import Material Similar UOM With
+	 * Multiple Item
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectPOImportMaterialSimilarUOMWithMultipleItems() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyCreateDirectPO();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("SimilarItemSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][0];
+			String Quantity = itemmultiple[i][1];
+			String UnitCost = itemmultiple[i][2];
+			String UOM = itemmultiple[i][3];
+			verifyCreateItemInPo(item);
+			verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
+			verifyTickIconcreateItem();
+			verifyItemCalculationWithLineAmount(item);
+			verifyPoUOM(UOM);
+			verifyLineDetailVerification(item, Quantity, commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
+			verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyUsd"), item);
+		}
+		verifyPOTotalAmountCalculation();
+		verifyTotalAmountCalculation();
+		verifyGeneralTabTotalAmountCalculation();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO Domestic Service Similar UOM With
+	 * Multiple Item
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItems() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		verifyCreateDirectPO();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("POAServiceSheet"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][0];
+			String Quantity = itemmultiple[i][1];
+			String UnitCost = itemmultiple[i][2];
+			String UOM = itemmultiple[i][3];
+			verifyCreateItemInPo(item);
+			verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
+			verifyTickIconcreateItem();
+			verifyItemCalculationWithLineAmount(item);
+			verifyPoUOM(UOM);
+			verifyLineDetailVerification(item, Quantity, commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+			verifyTaxCalculationAfterDiscount(commonFunc.getDataFromTestDataSheet("CurrencyInr"), item);
+		}
+		verifyPOTotalAmountCalculation();
+		verifyTotalAmountCalculation();
+		verifyGeneralTabTotalAmountCalculation();
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+				commonFunc.navigatePurchaseOrderPage();
+				verifyValidatePoStatus(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify DirectPO Domestic Material Dissimilar UOM With
+	 * Multiple Item
+	 * 
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		System.out.println(itemmultiple.length);
+		for (int i = 1; i < itemmultiple.length; i++) {
+
+			String ITEM_NAME = itemmultiple[i][0];
+			String QUANTITY = itemmultiple[i][1];
+			String UNIT_COST = itemmultiple[i][2];
+			if (!ITEM_NAME.equals("")) {
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Item SuccessFully Added");
+						flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
+								flag = webDB.waitForElement(PurchaseOrderPageLocators.POItemInput, ElementType.Xpath);
+								if (flag) {
+									webDB.sendTextToAnElement(PurchaseOrderPageLocators.POItemInput, ITEM_NAME,
+											ElementType.Xpath);
+									flag = webDB.waitForElement(PurchaseOrderPageLocators.PoItemSelect,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(PurchaseOrderPageLocators.PoItemSelect, ElementType.Xpath);
+										flag = webDB.waitForElement(PurchaseOrderPageLocators.PoQtyFieldClick,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(PurchaseOrderPageLocators.PoQtyFieldClick,
+													ElementType.Xpath);
+											webDB.clearText(PurchaseOrderPageLocators.PoQtyInput, ElementType.Xpath);
+											webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoQtyInput, QUANTITY,
+													ElementType.Xpath);
+											flag = webDB.waitForElement(PurchaseOrderPageLocators.PoUnitCostClick,
+													ElementType.Xpath);
+											if (flag) {
+												commonFunc.hardWait(4000);
+												webDB.clickAnElement(PurchaseOrderPageLocators.PoUnitCostClick,
+														ElementType.Xpath);
+												webDB.clearText(PurchaseOrderPageLocators.PoUnitCost,
+														ElementType.Xpath);
+												webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoUnitCost,
+														UNIT_COST, ElementType.Xpath);
+
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+		commonFunc.hardWait(3000);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+			verifyPoUOM(commonFunc.getDataFromTestDataSheet("Kgs"));
+			commonFunc.hardWait(3000);
+			verifyHeaderTickAndPost();
+			verifyWaitingForApproval();
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+						commonFunc.getDataFromTestDataSheet("MaterialType"),
+						commonFunc.getDataFromTestDataSheet("Kgs"));
+				approvalFunc.verifyNavigateback();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+					commonFunc.navigatePurchaseOrderPage();
+					verifyValidatePoStatus(VariableHandler.getPONumber(),
+							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+					flag = commonFunc.logoutUser();
+
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
 }

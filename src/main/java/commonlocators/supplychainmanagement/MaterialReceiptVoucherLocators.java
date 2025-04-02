@@ -94,4 +94,11 @@ public class MaterialReceiptVoucherLocators {
 	public static final String MrvDocumentNumberToastAlert = "//h6[@class='succ_msg']";
 	/** @locatorType Xpath */
 	public static final String VoucherNo = "//button[@id='P9313117703_VOU_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String MrvDocLovBtn = "//button[@id='P93131177_VOU_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String MrvDocNumberDrillDown = "//*[@id=\"2708497647223109870_orig\"]/tbody/tr[2]/td[5]/a";
+	/** @locatorType Xpath */
+	public static final String MrvDocNumberSearchBtn = "//button[@id='B1651762009575460806']";
+
 }

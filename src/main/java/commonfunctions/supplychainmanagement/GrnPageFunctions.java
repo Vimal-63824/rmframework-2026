@@ -1517,7 +1517,7 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void poToGrnGeneralPriceListSameStockAndSupplierUOMWithInspection() {
+	public void poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan() {
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlan();
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
@@ -1554,6 +1554,92 @@ public class GrnPageFunctions {
 		overAllSaveAndPost();
 		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Method to Handle PO To GRN Material User Defined Stock And Supplier
+	 * DisUom With And Without Inspection Plan
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlan() {
+		POfunc.verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		lotAndSerialWithMaterialTypeForDisUOM();
+		lotSerialQtyApportion();
+		overAllSaveAndPost();
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+
+	}
+
+	/**
+	 * This Method to Handle lot And Serial With Material Type For DisUOM
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void lotAndSerialWithMaterialTypeForDisUOM() {
+
+		flag = webDB.waitForElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Successfully Created GRN and Entered GRN Transaction Screen");
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "LOT/SERIAL Button Clicked");
+			flag = webDB.waitForElement(GrnLocators.LotSerialIframe, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+				ExcelUtils excelUtils = new ExcelUtils();
+				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+						+ "ItemDetails.xlsx";
+				itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+						webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+				for (int i = 1; i < itemmultiple.length; i++) {
+					String ITEM_NAME = itemmultiple[i][0];
+					String LOT_SERIAL = itemmultiple[i][3];
+					String LOT_NUMBER = itemmultiple[i][4];
+					String SERIAL_NUMBER = itemmultiple[i][5];
+					if (!ITEM_NAME.equals("")) {
+						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
+							continue;
+						}
+						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
+								if (flag) {
+									if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Lot"))) {
+										inputLotNumber(ITEM_NAME, LOT_NUMBER);
+									} else if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Serial"))) {
+										inputSerialNumber(ITEM_NAME, SERIAL_NUMBER);
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 
 }
