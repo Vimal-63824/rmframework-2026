@@ -124,4 +124,6 @@ public class PaymentReceiptsLocators {
 
 	/** @locatorType Xpath */
 	public static final String ExpandButton = "//button[@id='t_Button_rightControlButton'][@aria-expanded='true']";
+	/** @locatorType Xpath */
+	public static final String SelectBank = "//select[@id='P3413101001_SUPHD_TYPE']";
 }

@@ -387,7 +387,7 @@ public class InspectionDocumentFunctions {
 				int endNum = Integer.parseInt(toNum);
 				ArrayList<String> allDocumentNumbers = new ArrayList<>();
 				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "ID100/" + String.format("%05d", i) + "/24-25";
+					String generatedDocumentNumber = "ID100/" + String.format("%05d", i) + "/25-26";
 					allDocumentNumbers.add(generatedDocumentNumber);
 				}
 				VariableHandler.setAllDocumentNumber(allDocumentNumbers);

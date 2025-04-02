@@ -305,8 +305,8 @@ public class PurchaseOrderPageLocators {
 	public static final String DiscountDetailHeader = "//h2[@id='R1467193047076536437_heading']";
 
 	/** @locatorType Xpath */
-	public static final String DiscountAmount(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[8]";
+	public static final String DiscountAmount(String Item) {
+		return "//td[text()='" + Item + "']/../td[8]";
 	}
 
 	/** @locatorType Xpath */
@@ -340,5 +340,11 @@ public class PurchaseOrderPageLocators {
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1652647721744321354']";
 	/** @locatorType Xpath */
 	public static final String SaleOrderDrillDown = "//*[@id='1960290421519866117_orig']/tbody/tr[2]/td[8]/a";
+	/** @locatorType Xpath */
+	public static final String PrefixLovButton = "//button[@id='P16151310407_PFX_lov_btn']";
 
+	/** @locatorType Xpath */
+	public static final String CsQty(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[7		]";
+	}
 }
