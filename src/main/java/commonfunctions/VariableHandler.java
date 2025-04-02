@@ -156,6 +156,13 @@ public class VariableHandler {
 	private static ThreadLocal<String> ScoPurchaseNumber = new ThreadLocal<>();
 	private static ThreadLocal<BigDecimal> RevisiedValue = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TaxPercent = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<String> PaymentTermAdvMatPercentage = new ThreadLocal<>();
+	private static ThreadLocal<String> PaymentTermAdvTaxPercentage = new ThreadLocal<>();
+	private static ThreadLocal<String> HeaderCurrency = new ThreadLocal<>();
+	private static ThreadLocal<String> ExpectedStockCost = new ThreadLocal<>();
+	private static ThreadLocal<String> ExpectedStockQty = new ThreadLocal<>();
+	private static ThreadLocal<String[][]> ExpectedStockQty1 = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> ExpectedStockQty2 = ThreadLocal.withInitial(() -> null);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1272,7 +1279,6 @@ public class VariableHandler {
 
 	public static void setRfqDocNum(String data) {
 		RfqDocNum.set(data);
-
 	}
 
 	public static ArrayList<String> getPONumbers() {
@@ -1297,7 +1303,6 @@ public class VariableHandler {
 
 	public static void setRevisiedValue(BigDecimal data) {
 		RevisiedValue.set(data);
-
 	}
 
 	public static BigDecimal getTaxPercent() {
@@ -1306,5 +1311,61 @@ public class VariableHandler {
 
 	public static void setTaxPercent(BigDecimal data) {
 		TaxPercent.set(data);
+	}
+
+	public static String getPaymentTermAdvMatPercentage() {
+		return PaymentTermAdvMatPercentage.get();
+	}
+
+	public static void setPaymentTermAdvMatPercentage(String data) {
+		PaymentTermAdvMatPercentage.set(data);
+	}
+
+	public static String getPaymentTermAdvTaxPercentage() {
+		return PaymentTermAdvTaxPercentage.get();
+	}
+
+	public static void setPaymentTermAdvTaxPercentage(String data) {
+		PaymentTermAdvTaxPercentage.set(data);
+	}
+
+	public static String getHeaderCurrency() {
+		return HeaderCurrency.get();
+	}
+
+	public static void setHeaderCurrency(String data) {
+		HeaderCurrency.set(data);
+	}
+
+	public static String getExpectedStockCost() {
+		return ExpectedStockCost.get();
+	}
+
+	public static void setExpectedStockCost(String data) {
+		ExpectedStockCost.set(data);
+	}
+
+	public static String getExpectedStockQty() {
+		return ExpectedStockQty.get();
+	}
+
+	public static void setExpectedStockQty(String data) {
+		ExpectedStockQty.set(data);
+	}
+
+	public static String[][] getExpectedStockQty1() {
+		return ExpectedStockQty1.get();
+	}
+
+	public static void setExpectedStockQty1(String[][] data) {
+		ExpectedStockQty1.set(data);
+	}
+
+	public static ArrayList<String> getExpectedStockQty2() {
+		return ExpectedStockQty2.get();
+	}
+
+	public static void setExpectedStockQty2(ArrayList<String> data) {
+		ExpectedStockQty2.set(data);
 	}
 }

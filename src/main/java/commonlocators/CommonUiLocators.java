@@ -55,7 +55,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
-	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
+	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[7]/*/a[text()='Purchase Request(PR)']";
 	/** @locatorType Xpath */
 	public static final String PendingText = "//h1";
 	/** @locatorType Xpath */
@@ -234,4 +234,6 @@ public class CommonUiLocators {
 	public static final String PendingGrn = "//button[@id='B1188359340019632450']";
 	/** @locatorType Xpath */
 	public static final String RfqTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
+	/** @locatorType Xpath */
+	public static final String PendingDrDocs = "//button[@id='B1918502607122484020']";
 }
