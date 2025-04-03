@@ -402,7 +402,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
 	/** Locator @CssSelector */
-	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
+	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(19) > a";
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {

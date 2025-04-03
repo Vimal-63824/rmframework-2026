@@ -93,6 +93,54 @@ public class EmployeePermissionTest {
 	}
 
 	/**
+	 * To Check Permission & On Duty based on forward to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 7, groups = {
+			"Employee Permission & On-Duty" }, description = "85.To Check Permission & On Duty based on forward to approval record")
+	public void CheckPermissionOnDutybasedonFowardtoAprovalReord() {
+		flag = attendanceLeave.checkPermissionOnDutybasedonFowardtoApprovalReord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check On-Duty field validations and Note alerts
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 8, groups = {
+			"Employee Permission & On-Duty" }, description = "84.To Check Permission & On Duty With all the field validations and Note alerts")
+	public void VerifyFieldValidationsNoteAlertWithEmployeeData() {
+		// TODO Covered in VerifyCheckOnDutyEntryWithEmployeeData() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Permission & On Duty based on Return to Request record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 9, groups = {
+			"Employee Permission & On-Duty" }, description = "86.To Check Permission & On Duty based on Return to Request record")
+	public void CheckPermissionOnDutyBasedOnReturnToRequestRecord() {
+		flag = attendanceLeave.checkPermissionOnDutyBasedOnReturnToRequestRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Permission Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 10, groups = {
+			"Employee Permission & On-Duty" }, description = "77.To Check Permission Find page with all line wise record")
+	public void VerifyPermissionFindPageWithAllLineWiseRecord() {
+		// TODO Covered in VerifyCheckOnDutyEntryWithEmployeeData() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL
@@ -105,5 +153,4 @@ public class EmployeePermissionTest {
 			commonFunc.verifyAfterMethod();
 		}
 	}
-
 }

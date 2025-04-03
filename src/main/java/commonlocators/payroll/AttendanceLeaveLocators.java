@@ -121,5 +121,6 @@ public class AttendanceLeaveLocators {
 	public static final String EncashmentFindLeaveLOV = "///button[@id='P818510608_LEAVE_EN_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String EncashmentFindPageSearchButton = "//*[@id='B1263179579896901524']";
-
+	/** @locatorType Xpath */
+	public static final String PermissionCancelButton = "//*[@id='B3203279659824698659']";
 }
