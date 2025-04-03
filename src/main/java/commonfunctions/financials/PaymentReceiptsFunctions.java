@@ -64,6 +64,9 @@ public class PaymentReceiptsFunctions {
 									webDB.clickAnElement(PaymentReceiptsLocators.CreateButton, ElementType.Xpath);
 									commonFunc.checkRefreshCellsDisappear();
 									commonFunc.hardWait(8000);
+									webDB.selectDropDownByText(PaymentReceiptsLocators.SelectBank,
+											commonFunc.getDataFromTestDataSheet("Bank"), ElementType.Xpath);
+									commonFunc.hardWait(1000);
 									webDB.selectDropDownByText(PaymentReceiptsLocators.PayMode,
 											commonFunc.getDataFromTestDataSheet("Rtgs"), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(
@@ -235,6 +238,9 @@ public class PaymentReceiptsFunctions {
 		commonFunc.navigateToFinancialPaymentReceipt();
 		verifyPendingCrDocs(VariableHandler.getPbNumber());
 		verifyCreatePaymentReceipt();
+		commonFunc.hardWait(2000);
+		webDB.sendTextToAnElement(PaymentReceiptsLocators.ReferenceInputNumber, VariableHandler.getPbNumber(),
+				ElementType.Xpath);
 		clickTickAndPostIcon();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
