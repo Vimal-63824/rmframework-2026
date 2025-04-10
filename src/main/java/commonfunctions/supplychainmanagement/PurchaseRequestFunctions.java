@@ -167,6 +167,9 @@ public class PurchaseRequestFunctions {
 				commonFunc.getDataFromTestDataSheet("UnitCostValue"), true);
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestCloseShortPage();
 		clickAddIconPurchaseRequestCloseShort();
 		fillFormDetailsInPurchaseRequestCloseShort(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1396,5 +1399,29 @@ public class PurchaseRequestFunctions {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestPage();
+	}
+
+	/**
+	 * This Method used to fill the row lines for all modules
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param Qnty
+	 * @param Cost
+	 * @param addIcon
+	 */
+	public void fillItemsQuantityCostAndSaveLine(String Item, String Qnty, String Cost) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.clickAnElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Lines Icon Clicked.");
+				searchAndSelectItems(Item);
+				enterQuantityForLastItem(Qnty);
+				enterCostForLastItem(Cost);
+				saveLinesEntry();
+			}
+		}
+		assertTrue(flag);
 	}
 }
