@@ -345,6 +345,11 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[7		]";
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[7]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String UomWithItem(String item) {
+		return "//td[text()='" + item + "']/../td[5]";
 	}
 }

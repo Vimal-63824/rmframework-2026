@@ -297,4 +297,9 @@ public class POAmendmentLocators {
 	public static final String OKButton = "//span[text()='OK']/..";
 	/** @locatorType Xpath */
 	public static final String AddLinesHeader = "//h1[text()='Add Lines']";
+
+	/** @locatorType Xpath */
+	public static final String LineDetails(String Item) {
+		return "//td[text()='" + Item + "']/../td[18]";
+	}
 }

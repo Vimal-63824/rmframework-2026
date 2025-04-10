@@ -362,4 +362,49 @@ public class DBCommonFunctions {
 
 	}
 
+	/**
+	 * This Method Is Used To Validate po Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String poDetails(String PONumber, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("POQuery"),
+				commonFunc.getDataFromTestDataSheet("PONO"), PONumber, commonFunc.getDataFromTestDataSheet("POID"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * PR Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PRLineDetailsQuery(String PrNo, String ItemId, String HeaderValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PRLineDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, commonFunc.getDataFromTestDataSheet("ItemId"),
+				ItemId, HeaderValue);
+		return value;
+	}
+
+	/**
+	 * POA Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String poaLineDetailsQuery(String PoaNo, String ItemId, String HeaderValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("POALineDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("POANO"), PoaNo, commonFunc.getDataFromTestDataSheet("ItemId"),
+				ItemId, HeaderValue);
+		return value;
+	}
+
 }
