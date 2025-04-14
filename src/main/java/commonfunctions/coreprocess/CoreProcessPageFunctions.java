@@ -572,7 +572,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToProductionOrderInProdPlanning();
+				//commonFunc.navigateToProductionOrderInProdPlanning();
 			}
 			webDB.navigateToRefresh();
 			commonFunc.navigateToInventoryMaterialRequest();

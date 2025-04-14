@@ -302,4 +302,15 @@ public class POAmendmentLocators {
 	public static final String LineDetails(String Item) {
 		return "//td[text()='" + Item + "']/../td[18]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String NewQuantity(String text) {
+		return "//td[text()='" + text + "']/../td[13]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String NewUnitCost(String text) {
+		return "//td[text()='" + text + "']/../td[15]";
+	}
+
 }
