@@ -163,6 +163,8 @@ public class VariableHandler {
 	private static ThreadLocal<String> ExpectedStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String[][]> ExpectedStockQty1 = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> ExpectedStockQty2 = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> EncashmentDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> CompOffDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1368,4 +1370,21 @@ public class VariableHandler {
 	public static void setExpectedStockQty2(ArrayList<String> data) {
 		ExpectedStockQty2.set(data);
 	}
+	
+	public static String getEncashmentDocNo() {
+		return EncashmentDocNo.get();
+	}
+
+	public static void setEncashmentDocNo(String data) {
+		EncashmentDocNo.set(data);
+	}
+
+	public static String getCompOffDocNo() {
+		return CompOffDocNo.get();
+	}
+
+	public static void setCompOffDocNo(String data) {
+		CompOffDocNo.set(data);
+	}
+
 }

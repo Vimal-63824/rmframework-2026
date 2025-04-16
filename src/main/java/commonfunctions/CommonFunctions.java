@@ -94,7 +94,10 @@ public class CommonFunctions {
 		flag = AfterWaitrefreshElements.isEmpty();
 		if (!flag && (i < 2)) {
 			i++;
-			checkRefreshCellsDisappear();
+			for (WebElement element : refreshElements) {
+				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+				wait.until(ExpectedConditions.invisibilityOf(element));
+			}
 		}
 		return flag;
 	}
