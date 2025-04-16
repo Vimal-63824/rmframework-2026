@@ -572,7 +572,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToProductionOrderInProdPlanning();
+				//commonFunc.navigateToProductionOrderInProdPlanning();
 			}
 			webDB.navigateToRefresh();
 			commonFunc.navigateToInventoryMaterialRequest();
@@ -1095,6 +1095,8 @@ public class CoreProcessPageFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());

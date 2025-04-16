@@ -344,20 +344,25 @@ public class CommonFunctions {
 
 	/**
 	 * This method used to Opening Left Navigation bar
-	 * 
+	 *
 	 * @author Deepan-GWL
 	 */
 	public void clickLeftNavigationBar() {
-		flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.UsernameIcon, ElementType.Xpath);
 		if (flag) {
-			String value = webDB.getDomAttributeFromElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath,
-					"aria-expanded");
-			if (value.equalsIgnoreCase("false")) {
-				webDB.clickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
-			}
-			flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.UsernameIcon, ElementType.Xpath);
+			logs.logging("INFO", "Username Icon is Clicked");
+			flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Left Navigation Bar Is clicked");
+				String value = webDB.getDomAttributeFromElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath,
+						"aria-expanded");
+				if (value.equalsIgnoreCase("false")) {
+					webDB.javaScriptClickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Left Navigation Bar Is clicked");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
