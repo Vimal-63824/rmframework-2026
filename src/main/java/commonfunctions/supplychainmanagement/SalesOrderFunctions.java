@@ -1636,9 +1636,10 @@ public class SalesOrderFunctions {
 				if (flag) {
 					String Status = webDB.getTextFromElement(SalesOrderLocators.SOStatusLineTableText(SONumber),
 							ElementType.Xpath);
+					logs.logging("INFO", "Displayed Status :" + Status);
+					logs.logging("INFO", "Expected Status :" + ExpStatus);
 					flag = Status.contains(ExpStatus);
 					if (flag) {
-						logs.logging("INFO", "Expected Status :" + ExpStatus);
 						logs.logging("INFO", "Verified Sales Order Document Status");
 
 					} else {

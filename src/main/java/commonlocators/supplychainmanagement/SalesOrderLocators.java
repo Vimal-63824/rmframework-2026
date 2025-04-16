@@ -110,7 +110,7 @@ public class SalesOrderLocators {
 	/** Locator Xpath */
 	public static final String supplychain = "//*[@id='t_TreeNav_4']/div[2]/span[2]";
 	/** Locator Xpath */
-	public static final String sales = "//*[@id='t_TreeNav_19']/div[2]/span[2]";
+	public static final String sales = "//span[text()='Sales']";
 	/** Locator Xpath */
 	public static final String setup = "( //span[contains(@class,'fa fa fa-shopping-bag')])[2]";
 	/** Locator Xpath */
@@ -406,7 +406,7 @@ public class SalesOrderLocators {
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
-		return "//a[text()='" + SOno + "']/../../td[24]";
+		return "//a[text()='" + SOno + "']/../../td[28]/div";
 	}
 
 	/** @Locator Xpath */
@@ -486,8 +486,8 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "(//*[@id=\"ig_line_ig_grid_vc\"]/div/div/table[1])[2]/tbody/tr[" + i
-				+ "]/td[15]/a/span[contains(@style,'blue')]";
+		return "(//*[@id='ig_line_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td[17]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @Locator Xpath */
