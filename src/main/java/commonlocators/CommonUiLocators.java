@@ -55,7 +55,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
-	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
+	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li/*/a[text()='Purchase Request(PR)']";
 	/** @locatorType Xpath */
 	public static final String PendingText = "//h1";
 	/** @locatorType Xpath */
@@ -162,7 +162,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String StocksCheckBox = "//input[@id='P93132130_TYPE_0']/../label";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderTabForPurchaseUser = "//*[@id=\"t_TreeNav_19\"]/div[2]/a";
+	public static final String PurchaseOrderTabForPurchaseUser = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*//a[text()='Purchase Order']";
 	/** @locatorType Xpath */
 	public static final String ProductionPlanningTab = "//span[contains(text(),'Production Planning')]/ancestor::li";
 	/** @locatorType Xpath */
@@ -186,7 +186,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PendingMIV = "//button[@id='B1493255748221256227']";
 	/** @locatorType Xpath */
-	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[3]";
+	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
 	public static final String ItemMasterAdd = "//*[@id=\"B1284581566305961864\"]/span";
 	/** @locatorType Xpath */
@@ -214,13 +214,13 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ClickGateEntryNode = "//*[@id='t_TreeNav_208']/div[2]/span[2]";
 	/** @locatorType Xpath */
-	public static final String ClickSupplyChaintabForAdminUser = "//*[@id='t_TreeNav_4']/span";
+	public static final String ClickSupplyChaintabForAdminUser = "//span[text()='Supply Chain']";
 	/** @locatorType Xpath */
-	public static final String InventoryTabForAdminUser = "//*[@id='t_TreeNav_18']/span";
+	public static final String InventoryTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String InventoryTransactionTabForAdminUser = "//*[@id='t_TreeNav_22']/span";
+	public static final String InventoryTransactionTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String MaterialReceiptVoucherTabForAdminUser = "//*[@id='t_TreeNav_29']/div[2]/a";
+	public static final String MaterialReceiptVoucherTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*//a[text()='Material Receipt Voucher']";
 	public static final String Subcontracting = "//span[text()='Supply Chain']/ancestor::li/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String SubcontractingTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]";
@@ -234,4 +234,8 @@ public class CommonUiLocators {
 	public static final String PendingGrn = "//button[@id='B1188359340019632450']";
 	/** @locatorType Xpath */
 	public static final String RfqTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
+	/** @locatorType Xpath */
+	public static final String PendingDrDocs = "//button[@id='B1918502607122484020']";
+	/** @locatorType Xpath */
+	public static final String UsernameIcon = "//*[@title='Sign Out']/following::*[1]";
 }

@@ -183,6 +183,19 @@ public class InspectionDocumentFunctions {
 		commonFunc.navigateInspectionDocumentsPage();
 		verifyPendingInspectionDocuments(VariableHandler.getGrnDocNumber());
 		clickTickAndPostIcon();
+		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			commonFunc.navigateInspectionDocumentsPage();
+		}
 		verifyValidateInspectionDocumentsStatus(VariableHandler.getIDNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -374,7 +387,7 @@ public class InspectionDocumentFunctions {
 				int endNum = Integer.parseInt(toNum);
 				ArrayList<String> allDocumentNumbers = new ArrayList<>();
 				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "ID100/" + String.format("%05d", i) + "/24-25";
+					String generatedDocumentNumber = "ID100/" + String.format("%05d", i) + "/25-26";
 					allDocumentNumbers.add(generatedDocumentNumber);
 				}
 				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
@@ -422,7 +435,7 @@ public class InspectionDocumentFunctions {
 						} else {
 							enterObservationValue();
 						}
-						clickTickAndPostIcon();
+						clickTickAndPostIconForGrnDocument();
 						waitingForApproval();
 						commonFunc.hardWait(2000);
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),

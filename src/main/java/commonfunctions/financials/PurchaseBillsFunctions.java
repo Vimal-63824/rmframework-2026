@@ -116,6 +116,7 @@ public class PurchaseBillsFunctions {
 	public void verifyCreateJournalAndPost() {
 		flag = webDB.waitForElement(PurchaseBillsLocators.CreateJournal, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseBillsLocators.CreateJournal, ElementType.Xpath);
 			logs.logging("INFO", "Create Journal Button Is Displayed");
 			webDB.clickAnElement(PurchaseBillsLocators.CreateJournal, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -188,7 +189,8 @@ public class PurchaseBillsFunctions {
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"Sathi Ganesh");
 			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
+			verifyPurchaseBillApprovalStatus(VariableHandler.getPbNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
 		}
 		assertTrue(flag);
@@ -199,28 +201,102 @@ public class PurchaseBillsFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void verifyPurchaseBillApprovalStatus() {
-		commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.VoucherNumberLovButton,
-				VariableHandler.getPbNumber());
+	public void verifyPurchaseBillApprovalStatus(String DocNo, String ExpStatus) {
+		commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.VoucherNumberLovButton, DocNo);
 		flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillSearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseBillsLocators.PurchaseBillSearchButton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
 			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PurchaseBillsLocators.ApprovedStatus(VariableHandler.getPbNumber()),
-					ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocators.ApprovedStatus(DocNo), ElementType.Xpath);
 			if (flag) {
-				String Status = webDB.getTextFromElement(
-						PurchaseBillsLocators.ApprovedStatus(VariableHandler.getPbNumber()), ElementType.Xpath);
-				flag = Status.contains(commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				String Status = webDB.getTextFromElement(PurchaseBillsLocators.ApprovedStatus(DocNo),
+						ElementType.Xpath);
+				flag = Status.contains(ExpStatus);
 				if (flag) {
-					logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
+					logs.logging("INFO", "Expected Status: " + ExpStatus);
+					logs.logging("INFO", "Verified Status ,Displayed Status: " + ExpStatus);
 				}
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Verify Pending SCO Purchase Bill
+	 * 
+	 * @author Deepan-GWL
+	 * @param DocNo
+	 */
+	public void verifyPendingScoPurchaseBill(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingPurchaseBill, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Purchase Bill Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingPurchaseBill, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocators.PendingSCO, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending SCO Grn Is Displayed");
+				webDB.clickAnElement(PurchaseBillsLocators.PendingSCO, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsLocators.ScoFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Iframe Is Displayed");
+					webDB.switchToFrame(PurchaseBillsLocators.ScoFrame, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.GrnLovButton, DocNo);
+					flag = webDB.waitForElement(PurchaseBillsLocators.ScoFrame, ElementType.Xpath);
+					if (flag) {
+						webDB.switchToFrame(PurchaseBillsLocators.ScoFrame, ElementType.Xpath);
+						flag = webDB.waitForElement(PurchaseBillsLocators.ScoSearchButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Switched To Iframe");
+							webDB.clickAnElement(PurchaseBillsLocators.ScoSearchButton, ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsLocators.ScoCheckBox(DocNo), ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "CheckBox IS Displayed");
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(PurchaseBillsLocators.ScoCheckBox(DocNo), ElementType.Xpath);
+								flag = webDB.waitForElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Create Documents Is Displayed");
+									commonFunc.hardWait(5000);
+									webDB.clickAnElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
+									flag = webDB.waitForElement(PurchaseBillsLocators.ScoOkButton, ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Okay Button Is Displayed");
+										webDB.clickAnElement(PurchaseBillsLocators.ScoOkButton, ElementType.Xpath);
+										webDB.switchToDefaultContent();
+										flag = webDB.waitForElement(PurchaseBillsLocators.LocationId,
+												ElementType.Xpath);
+										storeSCOPurchaseVoucherNumber();
+										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath)) {
+											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+													ElementType.Xpath);
+											if (webDB.verifyIsElementDisplayed(PurchaseBillsLocators.ExpandButton,
+													ElementType.Xpath)) {
+												webDB.clickAnElement(PurchaseBillsLocators.ExpandButton,
+														ElementType.Xpath);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Verify Store SCO Purchase Voucher Number
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void storeSCOPurchaseVoucherNumber() {
+		String Number = webDB.getTextFromElement(PurchaseBillsLocators.VoucherNumber, ElementType.Xpath);
+		VariableHandler.setScoPurchaseNumber(Number);
 	}
 
 }

@@ -1,4 +1,5 @@
 package commonfunctions;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -113,7 +114,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, HeaderValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Header Details
 	 * 
@@ -127,7 +128,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Header Details
 	 * 
@@ -138,6 +139,172 @@ public class DBCommonFunctions {
 	 */
 	public String SOLineDetails(String SONo, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOAdvanceDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOAdvanceQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param CusId
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOCustomerAddressDetails(String CusId, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOCustomerDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), CusId, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param UnitId
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOUnitAddressDetails(String UnitId, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOUnitDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), UnitId, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SO Line Details 1 And 2
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOLineDetails1(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOLineDetails1&2"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SO Payment Term Adv Percentage
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param PaymentTerm
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOPaymentTermAdvPercentage(String PaymentTerm, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PaymentTermQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), PaymentTerm, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Finance Advanvce Receipt
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String FinanceAdvanceReceipt(String AdvReceiptDocNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("AdvanceReceiptQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), AdvReceiptDocNo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param Warehouse
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String StockQuery(String Warehouse, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("Stock Query"),
+				commonFunc.getDataFromTestDataSheet("SONO"), Warehouse, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * StockQuery1
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param Warehouse
+	 * @param Item
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String StockQuery1(String Warehouse, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("Stock Query1"),
+				commonFunc.getDataFromTestDataSheet("SONO"), Warehouse, commonFunc.getDataFromTestDataSheet("PONO"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	public String getDataFromDBUsingQuery1(String Query, String Replacechar, String Replacedchar, String Replacechar1,
+			String Replacedchar1, String ExpectedData) {
+		String returnname = null;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (getConnection() == null) {
+				establishDBConnection();
+			}
+			Query = Query.replace(Replacechar, Replacedchar).replace(Replacechar1, Replacedchar1);
+			Statement statement = getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(Query);
+			while (resultSet.next()) {
+				returnname = resultSet.getString(ExpectedData); // Adjust column name
+//				System.out.println("Data Is: " + returnname);
+			}
+			resultSet.close();
+			statement.close();
+//			closeDB();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return returnname;
+	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONumber
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SalesInvoiceLotQuery(String SONumber, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SalesInvoiceLotQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONumber, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SO Charges Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOChargesDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SalesOrderChargesQuery"),
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
@@ -178,6 +345,66 @@ public class DBCommonFunctions {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Open Sales Order Amdendment DataBase
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param OSOANO
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String OSOAdetails(String OSOANO, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("OsoaQuery"),
+				commonFunc.getDataFromTestDataSheet("OSOANO"), OSOANO, DetailsValue);
+		return value;
+
+	}
+
+	/**
+	 * This Method Is Used To Validate po Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String poDetails(String PONumber, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("POQuery"),
+				commonFunc.getDataFromTestDataSheet("PONO"), PONumber, commonFunc.getDataFromTestDataSheet("POID"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * PR Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PRLineDetailsQuery(String PrNo, String ItemId, String HeaderValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PRLineDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, commonFunc.getDataFromTestDataSheet("ItemId"),
+				ItemId, HeaderValue);
+		return value;
+	}
+
+	/**
+	 * POA Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String poaLineDetailsQuery(String PoaNo, String ItemId, String HeaderValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("POALineDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("POANO"), PoaNo, commonFunc.getDataFromTestDataSheet("ItemId"),
+				ItemId, HeaderValue);
+		return value;
 	}
 
 }

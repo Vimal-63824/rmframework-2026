@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
@@ -40,52 +39,50 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				commonFunc.hardWait(3000);
-				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+//				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+//				if (flag) {
+//					logs.logging("INFO", "Switched To Pending Frame");
+//					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
+				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Switched To Pending Frame");
-					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
-					webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Go Button Is Displayed");
+					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Go Button Is Displayed");
-						webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 							commonFunc.hardWait(2000);
-							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
-							if (flag) {
-								commonFunc.hardWait(2000);
-								logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
-								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
 
-								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
-										ElementType.Xpath);
+							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(
+										SubcontractOrderLocators.SubcontractorLovButton,
+										commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+								webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+								flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
 								if (flag) {
-									commonFunc.searchAndSelectValueInFilters(
-											SubcontractOrderLocators.SubcontractorLovButton,
-											commonFunc.getDataFromTestDataSheet("SubcontractorName"));
-									webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-									flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-									if (flag) {
-										commonFunc.hardWait(2000);
-										logs.logging("INFO", "Ok Button Is Displayed");
-										webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
-										webDB.switchToDefaultContent();
-										flag = webDB.waitForElement(SubcontractOrderLocators.LocationId,
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+									storeSCODocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 												ElementType.Xpath);
-										storeSCODocumentsNumber();
-										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath)) {
-											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-													ElementType.Xpath);
-										}
 									}
 								}
 							}
+//							}
 						}
 					}
 				}
@@ -236,8 +233,9 @@ public class SubcontractOrderFunctions {
 					BigDecimal TaxValueBD = purchaseOrderFunc
 							.verifyRoundOffBigDecimalValueWithReturnBigDecimal(TaxValue);
 					logs.logging("INFO", "Calculated Tax Value Is: " + TaxValueBD.stripTrailingZeros().toPlainString());
-					String IgstValue = webDB.getTextFromElement(SubcontractOrderLocators.IgstValue, ElementType.Xpath);
-					flag = TaxValueBD.stripTrailingZeros().toPlainString().equals(IgstValue);
+					BigDecimal Individualvalue = TaxValueBD.stripTrailingZeros().divide(new BigDecimal(2));
+					String CgstValue = webDB.getTextFromElement(SubcontractOrderLocators.CgstValue, ElementType.Xpath);
+					flag = Individualvalue.stripTrailingZeros().toPlainString().equals(CgstValue);
 					System.out.println(TaxValueBD.stripTrailingZeros().toPlainString());
 					logs.logging("INFO", "Verified Tax Value Actual And Expected");
 				}
@@ -261,6 +259,16 @@ public class SubcontractOrderFunctions {
 			webDB.doubleClickAnElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.GLAccNoLovButton,
 					commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
 		}
 		assertTrue(flag);
 	}
@@ -367,80 +375,31 @@ public class SubcontractOrderFunctions {
 	 * @param Number
 	 */
 	public void verifyApproveWithDocNumber(String Number) {
-		commonFunc.hardWait(1000);
-		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-		if (flag) {
-			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
-			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+		int i = 1;
+		logs.logging("INFO", "Trying to approval times.. " + i);
+		a: do {
+			approvalPageFunc.clickCheckBoxForDocument(Number);
+			approvalPageFunc.clickApproveRadioBtn(Number);
+			flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
-				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				logs.logging("INFO", "Approval Process Button Is Displayed");
+				webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 60);
 				if (flag) {
-					logs.logging("INFO",
-							"CheckBox select for Document Number " + Number + " and Process button clicked");
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
-					if (webDB.verifyIsElementDisplayed(ApprovalPageLocators.AjaxMultiDocSelectWarning,
-							ElementType.Xpath)
-							|| webDB.verifyIsElementDisplayed(ApprovalPageLocators.ApproveErrorToast,
-									ElementType.Xpath)) {
-						logs.logging("INFO", "Ajax Message Displayed... Attempt to Approve Document Again");
-						webDB.navigateToRefresh();
-						logs.logging("INFO", "Page Refreshed..");
-						approvalPageFunc.filterDocumentsforApproval(Number);
-						flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number),
-								ElementType.Xpath);
-						if (flag) {
-							webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number),
-									ElementType.Xpath);
-							flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
-								webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
-								commonFunc.checkRefreshCellsDisappear();
-								flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "CheckBox select for Document Number " + Number
-											+ " and Process button clicked");
-									commonFunc.checkRefreshCellsDisappear();
-									webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
-									commonFunc.checkRefreshCellsDisappear();
-								}
-							}
-						}
-					}
-
-					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Approval Process Button IS Displayed");
-						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
-						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-						if (flag) {
-							String text = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
-									ElementType.Xpath);
-							String MRNumber = verifyExtractMRNumber(text);
-							VariableHandler.setMRNumber(MRNumber);
-							logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
-							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-								webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-							}
-						} else {
-							if (webDB.verifyIsElementDisplayed(ApprovalPageLocators.ApproveErrorToast,
-									ElementType.Xpath)) {
-								webDB.navigateToRefresh();
-								approvalPageFunc.filterDocumentsforApproval(Number);
-								verifyApproveWithDocNumber(Number);
-							}
-						}
-					}
+					String text = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					String MRNumber = verifyExtractMRNumber(text);
+					VariableHandler.setMRNumber(MRNumber);
+					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
+					break a;
+				} else {
+					webDB.navigateToRefresh();
+					approvalPageFunc.filterDocumentsforApproval(Number);
+					logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
 				}
 			}
-		}
-		Assert.assertTrue(flag);
+			i++;
+		} while ((i <= 3));
+		assertTrue(flag);
 	}
 
 	/**

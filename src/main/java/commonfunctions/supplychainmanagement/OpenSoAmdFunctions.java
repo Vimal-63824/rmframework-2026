@@ -4,22 +4,22 @@ package commonfunctions.supplychainmanagement;
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
  */
-import static org.testng.Assert.assertTrue;
 
+import static org.testng.Assert.assertTrue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.io.File;
 import org.apache.commons.lang3.RandomStringUtils;
-
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
-import commonfunctions.ItemDetailsHandler.OpenSOAmdDetails;
 import commonfunctions.ItemDetailsHandler.OpenSOHeaderDetailsName;
 import commonfunctions.VariableHandler;
-import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
+import commonlocators.*;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -32,6 +32,7 @@ public class OpenSoAmdFunctions {
 	private ApprovalPageFunctions approveFunc = new ApprovalPageFunctions();
 	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
 	private static OpenSalesOrderFunctions openso = new OpenSalesOrderFunctions();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * To Click a Open Sales Order Amd
@@ -147,6 +148,7 @@ public class OpenSoAmdFunctions {
 					flag = webDB.waitForElement(OpenSoAmdLocators.postBtn, ElementType.Xpath);
 					if (flag) {
 						logs.logging("Info", "Ok Button Clicked Successfully & Open So Amd Doc Created Successfully");
+						commonFunc.checkRefreshCellsDisappear();
 					} else {
 						logs.logging("Info", "Open So Document Not Created");
 					}
@@ -376,10 +378,10 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 * @param OsoaDoc
 	 */
-	public void GetDocumentFromScreen(String OsoaDoc) {
+	public void GetDocumentFromScreen() {
 		flag = webDB.waitForElement(OpenSoAmdLocators.OsoaDocNumber, ElementType.Xpath);
 		if (flag) {
-			OsoaDoc = webDB.getTextFromElement(OpenSoAmdLocators.OsoaDocNumber, ElementType.Xpath);
+			String OsoaDoc = webDB.getTextFromElement(OpenSoAmdLocators.OsoaDocNumber, ElementType.Xpath);
 			VariableHandler.setOSOAdocnum(OsoaDoc);
 			logs.logging("info", "Get openso Amendment DocNo Is: " + VariableHandler.getOSOAdocnum());
 		}
@@ -388,8 +390,7 @@ public class OpenSoAmdFunctions {
 
 	/**
 	 * @author @author Kowshik-RMITS
-	 * 
-	 *         This Method is used to Click And Enter A Value In A Table
+	 * This Method is used to Click And Enter A Value In A Table
 	 * 
 	 * @param Tablespec
 	 * @param InputParameter
@@ -423,7 +424,7 @@ public class OpenSoAmdFunctions {
 	 * verify Waiting For Aprorval
 	 * 
 	 * @author Kowshik-RMITS
-	 * @return boolean
+	 * @return
 	 */
 	public boolean verifyWaitingForApproval1() {
 		commonFunc.hardWait(3000);
@@ -570,6 +571,14 @@ public class OpenSoAmdFunctions {
 		assertTrue(flag);
 	}
 
+//	public void verifypoDateIsNullorNot() {
+//		commonFunc.checkRefreshCellsDisappear();
+//		flag =webDB.waitForElement(OpenSoAmdLocators.Podate, ElementType.Xpath);
+//		if(flag) {
+//			webDB.sendTextToAnElement(OpenSoAmdLocators.Podate, , null);
+//		}
+//	}
+
 	/**
 	 * To Valid Tax Amount In Curcy Against To The Customer
 	 * 
@@ -663,10 +672,12 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void validateTaxAmountInLineDetails() {
-		flag = webDB.waitForElement(OpenSoAmdLocators.RevPriceField, ElementType.Xpath);
+
+		flag = webDB.waitForElement(OpenSoAmdLocators.RevPriceField(1), ElementType.Xpath);
 		if (flag) {
-			String RevValue = webDB.getTextFromElement(OpenSoAmdLocators.RevPriceField, ElementType.Xpath);
+			String RevValue = webDB.getTextFromElement(OpenSoAmdLocators.RevPriceField(1), ElementType.Xpath);
 			logs.logging("Info", "Get Revision Price in Line Details " + RevValue);
+
 			flag = webDB.waitForElement(OpenSoAmdLocators.TaxPercent, ElementType.Xpath);
 			if (flag) {
 				String TaxPercent = webDB.getTextFromElement(OpenSoAmdLocators.TaxPercent, ElementType.Xpath);
@@ -674,11 +685,14 @@ public class OpenSoAmdFunctions {
 				if (flag) {
 					String DiscPercent = webDB.getTextFromElement(OpenSoAmdLocators.DiscFieldClick, ElementType.Xpath);
 					if (flag) {
+
 						BigDecimal RevValue1 = new BigDecimal(RevValue);
 						BigDecimal TaxPercent1 = new BigDecimal(TaxPercent);
 						BigDecimal DiscPercent1 = new BigDecimal(DiscPercent);
 						BigDecimal Hundred = new BigDecimal("100");
-						BigDecimal Two = new BigDecimal("2");
+
+						VariableHandler.setRevisiedValue(RevValue1);
+						VariableHandler.setTaxPercent(TaxPercent1);
 
 						BigDecimal discAmountGet = RevValue1.multiply(DiscPercent1).divide(Hundred);
 						logs.logging("Info", "Amount Calculated by price & Disc percent " + discAmountGet);
@@ -688,6 +702,7 @@ public class OpenSoAmdFunctions {
 
 						BigDecimal TaxAmount = DiscamountNRevPrice.multiply(TaxPercent1).divide(Hundred);
 						logs.logging("Info", "Successfully deducted a Tax amount" + TaxAmount);
+
 					}
 				}
 			}
@@ -696,58 +711,97 @@ public class OpenSoAmdFunctions {
 	}
 
 	/**
-	 * To Validates Header Details in Open SO Amd
+	 * To Click All Radio Button
 	 * 
 	 * @author Kowshik-RMITS
-	 * 
-	 * @param Location
+	 *
 	 */
-	public void validatesOpenSoAmendmenHeader(String Location) {
+	public void clickSelectAllRatioButton() {
+		flag = webDB.waitForElement(OpenSoAmdLocators.CurrentRateContractSelectAll, ElementType.Xpath);
 		if (flag) {
-			verifyGetTextValidation(OpenSoAmdLocators.LocationId,
-					itemDetailHandler.getOpensalesOrderAmdforGivenItem(Location, OpenSOAmdDetails.LOCATION_ID));
-			logs.logging("Info", "Location Id Is Valid");
-			verifyGetTextValidation(OpenSoAmdLocators.UnitField,
-					itemDetailHandler.getOpensalesOrderAmdforGivenItem(Location, OpenSOAmdDetails.UNIT));
-			logs.logging("Info", "Unit Id Is Verified");
-			verifyGetTextValidation(OpenSoAmdLocators.CustomerIdField,
-					itemDetailHandler.getOpensalesOrderAmdforGivenItem(Location, OpenSOAmdDetails.CUSTOMER_ID));
-			logs.logging("Info", "Customer Id is Verified ");
-			verifyDomPropertyValidation(OpenSoAmdLocators.CustomerNameField,
-					itemDetailHandler.getOpensalesOrderAmdforGivenItem(Location, OpenSOAmdDetails.CUSTOMER_NAME));
-			logs.logging("Info", "Customer Name is Verified");
-			verifyDomPropertyValidation(OpenSoAmdLocators.OpenSoDocumentNumber,
-					itemDetailHandler.getOpensalesOrderAmdforGivenItem(Location, OpenSOAmdDetails.OSO_NO));
-			logs.logging("Info", "Open Sales Order Document Is Verified ");
-		} else {
-			logs.logging("Info", "Record is MisMatched");
+			webDB.clickAnElement(OpenSoAmdLocators.CurrentRateContractSelectAll, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSoAmdLocators.soAmdBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("Info", "Successfully Select All Radio Checked");
+			} else {
+				logs.logging("Info", "Failed to Checked Select All");
+			}
+
+		}
+	}
+
+	/**
+	 * To Click All Radio Button
+	 * 
+	 * @author Kowshik-RMITS
+	 *
+	 */
+	public void multiplesLinesInsert(String Hsn_code2) {
+
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelutils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+
+		itemMultiples = excelutils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("OpenSoAMDMultiplesLines"));
+		System.out.println(itemMultiples.length);
+
+		for (int i = 1; i < itemMultiples.length; i++) {
+			String Revision_Price1 = itemMultiples[i][1];
+			String Mrp_Price1 = itemMultiples[i][2];
+			String Disc_Percent1 = itemMultiples[i][3];
+
+			// add plus to creates a item
+			clickAddButtonItemWiseInLineDetailsinAdditionMethod();
+
+			// to insert a item in addition method
+
+			flag = webDB.waitForElement(OpenSoAmdLocators.revField, ElementType.Xpath);
+			if (flag) {
+				verifyAddTableSpecs(OpenSoAmdLocators.revField, OpenSoAmdLocators.RevPrice, Revision_Price1);
+				flag = webDB.waitForElement(OpenSoAmdLocators.MrpField, ElementType.Xpath);
+				if (flag) {
+					verifyAddTableSpecs(OpenSoAmdLocators.MrpField, OpenSoAmdLocators.Mrpprice, Mrp_Price1);
+					flag = webDB.waitForElement(OpenSoAmdLocators.DiscFieldClick, ElementType.Xpath);
+					if (flag) {
+						verifyAddTableSpecs(OpenSoAmdLocators.DiscFieldClick, OpenSoAmdLocators.DiscPercentInsert,
+								Disc_Percent1);
+						flag = webDB.waitForElement(OpenSoAmdLocators.HsnCodeField, ElementType.Xpath);
+						if (flag) {
+							logs.logging("Info", "Successfully Insert a rev Price , Mrp Price , Disc ");
+						} else {
+							logs.logging("Info", "Failed to Insert ");
+						}
+					}
+				}
+			}
 		}
 		assertTrue(flag);
 	}
 
 	/**
-	 * Validate Header Details Open so Amd
+	 * Verify Purchase Order Date Null Or Not
 	 * 
-	 * @author Kowshik-RMITS
-	 * @param Location
+	 * @author Kowshik - RMITS
+	 * @param POdate
 	 */
-	public void validateHeaderDetails(String Location) {
-		commonFunc.hardWait(2000);
-		verifyGetTextValidation(OpenSoAmdLocators.LocationId,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.LOCATION_ID));
-		logs.logging("Info", "Location Id is verfied " + Location);
-		verifyGetTextValidation(OpenSoAmdLocators.UnitField,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.UNIT));
-		logs.logging("Info", "Unit is Verified ");
-		verifyGetTextValidation(OpenSoAmdLocators.CustomerIdField,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_ID));
-		logs.logging("Info", "Customer Id is verified");
-		verifyDomPropertyValidation(OpenSoAmdLocators.CustomerNameField,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_NAME));
-		logs.logging("Info", "Customer name is verifed ");
-		verifyDomPropertyValidation(OpenSoAmdLocators.OpenSoDocumentNumber,
-				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.OSO_NO));
-		logs.logging("Info", "Osoc Documnet is verified ");
+
+	public void verifyPoDateNullOrNot(String POdate) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(OpenSoAmdLocators.PoDate, ElementType.Xpath);
+		if (flag) {
+			String Text1 = webDB.getDomPropertyFromElement(OpenSoAmdLocators.PoDate, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("Info", "PO Date: " + Text1);
+			if (Text1 == null || Text1.trim().isEmpty()) {
+				webDB.clickAnElement(OpenSoAmdLocators.PoDateField, ElementType.Xpath);
+				webDB.sendTextToAnElement(OpenSoAmdLocators.PoDate, POdate, ElementType.Xpath);
+				logs.logging("Info", "POdate is Inserted " + POdate);
+			} else {
+				logs.logging("Info", "No PO date provided to insert.");
+			}
+			assertTrue(flag);
+		}
 	}
 
 	/**
@@ -756,7 +810,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 * @return boolean flag
 	 */
-	public boolean verifyDomesticCustomerLocalGstTypePriceChange() {
+	public boolean verifyDomesticCustomerLocalGstTypePriceChange(String locution) {
 
 		String Revisised_Price = RandomStringUtils.randomNumeric(3);
 		if (Revisised_Price.equals("000")) {
@@ -787,7 +841,9 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -799,6 +855,7 @@ public class OpenSoAmdFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
+
 		return flag;
 	}
 
@@ -836,10 +893,14 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
+		validateTaxAmountInLineDetails();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -890,10 +951,18 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -929,7 +998,15 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		validateTaxAmountInLineDetails();
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -969,7 +1046,7 @@ public class OpenSoAmdFunctions {
 				commonFunc.getDataFromTestDataSheet("MRP_Price"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
 		cancelStageinTransactions();
 		verifyCancelRecordDocInFindPage(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
@@ -1008,10 +1085,18 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1059,10 +1144,19 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1112,11 +1206,20 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1152,7 +1255,15 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		validateTaxAmountInLineDetails();
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1199,11 +1310,19 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1251,11 +1370,20 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1305,11 +1433,20 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(3000);
@@ -1346,7 +1483,15 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		validateTaxAmountInLineDetails();
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1364,7 +1509,7 @@ public class OpenSoAmdFunctions {
 	/**
 	 * Amend Sales Order -Price Change - Domestic Customer - UTGST
 	 * 
-	 * @author Kowshik-RMITSan
+	 * @author Kowshik-RMITS
 	 * @return boolean flag
 	 */
 
@@ -1394,12 +1539,19 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
 		validateTaxAmountInLineDetails();
+
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		verifyPoDateNullOrNot(commonFunc.getDataFromTestDataSheet("PO_Date"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(1000);
@@ -1450,11 +1602,19 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1506,11 +1666,19 @@ public class OpenSoAmdFunctions {
 		insertDiscPercentInAdditionType(commonFunc.getDataFromTestDataSheet("Disc_Perent"));
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		toClickaSaveButton();
+
+		validateTaxAmountInLineDetails();
+
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(3000);
@@ -1549,7 +1717,15 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-		GetDocumentFromScreen(VariableHandler.getOSOAdocnum());
+
+		validateTaxAmountInLineDetails();
+
+		GetDocumentFromScreen();
+
+		String locution = null;
+		openSoAmdHeaderValidation(locution);
+		checkDbValidationTaxAmount();
+
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1565,6 +1741,42 @@ public class OpenSoAmdFunctions {
 		return flag;
 	}
 
+	public void verifyMutiplesAddTypes() {
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.clickOpensoNode();
+		ClickOpenSoAmdendmentButton();
+		clickAddButtoninFindPage();
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Add_IS"));
+		clickSelectFlagInCurrentRateContract();
+		clickSoAmdendmentButtonInCurrentRateContract();
+		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
+		closeAlertMessage();
+
+		multipleLinesAdditionItem(commonFunc.getDataFromTestDataSheet("Item"),
+				commonFunc.getDataFromTestDataSheet("RevPrice"), commonFunc.getDataFromTestDataSheet("MrpPrice"),
+				commonFunc.getDataFromTestDataSheet("DiscAmount"), commonFunc.getDataFromTestDataSheet("HSNcode"));
+		toClickaSaveButton();
+		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
+		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
+				commonFunc.getDataFromTestDataSheet("EFF_TO"));
+		toClickSaveButtonInHeader();
+		GetDocumentFromScreen();
+		ToClickPostButtonInHeader();
+		verifyWaitingForApproval1();
+		commonFunc.hardWait(2000);
+		commonFunc.logoutUser();
+		commonFunc.hardWait(2000);
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"AshokUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+		commonFunc.logoutUser();
+
+	}
+
 	/**
 	 * Creates Open So Document Locul Customer For Deletation Scenrios
 	 * 
@@ -1576,8 +1788,6 @@ public class OpenSoAmdFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Local");
-		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
-		String ItemDelete = commonFunc.getDataFromTestDataSheet("ItemDelete");
 		String Cost1 = RandomStringUtils.randomNumeric(2);
 		if (Cost1.equals("00"))
 			Cost1 = "10";
@@ -1621,8 +1831,6 @@ public class OpenSoAmdFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Interstate");
-		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
-		String ItemDelete = commonFunc.getDataFromTestDataSheet("ItemDelete");
 		String Cost1 = RandomStringUtils.randomNumeric(2);
 		if (Cost1.equals("00"))
 			Cost1 = "10";
@@ -1667,8 +1875,6 @@ public class OpenSoAmdFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Export");
-		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
-		String ItemDelete = commonFunc.getDataFromTestDataSheet("ItemDelete");
 		String Cost1 = RandomStringUtils.randomNumeric(2);
 		if (Cost1.equals("00"))
 			Cost1 = "10";
@@ -1698,9 +1904,52 @@ public class OpenSoAmdFunctions {
 
 		return flag;
 	}
-	
+
 	/**
-	 * Fetching Open So Document Deletation 
+	 * Validate Header Details Open so Amd
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param Location
+	 */
+
+	public void validateHeaderDetails(String Location) {
+
+		commonFunc.hardWait(2000);
+		verifyGetTextValidation(OpenSoAmdLocators.LocationId,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.LOCATION_ID));
+		logs.logging("Info", "Location Id is verfied " + Location);
+		verifyGetTextValidation(OpenSoAmdLocators.UnitField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.UNIT));
+		logs.logging("Info", "Unit is Verified ");
+		verifyGetTextValidation(OpenSoAmdLocators.CustomerIdField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_ID));
+		logs.logging("Info", "Customer Id is verified");
+		verifyDomPropertyValidation(OpenSoAmdLocators.CustomerNameField,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.CUSTOMER_NAME));
+		logs.logging("Info", "Customer name is verifed ");
+		verifyDomPropertyValidation(OpenSoAmdLocators.OpenSoDocumentNumber,
+				itemDetailHandler.getOpenSOHeaderDetails(Location, OpenSOHeaderDetailsName.OSO_NO));
+		logs.logging("Info", "Osoc Documnet is verified ");
+
+	}
+
+	public void searchContractDoc(String osoDocnumMultipleDoc) {
+
+		commonFunc.searchAndSelectValueInFilters(OpenSoAmdLocators.contractNo, osoDocnumMultipleDoc);
+		commonFunc.hardWait(2000);
+		webDB.pressTabKey();
+		flag = webDB.waitForClickElement(OpenSoAmdLocators.SearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenSoAmdLocators.SearchButton, ElementType.Xpath);
+			logs.logging("Info", "Successfully Inserted a Open So Document");
+
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Fetching Open So Document Deletation
+	 * 
 	 * @author Kowshik-RMITS
 	 */
 
@@ -1711,29 +1960,232 @@ public class OpenSoAmdFunctions {
 		openso.clickAddNewOpenSOPlsIcon();
 
 	}
-	
-	/**Verify Purchase Order Date Null Or Not
-	 * 
-	 * @author Kowshik - RMITS
-	 * @param POdate
-	 */
 
-	public void verifyPoDateNullOrNot(String POdate) {
-		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.waitForElement(OpenSoAmdLocators.PoDate, ElementType.Xpath);
-		if (flag) {
-			String Text1 = webDB.getDomPropertyFromElement(OpenSoAmdLocators.PoDate, ElementType.Xpath,
-					commonFunc.getDataFromTestDataSheet("Value"));
-			logs.logging("Info", "PO Date: " + Text1);
-			if (Text1 == null || Text1.trim().isEmpty()) {
-				webDB.clickAnElement(OpenSoAmdLocators.PoDateField, ElementType.Xpath);
-				webDB.sendTextToAnElement(OpenSoAmdLocators.PoDate, POdate, ElementType.Xpath);
-				logs.logging("Info", "POdate is Inserted " + POdate);
-			} else {
-				logs.logging("Info", "No PO date provided to insert.");
+	public void multipleLinesAdditionItem(String Item, String RevPrice, String MrpPrice, String DiscAmount,
+			String HSNcode) {
+
+		ExcelUtils excelUtils = new ExcelUtils();
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+
+		itemMultiples = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("OpenSoMultiplesSheetName"));
+		System.out.println(itemMultiples.length);
+		for (int i = 1; i < itemMultiples.length; i++) {
+			String Item1 = itemMultiples[i][0];
+			String RevPrice1 = itemMultiples[i][1];
+			String MrpPrice1 = itemMultiples[i][2];
+			String DiscPercent1 = itemMultiples[i][3];
+			String Hsncode1 = itemMultiples[i][4];
+
+			flag = webDB.waitForElement(OpenSoAmdLocators.AddButtoninAdditionType, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenSoAmdLocators.AddButtoninAdditionType, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("Info", "Successfully Clicked A Add Button ");
+
+					flag = webDB.waitForElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(OpenSoAmdLocators.ItemLovButton, Item1);
+						flag = webDB.waitForElement(OpenSoAmdLocators.DiscFieldClick, ElementType.Xpath);
+						if (flag) {
+							logs.logging("Info", "Successfully Insert A Item");
+
+							flag = webDB.waitForElement(OpenSoAmdLocators.revField, ElementType.Xpath);
+							if (flag) {
+								verifyAddTableSpecs(OpenSoAmdLocators.revField, OpenSoAmdLocators.RevPrice, RevPrice1);
+								flag = webDB.waitForElement(OpenSoAmdLocators.MrpField, ElementType.Xpath);
+								if (flag) {
+									verifyAddTableSpecs(OpenSoAmdLocators.MrpField, OpenSoAmdLocators.Mrpprice,
+											MrpPrice1);
+									flag = webDB.waitForElement(OpenSoAmdLocators.DiscFieldClick, ElementType.Xpath);
+									if (flag) {
+										logs.logging("Info", "Revision price & Mrp Price Inserted Successfully ");
+
+										commonFunc.checkRefreshCellsDisappear();
+										flag = webDB.waitForElement(OpenSoAmdLocators.HsnCodeField, ElementType.Xpath);
+										if (flag) {
+											String Text = webDB.getTextFromElement(OpenSoAmdLocators.HsnCodeField,
+													ElementType.Xpath);
+											logs.logging("Info", "Hsn Code " + Text);
+											if (Text == null || Text.trim().isEmpty()) {
+												webDB.clickAnElement(OpenSoAmdLocators.HsnCodeField, ElementType.Xpath);
+												logs.logging("Info", "Hsn Code Is Clicked");
+												commonFunc.searchAndSelectValueInFilters(OpenSoAmdLocators.HsnCodeLov,
+														Hsncode1);
+
+												flag = webDB.waitForElement(OpenSoAmdLocators.DiscFieldClick,
+														ElementType.Xpath);
+												if (flag) {
+													verifyAddTableSpecs(OpenSoAmdLocators.DiscFieldClick,
+															OpenSoAmdLocators.DiscPercentInsert, DiscPercent1);
+
+												}
+											}
+										}
+									}
+
+								}
+
+							}
+
+						}
+					}
+				}
+
 			}
-			assertTrue(flag);
 		}
+
 	}
 
+	/**
+	 * DataBase Validation Of Text Type
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param Location
+	 * @param ExpectedDBValue
+	 */
+	public void verifyAssertionGetTextValidation(String Location, String ExpectedDBValue) {
+		flag = webDB.waitForElement(Location, ElementType.Xpath);
+		if (flag) {
+			String text = webDB.getTextFromElement(Location, ElementType.Xpath);
+			logs.logging("INFO", "Get Text Actual UI Value Is: " + text);
+			logs.logging("INFO", "Expected DataBase Value Is: " + ExpectedDBValue);
+			flag = text.equals(ExpectedDBValue);
+			if (flag) {
+				logs.logging("INFO",
+						"Verified Actual UI Value : " + text + " With Expected DataBase Value :" + ExpectedDBValue);
+			} else {
+				logs.logging("INFO", "Verification Failed Expected DataBase Value : " + ExpectedDBValue
+						+ "Get Text Actual UI Value : " + text);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * DataBase Validation Of Dom Property Type
+	 * 
+	 * @author Kowshik - RMITS
+	 * @param UIFieldLocator
+	 * @param ExpectedDBValue
+	 */
+	public void verifyAssertionDomPropertyValidation(String UIFieldLocator, String ExpectedDBValue) {
+		flag = webDB.waitForElement(UIFieldLocator, ElementType.Xpath);
+		if (flag) {
+			String text = webDB.getDomPropertyFromElement(UIFieldLocator, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Get Text Actual UI Value Is: " + text);
+			logs.logging("INFO", "Expected DataBase Value Is: " + ExpectedDBValue);
+			flag = text.equals(ExpectedDBValue);
+			if (flag) {
+				logs.logging("INFO",
+						"Verified Actual UI Value : " + text + " With Expected DataBase Value :" + ExpectedDBValue);
+			} else {
+				logs.logging("INFO", "Verification Failed Expected DataBase Value : " + ExpectedDBValue
+						+ "Get Text Actual UI Value : " + text);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * DataBase Validation Of Both Value Type
+	 * 
+	 * @author Kowshik - RMITS
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("Info", "Actual Value Is " + Actual);
+		logs.logging("Info", "Expected Value Is " + Expected);
+		flag = Actual.contains(Expected);
+		if (flag) {
+			logs.logging("Info", "Verified Actual And Expected Values");
+		} else {
+			logs.logging("INFO", "Mismatch With Actual And Expected");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * DataBases Validation Of Header Details Open So Amd
+	 * 
+	 * @author Kowshik - RMITS
+	 * @param locution
+	 */
+	public void openSoAmdHeaderValidation(String location) {
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.LocationId, dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbLocutionColumnName")));
+		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.UnitField, dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbUnitColumnName")));
+		logs.logging("INFO", "Header units Details Matched With DataBase Values");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.CustomerIdField, dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbCustomerIdColumnName")));
+		logs.logging("Info", "Header Customer Id Matched With DataBase Values");
+
+		verifyAssertionDomPropertyValidation(OpenSoAmdLocators.CustomerNameField, dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbCustomerNameColumnName")));
+		logs.logging("INFO", "Header Customer Name Matched With DataBase Values");
+
+//	verifyAssertionDomPropertyValidation(OpenSoAmdLocators.OpensoDoc(1), dbCommonFunctions.OSOAdetails(  			
+//			VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbDocNoColumnName")));
+//	logs.logging("INFO", "Header Open  So Document Matched With DataBase Values");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.AmdNo, dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbAmdNumberColumnName")));
+		logs.logging("INFO", "Header Amendment No Matched With DataBase Values");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.ItemIdField(1), dbCommonFunctions
+				.OSOAdetails(VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbItemID")));
+		logs.logging("INFO", "Line Details Item ID is Matched With DataBase Values");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.ItemDesField(1), dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbItemDescripition")));
+		logs.logging("INFO", "Item Descripition Matched With DataBase Values");
+
+		verifyGetTextValidation(OpenSoAmdLocators.ItemUom(1), dbCommonFunctions
+				.OSOAdetails(VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbItemUom")));
+		logs.logging("INFO", "Item Against UOM Matched With DataBase Values");
+	}
+
+	/**
+	 * DataBases Validation Of Line Details Open So Amd
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void checkDbValidationTaxAmount() {
+		BigDecimal RevisiedValue = VariableHandler.getRevisiedValue();
+		BigDecimal TaxPercent = VariableHandler.getTaxPercent();
+
+		verifyAssertionBothValues(dbCommonFunctions.OSOAdetails(VariableHandler.getOSOAdocnum(),
+				commonFunc.getDataFromTestDataSheet("OSOADbRevisieValue")), RevisiedValue.toPlainString());
+		logs.logging("INFO", "DataBase Matched With Expected Revisied Value  " + VariableHandler.getRevisiedValue());
+
+		verifyAssertionBothValues(dbCommonFunctions.OSOAdetails(VariableHandler.getOSOAdocnum(),
+				commonFunc.getDataFromTestDataSheet("OSOADbTaxPercent")), TaxPercent.toPlainString());
+		logs.logging("INFO", "DataBase Matched With Expected TaxPercent " + VariableHandler.getTaxPercent());
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.IgstFieldInLineDetails, dbCommonFunctions
+				.OSOAdetails(VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbIgstAmount")));
+		logs.logging("Info", "Igst Amount Matched With DataBase Value");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.CgstFieldLineDetails, dbCommonFunctions
+				.OSOAdetails(VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbCgstAmount")));
+		logs.logging("Info", "Cgst Amount Matched With DataBase Value");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.SgstFieldLineDetails, dbCommonFunctions
+				.OSOAdetails(VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbSgstAmount")));
+		logs.logging("Info", "Sgst Amount Matched With DataBase Value");
+
+		verifyAssertionGetTextValidation(OpenSoAmdLocators.UTgstFieldLineDetails, dbCommonFunctions.OSOAdetails(
+				VariableHandler.getOSOAdocnum(), commonFunc.getDataFromTestDataSheet("OSOADbUTgstAmount")));
+		logs.logging("Info", "UTGST Amount Matched With DataBase Value");
+	}
 }

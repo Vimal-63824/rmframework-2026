@@ -15,8 +15,10 @@ import utils.WebDriverBase.ElementType;
 import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class StocksPageFunctions {
 	private static boolean flag = false;
@@ -100,16 +102,18 @@ public class StocksPageFunctions {
 	 * 
 	 */
 	public void removeFilterStock() {
-		flag = webDB.waitForElement(StocksPageLocators.RemoveFilter, ElementType.Xpath);
-		if (flag) {
-			logs.logging("INFO", "Remove Filter Button Is Displayed");
-			webDB.clickAnElement(StocksPageLocators.RemoveFilter, ElementType.Xpath);
-			commonFunc.hardWait(2000);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.isElementNotDisplayed(StocksPageLocators.RemoveFilter, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Verified Filter Removed Successfully");
+		List<WebElement> removeFilter = webDB.getDriver().findElements(By.xpath(StocksPageLocators.RemoveFilter));
+		for (WebElement element : removeFilter) {
+			if (element.isDisplayed()) {
+				element.click();
+				break;
 			}
+		}
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.isElementNotDisplayed(StocksPageLocators.RemoveFilter, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Verified Filter Removed Successfully");
 		}
 		assertTrue(flag);
 	}

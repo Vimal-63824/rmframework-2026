@@ -1,4 +1,5 @@
 package com.roadmapERP;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -23,22 +24,12 @@ public class PriselistTest {
 	static PricelistPageFunctions PriceListfunc = new PricelistPageFunctions();
 
 	/**
-	 * Create pricelist ITEM for Similar and dissimilayr
-	 * 
-	 * @author Durai-RMITS-RMITS
-	 */
-	@Test(priority = 1, groups = { "PriceList" }, description = "Create Item For Price List Entry")
-	public void verifyCreationOfItemforPriceList() {
-		PriceListfunc.verifyCreationOfItemforPriceList();
-	}
-
-	/**
 	 * Create pricelist for domestic supplier with similar UOM directly to the
 	 * system through excel upload
 	 * 
 	 * @author Durai-RMITS-RMITS
 	 */
-	@Test(priority = 2, groups = {
+	@Test(priority = 1, groups = {
 			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM similar")
 	public void VerifyCreationOfPriceListDomesticSimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticSimilarUom();
@@ -50,7 +41,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 3, groups = {
+	@Test(priority = 2, groups = {
 			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM dissimilar")
 	public void VerifyCreationOfPriceListDomesticDissimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticDissimilarUom();
@@ -62,7 +53,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 4, groups = {
+	@Test(priority = 3, groups = {
 			"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM similar")
 	public void VerifyCreationOfPriceListImportSmilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListImportSimilarUom();
@@ -74,7 +65,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 5, groups = {
+	@Test(priority = 4, groups = {
 			"PriceList" }, description = "Create Price List entry for Import Supplier with Stock and Supplier UOM dissimilar")
 	public void VerifyCreationOfPriceListImportDissimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListImportDissimilarUom();
@@ -85,7 +76,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 6, groups = { "PriceList" }, description = "PriceListEntryCancel")
+	@Test(priority = 5, groups = { "PriceList" }, description = "PriceListEntryCancel")
 	public void VerifyPriceListEntryCancel() {
 		PriceListfunc.priceListEntryCancel();
 	}
@@ -95,7 +86,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 7, groups = { "PriceList" }, description = "Check whether all the filter fields are working?")
+	@Test(priority = 6, groups = { "PriceList" }, description = "Check whether all the filter fields are working?")
 	public void VerifyCheckingOfPriceListFindScreenChecking() {
 		PriceListfunc.priceListEntryFindScreenChecking();
 	}
@@ -106,7 +97,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 8, groups = {
+	@Test(priority = 7, groups = {
 			"PriceList" }, description = "Amend Price List entry for Domestic Supplier with Stock and Supplier UOM similar")
 	public void VerifyCreationOfPriceListAmendmentDomesticSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentDomesticSimilarUom();
@@ -118,7 +109,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 9, groups = {
+	@Test(priority = 8, groups = {
 			"PriceList" }, description = "Amend Price List entry for Domestic Supplier with Stock and Supplier UOM Dissimilar")
 	public void VerifyCreationOfPriceListAmendmentDomesticDisSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentDomesticDisSimilarUom();
@@ -130,7 +121,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 10, groups = {
+	@Test(priority = 9, groups = {
 			"PriceList" }, description = "Amend Price List entry for Import Supplier with Stock and Supplier UOM similar")
 	public void VerifyCreationOfPriceListAmendmentImportSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentImportSimilarUom();
@@ -142,7 +133,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 11, groups = {
+	@Test(priority = 10, groups = {
 			"PriceList" }, description = "Amend Price List entry for Import Supplier with Stock and Supplier UOM Dissimilar")
 	public void VerifyCreationOfPriceListAmendmentImportDisSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentImportDisSimilarUom();
@@ -154,7 +145,7 @@ public class PriselistTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 12, groups = { "PriceList" }, description = "Amend Price List entry Cancel")
+	@Test(priority = 11, groups = { "PriceList" }, description = "Amend Price List entry Cancel")
 	public void VerifyCreationOfPriceListAmendmentCancel() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentCancel();
 	}

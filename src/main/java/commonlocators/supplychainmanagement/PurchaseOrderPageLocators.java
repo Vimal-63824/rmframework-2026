@@ -305,8 +305,8 @@ public class PurchaseOrderPageLocators {
 	public static final String DiscountDetailHeader = "//h2[@id='R1467193047076536437_heading']";
 
 	/** @locatorType Xpath */
-	public static final String DiscountAmount(int i) {
-		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[8]";
+	public static final String DiscountAmount(String Item) {
+		return "//td[text()='" + Item + "']/../td[8]";
 	}
 
 	/** @locatorType Xpath */
@@ -333,12 +333,23 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@id='B3146205337803717780']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[18]";
+	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[20]";
 	/** @locatorType Xpath */
 	public static final String PoseriviceWithGrnSelectedValues = "//*[@id=\"C2522028662001049402\"]";
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1652647721744321354']";
 	/** @locatorType Xpath */
 	public static final String SaleOrderDrillDown = "//*[@id='1960290421519866117_orig']/tbody/tr[2]/td[8]/a";
+	/** @locatorType Xpath */
+	public static final String PrefixLovButton = "//button[@id='P16151310407_PFX_lov_btn']";
 
+	/** @locatorType Xpath */
+	public static final String CsQty(int i) {
+		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[7]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String UomWithItem(String item) {
+		return "//td[text()='" + item + "']/../td[5]";
+	}
 }

@@ -53,4 +53,24 @@ public class PurchaseBillsLocators {
 	public static final String TDSLovButton = "//button[@id='tds_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String ExpandButton = "//button[@id='t_Button_rightControlButton'][@aria-expanded='true']";
+	/** @locatorType Xpath */
+	public static final String PendingSCO = "//button[@id='B1552838874743175542']";
+	/** @locatorType Xpath */
+	public static final String ScoFrame = "//iframe[@title='Pending SCO']";
+	/** @locatorType Xpath */
+	public static final String GrnLovButton = "//button[@id='P116131006_GRN_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ScoSearchButton = "//button[@id='B1893079095252605284']";
+
+	/** @locatorType Xpath */
+	public static final String ScoCheckBox(String ScoGrnNo) {
+		return "//td[text()='" + ScoGrnNo + "']/../td[12]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ScoLocationId = "//span[@id='P11613101005_SUPHD_PLNT_LOC_ID_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String ScoVoucherNumber = "//input[@id='P11613101005_SUPHD_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String ScoOkButton = "//button[@id='B1893077217294605278']";
 }

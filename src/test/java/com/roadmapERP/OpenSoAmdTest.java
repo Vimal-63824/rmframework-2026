@@ -1,4 +1,5 @@
 package com.roadmapERP;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -28,7 +29,7 @@ public class OpenSoAmdTest {
 	@Test(priority = 1, groups = {
 			"Open Sales Order Amdenment" }, description = "Amend Sales Order -Price Change - Domestic Customer - Local")
 	public void verifyOpenSoAmdinLocalCustomer() {
-		OSOA.verifyDomesticCustomerLocalGstTypePriceChange();
+		OSOA.verifyDomesticCustomerLocalGstTypePriceChange("");
 	}
 
 	/**

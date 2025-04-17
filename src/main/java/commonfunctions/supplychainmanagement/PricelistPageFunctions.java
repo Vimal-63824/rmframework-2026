@@ -32,8 +32,11 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void verifyCreationOfPriceListDomesticSimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
@@ -53,9 +56,7 @@ public class PricelistPageFunctions {
 		forwardApprovalScreen();
 		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
 		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -64,19 +65,22 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void verifyCreationOfPriceListDomesticDissimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -88,9 +92,7 @@ public class PricelistPageFunctions {
 		forwardApprovalScreen();
 		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
 		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -99,8 +101,11 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void verifyCreationOfPriceListImportSimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
@@ -123,9 +128,7 @@ public class PricelistPageFunctions {
 		forwardApprovalScreen();
 		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
 		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -134,19 +137,22 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void verifyCreationOfPriceListImportDissimilarUom() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -158,9 +164,7 @@ public class PricelistPageFunctions {
 		forwardApprovalScreen();
 		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
 		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -187,9 +191,7 @@ public class PricelistPageFunctions {
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickCancel();
 		enterPriceListNumForCheckingStatus(VariableHandler.getPRLISTNumber());
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -210,7 +212,6 @@ public class PricelistPageFunctions {
 		verifyStatusInFindPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -245,7 +246,6 @@ public class PricelistPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
 		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -280,7 +280,6 @@ public class PricelistPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
 		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -315,7 +314,6 @@ public class PricelistPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
 		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -350,7 +348,6 @@ public class PricelistPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
 		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -378,9 +375,7 @@ public class PricelistPageFunctions {
 		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
 		saveHeaderAndClickCancel();
 		enterPriceListNumForCheckingStatus(VariableHandler.getAmendmentDocNumber());
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -389,17 +384,19 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticSimilarUomAmdCancel() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("CnclSimItem_ID"),
-				commonFunc.getDataFromTestDataSheet("Disc_value"));
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
+				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
-				commonFunc.getDataFromTestDataSheet("CnclSimItem_ID"),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -420,15 +417,19 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticSimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -449,17 +450,21 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticDissimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -481,17 +486,21 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportSimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getAmdSimItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -513,17 +522,21 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportDissimilarUomAmd() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_value"));
 		verifyEnterPrice(commonFunc.getDataFromTestDataSheet("Cost_Value"));
 		enterEffFromAndToo(commonFunc.getDataFromTestDataSheet("Efffrom_Date"),
 				commonFunc.getDataFromTestDataSheet("Effto_Date"));
 		findCreate(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getAmdDisItemName(),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
 				commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		commonFunc.hardWait(1000);
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
@@ -580,7 +593,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Cost
 	 */
-
 	public void verifyEnterPrice(String Cost) {
 		flag = webDB.waitForElement(PricelistPageLocators.PriceField, ElementType.Xpath);
 		if (flag) {
@@ -603,7 +615,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Cost1
 	 */
-
 	public void verifyEnterPriceInsideTransaction(String Cost1) {
 		flag = webDB.waitForElement(PricelistPageLocators.CostField, ElementType.Xpath);
 		if (flag) {
@@ -628,7 +639,6 @@ public class PricelistPageFunctions {
 	 * @param Date1
 	 * @param Date2
 	 */
-
 	public void enterEffFromAndToo(String Date1, String Date2) {
 		flag = webDB.waitForElement(PricelistPageLocators.EffFrom, ElementType.Xpath);
 		if (flag) {
@@ -652,7 +662,6 @@ public class PricelistPageFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -665,7 +674,6 @@ public class PricelistPageFunctions {
 	 * @param Item
 	 * @param Discount
 	 */
-
 	public void findCreate(String Location, String Supplier, String Item, String Discount) {
 		flag = webDB.waitForElement(PricelistPageLocators.FindCreateButton, ElementType.Xpath);
 		if (flag) {
@@ -679,7 +687,6 @@ public class PricelistPageFunctions {
 				validateLocationInPriceListHeader(Location);
 				validateSupplierInPriceListHeader(Supplier);
 				validateItemInPriceListHeader(Item);
-
 			}
 		}
 		assertTrue(flag);
@@ -691,7 +698,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Discount
 	 */
-
 	public void enterDiscount(String Discount) {
 		flag = webDB.waitForClickElement(PricelistPageLocators.DiscountField, ElementType.Xpath);
 		if (flag) {
@@ -702,7 +708,6 @@ public class PricelistPageFunctions {
 			webDB.sendTextToAnElement(PricelistPageLocators.Discountinput, Discount, ElementType.Xpath);
 			logs.logging("INFO", "Discount value Is Entered" + Discount);
 		}
-
 		assertTrue(flag);
 	}
 
@@ -712,7 +717,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Location
 	 */
-
 	private void validateLocationInPriceListHeader(String Location) {
 		flag = webDB.waitForElement(PricelistPageLocators.Pricelist_HeaderLoc, ElementType.Xpath);
 		if (flag) {
@@ -725,7 +729,6 @@ public class PricelistPageFunctions {
 				logs.logging("INFO", "Verification failed in Location PRICELIST Header");
 				logs.logging("INFO", "Expected Text: " + Location + " Displayed: " + DisplayText);
 			}
-
 		}
 		Assert.assertTrue(flag);
 	}
@@ -736,7 +739,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Supplier
 	 */
-
 	private void validateSupplierInPriceListHeader(String Supplier) {
 		flag = webDB.waitForElement(PricelistPageLocators.Pricelist_HeaderSupplier, ElementType.Xpath);
 		if (flag) {
@@ -760,7 +762,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Item
 	 */
-
 	private void validateItemInPriceListHeader(String Item) {
 		flag = webDB.waitForElement(PricelistPageLocators.Pricelist_HeaderItem, ElementType.Xpath);
 		if (flag) {
@@ -799,9 +800,7 @@ public class PricelistPageFunctions {
 					logs.logging("INFO", "Frame is Checked");
 				}
 			}
-
 		}
-
 		assertTrue(flag);
 	}
 
@@ -810,7 +809,6 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void waitingForApproval() {
 		commonFunc.hardWait(3000);
 		if (webDB.verifyIsElementDisplayed(PricelistPageLocators.PriceListWorkflowFrame, ElementType.Xpath)) {
@@ -845,7 +843,6 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void forwardApprovalScreen() {
 		commonFunc.hardWait(1000);
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
@@ -863,7 +860,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Number
 	 */
-
 	public void filterDocumentsForPriceListApproval(String Number) {
 		flag = webDB.waitForElement(ApprovalPageLocators.SearchBox, ElementType.Xpath);
 		if (flag) {
@@ -894,7 +890,6 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 * @param Number
 	 */
-
 	public void verifyApproveWithDocNumber(String Number) {
 		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(PricelistPageLocators.PRLISTSelectCheckBox(Number), ElementType.Xpath);
@@ -974,9 +969,7 @@ public class PricelistPageFunctions {
 					logs.logging("INFO", "Search Button is Clicked");
 				}
 			}
-
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1018,7 +1011,6 @@ public class PricelistPageFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1233,10 +1225,8 @@ public class PricelistPageFunctions {
 					webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
 					logs.logging("INFO", "Search Button is clicked");
 				}
-
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1273,7 +1263,6 @@ public class PricelistPageFunctions {
 				logs.logging("INFO", "Amendment OK button is Checked");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1319,7 +1308,6 @@ public class PricelistPageFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1358,7 +1346,6 @@ public class PricelistPageFunctions {
 		}
 
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -1418,7 +1405,6 @@ public class PricelistPageFunctions {
 				verifyItemPost();
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1438,7 +1424,6 @@ public class PricelistPageFunctions {
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1458,7 +1443,6 @@ public class PricelistPageFunctions {
 				logs.logging("INFO", "Item Copy is Clicked");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1493,14 +1477,12 @@ public class PricelistPageFunctions {
 					if (flag) {
 						String DisItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setDisItemName(DisItemName);
-						logs.logging("INFO", "Item ID is:" + VariableHandler.getDisItemName());
+						VariableHandler.setItemName(DisItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
 					}
 				}
-
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1510,7 +1492,7 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGenerateItemSim(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
@@ -1541,7 +1523,6 @@ public class PricelistPageFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1551,7 +1532,7 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGenerateItemAmdSim(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
@@ -1576,13 +1557,12 @@ public class PricelistPageFunctions {
 					if (flag) {
 						String AmdSimItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setAmdSimItemName(AmdSimItemName);
-						logs.logging("INFO", "Item ID is:" + VariableHandler.getAmdSimItemName());
+						VariableHandler.setItemName(AmdSimItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
 					}
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1592,7 +1572,7 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGenerateItemAmdDis(String Itm) {
-		String ItemSeqNo = RandomStringUtils.randomNumeric(4);
+		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
@@ -1613,13 +1593,12 @@ public class PricelistPageFunctions {
 					if (flag) {
 						String AmdDisItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						VariableHandler.setAmdDisItemName(AmdDisItemName);
-						logs.logging("INFO", "Item ID is:" + VariableHandler.getAmdDisItemName());
+						VariableHandler.setItemName(AmdDisItemName);
+						logs.logging("INFO", "Item ID is:" + VariableHandler.getItemName());
 					}
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1628,28 +1607,29 @@ public class PricelistPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-
 	public void verifyItemPost() {
 		flag = webDB.waitForElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
 			logs.logging("INFO", "Item is Posted");
+			commonFunc.hardWait(3000);
 			flag = webDB.waitForElementUntilGivenTime(PricelistPageLocators.ItemPostSucessMsg, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Item Add Button is Clicked");
 			} else {
 				flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 				if (flag) {
-					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-							"HodUsername");
+					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
+							System.getProperty("AshokPassword"), "AshokUsername");
 					approvalFunc.navigateToApprovals();
 					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
 					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
 					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-							"TvsUsername");
+//					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//							"TvsUsername");
+//					commonFunc.navigateItemPage();
 				}
 			}
 		}
@@ -1696,7 +1676,6 @@ public class PricelistPageFunctions {
 				verifyItemPost();
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1720,7 +1699,6 @@ public class PricelistPageFunctions {
 				verifyItemPost();
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1744,7 +1722,6 @@ public class PricelistPageFunctions {
 				verifyItemPost();
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1754,15 +1731,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfItemforPriceList() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		verifyClickingFindBtnOfItem();
 		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		verifyClickingFindBtnOfItem();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
-		verifyClickingFindBtnOfItem();
 		verifySearchOfItem4(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
 	}
 
@@ -1787,7 +1761,6 @@ public class PricelistPageFunctions {
 				verifyItemPost();
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1823,5 +1796,4 @@ public class PricelistPageFunctions {
 
 		assertTrue(flag);
 	}
-
 }

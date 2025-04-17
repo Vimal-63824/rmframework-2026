@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 12, 2025
@@ -285,4 +286,31 @@ public class POAmendmentLocators {
 		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
 				+ "]/td/a/span[contains(@style,'orange')]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String AddPoLine = "//button[@id='B3842109469851423714']";
+	/** @locatorType Xpath */
+	public static final String CheckBox = "//input[@id='check_all']";
+	/** @locatorType Xpath */
+	public static final String AddPoLineFrame = "//iframe[@title='Add Lines']";
+	/** @locatorType Xpath */
+	public static final String OKButton = "//span[text()='OK']/..";
+	/** @locatorType Xpath */
+	public static final String AddLinesHeader = "//h1[text()='Add Lines']";
+
+	/** @locatorType Xpath */
+	public static final String LineDetails(String Item) {
+		return "//td[text()='" + Item + "']/../td[18]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String NewQuantity(String text) {
+		return "//td[text()='" + text + "']/../td[13]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String NewUnitCost(String text) {
+		return "//td[text()='" + text + "']/../td[15]";
+	}
+
 }

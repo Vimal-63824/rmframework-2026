@@ -12,7 +12,11 @@ import static org.testng.Assert.assertTrue;
  */
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
@@ -59,6 +63,7 @@ public class MaterialReceiptVoucherFunctions {
 					if (flag) {
 						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
 						commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.VoucherNo, DocNo);
+						webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Go Button Is Displayed");
@@ -66,6 +71,7 @@ public class MaterialReceiptVoucherFunctions {
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 							if (flag) {
+								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
@@ -170,7 +176,7 @@ public class MaterialReceiptVoucherFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(MaterialReceiptVoucherLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 20)
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 30)
 						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
 			}
 		}
@@ -628,12 +634,17 @@ public class MaterialReceiptVoucherFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
+
 	public void verifyToPostWithOrWithoutLocator() {
 		if (webDB.waitForElement(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath)) {
 			webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath);
 			verifyReceiptLocatorsAndPutAway();
+		} else {
+			System.out.println("Non Locator Item");
 		}
+
 		clickTickAndPostIcon();
+
 	}
 
 	/**
@@ -647,6 +658,109 @@ public class MaterialReceiptVoucherFunctions {
 				"TvsUsername");
 		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
 		verifyToCreateMrvDocumentFromPendingMivWithGrnDocument();
+		getMaterialReceiptVoucherNumberFromToastMessage();
 		verifyToPostWithOrWithoutLocator();
+		try {
+			String alertText = VariableHandler.getMRVDocumentNumber();
+			System.out.println("Alert text: " + alertText);
+			String pattern = "MV100/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*MV100/\\d{5}/\\d{2}-\\d{2}";
+			if (alertText.matches(".*" + pattern + ".*")) {
+				System.out.println("Specific receipt document alert found, proceeding with the process.");
+				searchAndSelectLovForMrvDocumentFindPage();
+				commonFunc.logoutUser();
+
+			} else {
+				System.out.println("Other alert detected, no action taken.");
+				commonFunc.logoutUser();
+			}
+		} catch (Exception e) {
+			System.out.println("No alert appeared or other error: " + e.getMessage());
+		}
+
+	}
+
+	/**
+	 * This Methods Is To Extract the Voucher Number
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void getMaterialReceiptVoucherNumberFromToastMessage() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocumentNumberToastAlert, ElementType.Xpath);
+		if (flag) {
+			String MRVDocumentNumber = webDB
+					.getTextFromElement(MaterialReceiptVoucherLocators.MrvDocumentNumberToastAlert, ElementType.Xpath);
+			VariableHandler.setMRVDocumentNumber(MRVDocumentNumber);
+			logs.logging("INFO", "MRV Toast Alert:" + MRVDocumentNumber);
+			// Updated regex to match MV100 pattern
+			String regex = "MV100/\\d{5}/\\d{2}-\\d{2}";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(MRVDocumentNumber);
+			ArrayList<String> documentNumbers = new ArrayList<>();
+			while (matcher.find()) {
+				documentNumbers.add(matcher.group());
+			}
+			if (documentNumbers.size() == 2) {
+				String fromDocument = documentNumbers.get(0);
+				String toDocument = documentNumbers.get(1);
+				System.out.println("From Document: " + fromDocument);
+				System.out.println("To Document: " + toDocument);
+				String fromNum = fromDocument.split("/")[1];
+				String toNum = toDocument.split("/")[1];
+				// Convert the document numbers to integers to calculate the range
+				int startNum = Integer.parseInt(fromNum);
+				int endNum = Integer.parseInt(toNum);
+				ArrayList<String> allDocumentNumbers = new ArrayList<>();
+				// Generate the list of document numbers in the range
+				for (int i = startNum; i <= endNum; i++) {
+					String generatedDocumentNumber = "MV100/" + String.format("%05d", i) + "/25-26";
+					allDocumentNumbers.add(generatedDocumentNumber);
+				}
+				// Set the generated document numbers for further use
+				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
+				System.out.println("Generated Document Numbers:");
+				for (String documentNumber : allDocumentNumbers) {
+					System.out.println(documentNumber);
+				}
+			} else {
+				System.out.println("Invalid format, unable to extract From and To document numbers.");
+			}
+
+		}
+	}
+
+	/**
+	 * This Methods Is To Select Search And Select LOV for Find Page
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void searchAndSelectLovForMrvDocumentFindPage() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		ArrayList<String> allDocumentNumbers = VariableHandler.getAllDocumentNumber();
+		for (int i = 1; i < allDocumentNumbers.size(); i++) {
+			String MRVdocumentNumber = allDocumentNumbers.get(i);
+			commonFunc.hardWait(3000);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocLovBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MrvDocLovBtn,
+						MRVdocumentNumber);
+				logs.logging("INFO", "MRV Document Number Is:" + MRVdocumentNumber);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocNumberSearchBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberSearchBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown,
+							ElementType.Xpath);
+					flag = webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown,
+							ElementType.Xpath);
+					verifyToPostWithOrWithoutLocator();
+
+				}
+			}
+		}
+
 	}
 }

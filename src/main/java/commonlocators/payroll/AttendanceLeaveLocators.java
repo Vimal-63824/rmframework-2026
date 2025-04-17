@@ -121,5 +121,30 @@ public class AttendanceLeaveLocators {
 	public static final String EncashmentFindLeaveLOV = "///button[@id='P818510608_LEAVE_EN_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String EncashmentFindPageSearchButton = "//*[@id='B1263179579896901524']";
-
+	/** @locatorType Xpath */
+	public static final String PermissionCancelButton = "//*[@id='B3203279659824698659']";
+	/** @locatorType Xpath */
+	public static final String CompOffButtonClick = "//*[@id='P818510608_TAB']/div/div/div[4]/label";
+	/** @locatorType Xpath */
+	public static final String CompOffFindAddIcon = "//*[@id='B2167388650608602850']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffEmployeeLOV = "//*[@id='P8185106003_HECO_EMP_ID_lov_btn']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffDateField = "//*[@id='P8185106003_HECO_COMP_OFF_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String CompOffDaysField = "//*[@id='P8185106003_HECO_COMP_OFF_DAYS']";
+	/** @locatorType Xpath */
+	public static final String CompOffReferenceField = "//*[@id='P8185106003_HECO_REFERENCE']";
+	/** @locatorType Xpath */
+	public static final String CompOffEntrySaveIcon = "//*[@id='B3129587167307398146']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffEntryPostIcon = "//*[@id='B3129588589873398161']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffDocumentNo = "//*[@id='P8185106003_HECO_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String CompOffFindEmployeeLOV = "//*[@id='P818510608_EMPLOYEE_COM_lov_btn']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffFindpageSearchButton = "//*[@id='B2167389026596602851']";
+	/** @locatorType Xpath */
+	public static final String CompOffFindpageClearButton = "//*[@id='Clear5']";
 }

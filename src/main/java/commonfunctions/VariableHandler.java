@@ -153,6 +153,18 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> TotalProductionProcess = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> RfqDocNum = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> PONumbers = new ThreadLocal<ArrayList<String>>();
+	private static ThreadLocal<String> ScoPurchaseNumber = new ThreadLocal<>();
+	private static ThreadLocal<BigDecimal> RevisiedValue = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<BigDecimal> TaxPercent = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
+	private static ThreadLocal<String> PaymentTermAdvMatPercentage = new ThreadLocal<>();
+	private static ThreadLocal<String> PaymentTermAdvTaxPercentage = new ThreadLocal<>();
+	private static ThreadLocal<String> HeaderCurrency = new ThreadLocal<>();
+	private static ThreadLocal<String> ExpectedStockCost = new ThreadLocal<>();
+	private static ThreadLocal<String> ExpectedStockQty = new ThreadLocal<>();
+	private static ThreadLocal<String[][]> ExpectedStockQty1 = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> ExpectedStockQty2 = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> EncashmentDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> CompOffDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1269,7 +1281,6 @@ public class VariableHandler {
 
 	public static void setRfqDocNum(String data) {
 		RfqDocNum.set(data);
-
 	}
 
 	public static ArrayList<String> getPONumbers() {
@@ -1279,4 +1290,101 @@ public class VariableHandler {
 	public static void setPONumbers(ArrayList<String> data) {
 		PONumbers.set(data);
 	}
+
+	public static String getScoPurchaseNumber() {
+		return ScoPurchaseNumber.get();
+	}
+
+	public static void setScoPurchaseNumber(String data) {
+		ScoPurchaseNumber.set(data);
+	}
+
+	public static BigDecimal getRevisiedValue() {
+		return RevisiedValue.get();
+	}
+
+	public static void setRevisiedValue(BigDecimal data) {
+		RevisiedValue.set(data);
+	}
+
+	public static BigDecimal getTaxPercent() {
+		return TaxPercent.get();
+	}
+
+	public static void setTaxPercent(BigDecimal data) {
+		TaxPercent.set(data);
+	}
+
+	public static String getPaymentTermAdvMatPercentage() {
+		return PaymentTermAdvMatPercentage.get();
+	}
+
+	public static void setPaymentTermAdvMatPercentage(String data) {
+		PaymentTermAdvMatPercentage.set(data);
+	}
+
+	public static String getPaymentTermAdvTaxPercentage() {
+		return PaymentTermAdvTaxPercentage.get();
+	}
+
+	public static void setPaymentTermAdvTaxPercentage(String data) {
+		PaymentTermAdvTaxPercentage.set(data);
+	}
+
+	public static String getHeaderCurrency() {
+		return HeaderCurrency.get();
+	}
+
+	public static void setHeaderCurrency(String data) {
+		HeaderCurrency.set(data);
+	}
+
+	public static String getExpectedStockCost() {
+		return ExpectedStockCost.get();
+	}
+
+	public static void setExpectedStockCost(String data) {
+		ExpectedStockCost.set(data);
+	}
+
+	public static String getExpectedStockQty() {
+		return ExpectedStockQty.get();
+	}
+
+	public static void setExpectedStockQty(String data) {
+		ExpectedStockQty.set(data);
+	}
+
+	public static String[][] getExpectedStockQty1() {
+		return ExpectedStockQty1.get();
+	}
+
+	public static void setExpectedStockQty1(String[][] data) {
+		ExpectedStockQty1.set(data);
+	}
+
+	public static ArrayList<String> getExpectedStockQty2() {
+		return ExpectedStockQty2.get();
+	}
+
+	public static void setExpectedStockQty2(ArrayList<String> data) {
+		ExpectedStockQty2.set(data);
+	}
+	
+	public static String getEncashmentDocNo() {
+		return EncashmentDocNo.get();
+	}
+
+	public static void setEncashmentDocNo(String data) {
+		EncashmentDocNo.set(data);
+	}
+
+	public static String getCompOffDocNo() {
+		return CompOffDocNo.get();
+	}
+
+	public static void setCompOffDocNo(String data) {
+		CompOffDocNo.set(data);
+	}
+
 }
