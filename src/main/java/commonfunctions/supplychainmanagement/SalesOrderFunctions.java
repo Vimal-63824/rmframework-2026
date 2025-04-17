@@ -2103,8 +2103,9 @@ public class SalesOrderFunctions {
 		if (PriceBasis.equalsIgnoreCase("Open Order") || PriceBasis.equalsIgnoreCase("Price List")) {
 			flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath);
 			if (flag) {
-				String TradeDiscountPercentage = webDB.getTextFromElement(
-						SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath);
+				String TradeDiscountPercentage = webDB.getDomPropertyFromElement(
+						SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
 				logs.logging("INFO", "Get Text Trade Discount Percentage is " + TradeDiscountPercentage);
 				BigDecimal TradeAmountOA = verifyDiscountAmountCalculation(LineAmount,
 						new BigDecimal(TradeDiscountPercentage));
@@ -2698,8 +2699,9 @@ public class SalesOrderFunctions {
 			logs.logging("INFO", "Get Text Trade Assesable Value is " + TradeAssesableValue);
 			flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath);
 			if (flag) {
-				String TradeDiscountPercentage = webDB.getTextFromElement(
-						SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath);
+				String TradeDiscountPercentage = webDB.getDomPropertyFromElement(
+						SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
 				logs.logging("INFO", "Get Text Trade Discount Percentage is " + TradeDiscountPercentage);
 				flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountAmountField, ElementType.Xpath);
 				if (flag) {
