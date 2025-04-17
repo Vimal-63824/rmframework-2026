@@ -200,7 +200,7 @@ public class SalesOrderLocators {
 	/** Locator @CssSelector */
 	public static final String PrintIconInFind = "#\\31 960290421519866117_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 	/** @Locator Xpath */
-	public static final String SOTradeDiscountPercentageReadOnlyField = "//span[@id='P191513134002_SOQ_DISC_PCT_DISPLAY']";
+	public static final String SOTradeDiscountPercentageReadOnlyField = "//input[@id='P191513134002_SOQ_DISC_PCT']";
 	/** @Locator Xpath */
 	public static final String ContractNumberInLineDetails1 = "//input[@id='P191513134002_SOQ_CONT_CAT_NO']";
 	/** @Locator Xpath */
@@ -402,7 +402,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
 	/** Locator @CssSelector */
-	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(19) > a";
+	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(21) > a > span";
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
