@@ -371,4 +371,69 @@ public class ApprovalPageFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method is used to click Return radio button with retrying if ajax or
+	 * error toast displayed
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Number
+	 */
+	private void clickReturnRadioBtn(String Number) {
+		int i = 1;
+		a: do {
+			flag = webDB.waitForElement(ApprovalPageLocators.ReturnRadioBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(ApprovalPageLocators.ReturnRadioBtn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				flag = webDB.verifyIsElementDisplayed(ApprovalPageLocators.AjaxMultiDocSelectWarning, ElementType.Xpath)
+						|| webDB.verifyIsElementDisplayed(ApprovalPageLocators.ApproveErrorToast, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ajax and Error Toast Displayed.. Retrying..." + i);
+					i++;
+					webDB.navigateToRefresh();
+					filterDocumentsforApproval(Number);
+					clickCheckBoxForDocument(Number);
+				} else {
+					logs.logging("INFO", "Return Radio Button Clicked");
+					flag = true;
+					break a;
+				}
+			}
+		} while ((i <= 5));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Return Doc Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocNumber
+	 */
+	public void verifyReturnWithDocNumber(String DocNumber, String ReturnPerson) {
+		int i = 1;
+		logs.logging("INFO", "Trying to Return times.. " + i);
+		a: do {
+			clickCheckBoxForDocument(DocNumber);
+			clickReturnRadioBtn(DocNumber);
+			commonFunc.searchAndSelectValueInFilters(ApprovalPageLocators.ReturnPersonLovBtn, ReturnPerson);
+			flag = webDB.waitForClickElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Return Process Button Is Displayed");
+				webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, Returned Successfully");
+					break a;
+				} else {
+					i++;
+					webDB.navigateToRefresh();
+					filterDocumentsforApproval(DocNumber);
+					logs.logging("INFO", "Toast Message Not Displayed... Retrying.. ");
+				}
+			}
+		} while ((i <= 3));
+		assertTrue(flag);
+	}
+
 }

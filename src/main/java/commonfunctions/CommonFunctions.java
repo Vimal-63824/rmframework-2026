@@ -75,29 +75,31 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 * @return boolean
 	 */
+	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
 		int i = 1;
 		List<WebElement> refreshElements = webDB.getDriver()
 				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+		List<WebElement> AfterWaitrefreshElements = null;
 		try {
 			for (WebElement element : refreshElements) {
 				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
 				wait.until(ExpectedConditions.invisibilityOf(element));
+				if (element.isDisplayed()) {
+					AfterWaitrefreshElements.add(element);
+				}
 			}
 			// TODO WAIT_LOAD_TIME (will remove future)
-			hardWait(500);
+			hardWait(1000);
+			flag = AfterWaitrefreshElements.isEmpty();
+			if (!flag) {
+				for (WebElement element : AfterWaitrefreshElements) {
+					WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+					wait.until(ExpectedConditions.invisibilityOf(element));
+				}
+			}
 		} catch (Exception e) {
 
-		}
-		List<WebElement> AfterWaitrefreshElements = webDB.getDriver()
-				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-		flag = AfterWaitrefreshElements.isEmpty();
-		if (!flag && (i < 2)) {
-			i++;
-			for (WebElement element : refreshElements) {
-				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
-				wait.until(ExpectedConditions.invisibilityOf(element));
-			}
 		}
 		return flag;
 	}
@@ -237,9 +239,11 @@ public class CommonFunctions {
 						} catch (Exception e) {
 							logs.logging("INFO", "Exception is: " + e);
 						}
-						hardWait(500);
+						hardWait(1500);
 						// logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
-						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.SearchBarIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
+						}
 						// TODO WAIT_LOAD_TIME (will remove future)
 						hardWait(2000);
 						checkRefreshCellsDisappear();
