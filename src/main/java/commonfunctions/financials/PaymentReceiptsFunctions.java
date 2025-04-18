@@ -17,7 +17,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class PaymentReceiptsFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -280,9 +280,9 @@ public class PaymentReceiptsFunctions {
 			if (flag) {
 				String Status = webDB.getTextFromElement(
 						PaymentReceiptsLocators.IssuedStatus(VariableHandler.getBPvNumber()), ElementType.Xpath);
-				flag = Status.contains(commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				flag = Status.contains(commonFunc.getDataFromTestDataSheet("Cleared"));
 				if (flag) {
-					logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+					logs.logging("INFO", "Expected Status: " + commonFunc.getDataFromTestDataSheet("Cleared"));
 					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
 				}
 			}

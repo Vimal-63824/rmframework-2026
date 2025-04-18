@@ -1,4 +1,5 @@
 package com.roadmapERP;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -16,7 +17,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
 import utils.WebDriverBase;
 
-public class SaleInvoiceTest {
+public class SaleInvoiceTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
@@ -321,8 +322,7 @@ public class SaleInvoiceTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	@Test(priority = 24, groups = {
-			"SalesInvoice" }, description = "195 - Proforma Invoice creation Export - Direct")
+	@Test(priority = 24, groups = { "SalesInvoice" }, description = "195 - Proforma Invoice creation Export - Direct")
 	public void VerifyDirectExportProformaInvoiceCreation() {
 		flag = salesInvoiceFunc.verifyDirectExportProformaInvoiceCreation();
 		Assert.assertTrue(flag);
@@ -344,8 +344,7 @@ public class SaleInvoiceTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	@Test(priority = 26, groups = {
-			"SalesInvoice" }, description = "197 - Proforma Invoice Export - Pre Dispatch")
+	@Test(priority = 26, groups = { "SalesInvoice" }, description = "197 - Proforma Invoice Export - Pre Dispatch")
 	public void VerifyDirectExportPreDispatchProformaInvoiceCreation() {
 		flag = salesInvoiceFunc.verifyDirectExportPreDispatchProformaInvoiceCreation();
 		Assert.assertTrue(flag);
@@ -356,8 +355,7 @@ public class SaleInvoiceTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	@Test(priority = 27, groups = {
-			"SalesInvoice" }, description = "126 - Direct Proforma Invoice creation pending SO")
+	@Test(priority = 27, groups = { "SalesInvoice" }, description = "126 - Direct Proforma Invoice creation pending SO")
 	public void VerifyDirectDomesticProformaInvoiceCreationPendingSO() {
 		flag = salesInvoiceFunc.verifyDirectDomesticProformaInvoiceCreationPendingSO();
 		Assert.assertTrue(flag);
@@ -374,7 +372,7 @@ public class SaleInvoiceTest {
 		flag = salesInvoiceFunc.verifyDirectExportProformaInvoiceCreationPendingSO();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * Create SI - Domestic - Local Customer
 	 * 

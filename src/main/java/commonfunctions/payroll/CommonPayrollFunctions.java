@@ -24,7 +24,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CommonPayrollFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();

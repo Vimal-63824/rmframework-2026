@@ -1,4 +1,5 @@
 package com.roadmapERP;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -9,7 +10,7 @@ import commonfunctions.supplychainmanagement.OpenSalesOrderFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class OpenSOTest {
+public class OpenSOTest extends RoadMapERPTest {
 
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();

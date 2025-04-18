@@ -25,7 +25,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class OpenSoAmdFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -389,9 +389,9 @@ public class OpenSoAmdFunctions {
 	}
 
 	/**
-	 * @author @author Kowshik-RMITS
 	 * This Method is used to Click And Enter A Value In A Table
 	 * 
+	 * @author @author Kowshik-RMITS
 	 * @param Tablespec
 	 * @param InputParameter
 	 * @param Enteredvalue

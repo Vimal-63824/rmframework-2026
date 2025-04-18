@@ -29,7 +29,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class RfqPageFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -201,16 +201,16 @@ public class RfqPageFunctions {
 
 	public void verifyPoRefind() {
 		ArrayList<String> PONumbers = VariableHandler.getPONumbers();
-		logs.logging("INFO", "PO Number Is:"+ PONumbers.size());
+		logs.logging("INFO", "PO Number Is:" + PONumbers.size());
 		for (int i = 1; i <= PONumbers.size(); i++) {
 			String PORfqNum = PONumbers.get(i);
 			PONumbers.get(i);
 			flag = webDB.waitForElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
-				webDB.sendTextToAnElement(RfqLocators.FindPoSearchField,PORfqNum, ElementType.Xpath);
+				webDB.sendTextToAnElement(RfqLocators.FindPoSearchField, PORfqNum, ElementType.Xpath);
 				logs.logging("INFO", "PONumbers Is Entered:" + PORfqNum);
-				
+
 				flag = webDB.waitForElement(RfqLocators.POSearchBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(RfqLocators.POSearchBtn, ElementType.Xpath);
@@ -315,8 +315,8 @@ public class RfqPageFunctions {
 	 */
 	public void verifyRfqNumInPoDetails() {
 		commonFunc.hardWait(2000);
-		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
-				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
 		VariableHandler.setPONumber(PONumbervalue);
 		logs.logging("INFO", "Get PO Number Is: " + VariableHandler.getPONumber());
 		flag = webDB.waitForElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
@@ -343,25 +343,25 @@ public class RfqPageFunctions {
 						logs.logging("INFO",
 								"Expected Text: " + VariableHandler.getRfqDocNum() + " Displayed: " + DisplayText);
 					}
-						commonFunc.hardWait(5000);
-						webDB.pressEscapeKey();
-						webDB.switchToDefaultContent();
-						flag = webDB.waitForElement(RfqLocators.PORfqPost, ElementType.Xpath);
-						if(flag) {
-							logs.logging("INFO", "Post Button  Is Searched");
-						}
+					commonFunc.hardWait(5000);
+					webDB.pressEscapeKey();
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(RfqLocators.PORfqPost, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Post Button  Is Searched");
 					}
 				}
 			}
-		Assert.assertTrue(flag);
 		}
-	
+		Assert.assertTrue(flag);
+	}
+
 	/**
 	 * This Methods Is Used To Get Document Number From Alert message
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public static void getDocNumPoFromRfq() {
+	public void getDocNumPoFromRfq() {
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
 		String successMessage = webDB.getTextFromElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
@@ -378,7 +378,7 @@ public class RfqPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public static void getDocNumPoFromRfqMulti() {
+	public void getDocNumPoFromRfqMulti() {
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
 		String PoRfqNumtext = webDB.getTextFromElement(RfqLocators.PoFromRfqDocNum, ElementType.Xpath);
@@ -389,7 +389,7 @@ public class RfqPageFunctions {
 		while (matcher.find()) {
 			PONumbers.add(matcher.group());
 		}
-		logs.logging("INFO", "PO Number Is:"+PONumbers);
+		logs.logging("INFO", "PO Number Is:" + PONumbers);
 		VariableHandler.setPONumbers(PONumbers);
 		PONumbers.size();
 	}
@@ -408,9 +408,8 @@ public class RfqPageFunctions {
 			VariableHandler.setRfqDocNum(RfqDocNum);
 			logs.logging("INFO", "RFQ Document number Is:" + VariableHandler.getRfqDocNum());
 			commonFunc.hardWait(1000);
-			List<WebElement> LineNumber = webDB.getDriver()
-					.findElements(By.xpath(RfqLocators.RfqLineNum));
-			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			List<WebElement> LineNumber = webDB.getDriver().findElements(By.xpath(RfqLocators.RfqLineNum));
+			logs.logging("INFO", "Line Number Is:" + LineNumber.size());
 			for (int i = 1; i <= LineNumber.size(); i++) {
 				flag = webDB.waitForElement(RfqLocators.ItemName(i), ElementType.Xpath);
 				if (flag) {
@@ -474,9 +473,8 @@ public class RfqPageFunctions {
 			VariableHandler.setRfqDocNum(RfqDocNum);
 			logs.logging("INFO", "RFQ Document number Is:" + VariableHandler.getRfqDocNum());
 			commonFunc.hardWait(1000);
-			List<WebElement> LineNumber = webDB.getDriver()
-					.findElements(By.xpath(RfqLocators.RfqLineNum));
-			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			List<WebElement> LineNumber = webDB.getDriver().findElements(By.xpath(RfqLocators.RfqLineNum));
+			logs.logging("INFO", "Line Number Is:" + LineNumber.size());
 			for (int i = 1; i <= LineNumber.size(); i++) {
 				flag = webDB.waitForElement(RfqLocators.ItemName(i), ElementType.Xpath);
 				if (flag) {
@@ -715,9 +713,8 @@ public class RfqPageFunctions {
 			getTextCurrencyInLine1();
 			logs.logging("INFO", "Currency is:" + Currency);
 			commonFunc.hardWait(1000);
-			List<WebElement> LineNumber = webDB.getDriver()
-					.findElements(By.xpath(RfqLocators.SupLineNum));
-			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			List<WebElement> LineNumber = webDB.getDriver().findElements(By.xpath(RfqLocators.SupLineNum));
+			logs.logging("INFO", "Line Number Is:" + LineNumber.size());
 			for (int i = 1; i <= LineNumber.size(); i++) {
 				webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
 				flag = webDB.waitForElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
@@ -798,9 +795,8 @@ public class RfqPageFunctions {
 			logs.logging("INFO", "Supplier Field 2 Is Clicked");
 			Currency = getTextCurrencyInLine2();
 			logs.logging("INFO", "Currency is:" + Currency);
-			List<WebElement> LineNumber = webDB.getDriver()
-					.findElements(By.xpath(RfqLocators.SupLineNum));
-			logs.logging("INFO", "Line Number Is:"+ LineNumber.size());
+			List<WebElement> LineNumber = webDB.getDriver().findElements(By.xpath(RfqLocators.SupLineNum));
+			logs.logging("INFO", "Line Number Is:" + LineNumber.size());
 			for (int i = 1; i <= LineNumber.size(); i++) {
 				webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
 				webDB.scrollDown(1000);
@@ -822,21 +818,21 @@ public class RfqPageFunctions {
 						if (flag) {
 							webDB.clickAnElement(RfqLocators.QuoteQty, ElementType.Xpath);
 							logs.logging("INFO", "Quote Qty Is Clicked");
-						commonFunc.hardWait(1000);
-						chooseTradeDiscForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Trd_Discount"),
-								i);
-						chooseSpclDiscForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
-								i);
-						chooseCashDiscForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Cash_Discount"),
-								i);
-						if (Currency.equals(commonFunc.getDataFromTestDataSheet("Cur_Inr"))) {
-							chooseHsnForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Hsn_code"), i);
-							verifysSupplierLineSave();
 							commonFunc.hardWait(1000);
-						} else {
-							verifysSupplierLineSave();
-							commonFunc.hardWait(1000);
-						}
+							chooseTradeDiscForParticularSupllierItem(
+									commonFunc.getDataFromTestDataSheet("Trd_Discount"), i);
+							chooseSpclDiscForParticularSupllierItem(
+									commonFunc.getDataFromTestDataSheet("Spcl_Discount"), i);
+							chooseCashDiscForParticularSupllierItem(
+									commonFunc.getDataFromTestDataSheet("Cash_Discount"), i);
+							if (Currency.equals(commonFunc.getDataFromTestDataSheet("Cur_Inr"))) {
+								chooseHsnForParticularSupllierItem(commonFunc.getDataFromTestDataSheet("Hsn_code"), i);
+								verifysSupplierLineSave();
+								commonFunc.hardWait(1000);
+							} else {
+								verifysSupplierLineSave();
+								commonFunc.hardWait(1000);
+							}
 						}
 					}
 				}
@@ -845,6 +841,7 @@ public class RfqPageFunctions {
 		Assert.assertTrue(flag);
 
 	}
+
 	/**
 	 * This method used to Giving Trade Discount
 	 * 
@@ -862,6 +859,7 @@ public class RfqPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This method used to Giving Trade Discount
 	 * 
@@ -879,6 +877,7 @@ public class RfqPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This method used to Giving Trade Discount
 	 * 
@@ -896,6 +895,7 @@ public class RfqPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This method used to Giving HSN Code
 	 * 
@@ -1291,23 +1291,23 @@ public class RfqPageFunctions {
 			flag = webDB.waitForElement(RfqLocators.PRForwardlov, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Lov Button Is Finded");
-			commonFunc.searchAndSelectValueInFilters(RfqLocators.PRForwardlov,
-					commonFunc.getDataFromTestDataSheet("AshokValue"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(RfqLocators.PRworkflowOK, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(RfqLocators.PRworkflowOK, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
-				commonFunc.hardWait(7000);
-				flag = commonFunc.logoutUser();
+				commonFunc.searchAndSelectValueInFilters(RfqLocators.PRForwardlov,
+						commonFunc.getDataFromTestDataSheet("AshokValue"));
+				commonFunc.hardWait(2000);
+				webDB.switchToFrame(RfqLocators.RfqWorkflowFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched To WorkFlow Frame");
+				flag = webDB.waitForElement(RfqLocators.PRworkflowOK, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.PRworkflowOK, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button Is Clicked");
+					webDB.switchToDefaultContent();
+					commonFunc.hardWait(7000);
+					flag = commonFunc.logoutUser();
+				}
+			} else {
+				flag = false;
+				VariableHandler.setApprovalFlag(flag);
 			}
-		} else {
-			flag = false;
-			VariableHandler.setApprovalFlag(flag);
-		}
 		}
 		assertTrue(flag);
 	}
@@ -1403,7 +1403,7 @@ public class RfqPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public static String getTextCurrencyInLine1() {
+	public String getTextCurrencyInLine1() {
 		String HeaderCurrency1 = null;
 		flag = webDB.waitForElement(RfqLocators.RfqSupplcurrField1, ElementType.Xpath);
 		if (flag) {
@@ -1418,7 +1418,7 @@ public class RfqPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public static String getTextCurrencyInLine2() {
+	public String getTextCurrencyInLine2() {
 		String HeaderCurrency2 = null;
 		flag = webDB.waitForElement(RfqLocators.RfqSupplcurrField2, ElementType.Xpath);
 		if (flag) {

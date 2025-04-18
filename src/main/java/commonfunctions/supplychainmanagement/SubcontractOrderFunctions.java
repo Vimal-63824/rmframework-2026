@@ -16,7 +16,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class SubcontractOrderFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -259,10 +259,10 @@ public class SubcontractOrderFunctions {
 			webDB.doubleClickAnElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.GLAccNoLovButton,
 					commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-			commonFunc.hardWait(2000);
-			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			commonFunc.hardWait(5000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				webDB.clickAnElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(2000);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

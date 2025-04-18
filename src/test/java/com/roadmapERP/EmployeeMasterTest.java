@@ -13,8 +13,8 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.EmployeeMasterFunctions;
 
-public class EmployeeMasterTest {
-	private static boolean flag = false;
+public class EmployeeMasterTest extends RoadMapERPTest {
+	boolean flag = false;
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 

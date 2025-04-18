@@ -36,18 +36,20 @@ import commonfunctions.ItemDetailsHandler.PRLineDetailsName;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class PurchaseRequestFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static ItemDetailsHandler itmDtlHandler = new ItemDetailsHandler();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static ApprovalPageFunctions approvalPageFunc = new ApprovalPageFunctions();
+	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General
@@ -282,6 +284,7 @@ public class PurchaseRequestFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 			logs.logging("INFO", "Header Saved Successfully.");
+			commonFunc.hardWait(2000);
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -1424,4 +1427,83 @@ public class PurchaseRequestFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * Verify From create the purchase request(s) for General Items
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyPRForGeneralItemWithMultipleItemInExcelSheet() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Purchase.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRGeneralSheet"));
+		for (int i = 3; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][1];
+			if (!(item.equals("") || item.equals("Total"))) {
+				String Quantity = itemmultiple[i][5];
+				String UnitCost = itemmultiple[i][6];
+				String GrossValue = itemmultiple[i][7];
+				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost);
+				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item);
+			} else {
+				break;
+			}
+		}
+		saveHeaderAndClickPost();
+		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify From create the purchase request(s) for Service Items
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyPRForServiceItemWithMultipleItemInExcelSheet() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Purchase.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRServiceSheet"));
+		for (int i = 3; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][1];
+			if (!(item.equals("") || item.equals("Total"))) {
+				String Quantity = itemmultiple[i][5];
+				String UnitCost = itemmultiple[i][6];
+				String GrossValue = itemmultiple[i][7];
+				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost);
+				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item);
+			} else {
+				break;
+			}
+		}
+		saveHeaderAndClickPost();
+		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
 }

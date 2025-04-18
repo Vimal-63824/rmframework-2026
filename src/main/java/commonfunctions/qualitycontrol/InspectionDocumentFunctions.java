@@ -26,7 +26,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class InspectionDocumentFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -357,7 +357,7 @@ public class InspectionDocumentFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public static void getInspectionDocumentNumberFromToastMessage() {
+	public void getInspectionDocumentNumberFromToastMessage() {
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
 		if (flag) {
