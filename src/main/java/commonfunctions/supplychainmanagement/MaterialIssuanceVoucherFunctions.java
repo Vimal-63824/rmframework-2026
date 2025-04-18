@@ -82,6 +82,7 @@ public class MaterialIssuanceVoucherFunctions {
 	public void validateItemWHProdNoFGItemWithMRNo(String MRNo, String Item, String Warehouse, String ProdNo,
 			String FGItem) {
 		switchMaterialRequestLinesIframe();
+		commonFunc.checkRefreshCellsDisappear();
 		String DisplItem = webDB.getTextFromElement(MaterialIssuanceVoucherLocators.SearchResult_Item_TableData(MRNo),
 				ElementType.Xpath);
 		logs.logging("INFO", "Displayed Item: " + DisplItem);
@@ -94,12 +95,16 @@ public class MaterialIssuanceVoucherFunctions {
 			flag = Warehouse.equalsIgnoreCase(DisplWH);
 			if (flag) {
 				logs.logging("INFO", "Warehouse Validated Successfully In Material Issuance Voucher");
+				webDB.moveToElement(MaterialIssuanceVoucherLocators.SearchResult_ProdOrderNo_TableData(MRNo),
+						ElementType.Xpath);
 				String DisplProdNo = webDB.getTextFromElement(
 						MaterialIssuanceVoucherLocators.SearchResult_ProdOrderNo_TableData(MRNo), ElementType.Xpath);
 				logs.logging("INFO", "Displayed Production Order No: " + DisplProdNo);
 				flag = ProdNo.equalsIgnoreCase(DisplProdNo);
 				if (flag) {
 					logs.logging("INFO", "Production Order Validated Successfully In Material Issuance Voucher");
+					webDB.moveToElement(MaterialIssuanceVoucherLocators.SearchResult_FGItem_TableData(MRNo),
+							ElementType.Xpath);
 					String DisplFGItem = webDB.getTextFromElement(
 							MaterialIssuanceVoucherLocators.SearchResult_FGItem_TableData(MRNo), ElementType.Xpath);
 					logs.logging("INFO", "Displayed FG Item: " + DisplFGItem);
