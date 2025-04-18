@@ -420,7 +420,7 @@ public class RfqPageFunctions {
 					String[][] Suppliermultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 					ExcelUtils excelUtils = new ExcelUtils();
 					String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-							+ "TestDatas.xlsx";
+							+ "ItemDetails.xlsx";
 					Suppliermultiple = excelUtils.readAllDataInExcel(Filepath,
 							webDB.getDataFromProperties("Suppliermultiple"));
 					for (int j = 1; j < Suppliermultiple.length; j++) {
@@ -486,7 +486,7 @@ public class RfqPageFunctions {
 					String[][] SuppliermultipleDOM = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 					ExcelUtils excelUtils = new ExcelUtils();
 					String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-							+ "TestDatas.xlsx";
+							+ "ItemDetails.xlsx";
 					SuppliermultipleDOM = excelUtils.readAllDataInExcel(Filepath,
 							webDB.getDataFromProperties("SuppliermultipleDOM"));
 					for (int j = 1; j < SuppliermultipleDOM.length; j++) {
@@ -1446,7 +1446,7 @@ public class RfqPageFunctions {
 				String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 				ExcelUtils excelUtils = new ExcelUtils();
 				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-						+ "TestDatas.xlsx";
+						+ "ItemDetails.xlsx";
 				PRMultipleline = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRMultipleline"));
 				for (int i = 1; i < PRMultipleline.length; i++) {
 					String ITEM = PRMultipleline[i][0];

@@ -78,7 +78,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
-	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(15) > a";
+	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
 	/** @Locator Xpath */
 	public static final String LinewisedetailsHeader = "//h1[@id='ui-id-4']";
 	/** @Locator Xpath */
@@ -110,7 +110,7 @@ public class SalesOrderLocators {
 	/** Locator Xpath */
 	public static final String supplychain = "//*[@id='t_TreeNav_4']/div[2]/span[2]";
 	/** Locator Xpath */
-	public static final String sales = "//*[@id='t_TreeNav_19']/div[2]/span[2]";
+	public static final String sales = "//span[text()='Sales']";
 	/** Locator Xpath */
 	public static final String setup = "( //span[contains(@class,'fa fa fa-shopping-bag')])[2]";
 	/** Locator Xpath */
@@ -200,7 +200,7 @@ public class SalesOrderLocators {
 	/** Locator @CssSelector */
 	public static final String PrintIconInFind = "#\\31 960290421519866117_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 	/** @Locator Xpath */
-	public static final String SOTradeDiscountPercentageReadOnlyField = "//span[@id='P191513134002_SOQ_DISC_PCT_DISPLAY']";
+	public static final String SOTradeDiscountPercentageReadOnlyField = "//input[@id='P191513134002_SOQ_DISC_PCT']";
 	/** @Locator Xpath */
 	public static final String ContractNumberInLineDetails1 = "//input[@id='P191513134002_SOQ_CONT_CAT_NO']";
 	/** @Locator Xpath */
@@ -402,11 +402,11 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
 	/** Locator @CssSelector */
-	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(19) > a";
+	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(21) > a > span";
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
-		return "//a[text()='" + SOno + "']/../../td[24]";
+		return "//a[text()='" + SOno + "']/../../td[28]/div";
 	}
 
 	/** @Locator Xpath */
@@ -486,8 +486,8 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "(//*[@id=\"ig_line_ig_grid_vc\"]/div/div/table[1])[2]/tbody/tr[" + i
-				+ "]/td[15]/a/span[contains(@style,'blue')]";
+		return "(//*[@id='ig_line_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
+				+ "]/td[17]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @Locator Xpath */

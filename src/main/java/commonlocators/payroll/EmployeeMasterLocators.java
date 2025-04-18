@@ -1,7 +1,5 @@
 package commonlocators.payroll;
 
-import commonfunctions.VariableHandler;
-
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -414,4 +412,261 @@ public class EmployeeMasterLocators {
 		return "//div[@id='ig_line7_ig_grid_vc']//table//tr/td[text()='" + LeaveType + "']/../td[11]//span";
 	}
 
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_EmpParticularPostBtn = "//button[@id='B1045940314885850740']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_AddressPostBtn = "//button[@id='B1048663432558210322']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_UpdateDependentTab = "//label[text()='Dependent']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentAddLabel = "//div[@id='P9001_DEPE_RADIO']//label[text()='Add']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentModifyLabel = "//div[@id='P9001_DEPE_RADIO']//label[text()='Modify']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentRemoveLabel = "//div[@id='P9001_DEPE_RADIO']//label[text()='Remove']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentAddIcon = "//button[@id='B1048876373691529233']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentSaveIcon = "//button[@id='B1048875925411529229']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentPostBtn = "//button[@id='B1048875867489529228']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentNameData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[1]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentNameInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[1]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentRelationData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[2]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentRelationSelect = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[2]//select";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentDOBData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[3]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentDOBInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[3]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentAadharData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[4]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentAadharInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[4]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentEmailData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentEmailInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[5]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentContactData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[6]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentContactInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[6]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentMonthlyEarnData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_DependentMonthlyEarnInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[7]//input";
+	/** @locatorType XPATH */
+	public static final String AddEmp_UpdateContactTab = "//label[text()='Contact']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactAddLabel = "//div[@id='P9001_CONT_RADIO']//label[text()='Add']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactModifyLabel = "//div[@id='P9001_CONT_RADIO']//label[text()='Modify']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactRemoveLabel = "//div[@id='P9001_CONT_RADIO']//label[text()='Remove']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactAddIcon = "//button[@id='B1060327871010750412']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactSaveIcon = "//button[@id='B1060327990451750413']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactPostBtn = "//button[@id='B1060328029784750414']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactNameData = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[1]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactNameInput = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[1]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactRelationData = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[2]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactRelationInput = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[2]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactMobileData = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[3]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactMobileInput = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[3]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactAddressData = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[4]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactAddressInput = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[4]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactCityData = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_ContactCityLovBtn = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[5]//button";
+	/** @locatorType XPATH */
+	public static final String AddEmp_UpdateQualificationTab = "//label[text()='Qualification']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationAddLabel = "//div[@id='P9001_QUALI_RADIO']//label[text()='Add']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationModifyLabel = "//div[@id='P9001_QUALI_RADIO']//label[text()='Modify']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationRemoveLabel = "//div[@id='P9001_QUALI_RADIO']//label[text()='Remove']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationAddIcon = "//button[@id='B1060329957650750433']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationSaveIcon = "//button[@id='B1060330064003750434']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationPostBtn = "//button[@id='B1060330156212750435']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationTableData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[1]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualificationTableLovBtn = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[1]//button";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualBranchOfStudyData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[2]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualBranchOfStudyLovBtn = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[2]//button";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualInstituteData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[3]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualInstituteInput = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[3]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualTotalYearData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[4]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualTotalYearInput = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[4]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualYearOfPassData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualYearOfPassInput = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[5]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualGradeData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[6]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualGradeInput = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[6]//input";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualAggregateData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_QualAggregateInput = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[7]//input";
+	/** @locatorType XPATH */
+	public static final String AddEmp_UpdateSkillTab = "//label[text()='Skills']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillAddLabel = "//div[@id='P9001_SKILL_RADIO']//label[text()='Add']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillModifyLabel = "//div[@id='P9001_SKILL_RADIO']//label[text()='Modify']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillRemoveLabel = "//div[@id='P9001_SKILL_RADIO']//label[text()='Remove']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillAddIcon = "//button[@id='B1063487633024735329']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillSaveIcon = "//button[@id='B1063487746645735330']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillPostBtn = "//button[@id='B1063487869097735331']";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillTableData = "//div[@id='ig_skill_ig_grid_vc']//table/tbody/tr/td[1]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillTableLovBtn = "//div[@id='ig_skill_ig_grid_vc']//table/tbody/tr/td[1]//button";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillLevelData = "//div[@id='ig_skill_ig_grid_vc']//table/tbody/tr/td[2]";
+	/** @locatorType XPATH */
+	public static final String UpdateEmp_SkillLevelLovBtn = "//div[@id='ig_skill_ig_grid_vc']//table/tbody/tr/td[2]//button";
+	/** @locatorType XPATH */
+	public static final String EmployeeHistoryBtn = "//button[@id='B148683768874402832']";
+	/** @locatorType XPATH */
+	public static final String EmployeeHistoryIframe = "//iframe[@title='Emp Hist']";
+	/** @locatorType XPATH */
+	public static final String EmpHistIframeCloseIcon = "//iframe[@title='Emp Hist']/preceding::button[@title='Close'][1]";
+	/** @locatorType XPATH */
+	public static final String EmployeeHistoryTableRowCount = "//table[@id='155455181388850714']/tbody//td/parent::tr";
+	/** @locatorType XPATH */
+	public static final String Find_EmpNameLovBtn = "//button[@id='P22_EMPLOYEE_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String FindSearchBtn = "//button[@id='B1547263258599453417']";
+	/** @locatorType XPATH */
+	public static final String FindSearchBar = "//input[@id='detail_search_field']";
+	/** @locatorType XPATH */
+	public static final String FindSearchGoBtn = "//button[@id='detail_search_button']";
+
+	/** @locatorType XPATH */
+	public static final String FindResult_TableEmpId(String id) {
+		return "//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + id + "']";
+	}
+
+	/** @locatorType XPATH */
+	public static final String FindResult_TableStatus(String id) {
+		return "//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + id + "']/../../td[14]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String ViewProfileBtn = "//button[@id='B799124547394092000']";
+	/** @locatorType XPATH */
+	public static final String ViewProf_ProfileNo = "//table[@id='2198137723027972805_orig']/tbody/tr/td[1]/a";
+	/** @locatorType XPATH */
+	public static final String ViewProf_BatchNo = "//table[@id='2198137723027972805_orig']/tbody/tr/td[2]";
+	/** @locatorType XPATH */
+	public static final String ViewProf_ReverseBtn = "//button[@id='B3393868518627380386']";
+	/** @locatorType XPATH */
+	public static final String ViewProf_ReverseOkBtn = "//button[text()='OK']";
+	/** @locatorType XPATH */
+	public static final String MigrationBtn = "//button[@id='B1539147672458060040']";
+	/** @locatorType XPATH */
+	public static final String MigrationIframe = "//iframe[@title='Select The Type']";
+	/** @locatorType XPATH */
+	public static final String MigrationIframeCloseIcon = "//*[text()='Select The Type']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationLabel = "//label[text()='Emp.Migration']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationAddButton = "//button[@id='B1588071132988399798']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationCalendarLov = "//button[@id='P367011401_EMHD_CLNDR_ID_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationPaymentSelect = "//select[@id='P367011401_EMHD_PAY_BASIS']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationPaymentTypeSelect = "//select[@id='P367011401_EMHD_PAY_SAL_WAGE']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationReferenceInput = "//input[@id='P367011401_EMHD_REF']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationDocNoDisplay = "//input[@id='P367011401_EMHD_DOC_NO']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationCreateSaveIcon = "//button[@id='B1588148533023408856']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationHeaderSaveIcon = "//button[@id='B1588148130093408856']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationUploadTemplateBtn = "//button[@id='B1588149380771408859']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationUploadInput = "//input[@id='P367011401_UPLOAD_input']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationUploadBtn = "//button[@id='B1588210334595409209']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationCheckExceptionBtn = "//button[@id='B1588150167297408860']";
+	/** @locatorType XPATH */
+	public static final String EmpMigrationPostBtn = "//button[@id='B1588150526412408862']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationLabel = "//label[text()='Emp.Details Migration']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationCreateAddIcon = "//button[@id='B1588806298624934579']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationSelectFieldLabel = "//label[text()='Select Field']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationUploadLabel = "//label[text()='Upload']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationReferenceInput = "//input[@id='P74_EDMHD_REF']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationCreateSaveButton = "//button[@id='B1588849515245950548']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationDocNoDisplay = "//input[@id='P74_EDMHD_DOC_NO']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationSelectFieldAddIcon = "//button[@id='B1588890336495950665']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationSelectFieldSaveIcon = "//button[@id='B1588890746945950667']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationHeaderSaveIcon = "//button[@id='B1588849515245950548']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationUploadIcon = "//button[@id='B1588850301527950550']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsSelectFieldDataTypeTableData = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsSelectFieldDataTypeSelect = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[2]//select";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsSelectFieldSequenceTableData = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[3]";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsSelectFieldSequenceInput = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[3]//input";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationUploadIframe = "//iframe[@title='Select a Document File']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationUploadIframeCloseIcon = "//h1[text()='Select a Document File']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationUploadInput = "//input[@id='P367090602_UPLOAD_input']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationUploadBtn = "//button[@id='B3452247500282750518']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationCheckExceptionBtn = "//button[@id='B1588850738192950550']";
+	/** @locatorType XPATH */
+	public static final String EmpDetailsMigrationPostBtn = "//button[@id='B1588852368955950553']";
 }

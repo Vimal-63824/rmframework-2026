@@ -123,4 +123,74 @@ public class AttendanceLeaveLocators {
 	public static final String EncashmentFindPageSearchButton = "//*[@id='B1263179579896901524']";
 	/** @locatorType Xpath */
 	public static final String PermissionCancelButton = "//*[@id='B3203279659824698659']";
+	/** @locatorType Xpath */
+	public static final String CompOffButtonClick = "//*[@id='P818510608_TAB']/div/div/div[4]/label";
+	/** @locatorType Xpath */
+	public static final String CompOffFindAddIcon = "//*[@id='B2167388650608602850']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffEmployeeLOV = "//*[@id='P8185106003_HECO_EMP_ID_lov_btn']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffDateField = "//*[@id='P8185106003_HECO_COMP_OFF_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String CompOffDaysField = "//*[@id='P8185106003_HECO_COMP_OFF_DAYS']";
+	/** @locatorType Xpath */
+	public static final String CompOffReferenceField = "//*[@id='P8185106003_HECO_REFERENCE']";
+	/** @locatorType Xpath */
+	public static final String CompOffEntrySaveIcon = "//*[@id='B3129587167307398146']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffEntryPostIcon = "//*[@id='B3129588589873398161']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffDocumentNo = "//*[@id='P8185106003_HECO_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String CompOffFindEmployeeLOV = "//*[@id='P818510608_EMPLOYEE_COM_lov_btn']/span";
+	/** @locatorType Xpath */
+	public static final String CompOffFindpageSearchButton = "//*[@id='B2167389026596602851']";
+	/** @locatorType Xpath */
+	public static final String CompOffFindpageClearButton = "//*[@id='Clear5']";
+	/** @locatorType Xpath */
+	public static final String LeaveRadioButton = "(//input[@name='P818510608_TAB']/following-sibling::label)[1]";
+	/** @locatorType Xpath */
+	public static final String LeaveAddButton = "//*[@id='B710388806126754514']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestDateInput = "//input[@id='P41_LR_REQ_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestEmpIdLovBtn = "//button[@id='P41_LR_EMP_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestLeaveTypeLovBtn = "//button[@id='P41_LR_LEAVE_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestBalanceDisplay = "//span[@id='P41_LR_LEAVE_BAL']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestStartDateInput = "//input[@id='P41_LR_START_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestStartSessionSelect = "//select[@id='P41_LR_START_SESS']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestAppliedDaysInput = "//input[@id='P41_LR_APPLIED_DAYS']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestEndDateInput = "//input[@id='P41_LR_END_DATE']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestEndSessionSelect = "//select[@id='P41_LR_END_SESS']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestLeaveReason = "//input[@id='P41_LR_BRIEFDESC']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestHeaderSaveIcon = "//button[@id='B599666156665953309']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestPostBtn = "//button[@id='B599666982833953309']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequesNumberDisplay = "//h2[@id='R479336995197451550_heading']/b";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFetchBtn = "//button[@id='B1355032058649695667']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryPendingRequestIframe = "//iframe[@title='Pend. Leave Request']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryPendReqSearchBar = "//input[@id='user_search_field']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryPendReqSearchGoBtn = "//button[@id='user_search_button']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryPendReqCreateLeaveBtn = "//button[@id='B3162794562401610053']";
+
+	/** @locatorType Xpath */
+	public static final String LeaveEntryPendReqCheckBox(String reqNo) {
+		return "//input[contains(@id,'checkbox_" + reqNo + "')]";
+	}
+
 }
