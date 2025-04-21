@@ -352,4 +352,7 @@ public class PurchaseOrderPageLocators {
 	public static final String UomWithItem(String item) {
 		return "//td[text()='" + item + "']/../td[5]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String ServiceType = "//select[@id='P161513106045_POL_SERV_IO_TYPE']";
 }

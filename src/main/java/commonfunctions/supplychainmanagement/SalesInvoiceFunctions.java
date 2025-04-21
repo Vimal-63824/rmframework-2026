@@ -21,7 +21,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class SalesInvoiceFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -2889,7 +2889,7 @@ public class SalesInvoiceFunctions {
 	 *         Header of the Sales Order Screen And Return As String
 	 * @return
 	 */
-	public static String getTextCurrencyInHeader() {
+	public String getTextCurrencyInHeader() {
 		String HeaderCurrency = null;
 		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Currency, ElementType.Xpath);
 		if (flag) {

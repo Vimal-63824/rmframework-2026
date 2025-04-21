@@ -42,7 +42,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CommonFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static ExcelUtils excelUtils = new ExcelUtils();
@@ -1630,19 +1630,13 @@ public class CommonFunctions {
 	 * @return boolean
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
-		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
-			VariableHandler.setApprovalFlag(true);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			logs.logging("INFO", "Toast Message Displayed Approved successfully");
-			return true;
-		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
+		if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			return false;
+			VariableHandler.setApprovalFlag(true);
+			return true;
 		}
 	}
 

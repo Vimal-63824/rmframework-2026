@@ -52,7 +52,7 @@ public class PaymentReceiptsLocators {
 
 	/** @locatorType Xpath */
 	public static final String IssuedStatus(String BpvNumber) {
-		return "(//a[text()='" + BpvNumber + "']/../../td/div[text()='Issued'])";
+		return "(//a[text()='" + BpvNumber + "']/../../td/div[text()='Cleared'])";
 	}
 
 	/** @locatorType Xpath */

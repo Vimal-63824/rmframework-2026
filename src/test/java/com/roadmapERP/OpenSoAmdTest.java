@@ -13,7 +13,7 @@ import commonfunctions.supplychainmanagement.OpenSoAmdFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class OpenSoAmdTest {
+public class OpenSoAmdTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

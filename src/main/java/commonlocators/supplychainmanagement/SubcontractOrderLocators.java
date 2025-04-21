@@ -45,7 +45,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CloseDetails = "//h1[text()='Details']/../button";
 	/** @locatorType XPATH */
-	public static final String LineDetails = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[12]";
+	public static final String LineDetails = "(//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td/a)[2]";
 	/** @locatorType XPATH */
 	public static final String OrderedQuantity = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType XPATH */
@@ -93,4 +93,6 @@ public class SubcontractOrderLocators {
 	public static final String CgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[16]";
 	/** @locatorType XPATH */
 	public static final String SgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[17]";
+	/** @locatorType XPATH */
+	public static final String LineSave = "//button[@id='B4095080566516271569']";
 }

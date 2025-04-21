@@ -46,7 +46,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CoreProcessPageFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -572,7 +572,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				//commonFunc.navigateToProductionOrderInProdPlanning();
+				// commonFunc.navigateToProductionOrderInProdPlanning();
 			}
 			webDB.navigateToRefresh();
 			commonFunc.navigateToInventoryMaterialRequest();

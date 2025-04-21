@@ -13,7 +13,7 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class PurchaseOrderTest {
+public class PurchaseOrderTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
@@ -68,7 +68,7 @@ public class PurchaseOrderTest {
 	@Test(priority = 4, groups = {
 			"PurchaseOrder" }, description = "91 Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticStockTransferSimilarStockAndSupplierUOM() {
-		flag = purchaseOrderFunc.verifyDirectPODomesticStockTransferSimilarUOM();
+		flag = purchaseOrderFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheet();
 		Assert.assertTrue(flag);
 	}
 

@@ -313,4 +313,18 @@ public class POAmendmentLocators {
 		return "//td[text()='" + text + "']/../td[15]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String CheckBox(String text) {
+		return "//td[text()='" + text + "']/../td/input[@type='checkbox']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String CloseShort = "//button[@id='B3842110667850423716']";
+
+	/** @locatorType Xpath */
+	public static final String CloseshortType(String text) {
+		return "//td[text()='" + text + "']/../td[text()='Closeshort']";
+	}
+
+	
 }
