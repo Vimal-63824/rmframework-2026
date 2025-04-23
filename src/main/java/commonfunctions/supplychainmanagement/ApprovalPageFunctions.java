@@ -231,9 +231,6 @@ public class ApprovalPageFunctions {
 				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.hardWait(3000);
 			}
-		} else {
-			VariableHandler.setApprovalFlag(flag);
-			flag = true;
 		}
 		assertTrue(flag);
 	}
@@ -302,6 +299,7 @@ public class ApprovalPageFunctions {
 					}
 				}
 			}
+			i++;
 		} while (i < 5);
 		assertTrue(flag);
 	}

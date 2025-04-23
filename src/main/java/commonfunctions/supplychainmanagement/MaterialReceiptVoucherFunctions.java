@@ -221,8 +221,17 @@ public class MaterialReceiptVoucherFunctions {
 	public void verifyPostMaterialReceipt() {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
+		commonFunc.navigateSetupInventoryPage();
+		flag = autoCreateMRVCheckboxIsSelected();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 		commonFunc.navigateToMaterialReceiptVoucher();
-		verifyPendingMRV(VariableHandler.getGrnDocNumber());
+		if (flag) {
+			verifyOpenAlreadyCreatedMRVDocuments(VariableHandler.getGrnDocNumber());
+		} else {
+			verifyPendingMRV(VariableHandler.getGrnDocNumber());
+		}
 		verifyReceiptLocatorsAndPutAway();
 		clickTickAndPostIcon();
 		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
@@ -676,7 +685,6 @@ public class MaterialReceiptVoucherFunctions {
 		} catch (Exception e) {
 			System.out.println("No alert appeared or other error: " + e.getMessage());
 		}
-
 	}
 
 	/**
@@ -725,8 +733,8 @@ public class MaterialReceiptVoucherFunctions {
 			} else {
 				System.out.println("Invalid format, unable to extract From and To document numbers.");
 			}
-
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -757,10 +765,78 @@ public class MaterialReceiptVoucherFunctions {
 					flag = webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown,
 							ElementType.Xpath);
 					verifyToPostWithOrWithoutLocator();
-
 				}
 			}
 		}
+		assertTrue(flag);
+	}
 
+	/**
+	 * This Method Is Used To Auto Creation Selected
+	 * 
+	 * @author Deepan-GWL
+	 * @return booelan flag
+	 */
+	public boolean autoCreateMRVCheckboxIsSelected() {
+		flag = webDB.isElementSelected(CommonUiLocators.AutoCreationMrvCheckBox, ElementType.Xpath);
+		return flag;
+	}
+
+	/**
+	 * This Method Is USed To Verify Open ALready Created MRV Documents
+	 * 
+	 * @author Deepan-GWL
+	 * @param VoucherNumber
+	 */
+	public void verifyOpenAlreadyCreatedMRVDocuments(String VoucherNumber) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(MaterialReceiptVoucherLocators.SourceVoucher, VoucherNumber, ElementType.Xpath);
+			logs.logging("INFO", "Send Text Voucher Number Is: " + VoucherNumber);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.SearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.SearchButton, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvNumber(VoucherNumber), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Material Voucher Number Is Displayed");
+					webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvNumber(VoucherNumber), ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Mrv Page Is Displayed");
+						storeMRVDocumentsNumber();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is USed To Verify Open ALready Created MRV Documents
+	 * 
+	 * @author Deepan-GWL
+	 * @param VoucherNumber
+	 */
+	public void verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(String ProdNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.FindProdNoLovBtn, ProdNo);
+			logs.logging("INFO", "Send Text Voucher Number Is: " + ProdNo);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.SearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.SearchButton, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvNumber(ProdNo), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Material Voucher Number Is Displayed");
+					webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvNumber(ProdNo), ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Mrv Page Is Displayed");
+						storeMRVDocumentsNumber();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

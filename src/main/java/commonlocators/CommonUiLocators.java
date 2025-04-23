@@ -140,7 +140,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
+	public static final String WorkApprovalFrame = "//iframe[contains(@title,'Workflow Approval')]";
 	/** @locatorType Xpath */
 	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
@@ -238,4 +238,14 @@ public class CommonUiLocators {
 	public static final String PendingDrDocs = "//button[@id='B1918502607122484020']";
 	/** @locatorType Xpath */
 	public static final String UsernameIcon = "//*[@title='Sign Out']/following::*[1]";
+	/** @locatorType Xpath */
+	public static final String OpenPO_RC = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li/*/a[text()='Open PO/RC']";
+	/** @locatorType Xpath */
+	public static final String OpenPO_RCButton = "//label[@for='P16151310256_TYPE_0']";
+	/** @locatorType Xpath */
+	public static final String AutoCreationMrvCheckBox = "//input[@id='P367019021_ICMCTRL_AUTO_MTR_FLAG_1']";
+	/** @locatorType Xpath */
+	public static final String ApplControlLabel = "//label[@for='P367019021_TAB_OVERALL_GROUP_0']";
+	/** @locatorType Xpath */
+	public static final String SetupInventoryTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[1]";
 }

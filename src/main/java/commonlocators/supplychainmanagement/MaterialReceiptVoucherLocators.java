@@ -38,6 +38,8 @@ public class MaterialReceiptVoucherLocators {
 	public static final String HeaderPostIcon = "//button[@id='B4670097921149921905']";
 	/** @locatorType Xpath */
 	public static final String AllCheckBox = "//table[@id='1636069529759209034']//input[@id='check_all']";
+	/** @locatorType Xpath */
+	public static final String FindProdNoLovBtn = "//button[@id='P93131177_PROD_ORD_NO_lov_btn']";
 
 	/** @locatorType Xpath */
 	public static final String MRVCheckBox(String GrnNo) {
@@ -100,5 +102,12 @@ public class MaterialReceiptVoucherLocators {
 	public static final String MrvDocNumberDrillDown = "//*[@id=\"2708497647223109870_orig\"]/tbody/tr[2]/td[5]/a";
 	/** @locatorType Xpath */
 	public static final String MrvDocNumberSearchBtn = "//button[@id='B1651762009575460806']";
+	/** @locatorType Xpath */
+	public static final String SourceVoucher = "//input[@id='P93131177_SOURCE_VOU_NO']";
+
+	/** @locatorType Xpath */
+	public static final String MrvNumber(String GrnNo) {
+		return "(//td[text()='" + GrnNo + "']/../td/a)[2]";
+	}
 
 }

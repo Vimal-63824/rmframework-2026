@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -229,65 +230,61 @@ public class CommonFunctions {
 				try {
 					if (element.isDisplayed()) {
 						element.clear();
-						// logs.logging("INFO", "Search Field Is Cleared");
-						try {
-							flag = fluentWaitClickElement(element);
-							if (flag) {
-								checkRefreshCellsDisappear();
-								element.sendKeys(Value);
-							}
-						} catch (Exception e) {
-							logs.logging("INFO", "Exception is: " + e);
-						}
-						hardWait(1500);
-						// logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
-						if (webDB.verifyIsElementDisplayed(CommonUiLocators.SearchBarIcon, ElementType.Xpath)) {
-							webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
-						}
-						// TODO WAIT_LOAD_TIME (will remove future)
-						hardWait(2000);
-						checkRefreshCellsDisappear();
-						List<WebElement> Elements = webDB.getDriver()
-								.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-						for (WebElement webElement : Elements) {
-							try {
-								if (webElement.isDisplayed()) {
-									webElement.click();
-									flag = true;
-									logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-									break;
-								} else {
-									flag = false;
-								}
-							} catch (Exception e) {
-								flag = false;
-							}
-//						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
-//								ElementType.Xpath)) {
-//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
-//									ElementType.Xpath);
-//						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
-//								ElementType.Xpath)) {
-//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
-//									ElementType.Xpath);
-//						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
-//								ElementType.Xpath)) {
-//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
-//									ElementType.Xpath);
-//						} else {
-//							flag = false;
-//						}
-							if (flag) {
-								logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-								break a;
-							}
+						flag = fluentWaitClickElement(element);
+						if (flag) {
+							checkRefreshCellsDisappear();
+							element.sendKeys(Value);
+							break a;
+						} else {
+							flag = false;
 						}
 					}
 				} catch (Exception e) {
-					logs.logging("INFO", "Exception Is: " + e);
+					logs.logging("INFO", "failed to enter search bar Exception is: " + e);
 					flag = false;
-					continue;
 				}
+			}
+			Assert.assertTrue(flag);
+			// TODO WAIT_LOAD_TIME (will remove future)
+			hardWait(1500);
+			try {
+				List<WebElement> SearchBarIcon = webDB.getDriver()
+						.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
+				a: for (int i = 0; i < SearchBarIcon.size(); i++) {
+					WebElement element = SearchBarIcon.get(i);
+					if (element.isDisplayed()) {
+						((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+								element);
+						element.click();
+						break a;
+					} else {
+						flag = false;
+					}
+				}
+			} catch (Exception e) {
+				logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
+				flag = false;
+			}
+			// TODO WAIT_LOAD_TIME (will remove future)
+			hardWait(2000);
+			checkRefreshCellsDisappear();
+			List<WebElement> Elements = webDB.getDriver()
+					.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+			for (WebElement webElement : Elements) {
+				try {
+					if (webElement.isDisplayed()) {
+						((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+								webElement);
+						webElement.click();
+						flag = true;
+					}
+				} catch (Exception e) {
+					logs.logging("INFO", "failed to click options in lov button Exception is: " + e);
+					flag = false;
+				}
+			}
+			if (flag) {
+				logs.logging("INFO", "Searched and selected '" + Value + "' in Filter");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1909,6 +1906,66 @@ public class CommonFunctions {
 
 				}
 
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to navigate Open PO/RC Page
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickOpenPORCTab() {
+		flag = webDB.waitForElement(CommonUiLocators.OpenPO_RC, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.OpenPO_RC, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.OpenPO_RCButton, ElementType.Xpath, 45);
+			if (flag) {
+				logs.logging("INFO", "Open PO/RC Tab Is CLicked and navigated successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to navigate Open PO/RC Page
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateOpenPORCPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		clickOpenPORCTab();
+	}
+
+	/**
+	 * This method used to Navigate Setup Inventory Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateSetupInventoryPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		clickInventorySetupTab();
+		clickSetupInventoryTab();
+	}
+
+	/**
+	 * This Method Is Used To Click SetUp Inventory Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSetupInventoryTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SetupInventoryTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SetupInventoryTab, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.ApplControlLabel, ElementType.Xpath, 45);
+			if (flag) {
+				logs.logging("INFO", "Setup Inventory Tab Is CLicked and navigated successfully");
 			}
 		}
 		Assert.assertTrue(flag);
