@@ -476,6 +476,30 @@ public class POAmendmentTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * From PR to PO - Import Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 35, groups = {
+			"Purchase Order Amendment" }, description = "128 From PR to PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyCloseshortAmendPRToPOImportGeneralDissimilarStockAndSupplierUOM() {
+		poAmendmentFunc.verifyPRToPOImportGeneralWithDissimilarStockAndSupplierUOMWithMultipleItem();
+	}
+
+	/**
+	 * cancel the purchase Order amendment document?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 36, groups = {
+			"Purchase Order Amendment" }, description = "cancel the purchase Order amendment document?")
+	public void VerifyPoAmendmentCancelLineAndCancelDocuments() {
+		poAmendmentFunc.verifyPoAmendmentCancelDocumentsAndCancelLine();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

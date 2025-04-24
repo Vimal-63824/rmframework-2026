@@ -1533,6 +1533,7 @@ public class SalesOrderFunctions {
 					}
 					flag = webDB.waitForElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 					if (flag) {
+						webDB.moveToElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 						webDB.clickAnElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 						flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 						if (flag) {
@@ -1845,6 +1846,7 @@ public class SalesOrderFunctions {
 	public void clickLineWiseSaveAndGetTotAmt() {
 		flag = webDB.waitForElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			if (flag) {

@@ -42,6 +42,7 @@ public class OpenSalesOrderFunctions {
 		if (SOtype.contains("Amendment")) {
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOAmendRadioBtn, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(OpenSalesOrderLocators.OpenSOAmendRadioBtn, ElementType.Xpath);
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOAmendRadioBtn, ElementType.Xpath);
 				flag = webDB.waitForElement(OpenSalesOrderLocators.FindHeadingText, ElementType.Xpath);
 				if (flag) {
@@ -53,6 +54,7 @@ public class OpenSalesOrderFunctions {
 		} else {
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 				flag = webDB.waitForElement(OpenSalesOrderLocators.FindHeadingText, ElementType.Xpath);
 				if (flag) {

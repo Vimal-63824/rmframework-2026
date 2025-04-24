@@ -14,6 +14,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
@@ -23,6 +25,7 @@ import commonfunctions.ItemDetailsHandler.POLineDetailsName;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -5570,5 +5573,139 @@ public class POAmendmentFunctions {
 			flag = commonFunc.logoutUser();
 		}
 
+	}
+
+	/**
+	 * This Method Is Used To Verify Po Amendment Cancel Documents And Cancel Lines
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPoAmendmentCancelDocumentsAndCancelLine() {
+		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInput(
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"),
+				webDB.getDataFromProperties("ModifyPOASimilarItemSheet"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyTickIconSingleAmendment();
+		verifyAddPoLineItemForModify();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Purchase.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ModifyPOASimilarItemSheet"));
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
+				for (int i = j + 3; i < itemmultiple.length; i++) {
+					String item = itemmultiple[i][1];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						verifyPOAmendmentCancelLine(item);
+
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		verifyCancelDocuments();
+		flag = webDB.waitForElement(POAmendmentLocators.HeaderCheckbox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header CheckBox Is Clicked");
+			webDB.clickAnElement(POAmendmentLocators.HeaderCheckbox, ElementType.Xpath);
+			verifyValidatePOACancelStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("CancelStatus"));
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Po Amendment Cancel Line
+	 * 
+	 * @author Deepan-GWL
+	 * @param Item
+	 */
+	public void verifyPOAmendmentCancelLine(String Item) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(POAmendmentLocators.CancelLine(Item), ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(POAmendmentLocators.Item(Item), ElementType.Xpath);
+			webDB.moveToElement(POAmendmentLocators.CancelLine(Item), ElementType.Xpath);
+			webDB.clickAnElement(POAmendmentLocators.CancelLine(Item), ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + Item);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Cancel Documents
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void verifyCancelDocuments() {
+		flag = webDB.waitForElement(POAmendmentLocators.AddPoLine, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Add Po Line Button Is Displayed");
+			String POANumbervalue = webDB.getDomPropertyFromElement(POAmendmentLocators.POANumber, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			commonFunc.hardWait(3000);
+			logs.logging("INFO", "Get PO Number Is: " + POANumbervalue);
+			VariableHandler.setPOANumber(POANumbervalue);
+			webDB.moveToElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
+			flag = webDB.waitForElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(POAmendmentLocators.CancelDoc, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Toast Message Displayed, POA Cancelled Successfully");
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Search PO and Validate PO Status
+	 * 
+	 * @author Deepan-GWL
+	 * @param POno
+	 * @param ExpectedStatus
+	 */
+	public void verifyValidatePOACancelStatus(String POno, String ExpectedStatus) {
+		commonFunc.searchAndSelectValueInFilters(POAmendmentLocators.POANumberLovButton, POno);
+		flag = webDB.waitForElement(POAmendmentLocators.SearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(POAmendmentLocators.SearchButton, ElementType.Xpath);
+			logs.logging("INFO", "Search Button Is Clicked");
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(POAmendmentLocators.POANumberCancelStatus(POno), ElementType.Xpath);
+			if (flag) {
+				String Status = webDB.getTextFromElement(POAmendmentLocators.POANumberCancelStatus(POno),
+						ElementType.Xpath);
+				flag = Status.contains(ExpectedStatus);
+				if (flag) {
+					logs.logging("INFO", "Expected Status: " + ExpectedStatus);
+					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

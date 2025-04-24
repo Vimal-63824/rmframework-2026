@@ -180,7 +180,7 @@ public class PurchaseOrderFunctions {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
 			webDB.clickAnElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(5000);
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
