@@ -279,7 +279,6 @@ public class CommonFunctions {
 						flag = true;
 					}
 				} catch (Exception e) {
-					logs.logging("INFO", "failed to click options in lov button Exception is: " + e);
 					flag = false;
 				}
 			}
