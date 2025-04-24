@@ -748,9 +748,36 @@ public class CoreProcessPageFunctions {
 				commonFunc.getDataFromTestDataSheet("PostedStatus"));
 		commonFunc.logoutUser();
 		deliveryChallanFunc.verifyDeliveryChallan();
+
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigateSetupInventoryPage();
+		boolean createflag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+		boolean postflag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToMaterialReceiptVoucher();
+		if (createflag && !postflag) {
+			materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getMIVNumber());
+			materialReceiptFunctions.createJournalAndViewJournal();
+			materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+			materialReceiptFunctions.clickTickAndPostIcon();
+		} else if (!createflag && !postflag) {
+			materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+			materialReceiptFunctions.createJournalAndViewJournal();
+			materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+			materialReceiptFunctions.clickTickAndPostIcon();
+		} else if (createflag && postflag) {
+
+		} else if (!createflag && postflag) {
+			materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialReceiptVoucher();
+		}
+
 		materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
 		materialReceiptFunctions.createJournalAndViewJournal();
 		materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
@@ -1050,13 +1077,23 @@ public class CoreProcessPageFunctions {
 			grnScoPageFunc.verifyValidateGrnScoStatus(VariableHandler.getScoGrnNumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			commonFunc.logoutUser();
+
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			commonFunc.navigateSetupInventoryPage();
+			flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToMaterialReceiptVoucher();
-			commonFunc.clickPendingIcon();
-			materialReceiptFunctions.clickPendingInssuanceBtn();
-			materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getScoGrnNumber());
-			materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getScoGrnNumber());
+			if (flag) {
+				materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocuments(VariableHandler.getScoGrnNumber());
+			} else {
+				commonFunc.clickPendingIcon();
+				materialReceiptFunctions.clickPendingInssuanceBtn();
+				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getScoGrnNumber());
+				materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getScoGrnNumber());
+			}
 			materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 			materialReceiptFunctions.clickTickAndPostIcon();
 			materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
