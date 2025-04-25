@@ -1104,6 +1104,42 @@ public class EmployeeMasterFunctions {
 		}
 	}
 
+	/**
+	 * This method used To Check Employee Creation With Probation Complete
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationProbationComplete() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickPostButtonAndVerifyEmployeePosted();
+			enterProbationDetailsAndSaveHeader("Duration", "type");
+			clickProbationCompleteAndCheckProbationStatus();
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationProbationComplete': " + e);
+			return false;
+		}
+	}
+
 	// --------------------- Private Methods ---------------------
 
 	/**
@@ -1827,7 +1863,7 @@ public class EmployeeMasterFunctions {
 				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
 				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
 				if (flag) {
-					flag =	webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
+					flag = webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
 //					flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 //					if (flag) {
 //						logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked and Toast Message Displayed");
@@ -4092,6 +4128,78 @@ public class EmployeeMasterFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Employee Migration uploaded template Posted");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to enter probation details in Employee Master
+	 * 
+	 * @author Sakthi-GWL
+	 * @param duration
+	 * @param type
+	 */
+	private void enterProbationDetailsAndSaveHeader(String duration, String type) {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_ProbationDurationInput,
+				EmployeeMasterLocators.AddEmp_ProbationDurationInput, duration);
+		logs.logging("INFO", "Duration entered in Probation: " + duration);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationSelect, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_ProbationSelect, type, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Probation Type Selected: " + type);
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Save Icon Clicked after Probation entered");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click probation complete and verify probation completed
+	 * status in employee history
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickProbationCompleteAndCheckProbationStatus() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
+			commonFunc.hardWait(7000);
+			logs.logging("INFO", "Probation Completed Button Clicked");
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryIframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Employee History Button Clicked");
+					webDB.switchToFrame(EmployeeMasterLocators.EmployeeHistoryIframe, ElementType.Xpath);
+					if (flag) {
+						flag = webDB.waitForElement(EmployeeMasterLocators.ProbationStatusVerificationTableData,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Probation Status Table Data Displayed");
+							String DisplayStatus = webDB.getTextFromElement(
+									EmployeeMasterLocators.ProbationStatusVerificationTableData, ElementType.Xpath);
+							logs.logging("INFO", "Displayed Probation Status: " + DisplayStatus);
+							flag = DisplayStatus.equalsIgnoreCase("Completed");
+							if (flag) {
+								logs.logging("INFO", "Probation Status Verified");
+								webDB.switchToDefaultContent();
+								webDB.clickAnElement(EmployeeMasterLocators.EmpHistIframeCloseIcon, ElementType.Xpath);
+								flag = webDB.isElementNotDisplayed(EmployeeMasterLocators.EmployeeHistoryIframe,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);

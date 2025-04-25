@@ -221,6 +221,7 @@ public class CommonUiLocators {
 	public static final String InventoryTransactionTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*//a[text()='Material Receipt Voucher']";
+	/** @locatorType Xpath */
 	public static final String Subcontracting = "//span[text()='Supply Chain']/ancestor::li/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String SubcontractingTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]";
@@ -250,4 +251,6 @@ public class CommonUiLocators {
 	public static final String SetupInventoryTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[1]";
 	/** @locatorType Xpath */
 	public static final String AutoPostMRVCheckBox = "//input[@id='P367019021_ICMCTRL_AUTO_MTR_COMPL_FLAG_1']";
+	/** @locatorType Xpath */
+	public static final String EmployeeLeaveEntryScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[2]/*/li[5]";
 }
