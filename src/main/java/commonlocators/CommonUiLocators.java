@@ -248,4 +248,6 @@ public class CommonUiLocators {
 	public static final String ApplControlLabel = "//label[@for='P367019021_TAB_OVERALL_GROUP_0']";
 	/** @locatorType Xpath */
 	public static final String SetupInventoryTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String AutoPostMRVCheckBox = "//input[@id='P367019021_ICMCTRL_AUTO_MTR_COMPL_FLAG_1']";
 }

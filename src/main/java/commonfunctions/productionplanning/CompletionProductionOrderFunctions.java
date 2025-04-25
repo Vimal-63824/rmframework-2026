@@ -178,6 +178,7 @@ public class CompletionProductionOrderFunctions {
 						CompletionProductionOrderLocators.ComplProdOrderDisplayCompletionProdOrderNo,
 						ElementType.Xpath);
 				VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+				logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
 			}
 		}
 		assertTrue(flag);

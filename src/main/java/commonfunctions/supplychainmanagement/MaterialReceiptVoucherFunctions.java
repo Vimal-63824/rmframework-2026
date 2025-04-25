@@ -291,13 +291,32 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPostMaterialRequestFromMiv() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigateSetupInventoryPage();
+		boolean createflag = autoCreateMRVCheckboxIsSelected();
+		boolean postflag = autoPostMRVCheckboxIsSelected();
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToMaterialReceiptVoucher();
-		verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-		createJournalAndViewJournal();
-		verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
-		clickTickAndPostIcon();
+
+		if (createflag && !postflag) {
+			verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getMIVNumber());
+			createJournalAndViewJournal();
+			verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+			clickTickAndPostIcon();
+		} else if (!createflag && !postflag) {
+			verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+			createJournalAndViewJournal();
+			verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
+			clickTickAndPostIcon();
+		} else if (createflag && postflag) {
+
+		} else if (!createflag && postflag) {
+			verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+		}
+
 		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
@@ -838,5 +857,16 @@ public class MaterialReceiptVoucherFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Auto Post Selected
+	 * 
+	 * @author Deepan-GWL
+	 * @return booelan flag
+	 */
+	public boolean autoPostMRVCheckboxIsSelected() {
+		flag = webDB.isElementSelected(CommonUiLocators.AutoPostMRVCheckBox, ElementType.Xpath);
+		return flag;
 	}
 }
