@@ -17,7 +17,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class PurchaseBillsFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -258,7 +258,7 @@ public class PurchaseBillsFunctions {
 								flag = webDB.waitForElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Create Documents Is Displayed");
-									commonFunc.hardWait(5000);
+									verifyEnableCreateButton();
 									webDB.clickAnElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 									flag = webDB.waitForElement(PurchaseBillsLocators.ScoOkButton, ElementType.Xpath);
 									if (flag) {
@@ -297,6 +297,22 @@ public class PurchaseBillsFunctions {
 	public void storeSCOPurchaseVoucherNumber() {
 		String Number = webDB.getTextFromElement(PurchaseBillsLocators.VoucherNumber, ElementType.Xpath);
 		VariableHandler.setScoPurchaseNumber(Number);
+	}
+
+	/**
+	 * This Method Used To Verify Enable Create Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyEnableCreateButton() {
+		for (int i = 0; i < 60; i++) {
+			commonFunc.hardWait(1000);
+			if (webDB.isElementEnabled(PurchaseBillsLocators.CreateDoc, ElementType.Xpath)) {
+				flag = true;
+				break;
+			}
+		}
+		assertTrue(flag);
 	}
 
 }

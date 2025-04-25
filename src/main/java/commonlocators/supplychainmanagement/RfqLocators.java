@@ -263,6 +263,6 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String POSuccessMsgClose = "//*[@id=\"t_Alert_Success\"]/div/div[3]/button";
 	/** @locatorType Xpath */
-	public static final String ItmworkflowOK = "//*[@id=\"B1626605845635418489\"]/span";
+	public static final String ItmworkflowOK = "//*[@id='B1626605845635418489']";
 
 }

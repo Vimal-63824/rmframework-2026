@@ -41,7 +41,7 @@ import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.Row;
 
 public class SalesOrderFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -1533,6 +1533,7 @@ public class SalesOrderFunctions {
 					}
 					flag = webDB.waitForElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 					if (flag) {
+						webDB.moveToElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 						webDB.clickAnElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 						flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 						if (flag) {
@@ -1845,6 +1846,7 @@ public class SalesOrderFunctions {
 	public void clickLineWiseSaveAndGetTotAmt() {
 		flag = webDB.waitForElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(SalesOrderLocators.LineWiseSaveIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			if (flag) {
@@ -2369,7 +2371,7 @@ public class SalesOrderFunctions {
 	 *         Header of the Sales Order Screen And Return As String
 	 * @return String headerCurrency
 	 */
-	public static String getTextCurrencyInHeader() {
+	public String getTextCurrencyInHeader() {
 		String HeaderCurrency = null;
 		flag = webDB.waitForElement(SalesOrderLocators.Currency, ElementType.Xpath);
 		if (flag) {

@@ -20,7 +20,7 @@ import utils.Mailer;
 import utils.WebDriverBase;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 
-public class SaleOrderTest {
+public class SaleOrderTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

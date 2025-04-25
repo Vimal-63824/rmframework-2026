@@ -17,7 +17,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
-public class GrnTest {
+public class GrnTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

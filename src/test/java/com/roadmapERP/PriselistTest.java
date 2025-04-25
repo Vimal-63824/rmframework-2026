@@ -16,7 +16,7 @@ import utils.Mailer;
 import utils.WebDriverBase;
 import commonfunctions.supplychainmanagement.PricelistPageFunctions;
 
-public class PriselistTest {
+public class PriselistTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

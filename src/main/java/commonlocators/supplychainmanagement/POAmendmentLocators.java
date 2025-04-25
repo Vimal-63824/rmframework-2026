@@ -313,4 +313,39 @@ public class POAmendmentLocators {
 		return "//td[text()='" + text + "']/../td[15]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String CheckBox(String text) {
+		return "//td[text()='" + text + "']/../td/input[@type='checkbox']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String CloseShort = "//button[@id='B3842110667850423716']";
+
+	/** @locatorType Xpath */
+	public static final String CloseshortType(String text) {
+		return "//td[text()='" + text + "']/../td[text()='Closeshort']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String CancelLine(String text) {
+		return "//td[text()='" + text + "']/../td[last()]/a/span";
+	}
+
+	/** @locatorType Xpath */
+	public static final String CancelDoc = "//button[@id='B3842110217324423714']";
+
+	/** @locatorType Xpath */
+	public static final String Item(String text) {
+		return "//td[text()='" + text + "']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String HeaderCheckbox = "//label[@for='P1615131168_HEAD_LINE_0']";
+	/** @locatorType Xpath */
+	public static final String LineCheckbox = "//label[@for='P1615131168_HEAD_LINE_1']";
+
+	/** @locatorType Xpath */
+	public static final String POANumberCancelStatus(String POno) {
+		return "//a[text()='" + POno + "']/../../td[11]";
+	}
 }

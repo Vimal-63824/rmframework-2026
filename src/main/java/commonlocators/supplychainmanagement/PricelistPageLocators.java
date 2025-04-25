@@ -153,5 +153,5 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemGetText = "//input[@id='P367020004_PROD_ID']";
 	/** @locatorType Xpath */
-	public static final String ItemPostSucessMsg = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6/span";
+	public static final String ItemPostSucessMsg = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
 }

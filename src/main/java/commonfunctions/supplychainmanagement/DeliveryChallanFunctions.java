@@ -19,7 +19,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class DeliveryChallanFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
