@@ -635,40 +635,40 @@ public class CoreProcessPageFunctions {
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//						"TvsUsername");
-//				commonFunc.navigateToMaterialReceiptVoucher();
-//				commonFunc.clickPendingIcon();
-//				materialReceiptFunctions.clickPendingInssuanceBtn();
-//				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionCompletionOrderNo());
-//				materialReceiptFunctions.validateProcessRecipientWarehouseWithCompletionProdNo(
-//						VariableHandler.getProductionCompletionOrderNo(), ProcessName, ConsumptionWH);
-//				materialReceiptFunctions
-//						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
-//				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
-//				materialReceiptFunctions.clickTickAndPostIcon();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername-Admin");
-				commonFunc.navigateSetupInventoryPage();
-				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
-				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateToMaterialReceiptVoucher();
-				if (flag) {
-					materialReceiptFunctions
-							.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
-				} else {
-					commonFunc.clickPendingIcon();
-					materialReceiptFunctions.clickPendingInssuanceBtn();
-					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
-					materialReceiptFunctions.validateProcessRecipientWarehouseWithCompletionProdNo(
-							VariableHandler.getProductionCompletionOrderNo(), ProcessName, ConsumptionWH);
-					materialReceiptFunctions
-							.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
-				}
+				commonFunc.clickPendingIcon();
+				materialReceiptFunctions.clickPendingInssuanceBtn();
+				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions.validateProcessRecipientWarehouseWithCompletionProdNo(
+						VariableHandler.getProductionCompletionOrderNo(), ProcessName, ConsumptionWH);
+				materialReceiptFunctions
+						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
 				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 				materialReceiptFunctions.clickTickAndPostIcon();
+//				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//						"HodUsername-Admin");
+//				commonFunc.navigateSetupInventoryPage();
+//				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+//				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//						"TvsUsername");
+//				commonFunc.navigateToMaterialReceiptVoucher();
+//				if (flag) {
+//					materialReceiptFunctions
+//							.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
+//				} else {
+//					commonFunc.clickPendingIcon();
+//					materialReceiptFunctions.clickPendingInssuanceBtn();
+//					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
+//					materialReceiptFunctions.validateProcessRecipientWarehouseWithCompletionProdNo(
+//							VariableHandler.getProductionCompletionOrderNo(), ProcessName, ConsumptionWH);
+//					materialReceiptFunctions
+//							.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
+//				}
+//				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+//				materialReceiptFunctions.clickTickAndPostIcon();
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			productionOrderFunc.searchAndVerifyStatusOfMRPNo(VariableHandler.getMRPNumber(),
