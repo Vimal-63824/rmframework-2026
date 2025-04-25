@@ -257,6 +257,18 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To Check The Employee Creation With Probation Complete
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 21, groups = {
+			"EmployeeMaster" }, description = "22 To Check The Employee Creation With Probation Complete")
+	public void VerifyEmployeeCreationProbationComplete() {
+		flag = empMasterFunc.verifyEmployeeCreationProbationComplete();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL

@@ -669,4 +669,16 @@ public class EmployeeMasterLocators {
 	public static final String EmpDetailsMigrationCheckExceptionBtn = "//button[@id='B1588850738192950550']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationPostBtn = "//button[@id='B1588852368955950553']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_ProbationDurationInput = "//input[@id='P38_EMP_PROB_DURE']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_ProbationSelect = "//select[@id='P38_EMP_PROB_FREQ_ID']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_ProbationDateFrom = "//input[@id='P38_EMP_PROB_START_DATE_input']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_ProbationDateTo = "//input[@id='P38_EMP_PROB_END_DATE_input']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_ProbationCompleteBtn = "//button[@id='B799165312758092118']";
+	/** @locatorType XPATH */
+	public static final String ProbationStatusVerificationTableData = "//td[text()='Probation Status']/../td[3]";
 }

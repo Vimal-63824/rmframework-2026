@@ -170,6 +170,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> LeaveRequestNo = new ThreadLocal<>();
 	private static ThreadLocal<String> CasualLeaveBalance = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> OpenPoNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> LeaveEntryDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1430,5 +1431,13 @@ public class VariableHandler {
 
 	public static void setOpenPoNumber(String data) {
 		OpenPoNumber.set(data);
+	}
+
+	public static String getLeaveEntryDocNo() {
+		return LeaveEntryDocNo.get();
+	}
+
+	public static void setLeaveEntryDocNo(String data) {
+		LeaveEntryDocNo.set(data);
 	}
 }

@@ -78,7 +78,6 @@ public class CommonFunctions {
 	 */
 	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		int i = 1;
 		List<WebElement> refreshElements = webDB.getDriver()
 				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
 		List<WebElement> AfterWaitrefreshElements = null;
@@ -786,7 +785,7 @@ public class CommonFunctions {
 			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "AttendanceLeave Tab Is Clicked");
+				logs.logging("INFO", "Leave Request Tab Is Clicked");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1902,9 +1901,7 @@ public class CommonFunctions {
 				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
 				if (flag) {
 					logs.logging("INFO", "Rfq clicked and navigated successfully");
-
 				}
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1965,6 +1962,26 @@ public class CommonFunctions {
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.ApplControlLabel, ElementType.Xpath, 45);
 			if (flag) {
 				logs.logging("INFO", "Setup Inventory Tab Is CLicked and navigated successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Navigate Leave Entry Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateLeaveEntryScreen() {
+		clickPayrollTab();
+		clickPayrollTransactionTab();
+		clickAttendanceLeaveTab();
+		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Leave Entry Tab Navigated Successfully");
 			}
 		}
 		Assert.assertTrue(flag);

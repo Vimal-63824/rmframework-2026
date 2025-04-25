@@ -148,7 +148,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String CompOffFindpageClearButton = "//*[@id='Clear5']";
 	/** @locatorType Xpath */
-	public static final String LeaveRadioButton = "(//input[@name='P818510608_TAB']/following-sibling::label)[1]";
+	public static final String LeaveRadioBtnLeaveRequest = "(//input[@name='P818510608_TAB']/following-sibling::label)[1]";
 	/** @locatorType Xpath */
 	public static final String LeaveAddButton = "//*[@id='B710388806126754514']";
 	/** @locatorType Xpath */
@@ -176,7 +176,9 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LeaveRequestPostBtn = "//button[@id='B599666982833953309']";
 	/** @locatorType Xpath */
-	public static final String LeaveRequesNumberDisplay = "//h2[@id='R479336995197451550_heading']/b";
+	public static final String LeaveRequestNumberDisplay = "//h2[@id='R479336995197451550_heading']/b";
+	/** @locatorType Xpath */
+	public static final String LeaveRadioBtnLeaveEntry = "(//input[@name='P8185107006_TAB']/following-sibling::label)[1]";
 	/** @locatorType Xpath */
 	public static final String LeaveEntryFetchBtn = "//button[@id='B1355032058649695667']";
 	/** @locatorType Xpath */
@@ -187,10 +189,125 @@ public class AttendanceLeaveLocators {
 	public static final String LeaveEntryPendReqSearchGoBtn = "//button[@id='user_search_button']";
 	/** @locatorType Xpath */
 	public static final String LeaveEntryPendReqCreateLeaveBtn = "//button[@id='B3162794562401610053']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFindSearchBtn = "//button[@id='B272020870032859534']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFindSearchBar = "//input[@id='leave_detail_search_field']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFindSearchGoBtn = "//button[@id='leave_detail_search_button']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryHeaderSaveIcon = "//button[@id='B600601963121429225']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryPostBtn = "//button[@id='B600602786561429226']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryReverseBtn = "//button[@id='B1811420848968609515']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryReverseOkBtn = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryCancelBtn = "//button[@id='B600603133710429229']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryCancelOkBtn = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryNumberDisplay = "//h2[@id='R908484335077219106_heading']/b";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestMigrationBtn = "//button[@id='B1850881199907806606']";
+	/** @locatorType Xpath */
+	public static final String LeaveRequestMigrationIframe = "//iframe[@title='Leave Migration Type']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualLeaveRadioBtn = "//label[text()='Accrual Leave Upload']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualAddNewBtn = "//button[@id='B1851220512095063239']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualCalendarLovBtn = "//button[@id='P8185102503_ELAHD_CLNDR_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualYearLovBtn = "//button[@id='P8185102503_ELAHD_YEAR_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualPeriodLovBtn = "//button[@id='P8185102503_ELAHD_PERIOD_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualReferenceInput = "//input[@id='P8185102503_ELAHD_REF']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualCreateSaveIcon = "//button[@id='B3200928335022062518']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualUploadIcon = "//button[@id='B3200928680938062518']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualUploadInput = "//input[@id='P8185102503_LOAD_input']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualUploadBtn = "//button[@id='B3200906412608062479']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualCheckExcptionBtn = "//button[@id='B3200929071856062519']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualHeaderSaveIcon = "//button[@id='B3200929071856062519']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccuralDisplayDocNo = "//input[@id='P8185102503_ELAHD_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationAccrualPostBtn = "//button[@id='B3200929918471062519']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPRadioBtn = "//label[text()='LOP Leave  Upload']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPAddNewBtn = "//button[@id='B1851208413984070668']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPCalendarLovBtn = "//button[@id='P8185102501_ELHD_CLNDR_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPYearLovBtn = "//button[@id='P8185102501_ELHD_YEAR_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPPeriodLovBtn = "//button[@id='P8185102501_ELHD_PERIOD_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPReferenceInput = "//input[@id='P8185102501_ELHD_REF']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPCreateSaveIcon = "//button[@id='B3200862823877054188']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPUploadIcon = "//button[@id='B3200863182132054188']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPUploadInput = "//input[@id='P8185102501_LOAD_input']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPUploadBtn = "//button[@id='B3200859631303054182']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPCheckExcptionBtn = "//button[@id='B3200863649852054190']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPHeaderSaveIcon = "//button[@id='B3200862469325054188']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPDisplayDocNo = "//span[@id='P8185102501_ELHD_DOC_NO_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String LRMigrationLOPPostBtn = "//button[@id='B3200864433776054190']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFindEmpIdLovBtn = "//button[@id='P8185107006_EMP_ID_EL_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFindDateFromInput = "//input[@id='P8185107006_DATE_FROM_EL_input']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryFindLeaveCategorySelect = "//select[@id='P8185107006_CATEGORY_EL']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryDocNoWithPostedStatus = "(//table[@id='5130517933944459660_orig']/tbody/tr/td[13]/div[text()='Posted']/../../td[2])[1]";
 
 	/** @locatorType Xpath */
 	public static final String LeaveEntryPendReqCheckBox(String reqNo) {
 		return "//input[contains(@id,'checkbox_" + reqNo + "')]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String LeaveEntrySearchDocNo(String DocNo) {
+		return "//table[@id='5130517933944459660_orig']/tbody/tr/td[2]/a[text()='" + DocNo + "']";
+	}
+
+	/** @locatorType Xpath */
+	public static final String LeaveEntryAttachmentBtn = "//button[@id='B600603501452429229']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryAttachmentIframe = "//iframe[@title='Attachment']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentDocTypeLovBtn = "//button[@id='P37_DOC_TYPE_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentDocNoInput = "//input[@id='P37_DM_REQ_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentDocRevInput = "//input[@id='P37_DM_REQ_DOC_REV']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentDateFromInput = "//input[@id='P37_DATE_FROM_input']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentDateToInput = "//input[@id='P37_DATE_TO_input']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentChooseFileInput = "//input[@id='P37_FILE_input']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentUploadBtn = "//button[@id='B2290116279942754239']";
+	/** @locatorType Xpath */
+	public static final String LEAttachmentDisplayedFileName = "//span[@class='a-FileDrop-heading']";
+	/** @locatorType Xpath */
+	public static final String LeaveEntryReportBtn = "//button[@id='B600603941840429231']";
 }

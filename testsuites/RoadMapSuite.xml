@@ -11,6 +11,7 @@
 			<class name="com.roadmapERP.PurchaseRequestTest" />
 			<class name="com.roadmapERP.POAmendmentTest" />
 			<class name="com.roadmapERP.EmployeeMasterTest" />
+			<class name="com.roadmapERP.AttendanceLeaveTest" />
 			<class name="com.roadmapERP.EmployeePermissionTest" />
 			<class name="com.roadmapERP.SaleOrderTest" />
 			<class name="com.roadmapERP.SaleInvoiceTest" />
