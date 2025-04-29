@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
  */
 import commonfunctions.CommonFunctions;
 import utils.Mailer;
+import utils.ReportLoger;
 import utils.WebDriverBase;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 
@@ -26,6 +27,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
 	static SalesOrderFunctions SalesOrdFunc = new SalesOrderFunctions();
+	private static ReportLoger logs = new ReportLoger();
 
 	/**
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is user
@@ -45,7 +47,9 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 2, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is user defined- Dissimilar Stock and Customer UOM")
 	public void VerifyDomesticSOGeneralDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyDomesticSOGeneralDisSimilarStockAndCustomerUOM();
+		// TODO Covered in VerifyDomesticSOGeneralSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method VerifyDomesticSOGeneralSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -67,7 +71,9 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 4, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is user defined- Dissimilar Stock and Customer UOM")
 	public void VerifyExportSOGeneralDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyExportSOGeneralDisSimilarStockAndCustomerUOM();
+		// TODO Covered in VerifyExportSOGeneralSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method VerifyExportSOGeneralSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -99,8 +105,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 7, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
-	public void VerifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM();
+	public void verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
+		// TODO Covered in
+		// verifyDomesticSOGeneralRateContractSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyDomesticSOGeneralRateContractSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -110,8 +119,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 8, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
-	public void VerifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM();
+	public void verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
+		// TODO Covered in
+		// verifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -121,7 +133,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 9, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
-	public void VerifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
+	public void verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -132,7 +144,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 10, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
-	public void VerifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
+	public void verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -143,8 +155,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 11, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
-	public void VerifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
+	public void verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
+		// TODO Covered in
+		// verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -154,8 +169,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 12, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
-	public void VerifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM();
+	public void verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
+		// TODO Covered in
+		// verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -165,7 +183,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 13, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
-	public void VerifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
+	public void verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -176,8 +194,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 14, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
-	public void VerifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM();
+	public void verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
+		// TODO Covered in
+		// verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -187,7 +208,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 15, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
-	public void VerifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
+	public void verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
@@ -198,8 +219,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 16, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
-	public void VerifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM();
+	public void verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
+		// TODO Covered in
+		// verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
@@ -207,7 +231,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Cancel Sales Order Header Document
 	 */
 	@Test(priority = 17, groups = { "SalesOrder" }, description = "Cancel Sales Order Header Document")
-	public void VerifyCancelSalesOrder() {
+	public void verifyCancelSalesOrder() {
 		flag = SalesOrdFunc.verifyCancelSalesOrder();
 		Assert.assertTrue(flag);
 	}
@@ -218,49 +242,54 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 18, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
-	public void VerifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
+	public void verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Sales Order - price basis is PriceList-
-	 *         Similar Stock and Customer UOM
+	 * Export Sales Order - price basis is PriceList- Similar Stock and Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 19, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
-	public void VerifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
+	public void verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
 		flag = SalesOrdFunc.verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM();
 		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is PriceList-
-	 *         DisSimilar Stock and Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 20, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyDomesticSOGeneralPriceListDisSimilarStockAndCustomerUOM();
+		// TODO Covered in verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM()
+		// Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Sales Order - price basis is PriceList-
-	 *         DisSimilar Stock and Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 21, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
 	public void VerifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
-		flag = SalesOrdFunc.verifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM();
+		// TODO Covered in verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM()
+		// Method
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() ");
 		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * Create SO with Advance Process(PaymentTerm Change)
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 22, groups = { "SalesOrder" }, description = "Create SO with Advance Process(PaymentTerm Change)")
 	public void verifyAdvanceSalesOrderWithAdvancePaymentTerm() throws IOException {
@@ -271,8 +300,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Cancel SO Lines
 	 * 
-	 * @author Harikrishna -RMITS
-	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 23, groups = { "SalesOrder" }, description = "Cancel SO Lines")
 	public void verifySalesOrderLineWiseCancel() {
@@ -283,8 +311,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Create SO - Domestic - Interstate Customer
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 24, groups = { "SalesOrder" }, description = "Create SO - Domestic - Interstate Customer")
 	public void SoGeneral() throws IOException {
@@ -295,8 +322,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * create Free Sample type of Sales Order
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 25, groups = { "SalesOrder" }, description = " create Free Sample type of Sales Order")
 	public void SoFreeSample() throws IOException {
@@ -307,8 +333,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * create Free Replacement type of Sales Order
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 26, groups = { "SalesOrder" }, description = " create Free Replacement type of Sales Order")
 	public void SoFreeReplacement() throws IOException {
@@ -319,8 +344,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * create Scrap type of Sales Order
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 27, groups = { "SalesOrder" }, description = " create Scrap type of Sales Order")
 	public void SoScrap() throws IOException {
@@ -331,8 +355,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * create Service type of Sales Order
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 28, groups = { "SalesOrder" }, description = " create Service type of Sales Order")
 	public void SoService() throws IOException {
@@ -343,8 +366,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Create SO with Promotional Items
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 29, groups = { "SalesOrder" }, description = "Create SO with Promotional Items")
 	public void SoPromotional() throws IOException {
@@ -355,8 +377,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Create SO - Domestic - Local Customer
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 30, groups = { "SalesOrder" }, description = "Create SO - Domestic - Local Customer")
 	public void SoGeneralLocalCustomer() throws IOException {
@@ -367,8 +388,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Create SO - Domestic - SEZ Customer
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 31, groups = { "SalesOrder" }, description = "Create SO - Domestic - SEZ  Customer")
 	public void SoGeneralSEZCustomer() throws IOException {
@@ -377,12 +397,11 @@ public class SaleOrderTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Create Demo Exhibition type of Sales Order
+	 * create Demo Exhibition type of Sales Order
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
-	@Test(priority = 32, groups = { "SalesOrder" }, description = " Create Demo Exhibition type of Sales Order")
+	@Test(priority = 32, groups = { "SalesOrder" }, description = " create Demo Exhibition type of Sales Order")
 	public void SoDemoExhibition() throws IOException {
 		flag = SalesOrdFunc.SoDemoExhibition();
 		Assert.assertTrue(flag);
@@ -391,8 +410,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Create SO - Domestic - CESS Customer
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 33, groups = { "SalesOrder" }, description = "Create SO - Domestic - CESS  Customer")
 	public void SoCESS() throws IOException {
@@ -403,12 +421,192 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * Create SO - Domestic - With Charges
 	 * 
-	 * @author Harikrishna -RMITS
-	 * @throws IOException
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 34, groups = { "SalesOrder" }, description = "Create SO - Domestic - With Charges")
 	public void SoCharges() throws IOException {
 		flag = SalesOrdFunc.SoCharges();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO with Multiple Items - Same Price class
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 35, groups = { "SalesOrder" }, description = "Create SO with Multiple Items - Same Price class")
+	public void SoMultipleWithSamePriceClass() throws IOException {
+		// TODO Covered in SoGeneral()
+		// Method
+		logs.logging("INFO", "This Scenario Is Already Covered In This Method SoGeneral() ");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO with Multiple Items - Different Price class
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 36, groups = {
+			"SalesOrder" }, description = "Create SO with Multiple Items - Different Price class")
+	public void SOMultipleWithDifferentPriceClass() {
+		flag = SalesOrdFunc.SOMultipleWithDifferentPriceClass();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SO with Shipset Items
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 37, groups = { "SalesOrder" }, description = "Create SO with Shipset Items")
+	public void SOShipSet() {
+		flag = SalesOrdFunc.SOShipSet();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO -Qty Change - Domestic Customer - Interstate
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 38, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - Interstate")
+	public void SalesOrderAmendmentQtyChangeInterstateCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentQtyChange(commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("SOAmendQtyChange"),
+				webDB.getDataFromProperties("SalesOrder"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO - Price Change - Domestic Customer - Interstate
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 39, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - Interstate")
+	public void SalesOrderAmendmentPriceChangeInterstateCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentPriceChange(commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("SOAmendPriceChange"),
+				webDB.getDataFromProperties("SalesOrder"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO -Disc Change - Domestic Customer - Interstate
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 40, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - Interstate")
+	public void SalesOrderAmendmentDiscountChangeInterstateCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChange(commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"),
+				webDB.getDataFromProperties("SOAmendDiscountChange"), webDB.getDataFromProperties("SalesOrder"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO - Addition of Item -Domestic Customer - Interstate
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 41, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - Interstate")
+	public void SalesOrderAmendmentAdditionOfLinesInterstateCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLines(commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"),
+				webDB.getDataFromProperties("SOAmendmentAdditionOfItem"), webDB.getDataFromProperties("SalesOrder"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO -Qty Change - Domestic Customer - Local
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 42, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - Local")
+	public void SalesOrderAmendmentQtyChangeLocalCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentQtyChange(commonFunc.getDataFromTestDataSheet("SO_Local_Customer"),
+				commonFunc.getDataFromTestDataSheet("SO_Local_Customer_Desc"),
+				webDB.getDataFromProperties("SOAmendmentDPC"), webDB.getDataFromProperties("SOLocal"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO - Price Change - Domestic Customer - Local
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 43, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - Local")
+	public void SalesOrderAmendmentPriceChangeLocalCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentPriceChange(commonFunc.getDataFromTestDataSheet("SO_Local_Customer"),
+				commonFunc.getDataFromTestDataSheet("SO_Local_Customer_Desc"),
+				webDB.getDataFromProperties("SOAmendmentDPC"), webDB.getDataFromProperties("SOLocal"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO -Disc Change - Domestic Customer - LocalF
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 44, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - Local")
+	public void SalesOrderAmendmentDiscountChangeLocalCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChange(commonFunc.getDataFromTestDataSheet("SO_Local_Customer"),
+				commonFunc.getDataFromTestDataSheet("SO_Local_Customer_Desc"),
+				webDB.getDataFromProperties("SOAmendmentDPC"), webDB.getDataFromProperties("SOLocal"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO - Addition of Item -Domestic Customer - Local
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 45, groups = {
+			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - Local")
+	public void SalesOrderAmendmentAdditionOfLinesLocalCustomer() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLines(commonFunc.getDataFromTestDataSheet("SO_Local_Customer"),
+				commonFunc.getDataFromTestDataSheet("SO_Local_Customer_Desc"),
+				webDB.getDataFromProperties("SOAmendment"), webDB.getDataFromProperties("SOLocal"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Closeshort Single sales Order
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 46, groups = { "SalesOrderAmendment" }, description = "Closeshort Single sales Order")
+	public void SalesOrderAmendmentSingleCloseshort() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentSingleCloseshort();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO with Charges
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 47, groups = { "SalesOrderAmendment" }, description = "Amend SO with Charges")
+	public void SalesOrderAmendmentWithCharges() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentWithCharges();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Amend SO with diff. price class
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 48, groups = { "SalesOrderAmendment" }, description = "Amend SO with diff. price class")
+	public void SalesOrderAmendmentWithDifferentPriceClass() throws IOException {
+		flag = SalesOrdFunc.SalesOrderAmendmentWithDifferentPriceClass();
 		Assert.assertTrue(flag);
 	}
 
