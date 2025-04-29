@@ -124,7 +124,7 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String TableData_Status(String DocNo) {
-		return "//td/a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
+		return "//td/a[contains(text(),'" + DocNo + "')]/../../td/div";
 	}
 
 	/** @locatorType XPATH */

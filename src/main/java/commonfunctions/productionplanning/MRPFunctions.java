@@ -26,7 +26,7 @@ import utils.WebDriverBase.ElementType;
  * @company Galaxy Weblinks February 19, 2025
  */
 public class MRPFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();

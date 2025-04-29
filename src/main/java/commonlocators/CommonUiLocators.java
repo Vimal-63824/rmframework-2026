@@ -140,7 +140,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
+	public static final String WorkApprovalFrame = "//iframe[contains(@title,'Workflow Approval')]";
 	/** @locatorType Xpath */
 	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
@@ -194,7 +194,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String InvSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]";
 	/** @locatorType Xpath */
-	public static final String ProdPlan_Transaction_CompletionProductionOrder = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[10]";
+	public static final String ProdPlan_Transaction_CompletionProductionOrder = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[11]";
 	/** @locatorType Xpath */
 	public static final String StockTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]/*/li/div/a[text()='Stock Transaction']";
 	/** @locatorType Xpath */
@@ -221,6 +221,7 @@ public class CommonUiLocators {
 	public static final String InventoryTransactionTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTabForAdminUser = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*//a[text()='Material Receipt Voucher']";
+	/** @locatorType Xpath */
 	public static final String Subcontracting = "//span[text()='Supply Chain']/ancestor::li/*/li[2]";
 	/** @locatorType Xpath */
 	public static final String SubcontractingTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]";
@@ -238,4 +239,18 @@ public class CommonUiLocators {
 	public static final String PendingDrDocs = "//button[@id='B1918502607122484020']";
 	/** @locatorType Xpath */
 	public static final String UsernameIcon = "//*[@title='Sign Out']/following::*[1]";
+	/** @locatorType Xpath */
+	public static final String OpenPO_RC = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li/*/a[text()='Open PO/RC']";
+	/** @locatorType Xpath */
+	public static final String OpenPO_RCButton = "//label[@for='P16151310256_TYPE_0']";
+	/** @locatorType Xpath */
+	public static final String AutoCreationMrvCheckBox = "//input[@id='P367019021_ICMCTRL_AUTO_MTR_FLAG_1']";
+	/** @locatorType Xpath */
+	public static final String ApplControlLabel = "//label[@for='P367019021_TAB_OVERALL_GROUP_0']";
+	/** @locatorType Xpath */
+	public static final String SetupInventoryTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*/li[1]";
+	/** @locatorType Xpath */
+	public static final String AutoPostMRVCheckBox = "//input[@id='P367019021_ICMCTRL_AUTO_MTR_COMPL_FLAG_1']";
+	/** @locatorType Xpath */
+	public static final String EmployeeLeaveEntryScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[2]/*/li[5]";
 }

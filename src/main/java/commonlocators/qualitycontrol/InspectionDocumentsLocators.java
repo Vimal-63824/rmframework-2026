@@ -40,7 +40,7 @@ public class InspectionDocumentsLocators {
 
 	/** @locatorType Xpath */
 	public static final String InspectionStatusTableText(String Idno) {
-		return "//a[text()='" + Idno + "']/../../td[20]";
+		return "(//a[text()='" + Idno + "']/../../td/div[contains(@style,'green')])[1]";
 	}
 
 	/** @locatorType Xpath */

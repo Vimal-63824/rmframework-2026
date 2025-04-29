@@ -15,7 +15,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CompletionProductionOrderFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -178,6 +178,7 @@ public class CompletionProductionOrderFunctions {
 						CompletionProductionOrderLocators.ComplProdOrderDisplayCompletionProdOrderNo,
 						ElementType.Xpath);
 				VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+				logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
 			}
 		}
 		assertTrue(flag);

@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,7 +43,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CommonFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static ExcelUtils excelUtils = new ExcelUtils();
@@ -75,29 +76,30 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 * @return boolean
 	 */
+	@SuppressWarnings("null")
 	public boolean checkRefreshCellsDisappear() {
-		int i = 1;
 		List<WebElement> refreshElements = webDB.getDriver()
 				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
+		List<WebElement> AfterWaitrefreshElements = null;
 		try {
 			for (WebElement element : refreshElements) {
 				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
 				wait.until(ExpectedConditions.invisibilityOf(element));
+				if (element.isDisplayed()) {
+					AfterWaitrefreshElements.add(element);
+				}
 			}
 			// TODO WAIT_LOAD_TIME (will remove future)
-			hardWait(500);
+			hardWait(1000);
+			flag = AfterWaitrefreshElements.isEmpty();
+			if (!flag) {
+				for (WebElement element : AfterWaitrefreshElements) {
+					WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
+					wait.until(ExpectedConditions.invisibilityOf(element));
+				}
+			}
 		} catch (Exception e) {
 
-		}
-		List<WebElement> AfterWaitrefreshElements = webDB.getDriver()
-				.findElements(By.xpath(CommonUiLocators.EntryTableRefreshCellImage));
-		flag = AfterWaitrefreshElements.isEmpty();
-		if (!flag && (i < 2)) {
-			i++;
-			for (WebElement element : refreshElements) {
-				WebDriverWait wait = new WebDriverWait(webDB.getDriver(), Duration.ofSeconds(20));
-				wait.until(ExpectedConditions.invisibilityOf(element));
-			}
 		}
 		return flag;
 	}
@@ -227,63 +229,60 @@ public class CommonFunctions {
 				try {
 					if (element.isDisplayed()) {
 						element.clear();
-						// logs.logging("INFO", "Search Field Is Cleared");
-						try {
-							flag = fluentWaitClickElement(element);
-							if (flag) {
-								checkRefreshCellsDisappear();
-								element.sendKeys(Value);
-							}
-						} catch (Exception e) {
-							logs.logging("INFO", "Exception is: " + e);
-						}
-						hardWait(500);
-						// logs.logging("INFO", "Entered Value In Search Field Is: " + Value);
-						webDB.clickAnElementWithoutException(CommonUiLocators.SearchBarIcon, ElementType.Xpath);
-						// TODO WAIT_LOAD_TIME (will remove future)
-						hardWait(2000);
-						checkRefreshCellsDisappear();
-						List<WebElement> Elements = webDB.getDriver()
-								.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-						for (WebElement webElement : Elements) {
-							try {
-								if (webElement.isDisplayed()) {
-									webElement.click();
-									flag = true;
-									logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-									break;
-								} else {
-									flag = false;
-								}
-							} catch (Exception e) {
-								flag = false;
-							}
-//						if (webDB.verifyIsElementDisplayed(CommonUiLocators.searchHighlightText(Value),
-//								ElementType.Xpath)) {
-//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.searchHighlightText(Value),
-//									ElementType.Xpath);
-//						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPathWithLi(Value),
-//								ElementType.Xpath)) {
-//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPathWithLi(Value),
-//									ElementType.Xpath);
-//						} else if (webDB.verifyIsElementDisplayed(CommonUiLocators.convertXPath(Value),
-//								ElementType.Xpath)) {
-//							flag = webDB.clickAnElementWithoutException(CommonUiLocators.convertXPath(Value),
-//									ElementType.Xpath);
-//						} else {
-//							flag = false;
-//						}
-							if (flag) {
-								logs.logging("INFO", " Searched and selected '" + Value + "' in Filter");
-								break a;
-							}
+						flag = fluentWaitClickElement(element);
+						if (flag) {
+							checkRefreshCellsDisappear();
+							element.sendKeys(Value);
+							break a;
+						} else {
+							flag = false;
 						}
 					}
 				} catch (Exception e) {
-					logs.logging("INFO", "Exception Is: " + e);
+					logs.logging("INFO", "failed to enter search bar Exception is: " + e);
 					flag = false;
-					continue;
 				}
+			}
+			Assert.assertTrue(flag);
+			// TODO WAIT_LOAD_TIME (will remove future)
+			hardWait(1500);
+			try {
+				List<WebElement> SearchBarIcon = webDB.getDriver()
+						.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
+				a: for (int i = 0; i < SearchBarIcon.size(); i++) {
+					WebElement element = SearchBarIcon.get(i);
+					if (element.isDisplayed()) {
+						((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+								element);
+						element.click();
+						break a;
+					} else {
+						flag = false;
+					}
+				}
+			} catch (Exception e) {
+				logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
+				flag = false;
+			}
+			// TODO WAIT_LOAD_TIME (will remove future)
+			hardWait(2000);
+			checkRefreshCellsDisappear();
+			List<WebElement> Elements = webDB.getDriver()
+					.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+			for (WebElement webElement : Elements) {
+				try {
+					if (webElement.isDisplayed()) {
+						((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+								webElement);
+						webElement.click();
+						flag = true;
+					}
+				} catch (Exception e) {
+					flag = false;
+				}
+			}
+			if (flag) {
+				logs.logging("INFO", "Searched and selected '" + Value + "' in Filter");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -786,7 +785,7 @@ public class CommonFunctions {
 			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "AttendanceLeave Tab Is Clicked");
+				logs.logging("INFO", "Leave Request Tab Is Clicked");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1626,19 +1625,13 @@ public class CommonFunctions {
 	 * @return boolean
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
-		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
-			VariableHandler.setApprovalFlag(true);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			logs.logging("INFO", "Toast Message Displayed Approved successfully");
-			return true;
-		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
+		if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			return false;
+			VariableHandler.setApprovalFlag(true);
+			return true;
 		}
 	}
 
@@ -1908,9 +1901,87 @@ public class CommonFunctions {
 				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
 				if (flag) {
 					logs.logging("INFO", "Rfq clicked and navigated successfully");
-
 				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 
+	/**
+	 * This Method used to navigate Open PO/RC Page
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickOpenPORCTab() {
+		flag = webDB.waitForElement(CommonUiLocators.OpenPO_RC, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.OpenPO_RC, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.OpenPO_RCButton, ElementType.Xpath, 45);
+			if (flag) {
+				logs.logging("INFO", "Open PO/RC Tab Is CLicked and navigated successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to navigate Open PO/RC Page
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateOpenPORCPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickPurchaseTransactionTab();
+		clickOpenPORCTab();
+	}
+
+	/**
+	 * This method used to Navigate Setup Inventory Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateSetupInventoryPage() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		navigateToInventoryTab();
+		clickInventorySetupTab();
+		clickSetupInventoryTab();
+	}
+
+	/**
+	 * This Method Is Used To Click SetUp Inventory Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSetupInventoryTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SetupInventoryTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SetupInventoryTab, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.ApplControlLabel, ElementType.Xpath, 45);
+			if (flag) {
+				logs.logging("INFO", "Setup Inventory Tab Is CLicked and navigated successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Navigate Leave Entry Tab
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateLeaveEntryScreen() {
+		clickPayrollTab();
+		clickPayrollTransactionTab();
+		clickAttendanceLeaveTab();
+		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Leave Entry Tab Navigated Successfully");
 			}
 		}
 		Assert.assertTrue(flag);

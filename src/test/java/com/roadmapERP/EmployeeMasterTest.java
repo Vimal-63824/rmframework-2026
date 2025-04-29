@@ -12,12 +12,10 @@ import org.testng.annotations.Test;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.EmployeeMasterFunctions;
-import utils.WebDriverBase;
 
-public class EmployeeMasterTest {
-	private static boolean flag = false;
+public class EmployeeMasterTest extends RoadMapERPTest {
+	boolean flag = false;
 	private static CommonFunctions commonFunc = new CommonFunctions();
-	private static WebDriverBase webDB = new WebDriverBase();
 	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 
 	/**
@@ -136,6 +134,137 @@ public class EmployeeMasterTest {
 			"EmployeeMaster" }, description = "12 To check Employee Creation With Update Address Details")
 	public void VerifyEmployeeCreationUpdateAddressDetails() {
 		flag = empMasterFunc.verifyEmployeeCreationUpdateAddressDetails();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To check Employee Creation With Update Dependent Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 11, groups = {
+			"EmployeeMaster" }, description = "13 To check Employee Creation With Update Dependent Details")
+	public void VerifyEmployeeCreationUpdateDependentDetails() {
+		flag = empMasterFunc.verifyEmployeeCreationUpdateDependentDetails();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To check Employee Creation With Update Contact Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 12, groups = {
+			"EmployeeMaster" }, description = "14 To check Employee Creation With Update Contact Details")
+	public void VerifyEmployeeCreationUpdateContactDetails() {
+		flag = empMasterFunc.verifyEmployeeCreationUpdateContactDetails();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To check Employee Creation With Update Qualification Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 13, groups = {
+			"EmployeeMaster" }, description = "15 To check Employee Creation With Update Qualification Details")
+	public void VerifyEmployeeCreationUpdateQualificationDetails() {
+		flag = empMasterFunc.verifyEmployeeCreationUpdateQualificationDetails();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To check Employee Creation With Update Qualification Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 14, groups = {
+			"EmployeeMaster" }, description = "16 To check Employee Creation With Update Skills Details")
+	public void VerifyEmployeeCreationUpdateSkillsDetails() {
+		flag = empMasterFunc.verifyEmployeeCreationUpdateSkillsDetails();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To check the Employee Creation with Employee History data
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 15, groups = {
+			"EmployeeMaster" }, description = "10 To check the Employee Creation with Employee History data")
+	public void VerifyEmployeeCreationEmployeeHistory() {
+		flag = empMasterFunc.verifyEmployeeCreationEmployeeHistory();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee profile Reverse before the Payroll Process
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 16, groups = {
+			"EmployeeMaster" }, description = "17 To Check Employee profile Reverse before the Payroll Process")
+	public void VerifyEmployeeCreationEmployeeProfileReverse() {
+		flag = empMasterFunc.verifyEmployeeCreationEmployeeProfileReverse();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 17, groups = { "EmployeeMaster" }, description = "18 To Check Employee Migration With Templates")
+	public void VerifyEmployeeMigrationWithTemplates() {
+		flag = empMasterFunc.verifyEmployeeMigrationWithTemplates();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Details Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 18, groups = {
+			"EmployeeMaster" }, description = "19 To Check Employee Details Migration With Templates")
+	public void VerifyEmployeeDetailsMigrationWithTemplates() {
+		flag = empMasterFunc.verifyEmployeeDetailsMigrationWithTemplates();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Creation based on Return to approval record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 19, groups = {
+			"EmployeeMaster" }, description = "20 To Check Employee Creation based on Return to approval record")
+	public void VerifyEmployeeCreationForwardApproval() {
+		flag = empMasterFunc.verifyEmployeeCreationForwardApproval();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Creation based on Return to approval record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 20, groups = {
+			"EmployeeMaster" }, description = "21 To Check Employee Creation based on Return to approval record")
+	public void VerifyEmployeeCreationReturnApproval() {
+		flag = empMasterFunc.verifyEmployeeCreationReturnApproval();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check The Employee Creation With Probation Complete
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 21, groups = {
+			"EmployeeMaster" }, description = "22 To Check The Employee Creation With Probation Complete")
+	public void VerifyEmployeeCreationProbationComplete() {
+		flag = empMasterFunc.verifyEmployeeCreationProbationComplete();
 		Assert.assertTrue(flag);
 	}
 

@@ -15,7 +15,7 @@ import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class EmployeePermissionTest {
+public class EmployeePermissionTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

@@ -13,7 +13,7 @@ import commonfunctions.supplychainmanagement.PurchaseRequestFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class PurchaseRequestTest {
+public class PurchaseRequestTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
@@ -40,8 +40,7 @@ public class PurchaseRequestTest {
 	@Test(priority = 2, groups = {
 			"PurchaseRequest" }, description = "75 -  create the purchase request(s) for General Items")
 	public void VerifyPurchaseRequestGeneralTypeCreation() {
-		flag = PRFunc.verifyCreationOfPRGeneral();
-		Assert.assertTrue(flag);
+		PRFunc.verifyPRForGeneralItemWithMultipleItemInExcelSheet();
 	}
 
 	/**
@@ -52,8 +51,7 @@ public class PurchaseRequestTest {
 	@Test(priority = 3, groups = {
 			"PurchaseRequest" }, description = "77 -  create the purchase request(s) for service items")
 	public void VerifyPurchaseRequestServiceTypeCreation() {
-		flag = PRFunc.verifyCreationOfPRService();
-		Assert.assertTrue(flag);
+		PRFunc.verifyPRForServiceItemWithMultipleItemInExcelSheet();
 	}
 
 	/**
@@ -66,7 +64,7 @@ public class PurchaseRequestTest {
 		flag = PRFunc.verifyCancelPRAndDeleteLine();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * cancel the purchase request lines
 	 * 

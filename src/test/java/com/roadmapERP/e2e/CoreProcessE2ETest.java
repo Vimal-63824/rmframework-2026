@@ -8,12 +8,15 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import com.roadmapERP.RoadMapERPTest;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.coreprocess.CoreProcessPageFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class CoreProcessE2ETest {
+public class CoreProcessE2ETest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

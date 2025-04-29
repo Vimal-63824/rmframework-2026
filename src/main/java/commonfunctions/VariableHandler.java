@@ -165,6 +165,12 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> ExpectedStockQty2 = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> EncashmentDocNo = new ThreadLocal<>();
 	private static ThreadLocal<String> CompOffDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> EmpProfileNo = new ThreadLocal<>();
+	private static ThreadLocal<String> EmpBatchNo = new ThreadLocal<>();
+	private static ThreadLocal<String> LeaveRequestNo = new ThreadLocal<>();
+	private static ThreadLocal<String> CasualLeaveBalance = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> OpenPoNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> LeaveEntryDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1370,7 +1376,7 @@ public class VariableHandler {
 	public static void setExpectedStockQty2(ArrayList<String> data) {
 		ExpectedStockQty2.set(data);
 	}
-	
+
 	public static String getEncashmentDocNo() {
 		return EncashmentDocNo.get();
 	}
@@ -1387,4 +1393,51 @@ public class VariableHandler {
 		CompOffDocNo.set(data);
 	}
 
+	public static String getEmpProfileNo() {
+		return EmpProfileNo.get();
+	}
+
+	public static void setEmpProfileNo(String data) {
+		EmpProfileNo.set(data);
+	}
+
+	public static String getEmpBatchNo() {
+		return EmpBatchNo.get();
+	}
+
+	public static void setEmpBatchNo(String data) {
+		EmpBatchNo.set(data);
+	}
+
+	public static String getCasualLeaveBalance() {
+		return CasualLeaveBalance.get();
+	}
+
+	public static void setCasualLeaveBalance(String data) {
+		CasualLeaveBalance.set(data);
+	}
+
+	public static String getLeaveRequestNo() {
+		return LeaveRequestNo.get();
+	}
+
+	public static void setLeaveRequestNo(String data) {
+		LeaveRequestNo.set(data);
+	}
+
+	public static String getOpenPoNumber() {
+		return OpenPoNumber.get();
+	}
+
+	public static void setOpenPoNumber(String data) {
+		OpenPoNumber.set(data);
+	}
+
+	public static String getLeaveEntryDocNo() {
+		return LeaveEntryDocNo.get();
+	}
+
+	public static void setLeaveEntryDocNo(String data) {
+		LeaveEntryDocNo.set(data);
+	}
 }

@@ -18,6 +18,7 @@ import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
 import utils.ReportLoger;
@@ -25,11 +26,12 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class EmployeeMasterFunctions {
-	private static boolean flag = false;
+	boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
+	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static Random random = new Random();
 
 	/**
@@ -96,13 +98,15 @@ public class EmployeeMasterFunctions {
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
 			clickQualificationSkillSideNavBar();
-			addNewContactDetailsInQualificationTab(RandomStringUtils.randomAlphabetic(15),
-					RandomStringUtils.randomAlphabetic(12), commonFunc.randomMobileNumberGenerator(),
-					RandomStringUtils.randomAlphabetic(12), commonFunc.getDataFromTestDataSheet("Emp_City"), true);
+			addNewContactDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+					commonFunc.getDataFromTestDataSheet("Father"), commonFunc.randomMobileNumberGenerator(),
+					commonFunc.getDataFromTestDataSheet("EmpAddress"), commonFunc.getDataFromTestDataSheet("Emp_City"),
+					true);
 			addNewQualificationDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
-					commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"), RandomStringUtils.randomAlphabetic(22),
-					String.valueOf(random.nextInt(4)), commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"),
-					RandomStringUtils.randomAlphabetic(1), RandomStringUtils.randomNumeric(2), true);
+					commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
+					commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
+					commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
+					RandomStringUtils.randomNumeric(2), true);
 			addNewSkillDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
 					commonFunc.getDataFromTestDataSheet("Emp_Level"), true);
 			return true;
@@ -414,12 +418,13 @@ public class EmployeeMasterFunctions {
 			}
 			clickDependentDetailsSideNavBar();
 			clickAddIconInDependentDetails();
-			fillRequiredDetailsInDependentDetails(RandomStringUtils.randomAlphabetic(6),
+			fillRequiredDetailsInDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
 					commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
 					commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"), RandomStringUtils.randomNumeric(12),
 					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
 					RandomStringUtils.randomNumeric(5));
 			clickSaveIconInDependentDetails();
+			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCheckEmployeeCreationDependentDetails': " + e);
@@ -436,40 +441,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyUpdateEmployeeParticularDetails() {
 		try {
-			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				commonFunc.navigateEmployeeMasterScreenInPayroll();
-				clickAddIconAddEmployee();
-				clickEmployeeMasterSideNavBar();
-				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
-				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-				clickSaveIconAndStoreEmpID();
-				clickSalarySideNavBar();
-				addDesignationDepartmentAndGradeInSalaryDetails(
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-				clickAfterEmpCreationSaveIcon();
-				clickLoadAllowanceButtonInSalaryDetails();
-				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-				enablePFAdjustmentFlagsInSalaryDetails();
-				enableESIAdjustmentFlagsInSalaryDetails();
-				clickPostButtonAndVerifyEmployeePosted();
-				VariableHandler.setAddEmployeDefaultExecution(true);
-			}
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
 			clickEmployeeParticularTabInUpdateEmployee();
 			updateEmployeeGenderFirstAndLastNameInParticularTab(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
@@ -483,7 +489,17 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
 			updateEmployeePayrollGrpAndNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconInEmployeeParticular();
+			clickSaveIconAndPostInEmployeeParticular();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+			}
+			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyUpdateEmployeeParticularDetails': " + e);
@@ -500,52 +516,626 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationUpdateAddressDetails() {
 		try {
-			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				commonFunc.navigateEmployeeMasterScreenInPayroll();
-				clickAddIconAddEmployee();
-				clickEmployeeMasterSideNavBar();
-				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-						commonFunc.getDataFromTestDataSheet("Emp_FName"),
-						commonFunc.getDataFromTestDataSheet("Emp_LName"));
-				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-				clickSaveIconAndStoreEmpID();
-				clickSalarySideNavBar();
-				addDesignationDepartmentAndGradeInSalaryDetails(
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-				clickAfterEmpCreationSaveIcon();
-				clickLoadAllowanceButtonInSalaryDetails();
-				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-				enablePFAdjustmentFlagsInSalaryDetails();
-				enableESIAdjustmentFlagsInSalaryDetails();
-				clickPostButtonAndVerifyEmployeePosted();
-				VariableHandler.setAddEmployeDefaultExecution(true);
-			}
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
 			clickAddressTabInUpdateEmployee();
-			updateEmployeeAllAddressInAddressTab(RandomStringUtils.randomAlphabetic(6),
-					RandomStringUtils.randomAlphabetic(8), RandomStringUtils.randomAlphabetic(3));
+			updateEmployeeAllAddressInAddressTab(commonFunc.getDataFromTestDataSheet("EmpAddress"),
+					commonFunc.getDataFromTestDataSheet("EmpAddress"),
+					commonFunc.getDataFromTestDataSheet("EmpAddress"));
 			updateEmpCityZipCodeAndTelephoneInAddressTab(commonFunc.getDataFromTestDataSheet("Emp_City"),
 					RandomStringUtils.randomNumeric(6), commonFunc.randomMobileNumberGenerator());
-			clickSaveIconInAddress();
-			closeUpdateIframe();
+			clickSaveIconAndPostInAddress();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+			}
 			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateAddressDetails': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To check Employee Creation With Update Dependent Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationUpdateDependentDetails() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+			clickUpdateButtonInAddEmployee();
+			clickDependentTabInUpdateEmployee();
+			selectDependentTypeToUpdate("Add");
+			clickAddIconInUpdateDependentDetails();
+			fillDetailsInUpdateDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+					commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+					commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"), RandomStringUtils.randomNumeric(12),
+					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
+					RandomStringUtils.randomNumeric(5));
+			clickSaveAndPostInUpdateDependentDetails();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+			}
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyEmployeeCreationUpdateDependentDetails': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To check Employee Creation With Update Contact Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationUpdateContactDetails() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+			clickUpdateButtonInAddEmployee();
+			clickContactTabInUpdateEmployee();
+			selectContactTypeToUpdate("Add");
+			clickAddIconInUpdateContactDetails();
+			fillDetailsInUpdateContactDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+					commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+					commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
+					commonFunc.getDataFromTestDataSheet("Emp_City"));
+			clickSaveAndPostInUpdateContactDetails();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+			}
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateContactDetails': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To check Employee Creation With Update Qualification Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationUpdateQualificationDetails() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+			clickUpdateButtonInAddEmployee();
+			clickQualificationTabInUpdateEmployee();
+			selectQualificationTypeToUpdate("Add");
+			clickAddIconInUpdateQualificationDetails();
+			fillDetailsInUpdateQualificationDetails(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
+					commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
+					commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
+					commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
+					RandomStringUtils.randomNumeric(2));
+			clickSaveAndPostInUpdateQualificationDetails();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+			}
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyEmployeeCreationUpdateQualificationDetails': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To check Employee Creation With Update Skill Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationUpdateSkillsDetails() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+			clickUpdateButtonInAddEmployee();
+			clickSkillTabInUpdateEmployee();
+			selectSkillTypeToUpdate("Add");
+			clickAddIconInUpdateSkillDetails();
+			fillDetailsInUpdateSkillDetails(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
+					commonFunc.getDataFromTestDataSheet("Emp_Level"));
+			clickSaveAndPostInUpdateSkillDetails();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+			}
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateSkillsDetails': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To check the Employee Creation with Employee History data
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationEmployeeHistory() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+			clickEmployeeHistoryAndCheckNotNull();
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationEmployeeHistory': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check Employee profile Reverse before the Payroll Process
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationEmployeeProfileReverse() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
+			clickPostButtonAndVerifyEmployeePosted();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+			clickViewProfileAndStoreProfileAndBatchNo();
+			clickEmployeeProfileNoAndReverse();
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyEmployeeCreationEmployeeProfileReverse': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check Employee Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeMigrationWithTemplates() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAndNavigateEmployeeMigration();
+			clickAddAndFillDetailsInEmployeeMigration(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("SalaryOption"),
+					commonFunc.getDataFromTestDataSheet("SalaryOption"),
+					commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			uploadEmployeeMigrationTemplate();
+			checkExceptionAndSaveHeaderInEmpMigration();
+			postUploadedTemplateInEmployeeMigration();
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeMigrationWithTemplates': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check Employee Details Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeDetailsMigrationWithTemplates() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAndNavigateEmployeeDetailsMigration();
+			createAndFillDetailsInEmpDetailsMigration(commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			clickSelectFieldOptionsInEmpDetailsMigration();
+			clickAddSelectFieldAndSelectSequence(commonFunc.getDataFromTestDataSheet("FirstNameOptionText"), "1");
+			clickAddSelectFieldAndSelectSequence(commonFunc.getDataFromTestDataSheet("LastNameOptionText"), "2");
+			clickAddSelectFieldAndSelectSequence(commonFunc.getDataFromTestDataSheet("NationalityOptionText"), "3");
+			uploadEmployeeDetailsMigrationTemplate();
+			checkExceptionAndSaveHeaderInEmpDetailsMigration();
+			postUploadedTemplateInEmployeeDetailsMigration();
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeDetailsMigrationWithTemplates': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check Employee Creation based on forward to approval
+	 * record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationForwardApproval() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickPostButtonAndVerifyEmployeePosted();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.logoutUser();
+			}
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationForwardApproval': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check Employee Creation based on Return to approval
+	 * record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationReturnApproval() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickPostButtonAndVerifyEmployeePosted();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
+						System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
+			}
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationReturnApproval': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check Employee Creation With Probation Complete
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyEmployeeCreationProbationComplete() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			clickAddIconAddEmployee();
+			clickEmployeeMasterSideNavBar();
+			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			clickSaveIconAndStoreEmpID();
+			clickPostButtonAndVerifyEmployeePosted();
+			enterProbationDetailsAndSaveHeader("Duration", "type");
+			clickProbationCompleteAndCheckProbationStatus();
+			commonFunc.logoutUser();
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationProbationComplete': " + e);
 			return false;
 		}
 	}
@@ -1273,14 +1863,14 @@ public class EmployeeMasterFunctions {
 				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentActivateIcon, ElementType.Xpath);
 				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked and Toast Message Displayed");
-						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-						}
-					}
+					flag = webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
+//					flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+//					if (flag) {
+//						logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked and Toast Message Displayed");
+//						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+//							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+//						}
+//					}
 				}
 			}
 		}
@@ -1314,7 +1904,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.checkSuccessToastMessageDisappear();
 				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon,
 						ElementType.Xpath)) {
-					webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon, ElementType.Xpath);
+					webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon,
+							ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsRestoreIcon, ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon,
 							ElementType.Xpath);
@@ -1540,7 +2131,8 @@ public class EmployeeMasterFunctions {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmployeeUpdateButton, ElementType.Xpath);
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+//			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmployeeUpdateButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Eligibility Post Icon Clicked");
 			}
@@ -2196,7 +2788,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconInEmployeeParticular() {
+	private void clickSaveIconAndPostInEmployeeParticular() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateEmpParticularSaveIcon, ElementType.Xpath);
 		if (flag) {
@@ -2208,6 +2800,12 @@ public class EmployeeMasterFunctions {
 			}
 			if (flag) {
 				logs.logging("INFO", "Employee Particular Tab Clicked in Update Employee");
+				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				}
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -2461,7 +3059,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconInAddress() {
+	private void clickSaveIconAndPostInAddress() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateEmpAddressSaveIcon, ElementType.Xpath);
 		if (flag) {
@@ -2473,6 +3071,12 @@ public class EmployeeMasterFunctions {
 			}
 			if (flag) {
 				logs.logging("INFO", "Address Tab Save Icon Clicked in Update Employee");
+				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				}
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -2484,7 +3088,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void closeUpdateIframe() {
+	public void closeUpdateIframe() {
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateIframeCloseIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateIframeCloseIcon, ElementType.Xpath);
@@ -2503,7 +3107,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param LeaveType
 	 */
-	public void clickActiveIconForLeaveType(String LeaveType) {
+	private void clickActiveIconForLeaveType(String LeaveType) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 				ElementType.Xpath);
 		if (flag) {
@@ -2520,7 +3124,8 @@ public class EmployeeMasterFunctions {
 				logs.logging("INFO", "Active Icon Clicked and Toast Message Displayed");
 				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon,
 						ElementType.Xpath)) {
-					webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon, ElementType.Xpath);
+					webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon,
+							ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRestoreIcon, ElementType.Xpath);
 					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon,
 							ElementType.Xpath);
@@ -2532,4 +3137,1072 @@ public class EmployeeMasterFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * This method used to click dependent tab in update employee
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickDependentTabInUpdateEmployee() {
+		switchToUpdateIframe();
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateDependentTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateDependentTab, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateDependentTab, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentAddLabel, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Dependent Tab Clicked in Update Employee");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select radio button in dependent details to update
+	 * employee
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Type
+	 */
+	private void selectDependentTypeToUpdate(String Type) {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentAddLabel, ElementType.Xpath);
+		if (flag) {
+			if (Type.equalsIgnoreCase("Add")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentAddLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Modify")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentModifyLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Remove")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentRemoveLabel, ElementType.Xpath);
+			} else {
+				logs.logging("INFO", "Invalid Dependent Type entered: " + Type);
+				Assert.fail("Invalid Dependent Type entered: " + Type);
+			}
+		}
+		if (flag) {
+			logs.logging("INFO", "Radio Button Clicked: " + Type);
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click add icon in update dependent details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAddIconInUpdateDependentDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentNameData, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Icon Clicked in Update Dependent Details");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click save and post icon in update dependent details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSaveAndPostInUpdateDependentDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentSaveIcon, ElementType.Xpath);
+			commonFunc.hardWait(5000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			logs.logging("INFO", "Add Icon Clicked in Update Dependent Details");
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill details in update dependent details in update
+	 * employee
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DependentName
+	 * @param Relation
+	 * @param DOB
+	 * @param Aadhar
+	 * @param Email
+	 * @param Contact
+	 * @param MonthEarn
+	 */
+	private void fillDetailsInUpdateDependentDetails(String DependentName, String Relation, String DOB, String Aadhar,
+			String Email, String Contact, String MonthEarn) {
+		switchToUpdateIframe();
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentNameData,
+				EmployeeMasterLocators.UpdateEmp_DependentNameInput, DependentName);
+		logs.logging("INFo", "Dependent Name Entered: " + DependentName);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentDOBData,
+				EmployeeMasterLocators.UpdateEmp_DependentDOBInput, DOB);
+		logs.logging("INFo", "DOB Entered: " + DOB);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentAadharData,
+				EmployeeMasterLocators.UpdateEmp_DependentAadharInput, Aadhar);
+		logs.logging("INFo", "Aadhar No Entered: " + Aadhar);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentEmailData,
+				EmployeeMasterLocators.UpdateEmp_DependentEmailInput, Email);
+		logs.logging("INFo", "Email Entered: " + Email);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentContactData,
+				EmployeeMasterLocators.UpdateEmp_DependentContactInput, Contact);
+		logs.logging("INFo", "Contact Entered: " + Contact);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentMonthlyEarnData,
+				EmployeeMasterLocators.UpdateEmp_DependentMonthlyEarnInput, MonthEarn);
+		logs.logging("INFo", "Monthly Earn Entered: " + MonthEarn);
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_DependentRelationData, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentRelationData, ElementType.Xpath);
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_DependentRelationSelect,
+					ElementType.Xpath);
+			if (flag) {
+				flag = webDB.selectDropDownByText(EmployeeMasterLocators.UpdateEmp_DependentRelationSelect, Relation,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFo", "Relation Selected: " + Relation);
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click contact tab in update employee
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickContactTabInUpdateEmployee() {
+		switchToUpdateIframe();
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateContactTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateContactTab, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateContactTab, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactAddLabel, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Contact Tab Clicked in Update Employee");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select radio button in contact details to update employee
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Type
+	 */
+	private void selectContactTypeToUpdate(String Type) {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactAddLabel, ElementType.Xpath);
+		if (flag) {
+			if (Type.equalsIgnoreCase("Add")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactAddLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Modify")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactModifyLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Remove")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactRemoveLabel, ElementType.Xpath);
+			} else {
+				logs.logging("INFO", "Invalid Contact Type entered: " + Type);
+				Assert.fail("Invalid Contact Type entered: " + Type);
+			}
+		}
+		if (flag) {
+			logs.logging("INFO", "Radio Button Clicked: " + Type);
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click add icon in update contact details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAddIconInUpdateContactDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactAddIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactNameData, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Icon Clicked in Update contact Details");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click save and post icon in update contact details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSaveAndPostInUpdateContactDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactSaveIcon, ElementType.Xpath);
+			commonFunc.hardWait(5000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			logs.logging("INFO", "Add Icon Clicked in Update Contact Details");
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill details in update contact details tab
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ContactName
+	 * @param Relation
+	 * @param MblNo
+	 * @param Address
+	 * @param City
+	 */
+	private void fillDetailsInUpdateContactDetails(String ContactName, String Relation, String MblNo, String Address,
+			String City) {
+		switchToUpdateIframe();
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactNameData,
+				EmployeeMasterLocators.UpdateEmp_ContactNameInput, ContactName);
+		logs.logging("INFo", "Contact Name Entered: " + ContactName);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactRelationData,
+				EmployeeMasterLocators.UpdateEmp_ContactRelationInput, Relation);
+		logs.logging("INFo", "Relation Entered: " + Relation);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactMobileData,
+				EmployeeMasterLocators.UpdateEmp_ContactMobileInput, MblNo);
+		logs.logging("INFo", "Mobile No Entered: " + MblNo);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactAddressData,
+				EmployeeMasterLocators.UpdateEmp_ContactAddressInput, Address);
+		logs.logging("INFo", "Address Entered: " + Address);
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactCityData, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactCityData, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_ContactCityLovBtn, City);
+			logs.logging("INFo", "City Selected: " + City);
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click qualification tab in update employee
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickQualificationTabInUpdateEmployee() {
+		switchToUpdateIframe();
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateQualificationTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateQualificationTab, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateQualificationTab, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationAddLabel, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Qualification Tab Clicked in Update Employee");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select radio button in qualification details to update
+	 * employee
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Type
+	 */
+	private void selectQualificationTypeToUpdate(String Type) {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationAddLabel, ElementType.Xpath);
+		if (flag) {
+			if (Type.equalsIgnoreCase("Add")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationAddLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Modify")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationModifyLabel,
+						ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Remove")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationRemoveLabel,
+						ElementType.Xpath);
+			} else {
+				logs.logging("INFO", "Invalid Qualification Type entered: " + Type);
+				Assert.fail("Invalid Qualification Type entered: " + Type);
+			}
+		}
+		if (flag) {
+			logs.logging("INFO", "Radio Button Clicked: " + Type);
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click add icon in update qualification details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAddIconInUpdateQualificationDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Icon Clicked in Update qualification Details");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click save and post icon in update qualification details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSaveAndPostInUpdateQualificationDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationSaveIcon, ElementType.Xpath);
+			commonFunc.hardWait(5000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			logs.logging("INFO", "Add Icon Clicked in Update Qualification Details");
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill details in update qualification details tab
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Qualification
+	 * @param BranchOfStudy
+	 * @param Institute
+	 * @param TotalYear
+	 * @param YearOfPass
+	 * @param Grade
+	 * @param Aggregate
+	 */
+	private void fillDetailsInUpdateQualificationDetails(String Qualification, String BranchOfStudy, String Institute,
+			String TotalYear, String YearOfPass, String Grade, String Aggregate) {
+		switchToUpdateIframe();
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualInstituteData,
+				EmployeeMasterLocators.UpdateEmp_QualInstituteInput, Institute);
+		logs.logging("INFo", "Institute Entered: " + Institute);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualTotalYearData,
+				EmployeeMasterLocators.UpdateEmp_QualTotalYearInput, TotalYear);
+		logs.logging("INFo", "Total Year Entered: " + TotalYear);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualYearOfPassData,
+				EmployeeMasterLocators.UpdateEmp_QualYearOfPassInput, YearOfPass);
+		logs.logging("INFo", "Year Of Passing Entered: " + YearOfPass);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualGradeData,
+				EmployeeMasterLocators.UpdateEmp_QualGradeInput, Grade);
+		logs.logging("INFo", "Grade Entered: " + Grade);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualAggregateData,
+				EmployeeMasterLocators.UpdateEmp_QualAggregateInput, Aggregate);
+		logs.logging("INFo", "Aggregate percent Entered: " + Aggregate);
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationTableData, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_QualificationTableLovBtn,
+					Qualification);
+			logs.logging("INFo", "Qualification Selected: " + Qualification);
+			switchToUpdateIframe();
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyData, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyData, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_QualBranchOfStudyLovBtn,
+						BranchOfStudy);
+				logs.logging("INFo", "Branch Of Study Selected: " + BranchOfStudy);
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click skill tab in update employee
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSkillTabInUpdateEmployee() {
+		switchToUpdateIframe();
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateSkillTab, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateSkillTab, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateSkillTab, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillAddLabel, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Skill Tab Clicked in Update Employee");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select radio button in skill details to update employee
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Type
+	 */
+	private void selectSkillTypeToUpdate(String Type) {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillAddLabel, ElementType.Xpath);
+		if (flag) {
+			if (Type.equalsIgnoreCase("Add")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillAddLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Modify")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillModifyLabel, ElementType.Xpath);
+			} else if (Type.equalsIgnoreCase("Remove")) {
+				flag = webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillRemoveLabel, ElementType.Xpath);
+			} else {
+				logs.logging("INFO", "Invalid Skill Type entered: " + Type);
+				Assert.fail("Invalid Skill Type entered: " + Type);
+			}
+		}
+		if (flag) {
+			logs.logging("INFO", "Radio Button Clicked: " + Type);
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click add icon in update skill details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAddIconInUpdateSkillDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillAddIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Icon Clicked in Update Skill Details");
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click save and post icon in update skill details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSaveAndPostInUpdateSkillDetails() {
+		switchToUpdateIframe();
+		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillSaveIcon, ElementType.Xpath);
+			commonFunc.hardWait(5000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			logs.logging("INFO", "Add Icon Clicked in Update Skill Details");
+			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill details in update skill details tab
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Skill
+	 * @param Level
+	 */
+	private void fillDetailsInUpdateSkillDetails(String Skill, String Level) {
+		switchToUpdateIframe();
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_SkillTableLovBtn, Skill);
+			logs.logging("INFo", "Skill Selected: " + Skill);
+			switchToUpdateIframe();
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillLevelData, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillLevelData, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.UpdateEmp_SkillLevelLovBtn, Level);
+				logs.logging("INFo", "Skill Level Selected: " + Level);
+			}
+		}
+		webDB.switchToDefaultContent();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to search and select employee id in find page
+	 * 
+	 * @author Sakthi-GWL
+	 * @param EmpId
+	 */
+	private void searchAndClickEmpIdInFindEmployeePage(String EmpId) {
+		flag = webDB.waitForElement(EmployeeMasterLocators.Find_EmpNameLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.Find_EmpNameLovBtn, EmpId);
+			flag = webDB.waitForElement(EmployeeMasterLocators.FindSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(EmployeeMasterLocators.FindSearchBtn, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Clicked in Find Employee Page");
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.FindSearchBar,
+						EmployeeMasterLocators.FindSearchBar, EmpId);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.clickAnElement(EmployeeMasterLocators.FindSearchGoBtn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(EmployeeMasterLocators.FindResult_TableEmpId(EmpId), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "EmpId Displayed after search: " + EmpId);
+					webDB.clickAnElement(EmployeeMasterLocators.FindResult_TableEmpId(EmpId), ElementType.Xpath);
+					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_EmpployeeMasterSideNav,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Employee Page Navigated for EmpId: " + EmpId);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Emplyee History and check not null and close
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickEmployeeHistoryAndCheckNotNull() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryIframe, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(EmployeeMasterLocators.EmployeeHistoryIframe, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.EmployeeHistoryTableRowCount,
+						ElementType.Xpath);
+				flag = elements.size() > 0;
+				if (flag) {
+					logs.logging("INFO", "Employee History data not null, Displayed History size: " + elements.size());
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.EmpHistIframeCloseIcon, ElementType.Xpath)) {
+			webDB.moveToElement(EmployeeMasterLocators.EmpHistIframeCloseIcon, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(EmployeeMasterLocators.EmpHistIframeCloseIcon, ElementType.Xpath);
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click view profile and store profile and Batch No
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickViewProfileAndStoreProfileAndBatchNo() {
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.ViewProfileBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.ViewProfileBtn, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.ViewProfileBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				String ProfNo = webDB.getTextFromElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
+				logs.logging("INFO", "Displayed Profile No: " + ProfNo);
+				VariableHandler.setEmpProfileNo(ProfNo);
+				String BatchNo = webDB.getTextFromElement(EmployeeMasterLocators.ViewProf_BatchNo, ElementType.Xpath);
+				logs.logging("INFO", "Displayed Batch No: " + BatchNo);
+				VariableHandler.setEmpBatchNo(BatchNo);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click profile no and reverse the employee profile
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickEmployeeProfileNoAndReverse() {
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
+			flag = webDB.waitForClickElement(EmployeeMasterLocators.ViewProf_ReverseBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Profile No Clicked and Reverse Button Displayed");
+				webDB.moveToElement(EmployeeMasterLocators.ViewProf_ReverseBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.ViewProf_ReverseBtn, ElementType.Xpath);
+				flag = webDB.waitForClickElement(EmployeeMasterLocators.ViewProf_ReverseOkBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Reverse Button Clicked and Ok Button Displayed");
+					webDB.moveToElement(EmployeeMasterLocators.ViewProf_ReverseOkBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.ViewProf_ReverseOkBtn, ElementType.Xpath);
+					flag = webDB.waitForClickElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Ok Button Clicked and Toast Message Displayed.. Employee Reversed");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate to Employee Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAndNavigateEmployeeMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.MigrationIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Migration Button Clicked");
+				webDB.switchToFrame(EmployeeMasterLocators.MigrationIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationLabel, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationLabel, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Employee Migration Radio Button Clicked");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Add and Fill Details in Employee Migration
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Calendar
+	 * @param Payment
+	 * @param PaymentType
+	 * @param Ref
+	 */
+	private void clickAddAndFillDetailsInEmployeeMigration(String Calendar, String Payment, String PaymentType,
+			String Ref) {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.EmpMigrationCalendarLov, Calendar);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPaymentSelect, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByText(EmployeeMasterLocators.EmpMigrationPaymentSelect, Payment,
+						ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPaymentTypeSelect, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.selectDropDownByText(EmployeeMasterLocators.EmpMigrationPaymentTypeSelect, PaymentType,
+							ElementType.Xpath);
+					if (flag) {
+						flag = webDB.sendTextToAnElement(EmployeeMasterLocators.EmpMigrationReferenceInput, Ref,
+								ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to upload template in Employee Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void uploadEmployeeMigrationTemplate() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadTemplateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationUploadTemplateBtn, ElementType.Xpath);
+			File file = new File(VariableHandler.testdataDir + webDB.getDataFromProperties("EmpMigrationFileName"));
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Upload Icon Clicked for Employee Migration");
+				webDB.sendTextToAnElement(EmployeeMasterLocators.EmpMigrationUploadInput, file.getAbsolutePath(),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationUploadBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "File Uploaded Succesfully for Employee Migration");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to check Exception and Save Header in Employee Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void checkExceptionAndSaveHeaderInEmpMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationCheckExceptionBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationCheckExceptionBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "No Exception Found for Employee Migration");
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationHeaderSaveIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationHeaderSaveIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Header Saved Succesfully for Employee Migration");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Post uploaded template in Employee Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void postUploadedTemplateInEmployeeMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Employee Migration uploaded template Posted");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click and Navigate Employee Details Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickAndNavigateEmployeeDetailsMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.MigrationIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Migration Button Clicked");
+				webDB.switchToFrame(EmployeeMasterLocators.MigrationIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationLabel, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationLabel, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Employee Details Migration Radio Button Clicked");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Enter Reference in Employee Details Migration
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Ref
+	 */
+	private void createAndFillDetailsInEmpDetailsMigration(String Ref) {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationReferenceInput, ElementType.Xpath);
+			if (flag) {
+				webDB.sendTextToAnElement(EmployeeMasterLocators.EmpDetailsMigrationReferenceInput, Ref,
+						ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateSaveButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCreateSaveButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Employee Details Migration Reference entered and Save Button Clicked");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Select Field Options In Employee Details Migration
+	 * Page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSelectFieldOptionsInEmpDetailsMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldLabel, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldLabel, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldAddIcon,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Select Field Clicked in Employee Details Migration");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Select Field and enter Sequence in Employee Details
+	 * Migration Page
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Option
+	 * @param Seq
+	 */
+	private void clickAddSelectFieldAndSelectSequence(String Option, String Seq) {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldAddIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsSelectFieldDataTypeTableData,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Select Field Add Icon Clicked Successfully");
+				webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsSelectFieldDataTypeTableData, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsSelectFieldDataTypeSelect,
+						ElementType.Xpath);
+				if (flag) {
+					flag = webDB.selectDropDownByText(EmployeeMasterLocators.EmpDetailsSelectFieldDataTypeSelect,
+							Option, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Select Field Add Icon Clicked Successfully");
+						commonPayrollFunc.addDetailInTableWithoutLovButton(
+								EmployeeMasterLocators.EmpDetailsSelectFieldSequenceTableData,
+								EmployeeMasterLocators.EmpDetailsSelectFieldSequenceTableData, Seq);
+						flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldSaveIcon,
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldSaveIcon,
+									ElementType.Xpath);
+							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Select Field Line Added and Saved Successfully");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to upload Employee Details Template
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void uploadEmployeeDetailsMigrationTemplate() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIframe, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(EmployeeMasterLocators.EmpDetailsMigrationUploadIframe, ElementType.Xpath);
+				File file = new File(
+						VariableHandler.testdataDir + webDB.getDataFromProperties("EmpDetailsMigrationFileName"));
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadInput, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Upload Icon Clicked for Employee Details Migration");
+					webDB.sendTextToAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadInput,
+							file.getAbsolutePath(), ElementType.Xpath);
+					flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadBtn, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "File Uploaded Succesfully for Employee Migration");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to check Exception and Save Header in Employee Details
+	 * Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void checkExceptionAndSaveHeaderInEmpDetailsMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "No Exception Found for Employee Details Migration");
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Header Saved Succesfully for Employee Details Migration");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Post uploaded template in Employee Details Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void postUploadedTemplateInEmployeeDetailsMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Employee Migration uploaded template Posted");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to enter probation details in Employee Master
+	 * 
+	 * @author Sakthi-GWL
+	 * @param duration
+	 * @param type
+	 */
+	private void enterProbationDetailsAndSaveHeader(String duration, String type) {
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_ProbationDurationInput,
+				EmployeeMasterLocators.AddEmp_ProbationDurationInput, duration);
+		logs.logging("INFO", "Duration entered in Probation: " + duration);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationSelect, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_ProbationSelect, type, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Probation Type Selected: " + type);
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Save Icon Clicked after Probation entered");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click probation complete and verify probation completed
+	 * status in employee history
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickProbationCompleteAndCheckProbationStatus() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
+			commonFunc.hardWait(7000);
+			logs.logging("INFO", "Probation Completed Button Clicked");
+			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+				webDB.clickAnElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryIframe, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Employee History Button Clicked");
+					webDB.switchToFrame(EmployeeMasterLocators.EmployeeHistoryIframe, ElementType.Xpath);
+					if (flag) {
+						flag = webDB.waitForElement(EmployeeMasterLocators.ProbationStatusVerificationTableData,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Probation Status Table Data Displayed");
+							String DisplayStatus = webDB.getTextFromElement(
+									EmployeeMasterLocators.ProbationStatusVerificationTableData, ElementType.Xpath);
+							logs.logging("INFO", "Displayed Probation Status: " + DisplayStatus);
+							flag = DisplayStatus.equalsIgnoreCase("Completed");
+							if (flag) {
+								logs.logging("INFO", "Probation Status Verified");
+								webDB.switchToDefaultContent();
+								webDB.clickAnElement(EmployeeMasterLocators.EmpHistIframeCloseIcon, ElementType.Xpath);
+								flag = webDB.isElementNotDisplayed(EmployeeMasterLocators.EmployeeHistoryIframe,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
 }
