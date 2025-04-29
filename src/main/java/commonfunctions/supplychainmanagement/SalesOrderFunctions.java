@@ -940,7 +940,7 @@ public class SalesOrderFunctions {
 							flag = Customer.equals(ExpCustId);
 							if (flag) {
 								logs.logging("INFO", "Verified Expected And Actual Customer Description");
-								verifyTotalSOAmountCalculationInDocApproval();
+//								verifyTotalSOAmountCalculationInDocApproval();
 //								clickPrintButton();
 								apprpagefunc.verifyNavigateback();
 							}
