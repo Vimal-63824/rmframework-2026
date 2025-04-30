@@ -253,4 +253,6 @@ public class CommonUiLocators {
 	public static final String AutoPostMRVCheckBox = "//input[@id='P367019021_ICMCTRL_AUTO_MTR_COMPL_FLAG_1']";
 	/** @locatorType Xpath */
 	public static final String EmployeeLeaveEntryScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[2]/*/li[5]";
+	/** @locatorType Xpath */
+	public static final String ClearIcon = "//button[@id='Clear']";
 }

@@ -2076,6 +2076,7 @@ public class SalesInvoiceFunctions {
 				logs.logging("INFO", "Failed to Click The Line Wise Tick Icon");
 			}
 		}
+		commonFunc.checkRefreshCellsDisappear();
 		assertTrue(flag);
 	}
 
