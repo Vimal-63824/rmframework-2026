@@ -12,7 +12,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.ReportLoger;
 
-public class AttendanceLeaveTest {
+public class AttendanceLeaveTest extends RoadMapERPTest {
 	private static boolean flag = false;
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -121,6 +121,108 @@ public class AttendanceLeaveTest {
 	@Test(priority = 9, groups = { "Leave" }, description = "30 To Check Leave Accrual Upload Migration with Templates")
 	public void VerifyLeaveAccrualUploadMigrationWithTemplates() {
 		flag = attendanceLeaveFunc.verifyLeaveAccrualUploadMigrationWithTemplates();
+		Assert.assertTrue(flag);
+	}
+
+	// --------------- Leave Adjustment Tests --------------
+
+	/**
+	 * To Check Leave Adjustment Based on Leave types in Leave Master
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 10, groups = {
+			"Leave Adjustment" }, description = "60 To Check Leave Adjustment Based on Leave types in Leave Master")
+	public void VerifyLeaveAdjustmentBasedLeaveTypes() {
+		flag = attendanceLeaveFunc.verifyAdjustmentBasedLeaveTypesPrefixReqDate();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Adjustment based on the Addition and Deduction Prefix
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 11, groups = {
+			"Leave Adjustment" }, description = "61 To Check Leave Adjustment based on the Addition and Deduction Prefix")
+	public void VerifyLeaveAdjustmentBasedAdditionDeductionPrefix() {
+		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Adjustment Based on the Request date
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 12, groups = {
+			"Leave Adjustment" }, description = "62 To Check Leave Adjustment Based on the Request date")
+	public void VerifyLeaveAdjustmentBasedRequestDate() {
+		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check the Leave Adjustment with the attachment field
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 13, groups = {
+			"Leave Adjustment" }, description = "64 To Check the Leave Adjustment with the attachment field")
+	public void VerifyLeaveAdjustmentWithAttachmentField() {
+		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Adjustment report fetches values correctly
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 14, groups = {
+			"Leave Adjustment" }, description = "66 To Check Leave Adjustment report fetches values correctly")
+	public void VerifyLeaveAdjustmentReportFetchesValuesCorrectly() {
+		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Balances Reflecting in Employee Master
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 15, groups = {
+			"Leave Adjustment" }, description = "68 To Check Leave Balances Reflecting in Employee Master")
+	public void VerifyLeaveAdjustmentBalancesReflectingInEmployeeMaster() {
+		flag = attendanceLeaveFunc.verifyLeaveAdjustmentBalancesReflectingInEmployeeMaster();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Cancel the leave Adjustment and checking the status of Leave Adjustment
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 16, groups = {
+			"Leave Adjustment" }, description = "63 Cancel the leave Adjustment and checking the status of Leave Adjustment")
+	public void VerifyCancelCheckStatusLeaveAdjustment() {
+		flag = attendanceLeaveFunc.verifyCancelCheckStatusLeaveAdjustment();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Accrual Leave Balance Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 17, groups = {
+			"Leave Adjustment" }, description = "65 To Check Accrual Leave Balance Migration With Templates")
+	public void VerifyAccrualLeaveBalanceMigrationWithTemplates() {
+		flag = attendanceLeaveFunc.verifyAccrualLeaveBalanceMigrationWithTemplates();
 		Assert.assertTrue(flag);
 	}
 

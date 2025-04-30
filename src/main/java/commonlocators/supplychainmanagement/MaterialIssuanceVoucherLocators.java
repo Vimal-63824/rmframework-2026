@@ -48,9 +48,9 @@ public class MaterialIssuanceVoucherLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String DisplayMIVNo = "//span[@id='P931311701_ISTHD_DOC_NO_DISPLAY']";
+	public static final String DisplayMIVNo = "//span[@id='P9313117011_ISTHD_DOC_NO_DISPLAY']";
 	/** @locatorType XPATH */
-	public static final String DisplayReceiverWarehouse = "//span[@id='P931311701_STORE_DESC_DISPLAY']";
+	public static final String DisplayReceiverWarehouse = "//span[@id='P9313117011_STORE_DESC_DISPLAY']";
 	/** @locatorType XPATH */
 	public static final String SaveHeaderIcon = "//button[@id='B3110868619550418445']";
 	/** @locatorType XPATH */
@@ -67,11 +67,11 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String CreateMiButton = "//button[@id='B1']";
 	/** @locatorType Xpath */
-	public static final String MILocationId = "//span[@id='P931311701_ISTHD_PLNT_LOC_ID_DISPLAY']";
+	public static final String MILocationId = "//span[@id='P9313117011_ISTHD_PLNT_LOC_ID_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String MIVNo = "//span[@id='P931311701_ISTHD_DOC_NO_DISPLAY']";
+	public static final String MIVNo = "//span[@id='P9313117011_ISTHD_DOC_NO_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String ReceiverWH = "//span[@id='P931311701_STORE_DESC_DISPLAY']";
+	public static final String ReceiverWH = "//span[@id='P9313117011_STORE_DESC_DISPLAY']";
 	/** @locatorType Xpath */
 	public static final String CreateJnl = "//button[@id='B4710641419071306431']";
 	/** @locatorType Xpath */
@@ -96,7 +96,7 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String MivSearchButton = "//button[@id='B166256573623807506']";
 
 	/** @locatorType Xpath */
-	public static final String TypeText = "//span[@id='P931311701_ISTHD_ISSUETO_TYPE_DISPLAY']";
+	public static final String TypeText = "//span[@id='P9313117011_ISTHD_ISSUETO_TYPE_DISPLAY']";
 
 	/** @locatorType Xpath */
 	public static final String PostedMiv(String MINO) {

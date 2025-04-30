@@ -681,4 +681,8 @@ public class EmployeeMasterLocators {
 	public static final String AddEmp_ProbationCompleteBtn = "//button[@id='B799165312758092118']";
 	/** @locatorType XPATH */
 	public static final String ProbationStatusVerificationTableData = "//td[text()='Probation Status']/../td[3]";
+	/** @locatorType XPATH */
+	public static final String BalanceLeaveDetailsTable = "//div[@id='balance']//table/tbody";
+	/** @locatorType XPATH */
+	public static final String CLBalanceLeaveDetailsTableData = "//div[@id='balance']//table/tbody//td[text()='CL']/../td[3]";
 }
