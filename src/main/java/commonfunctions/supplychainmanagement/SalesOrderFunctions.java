@@ -839,7 +839,7 @@ public class SalesOrderFunctions {
 				webDB.clickAnElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.ClearIcon, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Verified Navigate To SO Home Page");
 				}
@@ -1062,8 +1062,7 @@ public class SalesOrderFunctions {
 	 */
 	public void getSalesOrderTotalAmount() {
 		commonFunc.checkRefreshCellsDisappear();
-		webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath, 60);
-		flag = webDB.waitForClickElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
 		if (flag) {
 			String SOTotAmt = webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -1612,6 +1611,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			HeaderCurrency = webDB.getTextFromElement(SalesOrderLocators.Currency, ElementType.Xpath);
 			logs.logging("INFO", "Get Text Header Currency Is : " + HeaderCurrency);
+			VariableHandler.setHeaderCurrency(HeaderCurrency);
 		}
 		return HeaderCurrency;
 	}
@@ -2528,6 +2528,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			if (webDB.isElementSelected(SalesOrderLocators.SalesOrderInputIncludeAdvAmtCheckBox, ElementType.Xpath)) {
 				logs.logging("INFO", "verified Include Advance Amount Flag Is Checked Based On the PaymentTerm");
+//				verifyCheckIncludeAdvAmtFlag();
 			}
 		}
 		assertTrue(flag);
@@ -2596,6 +2597,7 @@ public class SalesOrderFunctions {
 		VariableHandler.setPaymentTermAdvTaxPercentage(ExpectedAdvTaxPercentage);
 		logs.logging("INFO", "Expected Payment Term Advance Tax Percentage From Payment Term Master Is : "
 				+ ExpectedAdvTaxPercentage);
+
 	}
 
 	/**
@@ -2606,6 +2608,7 @@ public class SalesOrderFunctions {
 	 * @param CustomerID
 	 */
 	public void verifyExpectedAdvanceReceiptWithDataBaseValues(String Unit, String CustomerID) {
+
 		verifyExpectedAdvanceToBeReceivedAmount();
 
 		verifyAssertionBothValues(
@@ -2648,6 +2651,7 @@ public class SalesOrderFunctions {
 				dbCommonFunctions.FinanceAdvanceReceipt(VariableHandler.getAdvReceiptDocNumber(),
 						commonFunc.getDataFromTestDataSheet("AdvReceiptDBHeaderOrderAmountColumnName")),
 				VariableHandler.getSOEXPTotalOrderAmount().stripTrailingZeros().toPlainString());
+
 	}
 
 	/**
@@ -2954,7 +2958,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Customer"),
 				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
 		checkSOHeaderDetailsDataBaseValuesWithUIValues();// TODO
-		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOLines"),
+		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SalesOrder"),
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
@@ -3279,7 +3283,7 @@ public class SalesOrderFunctions {
 					logs.logging("INFO", "Before Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 32, BeforeStockQty);
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 33, BeforeStockCost);
-					ExcelStockQtyFormulaEvaluator(i1, ItemId, ArrayList, SheetName);
+					ExcelStockQtyFormulaEvaluatorSI(i1, ItemId, ArrayList, SheetName);
 				}
 			}
 		}
@@ -3339,7 +3343,7 @@ public class SalesOrderFunctions {
 //				DecimalFormat df = new DecimalFormat("0.00");
 //				String formattedNumber = df.format(stockQtyValue);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 32, BeforeStockQty);
-				ExcelStockQtyFormulaEvaluator(i1, ItemId, ArrayList, SheetName);
+				ExcelStockQtyFormulaEvaluatorSI(i1, ItemId, ArrayList, SheetName);
 			}
 		}
 	}
@@ -4143,16 +4147,16 @@ public class SalesOrderFunctions {
 	 * @param ArrayList
 	 * @param SheetName
 	 */
-	public void ExcelStockQtyFormulaEvaluator(int i, String Item, ArrayList<String> ArrayList, String SheetName) {
+	public void ExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList, String SheetName) {
 		try {
 			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-					+ "QA Scenario - Sales STD PRICE.xlsx";
+					+ "DBSales.xlsx";
 			FileInputStream fis = new FileInputStream(new File(Filepath));
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
 			XSSFSheet sheet = workbook.getSheet(SheetName);
 			FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
 			Row row = sheet.getRow(i); // Row 0 (first row)
-			Cell cell = row.getCell(34); // Column 0 (first column, A1)
+			Cell cell = row.getCell(33); // Column 0 (first column, A1)
 			if (cell.getCellType() == CellType.FORMULA) {
 				CellValue cellValue = formulaEvaluator.evaluate(cell);
 				if (cellValue.getCellType() == CellType.NUMERIC) {

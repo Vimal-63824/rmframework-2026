@@ -679,6 +679,17 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Create SI - Domestic - CESS Customer
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 56, groups = { "SalesInvoice" }, description = "      162 - Create SI - Domestic - CESS Customer")
+	public void VerifyCreateSalesInvoiceDomesticCESSCustomer() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticCESSCustomer();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL
