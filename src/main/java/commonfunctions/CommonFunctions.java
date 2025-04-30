@@ -1973,6 +1973,7 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateLeaveEntryScreen() {
+		clickLeftNavigationBar();
 		clickPayrollTab();
 		clickPayrollTransactionTab();
 		clickAttendanceLeaveTab();

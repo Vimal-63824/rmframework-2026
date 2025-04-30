@@ -293,6 +293,8 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LeaveEntryAttachmentIframe = "//iframe[@title='Attachment']";
 	/** @locatorType Xpath */
+	public static final String AttachmentIframeCloseIcon = "//*[text()='Attachment']/following-sibling::button";
+	/** @locatorType Xpath */
 	public static final String LEAttachmentDocTypeLovBtn = "//button[@id='P37_DOC_TYPE_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDocNoInput = "//input[@id='P37_DM_REQ_DOC_NO']";
@@ -310,4 +312,72 @@ public class AttendanceLeaveLocators {
 	public static final String LEAttachmentDisplayedFileName = "//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
 	public static final String LeaveEntryReportBtn = "//button[@id='B600603941840429231']";
+	/** @locatorType Xpath */
+	public static final String LeaveAdjustmentLabel = "//label[text()='Adjustment']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentAddIcon = "//button[@id='B1334710475642564438']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentRequestDateInput = "//input[@id='P8185107008_EMPLEAVE_REQ_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentEmpIdLovBtn = "//button[@id='P8185107008_EMPLEAVE_EMP_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentLeaveLovBtn = "//button[@id='P8185107008_EMPLEAVE_LEAVE_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentLeavePrefixLovBtn = "//button[@id='P8185107008_EMPLEAVE_PFX_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentDaysInput = "//input[@id='P8185107008_LEAVE_APPR_DAYS']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentReasonInput = "//input[@id='P8185107008_EMPLEAVE_BRIEFDESC_A']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentHeaderSaveIcon = "//button[@id='B600602336761429226']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentPostBtn = "//button[@id='B600602786561429226']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentCancelBtn = "//button[@id='B600603133710429229']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentAttachmentBtn = "//button[@id='B600603501452429229']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentReportBtn = "//button[@id='B700171373885104208']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentDisplayDocNo = "//input[@id='P8185107008_EMPLEAVE_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentDisplayStatus = "//h2[@id='R908484335077219106_heading']/b";
+	/** @locatorType Xpath */
+	public static final String AdjustmentReverseBtn = "//button[@id='B1811421255089609519']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentReverseOkBtn = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentFindSearchBtn = "//button[@id='B1334710554621564439']";
+	/** @locatorType Xpath */
+	public static final String AdjustmentMigrationBtn = "//button[@id='B1817320036359200017']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationCreateAddBtn = "//button[@id='B1294363498798691301']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationCalendarLovBtn = "//button[@id='P367011501_ELHD_CLNDR_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationYearSelect = "//select[@id='P367011501_ELHD_YEAR']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationPeriodSelect = "//select[@id='P367011501_ELHD_PERIOD']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationModeSelect = "//select[@id='P367011501_ELHD_MODE']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationDocNoDisplay = "//input[@id='P367011501_ELHD_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationReferenceInput = "//input[@id='P367011501_ELHD_REF']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationHeaderSaveBtn = "//button[@id='B3441485342751693741']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationUploadIcon = "//button[@id='B3438013596273822878']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationUploadIFrame = "//iframe[@title='Upload File']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationUploadInput = "//input[@id='P367011502_UPLOAD_input']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationUploadBtn = "//button[@id='B3445018050893053515']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationCheckExceptionBtn = "//button[@id='B3442971615561850266']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationPostBtn = "//button[@id='B3438013868412822880']";
+	/** @locatorType Xpath */
+	public static final String AdjmntMigrationReportBtn = "//button[@id='B700171373885104208']";
 }
