@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.VariableHandler;
 import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
@@ -40,6 +41,7 @@ public class GrnPageFunctions {
 	static MaterialReceiptVoucherFunctions mrvFunc = new MaterialReceiptVoucherFunctions();
 	static SalesInvoiceFunctions saleInvoiceFunc = new SalesInvoiceFunctions();
 	static SalesOrderFunctions saleOrderFunc = new SalesOrderFunctions();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Methods Is Used To Click Pending PO and Search PO Number in Header
@@ -635,105 +637,6 @@ public class GrnPageFunctions {
 
 			}
 		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN Document from PO With and Without
-	 * Inspection for UserDefined Item(Material)
-	 * 
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-
-	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotAndSerialItem();
-		lotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN From PO With General With And
-	 * Without Inspection Document(Multiple Item)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
-		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotandSerialWithGeneralType();
-		lotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN From PO With Service Type
-	 * Document(Single Item)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void verifyGrnPODomesticServiceSimilarUOMfromPo() {
-		POfunc.verifyDirectPODomesticServiceSimilarUOMMultiple();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Method to handle Create GRN Document from PO With and Without
-	 * Inspection for Contract Item(General Type)
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType() {
-		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multpleLotSerialWithRateContractItem();
-		lotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		assertTrue(flag);
 	}
 
@@ -1373,30 +1276,6 @@ public class GrnPageFunctions {
 	}
 
 	/**
-	 * This Method to Handle PO To GRN General User Defined Stock And Supplier
-	 * DisUom With And Without Inspection Plan
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlan() {
-		POfunc.verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItem();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		lotAndSerialWithGeneralTypeForDisUOM();
-		lotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-	}
-
-	/**
 	 * This Method to Handle lot And Serial With General Type For DisUOM
 	 * 
 	 * @author PremKumar.K-RMITS
@@ -1512,77 +1391,6 @@ public class GrnPageFunctions {
 	}
 
 	/**
-	 * This Method to handle Create the GRN Document from PO with PriceList Item for
-	 * General Type
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan() {
-		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlan();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		pricelistItemwithAndWithoutInspectionPlanLotSerialGeneralType();
-		lotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-	}
-
-	/**
-	 * This Methods Method to handle Create the GRN Document from PO with
-	 * RateContract Item for Service Type
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan() {
-		POfunc.verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceType();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-	}
-
-	/**
-	 * This Method to Handle PO To GRN Material User Defined Stock And Supplier
-	 * DisUom With And Without Inspection Plan
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-
-	public void poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlan() {
-		POfunc.verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		lotAndSerialWithMaterialTypeForDisUOM();
-		lotSerialQtyApportion();
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-
-	}
-
-	/**
 	 * This Method to Handle lot And Serial With Material Type For DisUOM
 	 * 
 	 * @author PremKumar.K-RMITS
@@ -1638,6 +1446,672 @@ public class GrnPageFunctions {
 					}
 				}
 			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN From PO With Service Type
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyGrnPODomesticServiceSimilarUOMfromPo() {
+		POfunc.verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("DirectPOSerUD"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOSerUD"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPORateGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(
+				webDB.getDataFromProperties("DirectPORateGen"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPORateGen"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPORateGen"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPORateGen"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create the GRN Document from PO with and
+	 * Without Inspection for RateContract Item(Material)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterial() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPoRateMat"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPoRateMat"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial(
+				webDB.getDataFromProperties("DirectPoRateMat"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPoRateMat"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoRateMat"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPoRateMat"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPoRateMat"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(Material)
+	 * 
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOMatUD"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				webDB.getDataFromProperties("DirectPOMatUD"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOMatUD"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOMatUD"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOMatUD"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN From PO With General With And
+	 * Without Inspection Document(Multiple Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOGENUD"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOGENUD"));
+		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem(webDB.getDataFromProperties("DirectPOGENUD"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOGENUD"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOGENUD"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOGENUD"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPOGENUD"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create the GRN Document from PO with
+	 * RateContract Item for Service Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan() throws IOException {
+		POfunc.verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceType(
+				webDB.getDataFromProperties("DirectPOSerRate"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOSerRate"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlan(
+				webDB.getDataFromProperties("DirectPoPriceListGen"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectPoPriceListGen"));
+	}
+
+	/**
+	 * This Method to Handle PO To GRN General User Defined Stock And Supplier
+	 * DisUom With And Without Inspection Plan
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+		POfunc.verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItem(
+				webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectPODifUOMGENUD"));
+
+	}
+
+	/**
+	 * This Method to Handle PO To GRN Material User Defined Stock And Supplier
+	 * DisUom With And Without Inspection Plan
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+
+	public void poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlan()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		POfunc.verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(
+				webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithUserDefinedItemDisimilarUomMatType"));
+
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type,Dissimilar UOM)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPORateGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
+				webDB.getDataFromProperties("DifferentUOMRateGen"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUOMRateGen"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUOMRateGen"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPORateGen"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create the GRN Document from PO with and
+	 * Without Inspection for RateContract Item(Material)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterial() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DifferentUomRateMat"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUomRateMat"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialForDifferentUom(
+				webDB.getDataFromProperties("DifferentUomRateMat"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUomRateMat"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUomRateMat"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUomRateMat"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DifferentUomRateMat"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Used To Verify stock Quantity For Quality Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void verifyStockQtyAndCostForQualityWh(String SheetName) throws IOException {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String WareHouse = ItemMultiple[i][41];
+			String ExpectedStockQuantity = ItemMultiple[i][47];
+			String ExpectedStockCost = ItemMultiple[i][48];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item " + ItemId + "Is : " + ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 43, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 44, BeforeStockCost);
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Used To Verify stock Quantity For Source Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyStockQtyAndCostForSourceWH(String SheetName) throws IOException {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String SourecWareHouse = ItemMultiple[i][60];
+			String ExpectedStockQuantity = ItemMultiple[i][64];
+			String ExpectedStockCost = ItemMultiple[i][63];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item " + ItemId + "Is : "
+						+ ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 62, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 61, BeforeStockCost);
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Is Used After Give all Details to Click overall save and Forward
+	 * the Approval User
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void overAllSaveAndPost(String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+			verifyGrnDocumentCompareToPoDocument(SheetName);
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
+			if (flag)
+				webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
+			logs.logging("INFO", "Document Successfully Saved");
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForClickElement(GrnLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
+				logs.logging("INFO", "Document Successfully posted");
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify GrnDocument Compare to PO document Details
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyGrnDocumentCompareToPoDocument(String SheetName) {
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < PRMultipleline.length; i++) {
+			String ItemId = PRMultipleline[i][1];
+			if (!ItemId.equals("")) {
+				System.out.println("tradevalueup");
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("TradeAssessableValue")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNTradeAssessableValue")));
+				logs.logging("INFO", "Trade Assessable Value Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("SpecialAssessableValue")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialAssessableValue")));
+				logs.logging("INFO", "Special Assessable Value Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("CashAssessableValue")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNCashAssessableValue")));
+				logs.logging("INFO", "Cash Assessable Value Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("TradeDiscountAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNTradeDiscountAmount")));
+				logs.logging("INFO", "Trade Discount Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("SpecialDiscountAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialDiscountAmount")));
+				logs.logging("INFO", "Special Discount Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("CashDiscountAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNCashDiscountAmount")));
+				logs.logging("INFO", "Cash  Discount Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("PoIgstAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GrnIgstAmount")));
+				logs.logging("INFO", "IGST Tax Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("PoSgstAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GrnSgstAmount")));
+				logs.logging("INFO", "SGST  Tax Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("POCgstAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GrnCgstAmount")));
+				logs.logging("INFO", "SGST  Tax Amount Matched For PO and GRN " + ItemId);
+
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyExpectedStockQtAndCostyForQualityWH(String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String WareHouse = ItemDetails[i][41];
+			String AfterExcelStockCost = ItemDetails[i][48];
+			if (!ItemId.equals("")) {
+				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After GRN Actual Stock Cost For This Item " + ItemId + "Is : " + AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO",
+						"Verified Expected Stock Cost For This Item " + ItemId + " With Database Values After MRV");
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Source
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String SourecWareHouse = ItemDetails[i][60];
+			String AfterExcelStockQuantity = ItemDetails[i][64];
+			String AfterExcelStockCost = ItemDetails[i][63];
+			if (!ItemId.equals("")) {
+
+				String AfterStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+						+ AfterStockQty);
+
+				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item " + ItemId
+						+ " With Database Values After MRV");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				String AfterStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+						+ AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item " + ItemId
+						+ " With Database Values After MRV");
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Add Lot and Serial Number for Multiple Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void multipleLotAndSerialItem(String SheetName) throws IOException {
+		flag = webDB.waitForElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Successfully Created GRN and Entered GRN Transaction Screen");
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "LOT/SERIAL Button Clicked");
+			flag = webDB.waitForElement(GrnLocators.LotSerialIframe, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+				ExcelUtils excelUtils = new ExcelUtils();
+				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+						+ "DBDETAILS.xlsx";
+				itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				for (int i = 22; i < itemmultiple.length; i++) {
+					String ITEM_NAME = itemmultiple[i][1];
+					String LOT_SERIAL = itemmultiple[i][51];
+					String LOT_NUMBER = itemmultiple[i][52];
+					String SERIAL_NUMBER = itemmultiple[i][53];
+					if (!ITEM_NAME.equals("")) {
+						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
+							continue;
+						}
+						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
+								if (flag) {
+									if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Lot"))) {
+										inputLotNumber(ITEM_NAME, LOT_NUMBER);
+									} else if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Serial"))) {
+										inputSerialNumber(ITEM_NAME, SERIAL_NUMBER);
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value 8: " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
 		}
 		assertTrue(flag);
 	}

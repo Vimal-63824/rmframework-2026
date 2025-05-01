@@ -355,4 +355,28 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ServiceType = "//select[@id='P161513106045_POL_SERV_IO_TYPE']";
+	/** @locatorType Xpath */
+	public static final String TradePercentageValue = "//span[@id='P161513106045_POL_TRD_DISC_PCT_DISPLAY']";
+
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[22]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderLineDetail(int i) {
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[21]";
+	}
+
+	public static final String POType = "//*[@id=\"P161513106041_POH_TYPE_DISPLAY\"]";
+
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderLineDetailsForServiceItem = "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[20]";
+
+	/** @locatorType Xpath */
+	public static final String POSubClass = "//span[@id='P161513106045_POL_PROD_SUB_CLS_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String LineDeatilsSave = "//button[@id='B1467193366803536440']";
+	/** @locatorType Xpath */
+	public static final String locationDetails = "//button[@id='B1466431803058327039']";
 }
