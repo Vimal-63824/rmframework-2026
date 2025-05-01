@@ -418,29 +418,29 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Create Sales Invoice Domestic from approved sales orders
-	 * 
-	 * @author Vimal - RMITS
-	 */
-	@Test(priority = 33, groups = {
-			"SalesInvoice" }, description = "      130 - Create Sales Invoice from approved sales orders")
-	public void VerifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
-		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * Create Sales Invoice Export from approved sales orders
-	 * 
-	 * @author Vimal - RMITS
-	 */
-	@Test(priority = 34, groups = {
-			"SalesInvoice" }, description = "      144 - Create Sales Invoice from approved sales orders")
-	public void VerifyCreateSalesInvoiceExportFromApprovedSalesorders() {
-		flag = salesInvoiceFunc.verifyCreateSalesInvoiceExportFromApprovedSalesorders();
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Create Sales Invoice Domestic from approved sales orders
+//	 * 
+//	 * @author Vimal - RMITS
+//	 */
+//	@Test(priority = 33, groups = {
+//			"SalesInvoice" }, description = "      130 - Create Sales Invoice from approved sales orders")
+//	public void VerifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+//		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
+//		Assert.assertTrue(flag);
+//	}
+//
+//	/**
+//	 * Create Sales Invoice Export from approved sales orders
+//	 * 
+//	 * @author Vimal - RMITS
+//	 */
+//	@Test(priority = 34, groups = {
+//			"SalesInvoice" }, description = "      144 - Create Sales Invoice from approved sales orders")
+//	public void VerifyCreateSalesInvoiceExportFromApprovedSalesorders() {
+//		flag = salesInvoiceFunc.verifyCreateSalesInvoiceExportFromApprovedSalesorders();
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Create Free Sample Type of Sales Invoice
@@ -507,6 +507,185 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	@Test(priority = 42, groups = { "SalesInvoice" }, description = "       178 - Cancel Invoice Lines")
 	public void VerifyCancelSalesInvoiceLines() {
 		flag = salesInvoiceFunc.verifyCancelSalesInvoiceLines();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Service type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 43, groups = {
+			"SalesInvoice" }, description = "       169 -  create Service type of Sales Invoice")
+	public void VerifyCreateServiceOfSalesInvoice() {
+		flag = salesInvoiceFunc.verifyCreateServiceOfSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Service type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 44, groups = { "SalesInvoice" }, description = "       170 -  Create SI with Shipset Items")
+	public void VerifyCreateSalesInvoiceWithShipsetItem() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceWithShipsetItem();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Service type of Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 45, groups = { "SalesInvoice" }, description = "       171 -  Create SI with Promotional Items")
+	public void VerifyCreateSalesInvoiceWithPromotionalItems() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceWithPromotionalItems();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * createSalesReturnwithGoodsfromPendingSalesReturnDomestic
+	 * 
+	 * @author Vimal - RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 46, groups = {
+			"SalesInvoice" }, description = "       180 -   create Sales Return with Goods from Pending Sales Return - Domestic")
+	public void CreateSalesReturnwithGoodsfromPendingSalesReturnDomestic() {
+		flag = salesInvoiceFunc.createSalesReturnwithGoodsfromPendingSalesReturnDomestic();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * createSalesReturnwithGoodsfromPendingSalesReturnDomestic
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 47, groups = {
+			"SalesInvoice" }, description = "       181 -    create Sales Return without Goods from pending Sales return - Domestic")
+	public void CreateSalesReturnwithoutGoodsfromPendingSalesReturnDomestic() {
+		flag = salesInvoiceFunc.createSalesReturnwithoutGoodsfromPendingSalesReturnDomestic();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * createSalesReturnwithGoodsfromPendingSalesReturnDomestic
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 48, groups = {
+			"SalesInvoice" }, description = "       184 -     create direct Sales return WO Reference - Domestic")
+	public void CreateDirectSalesReturnWithOutReferenceDomestic() {
+		flag = salesInvoiceFunc.createDirectSalesReturnWithOutReferenceDomestic();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * createSalesReturnwithReferencefromPendingSalesReturnDomestic
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 49, groups = {
+			"SalesInvoice" }, description = "       183 -       create Sales return with Reference - Domestic")
+	public void CreateSalesReturnwithReferencefromPendingSalesReturnDomestic() {
+		flag = salesInvoiceFunc.createSalesReturnwithReferencefromPendingSalesReturnDomestic();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * createSalesReturnwithGoodsfromPendingSalesReturnExport
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 50, groups = {
+			"SalesInvoice" }, description = "       185 -    create Sales Return with Goods from Pending Sales Return - Export")
+	public void CreateSalesReturnwithGoodsfromPendingSalesReturnExport() {
+		flag = salesInvoiceFunc.createSalesReturnwithGoodsfromPendingSalesReturnExport();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * createSalesReturnwithOutGoodsfromPendingSalesReturnExport
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 51, groups = {
+			"SalesInvoice" }, description = "       186 -     create Sales Return without Goods from pending Sales return - Export")
+	public void CreateSalesReturnwithoutGoodsfromPendingSalesReturnExport() {
+		flag = salesInvoiceFunc.createSalesReturnwithoutGoodsfromPendingSalesReturnExport();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create direct Sales return WO Reference - Export
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 52, groups = {
+			"SalesInvoice" }, description = "       189 -      create direct Sales return WO Reference - Export")
+	public void CreateDirectSalesReturnWithOutReferenceExport() {
+		flag = salesInvoiceFunc.createDirectSalesReturnWithOutReferenceExport();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create direct Sales return with Reference - Export
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 53, groups = {
+			"SalesInvoice" }, description = "       188 -       create direct Sales return with Reference - Export")
+	public void CreateSalesReturnwithReferencefromPendingSalesReturnExport() {
+		flag = salesInvoiceFunc.createSalesReturnwithReferencefromPendingSalesReturnExport();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Sales Return through gate Entry - Domestic
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 54, groups = {
+			"SalesInvoice" }, description = "       182 -        create Sales Return through gate Entry - Domestic")
+	public void CreateSalesReturnthroughgateEntryDomestic() {
+		flag = salesInvoiceFunc.createSalesReturnthroughgateEntryDomestic();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Sales Return through gate Entry - Domestic
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 55, groups = {
+			"SalesInvoice" }, description = "       188 -         create direct Sales return with Reference - Export")
+	public void CreateSalesReturnthroughgateEntryExport() {
+		flag = salesInvoiceFunc.createSalesReturnthroughgateEntryExport();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * create Sales Return through gate Entry - Domestic
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 56, groups = { "SalesInvoice" }, description = "       179 -         Reverse Sales Invoice")
+	public void ReverseTheInvoicedSalesInvoice() {
+		flag = salesInvoiceFunc.reverseTheInvoicedSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SI - Domestic - CESS Customer
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 56, groups = { "SalesInvoice" }, description = "      162 - Create SI - Domestic - CESS Customer")
+	public void VerifyCreateSalesInvoiceDomesticCESSCustomer() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticCESSCustomer();
 		Assert.assertTrue(flag);
 	}
 

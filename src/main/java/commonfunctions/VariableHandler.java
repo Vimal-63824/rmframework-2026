@@ -170,6 +170,14 @@ public class VariableHandler {
 	private static ThreadLocal<String> LeaveRequestNo = new ThreadLocal<>();
 	private static ThreadLocal<String> CasualLeaveBalance = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> OpenPoNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> LeaveEntryDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> SOAmdDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> ShipSetItem = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> ShipSetItemFromDB = new ThreadLocal<>();
+	private static ThreadLocal<String> CRdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> CNdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> GEdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> SIInvNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1430,5 +1438,66 @@ public class VariableHandler {
 
 	public static void setOpenPoNumber(String data) {
 		OpenPoNumber.set(data);
+	}
+
+	public static String getLeaveEntryDocNo() {
+		return LeaveEntryDocNo.get();
+	}
+
+	public static void setLeaveEntryDocNo(String data) {
+		LeaveEntryDocNo.set(data);
+	}
+	
+	public static String getSOAmdNumber() {
+		return SOAmdDocNumber.get();
+	}
+
+	public static void setSOAmdNumber(String data) {
+		SOAmdDocNumber.set(data);
+	}
+	
+	public static ArrayList<String> getShipSetItem() {
+		return ShipSetItem.get();
+	}
+
+	public static void setShipSetItem(ArrayList<String> data) {
+		ShipSetItem.set(data);
+	}
+	
+	public static void setShipSetItemFromDB(String data) {
+		ShipSetItemFromDB.set(data);
+	}
+	
+	public static String getShipSetItemFromDB() {
+		return ShipSetItemFromDB.get();
+
+	}
+	public static String getCNdocno() {
+		return CNdocno.get();
+	}
+
+	public static void setCNdocno(String Data) {
+		CNdocno.set(Data);
+	}
+	public static String getGEdocno() {
+		return GEdocno.get();
+	}
+
+	public static void setGEdocno(String Data) {
+		GEdocno.set(Data);
+	}
+	public static String getCRdocno() {
+		return CRdocno.get();
+	}
+
+	public static void setCRdocno(String Data) {
+		CRdocno.set(Data);
+	}
+	public static String getSIInvNo() {
+		return SIInvNo.get();
+	}
+
+	public static void setSIInvNo(String Data) {
+		SIInvNo.set(Data);
 	}
 }
