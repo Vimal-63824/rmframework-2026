@@ -20,6 +20,7 @@
 			<class name="com.roadmapERP.GrnTest" />
 			<class name="com.roadmapERP.OpenSoAmdTest" />
 			<class name="com.roadmapERP.RfqTest" />
+			<class name="com.roadmapERP.OpenPoRcTest" />
 		</classes>
 	</test>
 </suite>

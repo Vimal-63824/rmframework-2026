@@ -603,4 +603,47 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SINO"), SINo, DBHeaderColumnValue);
 		return value;
 	}
+
+	/**
+	 * This Methods Is Used To Validate Open PO Details
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * 
+	 */
+	public String OpenPoDetails(String SupplierId, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("OpenPoQuery"),
+				commonFunc.getDataFromTestDataSheet("SupplierID"), SupplierId,
+				commonFunc.getDataFromTestDataSheet("OpenPoId"), Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Methods Is Used To Validate Price List Details
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * 
+	 */
+	public String priceListDetails(String SupplierId, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PriceListQuery"),
+				commonFunc.getDataFromTestDataSheet("PriceListSupplierID"), SupplierId,
+				commonFunc.getDataFromTestDataSheet("PriceListItemID"), Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Method Is Used To Validate po Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String StockQuery3(String GRNNumber, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("GRNID"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
+
 }
