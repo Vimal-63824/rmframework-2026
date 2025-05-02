@@ -379,4 +379,8 @@ public class PurchaseOrderPageLocators {
 	public static final String LineDeatilsSave = "//button[@id='B1467193366803536440']";
 	/** @locatorType Xpath */
 	public static final String locationDetails = "//button[@id='B1466431803058327039']";
+	/** @locatorType Xpath */
+	public static final String ContractPrice = "//div[contains(text(),'Contract price not found.')]";
+	/** @locatorType Xpath */
+	public static final String ContractPriceOkButton = "//button[text()='OK']";
 }

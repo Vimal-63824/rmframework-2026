@@ -646,4 +646,148 @@ public class DBCommonFunctions {
 		return value;
 	}
 
+	/**
+	 * PriceList Entry Validate Location Id In DataBase
+	 * 
+	 * @author Durai-RMITS
+	 * @param PRLISTNO
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String PRLISTdetails(String PRLISTNO, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PriceListQuery"),
+				commonFunc.getDataFromTestDataSheet("PRLISTNO"), PRLISTNO, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * PriceList Entry Validate Location Id In DataBase
+	 * 
+	 * @author Durai-RMITS
+	 * @param PRLISTNO
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String SSOdetails(String SSONO, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SsoQuery"),
+				commonFunc.getDataFromTestDataSheet("SSONO"), SSONO, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * PriceList Entry Validate Location Id In DataBase
+	 * 
+	 * @author Durai-RMITS
+	 * @param PRLISTNO
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String OPOdetails(String OPONO, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("OpoQuery"),
+				commonFunc.getDataFromTestDataSheet("OPONO"), OPONO, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * PriceList Entry Validate Location Id In DataBase
+	 * 
+	 * @author Durai-RMITS
+	 * @param PRLISTNO
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String GATEdetails(String GATENO, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("GateQuery"),
+				commonFunc.getDataFromTestDataSheet("GATENO"), GATENO, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * PriceList Entry Validate Location Id In DataBase
+	 * 
+	 * @author Durai-RMITS
+	 * @param PRLISTNO
+	 * @param DetailsValue
+	 * @return
+	 */
+
+	public String getDataFromDBUsingQuery2(String Query, String Replacechar, String Replacedchar, String Replacechar1,
+			String Replacedchar1, String Replacechar2, String Replacedchar2, String ExpectedData) {
+		String returnname = null;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (getConnection() == null) {
+				establishDBConnection();
+			}
+			Query = Query.replace(Replacechar, Replacedchar).replace(Replacechar1, Replacedchar1).replace(Replacechar2,
+					Replacedchar2);
+			Statement statement = getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(Query);
+			while (resultSet.next()) {
+				returnname = resultSet.getString(ExpectedData); // Adjust column name
+//				System.out.println("Data Is: " + returnname);
+			}
+			resultSet.close();
+			statement.close();
+//			closeDB();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return returnname;
+	}
+
+	public String RFQdetails(String RFQNO, String ItemId, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("RFQQuery"),
+				commonFunc.getDataFromTestDataSheet("RFQNO"), RFQNO,
+				commonFunc.getDataFromTestDataSheet("RFQDBItem_ID"), ItemId, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String StockQuery2(String GATENumber, String SubSeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GateQuery1"),
+				commonFunc.getDataFromTestDataSheet("GATENO"), GATENumber, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SubSeqNO, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String RFQQueryForItem(String RFQNONumber, String SeqNumber, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("RFQQuery1"),
+				commonFunc.getDataFromTestDataSheet("RFQNO"), RFQNONumber,
+				commonFunc.getDataFromTestDataSheet("RFQSEQNO"), SeqNumber, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String RFQQueryForItemSupplier(String RFQNONumber, String SeqNumber, String Supplier,
+			String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("RFQQuery1"),
+				commonFunc.getDataFromTestDataSheet("RFQNO"), RFQNONumber,
+				commonFunc.getDataFromTestDataSheet("RFQSEQNO"), SeqNumber,
+				commonFunc.getDataFromTestDataSheet("SUPNO"), Supplier, DBHeaderColumnValue);
+		return value;
+	}
+
 }
