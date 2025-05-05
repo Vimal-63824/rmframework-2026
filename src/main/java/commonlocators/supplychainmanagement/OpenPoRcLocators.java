@@ -159,4 +159,9 @@ public class OpenPoRcLocators {
 	public static final String AmendOpenPoStatus(String text) {
 		return "(//td/a[text()='" + text + "']/../../td/div[contains(@style,'COLOR')])[last()]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String AmendType = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType Xpath */
+	public static final String AmendTypeSelect = "//select[@id='C3723636653983013485']";
 }

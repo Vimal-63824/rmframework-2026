@@ -7148,4 +7148,120 @@ public class PurchaseOrderFunctions {
 		}
 	}
 
+	/**
+	 * This Method Is Used To Verify Direct PO with Price list Item for Similar UOM
+	 * With And Without Inspection Plan(Material Type)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 *
+	 */
+
+	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("POMultipleItemDetailsSheetName"));
+		System.out.println(itemmultiple.length);
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][0];
+			String QUANTITY = itemmultiple[i][1];
+			String UNIT_COST = itemmultiple[i][2];
+			if (!ITEM_NAME.equals("")) {
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Item SuccessFully Added");
+						flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
+								flag = webDB.waitForElement(PurchaseOrderPageLocators.POItemInput, ElementType.Xpath);
+								if (flag) {
+									webDB.sendTextToAnElement(PurchaseOrderPageLocators.POItemInput, ITEM_NAME,
+											ElementType.Xpath);
+									flag = webDB.waitForElement(PurchaseOrderPageLocators.PoItemSelect,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(PurchaseOrderPageLocators.PoItemSelect, ElementType.Xpath);
+										flag = webDB.waitForElement(PurchaseOrderPageLocators.PoQtyFieldClick,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(PurchaseOrderPageLocators.PoQtyFieldClick,
+													ElementType.Xpath);
+											webDB.clearText(PurchaseOrderPageLocators.PoQtyInput, ElementType.Xpath);
+											webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoQtyInput, QUANTITY,
+													ElementType.Xpath);
+											flag = webDB.waitForElement(PurchaseOrderPageLocators.PoUnitCostClick,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.clickAnElement(PurchaseOrderPageLocators.PoUnitCostClick,
+														ElementType.Xpath);
+												commonFunc.hardWait(2000);
+												webDB.clearText(PurchaseOrderPageLocators.PoUnitCost,
+														ElementType.Xpath);
+												webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoUnitCost,
+														UNIT_COST, ElementType.Xpath);
+
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+		commonFunc.hardWait(3000);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+			verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
+			commonFunc.hardWait(3000);
+			verifyHeaderTickAndPost();
+			verifyWaitingForApproval();
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+						commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+						commonFunc.getDataFromTestDataSheet("MaterialType"),
+						commonFunc.getDataFromTestDataSheet("UomNos"));
+				approvalFunc.verifyNavigateback();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				flag = commonFunc.logoutUser();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+					commonFunc.navigatePurchaseOrderPage();
+					verifyValidatePoStatus(VariableHandler.getPONumber(),
+							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+					flag = commonFunc.logoutUser();
+
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
 }

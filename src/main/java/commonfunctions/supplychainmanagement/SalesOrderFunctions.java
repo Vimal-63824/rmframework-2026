@@ -5730,4 +5730,248 @@ public class SalesOrderFunctions {
 			}
 		}
 	}
+
+	/**
+	 * This Method Is used to Verify the Domestic SOGeneral With (SimilarStock And
+	 * CustomerUOM) And (DisSimilar Stock And CustomerUOM)Sales Invoice
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		SIaddSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SODomUserDefined"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Add The SO Lines Through Excel(User Defined)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param SOType
+	 * @param HSNCODE
+	 * @param Customer
+	 */
+	public void SIaddSalesOrderLineThroughExcelUD(String SheetName, String SOType, String HSNCODE, String Customer) {
+		ArrayList<String> ArrayList = new ArrayList<String>();
+		String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOMultipleline.length; i++) {
+			String ITEM_ID = SOMultipleline[i][1];
+			String QUANTITY = SOMultipleline[i][6];
+			String UNIT_COST = SOMultipleline[i][7];
+			String Trade_Disc = SOMultipleline[i][9];
+			String Spl_Disc = SOMultipleline[i][10];
+			String Cash_Disc = SOMultipleline[i][11];
+			String Promotional = SOMultipleline[i][36];
+			String PriceClass = SOMultipleline[i][39];
+			if (!ITEM_ID.equals("")) {
+				SalesOrderToInvoiceStockQtyUpdateInExcelSI(i, ArrayList, SheetName);
+				addItemsInSO(ITEM_ID);
+				addQuantityAndUnitCost(QUANTITY, UNIT_COST);
+				VariableHandler.setOrderStockQty(QUANTITY);
+				chooseHsnCodeAndClickLineWiseSaveButton(HSNCODE);
+				verifyItemCalculationWithLineAmount();
+				if (webDB.verifyIsElementDisplayed(SalesOrderLocators.ShipSetDetails(i - 3), ElementType.Xpath)) {
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(SalesOrderLocators.ShipSetDetails(i - 3), ElementType.Xpath);
+					VerifyShipsetDetails(ITEM_ID);
+				}
+				lineDetailVerification12(ITEM_ID, getTextCurrencyInHeader(), QUANTITY, i, Trade_Disc, Spl_Disc,
+						Cash_Disc, SOType, Promotional, Filepath, SheetName, PriceClass, Customer);
+				clickLineWiseDetailsSaveButton();
+				verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
+			}
+		}
+		verifySOTotalAmountWithExcelAndDB(SheetName);
+		VariableHandler.setExpectedStockQty2(ArrayList);
+	}
+
+	/**
+	 * This Method Used For Reading DataBase Value For Before Stock Quantity
+	 * 
+	 * @author Vimal - RMITS
+	 * @param i1
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void SalesOrderToInvoiceStockQtyUpdateInExcelSI(int i1, ArrayList<String> ArrayList, String SheetName) {
+		String[][] SODiscountDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SODiscountDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ItemId = SODiscountDetails[i1][1];
+			String WareHouse = SODiscountDetails[i1][35];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "Before Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				VariableHandler.setBeforeStockQty(BeforeStockQty);
+//				double stockQtyValue = Double.parseDouble(BeforeStockQty);
+//				DecimalFormat df = new DecimalFormat("0.00");
+//				String formattedNumber = df.format(stockQtyValue);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 32, BeforeStockQty);
+				SalesOrderToSIExcelStockQtyFormulaEvaluatorSI(i1, ItemId, ArrayList, SheetName);
+			}
+		}
+	}
+
+	/**
+	 * This Method Is used To get The Stock Qty From The Formula Cell
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param i
+	 * @param Item
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void SalesOrderToSIExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList,
+			String SheetName) {
+		try {
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+					+ "QA Scenario - Sales STD PRICE.xlsx";
+			FileInputStream fis = new FileInputStream(new File(Filepath));
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			XSSFSheet sheet = workbook.getSheet(SheetName);
+			FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+			Row row = sheet.getRow(i); // Row 0 (first row)
+			Cell cell = row.getCell(34); // Column 0 (first column, A1)
+			if (cell.getCellType() == CellType.FORMULA) {
+				CellValue cellValue = formulaEvaluator.evaluate(cell);
+				if (cellValue.getCellType() == CellType.NUMERIC) {
+					double cellNumericValue = cellValue.getNumberValue();
+					if (cellNumericValue == Math.floor(cellNumericValue)) {
+						// It's a whole number
+						System.out.println("Formula result: " + (int) cellNumericValue);
+						int ExpectedStockQtyInt = (int) cellNumericValue;
+						String ExpectedStockQtyAsString = String.valueOf(ExpectedStockQtyInt);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the Sales Invoice Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					} else {
+						System.out.println("Formula result: " + cellNumericValue);
+						String ExpectedStockQtyAsString = String.valueOf(cellNumericValue);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the Sales Invoice Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					}
+				}
+			} else {
+				System.out.println("Cell does not contain a formula.");
+			}
+			workbook.close();
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(flag);
+		}
+	}
+
+	/**
+	 * This Method Is Used To verify The Expected Stock Qty With Excel Values After
+	 * Invoice The Document
+	 * 
+	 * @author Harikrishna RMITS
+	 */
+	public void SIverifyExpectedStockQtyWithDBValuesAfterInvoice(String SheetName) {
+		String[][] SOItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SOItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOItemDetails.length; i++) {
+			String ItemId = SOItemDetails[i][1];
+			String WareHouse = SOItemDetails[i][35];
+			if (!ItemId.equals("")) {
+				String AfterStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"After Invoiced Actual Stock Qty For This Item " + ItemId + "Is : " + AfterStockQty);
+				verifyAssertionBothValues(AfterStockQty, VariableHandler.getExpectedStockQty2().get(i - 4));
+				logs.logging("INFO", "Verified Expected Stock Qty For This Item " + ItemId
+						+ " With Database Values After Invoiced The Document");
+			}
+		}
+	}
+
+	/**
+	 * This Method Is used to Verify the Export SOGeneral With (SimilarStock And
+	 * CustomerUOM) And (DisSimilar Stock And CustomerUOM)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		SIaddSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOExpUserDefined"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
+
 }
