@@ -1412,7 +1412,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickLeaveDetailsSideNavBar() {
+	public void clickLeaveDetailsSideNavBar() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
 		if (flag) {
@@ -3689,7 +3689,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param EmpId
 	 */
-	private void searchAndClickEmpIdInFindEmployeePage(String EmpId) {
+	public void searchAndClickEmpIdInFindEmployeePage(String EmpId) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.Find_EmpNameLovBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.Find_EmpNameLovBtn, EmpId);
@@ -4205,4 +4205,51 @@ public class EmployeeMasterFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * This method used to store CL balance in Leave Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void checkCLBalanceInLeaveDetailsAndStore() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.BalanceLeaveDetailsTable, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.BalanceLeaveDetailsTable, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.CLBalanceLeaveDetailsTableData, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.CLBalanceLeaveDetailsTableData, ElementType.Xpath);
+				String Balance = webDB.getTextFromElement(EmployeeMasterLocators.CLBalanceLeaveDetailsTableData,
+						ElementType.Xpath);
+				VariableHandler.setCasualLeaveBalance(Balance);
+				logs.logging("INFO", "Displayed Casual Leave Balance: " + Balance);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to verify CL balance added or not in Leave Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyCLBalanceAddedInLeaveDetails(String leaveCount) {
+		logs.logging("INFO", "Added Casual Leave: " + leaveCount);
+		logs.logging("INFO", "Previous Casual Leave Count: " + VariableHandler.getCasualLeaveBalance());
+		flag = webDB.waitForElement(EmployeeMasterLocators.BalanceLeaveDetailsTable, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.BalanceLeaveDetailsTable, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.CLBalanceLeaveDetailsTableData, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(EmployeeMasterLocators.CLBalanceLeaveDetailsTableData, ElementType.Xpath);
+				String Balance = webDB.getTextFromElement(EmployeeMasterLocators.CLBalanceLeaveDetailsTableData,
+						ElementType.Xpath);
+				logs.logging("INFO", "Displayed Casual Leave Balance: " + Balance);
+				flag = Integer.parseInt(Balance) == (Integer.parseInt(VariableHandler.getCasualLeaveBalance())
+						+ Integer.parseInt(leaveCount));
+				if (flag) {
+					logs.logging("INFO", "Verified Balance Added in Employee Master");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }

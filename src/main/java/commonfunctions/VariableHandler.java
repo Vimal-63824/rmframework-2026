@@ -178,6 +178,12 @@ public class VariableHandler {
 	private static ThreadLocal<String> CNdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> GEdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> SIInvNo = new ThreadLocal<>();
+	private static ThreadLocal<String> OpenPOAmendNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> OPODocNum = new ThreadLocal<>();
+	private static ThreadLocal<String> GATEDocNum = new ThreadLocal<>();
+	private static ThreadLocal<String> SsoDocNum = new ThreadLocal<>();
+	private static ThreadLocal<String> OrderStockQty = new ThreadLocal<>();
+	private static ThreadLocal<String> BeforeStockQty = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1447,7 +1453,7 @@ public class VariableHandler {
 	public static void setLeaveEntryDocNo(String data) {
 		LeaveEntryDocNo.set(data);
 	}
-	
+
 	public static String getSOAmdNumber() {
 		return SOAmdDocNumber.get();
 	}
@@ -1455,7 +1461,7 @@ public class VariableHandler {
 	public static void setSOAmdNumber(String data) {
 		SOAmdDocNumber.set(data);
 	}
-	
+
 	public static ArrayList<String> getShipSetItem() {
 		return ShipSetItem.get();
 	}
@@ -1463,15 +1469,16 @@ public class VariableHandler {
 	public static void setShipSetItem(ArrayList<String> data) {
 		ShipSetItem.set(data);
 	}
-	
+
 	public static void setShipSetItemFromDB(String data) {
 		ShipSetItemFromDB.set(data);
 	}
-	
+
 	public static String getShipSetItemFromDB() {
 		return ShipSetItemFromDB.get();
 
 	}
+
 	public static String getCNdocno() {
 		return CNdocno.get();
 	}
@@ -1479,6 +1486,7 @@ public class VariableHandler {
 	public static void setCNdocno(String Data) {
 		CNdocno.set(Data);
 	}
+
 	public static String getGEdocno() {
 		return GEdocno.get();
 	}
@@ -1486,6 +1494,7 @@ public class VariableHandler {
 	public static void setGEdocno(String Data) {
 		GEdocno.set(Data);
 	}
+
 	public static String getCRdocno() {
 		return CRdocno.get();
 	}
@@ -1493,11 +1502,62 @@ public class VariableHandler {
 	public static void setCRdocno(String Data) {
 		CRdocno.set(Data);
 	}
+
 	public static String getSIInvNo() {
 		return SIInvNo.get();
 	}
 
 	public static void setSIInvNo(String Data) {
 		SIInvNo.set(Data);
+	}
+
+	public static String getOpenPOAmendNumber() {
+		return OpenPOAmendNumber.get();
+	}
+
+	public static void setOpenPOAmendNumber(String data) {
+		OpenPOAmendNumber.set(data);
+	}
+
+	public static String getSsoDocNum() {
+		return SsoDocNum.get();
+	}
+
+	public static void setSsoDocNum(String data) {
+		SsoDocNum.set(data);
+
+	}
+
+	public static String getOPODocNum() {
+		return OPODocNum.get();
+	}
+
+	public static void setOPODocNum(String data) {
+		OPODocNum.set(data);
+
+	}
+
+	public static String getGATEDocNum() {
+		return GATEDocNum.get();
+	}
+
+	public static void setGATEDocNum(String data) {
+		GATEDocNum.set(data);
+
+	}
+	
+	public static String getOrderStockQty() {
+		return OrderStockQty.get();
+	}
+	
+	public static void setOrderStockQty(String Data) {
+		OrderStockQty.set(Data);
+	}
+	public static String getBeforeStockQty() {
+		return BeforeStockQty.get();
+	}
+
+	public static void setBeforeStockQty(String Data) {
+		BeforeStockQty.set(Data);
 	}
 }

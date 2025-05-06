@@ -80,7 +80,7 @@ public class SalesOrderLocators {
 	/** Locator @CssSelector */
 	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
 	/** @Locator Xpath */
-	public static final String LinewisedetailsHeader = "(//H1[@CLASS='ui-dialog-title'])[4]";
+	public static final String LinewisedetailsHeader = "(//h1[@class='ui-dialog-title'])[4]";
 	/** @Locator Xpath */
 	public static final String SOTradeDiscountpercentageField = "//input[@id='P191513134002_SOQ_DISC_PCT']";
 	/** @Locator Xpath */

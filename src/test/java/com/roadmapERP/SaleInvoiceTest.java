@@ -418,29 +418,29 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-//	/**
-//	 * Create Sales Invoice Domestic from approved sales orders
-//	 * 
-//	 * @author Vimal - RMITS
-//	 */
-//	@Test(priority = 33, groups = {
-//			"SalesInvoice" }, description = "      130 - Create Sales Invoice from approved sales orders")
-//	public void VerifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
-//		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * Create Sales Invoice Export from approved sales orders
-//	 * 
-//	 * @author Vimal - RMITS
-//	 */
-//	@Test(priority = 34, groups = {
-//			"SalesInvoice" }, description = "      144 - Create Sales Invoice from approved sales orders")
-//	public void VerifyCreateSalesInvoiceExportFromApprovedSalesorders() {
-//		flag = salesInvoiceFunc.verifyCreateSalesInvoiceExportFromApprovedSalesorders();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * Create Sales Invoice Domestic from approved sales orders
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 33, groups = {
+			"SalesInvoice" }, description = "      130 - Create Sales Invoice from approved sales orders")
+	public void VerifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create Sales Invoice Export from approved sales orders
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 34, groups = {
+			"SalesInvoice" }, description = "      144 - Create Sales Invoice from approved sales orders")
+	public void VerifyCreateSalesInvoiceExportFromApprovedSalesorders() {
+		flag = salesInvoiceFunc.verifyCreateSalesInvoiceExportFromApprovedSalesorders();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Create Free Sample Type of Sales Invoice
@@ -683,7 +683,7 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	@Test(priority = 56, groups = { "SalesInvoice" }, description = "      162 - Create SI - Domestic - CESS Customer")
+	@Test(priority = 57, groups = { "SalesInvoice" }, description = "      162 - Create SI - Domestic - CESS Customer")
 	public void VerifyCreateSalesInvoiceDomesticCESSCustomer() {
 		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticCESSCustomer();
 		Assert.assertTrue(flag);

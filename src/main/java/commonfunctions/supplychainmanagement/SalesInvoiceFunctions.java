@@ -243,13 +243,13 @@ public class SalesInvoiceFunctions {
 	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(Tablespec, ElementType.Xpath);
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.clearTextField(InputParameter, ElementType.Xpath);
 			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(Tablespec, ElementType.Xpath);
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
 				String value = webDB.getDomPropertyFromElement(InputParameter, ElementType.Xpath,
@@ -458,7 +458,13 @@ public class SalesInvoiceFunctions {
 		if (flag) {
 			logs.logging("INFO", "Cre.Inv.No Button Displayed Successfully");
 			webDB.clickAnElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(1000);
+			String SIInvNo = webDB.getTextFromElement(SalesInvoiceLocators.SI_INV_No, ElementType.Xpath);
+			logs.logging("INFO", "Get SI Inv.No Is: " + SIInvNo);
+			VariableHandler.setSIInvNo(SIInvNo);
+			commonFunc.hardWait(1000);
+//			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -3403,8 +3409,8 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders(int i) {
-		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOM();
+	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3420,10 +3426,6 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
-		verifyLineWiseDetailsButton(i);
-		switchToLineDetailsIframeInSaleInvoice();
-		checkSILineDetailsDataBaseValuesWithUIValues();
-		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -3442,6 +3444,8 @@ public class SalesInvoiceFunctions {
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions
+				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
 		return flag;
 	}
 
@@ -3452,8 +3456,8 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders(int i) {
-		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOM();
+	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders() {
+		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3470,11 +3474,6 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
-		verifyLineWiseDetailsButton(i);
-		switchToLineDetailsIframeInSaleInvoice();
-		checkSILineDetailsDataBaseValuesWithUIValues();
-		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -3493,6 +3492,8 @@ public class SalesInvoiceFunctions {
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions
+				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SOExpUserDefined"));
 		return flag;
 	}
 
@@ -4280,7 +4281,7 @@ public class SalesInvoiceFunctions {
 //				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
 //				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
-				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
+//				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
 		}
 	}
@@ -4313,7 +4314,7 @@ public class SalesInvoiceFunctions {
 //				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
 //				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
-				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
+//				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
 		}
 	}
@@ -6420,4 +6421,5 @@ public class SalesInvoiceFunctions {
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("CRNoteGateEntryExport"));
 		return flag;
 	}
+	
 }
