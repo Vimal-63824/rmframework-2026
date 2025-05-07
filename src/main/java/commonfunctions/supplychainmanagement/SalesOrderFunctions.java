@@ -4546,6 +4546,7 @@ public class SalesOrderFunctions {
 		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdUnitCostField(j - 3),
 				SalesOrderLocators.SoAmdNewUnitPriceInputField, NewUnitPrice);
 		webDB.pressTabKey();
+		commonFunc.hardWait(1000);
 		logs.logging("INFO", "New UnitPrice Is Changed For This Item " + Item
 				+ "Against This Sales Order Amendment Document " + VariableHandler.getSOAmdNumber());
 		commonFunc.checkRefreshCellsDisappear();
@@ -4565,6 +4566,7 @@ public class SalesOrderFunctions {
 		webDB.pressTabKey();
 		logs.logging("INFO", "New UnitQty Is Changed For This Item " + Item
 				+ "Against This Sales Order Amendment Document " + VariableHandler.getSOAmdNumber());
+		commonFunc.hardWait(1000);
 		commonFunc.checkRefreshCellsDisappear();
 	}
 
@@ -4739,7 +4741,7 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
-	
+
 	/**
 	 * This Method Is Used For Qty Change Scenarios
 	 * 
@@ -4814,9 +4816,9 @@ public class SalesOrderFunctions {
 		clickFetchButton();
 		for (int j = 4; j < SOMultipleline.length; j++) {
 			String ITEM_ID = SOMultipleline[j][1];
-			String TradeDiscount = SOMultipleline[j][45];
-			String SpecialDiscount = SOMultipleline[j][46];
-			String CashDiscount = SOMultipleline[j][47];
+			String TradeDiscount = SOMultipleline[j][46];
+			String SpecialDiscount = SOMultipleline[j][47];
+			String CashDiscount = SOMultipleline[j][48];
 			if (!ITEM_ID.equals("")) {
 				clickSoAmdLineWiseDetails(j - 3);
 				changeSoAmdDiscountDetails(TradeDiscount, SpecialDiscount, CashDiscount);
@@ -5682,9 +5684,9 @@ public class SalesOrderFunctions {
 						"For This Line Item " + ITEM_ID + " Old IGST Tax Amount Is Matched With DataBase Values");
 
 				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
-						commonFunc.getDataFromTestDataSheet("SOADBLineOldIGSTColumnName")), OldIGST);
+						commonFunc.getDataFromTestDataSheet("SOADBLineOldUTGSTColumnName")), OldUTGST);
 				logs.logging("INFO",
-						"For This Line Item " + ITEM_ID + " Old IGST Tax Amount Is Matched With DataBase Values");
+						"For This Line Item " + ITEM_ID + " Old UTGST Tax Amount Is Matched With DataBase Values");
 
 				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("SOADBLineNewTDPColumnName")), NewTD);
@@ -5768,6 +5770,11 @@ public class SalesOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("SOADBLineNewIGSTColumnName")), NewIGST);
 				logs.logging("INFO",
 						"For This Line Item " + ITEM_ID + " New IGST Tax Amount Is Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SOADBLineNewUTGSTColumnName")), NewUTGST);
+				logs.logging("INFO",
+						"For This Line Item " + ITEM_ID + " New UTGST Tax Amount Is Matched With DataBase Values");
 			}
 		}
 	}

@@ -576,5 +576,19 @@ public class SalesInvoiceLocators {
 	public static final String SI_Charge_Basis_Select_Cls = "//select[@id='C1729612990400145621']";
 	/** @Locator XPATH */
 	public static final String SI_Charge_Save_Icon = "//button[@id='B1729597774366125000']";
+	/** @Locator XPATH */
+	public static final String SI_Charge_Amount_Column = "//*[@id=\"IG_TAX_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[8]";
+	/** @Locator XPATH */
+	public static final String SI_Charge_Amount_Input = "//input[@id='C1729613331615145625']";
+	/** @Locator XPATH */
+	public static final String SI_General_Tab = "//label[@for='P191513109001_TAB_LINE_2']";
+	/** @Locator XPATH */
+	public static final String SI_Predispatch_Btn = "//button[@id='B40575623267774450']";
+	/** @Locator XPATH */
+	public static final String CR_AcptQty_Column = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
+	/** @Locator XPATH */
+	public static final String CR_AcptQty_Input = "//input[@id='C5955391527579809240']";
+	/** @Locator XPATH */
+	public static final String SI_Detail_LabelName = "//h1[@id='ui-id-7']";
 
 }
