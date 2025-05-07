@@ -493,6 +493,10 @@ public class SalesOrderLocators {
 	public static final String SoAmdLineDetails2SaveButton = "//button[@id='B2152717363832459302']/span";
 	/** @Locator Xpath */
 	public static final String SoAmdHeaderCurrencyField = "//input[@id='P1915131072_CURRENCY']";
+	/** @Locator Xpath */
+	public static final String SOLocatioField = "//input[@id='P1915131339_UNIT_LOC']";
+	/** @Locator Xpath */
+	public static final String SOSubVoucherType = "//input[@id='P1915131339_SOH_ORDER_TYPE']";
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
