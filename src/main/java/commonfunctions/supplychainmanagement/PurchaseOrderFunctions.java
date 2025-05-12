@@ -947,15 +947,13 @@ public class PurchaseOrderFunctions {
 							break;
 						} else {
 							element.click();
-							commonFunc.checkRefreshCellsDisappear();
-							commonFunc.hardWait(5000);
-							element.click();
+							Thread.sleep(10000);
+							selectAllPendingPRAndClickCreatePO();
 							flag = true;
 							break;
 						}
 					}
 				} catch (Exception e) {
-
 				}
 			}
 			commonFunc.checkRefreshCellsDisappear();
@@ -992,7 +990,9 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void selectSupplierAndCurrencyPendingPRAndClickTickIcon(String Supplier, String prefix) {
+		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PrefixLovButton, prefix);
+		commonFunc.hardWait(2000);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, Supplier);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
@@ -1083,7 +1083,7 @@ public class PurchaseOrderFunctions {
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
 		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
-				commonFunc.getDataFromTestDataSheet("POPrefix"));
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
@@ -1204,7 +1204,7 @@ public class PurchaseOrderFunctions {
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
 		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
-				commonFunc.getDataFromTestDataSheet("POPrefix"));
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
 		verifyItemCalculationWithLineAmount();
 		verifyPoUOM(commonFunc.getDataFromTestDataSheet("UomNos"));
 		verifyHeaderTickAndPost();
@@ -5167,7 +5167,7 @@ public class PurchaseOrderFunctions {
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
 		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
-				commonFunc.getDataFromTestDataSheet("POPrefix"));
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5318,7 +5318,7 @@ public class PurchaseOrderFunctions {
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
 		selectSupplierAndCurrencyPendingPRAndClickTickIcon(commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
-				commonFunc.getDataFromTestDataSheet("POPrefix"));
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5726,7 +5726,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier, commonFunc.getDataFromTestDataSheet("POPrefix"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier,
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -5811,7 +5812,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
-		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier, commonFunc.getDataFromTestDataSheet("POPrefix"));
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier,
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -6030,25 +6032,15 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoItemSelectedFromLov(String ITEM_NAME) {
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.ItemSelectButton, ElementType.Xpath);
-				flag = webDB.waitForElement(PurchaseOrderPageLocators.POItemInput, ElementType.Xpath);
-				if (flag) {
-					webDB.sendTextToAnElement(PurchaseOrderPageLocators.POItemInput, ITEM_NAME, ElementType.Xpath);
-					flag = webDB.waitForElement(PurchaseOrderPageLocators.PoItemSelect, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(PurchaseOrderPageLocators.PoItemSelect, ElementType.Xpath);
-						logs.logging("INFO", "Successfully Item Selected");
-					}
-				}
-			}
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ItemSelectButton, ITEM_NAME);
 		}
 		assertTrue(flag);
 	}
+
 
 	/**
 	 * This Method Is Used To Entered the Ordered Quantity
