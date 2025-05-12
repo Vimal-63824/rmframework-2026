@@ -1,5 +1,7 @@
 package commonfunctions;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
@@ -24,6 +26,7 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
+import commonlocators.supplychainmanagement.CustomerScheduleLocators;
 import commonlocators.supplychainmanagement.GateEntryPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
@@ -2174,4 +2177,26 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * This Method Is Used To Navigate Customer Schedule Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateCustomerScheduleScreen() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(CustomerScheduleLocators.CustomerScheduleNode, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CustomerScheduleLocators.CustomerScheduleNode, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Customer Schedule Screen Sucessfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
 }
