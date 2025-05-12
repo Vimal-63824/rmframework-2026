@@ -690,6 +690,44 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Create SI - Domestic - With Charges
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 58, groups = {
+			"SalesInvoice" }, description = "       163 -         Create SI - Domestic - With Charges")
+	public void CreateSalesInvoiceWithChargeItem() {
+		flag = salesInvoiceFunc.createSalesInvoiceWithChargeItem();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Create SI with PDI process
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 59, groups = { "SalesInvoice" }, description = "       172 -         Create SI with  PDI process")
+	public void CreateSalesInvoiceWithPreDispatchDocument() {
+		flag = salesInvoiceFunc.createSalesInvoiceWithPreDispatchDocument();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Multiple Lines In Sales Invoice With DB Validation
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 61, groups = {
+			"SalesInvoice" }, description = "              Multiple Lines In Sales Invoice With DB Validation")
+	public void MultipleLinesInSalesInvoice() {
+		flag = salesInvoiceFunc.multipleLinesInSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

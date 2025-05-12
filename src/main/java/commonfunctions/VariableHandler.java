@@ -184,6 +184,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SsoDocNum = new ThreadLocal<>();
 	private static ThreadLocal<String> OrderStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String> BeforeStockQty = new ThreadLocal<>();
+	private static ThreadLocal<String> CSDocNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1559,5 +1560,13 @@ public class VariableHandler {
 
 	public static void setBeforeStockQty(String Data) {
 		BeforeStockQty.set(Data);
+	}
+	
+	public static String getCSDocNumber() {
+		return CSDocNumber.get();
+	}
+
+	public static void setCSDocNumber(String data) {
+		CSDocNumber.set(data);
 	}
 }
