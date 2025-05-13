@@ -2177,7 +2177,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Customer Schedule Screen
 	 * 
@@ -2199,4 +2199,23 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * This method used to Navigate Setup Purchase Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	private void clickSetupPurchaseTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SupplyChainPurchaseSetup, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SupplyChainPurchaseSetup, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SetupPurchase, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(CommonUiLocators.SetupPurchase, ElementType.Xpath);
+				logs.logging("INFO", "Setup Purchase Tab Is Clicked");
+				flag = webDB.waitForElement(CommonUiLocators.BuyerTab, ElementType.Xpath);
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }

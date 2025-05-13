@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks Feburary 10, 2025
@@ -497,6 +499,90 @@ public class POAmendmentTest extends RoadMapERPTest {
 			"Purchase Order Amendment" }, description = "cancel the purchase Order amendment document?")
 	public void VerifyPoAmendmentCancelLineAndCancelDocuments() {
 		poAmendmentFunc.verifyPoAmendmentCancelDocumentsAndCancelLine();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 37, groups = {
+			"Purchase Order Amendment" }, description = "From PR to PO - Domestic Supplier - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendModifyPrToPoDomesticGeneralSimilarStockAndSupplierUOM() {
+		poAmendmentFunc
+				.verifyPoAmendModifyPrToPoDomesticGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - Service Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 38, groups = {
+			"Purchase Order Amendment" }, description = "From PR to PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendModifyPrToPoDomesticServiceSimilarStockAndSupplierUOM() {
+		poAmendmentFunc
+				.verifyPoAmendModifyPrToPoDomesticServiceWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - General Items with Similar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 39, groups = {
+			"Purchase Order Amendment" }, description = "From PR to PO - Import Supplier - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendModifyPrToPoImportGeneralSimilarStockAndSupplierUOM() {
+		poAmendmentFunc
+				.verifyPoAmendModifyPrToPoImportGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 40, groups = {
+			"Purchase Order Amendment" }, description = "From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendModifyPrToPoDomesticGeneralDissimilarStockAndSupplierUOM() {
+		poAmendmentFunc
+				.verifyPoAmendModifyPrToPoDomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 41, groups = {
+			"Purchase Order Amendment" }, description = "From PR to PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendModifyPrToPoImportGeneralDissimilarStockAndSupplierUOM() {
+		poAmendmentFunc
+				.verifyPoAmendModifyPrToPoImportGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 42, groups = {
+			"Purchase Order Amendment" }, description = "126 From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyCloseshortPoAmendPRToPODomesticGeneralDissimilarStockAndSupplierUOM() {
+		poAmendmentFunc
+				.verifyPoAmendCloseshortPRToPODomesticGenaeralWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
 	}
 
 	/**

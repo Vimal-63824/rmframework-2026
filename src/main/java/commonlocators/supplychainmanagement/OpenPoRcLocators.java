@@ -57,7 +57,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String OpenPoLovButton = "//button[@id='P1615131025_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String OpenPoSearchButton = "//button[@id='B1166570612209323487']";
+	public static final String OpenPoSearchButton = "//button/span[text()='Search']";
 	/** @locatorType Xpath */
 	public static final String HeaderCheckBox = "//label[text()='Header']";
 	/** @locatorType Xpath */
@@ -77,9 +77,11 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String FindOpenPoNoButton = "//button[@id='P1615131025_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String ClearButton = "//button[@id='Clear']";
+	public static final String ClearButton = "//button[@title='Clear']";
 	/** @locatorType Xpath */
 	public static final String OpenPOAmendmentLabel = "//label[@for='P16151310256_TYPE_1']";
+	/** @locatorType Xpath */
+	public static final String AmendHeaderCancelButton = "//button[@id='B3723531790612956819']";
 
 	/** @locatorType Xpath */
 	public static final String OpenPoStatus(String text) {
@@ -102,6 +104,8 @@ public class OpenPoRcLocators {
 	public static final String AmendOpenPOLovButton = "//button[@id='P1615131022_PO_NO_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String AmendTickButton = "//button[@id='B118920413783510414']";
+	/** @locatorType Xpath */
+	public static final String AmendValueAttributeTickButton = "//button[@id='B3732941663334895073']";
 	/** @locatorType Xpath */
 	public static final String CreateOpenPOAmendHeader = "//h1[text()='Create Open PO Amendment']";
 	/** @locatorType Xpath */
@@ -143,7 +147,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendSearchButton = "//button[@id='B1168874725680149564']";
 	/** @locatorType Xpath */
-	public static final String AmendAggrCalendarDate = "//div[@id='P161513102501_PRCHD_AGGR_DATE_calendar']/div/table/tbody/tr[2]/td[5]";
+	public static final String AmendAggrCalendarDate = "//td[@class='is-current']";
 	/** @locatorType Xpath */
 	public static final String AmendFetchOpenPOLine = "//button[@id='B3723635725960013476']";
 	/** @locatorType Xpath */
@@ -164,4 +168,76 @@ public class OpenPoRcLocators {
 	public static final String AmendType = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
 	public static final String AmendTypeSelect = "//select[@id='C3723636653983013485']";
+	/** @locatorType Xpath */
+	public static final String TermsAndCondition = "//label[@for='P161513102501_TAB_LINES_1']";
+	/** @locatorType Xpath */
+	public static final String AddTCButton = "//button[@id='B3698313715327536679']";
+	/** @locatorType Xpath */
+	public static final String TCAttribute = "//div[@id='ig_line2_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String AttributeLovButton = "//button[@id='C3698312097175536662_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TermConditionTickIcon = "//button[@id='B3698313838442536680']";
+	/** @locatorType Xpath */
+	public static final String ValueAddButton = "//button[@id='B3698635746440708767']/span";
+	/** @locatorType Xpath */
+	public static final String ValueAttributeTable = "//div[@id='ig_line3_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String AttributeValueInput = "//input[@id='C3698316120819536703']";
+	/** @locatorType Xpath */
+	public static final String AmendAttributeValueInput = "//input[@id='C3732573347235008493']";
+	/** @locatorType Xpath */
+	public static final String ValueTickButton = "//button[@id='B3698635831950708768']";
+	/** @locatorType Xpath */
+	public static final String AmendTermsAndCondition = "//label[@for='P161513102101_TAB_LINE_1']";
+	/** @locatorType Xpath */
+	public static final String AmendDeleteValue = "//div[@id='ig_line3_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]/a";
+	/** @locatorType Xpath */
+	public static final String OkButton = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String AmendValueAddButton = "//button[@id='B3732941558858895072']/span";
+	/** @locatorType Xpath */
+	public static final String AmendValueTickButton = "//button[@id='B3732941663334895073']";
+	/** @locatorType Xpath */
+	public static final String AmendEffTo = "//input[@id='P161513102101_PRCAHD_TO_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String OpenPoTC = "//label[@for='P1615131020_TAB_LINES_1']";
+	/** @locatorType Xpath */
+	public static final String AmendHeaderCancel = "//button[@id='B3723531790612956819']";
+	/** @locatorType Xpath */
+	public static final String AmendEffFrom = "//input[@id='P161513102101_PRCAHD_FROM_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String AmendAggrNumber = "//input[@id='P161513102101_PRCAHD_AGGR_NO']";
+	/** @locatorType Xpath */
+	public static final String AmendAggrDate = "//input[@id='P161513102101_PRCAHD_AGGR_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String AggrCalendarDate = "//td[@class='is-current']";
+	/** @locatorType Xpath */
+	public static final String AmendLocationId = "//button[@id='P1615131021_LOC_NAME_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AmendUnitId = "//button[@id='P1615131021_PLNT_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AmendOOAPNo = "//button[@id='P1615131021_DOC_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AmendOpenPONo = "//button[@id='P1615131021_PO_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AmendItemButton = "//button[@id='P1615131021_PROD_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AmendSelectStatus = "//select[@id='P1615131021_STATUS']";
+	/** @locatorType Xpath */
+	public static final String AmendFindTable = "//table[@id='1950966915442829331_orig']/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String AmendLineFindTable = "//table[@id='387662055082151248_orig']/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String LineCheckBox = "//label[text()='Line(s)']";
+
+	/** @locatorType Xpath */
+	public static final String OpenPONumber(String Number) {
+		return "(//a[text()='" + Number + "'])[1]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String AmendFindTableData(int i) {
+		return "//table[@id='1950966915442829331_orig']/tbody/tr/td[" + i + "]";
+	}
 }

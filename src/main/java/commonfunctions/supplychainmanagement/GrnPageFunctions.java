@@ -1727,8 +1727,8 @@ public class GrnPageFunctions {
 	 */
 	public void poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType()
 			throws IOException {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPORateGen"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DifferentUOMRateGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
 				webDB.getDataFromProperties("DifferentUOMRateGen"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
@@ -1744,9 +1744,9 @@ public class GrnPageFunctions {
 		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPORateGen"));
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 
 		assertTrue(flag);
 	}

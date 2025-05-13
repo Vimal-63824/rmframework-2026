@@ -9,6 +9,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import org.apache.xmlbeans.impl.xb.xsdschema.FieldDocument.Field.Xpath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -16,6 +18,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.OpenPoRcLocators;
+import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -905,6 +908,7 @@ public class OpenPoRcFunctions {
 			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1718,6 +1722,2619 @@ public class OpenPoRcFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Qty"), commonFunc.getDataFromTestDataSheet("SixValue"),
 				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method IS Used To Verify Add Open PO Line Item For Modify
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAddPoLineItemForModify() {
+		flag = webDB.waitForElement(OpenPoRcLocators.AmendFetchOpenPOLine, ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(OpenPoRcLocators.AmendFetchOpenPOLine, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.AmendLineDetailsHeader, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(OpenPoRcLocators.AmendLineDetailsIframe, ElementType.Xpath);
+				webDB.moveToElement(OpenPoRcLocators.AmendInputCheckBox, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenPoRcLocators.AmendInputCheckBox, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "CheckBox Is Displayed");
+					commonFunc.hardWait(3000);
+					webDB.clickAnElement(OpenPoRcLocators.AmendInputCheckBox, ElementType.Xpath);
+					flag = webDB.waitForElement(OpenPoRcLocators.AmendLineOkButton, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(3000);
+						logs.logging("INFO", "CheckBox IS Clicked");
+						webDB.clickAnElement(OpenPoRcLocators.AmendLineOkButton, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Added Open Po Lines Successfully");
+						}
+					}
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Change Amend Type
+	 * 
+	 * @author Deepan-GWL
+	 * @param AmendType
+	 */
+	public void verifyChangeAmendType(String AmendType) {
+		flag = webDB.waitForElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Amend Type Is Displayed");
+			webDB.doubleClickAnElement(OpenPoRcLocators.AmendType, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.AmendTypeSelect, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByText(OpenPoRcLocators.AmendTypeSelect, AmendType, ElementType.Xpath);
+				logs.logging("INFO", "Amend Type Select Is Selected As DOI");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendStandardImportWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendStandardImportWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Deletion Unit Cost Validation
+	 * 
+	 * @author Deepan-GWL
+	 * @param quantity
+	 * @param UnitCost
+	 * @param DiscValue
+	 * @param AmendValue
+	 */
+	public void verifyDOIUnitCostValidation(String quantity) {
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity, PurchaseOrderPageLocators.OrderedQuantityInput,
+				quantity);
+		webDB.pressEnterKey();
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.ContractPrice, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Verified Contract Price Not Found Popup Displayed");
+			webDB.clickAnElement(PurchaseOrderPageLocators.ContractPriceOkButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDOIAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
+				commonFunc.getDataFromTestDataSheet("StandardService"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("DeletionOfItem"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyDOIUnitCostValidation(commonFunc.getDataFromTestDataSheet("SixValue"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendStandardImportWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendStandardImportWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPCAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
+				commonFunc.getDataFromTestDataSheet("StandardService"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendNewUnitCostTable,
+				OpenPoRcLocators.AmendNewUnitCostInput, commonFunc.getDataFromTestDataSheet("NewUnitPrice"));
+		purchaseOrderFunc.verifyAddTableSpecs(OpenPoRcLocators.AmendDiscTable, OpenPoRcLocators.AmendDiscInput,
+				commonFunc.getDataFromTestDataSheet("SixValue"));
+		verifyAmendItemTickButton();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		purchaseOrderFunc.verifyCreateDirectPO();
+		purchaseOrderFunc.verifyCreateItemInPo(VariableHandler.getItemName());
+		verifyUnitCostValidation(commonFunc.getDataFromTestDataSheet("QuantityValue"),
+				commonFunc.getDataFromTestDataSheet("NewUnitPrice"), commonFunc.getDataFromTestDataSheet("SixValue"),
+				commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Add Terms And Conditions
+	 * 
+	 * @author Deepan-GWL
+	 * @param Value
+	 */
+	public void verifyAddTermsAndConiditions(String Value) {
+		flag = webDB.waitForElement(OpenPoRcLocators.AddTCButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Add Icon Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.AddTCButton, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.TCAttribute, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Table Attribute Is Displayed");
+				webDB.doubleClickAnElement(OpenPoRcLocators.TCAttribute, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.AttributeLovButton, Value);
+				flag = webDB.waitForElement(OpenPoRcLocators.TermConditionTickIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Tick Icon Is Displayed");
+					webDB.clickAnElement(OpenPoRcLocators.TermConditionTickIcon, ElementType.Xpath);
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					commonFunc.checkSuccessToastMessageDisappear();
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Terms And Conditions Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToTCTab() {
+		flag = webDB.waitForElement(OpenPoRcLocators.TermsAndCondition, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenPoRcLocators.TermsAndCondition, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.TermsAndCondition, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Terms And Conditions Tab");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Add Terms And Conditions Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param Value
+	 */
+	public void verifyAddTermsAndConditionsValue(String Value) {
+		flag = webDB.waitForElement(OpenPoRcLocators.ValueAddButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			logs.logging("INFO", "Add Icon Is Displayed");
+			webDB.javaScriptClickAnElement(OpenPoRcLocators.ValueAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.ValueAttributeTable, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(OpenPoRcLocators.ValueAttributeTable, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenPoRcLocators.AttributeValueInput, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(OpenPoRcLocators.AttributeValueInput, Value, ElementType.Xpath);
+					logs.logging("INFO", "Send Text Attribute Value Is: " + Value);
+					flag = webDB.waitForElement(OpenPoRcLocators.ValueTickButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Tick Icon Is Displayed");
+						webDB.clickAnElement(OpenPoRcLocators.ValueTickButton, ElementType.Xpath);
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+						commonFunc.checkSuccessToastMessageDisappear();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Change Amendment Term Change
+	 * 
+	 * @author Deepan-GWL
+	 * @param Value
+	 */
+	public void verifyChangeAmendmentTermChange(String Value) {
+		flag = webDB.waitForElement(OpenPoRcLocators.AmendTermsAndCondition, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			logs.logging("INFO", "Amend Term And Condition Button Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.AmendTermsAndCondition, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.AmendValueAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Add Button Is Displayed");
+				webDB.javaScriptClickAnElement(OpenPoRcLocators.AmendValueAddButton, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenPoRcLocators.ValueAttributeTable, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(OpenPoRcLocators.ValueAttributeTable, ElementType.Xpath);
+					flag = webDB.waitForElement(OpenPoRcLocators.AmendAttributeValueInput, ElementType.Xpath);
+					if (flag) {
+						webDB.sendTextToAnElement(OpenPoRcLocators.AmendAttributeValueInput, Value, ElementType.Xpath);
+						logs.logging("INFO", "Send Text Attribute Value Is: " + Value);
+						flag = webDB.waitForElement(OpenPoRcLocators.AmendValueAttributeTickButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Tick Icon Is Displayed");
+							webDB.clickAnElement(OpenPoRcLocators.AmendValueAttributeTickButton, ElementType.Xpath);
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendStandardImportWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendStandardImportWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Eff To In Amendment
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyEffToInAmendment() {
+		webDB.sendTextToAnElement(OpenPoRcLocators.AmendEffTo, commonFunc.getDataFromTestDataSheet("AmendEffTo"),
+				ElementType.Xpath);
+		logs.logging("INFO", "Send Text Effective To Date Is: " + commonFunc.getDataFromTestDataSheet("AmendEffTo"));
+		String EffToValue = webDB.getDomPropertyFromElement(OpenPoRcLocators.AmendEffTo, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		if (EffToValue.equals(commonFunc.getDataFromTestDataSheet("AmendEffTo"))) {
+			logs.logging("INFO", "Verified Effective Date Successfully");
+			webDB.clickAnElement(OpenPoRcLocators.AmendOPONo, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Verify OpenPo Approval Status
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyEnterOpenPoNumber(String DocNo) {
+		commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.OpenPoLovButton, DocNo);
+		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Header CheckBox Is Clicked");
+				webDB.clickAnElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(OpenPoRcLocators.OpenPONumber(DocNo), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(OpenPoRcLocators.OpenPONumber(DocNo), ElementType.Xpath);
+					flag = webDB.waitForElement(OpenPoRcLocators.OpenPoTC, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyTermChangeAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
+				commonFunc.getDataFromTestDataSheet("StandardService"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		navigateToTCTab();
+		verifyAddTermsAndConiditions(commonFunc.getDataFromTestDataSheet("TermConditionOpenPO"));
+		verifyAddTermsAndConditionsValue(commonFunc.getDataFromTestDataSheet("Required"));
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendmentTermChange(commonFunc.getDataFromTestDataSheet("NotRequired"));
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Cancel Open Po Amendment Line And Documents
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOpenPOAmendCancelDocumentAndLineWiseCancel() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyOpenPOAmendmentCancelLine();
+		verifyOpenPOHeaderCancelDocuments();
+
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("CancelStatus"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify OpenPO Cancel Line
+	 * 
+	 * @author Deepan-GWL
+	 * @param Item
+	 */
+	public void verifyOpenPOAmendmentCancelLine() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenPoRcLocators.AmendItemTable, ElementType.Xpath);
+			webDB.moveToElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
+			webDB.clickAnElement(OpenPoRcLocators.LineCancelButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully");
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Cancel Documents
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void verifyOpenPOHeaderCancelDocuments() {
+		webDB.moveToElement(OpenPoRcLocators.AmendHeaderCancel, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.AmendHeaderCancel, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenPoRcLocators.AmendHeaderCancel, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Toast Message Displayed, OpenPO Cancelled Successfully");
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Eff To In Amendment
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeEffFromEffToInAmendment() {
+		webDB.clearText(OpenPoRcLocators.AmendEffTo, ElementType.Xpath);
+		webDB.sendTextToAnElement(OpenPoRcLocators.AmendEffTo, commonFunc.getDataFromTestDataSheet("AmendEffTo"),
+				ElementType.Xpath);
+		logs.logging("INFO", "Send Text Effective To Date Is: " + commonFunc.getDataFromTestDataSheet("AmendEffTo"));
+		String EffToValue = webDB.getDomPropertyFromElement(OpenPoRcLocators.AmendEffTo, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		if (EffToValue.equals(commonFunc.getDataFromTestDataSheet("AmendEffTo"))) {
+			logs.logging("INFO", "Verified Effective Date Successfully");
+			webDB.clickAnElement(OpenPoRcLocators.AmendOPONo, ElementType.Xpath);
+			LocalDate today = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			webDB.clearText(OpenPoRcLocators.AmendEffFrom, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			webDB.sendTextToAnElement(OpenPoRcLocators.AmendEffFrom, today.format(formatter), ElementType.Xpath);
+			logs.logging("INFO", "Send Text Effective From Date Is: " + today.format(formatter));
+			String EffFromValue = webDB.getDomPropertyFromElement(OpenPoRcLocators.AmendEffFrom, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			if (EffFromValue.equals(today.format(formatter))) {
+				logs.logging("INFO", "Verified Effective Date Successfully");
+				webDB.clickAnElement(OpenPoRcLocators.AmendOPONo, ElementType.Xpath);
+				webDB.clearText(OpenPoRcLocators.AmendAggrNumber, ElementType.Xpath);
+				webDB.sendTextToAnElement(OpenPoRcLocators.AmendAggrNumber, VariableHandler.getOpenPOAmendNumber(),
+						ElementType.Xpath);
+				logs.logging("INFO", "Send Text Aggregate Number Is: " + VariableHandler.getOpenPOAmendNumber());
+				String AggregateNumber = webDB.getDomPropertyFromElement(OpenPoRcLocators.AmendAggrNumber,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				if (AggregateNumber.equals(VariableHandler.getOpenPOAmendNumber())) {
+					logs.logging("INFO", "Verified Aggregate Number Successfully");
+					webDB.clickAnElement(OpenPoRcLocators.AmendOPONo, ElementType.Xpath);
+					webDB.clickAnElement(OpenPoRcLocators.AmendAggrDate, ElementType.Xpath);
+					webDB.clickAnElement(OpenPoRcLocators.AggrCalendarDate, ElementType.Xpath);
+					webDB.clickAnElement(OpenPoRcLocators.AmendOPONo, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendStandardDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Domestic Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendStandardDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendStandardImportWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Standard - Import Supplier with Amend - Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendStandardImportWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("StandardPO"),
+				commonFunc.getDataFromTestDataSheet("GoogleSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("Loc16"),
+				commonFunc.getDataFromTestDataSheet("StockTransferPO"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSupplierOpenPO"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOtherChangeAmendServiceDomesticWithStockAndSupplierSimilarUOM() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage();
+		pricelistPageFunctions.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("GwlItem_Service"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPORcButton();
+		verifyCreateOpenPoDoc(commonFunc.getDataFromTestDataSheet("L0001"),
+				commonFunc.getDataFromTestDataSheet("StandardService"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyAddItemInOpenPOLine(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
+				commonFunc.getDataFromTestDataSheet("QuantityValue"), commonFunc.getDataFromTestDataSheet("HSN2022"));
+		verifyAddAggrDateAndAggrNumber();
+		verifyHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPoNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPoNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPORcButton();
+		}
+		verifyOpenPoApprovalStatus(VariableHandler.getOpenPoNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		createOpenPoAmendDocuments();
+		verifyAddPoLineItemForModify();
+		verifyChangeAmendType(commonFunc.getDataFromTestDataSheet("PriceChange"));
+		verifyAmendItemTickButton();
+		verifyOtherChangeEffFromEffToInAmendment();
+		verifyOpenPoAmendHeaderSaveAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenPOAmendNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenPOAmendNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateOpenPORCPage();
+			verifyClickOpenPOAmendmentButton();
+		}
+		verifyOpenPoAmendApprovalStatus(VariableHandler.getOpenPOAmendNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Filter Open PO Table Data
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyFilterOpenPOAmendmentTableData() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenPORCPage();
+		verifyClickOpenPOAmendmentButton();
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendItemButton,
+				commonFunc.getDataFromTestDataSheet("SampleItemName"), 16,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"));
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendSelectStatus,
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"), true);
+//		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendOpenPONo,
+//				commonFunc.getDataFromTestDataSheet("OpenPONumber"), 6,
+//				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendOOAPNo,
+				commonFunc.getDataFromTestDataSheet("SampleOpenPOANumber"), 7,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendLocationId, commonFunc.getDataFromTestDataSheet("Loc_100"),
+				3, commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+		verifyAmendFilterSearchOpenPO(OpenPoRcLocators.AmendUnitId, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"));
+
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickAmendSearchButton() {
+		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(OpenPoRcLocators.AmendFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickAmendLineSearchButton() {
+		flag = webDB.waitForElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(OpenPoRcLocators.AmendLineFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(OpenPoRcLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				System.out.println(element.getText());
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Filter Search OpenPO Amendment
+	 * 
+	 * @author Deepan-GWL
+	 * @param LovButton
+	 * @param Value
+	 * @param i
+	 */
+	public void verifyAmendFilterSearchOpenPO(String LovButton, String Value, int i, String Type,
+			boolean... selectflag) {
+		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
+		if (selectflag != null) {
+			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
+		} else {
+			webDB.selectDropDownByText(LovButton, Value, ElementType.Xpath);
+		}
+		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
+			clickAmendSearchButton();
+		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
+			clickAmendLineSearchButton();
+		}
+		commonFunc.hardWait(3000);
+		verifyAmendTableValue(i, Value);
+		clearSearchFilter();
 	}
 
 }
