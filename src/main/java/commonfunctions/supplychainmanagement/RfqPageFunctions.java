@@ -1,28 +1,28 @@
 package commonfunctions.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks May 02, 2025
+ */
 import static org.testng.Assert.assertTrue;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import commonlocators.supplychainmanagement.RfqLocators;
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
-import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -35,6 +35,7 @@ public class RfqPageFunctions {
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static PurchaseRequestFunctions PrFunc = new PurchaseRequestFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
@@ -79,10 +80,12 @@ public class RfqPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
 				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
 				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		validateRfqLinesItemDomestic();
 		verifysSupplierCost2(commonFunc.getDataFromTestDataSheet("Cost_Value2"), getTextCurrencyInLine2(),
 				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
 				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
 				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		validateRfqLinesItemDomestic1();
 		verifyRfqRateFinalize();
 		verifysRfqSobButton();
 		waitingForApproval();
@@ -113,10 +116,12 @@ public class RfqPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
 				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
 				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		validateRfqLinesItemImport();
 		verifysSupplierCost2(commonFunc.getDataFromTestDataSheet("Cost_Value2"), getTextCurrencyInLine2(),
 				commonFunc.getDataFromTestDataSheet("Trd_Discount"),
 				commonFunc.getDataFromTestDataSheet("Spcl_Discount"),
 				commonFunc.getDataFromTestDataSheet("Cash_Discount"), commonFunc.getDataFromTestDataSheet("Hsn_code"));
+		validateRfqLinesItemImport1();
 		verifyRfqRateFinalize();
 		verifysRfqSobButton();
 		waitingForApproval();
@@ -282,7 +287,6 @@ public class RfqPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
-
 			flag = webDB.waitForElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
@@ -754,7 +758,6 @@ public class RfqPageFunctions {
 		}
 
 		Assert.assertTrue(flag);
-
 	}
 
 	/**
@@ -833,6 +836,7 @@ public class RfqPageFunctions {
 								verifysSupplierLineSave();
 								commonFunc.hardWait(1000);
 							}
+
 						}
 					}
 				}
@@ -1270,7 +1274,6 @@ public class RfqPageFunctions {
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1489,7 +1492,6 @@ public class RfqPageFunctions {
 											commonFunc.hardWait(3000);
 										}
 									}
-
 								}
 							}
 						}
@@ -1499,4 +1501,426 @@ public class RfqPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * PriceList Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 * @param location
+	 */
+	public void validateRfqLinesItemDomestic() {
+		String[][] RFQLines = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "RFQ.xlsx";
+		RFQLines = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("Domestic"));
+		for (int i = 3; i < RFQLines.length; i++) {
+			String ITEM = RFQLines[i][1];
+			String SUPPLIER = RFQLines[i][2];
+			String QTY = RFQLines[i][5];
+			String Cost = RFQLines[i][6];
+			String TD = RFQLines[i][8];
+			String TDAmount = RFQLines[i][12];
+			String TDValue = RFQLines[i][11];
+			String SPCL = RFQLines[i][9];
+			String SPCLAmount = RFQLines[i][14];
+			String SPCLValue = RFQLines[i][13];
+			String CASH = RFQLines[i][10];
+			String CASHAmount = RFQLines[i][16];
+			String CASHValue = RFQLines[i][15];
+			String SeqNumber = Integer.toString(i - 2);
+			if (!ITEM.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemColumnName")), ITEM);
+				logs.logging("INFO", "Header Items Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemQtyColumnName")), QTY);
+				logs.logging("INFO", "Header Quantity Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemCostColumnName")), Cost);
+				logs.logging("INFO", "Header Cost Details Matched With DataBase Values");
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDiscountColumnName")), TD);
+				logs.logging("INFO", "Header Trade Discount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDisAmountColumnName")),
+						TDAmount);
+				logs.logging("INFO", "Header Trade Discount Amount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeAssValueColumnName")),
+						TDValue);
+				logs.logging("INFO", "Header Trade Assesable Value Details Matched With DataBase Values");
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDiscountColumnName")), SPCL);
+				logs.logging("INFO", "Header Special Discount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDisAmountColumnName")),
+						SPCLAmount);
+				logs.logging("INFO", "Header Special Discount Amount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclAssValueColumnName")),
+						SPCLValue);
+				logs.logging("INFO", "Header Special Assesable Value Details Matched With DataBase Values");
+
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDiscountColumnName")), CASH);
+				logs.logging("INFO", "Header Cash Discount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDisAmountColumnName")),
+						CASHAmount);
+				logs.logging("INFO", "Header Cash Discount Amount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashAssValueColumnName")),
+						CASHValue);
+				logs.logging("INFO", "Header Cash Assesable Value Details Matched With DataBase Values");
+			} else {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * PriceList Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 * @param location
+	 */
+	public void validateRfqLinesItemDomestic1() {
+		String[][] RFQLines = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "RFQ.xlsx";
+		RFQLines = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("Domestic"));
+		for (int j = 1; j < RFQLines.length; j++) {
+			if (RFQLines[j][0].equals(commonFunc.getDataFromTestDataSheet("Domestic2"))) {
+				for (int i = j + 2; i < RFQLines.length; i++) {
+					String ITEM = RFQLines[i][1];
+					String SUPPLIER = RFQLines[i][2];
+					String QTY = RFQLines[i][5];
+					String Cost = RFQLines[i][6];
+					String TD = RFQLines[i][8];
+					String TDAmount = RFQLines[i][12];
+					String TDValue = RFQLines[i][11];
+					String SPCL = RFQLines[i][9];
+					String SPCLAmount = RFQLines[i][14];
+					String SPCLValue = RFQLines[i][13];
+					String CASH = RFQLines[i][10];
+					String CASHAmount = RFQLines[i][16];
+					String CASHValue = RFQLines[i][15];
+
+					String SeqNumber = Integer.toString(i - 10);
+					if (!ITEM.equals("")) {
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemColumnName")),
+								ITEM);
+						logs.logging("INFO", "Header Items Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemQtyColumnName")),
+								QTY);
+						logs.logging("INFO", "Header Quantity Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemCostColumnName")),
+								Cost);
+						logs.logging("INFO", "Header Cost Details Matched With DataBase Values");
+						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDiscountColumnName")),
+								TD);
+						logs.logging("INFO", "Header Trade Discount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDisAmountColumnName")),
+								TDAmount);
+						logs.logging("INFO", "Header Trade Discount Amount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeAssValueColumnName")),
+								TDValue);
+						logs.logging("INFO", "Header Trade Assesable Value Details Matched With DataBase Values");
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDiscountColumnName")),
+								SPCL);
+						logs.logging("INFO", "Header Special Discount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDisAmountColumnName")),
+								SPCLAmount);
+						logs.logging("INFO", "Header Special Discount Amount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclAssValueColumnName")),
+								SPCLValue);
+						logs.logging("INFO", "Header Special Assesable Value Details Matched With DataBase Values");
+
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDiscountColumnName")),
+								CASH);
+						logs.logging("INFO", "Header Cash Discount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDisAmountColumnName")),
+								CASHAmount);
+						logs.logging("INFO", "Header Cash Discount Amount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashAssValueColumnName")),
+								CASHValue);
+						logs.logging("INFO", "Header Cash Assesable Value Details Matched With DataBase Values");
+					} else {
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * PriceList Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 * @param location
+	 */
+	public void validateRfqLinesItemImport() {
+		String[][] RFQLines = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "RFQ.xlsx";
+		RFQLines = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("Import"));
+		for (int i = 3; i < RFQLines.length; i++) {
+			String ITEM = RFQLines[i][1];
+			String SUPPLIER = RFQLines[i][2];
+			String QTY = RFQLines[i][5];
+			String Cost = RFQLines[i][6];
+			String TD = RFQLines[i][8];
+			String TDAmount = RFQLines[i][12];
+			String TDValue = RFQLines[i][11];
+			String SPCL = RFQLines[i][9];
+			String SPCLAmount = RFQLines[i][14];
+			String SPCLValue = RFQLines[i][13];
+			String CASH = RFQLines[i][10];
+			String CASHAmount = RFQLines[i][16];
+			String CASHValue = RFQLines[i][15];
+
+			String SeqNumber = Integer.toString(i - 2);
+			if (!ITEM.equals("")) {
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemColumnName")), ITEM);
+				logs.logging("INFO", "Header Items Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemQtyColumnName")), QTY);
+				logs.logging("INFO", "Header Quantity Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemCostColumnName")), Cost);
+				logs.logging("INFO", "Header Cost Details Matched With DataBase Values");
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDiscountColumnName")), TD);
+				logs.logging("INFO", "Header Trade Discount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDisAmountColumnName")),
+						TDAmount);
+				logs.logging("INFO", "Header Trade Discount Amount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeAssValueColumnName")),
+						TDValue);
+				logs.logging("INFO", "Header Trade Assesable Value Details Matched With DataBase Values");
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDiscountColumnName")), SPCL);
+				logs.logging("INFO", "Header Special Discount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDisAmountColumnName")),
+						SPCLAmount);
+				logs.logging("INFO", "Header Special Discount Amount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclAssValueColumnName")),
+						SPCLValue);
+				logs.logging("INFO", "Header Special Assesable Value Details Matched With DataBase Values");
+
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDiscountColumnName")), CASH);
+				logs.logging("INFO", "Header Cash Discount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDisAmountColumnName")),
+						CASHAmount);
+				logs.logging("INFO", "Header Cash Discount Amount Details Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(),
+						SeqNumber, SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashAssValueColumnName")),
+						CASHValue);
+				logs.logging("INFO", "Header Cash Assesable Value Details Matched With DataBase Values");
+			} else {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * PriceList Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 * @param location
+	 */
+	public void validateRfqLinesItemImport1() {
+		String[][] RFQLines = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "RFQ.xlsx";
+		RFQLines = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("Import"));
+		for (int k = 1; k < RFQLines.length; k++) {
+			if (RFQLines[k][0].equals(commonFunc.getDataFromTestDataSheet("Import2"))) {
+				for (int i = k + 2; i < RFQLines.length; i++) {
+					String ITEM = RFQLines[i][1];
+					String SUPPLIER = RFQLines[i][2];
+					String QTY = RFQLines[i][5];
+					String Cost = RFQLines[i][6];
+					String TD = RFQLines[i][8];
+					String TDAmount = RFQLines[i][12];
+					String TDValue = RFQLines[i][11];
+					String SPCL = RFQLines[i][9];
+					String SPCLAmount = RFQLines[i][14];
+					String SPCLValue = RFQLines[i][13];
+					String CASH = RFQLines[i][10];
+					String CASHAmount = RFQLines[i][16];
+					String CASHValue = RFQLines[i][15];
+					String SeqNumber = Integer.toString(i - 10);
+					if (!ITEM.equals("")) {
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemColumnName")),
+								ITEM);
+						logs.logging("INFO", "Header Items Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemQtyColumnName")),
+								QTY);
+						logs.logging("INFO", "Header Quantity Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbItemCostColumnName")),
+								Cost);
+						logs.logging("INFO", "Header Cost Details Matched With DataBase Values");
+						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDiscountColumnName")),
+								TD);
+						logs.logging("INFO", "Header Trade Discount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeDisAmountColumnName")),
+								TDAmount);
+						logs.logging("INFO", "Header Trade Discount Amount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbTradeAssValueColumnName")),
+								TDValue);
+						logs.logging("INFO", "Header Trade Assesable Value Details Matched With DataBase Values");
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDiscountColumnName")),
+								SPCL);
+						logs.logging("INFO", "Header Special Discount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclDisAmountColumnName")),
+								SPCLAmount);
+						logs.logging("INFO", "Header Special Discount Amount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbSpclAssValueColumnName")),
+								SPCLValue);
+						logs.logging("INFO", "Header Special Assesable Value Details Matched With DataBase Values");
+
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDiscountColumnName")),
+								CASH);
+						logs.logging("INFO", "Header Cash Discount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashDisAmountColumnName")),
+								CASHAmount);
+						logs.logging("INFO", "Header Cash Discount Amount Details Matched With DataBase Values");
+
+						verifyAssertionBothValues(
+								dbCommonFunctions.RFQQueryForItemSupplier(VariableHandler.getRfqDocNum(), SeqNumber,
+										SUPPLIER, commonFunc.getDataFromTestDataSheet("RFQDbCashAssValueColumnName")),
+								CASHValue);
+						logs.logging("INFO", "Header Cash Assesable Value Details Matched With DataBase Values");
+					} else {
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Durai-RMITS
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value : " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
+	}
+
 }

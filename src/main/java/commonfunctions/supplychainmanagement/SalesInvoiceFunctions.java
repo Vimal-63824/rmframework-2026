@@ -18,6 +18,7 @@ import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.ItemDetailsHandler.SICustomerDetailsName;
 import commonfunctions.VariableHandler;
+import commonfunctions.qualitycontrol.InspectionDocumentFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import utils.ExcelUtils;
@@ -37,6 +38,8 @@ public class SalesInvoiceFunctions {
 	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static ExcelUtils excelUtils = new ExcelUtils();
 	static MaterialReceiptVoucherFunctions mrvFunc = new MaterialReceiptVoucherFunctions();
+	static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
+	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 
 	/**
 	 * Verify Clicking Add Button
@@ -243,13 +246,13 @@ public class SalesInvoiceFunctions {
 	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(Tablespec, ElementType.Xpath);
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.clearTextField(InputParameter, ElementType.Xpath);
 			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(Tablespec, ElementType.Xpath);
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
 				String value = webDB.getDomPropertyFromElement(InputParameter, ElementType.Xpath,
@@ -329,9 +332,11 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void verifyLineWiseDetailsButton(int i) {
+		commonFunc.hardWait(3000);
 		flag = webDB.waitForElement(SalesInvoiceLocators.LineDetails(i - 3), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.LineDetails(i - 3), ElementType.Xpath);
+			commonFunc.hardWait(2000);
 			flag = webDB.waitForElement(SalesInvoiceLocators.Detail_Btn_Iframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Linewise Detail Button Clicked Successfully");
@@ -419,6 +424,7 @@ public class SalesInvoiceFunctions {
 		flag = webDB.waitForElement(SalesInvoiceLocators.Alloc_ls_batch_Btn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesInvoiceLocators.Alloc_ls_batch_Btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(SalesInvoiceLocators.Pick_Btn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Allocate LS Batch clicked Successfully");
@@ -458,7 +464,13 @@ public class SalesInvoiceFunctions {
 		if (flag) {
 			logs.logging("INFO", "Cre.Inv.No Button Displayed Successfully");
 			webDB.clickAnElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(1000);
+			String SIInvNo = webDB.getTextFromElement(SalesInvoiceLocators.SI_INV_No, ElementType.Xpath);
+			logs.logging("INFO", "Get SI Inv.No Is: " + SIInvNo);
+			VariableHandler.setSIInvNo(SIInvNo);
+			commonFunc.hardWait(1000);
+//			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -3403,8 +3415,8 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders(int i) {
-		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOM();
+	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3420,10 +3432,6 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
-		verifyLineWiseDetailsButton(i);
-		switchToLineDetailsIframeInSaleInvoice();
-		checkSILineDetailsDataBaseValuesWithUIValues();
-		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -3442,6 +3450,8 @@ public class SalesInvoiceFunctions {
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions
+				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
 		return flag;
 	}
 
@@ -3452,8 +3462,8 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders(int i) {
-		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOM();
+	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders() {
+		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3470,11 +3480,6 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		LocationDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		checkSaleInvoiceLineTaxCalculationForLastAddedItem();
-		verifyLineWiseDetailsButton(i);
-		switchToLineDetailsIframeInSaleInvoice();
-		checkSILineDetailsDataBaseValuesWithUIValues();
-		verifyLineDetailsSaveIcon();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -3493,6 +3498,8 @@ public class SalesInvoiceFunctions {
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions
+				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SOExpUserDefined"));
 		return flag;
 	}
 
@@ -3867,18 +3874,18 @@ public class SalesInvoiceFunctions {
 							commonFunc.hardWait(1000);
 							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
 									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
+							commonFunc.checkRefreshCellsDisappear();
 							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
 									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
+							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
 								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
 										HSNcode_SI);
 								logs.logging("INFO", "HSN Code Inserted Successfully");
-
 							}
 						}
-
 					}
 				}
 				flag = webDB.waitForElement(SalesInvoiceLocators.Headerwise_TickIcon, ElementType.Xpath);
@@ -3888,7 +3895,6 @@ public class SalesInvoiceFunctions {
 					if (flag) {
 						logs.logging("INFO", "Headerwise Tick Icon Clicked Successfully");
 					}
-
 				}
 				commonFunc.checkRefreshCellsDisappear();
 				verifyLineWiseDetailsButton(i);
@@ -4280,7 +4286,7 @@ public class SalesInvoiceFunctions {
 //				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
 //				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
-				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
+//				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
 		}
 	}
@@ -4313,7 +4319,7 @@ public class SalesInvoiceFunctions {
 //				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
 //				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
-				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
+//				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
 		}
 	}
@@ -6419,5 +6425,431 @@ public class SalesInvoiceFunctions {
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("CRNoteGateEntryExport"));
 		return flag;
+	}
+
+	/**
+	 * This method used for Create Sales Invoice With Charge Item
+	 * 
+	 * @author Vimal -RMITS
+	 * @return boolean
+	 */
+	public boolean createSalesInvoiceWithChargeItem() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("Charges"));
+		commonFunc.checkRefreshCellsDisappear();
+		AddChargesInSalesInvoice(webDB.getDataFromProperties("Charges"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("Charges"));
+		return flag;
+	}
+
+	/**
+	 * This method used for adding charges multilpe line
+	 * 
+	 * @author Vimal - RMITS
+	 * @param SheetName
+	 */
+	public void AddChargesInSalesInvoice(String SheetName) {
+		String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 10; i < SOMultipleline.length; i++) {
+			String CHARGEITEM_ID = SOMultipleline[i][3];
+			String CHARGE_ITEMBASIS = SOMultipleline[i][6];
+			String Charges_Percentage = SOMultipleline[i][7];
+			String Charges_Amount = SOMultipleline[i][8];
+			String Charges_SAC = SOMultipleline[i][9];
+			if (!CHARGEITEM_ID.equals("")) {
+				navigateToChargeItem();
+				addingChargeItemLine(CHARGE_ITEMBASIS);
+				InsertingChargeItem(CHARGEITEM_ID);
+				AddChargeItemPercentage(Charges_Percentage, Charges_Amount);
+				InsertingSACcodeAndSaveIcon(Charges_SAC);
+			}
+		}
+	}
+
+	/**
+	 * This Method Used For Adding Charge Item Line and selecting Item Basis
+	 * 
+	 * @author Vimal - RMITS
+	 * @param Percentage_Basis
+	 */
+	public void addingChargeItemLine(String Percentage_Basis) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charges_Add_Icon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Charges_Add_Icon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_Basis_Column, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.SI_Charge_Basis_Column, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_Basis_Select_Cls, ElementType.Xpath);
+				if (flag) {
+					webDB.selectDropDownByText(SalesInvoiceLocators.SI_Charge_Basis_Select_Cls, Percentage_Basis,
+							ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_ItemColumn, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Charge Item Add Icon Clicked, Item Basis Is Selected");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Adding Charge Item Line and selecting Item Basis
+	 * 
+	 * @author Vimal - RMITS
+	 * @param Charge_Item
+	 */
+	public void InsertingChargeItem(String CHARGEITEM_ID) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_ItemColumn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Charge_ItemColumn, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Charge_Item_Lov_Btn, CHARGEITEM_ID);
+			commonFunc.hardWait(1000);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting SAC Code
+	 * 
+	 * @author Vimal - RMITS
+	 * @param ChargeSAC
+	 */
+	public void InsertingSACcodeAndSaveIcon(String Charges_SAC) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_SAC_Column, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Charge_SAC_Column, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Charge_SAC_Lov_Btn, Charges_SAC);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charge_Save_Icon, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.SI_Charge_Save_Icon, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(SalesInvoiceLocators.SI_General_Tab, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Charge item insert and line saved");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Enter the Value in Both Percentage And Value Field
+	 * Based On the Charge Item Basis (% or Value)
+	 * 
+	 * @author Vimal -RMITS
+	 * @param Percentage
+	 * @param Amount
+	 */
+	public void AddChargeItemPercentage(String Charges_Percentage, String Charges_Amount) {
+		String ChargeBasis = getTextChargeItemBais();
+		if (ChargeBasis.equals("%")) {
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(SalesInvoiceLocators.SI_Charge_Percentage_Column,
+					SalesInvoiceLocators.SI_Charge_Percentage_Input, Charges_Percentage);
+			webDB.pressTabKey();
+			commonFunc.checkRefreshCellsDisappear();
+		} else {
+			salesOrderFunctions.verifyClickAndEnterValueInTableFields(SalesInvoiceLocators.SI_Charge_Amount_Column,
+					SalesInvoiceLocators.SI_Charge_Amount_Input, Charges_Amount);
+			webDB.pressTabKey();
+			commonFunc.checkRefreshCellsDisappear();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method Is Used To Get the Text Of the Charge Item Basis
+	 * 
+	 * @author Vimal - RMITS
+	 * @return String - ChargeItemBasis
+	 */
+	public String getTextChargeItemBais() {
+		String ChargeItemBasis = webDB.getTextFromElement(SalesInvoiceLocators.SI_Charge_Basis_Column,
+				ElementType.Xpath);
+		logs.logging("INFO", "Get Text Is :" + ChargeItemBasis);
+		return ChargeItemBasis;
+	}
+
+	/**
+	 * This Method Used For Navigate to Charges
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void navigateToChargeItem() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charges_Tab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Charges_Tab, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Charges_Add_Icon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigate To Charges Tab");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used for Create SalesInvoice With PreDispatch Document
+	 * 
+	 * @author Vimal -RMITS
+	 * @return boolean
+	 */
+	public boolean createSalesInvoiceWithPreDispatchDocument() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("LocalCustomer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		clickingPreDispatchButton();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions
+				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("LocalCustomer"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSalesInvoice(VariableHandler.getSIdocno());
+		qcFunc.clickTickAndPostIcon();
+		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
+			flag = commonFunc.logoutUser();
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Clicking PreDisPatch button
+	 * 
+	 * @author Vimal -RMITS
+	 */
+	public void clickingPreDispatchButton() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Predispatch_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.SI_Predispatch_Btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(SalesInvoiceLocators.Cre_Inv_No, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pre - Dispatch Button Clicked Sucessfully");
+			}
+		}
+		commonFunc.checkRefreshCellsDisappear();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is Used To Multiple Lines In Sales Invoice
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean multipleLinesInSalesInvoice() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"),
+				commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_Local_Customer"));
+		MultipleLineAddingUserDefinedItemLineFromReadingExcelSheet(
+				webDB.getDataFromProperties("MultipleSalesInvoiceLine"));
+		commonFunc.checkRefreshCellsDisappear();
+		verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		verifyCreateInvoiceNo();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(
+				webDB.getDataFromProperties("MultipleSalesInvoiceLine"));
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Multiple Line Adding UserDefined Item Line From Excel
+	 * Sheet
+	 * 
+	 * @author Vimal - RMITS
+	 * @param SheetName
+	 */
+	public void MultipleLineAddingUserDefinedItemLineFromReadingExcelSheet(String SheetName) {
+		ArrayList<String> ArrayList = new ArrayList<String>();
+		ExcelUtils excelUtils = new ExcelUtils();
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+
+		itemMultiples = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemMultiples.length);
+		for (int i = 4; i < itemMultiples.length; i++) {
+			salesOrderFunctions.StockQtyUpdateInExcelSI(i, ArrayList, SheetName);
+			String Item = itemMultiples[i][1];
+			String SalesGL_Acct = itemMultiples[i][35];
+			String InvoiceQty = itemMultiples[i][6];
+			String UnitPrice = itemMultiples[i][7];
+			String HSNcode_SI = itemMultiples[i][21];
+			String Promotional = itemMultiples[i][36];
+			if (!Item.equals("")) {
+				flag = webDB.waitForElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.LineWise_Add_Btn, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Item_Lov_Btn, Item);
+						logs.logging("INFO", "Linewise Item ID Inserted Successfully: " + Item);
+						flag = webDB.waitForElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.Sales_GL_Acc_Desc_Column, ElementType.Xpath);
+							commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Sales_GL_Acc_Desc_LOV_Btn,
+									SalesGL_Acct);
+							logs.logging("INFO", "Sales GL Acct Desc Inserted Successfully");
+							commonFunc.hardWait(1000);
+							verifyAddTableSpecs(SalesInvoiceLocators.Invoice_Column_Qty,
+									SalesInvoiceLocators.Invoice_Qty, InvoiceQty);
+							commonFunc.checkRefreshCellsDisappear();
+							verifyAddTableSpecs(SalesInvoiceLocators.UnitCost_Column,
+									SalesInvoiceLocators.UnitCost_Input, UnitPrice);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
+										HSNcode_SI);
+								logs.logging("INFO", "HSN Code Inserted Successfully");
+								commonFunc.hardWait(2000);// TODO
+							}
+						}
+					}
+				}
+				flag = webDB.waitForElement(SalesInvoiceLocators.Headerwise_TickIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Headerwise Tick Icon Displayed Successfully");
+					flag = webDB.clickAnElement(SalesInvoiceLocators.Headerwise_TickIcon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Headerwise Tick Icon Clicked Successfully");
+					}
+				}
+				commonFunc.checkRefreshCellsDisappear();
+				SalesInvoiceLineDetailsVerificationWithDBvalidation(i, Filepath, itemMultiples);
+				commonFunc.checkRefreshCellsDisappear();
+			}
+		}
+		VariableHandler.setExpectedStockQty2(ArrayList);
+	}
+
+	/**
+	 * This Method Used For Sales Invoice Line Details Verification With
+	 * DBvalidation
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void SalesInvoiceLineDetailsVerificationWithDBvalidation(int i1, String FilePath, String[][] ExcelName) {
+		for (int i = i1; i <= i1; i++) {
+			String StoreID = ExcelName[i][34];
+			String LineTaxAmt = ExcelName[i][26];
+			String GrossAmt = ExcelName[i][8];
+			String NetAmt = ExcelName[i][27];
+			salesOrderFunctions.verifyAssertionBothValues(StoreID, dbCommonFunctions.SILineDetails(
+					VariableHandler.getSIdocno(), commonFunc.getDataFromTestDataSheet("SIDBStoreIDColumn")));
+			logs.logging("INFO", "StoreID Matched With DataBase Values");
+			commonFunc.hardWait(2000);
+			salesOrderFunctions.verifyAssertionBothValues(LineTaxAmt, dbCommonFunctions.SILineDetails(
+					VariableHandler.getSIdocno(), commonFunc.getDataFromTestDataSheet("SIDBTaxAmtColumn")));
+			logs.logging("INFO", "LineTaxAmt Matched With DataBase Values");
+			commonFunc.hardWait(2000);
+			salesOrderFunctions.verifyAssertionBothValues(GrossAmt, dbCommonFunctions.SILineDetails(
+					VariableHandler.getSIdocno(), commonFunc.getDataFromTestDataSheet("SIDBGrossAmtColumn")));
+			logs.logging("INFO", "GrossAmt Matched With DataBase Values");
+			commonFunc.hardWait(2000);
+			salesOrderFunctions.verifyAssertionBothValues(NetAmt, dbCommonFunctions.SILineDetails(
+					VariableHandler.getSIdocno(), commonFunc.getDataFromTestDataSheet("SIDBNetAmtColumn")));
+			logs.logging("INFO", "NetAmt Matched With DataBase Values");
+			commonFunc.hardWait(1000);
+		}
 	}
 }

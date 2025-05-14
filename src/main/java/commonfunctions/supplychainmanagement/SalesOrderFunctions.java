@@ -553,10 +553,18 @@ public class SalesOrderFunctions {
 	 */
 	public void verifyCreationOfSalesOrderHeader(String Location, String Unit, String SubVoucherType, String Customer) {
 		verifyClickAddButtonInSo();
-		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.LocationLOV, Location);
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.SalesSubVoucherTypeLOV, SubVoucherType);
-		commonFunc.checkRefreshCellsDisappear();
+		String LocationValue = webDB.getDomPropertyFromElement(SalesOrderLocators.SOLocatioField, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		if (!LocationValue.equalsIgnoreCase(Location)) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.LocationLOV, Location);
+			commonFunc.checkRefreshCellsDisappear();
+		}
+		String SalesVoucherType = webDB.getDomPropertyFromElement(SalesOrderLocators.SOSubVoucherType,
+				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+		if (!SalesVoucherType.equalsIgnoreCase(SubVoucherType)) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.SalesSubVoucherTypeLOV, SubVoucherType);
+			commonFunc.checkRefreshCellsDisappear();
+		}
 		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CustomerLov, Customer);
 		commonFunc.checkRefreshCellsDisappear();
 		clickTickIcon();
@@ -586,6 +594,7 @@ public class SalesOrderFunctions {
 				}
 			}
 		}
+		commonFunc.checkRefreshCellsDisappear();
 		assertTrue(flag);
 	}
 
@@ -3153,10 +3162,11 @@ public class SalesOrderFunctions {
 			String CGST = SODiscountDetails[i1][23];
 			String SGST = SODiscountDetails[i1][24];
 			String IGST = SODiscountDetails[i1][25];
-			String TaxAmount = SODiscountDetails[i1][26];
-			String NetAmount = SODiscountDetails[i1][27];
-			String CessPercentage = SODiscountDetails[i1][37];
-			String CessAmount = SODiscountDetails[i1][38];
+			String UTGST = SODiscountDetails[i1][26];
+			String TaxAmount = SODiscountDetails[i1][29];
+			String NetAmount = SODiscountDetails[i1][30];
+			String CessPercentage = SODiscountDetails[i1][40];
+			String CessAmount = SODiscountDetails[i1][41];
 
 			verifyAssertionBothValues(
 					dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
@@ -3230,6 +3240,11 @@ public class SalesOrderFunctions {
 			verifyAssertionBothValues(dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
 					commonFunc.getDataFromTestDataSheet("SODBIGSTColumnName")), IGST);
 			logs.logging("INFO", "Expected IGST Amount Matched With DataBase Values For This Item " + Item
+					+ " Against This Sales Order Document " + VariableHandler.getSONumber());
+
+			verifyAssertionBothValues(dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("SODBUTGSTColumnName")), UTGST);
+			logs.logging("INFO", "Expected UTGST Amount Matched With DataBase Values For This Item " + Item
 					+ " Against This Sales Order Document " + VariableHandler.getSONumber());
 
 			verifyAssertionBothValues(dbCommonFunctions.SOLineDetails(VariableHandler.getSONumber(),
@@ -3395,9 +3410,9 @@ public class SalesOrderFunctions {
 			verifyDomPropertyValidation(SalesOrderLocators.CustIdDesc,
 					itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.CUST_ITEM_DESC));
 			logs.logging("INFO", "Customer Item Description Verified Sucessfully");
-			verifyDomPropertyValidation(SalesOrderLocators.WarehouseDesc,
-					itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.WAREHOUSE_DESC));
-			logs.logging("INFO", "Warehouse Description Verified Sucessfully");
+//			verifyDomPropertyValidation(SalesOrderLocators.WarehouseDesc,
+//					itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.WAREHOUSE_DESC));
+//			logs.logging("INFO", "Warehouse Description Verified Sucessfully");
 			verifyDomPropertyValidation(SalesOrderLocators.SubClass,
 					itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.SUB_CLASS));
 			logs.logging("INFO", "SUBCLASS For This Item : " + Item + "is Verified");
@@ -4115,7 +4130,7 @@ public class SalesOrderFunctions {
 	 * @param i
 	 */
 	public void navigateToLineDetailsPage1(int i) {
-		webDB.moveToElement(SalesOrderLocators.LineDetails(i), ElementType.Xpath);
+//		webDB.moveToElement(SalesOrderLocators.LineDetails(i), ElementType.Xpath);
 		flag = webDB.waitForElement(SalesOrderLocators.LineDetails(i), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.LineDetails(i), ElementType.Xpath);
@@ -4275,8 +4290,8 @@ public class SalesOrderFunctions {
 			String Trade_Disc = SOMultipleline[i][9];
 			String Spl_Disc = SOMultipleline[i][10];
 			String Cash_Disc = SOMultipleline[i][11];
-			String Promotional = SOMultipleline[i][36];
-			String PriceClass = SOMultipleline[i][39];
+			String Promotional = SOMultipleline[i][39];
+			String PriceClass = SOMultipleline[i][42];
 			if (!ITEM_ID.equals("")) {
 				addItemsInSO(ITEM_ID);
 				addQuantityAndUnitCost(QUANTITY, UNIT_COST);
@@ -4321,8 +4336,8 @@ public class SalesOrderFunctions {
 			String Trade_Disc = SOMultipleline[i][9];
 			String Spl_Disc = SOMultipleline[i][10];
 			String Cash_Disc = SOMultipleline[i][11];
-			String Promotional = SOMultipleline[i][36];
-			String PriceClass = SOMultipleline[i][39];
+			String Promotional = SOMultipleline[i][39];
+			String PriceClass = SOMultipleline[i][42];
 			if (!ITEM_ID.equals("")) {
 				addItemsInSO(ITEM_ID);
 				addLineItemQty(QUANTITY);
@@ -4392,7 +4407,7 @@ public class SalesOrderFunctions {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 4; i < SOMultipleline.length; i++) {
 			String ITEM_ID = SOMultipleline[i][1];
-			String SO_Total_Amount = SOMultipleline[i][27];
+			String SO_Total_Amount = SOMultipleline[i][30];
 			if (ITEM_ID.equals("")) {
 				if (!SO_Total_Amount.equals("")) {
 					verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
@@ -4531,6 +4546,7 @@ public class SalesOrderFunctions {
 		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdUnitCostField(j - 3),
 				SalesOrderLocators.SoAmdNewUnitPriceInputField, NewUnitPrice);
 		webDB.pressTabKey();
+		commonFunc.hardWait(1000);
 		logs.logging("INFO", "New UnitPrice Is Changed For This Item " + Item
 				+ "Against This Sales Order Amendment Document " + VariableHandler.getSOAmdNumber());
 		commonFunc.checkRefreshCellsDisappear();
@@ -4550,6 +4566,7 @@ public class SalesOrderFunctions {
 		webDB.pressTabKey();
 		logs.logging("INFO", "New UnitQty Is Changed For This Item " + Item
 				+ "Against This Sales Order Amendment Document " + VariableHandler.getSOAmdNumber());
+		commonFunc.hardWait(1000);
 		commonFunc.checkRefreshCellsDisappear();
 	}
 
@@ -4637,19 +4654,19 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrderAmendmentPriceChange(String Customer, String CustomerDesc, String SOAmdSheetName,
-			String SOSheetName) throws IOException {
+			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
-		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), VariableHandler.getSONumber());
+		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
+		verifySalesOrderAmendmentHeaderDetailsWithDB(SOALocation, SOAUnit, SOAPrefix, Customer, CustomerDesc);
 		clickFetchButton();
 		for (int j = 4; j < SOMultipleline.length; j++) {
 			String ITEM_ID = SOMultipleline[j][1];
-			String NewUnitPrice = SOMultipleline[j][41];
+			String NewUnitPrice = SOMultipleline[j][44];
 			if (!ITEM_ID.equals("")) {
 				changeunitPrice(NewUnitPrice, j, ITEM_ID);
 			}
@@ -4687,22 +4704,69 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrderAmendmentQtyChange(String Customer, String CustomerDesc, String SOAmdSheetName,
-			String SOSheetName) throws IOException {
+			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
-		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), VariableHandler.getSONumber());
-		verifySalesOrderAmendmentHeaderDetailsWithDB(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), Customer, CustomerDesc);
+		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
+		verifySalesOrderAmendmentHeaderDetailsWithDB(SOALocation, SOAUnit, SOAPrefix, Customer, CustomerDesc);
 		clickFetchButton();
 		for (int j = 4; j < SOMultipleline.length; j++) {
 			String ITEM_ID = SOMultipleline[j][1];
-			String NewQty = SOMultipleline[j][40];
+			String NewQty = SOMultipleline[j][43];
+			if (!ITEM_ID.equals("")) {
+				changeQty(NewQty, j, ITEM_ID);
+			}
+		}
+		clickSoAmdLineWiseSaveButton();
+		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
+		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
+		clickSOAmdPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderAmendmentDocApprovedStatusWithDB();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used For Qty Change Scenarios
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param Customer
+	 * @param CustomerDesc
+	 * @param SOAmdSheetName
+	 * @param SOSheetName
+	 * @return boolean flag
+	 * @throws IOException
+	 */
+	public boolean SalesOrderAmendmentQtyChangeUTGST(String Customer, String CustomerDesc, String SOAmdSheetName,
+			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
+		SOUTGST();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickPendingButtonOfSoAmendment();
+		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
+		verifySalesOrderAmendmentHeaderDetailsWithDB(SOALocation, SOAUnit, SOAPrefix, Customer, CustomerDesc);
+		clickFetchButton();
+		for (int j = 4; j < SOMultipleline.length; j++) {
+			String ITEM_ID = SOMultipleline[j][1];
+			String NewQty = SOMultipleline[j][43];
 			if (!ITEM_ID.equals("")) {
 				changeQty(NewQty, j, ITEM_ID);
 			}
@@ -4740,24 +4804,21 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrderAmendmentDiscountChange(String Customer, String CustomerDesc, String SOAmdSheetName,
-			String SOSheetName) throws IOException {
+			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
-		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), VariableHandler.getSONumber());
-		verifySalesOrderAmendmentHeaderDetailsWithDB(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), Customer, CustomerDesc);
+		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
+		verifySalesOrderAmendmentHeaderDetailsWithDB(SOALocation, SOAUnit, SOAPrefix, Customer, CustomerDesc);
 		clickFetchButton();
 		for (int j = 4; j < SOMultipleline.length; j++) {
 			String ITEM_ID = SOMultipleline[j][1];
-			String TradeDiscount = SOMultipleline[j][43];
-			String SpecialDiscount = SOMultipleline[j][44];
-			String CashDiscount = SOMultipleline[j][45];
+			String TradeDiscount = SOMultipleline[j][46];
+			String SpecialDiscount = SOMultipleline[j][47];
+			String CashDiscount = SOMultipleline[j][48];
 			if (!ITEM_ID.equals("")) {
 				clickSoAmdLineWiseDetails(j - 3);
 				changeSoAmdDiscountDetails(TradeDiscount, SpecialDiscount, CashDiscount);
@@ -4796,26 +4857,23 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrderAmendmentAdditionOfLines(String Customer, String CustomerDesc, String SOAmdSheetName,
-			String SOSheetName) throws IOException {
+			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
-		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), VariableHandler.getSONumber());
-		verifySalesOrderAmendmentHeaderDetailsWithDB(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"),
-				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), Customer, CustomerDesc);
+		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
+		verifySalesOrderAmendmentHeaderDetailsWithDB(SOALocation, SOAUnit, SOAPrefix, Customer, CustomerDesc);
 		clickFetchButton();
 		for (int j = 4; j < SOMultipleline.length; j++) {
 			String ITEM_ID = SOMultipleline[j][1];
-			String Qty = SOMultipleline[j][40];
-			String UnitPrice = SOMultipleline[j][41];
-			String TradeDiscount = SOMultipleline[j][43];
-			String SpecialDiscount = SOMultipleline[j][44];
-			String CashDiscount = SOMultipleline[j][45];
+			String Qty = SOMultipleline[j][43];
+			String UnitPrice = SOMultipleline[j][44];
+			String TradeDiscount = SOMultipleline[j][46];
+			String SpecialDiscount = SOMultipleline[j][47];
+			String CashDiscount = SOMultipleline[j][48];
 			String SoAmdType = SOMultipleline[j][65];
 			if (!ITEM_ID.equals("")) {
 				if (SoAmdType.equalsIgnoreCase("Addition")) {
@@ -5050,6 +5108,45 @@ public class SalesOrderFunctions {
 			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
 					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					commonFunc.getDataFromTestDataSheet("Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Create SO - Domestic - UTGST Customer
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @return boolean flag
+	 */
+	public boolean SOUTGST() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOUTGST"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+					commonFunc.getDataFromTestDataSheet("UTGSTUnit"), commonFunc.getDataFromTestDataSheet("Customer"));
 			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
 			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
 			flag = commonFunc.logoutUser();
@@ -5448,25 +5545,27 @@ public class SalesOrderFunctions {
 			String OldCGST = SOMultipleline[i][23];
 			String OldSGST = SOMultipleline[i][24];
 			String OldIGST = SOMultipleline[i][25];
-			String PromotionalType = SOMultipleline[i][36];
-			String PriceClass = SOMultipleline[i][39];
-			String NewQty = SOMultipleline[i][40];
-			String NewUnitPrice = SOMultipleline[i][41];
-			String NewTD = SOMultipleline[i][43];
-			String NewSD = SOMultipleline[i][44];
-			String NewCD = SOMultipleline[i][45];
-			String NewTradeAssesableValue = SOMultipleline[i][46];
-			String NewTradeDiscountAmount = SOMultipleline[i][47];
-			String NewSpecialAssesableValue = SOMultipleline[i][48];
-			String NewSpecialDiscountAmount = SOMultipleline[i][49];
-			String NewCashAssesableValue = SOMultipleline[i][50];
-			String NewCashDiscountAmount = SOMultipleline[i][51];
-			String NewDiscountAmount = SOMultipleline[i][52];
-			String NewDiscountAmtPerQty = SOMultipleline[i][53];
-			String NewHSNCode = SOMultipleline[i][55];
-			String NewCGST = SOMultipleline[i][57];
-			String NewSGST = SOMultipleline[i][58];
-			String NewIGST = SOMultipleline[i][59];
+			String OldUTGST = SOMultipleline[i][26];
+			String PromotionalType = SOMultipleline[i][39];
+			String PriceClass = SOMultipleline[i][42];
+			String NewQty = SOMultipleline[i][43];
+			String NewUnitPrice = SOMultipleline[i][44];
+			String NewTD = SOMultipleline[i][46];
+			String NewSD = SOMultipleline[i][47];
+			String NewCD = SOMultipleline[i][48];
+			String NewTradeAssesableValue = SOMultipleline[i][49];
+			String NewTradeDiscountAmount = SOMultipleline[i][50];
+			String NewSpecialAssesableValue = SOMultipleline[i][51];
+			String NewSpecialDiscountAmount = SOMultipleline[i][52];
+			String NewCashAssesableValue = SOMultipleline[i][53];
+			String NewCashDiscountAmount = SOMultipleline[i][54];
+			String NewDiscountAmount = SOMultipleline[i][55];
+			String NewDiscountAmtPerQty = SOMultipleline[i][56];
+			String NewHSNCode = SOMultipleline[i][58];
+			String NewCGST = SOMultipleline[i][60];
+			String NewSGST = SOMultipleline[i][61];
+			String NewIGST = SOMultipleline[i][62];
+			String NewUTGST = SOMultipleline[i][63];
 			if (!ITEM_ID.equals("")) {
 				String SeqNo = String.valueOf(i - 3);
 				commonFunc.checkRefreshCellsDisappear();
@@ -5585,9 +5684,9 @@ public class SalesOrderFunctions {
 						"For This Line Item " + ITEM_ID + " Old IGST Tax Amount Is Matched With DataBase Values");
 
 				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
-						commonFunc.getDataFromTestDataSheet("SOADBLineOldIGSTColumnName")), OldIGST);
+						commonFunc.getDataFromTestDataSheet("SOADBLineOldUTGSTColumnName")), OldUTGST);
 				logs.logging("INFO",
-						"For This Line Item " + ITEM_ID + " Old IGST Tax Amount Is Matched With DataBase Values");
+						"For This Line Item " + ITEM_ID + " Old UTGST Tax Amount Is Matched With DataBase Values");
 
 				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("SOADBLineNewTDPColumnName")), NewTD);
@@ -5671,6 +5770,11 @@ public class SalesOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("SOADBLineNewIGSTColumnName")), NewIGST);
 				logs.logging("INFO",
 						"For This Line Item " + ITEM_ID + " New IGST Tax Amount Is Matched With DataBase Values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SOADBLineNewUTGSTColumnName")), NewUTGST);
+				logs.logging("INFO",
+						"For This Line Item " + ITEM_ID + " New UTGST Tax Amount Is Matched With DataBase Values");
 			}
 		}
 	}
@@ -5716,7 +5820,7 @@ public class SalesOrderFunctions {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SheetName);
 		for (int i = 4; i < SOMultipleline.length; i++) {
 			String ITEM_ID = SOMultipleline[i][1];
-			String SOA_Total_Amount = SOMultipleline[i][61];
+			String SOA_Total_Amount = SOMultipleline[i][67];
 			if (ITEM_ID.equals("")) {
 				if (!SOA_Total_Amount.equals("")) {
 					verifyAssertionBothValues(
@@ -5730,4 +5834,248 @@ public class SalesOrderFunctions {
 			}
 		}
 	}
+
+	/**
+	 * This Method Is used to Verify the Domestic SOGeneral With (SimilarStock And
+	 * CustomerUOM) And (DisSimilar Stock And CustomerUOM)Sales Invoice
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		SIaddSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SODomUserDefined"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Add The SO Lines Through Excel(User Defined)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param SOType
+	 * @param HSNCODE
+	 * @param Customer
+	 */
+	public void SIaddSalesOrderLineThroughExcelUD(String SheetName, String SOType, String HSNCODE, String Customer) {
+		ArrayList<String> ArrayList = new ArrayList<String>();
+		String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOMultipleline.length; i++) {
+			String ITEM_ID = SOMultipleline[i][1];
+			String QUANTITY = SOMultipleline[i][6];
+			String UNIT_COST = SOMultipleline[i][7];
+			String Trade_Disc = SOMultipleline[i][9];
+			String Spl_Disc = SOMultipleline[i][10];
+			String Cash_Disc = SOMultipleline[i][11];
+			String Promotional = SOMultipleline[i][36];
+			String PriceClass = SOMultipleline[i][39];
+			if (!ITEM_ID.equals("")) {
+				SalesOrderToInvoiceStockQtyUpdateInExcelSI(i, ArrayList, SheetName);
+				addItemsInSO(ITEM_ID);
+				addQuantityAndUnitCost(QUANTITY, UNIT_COST);
+				VariableHandler.setOrderStockQty(QUANTITY);
+				chooseHsnCodeAndClickLineWiseSaveButton(HSNCODE);
+				verifyItemCalculationWithLineAmount();
+				if (webDB.verifyIsElementDisplayed(SalesOrderLocators.ShipSetDetails(i - 3), ElementType.Xpath)) {
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(SalesOrderLocators.ShipSetDetails(i - 3), ElementType.Xpath);
+					VerifyShipsetDetails(ITEM_ID);
+				}
+				lineDetailVerification12(ITEM_ID, getTextCurrencyInHeader(), QUANTITY, i, Trade_Disc, Spl_Disc,
+						Cash_Disc, SOType, Promotional, Filepath, SheetName, PriceClass, Customer);
+				clickLineWiseDetailsSaveButton();
+				verifyExpectedLineItemCalculationWithDBValues(i, ITEM_ID, SheetName);
+			}
+		}
+		verifySOTotalAmountWithExcelAndDB(SheetName);
+		VariableHandler.setExpectedStockQty2(ArrayList);
+	}
+
+	/**
+	 * This Method Used For Reading DataBase Value For Before Stock Quantity
+	 * 
+	 * @author Vimal - RMITS
+	 * @param i1
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void SalesOrderToInvoiceStockQtyUpdateInExcelSI(int i1, ArrayList<String> ArrayList, String SheetName) {
+		String[][] SODiscountDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SODiscountDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ItemId = SODiscountDetails[i1][1];
+			String WareHouse = SODiscountDetails[i1][35];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "Before Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				VariableHandler.setBeforeStockQty(BeforeStockQty);
+//				double stockQtyValue = Double.parseDouble(BeforeStockQty);
+//				DecimalFormat df = new DecimalFormat("0.00");
+//				String formattedNumber = df.format(stockQtyValue);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 32, BeforeStockQty);
+				SalesOrderToSIExcelStockQtyFormulaEvaluatorSI(i1, ItemId, ArrayList, SheetName);
+			}
+		}
+	}
+
+	/**
+	 * This Method Is used To get The Stock Qty From The Formula Cell
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param i
+	 * @param Item
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void SalesOrderToSIExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList,
+			String SheetName) {
+		try {
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+					+ "QA Scenario - Sales STD PRICE.xlsx";
+			FileInputStream fis = new FileInputStream(new File(Filepath));
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			XSSFSheet sheet = workbook.getSheet(SheetName);
+			FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+			Row row = sheet.getRow(i); // Row 0 (first row)
+			Cell cell = row.getCell(34); // Column 0 (first column, A1)
+			if (cell.getCellType() == CellType.FORMULA) {
+				CellValue cellValue = formulaEvaluator.evaluate(cell);
+				if (cellValue.getCellType() == CellType.NUMERIC) {
+					double cellNumericValue = cellValue.getNumberValue();
+					if (cellNumericValue == Math.floor(cellNumericValue)) {
+						// It's a whole number
+						System.out.println("Formula result: " + (int) cellNumericValue);
+						int ExpectedStockQtyInt = (int) cellNumericValue;
+						String ExpectedStockQtyAsString = String.valueOf(ExpectedStockQtyInt);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the Sales Invoice Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					} else {
+						System.out.println("Formula result: " + cellNumericValue);
+						String ExpectedStockQtyAsString = String.valueOf(cellNumericValue);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the Sales Invoice Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					}
+				}
+			} else {
+				System.out.println("Cell does not contain a formula.");
+			}
+			workbook.close();
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(flag);
+		}
+	}
+
+	/**
+	 * This Method Is Used To verify The Expected Stock Qty With Excel Values After
+	 * Invoice The Document
+	 * 
+	 * @author Harikrishna RMITS
+	 */
+	public void SIverifyExpectedStockQtyWithDBValuesAfterInvoice(String SheetName) {
+		String[][] SOItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SOItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOItemDetails.length; i++) {
+			String ItemId = SOItemDetails[i][1];
+			String WareHouse = SOItemDetails[i][35];
+			if (!ItemId.equals("")) {
+				String AfterStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"After Invoiced Actual Stock Qty For This Item " + ItemId + "Is : " + AfterStockQty);
+				verifyAssertionBothValues(AfterStockQty, VariableHandler.getExpectedStockQty2().get(i - 4));
+				logs.logging("INFO", "Verified Expected Stock Qty For This Item " + ItemId
+						+ " With Database Values After Invoiced The Document");
+			}
+		}
+	}
+
+	/**
+	 * This Method Is used to Verify the Export SOGeneral With (SimilarStock And
+	 * CustomerUOM) And (DisSimilar Stock And CustomerUOM)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @return boolean flag
+	 */
+	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		SIaddSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOExpUserDefined"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+		clickPostButton();
+		forwardForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
+
 }

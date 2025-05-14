@@ -1,5 +1,7 @@
 package commonfunctions;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
@@ -24,6 +26,8 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
+import commonlocators.supplychainmanagement.CustomerScheduleLocators;
+import commonlocators.supplychainmanagement.GateEntryPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
@@ -1987,7 +1991,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This method is used to Navigate Sales Order Amendment Screen
 	 * 
@@ -2008,6 +2012,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Navigate To Credit Note Tab
 	 * 
@@ -2030,6 +2035,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Navigate To Gate Entry Tab
 	 * 
@@ -2051,6 +2057,163 @@ public class CommonFunctions {
 						logs.logging("INFO", "GateEntry Note Tab Clicked Successfully");
 					}
 				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Open PO Order Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateOpenPoOrderPage() {
+		// clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickOpenPoTransactionTab();
+	}
+
+	/**
+	 * This method used to Navigate Open PO Order Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickOpenPoTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+			logs.logging("INFO", "Purchase Transaction tab is clicked");
+			flag = webDB.waitForElement(CommonUiLocators.OPOTab, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.OPOTab, ElementType.Xpath);
+				logs.logging("INFO", "OPO Tab Is Clicked");
+				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.OPOClose, ElementType.Xpath, 45);
+				if (flag) {
+					logs.logging("INFO", "OPO clicked and navigated successfully");
+
+				}
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Supplier Schedule Order Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateSupplierScheduleOrderPage() {
+		// clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickPurchaseTab();
+		clickSSOTransactionTab();
+	}
+
+	/**
+	 * This method used to Navigate Supplier Schedule Order Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickSSOTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseTransactionTab, ElementType.Xpath);
+			logs.logging("INFO", "Purchase Transaction tab is clicked");
+			flag = webDB.waitForElement(CommonUiLocators.SSOTab, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.SSOTab, ElementType.Xpath);
+				logs.logging("INFO", "Rfq Tab Is Clicked");
+				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
+				if (flag) {
+					logs.logging("INFO", "Rfq clicked and navigated successfully");
+
+				}
+
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Gate Entry Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateToGateEntryDocument() {
+		clickLeftNavigationBar();
+		clickGateEntryTab();
+		flag = webDB.waitForElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
+			logs.logging("INFO", "navigated To GateEntry Transaction screen successfully");
+			flag = webDB.waitForElement(CommonUiLocators.GateEntryInward, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(CommonUiLocators.GateEntryInward, ElementType.Xpath);
+				logs.logging("INFO", "navigated To GateEntry Inward screen successfully");
+				flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending Button Shown");
+				}
+			}
+		}
+	}
+
+	/**
+	 * This method used to Navigate Navigate Gate Entry Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	private void clickGateEntryTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.GateEntry, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(CommonUiLocators.GateEntry, ElementType.Xpath);
+				logs.logging("INFO", "Supply Chain Management Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate Customer Schedule Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateCustomerScheduleScreen() {
+		clickLeftNavigationBar();
+		clickSupplyChainTab();
+		clickSalesTab();
+		clickSalesTransactionTab();
+		flag = webDB.waitForElement(CustomerScheduleLocators.CustomerScheduleNode, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CustomerScheduleLocators.CustomerScheduleNode, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Customer Schedule Screen Sucessfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Setup Purchase Tab
+	 * 
+	 * @author Deepan-GWL
+	 */
+	private void clickSetupPurchaseTab() {
+		flag = webDB.waitForElement(CommonUiLocators.SupplyChainPurchaseSetup, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SupplyChainPurchaseSetup, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SetupPurchase, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(CommonUiLocators.SetupPurchase, ElementType.Xpath);
+				logs.logging("INFO", "Setup Purchase Tab Is Clicked");
+				flag = webDB.waitForElement(CommonUiLocators.BuyerTab, ElementType.Xpath);
+
 			}
 		}
 		Assert.assertTrue(flag);

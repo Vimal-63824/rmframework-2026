@@ -300,7 +300,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(String Item) {
-		return "//td[text()='" + Item + "']/../td[18]";
+		return "//td[text()='" + Item + "']/../td[20]";
 	}
 
 	/** @locatorType Xpath */

@@ -255,4 +255,18 @@ public class CommonUiLocators {
 	public static final String EmployeeLeaveEntryScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[2]/*/li[5]";
 	/** @locatorType Xpath */
 	public static final String ClearIcon = "//button[@id='Clear']";
+	/** @locatorType Xpath */
+	public static final String SSOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[6]";
+	/** @locatorType Xpath */
+	public static final String OPOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[3]";
+	/** @locatorType Xpath */
+	public static final String OPOClose = "//*[@id=\"B2664048724780355848\"]/span";
+	/** @locatorType Xpath */
+	public static final String GateEntryInward = "//span[text()='Supply Chain']/ancestor::li/*/li[5]/*/li[2]/*/li[1]";
+	/** @locatorType XPATH */
+	public static final String SupplyChainPurchaseSetup = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[1]";
+	/** @locatorType XPATH */
+	public static final String SetupPurchase = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[1]/*/li[1]";
+	/** @locatorType XPATH */
+	public static final String BuyerTab = "//label[@for='P367018021_TAB_1']";
 }

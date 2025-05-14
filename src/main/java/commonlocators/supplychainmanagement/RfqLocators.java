@@ -1,5 +1,9 @@
 package commonlocators.supplychainmanagement;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks May 02, 2025
+ */
 public class RfqLocators {
 
 	/** @locatorType Xpath */
@@ -164,8 +168,6 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String HsnField(int i) {
 		return "//*[@id='ig_sup_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[14]";
-
-		// *[@id="ig_sup_line_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[14]
 	}
 
 	/** @locatorType Xpath */
@@ -263,6 +265,6 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String POSuccessMsgClose = "//*[@id=\"t_Alert_Success\"]/div/div[3]/button";
 	/** @locatorType Xpath */
-	public static final String ItmworkflowOK = "//*[@id='B1626605845635418489']";
+	public static final String ItmworkflowOK = "//*[@id=\"B1626605845635418489\"]/span";
 
 }
