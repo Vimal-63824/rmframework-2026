@@ -13,7 +13,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.payroll.PreparePayrollFunctions;
 import utils.ReportLoger;
 
-public class PreparePayrollTest {
+public class PreparePayrollTest extends RoadMapERPTest {
 	private static boolean flag = false;
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
