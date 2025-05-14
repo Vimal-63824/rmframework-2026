@@ -269,6 +269,18 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To Check the Employee Creation Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 22, groups = {
+			"EmployeeMaster" }, description = "22 To Check the Employee Creation Find page with all line wise record")
+	public void VerifyEmployeeCreationFindWithLineWiseRecord() {
+		flag = empMasterFunc.verifyEmployeeCreationFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL
