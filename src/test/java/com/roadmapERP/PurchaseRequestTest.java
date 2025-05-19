@@ -88,6 +88,18 @@ public class PurchaseRequestTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Find the Purchase request with all possible search parameters
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 7, groups = {
+			"PurchaseRequest" }, description = "73 -  Find the Purchase request with all possible search parameters")
+	public void VerifyFindPRWithPossibleSearchParameters() {
+		flag = PRFunc.verifyFindPRWithPossibleSearchParameters();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @param result

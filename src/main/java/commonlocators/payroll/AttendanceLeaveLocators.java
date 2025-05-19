@@ -380,4 +380,46 @@ public class AttendanceLeaveLocators {
 	public static final String AdjmntMigrationPostBtn = "//button[@id='B3438013868412822880']";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationReportBtn = "//button[@id='B700171373885104208']";
+	/** @locatorType Xpath */
+	public static final String FindLeaveLovBtn = "//button[@id='P8185107006_LEAVE_EL_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindYearLovBtn = "//button[@id='P8185107006_YEAR_EL_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindDesignationLovBtn = "//button[@id='P8185107006_DESIGNATION_EL_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindDepartmentLovBtn = "//button[@id='P8185107006_DEPARTMENT_EL_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindUnitLovBtn = "//button[@id='P8185107006_UNIT_EL_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindLeaveResultTable = "//table[@id='5130517933944459660_orig']//tr/td[6]";
+	/** @locatorType Xpath */
+	public static final String FindYearResultTable = "//table[@id='5130517933944459660_orig']//tr/td[10]";
+	/** @locatorType Xpath */
+	public static final String FindDesignationResultTable = "//table[@id='5130517933944459660_orig']//tr/td[15]";
+	/** @locatorType Xpath */
+	public static final String FindDepartmentResultTable = "//table[@id='5130517933944459660_orig']//tr/td[16]";
+	/** @locatorType Xpath */
+	public static final String FindUnitResultTable = "//table[@id='5130517933944459660_orig']//tr/td[14]";
+	/** @locatorType Xpath */
+	public static final String Adj_FindSearchBar = "//input[@id='adjust_detail_search_field']";
+	/** @locatorType Xpath */
+	public static final String Adj_FindLeaveLovBtn = "//button[@id='P8185107006_LEAVE_ADJ_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String Adj_FindYearLovBtn = "//button[@id='P8185107006_YEAR_ADJ_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String Adj_FindDesignationLovBtn = "//button[@id='P8185107006_DESIGNATION_ADJ_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String Adj_FindDepartmentLovBtn = "//button[@id='P8185107006_DEPARTMENT_ADJ_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String Adj_FindUnitLovBtn = "//button[@id='P8185107006_UNIT_ADJ_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String Adj_FindLeaveResultTable = "//table[@id='1355184171300003912_orig']//tr/td[9]";
+	/** @locatorType Xpath */
+	public static final String Adj_FindYearResultTable = "//table[@id='1355184171300003912_orig']//tr/td[15]";
+	/** @locatorType Xpath */
+	public static final String Adj_FindDesignationResultTable = "//table[@id='1355184171300003912_orig']//tr/td[5]";
+	/** @locatorType Xpath */
+	public static final String Adj_FindDepartmentResultTable = "//table[@id='1355184171300003912_orig']//tr/td[6]";
+	/** @locatorType Xpath */
+	public static final String Adj_FindUnitResultTable = "//table[@id='1355184171300003912_orig']//tr/td[7]";
 }
