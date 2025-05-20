@@ -18,6 +18,8 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -26,8 +28,10 @@ import commonfunctions.VariableHandler;
 import commonfunctions.ItemDetailsHandler.POLineDetailsName;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.OpenPoRcLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
+import commonlocators.supplychainmanagement.ShareOfBusinessLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -6041,7 +6045,6 @@ public class PurchaseOrderFunctions {
 		assertTrue(flag);
 	}
 
-
 	/**
 	 * This Method Is Used To Entered the Ordered Quantity
 	 * 
@@ -7252,8 +7255,336 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Filter Search Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 * @param LovButton
+	 * @param Value
+	 * @param i
+	 */
+	@SuppressWarnings("unlikely-arg-type")
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
+		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
+			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SelectType"))) {
+			webDB.selectDropDownByText(LovButton, Value, ElementType.Xpath);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SendTextInput"))) {
+			webDB.sendTextToAnElement(LovButton, Value, ElementType.Xpath);
+		}
+		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
+			clickSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
+		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
+			clickLineSearchButton();
+			commonFunc.hardWait(3000);
+			verifyLineAmendTableValue(i, Value);
+		}
+		clearSearchFilter();
+	}
+
+	/**
+	 * Verify Date From And To
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDateAfterAndBefore() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDtFrom, ElementType.Xpath);
+		webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoDtFrom, commonFunc.getDataFromTestDataSheet("EffFrom"),
+				ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueAfterDate(5, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		clearSearchFilter();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDtTo, ElementType.Xpath);
+		webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+				ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueBeforeDate(5, commonFunc.getDataFromTestDataSheet("EffTo"));
+		clearSearchFilter();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
+		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
+				commonFunc.getDataFromTestDataSheet("EffFrom"), ElementType.Xpath);
+		clickLineSearchButton();
+		commonFunc.hardWait(3000);
+		verifyLineAmendTableValueAfterDate(23, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		clearSearchFilter();
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtTo, ElementType.Xpath);
+		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+				ElementType.Xpath);
+		clickLineSearchButton();
+		commonFunc.hardWait(3000);
+		verifyLineAmendTableValueBeforeDate(23, commonFunc.getDataFromTestDataSheet("EffTo"));
+		clearSearchFilter();
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSearchButton() {
+		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.AmendFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PurchaseOrderPageLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickLineSearchButton() {
+		flag = webDB.waitForElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(OpenPoRcLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.AmendLineFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Clear Search Filter
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clearSearchFilter() {
+		flag = webDB.waitForElement(OpenPoRcLocators.ClearButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(OpenPoRcLocators.ClearButton, ElementType.Xpath);
+			logs.logging("INFO", "Clear Button Is Clicked");
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To PO Filter All Field Working
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void poFilterAllFieldWorking() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		verifyDateAfterAndBefore();
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 2,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 3,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PrNo, commonFunc.getDataFromTestDataSheet("PrNumber"), 26,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PONo, commonFunc.getDataFromTestDataSheet("PONumber"), 6,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.SupplierNameLovButton,
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 9,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.BuyerLovButton,
+				commonFunc.getDataFromTestDataSheet("SelvaKumarB"), 8,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.POTypeSelect,
+				commonFunc.getDataFromTestDataSheet("PoMaterial"), 4,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("SelectType"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId,
+				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 11,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc,
+				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 13,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PO_Status,
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 16,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("SelectType"));
+		commonFunc.logoutUser();
+
 	}
 
 }
