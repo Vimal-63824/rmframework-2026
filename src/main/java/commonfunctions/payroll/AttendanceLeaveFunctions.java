@@ -1,12 +1,16 @@
 package commonfunctions.payroll;
 
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebElement;
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -2897,5 +2901,330 @@ public class AttendanceLeaveFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click find Search Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickFindSearchButtonInLeave() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBar, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click find Search Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickFindSearchButtonInAdjustment() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.AdjustmentFindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.AdjustmentFindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.Adj_FindSearchBar, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Clicked Successfully in Adjustment");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to find Leave Details using Leave In Leave
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Leave
+	 */
+	private void findWithLeaveInLeave(String Leave) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindLeaveLovBtn, Leave);
+		clickFindSearchButtonInLeave();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindLeaveResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Leave)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Leave: " + Leave);
+	}
+
+	/**
+	 * This method used to find Leave Details using Year In Leave
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Year
+	 */
+	private void findWithYearInLeave(String Year) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindYearLovBtn, Year);
+		clickFindSearchButtonInLeave();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindYearResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Year)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Year: " + Year);
+	}
+
+	/**
+	 * This method used to find Leave Details using Designation In Leave
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Designation
+	 */
+	private void findWithDesignationInLeave(String Designation) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindDesignationLovBtn, Designation);
+		clickFindSearchButtonInLeave();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDesignationResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Designation)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Designation: " + Designation);
+	}
+
+	/**
+	 * This method used to find Leave Details using Department In Leave
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Department
+	 */
+	private void findWithDepartmentInLeave(String Department) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindDepartmentLovBtn, Department);
+		clickFindSearchButtonInLeave();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDepartmentResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Department)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Department: " + Department);
+	}
+
+	/**
+	 * This method used to find Leave Details using Unit In Leave
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 */
+	private void findWithUnitInLeave(String Unit) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.FindUnitLovBtn, Unit);
+		clickFindSearchButtonInLeave();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindUnitResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Unit)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Unit: " + Unit);
+	}
+
+	/**
+	 * This method used to find Leave Details using Leave In Adjustment
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Leave
+	 */
+	private void findWithLeaveInAdjustment(String Leave) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindLeaveLovBtn, Leave);
+		clickFindSearchButtonInAdjustment();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindLeaveResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Leave)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Leave in Adjustment: " + Leave);
+	}
+
+	/**
+	 * This method used to find Leave Details using Year In Adjustment
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Year
+	 */
+	private void findWithYearInAdjustment(String Year) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindYearLovBtn, Year);
+		clickFindSearchButtonInAdjustment();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindYearResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Year)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Year in Adjustment: " + Year);
+	}
+
+	/**
+	 * This method used to find Leave Details using Designation In Adjustment
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Designation
+	 */
+	private void findWithDesignationInAdjustment(String Designation) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindDesignationLovBtn, Designation);
+		clickFindSearchButtonInAdjustment();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDesignationResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Designation)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Designation in Adjustment: " + Designation);
+	}
+
+	/**
+	 * This method used to find Leave Details using Department In Adjustment
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Department
+	 */
+	private void findWithDepartmentInAdjustment(String Department) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindDepartmentLovBtn, Department);
+		clickFindSearchButtonInAdjustment();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDepartmentResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Department)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Department in Adjustment: " + Department);
+	}
+
+	/**
+	 * This method used to find Leave Details using Unit In Adjustment
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 */
+	private void findWithUnitInAdjustment(String Unit) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.Adj_FindUnitLovBtn, Unit);
+		clickFindSearchButtonInAdjustment();
+		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindUnitResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Unit)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Unit in Adjustment: " + Unit);
+	}
+
+	/**
+	 * This method used To Check the Leave Adjustment Find page with all line wise
+	 * record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyLeaveAdjustmentFindWithLineWiseRecord() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateLeaveEntryScreen();
+			findWithLeaveInAdjustment(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
+			webDB.navigateToRefresh();
+			findWithYearInAdjustment(commonFunc.getDataFromTestDataSheet("Year202526"));
+			webDB.navigateToRefresh();
+			findWithDesignationInAdjustment(commonFunc.getDataFromTestDataSheet("ChairmanText"));
+			webDB.navigateToRefresh();
+			findWithDepartmentInAdjustment(commonFunc.getDataFromTestDataSheet("QualityText"));
+			webDB.navigateToRefresh();
+			findWithUnitInAdjustment(commonFunc.getDataFromTestDataSheet("Unit1"));
+			webDB.navigateToRefresh();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyLeaveAdjustmentFindWithLineWiseRecord': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used To Check the Leave Entry Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyLeaveEntryFindWithLineWiseRecord() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateLeaveEntryScreen();
+			findWithLeaveInLeave(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
+			webDB.navigateToRefresh();
+			findWithYearInLeave(commonFunc.getDataFromTestDataSheet("Year202526"));
+			webDB.navigateToRefresh();
+			findWithDesignationInLeave(commonFunc.getDataFromTestDataSheet("ChairmanText"));
+			webDB.navigateToRefresh();
+			findWithDepartmentInLeave(commonFunc.getDataFromTestDataSheet("QualityText"));
+			webDB.navigateToRefresh();
+			findWithUnitInLeave(commonFunc.getDataFromTestDataSheet("Unit1"));
+			webDB.navigateToRefresh();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyLeaveEntryFindWithLineWiseRecord': " + e);
+			return false;
+		}
 	}
 }

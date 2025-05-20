@@ -1,5 +1,7 @@
 package commonfunctions.payroll;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -21,6 +23,7 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
+import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -1136,6 +1139,37 @@ public class EmployeeMasterFunctions {
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationProbationComplete': " + e);
+			return false;
+		}
+	}
+	
+	/**
+	 * This method used To Check the Employee Creation Find page with all line wise
+	 * record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyEmployeeCreationFindWithLineWiseRecord() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			findWithZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			webDB.navigateToRefresh();
+			findWithCategory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"));
+			webDB.navigateToRefresh();
+			findWithDesignation(commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"));
+			webDB.navigateToRefresh();
+			findWithDepartment(commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"));
+			webDB.navigateToRefresh();
+			findWithUnit(commonFunc.getDataFromTestDataSheet("Unit1"));
+			webDB.navigateToRefresh();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyEmployeeCreationFindWithLineWiseRecord': " + e);
 			return false;
 		}
 	}
@@ -4252,4 +4286,138 @@ public class EmployeeMasterFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * This method used to click find Search Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickFindSearchButton() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.FindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(EmployeeMasterLocators.FindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(EmployeeMasterLocators.FindSearchBar, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to find Employee Master using Zone
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Zone
+	 */
+	private void findWithZone(String Zone) {
+		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindZoneLovBtn, Zone);
+		clickFindSearchButton();
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindZoneResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Zone)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Zone: " + Zone);
+	}
+
+	/**
+	 * This method used to find Employee Master using Category
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Category
+	 */
+	private void findWithCategory(String Category) {
+		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindCategoryLovBtn, Category);
+		clickFindSearchButton();
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindCategoryResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Category)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Category: " + Category);
+	}
+
+	/**
+	 * This method used to find Employee Master using Designation
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Designation
+	 */
+	private void findWithDesignation(String Designation) {
+		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindDesignationLovBtn, Designation);
+		clickFindSearchButton();
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDesignationResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Designation)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Designation: " + Designation);
+	}
+
+	/**
+	 * This method used to find Employee Master using Department
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Department
+	 */
+	private void findWithDepartment(String Department) {
+		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindDepartmentLovBtn, Department);
+		clickFindSearchButton();
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDepartmentResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Department)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Department: " + Department);
+	}
+
+	/**
+	 * This method used to find Employee Master using Unit
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 */
+	private void findWithUnit(String Unit) {
+		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindUnitLovBtn, Unit);
+		clickFindSearchButton();
+		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindUnitResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equals(Unit)) {
+				flag = false;
+				break a;
+			} else {
+				flag = true;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Unit: " + Unit);
+	}
+
 }

@@ -178,4 +178,20 @@ public class PurchaseRequestLocators {
 	public static final String PRLineDetails_RequiredCertificateLabel = "//label[@id='P161513103003_PRL_TEST_REQ_FLAG_LABEL']";
 	/** @locatorType Xpath */
 	public static final String PRLineDetails_CloseIcon = "//h1[text()='Line Details']/following-sibling::button[@title='Close']";
+	/** @locatorType Xpath */
+	public static final String PRFindClearIcon = "//select[@id='Clear']";
+	/** @locatorType Xpath */
+	public static final String PRFindResultSearchBar = "//input[@id='ld_search_field']";
+	/** @locatorType Xpath */
+	public static final String PRResultTableStatusText = "//div[@data-testid='PR_STATUS_TABLE_TEXT']";
+	/** @locatorType Xpath */
+	public static final String PRResultTablePRType = "//table[@id='2095931872759625206_orig']//tr/td[4]";
+	/** @locatorType Xpath */
+	public static final String PRResultTableUnit = "//table[@id='2095931872759625206_orig']//tr/td[3]";
+	/** @locatorType Xpath */
+	public static final String PRResultTableLocation = "//table[@id='2095931872759625206_orig']//tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String PRResultTableRequestor = "//table[@id='2095931872759625206_orig']//tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String PRResultTableItem = "//table[@id='2095931872759625206_orig']//tr/td[9]";
 }

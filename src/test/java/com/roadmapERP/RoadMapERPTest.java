@@ -1,14 +1,13 @@
 package com.roadmapERP;
 
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 15, 2025
  */
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import commonfunctions.CommonFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
@@ -17,6 +16,7 @@ public class RoadMapERPTest {
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
+	String suiteName;
 
 	/**
 	 * Browser Setup And URL Navigation
@@ -35,7 +35,8 @@ public class RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@AfterClass
-	public void TearDown() {
+	public void TearDown(ITestContext context) {
+		suiteName = context.getCurrentXmlTest().getSuite().getName();
 		webDB.tearDown();
 	}
 
@@ -46,6 +47,6 @@ public class RoadMapERPTest {
 	 */
 	@AfterSuite
 	public void SendMail() {
-		mail.execute("RoadMap ERP Test");
+		mail.execute(suiteName);
 	}
 }

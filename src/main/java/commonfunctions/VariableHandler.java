@@ -185,6 +185,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> OrderStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String> BeforeStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String> CSDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PayrollDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1526,7 +1527,6 @@ public class VariableHandler {
 
 	public static void setSsoDocNum(String data) {
 		SsoDocNum.set(data);
-
 	}
 
 	public static String getOPODocNum() {
@@ -1535,7 +1535,6 @@ public class VariableHandler {
 
 	public static void setOPODocNum(String data) {
 		OPODocNum.set(data);
-
 	}
 
 	public static String getGATEDocNum() {
@@ -1544,16 +1543,16 @@ public class VariableHandler {
 
 	public static void setGATEDocNum(String data) {
 		GATEDocNum.set(data);
-
 	}
-	
+
 	public static String getOrderStockQty() {
 		return OrderStockQty.get();
 	}
-	
+
 	public static void setOrderStockQty(String Data) {
 		OrderStockQty.set(Data);
 	}
+
 	public static String getBeforeStockQty() {
 		return BeforeStockQty.get();
 	}
@@ -1561,12 +1560,20 @@ public class VariableHandler {
 	public static void setBeforeStockQty(String Data) {
 		BeforeStockQty.set(Data);
 	}
-	
+
 	public static String getCSDocNumber() {
 		return CSDocNumber.get();
 	}
 
 	public static void setCSDocNumber(String data) {
 		CSDocNumber.set(data);
+	}
+
+	public static String getPayrollDocNo() {
+		return PayrollDocNo.get();
+	}
+
+	public static void setPayrollDocNo(String Data) {
+		PayrollDocNo.set(Data);
 	}
 }

@@ -269,4 +269,8 @@ public class CommonUiLocators {
 	public static final String SetupPurchase = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[1]/*/li[1]";
 	/** @locatorType XPATH */
 	public static final String BuyerTab = "//label[@for='P367018021_TAB_1']";
+	/** @locatorType Xpath */
+	public static final String PayrollTransactionPayroll = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]";
+	/** @locatorType Xpath */
+	public static final String PrepareProcessPayrollScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[4]";
 }

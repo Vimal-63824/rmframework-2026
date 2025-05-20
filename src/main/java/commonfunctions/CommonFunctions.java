@@ -34,6 +34,7 @@ import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
+import commonlocators.payroll.PreparePayrollLocators;
 import commonlocators.productionplanning.BillOfMaterialsLocators;
 import commonlocators.productionplanning.MRPLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
@@ -2091,9 +2092,7 @@ public class CommonFunctions {
 				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.OPOClose, ElementType.Xpath, 45);
 				if (flag) {
 					logs.logging("INFO", "OPO clicked and navigated successfully");
-
 				}
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2128,9 +2127,7 @@ public class CommonFunctions {
 				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
 				if (flag) {
 					logs.logging("INFO", "Rfq clicked and navigated successfully");
-
 				}
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2158,6 +2155,7 @@ public class CommonFunctions {
 				}
 			}
 		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -2214,6 +2212,46 @@ public class CommonFunctions {
 				logs.logging("INFO", "Setup Purchase Tab Is Clicked");
 				flag = webDB.waitForElement(CommonUiLocators.BuyerTab, ElementType.Xpath);
 
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Payroll - Transaction tab Payroll
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickPayrollTransactionPayrollTab() {
+		flag = webDB.waitForElement(CommonUiLocators.PayrollTransactionPayroll, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PayrollTransactionPayroll, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PayrollTransactionPayroll, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Payroll Transaction Payroll Tab Is Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to navigate to prepare Payroll screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToPrepareProcessPayrollTab() {
+		clickLeftNavigationBar();
+		clickPayrollTab();
+		clickPayrollTransactionTab();
+		clickPayrollTransactionPayrollTab();
+		flag = webDB.waitForElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+			flag = webDB.waitForElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated Successfully to Prepare Process Payroll Screen");
 			}
 		}
 		Assert.assertTrue(flag);

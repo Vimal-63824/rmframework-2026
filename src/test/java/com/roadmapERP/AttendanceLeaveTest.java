@@ -227,6 +227,30 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To Check Leave Entry Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 18, groups = {
+			"Leave" }, description = "24 To Check Leave Entry Find page with all line wise record")
+	public void VerifyLeaveEntryFindWithLineWiseRecord() {
+		flag = attendanceLeaveFunc.verifyLeaveEntryFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Adjustment Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 19, groups = {
+			"Leave Adjustment" }, description = "59 To Check Leave Adjustment Find page with all line wise record")
+	public void VerifyLeaveAdjustmentFindWithLineWiseRecord() {
+		flag = attendanceLeaveFunc.verifyLeaveAdjustmentFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL
