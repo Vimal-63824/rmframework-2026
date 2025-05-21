@@ -59,7 +59,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String OpenPoSearchButton = "//button/span[text()='Search']";
 	/** @locatorType Xpath */
-	public static final String HeaderCheckBox = "//label[text()='Header']";
+	public static final String HeaderCheckBox = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
 	public static final String LineCancelButton = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[last()]/a/span";
 	/** @locatorType Xpath */

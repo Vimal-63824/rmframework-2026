@@ -1,0 +1,65 @@
+package commonlocators.supplychainmanagement;
+
+/**
+ * @author Deepan-GWL, Sakthi-GWL
+ * @company Galaxy Weblinks May 14, 2025
+ */
+public class SetupPurchaseLocators {
+
+	/** @locatorType XPATH */
+	public static final String AddBuyerButton = "//button[@id='B247739678189345495']";
+	/** @locatorType XPATH */
+	public static final String TickBuyerButton = "//button[@id='B247740005191345496']";
+	/** @locatorType XPATH */
+	public static final String BuyerNameTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[1]";
+	/** @locatorType XPATH */
+	public static final String EmployeeIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[2]";
+	/** @locatorType XPATH */
+	public static final String EffFromTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[4]";
+	/** @locatorType XPATH */
+	public static final String BuyerTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/thead/tr/th[3]";
+	/** @locatorType XPATH */
+	public static final String EffToIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[5]";
+	/** @locatorType XPATH */
+	public static final String BuyerNameInput = "//input[@id='C7569265267698351335']";
+	/** @locatorType XPATH */
+	public static final String EmployeeLovButton = "//button[@id='C7569265343355351336_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String EffFromToday = "//div[@role='region']/button[@aria-controls='C7569265567915351338_input']";
+	/** @locatorType XPATH */
+	public static final String TableTop = "//div[@id='C']/table/tbody/tr/td[1]";
+	/** @locatorType XPATH */
+	public static final String EffToInput = "//input[@id='C7569265663973351339_input']";
+	/** @locatorType XPATH */
+	public static final String EffToToday = "//div[@role='region']/button[@aria-controls='C7569265663973351339_input']";
+	/** @locatorType XPATH */
+	public static final String BuyerSearch = "//input[@aria-label='Search']";
+	/** @locatorType XPATH */
+	public static final String UpdateButton = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]/a";
+	/** @locatorType XPATH */
+	public static final String AdminCheckbox = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[7]/div/input";
+	/** @locatorType XPATH */
+	public static final String ActiveCheckbox = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[8]/div/input";
+	/** @locatorType XPATH */
+	public static final String RemoveFilter = "//button[@title='Remove Filter']";
+	/** @locatorType XPATH */
+	public static final String FirstBuyerName = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[1]";
+	/** @locatorType XPATH */
+	public static final String UpdateHeader = "//h1[text()='Update']";
+	/** @locatorType XPATH */
+	public static final String UpdateIframe = "//iframe[@title='Update']";
+	/** @locatorType XPATH */
+	public static final String EmployeeNameSelect = "//select[@id='P36701802101_EMPLOYEE']";
+	/** @locatorType XPATH */
+	public static final String EmployeeEffFrom = "//input[@id='P36701802101_EFF_FROM_input']";
+	/** @locatorType XPATH */
+	public static final String EmployeeEffTo = "//input[@id='P36701802101_EFF_TO_input']";
+	/** @locatorType XPATH */
+	public static final String OkButton = "//button[@id='B3305686721941456768']";
+
+	/** @locatorType XPATH */
+	public static final String BuyerName(String Name) {
+		return "//a[text()='" + Name + "']";
+	}
+
+}

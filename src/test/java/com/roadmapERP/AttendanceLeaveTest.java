@@ -13,7 +13,7 @@ import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.ReportLoger;
 
 public class AttendanceLeaveTest extends RoadMapERPTest {
-	private static boolean flag = false;
+	private boolean flag = false;
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static AttendanceLeaveFunctions attendanceLeaveFunc = new AttendanceLeaveFunctions();

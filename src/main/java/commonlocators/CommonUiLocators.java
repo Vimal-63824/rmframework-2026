@@ -53,7 +53,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseTransactionTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
+	public static final String PurchaseOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[11]";
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li/*/a[text()='Purchase Request(PR)']";
 	/** @locatorType Xpath */
@@ -273,4 +273,57 @@ public class CommonUiLocators {
 	public static final String PayrollTransactionPayroll = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]";
 	/** @locatorType Xpath */
 	public static final String PrepareProcessPayrollScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[4]";
+	/** @locatorType XPATH */
+	public static final String SysAdminstrationTab = "//span[text()='Sys. Administration']/ancestor::li";
+	/** @locatorType XPATH */
+	public static final String SysAdminTransaction = "//span[text()='Sys. Administration']/ancestor::li/*/li[2]";
+	/** @locatorType XPATH */
+	public static final String EmployeeQuickEntryTab = "//span[text()='Sys. Administration']/ancestor::li/*/li[2]/*/li[2]";
+	/** @locatorType XPATH */
+	public static final String AddEmployeeButton = "//button[@id='B258815408672299509']";
+	/** @locatorType XPATH */
+	public static final String ApprovedSupplierPo = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[1]/*/li[2]";
+	/** @locatorType XPATH */
+	public static final String AddSupplierButton = "//button[@id='B1183371576871794287']";
+	/** @locatorType XPATH */
+	public static final String ShareOfBusiness = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[1]";
+	/** @locatorType XPATH */
+	public static final String AddShareOfBusiness = "//button[@id='B2080709082065841085']";
+	/** @locatorType XPATH */
+	public static final String BusFunctionSerachBox = "//input[@id='P0_SEARCH_input']";
+	/** @locatorType XPATH */
+	public static final String Sales_Inv_Pend_Btn = "//button[contains(@id,'B986356987649170102')]";
+	/** @locatorType XPATH */
+	public static final String DebitNote_Add_Icon = "//button[@id='B1012787680560179762']";
+	/** @locatorType XPATH */
+	public static final String Proforma_FindPage_Add_Btn = "//button[contains(@id,'B2133960405315551418')]";
+	/** @Locator XPATH */
+	public static final String GateEntryPendingIcon = "//button[@id='B1166918765449991606']";
+	/** @Locator XPATH */
+	public static final String CreditNote_Pending_Icon = "//button[@id='B1779749669062514607']";
+	/** @Locator XPATH */
+	public static final String Rework_Pending_Icon = "//button[@id='B1256995407744376701']";
+	/** @Locator XPATH */
+	public static final String ReworkOrd_Completion_Pend_Icon = "//button[@id='B1256998966041376736']";
+	/** @Locator XPATH */
+	public static final String FindScreenItemField = "//input[@id='P3670200_ITEM_1']";
+	/** @Locator XPATH */
+	public static final String AddPLusButton = "//span[@class='t-Icon fa  fa-plus']";
+	/** @Locator XPATH */
+	public static final String AddButton = "//button[@id='B1249682071652311227']";
+	/** @locatorType Xpath */
+	public static final String unitLov = "//*[@id='P367194_UNIT_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ItemLovA = "//*[@id='P367194_ITEM_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String SearchButton = "//*[@id='B1810147153696003981']";
+	/** @locatorType Xpath */
+	public static final String SearchedItemDrillDown = "//*[@id=\"11779181059649578874_orig\"]/tbody/tr[2]/td[2]/a";
+	/** @locatorType Xpath */
+	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
+	/** @locatorType Xpath */
+	public static final String CustomerAssoFlag = "//label[text()='Customer Associate']";
+	/** @locatorType Xpath */
+	public static final String activeButton = "//*[@id='B147500912587778117']";
+
 }

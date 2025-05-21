@@ -942,4 +942,78 @@ public class MaterialReceiptVoucherFunctions {
 		flag = webDB.isElementSelected(CommonUiLocators.AutoPostMRVCheckBox, ElementType.Xpath);
 		return flag;
 	}
+	/**
+	 * This Method Used To Verify Rework Completion Post Material Receipt
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyReworkCompletionPostMaterialReceipt() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigateToMaterialReceiptVoucher();
+		verifyPendingReworkCompletionMRV(VariableHandler.getRWCdocno());
+		verifyReceiptLocatorsAndPutAway();
+		clickTickAndPostIcon();
+//		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+//				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+		commonFunc.logoutUser();
+	}
+	/**
+	 * Verify Pending Inspection Documents
+	 * 
+	 * @author Deepan-GWL
+	 * @param DocNo
+	 */
+	public void verifyPendingReworkCompletionMRV(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Insurance IS Displayed");
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Mrv Frame Is Displayed");
+					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
+						webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField,
+								VariableHandler.getRWCdocno(), ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Go Button Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Mrv CheckBox Is Displayed");
+								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
+										ElementType.Xpath);
+								flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Create Qc Doc Is Displayed");
+									webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
+											ElementType.Xpath);
+									storeMRVDocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

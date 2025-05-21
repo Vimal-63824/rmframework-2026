@@ -790,4 +790,88 @@ public class DBCommonFunctions {
 		return value;
 	}
 
+	/**
+	 * Rework Order Header Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param RWNo
+	 * @param Header Value
+	 * @return String Value
+	 */
+	public String RWHeaderDetails(String RWNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("ReworkOrderHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("RWNO"), RWNo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Rework Order Completion Header Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param RWCNo
+	 * @param Header Value
+	 * @return String Value
+	 */
+	public String RWCHeaderDetails(String RWCNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("ReworkCompletionQuery"),
+				commonFunc.getDataFromTestDataSheet("RWCNO"), RWCNo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * DebitNote Header Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param DBNo
+	 * @param Header Value
+	 * @return String Value
+	 */
+	public String DBHeaderDetails(String DBNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("DebitNoteHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("DBNO"), DBNo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Price List DataBase
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SalesPriceList
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String SalesPriceListdetails(String SalesPriceList, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PricelistQuery"),
+				commonFunc.getDataFromTestDataSheet("PlDocNo"), SalesPriceList, DetailsValue);
+		return value;
+
+	}
+
+	/**
+	 * Sales Catalogue Price
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SalesCataloguePrice
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String SalesCataloguePrice(String SalesCataloguePrice, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("CatalogueQuery"),
+				commonFunc.getDataFromTestDataSheet("CatDocNo"), SalesCataloguePrice, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * Sales Std Price
+	 *
+	 * @author Kowshik-RMITS
+	 * @param SalesStdPrice
+	 * @param DetailsValue
+	 * @return
+	 */
+	public String SalesStandardPrice(String SalesStdPrice, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("StdQuery"),
+				commonFunc.getDataFromTestDataSheet("StdItemUniq"), SalesStdPrice, DetailsValue);
+		return value;
+	}
 }

@@ -383,4 +383,51 @@ public class PurchaseOrderPageLocators {
 	public static final String ContractPrice = "//div[contains(text(),'Contract price not found.')]";
 	/** @locatorType Xpath */
 	public static final String ContractPriceOkButton = "//button[text()='OK']";
+	/** @locatorType Xpath */
+	public static final String LocId = "//button[@id='P1615131061_LOCATION_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String Unit = "//button[@id='P1615131061_UNIT_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PrNo = "//button[@id='P1615131061_PR_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PONo = "//button[@id='P1615131061_DOC_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ClassLovButton = "//button[@id='P1615131061_CLASS_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String POTypeSelect = "//select[@id='P1615131061_DOC_TYPE']";
+	/** @locatorType Xpath */
+	public static final String SupplierNameLovButton = "//button[@id='P1615131061_SUPPLIER_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String SubClassLovButton = "//button[@id='P1615131061_SUB_CLASS_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PoDtFrom = "//input[@id='P1615131061_DATE_FROM_input']";
+	/** @locatorType Xpath */
+	public static final String PoDtTo = "//input[@id='P1615131061_DATE_TO_input']";
+	/** @locatorType Xpath */
+	public static final String BuyerLovButton = "//button[@id='P1615131061_BUYER_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ItemId = "//button[@id='P1615131061_PROD_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ItemDesc = "//input[@id='P1615131061_PROD_DESC']";
+	/** @locatorType Xpath */
+	public static final String RequestDtFrom = "//input[@id='P1615131061_REQ_DATE_FM_input']";
+	/** @locatorType Xpath */
+	public static final String RequestDtTo = "//input[@id='P1615131061_REQ_DATE_TO_input']";
+	/** @locatorType Xpath */
+	public static final String PO_Status = "//select[@id='P1615131061_STATUS']";
+	/** @locatorType Xpath */
+	public static final String AmendFindTable = "//table[@id='7919620509087124596_orig']/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String AmendLineFindTable = "//table[@id='2311620220686822224_orig']/tbody/tr[2]/td[1]";
+
+	/** @locatorType Xpath */
+	public static final String AmendLineFindTableData(int i) {
+		return "//table[@id='2311620220686822224_orig']/tbody/tr/td[" + i + "]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String AmendFindTableData(int i) {
+		return "//table[@id='7919620509087124596_orig']/tbody/tr/td[" + i + "]";
+	}
+
 }
