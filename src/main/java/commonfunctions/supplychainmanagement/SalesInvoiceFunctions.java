@@ -6852,4 +6852,992 @@ public class SalesInvoiceFunctions {
 			commonFunc.hardWait(1000);
 		}
 	}
+	/**
+	 * This Method Used For clicking Rework Order Pending
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingReworkOrderPending() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pending_Icon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Rework_Pending_Icon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pend_SalesRtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Icon Clicked Successfully");
+				flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pend_SalesRtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.Rework_Pend_SalesRtn, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pend_Iframe, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Rework Sales Return Pending Icon Clicked Successfully");
+					}
+				}
+			}
+		}
+		commonFunc.checkRefreshCellsDisappear();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting Invoice No and Create Rework salesRtn
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingInvoiceNoandCreateReworksalesRtn(String CNdocno) {
+		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Iframe, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_Inv_Lov_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(SalesInvoiceLocators.RW_Pend_Inv_Lov_Btn, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RW_Pend_Inv_Lov_Btn, CNdocno);
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Iframe, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_Search_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_Search_Btn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(4000);
+				String RtnQty = webDB.getTextFromElement(SalesInvoiceLocators.RW_Get_Rej_Qty, ElementType.Xpath);
+				logs.logging("INFO", "Get Reject Qty Is: " + RtnQty);
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Rw_Rej_Qty, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(SalesInvoiceLocators.Rw_Rej_Qty, ElementType.Xpath);
+					webDB.sendTextToAnElement(SalesInvoiceLocators.RW_Rej_Qty_input, RtnQty, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					webDB.moveToElement(SalesInvoiceLocators.RW_Pend_CheckBox, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(SalesInvoiceLocators.RW_Pend_CheckBox, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_CreateRework_Btn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_CreateRework_Btn, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SalesInvoiceLocators.RW_Create_OK_Btn, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RW_Create_OK_Btn, ElementType.Xpath);
+							webDB.switchToDefaultContent();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(2000);
+							String RWdocno = webDB.getTextFromElement(SalesInvoiceLocators.RW_Doc_No,
+									ElementType.Xpath);
+							logs.logging("INFO", "Get RW DocNo Is: " + RWdocno);
+							VariableHandler.setRWdocno(RWdocno);
+							commonFunc.hardWait(3000);
+							checkReworkOrderHeaderDetailsDataBaseValuesWithUIValues();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(SalesInvoiceLocators.RW_Post_btn, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Pending Sales Return Rework Order Document Created");
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Clicking Rework Order Post Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ClickingReworkOrderPostButton() {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RW_Post_btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RW_Post_btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For create Repair Rework order for Sales return rejection
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createRepairReworkorderforSalesreturnrejection() {
+		verifyCreateSalesInvoiceDomesticLocalCustomer();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToCreditNoteScreen();
+		ClickingCreditNotePendingIcon();
+		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
+		InsertingRejectedQtyCNPrefixCreditNoteReasonCreInvoiceNoUpdNarration(
+				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
+				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"),
+				commonFunc.getDataFromTestDataSheet("CR_Acpt_Qty"));
+		CreditNoteclickPostButton();
+		creditnoteforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
+		flag = commonFunc.logoutUser();
+		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		mrvFunc.verifyCreditNotePostMaterialReceipt();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPending();
+		InsertingInvoiceNoandCreateReworksalesRtn(VariableHandler.getCNdocno());
+		ClickingReworkOrderPostButton();
+		ReworkOrderforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRWdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToReworkOrderCompletion();
+		ClickingReworkOrderCompletionPendingIcon();
+		InsertingRWCompletionDocNoandCreateTheRecord(VariableHandler.getRWdocno());
+		InsertingResourceUsage(VariableHandler.getRWdocno(), commonFunc.getDataFromTestDataSheet("WorkCenter"),
+				commonFunc.getDataFromTestDataSheet("Process"), commonFunc.getDataFromTestDataSheet("Resource"));
+		InsertingLocatorItem(commonFunc.getDataFromTestDataSheet("ReworkLocator"));
+		ClickingReworkOrderCompletionPostButton();
+		ReworkOrderCompletionforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRWCdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWCdocno());
+		commonFunc.logoutUser();
+		checkReworkCompletionApprovedStatusDetailsDataBaseValuesWithUIValues();
+		commonFunc.checkRefreshCellsDisappear();
+		mrvFunc.verifyReworkCompletionPostMaterialReceipt();
+		checkReworkCompletionPostedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions.verifyAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
+				webDB.getDataFromProperties("LocalCustomer"));
+		return flag;
+	}
+
+	/**
+	 * Verify Rework Order forwardForApproval
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ReworkOrderforwardForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.ForwardApprovalLov,
+					commonFunc.getDataFromTestDataSheet("SI_HOD"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(SalesInvoiceLocators.RW_Forward_OK_btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RW_Forward_OK_btn, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pending_Icon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To RW Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Clicking Rework Order Completion Pending Icon
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ClickingReworkOrderCompletionPendingIcon() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.ReworkOrd_Completion_Pend_Icon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.ReworkOrd_Completion_Pend_Icon, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Pend_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Rework Order Completion Pending Icon Clicked Sucessfully");
+			}
+		}
+		commonFunc.checkRefreshCellsDisappear();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting RW Completion DocNo and Create The Record
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingRWCompletionDocNoandCreateTheRecord(String RWdocno) {
+		webDB.switchToFrame(SalesInvoiceLocators.RWC_Pend_Iframe, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Doc_No_Lov_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RWC_Doc_No_Lov_Btn, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RWC_Doc_No_Lov_Btn, RWdocno);
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.RWC_Pend_Iframe, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Pend_Search_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RWC_Pend_Search_Btn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				String RWCReworkQty = webDB.getTextFromElement(SalesInvoiceLocators.RWC_Pend_Rework_Column,
+						ElementType.Xpath);
+				logs.logging("INFO", "Get Reject Qty Is: " + RWCReworkQty);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Pend_Repair_Column, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(SalesInvoiceLocators.RWC_Pend_Repair_Column, ElementType.Xpath);
+					webDB.sendTextToAnElement(SalesInvoiceLocators.RWC_Pend_Repair_input, RWCReworkQty,
+							ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					webDB.moveToElement(SalesInvoiceLocators.RWC_Pend_CheckBox, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(SalesInvoiceLocators.RWC_Pend_CheckBox, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Pend_Save_Icon, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.RWC_Pend_Save_Icon, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Create_Completion_Btn, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RWC_Create_Completion_Btn, ElementType.Xpath);
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Create_OK_Btn, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesInvoiceLocators.RWC_Create_OK_Btn, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+								if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.RWC_Close_Toast_Msg,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(SalesInvoiceLocators.RWC_Close_Toast_Msg,
+											ElementType.Xpath);
+									commonFunc.hardWait(2000);
+									String RWCPdocno = webDB.getDomPropertyFromElement(SalesInvoiceLocators.RWC_Doc_No,
+											ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+									logs.logging("INFO", "Get RWC DocNo Is: " + RWCPdocno);
+									VariableHandler.setRWCdocno(RWCPdocno);
+									commonFunc.hardWait(2000);
+									checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues();
+									commonFunc.hardWait(2000);
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Rework Order Completion Record Created From Pending");
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting RW Completion Scrap DocNo and Create The
+	 * Record
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingRWCompletionDocNoandScrapCreateTheRecord(String RWdocno) {
+		webDB.switchToFrame(SalesInvoiceLocators.RWC_Pend_Iframe, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Doc_No_Lov_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RWC_Doc_No_Lov_Btn, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RWC_Doc_No_Lov_Btn, RWdocno);
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.RWC_Pend_Iframe, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Pend_Search_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RWC_Pend_Search_Btn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				String RWCReworkQty = webDB.getTextFromElement(SalesInvoiceLocators.RWC_Pend_Rework_Column,
+						ElementType.Xpath);
+				logs.logging("INFO", "Get Reject Qty Is: " + RWCReworkQty);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Scrap_Qty_Column, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(SalesInvoiceLocators.RWC_Scrap_Qty_Column, ElementType.Xpath);
+					webDB.sendTextToAnElement(SalesInvoiceLocators.RWC_Scrap_Qty_Input, RWCReworkQty,
+							ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					webDB.moveToElement(SalesInvoiceLocators.RWC_Pend_CheckBox, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(SalesInvoiceLocators.RWC_Pend_CheckBox, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Pend_Save_Icon, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.RWC_Pend_Save_Icon, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Create_Completion_Btn, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RWC_Create_Completion_Btn, ElementType.Xpath);
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Create_OK_Btn, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesInvoiceLocators.RWC_Create_OK_Btn, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+								if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.RWC_Close_Toast_Msg,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(SalesInvoiceLocators.RWC_Close_Toast_Msg,
+											ElementType.Xpath);
+									commonFunc.hardWait(2000);
+									String RWCPdocno = webDB.getDomPropertyFromElement(SalesInvoiceLocators.RWC_Doc_No,
+											ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+									logs.logging("INFO", "Get RWC DocNo Is: " + RWCPdocno);
+									VariableHandler.setRWCdocno(RWCPdocno);
+									commonFunc.hardWait(2000);
+									checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues();
+									commonFunc.hardWait(2000);
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Rework Order Completion Record Created From Pending");
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting Resource Usage
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingResourceUsage(String RWdocno, String WorkCenter, String Process, String Resource) {
+		flag = webDB.waitForElement(SalesInvoiceLocators.ResourceUsageTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.ResourceUsageTab, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.ResourceUsageAdd_Icon, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.ResourceUsageAdd_Icon, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.ResourceUsage_RW_Seq_No, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.ResourceUsage_RW_Seq_No, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.ResourceUsage_RW_Seq_No_Lov, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.ResourceUsage_RW_Seq_No_Lov, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.ResourceUsage_RW_Seq_No_Lov,
+								RWdocno);
+						webDB.pressTabKey();
+						commonFunc.hardWait(2000);
+						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.WorkCenter_Lov_btn, WorkCenter);
+						webDB.pressTabKey();
+						commonFunc.hardWait(2000);
+						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Proc_Lov_Btn, Process);
+						webDB.pressTabKey();
+						commonFunc.hardWait(2000);
+						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Resource_Lov_Btn, Resource);
+						commonFunc.hardWait(2000);
+						webDB.pressTabKey();
+						flag = webDB.waitForElement(SalesInvoiceLocators.RWC_FromDate_Today, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RWC_FromDate_Today, ElementType.Xpath);
+							commonFunc.hardWait(2000);
+							webDB.clickAnElement(SalesInvoiceLocators.RWC_FromDate_Done, ElementType.Xpath);
+							commonFunc.hardWait(2000);
+							webDB.pressTabKey();
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(SalesInvoiceLocators.RWC_ToDate_Next, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesInvoiceLocators.RWC_ToDate_Next, ElementType.Xpath);
+								commonFunc.hardWait(2000);
+								webDB.clickAnElement(SalesInvoiceLocators.RWC_ToDate_Done, ElementType.Xpath);
+								webDB.pressTabKey();
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Line_save_Icon, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(SalesInvoiceLocators.RWC_Line_save_Icon, ElementType.Xpath);
+									commonFunc.checkRefreshCellsDisappear();
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO",
+												"Resource Usage Inserting Workcenter, Process, Resource Updated");
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting Locator Item
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingLocatorItem(String ReworkLocator) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Comp_Details, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RWC_Comp_Details, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			String RWCComplQty = webDB.getTextFromElement(SalesInvoiceLocators.RWC_Compl_Qty, ElementType.Xpath);
+			logs.logging("INFO", "Get Compl Qty Is: " + RWCComplQty);
+			commonFunc.hardWait(2000);
+			webDB.moveToElement(SalesInvoiceLocators.RWC_Locator_Icon, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			webDB.clickAnElement(SalesInvoiceLocators.RWC_Locator_Icon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.RWC_Locator_Iframe, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Locator_Add_icon, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RWC_Locator_Add_icon, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Locator_Column, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.RWC_Locator_Column, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RWC_Locator_Column_Lov,
+							ReworkLocator);
+					webDB.switchToFrame(SalesInvoiceLocators.RWC_Locator_Iframe, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					verifyAddTableSpecs(SalesInvoiceLocators.RWC_Locator_Qty_Column,
+							SalesInvoiceLocators.RWC_Locator_Qty_Input, RWCComplQty);
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Locator_Save_Icon, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.RWC_Locator_Save_Icon, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Locator_Close_Toast_Msg,
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RWC_Locator_Close_Toast_Msg, ElementType.Xpath);
+							commonFunc.hardWait(2000);
+							webDB.pressEscapeKey();
+							webDB.switchToDefaultContent();
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Loactor Inserted And Cre.Journal Clicked Sucessfully");
+								}
+
+							}
+
+						}
+					}
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Clicking Create Journal
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ClickingReworkCompletionCreatejournal() {
+		commonFunc.hardWait(3000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.Scrap_Details_Tab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Scrap_Details_Tab, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			GetUIScrapItemAndwriteScrapItemColumnInExcelSheet(webDB.getDataFromProperties("LocalCustomer"));
+			commonFunc.hardWait(3000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Cre.Journal Clicked Sucessfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method used For Get UI Scarp Item And Write Scarp Item In Excel Sheet
+	 * 
+	 * @author Vimal -RMITS
+	 * @param FilePath
+	 * @param SheetName
+	 * @param i
+	 * @param Item
+	 */
+	public void GetUIScrapItemAndwriteScrapItemColumnInExcelSheet(String SheetName) {
+		ArrayList<String> ArrayList = new ArrayList<String>();
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemMultiples = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < itemMultiples.length; i++) {
+			String Item = itemMultiples[i][1];
+			if (!Item.equals("")) {
+				GetUIScrapItemColumnAndwriteScrapItemColumnInExcelSheet(Filepath, SheetName, i);
+				commonFunc.hardWait(3000);
+				salesOrderFunctions.ScrapStockQtyUpdateInExcelSI(i, ArrayList, SheetName);
+				commonFunc.hardWait(3000);
+			}
+		}
+	}
+	/**
+	 * This Method used For Get UI Scarp Item And Write Scarp Item In Excel Sheet
+	 * 
+	 * @author Vimal -RMITS
+	 * @param FilePath
+	 * @param SheetName
+	 * @param i
+	 * @param Item
+	 */
+	public void GetUIScrapItemColumnAndwriteScrapItemColumnInExcelSheet(String FilePath, String SheetName, int i) {
+		commonFunc.checkRefreshCellsDisappear();
+		String ScrapItem = webDB.getDriver().findElement(By.xpath(SalesInvoiceLocators.ScrapItemTable(i - 3)))
+				.getText();
+		logs.logging("INFO", "Get Text Unit Cost For This Item Is : " + ScrapItem);
+		excelUtils.writeDataInExcel(FilePath, SheetName, i, 38, ScrapItem);
+
+	}
+	/**
+	 * This Method Used For Clicking Rework Order Post Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ClickingReworkOrderCompletionPostButton() {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RWC_Post_Btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Rework Order Completion forwardForApproval
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void ReworkOrderCompletionforwardForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.ForwardApprovalLov,
+					commonFunc.getDataFromTestDataSheet("SI_HOD"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(SalesInvoiceLocators.RW_Forward_OK_btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.RW_Forward_OK_btn, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesInvoiceLocators.ReworkOrd_Completion_Pend_Icon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To RW Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For create Scrapr Rework order for Sales return rejection
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createScrapReworkorderforSalesreturnrejection() {
+		verifyCreateSalesInvoiceDomesticLocalCustomer();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToCreditNoteScreen();
+		ClickingCreditNotePendingIcon();
+		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
+		InsertingRejectedQtyCNPrefixCreditNoteReasonCreInvoiceNoUpdNarration(
+				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
+				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"),
+				commonFunc.getDataFromTestDataSheet("CR_Acpt_Qty"));
+		CreditNoteclickPostButton();
+		creditnoteforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
+		flag = commonFunc.logoutUser();
+		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		mrvFunc.verifyCreditNotePostMaterialReceipt();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPending();
+		InsertingInvoiceNoandCreateReworksalesRtn(VariableHandler.getCNdocno());
+		ClickingReworkOrderPostButton();
+		ReworkOrderforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRWdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToReworkOrderCompletion();
+		ClickingReworkOrderCompletionPendingIcon();
+		InsertingRWCompletionDocNoandScrapCreateTheRecord(VariableHandler.getRWdocno());
+		InsertingResourceUsage(VariableHandler.getRWdocno(), commonFunc.getDataFromTestDataSheet("WorkCenter"),
+				commonFunc.getDataFromTestDataSheet("Process"), commonFunc.getDataFromTestDataSheet("Resource"));
+		ClickingReworkCompletionCreatejournal();
+		ClickingReworkOrderCompletionPostButton();
+		ReworkOrderCompletionforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRWCdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWCdocno());
+		commonFunc.logoutUser();
+		checkReworkCompletionApprovedStatusDetailsDataBaseValuesWithUIValues();
+		commonFunc.checkRefreshCellsDisappear();
+		mrvFunc.verifyReworkCompletionPostMaterialReceipt();
+		checkReworkCompletionPostedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions.verifyScrapAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
+				webDB.getDataFromProperties("LocalCustomer"));
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Rework Order Header Details UI Values With
+	 * Database Values
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkReworkOrderHeaderDetailsDataBaseValuesWithUIValues() {
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Header_LocID, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBLocIDColumn")));
+		logs.logging("INFO", "Header Detail LocID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Header_Unit, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBUnitColumn")));
+		logs.logging("INFO", "Header Detail Unit Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Header_Rework_Ord_Pfx, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBPfxColumn")));
+		logs.logging("INFO", "Header Detail Rework Order Pfx Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Document_No, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBOrderNoColumn")));
+		logs.logging("INFO", "Header Detail  Document no With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Item_Field, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBItemColumn")));
+		logs.logging("INFO", "Header Detail Item Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Item_Desc_Field, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBItemDescColumn")));
+		logs.logging("INFO", "Header Detail Item Desc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Lot_Field, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBLotColumn")));
+		logs.logging("INFO", "Header Detail Lot Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Source_Doc_No, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBSourceDocColumn")));
+		logs.logging("INFO", "Header Detail Source Doc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Sou_Pfx, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBSourceDocPfxColumn")));
+		logs.logging("INFO", "Header Detail Source Prefix Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RW_Qty_Field, ElementType.Xpath),
+				dbCommonFunctions.RWHeaderDetails(VariableHandler.getRWdocno(),
+						commonFunc.getDataFromTestDataSheet("RWDBQtyColumn")));
+		logs.logging("INFO", "Header Detail Rework Qty Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Is Used To Verify Rework Order Header Details UI Values With
+	 * Database Values
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues() {
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RWC_Header_LocID, ElementType.Xpath),
+				dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+						commonFunc.getDataFromTestDataSheet("RWCDBLocIDColumn")));
+		logs.logging("INFO", "Header Detail LocID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RWC_Header_Unit, ElementType.Xpath),
+				dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+						commonFunc.getDataFromTestDataSheet("RWCDBUnitColumn")));
+		logs.logging("INFO", "Header Detail Unit Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SalesInvoiceLocators.RWC_Document_No, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+						commonFunc.getDataFromTestDataSheet("RWCDBOrderNoColumn")));
+		logs.logging("INFO", "Header Detail Rework Order Pfx Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RWC_Item_Field, ElementType.Xpath),
+				dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+						commonFunc.getDataFromTestDataSheet("RWCDBItemColumn")));
+		logs.logging("INFO", "Header Detail  Document no With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SalesInvoiceLocators.RWC_SourceWH_Field, ElementType.Xpath),
+				dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+						commonFunc.getDataFromTestDataSheet("RWCDBSourceWHColumn")));
+		logs.logging("INFO", "Header Detail Item Matched With DataBase Values");
+		commonFunc.hardWait(1000);
+		checkReworkCompletionDraftStatusDetailsDataBaseValuesWithUIValues();
+	}
+
+	/**
+	 * This Method Used For Check Rework Completion Draft Status Details DataBase
+	 * Values WithUIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkReworkCompletionDraftStatusDetailsDataBaseValuesWithUIValues() {
+		String RWCDocumentStatus = dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+				commonFunc.getDataFromTestDataSheet("RWCDBStatusColumn"));
+		salesOrderFunctions.verifyAssertionBothValues(RWCDocumentStatus,
+				commonFunc.getDataFromTestDataSheet("RWCDBDraftColumn"));
+		logs.logging("INFO", "Verified Rework Completion Document Status Is " + RWCDocumentStatus
+				+ " Against This Rework Completion Number " + VariableHandler.getRWCdocno());
+		commonFunc.hardWait(1000);
+	}
+
+	/**
+	 * This Method Used For Check Rework Completion Posted Status Details DataBase
+	 * Values WithUIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkReworkCompletionPostedStatusDetailsDataBaseValuesWithUIValues() {
+		String RWCDocumentStatus = dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+				commonFunc.getDataFromTestDataSheet("RWCDBStatusColumn"));
+		salesOrderFunctions.verifyAssertionBothValues(RWCDocumentStatus,
+				commonFunc.getDataFromTestDataSheet("RWCDBPostedColumn"));
+		logs.logging("INFO", "Verified Rework Completion Document Status Is " + RWCDocumentStatus
+				+ " Against This Rework Completion Number " + VariableHandler.getRWCdocno());
+		commonFunc.hardWait(1000);
+	}
+
+	/**
+	 * This Method Used For Check Rework Completion Approved Status Details DataBase
+	 * Values WithUIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkReworkCompletionApprovedStatusDetailsDataBaseValuesWithUIValues() {
+		String RWCDocumentStatus = dbCommonFunctions.RWCHeaderDetails(VariableHandler.getRWCdocno(),
+				commonFunc.getDataFromTestDataSheet("RWCDBStatusColumn"));
+		salesOrderFunctions.verifyAssertionBothValues(RWCDocumentStatus,
+				commonFunc.getDataFromTestDataSheet("RWCDBApprovedColumn"));
+		logs.logging("INFO", "Verified Rework Completion Document Status Is " + RWCDocumentStatus
+				+ " Against This Rework Completion Number " + VariableHandler.getRWCdocno());
+		commonFunc.hardWait(1000);
+	}
+	/**
+	 * This Method Used For Inserting Rejected Qty CNPrefix CreditNoteReason
+	 * CreInvoiceNo UpdNarration CreateJour And Post
+	 * 
+	 * @author Vimal - RMITS
+	 * @param CR_CN_Prefix
+	 * @param CR_Return_Reason
+	 */
+	public void InsertingRejectedQtyCNPrefixCreditNoteReasonCreInvoiceNoUpdNarration(String CR_CN_Prefix,
+			String CR_Return_Reason, String CR_Acpt_Qty) {// TODO
+		flag = webDB.waitForElement(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, CR_CN_Prefix);
+			flag = webDB.waitForElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_Reason_Lov_Btn, CR_Return_Reason);
+				flag = webDB.waitForElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					checkCreditNoteHeaderDetailsDataBaseValuesWithUIValues();
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.CR_Cre_Inv_Btn, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO",
+								"CreditNote Prefix , Return Reason Inserted and Save Icon Clicked Sucessfully");
+						flag = webDB.waitForElement(SalesInvoiceLocators.CR_AcptQty_Column, ElementType.Xpath);
+						if (flag) {
+							webDB.doubleClickAnElement(SalesInvoiceLocators.CR_AcptQty_Column, ElementType.Xpath);
+							webDB.sendTextToAnElement(SalesInvoiceLocators.CR_AcptQty_Input, CR_Acpt_Qty,
+									ElementType.Xpath);
+							commonFunc.hardWait(2000);
+							webDB.pressTabKey();
+							commonFunc.hardWait(1000);
+							webDB.pressTabKey();
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(SalesInvoiceLocators.CR_LS_Acpt_Qty, ElementType.Xpath);
+								if (flag) {
+									webDB.doubleClickAnElement(SalesInvoiceLocators.CR_LS_Acpt_Qty, ElementType.Xpath);
+									webDB.sendTextToAnElement(SalesInvoiceLocators.CR_LS_Acpt_Input, CR_Acpt_Qty,
+											ElementType.Xpath);
+									commonFunc.hardWait(2000);
+									webDB.pressTabKey();
+									commonFunc.hardWait(2000);
+									flag = webDB.waitForElement(SalesInvoiceLocators.CR_LS_Save_Icon,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(SalesInvoiceLocators.CR_LS_Save_Icon, ElementType.Xpath);
+										commonFunc.hardWait(1000);
+										commonFunc.checkRefreshCellsDisappear();
+										flag = webDB.waitForElement(SalesInvoiceLocators.CR_Cre_Inv_Btn,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(SalesInvoiceLocators.CR_Cre_Inv_Btn,
+													ElementType.Xpath);
+											commonFunc.hardWait(1000);
+											commonFunc.checkRefreshCellsDisappear();
+											String CNdocno = webDB.getDomPropertyFromElement(
+													SalesInvoiceLocators.CR_CN_Doc_No, ElementType.Xpath,
+													commonFunc.getDataFromTestDataSheet("Value"));
+											VariableHandler.setCNdocno(CNdocno);
+											logs.logging("INFO", "Get CN DocNo Is: " + VariableHandler.getCNdocno());
+											commonFunc.hardWait(2000);
+											flag = webDB.waitForElement(SalesInvoiceLocators.CR_Upd_Narr_Btn,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "CreditNote Cre.Inv No Clicked Sucessfully");
+												commonFunc.checkRefreshCellsDisappear();
+												commonFunc.hardWait(2000);
+												flag = webDB.waitForElement(SalesInvoiceLocators.CR_Upd_Narr_Btn,
+														ElementType.Xpath);
+												if (flag) {
+													webDB.clickAnElement(SalesInvoiceLocators.CR_Upd_Narr_Btn,
+															ElementType.Xpath);
+													commonFunc.hardWait(2000);
+													commonFunc.checkRefreshCellsDisappear();
+													flag = webDB.waitForElement(
+															SalesInvoiceLocators.CR_Create_Journal_Btn,
+															ElementType.Xpath);
+													if (flag) {
+														webDB.clickAnElement(SalesInvoiceLocators.CR_Create_Journal_Btn,
+																ElementType.Xpath);
+														commonFunc.checkRefreshCellsDisappear();
+														flag = webDB.waitForElement(SalesInvoiceLocators.CR_Post_Btn,
+																ElementType.Xpath);
+														if (flag) {
+															logs.logging("INFO",
+																	"CreditNote Update Narration , CRe. Journal Clicked Sucessfully");
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

@@ -433,5 +433,42 @@ public class ApprovalPageFunctions {
 		} while ((i <= 3));
 		assertTrue(flag);
 	}
+	
+	/**Approval For Catalogue Price 
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param WorkFlowType
+	 */
+	public void verifyWorkFlowTypeForCataloguePrice(String WorkFlowType) {
+		flag = webDB.waitForElement(ApprovalPageLocators.WfTypeLovButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(ApprovalPageLocators.WfTypeLovButton, ElementType.Xpath);
+			flag = webDB.waitForElement(ApprovalPageLocators.SearchBoxWorkType, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Successfully Clicked a WorkType SearchBox");
+				flag = webDB.waitForElement(ApprovalPageLocators.SearchBoxWorkType, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(ApprovalPageLocators.SearchBoxWorkType, WorkFlowType, ElementType.Xpath);
+					flag = webDB.waitForElement(ApprovalPageLocators.SalesCataogField, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Insereted a Catalog Work flow ");
+					if (flag) {
+						webDB.clickAnElement(ApprovalPageLocators.SalesCataogField, ElementType.Xpath);
+						logs.logging("INFO", "Successfully Clicked a Sales Catalog Price");
+						
+						webDB.waitForElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Sucessfully Populated a Work Flow Type ");
+							flag = webDB.waitForElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
+								logs.logging("INFO", "Successfully Clicked a Search Button");
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 
 }

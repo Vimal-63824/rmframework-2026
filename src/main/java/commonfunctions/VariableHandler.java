@@ -186,6 +186,13 @@ public class VariableHandler {
 	private static ThreadLocal<String> BeforeStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String> CSDocNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> PayrollDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> ApprovedSupplierNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SOBNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> RWdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> RWCdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> DBdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> PriceListDocno = new ThreadLocal<>();
+	private static ThreadLocal<String> CatDocno = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1575,5 +1582,63 @@ public class VariableHandler {
 
 	public static void setPayrollDocNo(String Data) {
 		PayrollDocNo.set(Data);
+	}
+
+	public static String getAppsNumber() {
+		return ApprovedSupplierNumber.get();
+	}
+
+	public static void setAppsNumber(String data) {
+		ApprovedSupplierNumber.set(data);
+	}
+
+	public static String getSOBNumber() {
+		return SOBNumber.get();
+	}
+
+	public static void setSOBNumber(String data) {
+		SOBNumber.set(data);
+	}
+
+	public static String getRWdocno() {
+		return RWdocno.get();
+	}
+
+	public static void setRWdocno(String Data) {
+		RWdocno.set(Data);
+	}
+
+	public static String getRWCdocno() {
+		return RWCdocno.get();
+	}
+
+	public static void setRWCdocno(String Data) {
+		RWCdocno.set(Data);
+	}
+
+	public static String getDBdocno() {
+		return DBdocno.get();
+	}
+
+	public static void setDBdocno(String Data) {
+		DBdocno.set(Data);
+	}
+
+	public static String getPriceListDocno() {
+		return PriceListDocno.get();
+
+	}
+
+	public static void setPriceListDocno(String data) {
+		PriceListDocno.set(data);
+	}
+
+	public static String getCatalogDocno() {
+		return CatDocno.get();
+
+	}
+
+	public static void setCatalogDocno(String data) {
+		CatDocno.set(data);
 	}
 }
