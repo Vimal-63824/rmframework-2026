@@ -2951,11 +2951,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindLeaveResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Leave)) {
+			if (webElement.getText().equalsIgnoreCase(Leave)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2974,11 +2974,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindYearResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Year)) {
+			if (webElement.getText().equalsIgnoreCase(Year)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2997,11 +2997,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDesignationResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Designation)) {
+			if (webElement.getText().equalsIgnoreCase(Designation)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3020,11 +3020,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindDepartmentResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Department)) {
+			if (webElement.getText().equalsIgnoreCase(Department)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3043,11 +3043,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.FindUnitResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Unit)) {
+			if (webElement.getText().equalsIgnoreCase(Unit)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3066,11 +3066,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindLeaveResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Leave)) {
+			if (webElement.getText().equalsIgnoreCase(Leave)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3089,11 +3089,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindYearResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Year)) {
+			if (webElement.getText().equalsIgnoreCase(Year)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3112,11 +3112,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDesignationResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Designation)) {
+			if (webElement.getText().equalsIgnoreCase(Designation)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3135,11 +3135,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindDepartmentResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Department)) {
+			if (webElement.getText().equalsIgnoreCase(Department)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3158,11 +3158,11 @@ public class AttendanceLeaveFunctions {
 		List<WebElement> elements = webDB.getListOfElements(AttendanceLeaveLocators.Adj_FindUnitResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Unit)) {
+			if (webElement.getText().equalsIgnoreCase(Unit)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);

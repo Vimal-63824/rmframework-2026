@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,8 +23,16 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.payroll.AttendanceLeaveLocators;
+import commonlocators.payroll.EmployeeAdjustmentLocators;
+import commonlocators.payroll.EmployeeMasterLocators;
+import commonlocators.payroll.PreparePayrollLocators;
+import commonlocators.productionplanning.BillOfMaterialsLocators;
+import commonlocators.productionplanning.MRPLocators;
+import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.CustomerScheduleLocators;
@@ -32,12 +41,6 @@ import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
-import commonlocators.payroll.AttendanceLeaveLocators;
-import commonlocators.payroll.EmployeeMasterLocators;
-import commonlocators.payroll.PreparePayrollLocators;
-import commonlocators.productionplanning.BillOfMaterialsLocators;
-import commonlocators.productionplanning.MRPLocators;
-import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
@@ -547,18 +550,19 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigateSalesOrderPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickSalesTab();
-		clickSalesTransactionTab();
-		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickSalesTab();
+//		clickSalesTransactionTab();
+//		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(SalesOrderLocators.SalesOrderTab, ElementType.Xpath);
+//			flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("SaleOrderScreen"), SalesOrderLocators.AddButtonSalesOrder);
 		Assert.assertTrue(flag);
 	}
 
@@ -694,19 +698,21 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateEmployeeMasterScreenInPayroll() {
-		clickLeftNavigationBar();
-		clickPayrollTab();
-		clickPayrollTransactionTab();
-		clickPayrollEmployeeMasterTab();
-		flag = webDB.waitForElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
-			webDB.clickAnElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeMasterAddIcon, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated To Employee Master Screen Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickPayrollTab();
+//		clickPayrollTransactionTab();
+//		clickPayrollEmployeeMasterTab();
+//		flag = webDB.waitForElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+//		if (flag) {
+//			webDB.moveToElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+//			webDB.clickAnElement(CommonUiLocators.PayrollEmployeeMasterScreen, ElementType.Xpath);
+//			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeMasterAddIcon, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated To Employee Master Screen Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("EmployeeMasterScreen"),
+				EmployeeMasterLocators.EmployeeMasterAddIcon);
 		Assert.assertTrue(flag);
 	}
 
@@ -785,17 +791,19 @@ public class CommonFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void navigateLeaveEncashmentScreen() {
-		clickPayrollTab();
-		clickPayrollTransactionTab();
-		clickAttendanceLeaveTab();
-		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Leave Request Tab Is Clicked");
-			}
-		}
+//		clickPayrollTab();
+//		clickPayrollTransactionTab();
+//		clickAttendanceLeaveTab();
+//		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveRequestScreen, ElementType.Xpath);
+//			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Leave Request Tab Is Clicked");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("LeaveRequestScreen"),
+				AttendanceLeaveLocators.EmployeePermissionButton);
 		Assert.assertTrue(flag);
 	}
 
@@ -807,7 +815,6 @@ public class CommonFunctions {
 	 */
 	public void navigateSalesInvoicePage() {
 		navigateToSearchTab(webDB.getDataFromProperties("SIScreen"), CommonUiLocators.Sales_Inv_Pend_Btn);
-
 	}
 
 	/**
@@ -1196,18 +1203,19 @@ public class CommonFunctions {
 	 * @return boolean flag
 	 */
 	public void navigateOpenSO() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickSalesTab();
-		clickSalesTransactionTab();
-		flag = webDB.waitForClickElement(CommonUiLocators.OpenSOTab, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.OpenSOTab, ElementType.Xpath);
-			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "navigated open so screen successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickSalesTab();
+//		clickSalesTransactionTab();
+//		flag = webDB.waitForClickElement(CommonUiLocators.OpenSOTab, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.OpenSOTab, ElementType.Xpath);
+//			flag = webDB.waitForClickElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "navigated open so screen successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("OpenSOScreen"), OpenSalesOrderLocators.OpenSORadioBtn);
 		Assert.assertTrue(flag);
 	}
 
@@ -1262,11 +1270,13 @@ public class CommonFunctions {
 	 */
 
 	public void navigateToInventoryMaterialRequest() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		navigateToInventoryTab();
-		navigateToInventoryTranscationTab();
-		navigateToMaterialRequest();
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		navigateToInventoryTab();
+//		navigateToInventoryTranscationTab();
+//		navigateToMaterialRequest();
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequestScreen"),
+				CommonUiLocators.CreateMaterialRequestButton);
 	}
 
 	/**
@@ -1436,17 +1446,18 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToMRPScreenInProdPlanning() {
-		clickLeftNavigationBar();
-		clickProductionPlanningTab();
-		clickProductionPlanningTransactionTab();
-		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
-			flag = webDB.waitForElement(MRPLocators.FindMRPNoLovBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Production Planning MRP Screen Navigated Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickProductionPlanningTab();
+//		clickProductionPlanningTransactionTab();
+//		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_MRPScreen, ElementType.Xpath);
+//			flag = webDB.waitForElement(MRPLocators.FindMRPNoLovBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Production Planning MRP Screen Navigated Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("MRPScreen"), MRPLocators.FindMRPNoLovBtn);
 		Assert.assertTrue(flag);
 	}
 
@@ -1456,17 +1467,19 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToProductionOrderInProdPlanning() {
-		clickLeftNavigationBar();
-		clickProductionPlanningTab();
-		clickProductionPlanningTransactionTab();
-		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_ProductionOrder, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_ProductionOrder, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.FindMRPNoLovBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Production Planning - Production Order Screen Navigated Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickProductionPlanningTab();
+//		clickProductionPlanningTransactionTab();
+//		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_ProductionOrder, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_ProductionOrder, ElementType.Xpath);
+//			flag = webDB.waitForElement(ProductionOrderLocators.FindMRPNoLovBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Production Planning - Production Order Screen Navigated Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrderScreen"),
+				ProductionOrderLocators.FindMRPNoLovBtn);
 		Assert.assertTrue(flag);
 	}
 
@@ -1558,18 +1571,20 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToCompletionProductionOrderInProdPlanning() {
-		clickLeftNavigationBar();
-		clickProductionPlanningTab();
-		clickProductionPlanningTransactionTab();
-		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_CompletionProductionOrder, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_CompletionProductionOrder, ElementType.Xpath);
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon,
-					ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Production Planning - Completion Production Order Screen Navigated Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickProductionPlanningTab();
+//		clickProductionPlanningTransactionTab();
+//		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_CompletionProductionOrder, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_CompletionProductionOrder, ElementType.Xpath);
+//			flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon,
+//					ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Production Planning - Completion Production Order Screen Navigated Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("CompProdOrderSingleProcessScreen"),
+				CompletionProductionOrderLocators.CompletionProcessPendingIcon);
 		Assert.assertTrue(flag);
 	}
 
@@ -1714,17 +1729,18 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToBillOfMaterialsPage() {
-		clickLeftNavigationBar();
-		clickProductionPlanningTab();
-		clickProductionPlanningTransactionTab();
-		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_BillOfMaterials, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_BillOfMaterials, ElementType.Xpath);
-			flag = webDB.waitForElement(BillOfMaterialsLocators.BOM_FindSearchBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Production Planning - Completion Production Order Screen Navigated Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickProductionPlanningTab();
+//		clickProductionPlanningTransactionTab();
+//		flag = webDB.waitForElement(CommonUiLocators.ProdPlan_Transaction_BillOfMaterials, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.ProdPlan_Transaction_BillOfMaterials, ElementType.Xpath);
+//			flag = webDB.waitForElement(BillOfMaterialsLocators.BOM_FindSearchBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Production Planning - Completion Production Order Screen Navigated Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("BOMScreen"), BillOfMaterialsLocators.BOM_FindSearchBtn);
 		Assert.assertTrue(flag);
 	}
 
@@ -1971,18 +1987,20 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateLeaveEntryScreen() {
-		clickLeftNavigationBar();
-		clickPayrollTab();
-		clickPayrollTransactionTab();
-		clickAttendanceLeaveTab();
-		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Leave Entry Tab Navigated Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickPayrollTab();
+//		clickPayrollTransactionTab();
+//		clickAttendanceLeaveTab();
+//		flag = webDB.waitForElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.EmployeeLeaveEntryScreen, ElementType.Xpath);
+//			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Leave Entry Tab Navigated Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("LeaveEntryScreen"),
+				AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry);
 		Assert.assertTrue(flag);
 	}
 
@@ -2251,19 +2269,21 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToPrepareProcessPayrollTab() {
-		clickLeftNavigationBar();
-		clickPayrollTab();
-		clickPayrollTransactionTab();
-		clickPayrollTransactionPayrollTab();
-		flag = webDB.waitForElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
-			webDB.clickAnElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
-			flag = webDB.waitForElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated Successfully to Prepare Process Payroll Screen");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickPayrollTab();
+//		clickPayrollTransactionTab();
+//		clickPayrollTransactionPayrollTab();
+//		flag = webDB.waitForElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+//		if (flag) {
+//			webDB.moveToElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+//			webDB.clickAnElement(CommonUiLocators.PrepareProcessPayrollScreen, ElementType.Xpath);
+//			flag = webDB.waitForElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated Successfully to Prepare Process Payroll Screen");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("PrepareProcessPayrollScreen"),
+				PreparePayrollLocators.PayrollFindSearchBtn);
 		Assert.assertTrue(flag);
 	}
 
@@ -2386,9 +2406,9 @@ public class CommonFunctions {
 	 * @param PageLocators
 	 */
 	public void navigateToSearchTab(String TabName, String PageLocators) {
-		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSerachBox, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSerachBox, TabName, ElementType.Xpath);
+			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
 			flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
@@ -2464,4 +2484,27 @@ public class CommonFunctions {
 
 	}
 
+	/**
+	 * This method used to navigate to Employee Adjustment screen
+	 *
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToEmployeeAdjustmentTab() {
+//		clickLeftNavigationBar();
+//		clickPayrollTab();
+//		clickPayrollTransactionTab();
+//		clickPayrollTransactionPayrollTab();
+//		flag = webDB.waitForElement(CommonUiLocators.EmployeeAdjustmentScreen, ElementType.Xpath);
+//		if (flag) {
+//			webDB.moveToElement(CommonUiLocators.EmployeeAdjustmentScreen, ElementType.Xpath);
+//			webDB.clickAnElement(CommonUiLocators.EmployeeAdjustmentScreen, ElementType.Xpath);
+//			flag = webDB.waitForElement(EmployeeAdjustmentLocators.FindEmployeeAdjustmentHeader, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated Successfully to Employee Adjustment Screen");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("EmployeeAdjustmentScreen"),
+				EmployeeAdjustmentLocators.FindEmployeeAdjustmentHeader);
+		Assert.assertTrue(flag);
+	}
 }
