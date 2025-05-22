@@ -641,11 +641,11 @@ public class PurchaseRequestFunctions {
 			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableItem,
 					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Item)) {
+				if (webElement.getText().equalsIgnoreCase(Item)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
@@ -667,11 +667,11 @@ public class PurchaseRequestFunctions {
 			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableLocation,
 					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Location)) {
+				if (webElement.getText().equalsIgnoreCase(Location)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
@@ -693,11 +693,11 @@ public class PurchaseRequestFunctions {
 			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableUnit,
 					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Unit)) {
+				if (webElement.getText().equalsIgnoreCase(Unit)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
@@ -722,11 +722,11 @@ public class PurchaseRequestFunctions {
 				List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTablePRType,
 						ElementType.Xpath);
 				a: for (WebElement webElement : elements) {
-					if (webElement.getText().equals(PRType)) {
+					if (webElement.getText().equalsIgnoreCase(PRType)) {
+						flag = true;
+					} else {
 						flag = false;
 						break a;
-					} else {
-						flag = true;
 					}
 				}
 			}
@@ -752,11 +752,11 @@ public class PurchaseRequestFunctions {
 				List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableStatusText,
 						ElementType.Xpath);
 				a: for (WebElement webElement : elements) {
-					if (webElement.getText().equals(Status)) {
+					if (webElement.getText().equalsIgnoreCase(Status)) {
+						flag = true;
+					} else {
 						flag = false;
 						break a;
-					} else {
-						flag = true;
 					}
 				}
 			}
@@ -780,11 +780,11 @@ public class PurchaseRequestFunctions {
 			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableRequestor,
 					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Reqstr)) {
+				if (webElement.getText().equalsIgnoreCase(Reqstr)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
