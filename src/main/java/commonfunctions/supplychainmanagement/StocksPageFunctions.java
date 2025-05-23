@@ -43,6 +43,8 @@ public class StocksPageFunctions {
 			if (flag) {
 				commonFunc.hardWait(2000);
 				webDB.clickAnElement(StocksPageLocators.GenerateButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(StocksPageLocators.StockItem, ElementType.Xpath);
 				if (flag) {
 					commonFunc.checkRefreshCellsDisappear();
@@ -126,33 +128,33 @@ public class StocksPageFunctions {
 	 * @param Warehouse
 	 */
 	public void getItemStockCost(String Item, String Warehouse) {
-		flag = webDB.waitForElement(StocksPageLocators.StockCost, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.StocksCheckBox, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Stock Check Box Is Displayed");
-			webDB.clickAnElement(StocksPageLocators.StockCost, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.StocksCheckBox, ElementType.Xpath);
 			flag = webDB.waitForElement(StocksPageLocators.GenerateButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(StocksPageLocators.GenerateButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(StocksPageLocators.StockCostItem, ElementType.Xpath);
+				flag = webDB.waitForElement(StocksPageLocators.StockItem, ElementType.Xpath);
 				if (flag) {
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(2000);
 					logs.logging("INFO", "Stock Item Header Is Displayed");
-					webDB.clickAnElement(StocksPageLocators.StockCostItem, ElementType.Xpath);
-					flag = webDB.waitForElement(StocksPageLocators.StockCostSerachField, ElementType.Xpath);
+					webDB.clickAnElement(StocksPageLocators.StockItem, ElementType.Xpath);
+					flag = webDB.waitForElement(StocksPageLocators.StockSerachField, ElementType.Xpath);
 					if (flag) {
-						webDB.sendTextToAnElement(StocksPageLocators.StockCostSerachField, Item, ElementType.Xpath);
+						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
 						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(StocksPageLocators.CostNoOfRow, ElementType.Xpath);
+							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "No Of Item In Row Is Displayed");
-								int totalvalue = webDB.getDriver()
-										.findElements(By.xpath(StocksPageLocators.CostNoOfRow)).size();
+								int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
+										.size();
 								for (int i = 2; i <= totalvalue + 1; i++) {
 									flag = webDB.waitForElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath);
 									if (flag) {
@@ -259,33 +261,34 @@ public class StocksPageFunctions {
 	 * @param Warehouse
 	 */
 	public void getItemAfterStockCost(String Item, String Warehouse) {
-		flag = webDB.waitForElement(StocksPageLocators.StockCost, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.StocksCheckBox, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Stock Check Box Is Displayed");
-			webDB.clickAnElement(StocksPageLocators.StockCost, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.StocksCheckBox, ElementType.Xpath);
 			flag = webDB.waitForElement(StocksPageLocators.GenerateButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(StocksPageLocators.GenerateButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(StocksPageLocators.StockCostItem, ElementType.Xpath);
+				flag = webDB.waitForElement(StocksPageLocators.StockItem, ElementType.Xpath);
 				if (flag) {
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(2000);
 					logs.logging("INFO", "Stock Item Header Is Displayed");
-					webDB.clickAnElement(StocksPageLocators.StockCostItem, ElementType.Xpath);
-					flag = webDB.waitForElement(StocksPageLocators.StockCostSerachField, ElementType.Xpath);
+					webDB.clickAnElement(StocksPageLocators.StockItem, ElementType.Xpath);
+					flag = webDB.waitForElement(StocksPageLocators.StockSerachField, ElementType.Xpath);
 					if (flag) {
-						webDB.sendTextToAnElement(StocksPageLocators.StockCostSerachField, Item, ElementType.Xpath);
+						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
 						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(StocksPageLocators.CostNoOfRow, ElementType.Xpath);
+							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "No Of Item In Row Is Displayed");
-								int totalvalue = webDB.getDriver()
-										.findElements(By.xpath(StocksPageLocators.CostNoOfRow)).size();
+								int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
+										.size();
+								commonFunc.hardWait(4000);
 								for (int i = 2; i <= totalvalue + 1; i++) {
 									flag = webDB.waitForElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath);
 									if (flag) {

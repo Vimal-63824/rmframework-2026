@@ -196,6 +196,19 @@ public class GrnTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * Service Type(Price List Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 17, groups = {
+			"GRN" }, description = "240 PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlan() throws IOException {
+		grnPageFunc.poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan();
+	}
+
+	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
 	 * Document for General Type
 	 * 
@@ -311,6 +324,526 @@ public class GrnTest extends RoadMapERPTest {
 				"This Test Scenarios Is Covered Under poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterial");
 		// TODO Covered in
 		// poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterial()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 30, groups = {
+			"GRN" }, description = "240 PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan")
+	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithInspectionPlan() throws IOException {
+		grnPageFunc.poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for Material Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 31, groups = {
+			"GRN" }, description = "241 PO to GRN-Material-Price List-Same Stock and Supplier UOM - Without Inspection Plan")
+	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithOutInspectionPlan() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan");
+		// TODO Covered
+		// poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 32, groups = {
+			"GRN" }, description = "259 PO to GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
+	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithInspectionPlan() throws IOException {
+		grnPageFunc.poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 33, groups = {
+			"GRN" }, description = "260 PO to GRN-General-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithOutInspection() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan");
+		// TODO Covered
+		// poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 34, groups = {
+			"GRN" }, description = "261 PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
+	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlan() throws IOException {
+		grnPageFunc.poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for Material Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 35, groups = {
+			"GRN" }, description = "262 PO to GRN-Material-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithOutInspectionPlan() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan");
+		// TODO Covered
+		// poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection for
+	 * General Type(Without Quality Enabled)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 36, groups = {
+			"GRN" }, description = "296 PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
+
+	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * General Type(Without Quality Enabled)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 37, groups = {
+			"GRN" }, description = "297 PO to GRN-General-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithOutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection for
+	 * Material Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 38, groups = {
+			"GRN" }, description = "298 PO to GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
+	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc
+				.poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * General Type(Without Quality Enabled)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 39, groups = {
+			"GRN" }, description = "299 PO to GRN-Material-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithOutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * Service Type(Without Quality Enabled)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 40, groups = {
+			"GRN" }, description = "300 PO to GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void PoToGrnServiceUserDefinedSameStockAndSupplierUOMWOInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under PoToGrnServiceUserDefinedSameStockAndSupplierUOMWOInspectionPlan");
+		// TODO Covered
+		// PoToGrnServiceUserDefinedSameStockAndSupplierUOMWOInspectionPlan()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection
+	 * RateContract Document For General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 41, groups = {
+			"GRN" }, description = "303 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
+	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithoutQualityEnabledWithInspectionGeneralType()
+			throws IOException {
+		grnPageFunc
+				.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * General Type(Without Quality Enabled)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 42, groups = {
+			"GRN" }, description = "304 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithoutQualityEnabledWithOutInspectionGeneralType() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection
+	 * RateContract Document for Material Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 43, groups = {
+			"GRN" }, description = "305 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
+	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithInspectionMaterialWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc.poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * General Type(Without Quality Enabled)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 44, groups = {
+			"GRN" }, description = "306 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
+	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithOutInspectionMaterialWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * RateContract Service Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 45, groups = {
+			"GRN" }, description = "307 PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void PoToGrnServiceRateContractSameStockandSupplierUOMWoInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan");
+		// TODO Covered
+		// poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan() Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for General Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 46, groups = {
+			"GRN" }, description = "310 PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan")
+	public void PotoGrnGeneralPriceListSameStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc.poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for General Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 47, groups = {
+			"GRN" }, description = "311 PO to GRN-General-Price List-Same Stock and Supplier UOM - WithOut Inspection Plan")
+	public void PotoGrnGeneralPriceListSameStockAndSupplierUOMWithOutInspectionWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 48, groups = {
+			"GRN" }, description = "312 PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
+	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc.poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for Material Type withoutQuality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 49, groups = {
+			"GRN" }, description = "313 PO to GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan withoutQualityEnabled")
+	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithOutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for Material Type withoutQuality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 50, groups = {
+			"GRN" }, description = "314 PO to GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan withoutQualityEnabled")
+	public void POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlan");
+		// TODO Covered
+		// POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlan()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection Document
+	 * for General Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 51, groups = {
+			"GRN" }, description = "317 PO to GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection PlanWithoutQualityEnabled")
+	public void PoToGrnGeneralUserDefinedStockAndSupplierDisUomWithInspectionPlanWithoutEnabledQuality()
+			throws IOException {
+		grnPageFunc.poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * Document for General Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 52, groups = {
+			"GRN" }, description = "318 PO to GRN-General-User Defined-Different Stock and Supplier UOM - Without Inspection Plan")
+	public void PoToGrnGeneralUserDefinedStockAndSupplierDisUomWithoutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered in
+		// poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlanWithoutQualityEnabled()
+		// Method
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection Document
+	 * for Material Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 53, groups = {
+			"GRN" }, description = "319 PO to GRN-Material-User Defined-Different Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
+	public void PoToGrnMaterialUserDefinedStockAndSupplierDisUomWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc
+				.poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlanWithoutQualityEnabled();
+		// MrvFunc.verifyPostMaterialReceiptWithAndWithoutLocator();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO withOut Inspection For
+	 * Material UserDefined Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 54, groups = {
+			"GRN" }, description = "320 PO to GRN-Material-User Defined-Different Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
+	public void POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithoutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered in
+		// poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlanWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection For
+	 * General Rate Contract Item Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 55, groups = {
+			"GRN" }, description = "322 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection PlanWithout Quality Enabled")
+	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc
+				.poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection For
+	 * General Rate Contract Item Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 56, groups = {
+			"GRN" }, description = "323 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
+	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithoutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeWithoutQualityEnabled");
+		// TODO Covered in
+		// poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection For
+	 * Material Rate Contract Item Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 57, groups = {
+			"GRN" }, description = "324 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan WithoutQuality Enabled")
+	public void POToGRNMaterialRateContractDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc
+				.poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection For Mat
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 58, groups = {
+			"GRN" }, description = "325 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
+	public void POtoGRNMaterialRateContractDifferentStockAndSupplierUOMWithoutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled");
+		// TODO Covered in
+		// poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for General Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 59, groups = {
+			"GRN" }, description = "327 PO to GRN-General-Price List-Different Stock and Supplier UOM - With Inspection PlanWithout Quality Enabled")
+	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc
+				.poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 60, groups = {
+			"GRN" }, description = "328 PO to GRN-General-Price List-Different Stock and Supplier UOM - WO Inspection PlanWithoutQuality Enabled")
+	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithOutInspectionWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+		// Method
+
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Test(priority = 61, groups = {
+			"GRN" }, description = "329 PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
+	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		grnPageFunc
+				.poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection
+	 * PriceList Document for Material Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Test(priority = 62, groups = {
+			"GRN" }, description = "330 PO to GRN-Material-Price List-Different Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
+	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithOutInspectionPlanWithoutQualityEnabled() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled");
+		// TODO Covered
+		// poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
 		// Method
 
 	}

@@ -76,7 +76,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveErrorToast = "//div[contains(text(),'error has occurred')]";
 	/** @locatorType Xpath */
-	public static final String ApprovalTitle = "//h1[contains(text(),'Workflow Approval')]";
+	public static final String ApprovalTitle = "//h1[contains(text(),'Approval')]";
 	/** @locatorType Xpath */
 	public static final String ReturnRadioBtn = "//label[text()='Return']";
 	/** @locatorType Xpath */
