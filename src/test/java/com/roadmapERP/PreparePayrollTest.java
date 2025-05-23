@@ -216,6 +216,30 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To Check Prepare/Process payroll Find page with all Line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 16, groups = {
+			"Prepare/Process payroll" }, description = "35 To Check Prepare/Process payroll Find page with all Line wise record")
+	public void VerifyPreparePayrollFindWithLineWiseRecord() {
+		flag = procPayrollFunc.verifyPreparePayrollFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Prepare/Process payroll Find page with all Header wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 17, groups = {
+			"Prepare/Process payroll" }, description = "36 To Check Prepare/Process payroll Find page with all Header wise record")
+	public void VerifyPreparePayrollFindWithHeaderWiseRecord() {
+		flag = procPayrollFunc.verifyPreparePayrollFindWithHeaderWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL

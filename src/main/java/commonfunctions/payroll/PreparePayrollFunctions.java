@@ -11,11 +11,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.payroll.EmployeeAdjustmentLocators;
 import commonlocators.payroll.PreparePayrollLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -672,5 +674,270 @@ public class PreparePayrollFunctions {
 					"Exception occur while executing 'verifyPayrollProcessFromLoadUnitToProcessPayroll': " + e);
 			return false;
 		}
+	}
+
+	/**
+	 * This method used To Check Prepare/Process payroll Find page with all line
+	 * wise record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyPreparePayrollFindWithLineWiseRecord() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
+		String Month = date.format(formatter).toUpperCase();
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateToEmployeeAdjustmentTab();
+			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
+			webDB.navigateToRefresh();
+			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202425"));
+			webDB.navigateToRefresh();
+			findWithDesignationInLineWise(commonFunc.getDataFromTestDataSheet("ChairmanText"));
+			webDB.navigateToRefresh();
+			findWithDepartmentInLineWise(commonFunc.getDataFromTestDataSheet("QualityText"));
+			webDB.navigateToRefresh();
+			findWithPeriodInLineWise(Month);
+			webDB.navigateToRefresh();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyPreparePayrollFindWithLineWiseRecord': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to click search icon in Prepare Payroll Find Page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickSearchButtonInPreparePayroll() {
+		flag = webDB.waitForElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PreparePayrollLocators.FindResultSearchBar, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Icon Clicked in Prepare Payroll");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to find Payroll using Unit in Linewise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 */
+	private void findWithUnitInLineWise(String Unit) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindUnitLovBtn, Unit);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindUnitLineResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Unit)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Unit in Payroll Linewise: " + Unit);
+	}
+
+	/**
+	 * This method used to find Payroll using Designation in Linewise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Designation
+	 */
+	private void findWithDesignationInLineWise(String Designation) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindDesignationLovBtn, Designation);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDesignationLineResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Designation)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Designation in Payroll Linewise: " + Designation);
+	}
+
+	/**
+	 * This method used to find Payroll using Department in Linewise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Department
+	 */
+	private void findWithDepartmentInLineWise(String Department) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindDepartmentLovBtn, Department);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindDepartmentLineResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Department)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Department in Payroll Linewise: " + Department);
+	}
+
+	/**
+	 * This method used to find Payroll using Year in Linewise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Year
+	 */
+	private void findWithYearInLineWise(String Year) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn, Year);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearLineResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Year)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Year in Payroll Linewise: " + Year);
+	}
+
+	/**
+	 * This method used to find Payroll using Period in Linewise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Period
+	 */
+	private void findWithPeriodInLineWise(String Period) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, Period);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodLineResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Period)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Period in Payroll Linewise: " + Period);
+	}
+
+	/**
+	 * This method used To Check Prepare/Process payroll Find page with all header
+	 * wise record
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyPreparePayrollFindWithHeaderWiseRecord() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
+		String Month = date.format(formatter).toUpperCase();
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateToEmployeeAdjustmentTab();
+			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202425"));
+			webDB.navigateToRefresh();
+			findWithPeriodInHeaderWise(Month);
+			webDB.navigateToRefresh();
+			findWithCalenderInHeaderWise(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"));
+			webDB.navigateToRefresh();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyPreparePayrollFindWithHeaderWiseRecord': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to find Payroll using Year in Headerwise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Year
+	 */
+	private void findWithYearInHeaderWise(String Year) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn, Year);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindYearHeaderResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Year)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Year in Payroll Headerwise: " + Year);
+	}
+
+	/**
+	 * This method used to find Payroll using Calender in Headerwise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Calender
+	 */
+	private void findWithCalenderInHeaderWise(String Calender) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindCalenderLovBtn, Calender);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindCalenderHeaderResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Calender)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Calender in Payroll Headerwise: " + Calender);
+	}
+
+	/**
+	 * This method used to find Payroll using Period in Headerwise
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Period
+	 */
+	private void findWithPeriodInHeaderWise(String Period) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, Period);
+		clickSearchButtonInPreparePayroll();
+		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodHeaderResultTable,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Period)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+			}
+		}
+		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Period in Payroll Headerwise: " + Period);
 	}
 }

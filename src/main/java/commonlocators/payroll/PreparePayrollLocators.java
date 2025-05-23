@@ -169,5 +169,39 @@ public class PreparePayrollLocators {
 	public static final String ReviewCompletedBtn = "//button[@id='B3422389009058126254']";
 	/** @locatorType Xpath */
 	public static final String ProcessPayrollBtn = "//button[@id='B3422388658127126254']";
+	/** @locatorType Xpath */
+	public static final String FindHeaderRadioBtn = "//label[text()='Header']";
+	/** @locatorType Xpath */
+	public static final String FindLinesRadioBtn = "//label[text()='Line(s)']";
+	/** @locatorType Xpath */
+	public static final String FindResultSearchBar = "//input[@id='detail_search_field']";
+	/** @locatorType Xpath */
+	public static final String FindYearLovBtn = "//button[@id='P1625131050_YEAR_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindPeriodLovBtn = "//button[@id='P1625131050_PERIOD_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindCalenderLovBtn = "//button[@id='P1625131050_CALENDER_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindDesignationLovBtn = "//button[@id='P1625131050_DESIG_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindDepartmentLovBtn = "//button[@id='P1625131050_DEPT_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindUnitLovBtn = "//button[@id='P1625131050_UNIT_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String FindYearHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[3]";
+	/** @locatorType Xpath */
+	public static final String FindPeriodHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[4]";
+	/** @locatorType Xpath */
+	public static final String FindCalenderHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String FindYearLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String FindPeriodLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[3]";
+	/** @locatorType Xpath */
+	public static final String FindDesignationLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String FindDepartmentLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String FindUnitLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[9]";
 
 }

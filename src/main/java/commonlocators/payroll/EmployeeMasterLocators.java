@@ -705,4 +705,6 @@ public class EmployeeMasterLocators {
 	public static final String FindDepartmentResultTable = "//table[@id='9319941881441008958_orig']//tr/td[11]";
 	/** @locatorType XPATH */
 	public static final String FindUnitResultTable = "//table[@id='9319941881441008958_orig']//tr/td[12]";
+	/** @locatorType XPATH */
+	public static final String AllowanceSPLDeleteIcon = "//div[@id='ig_line_ig_grid_vc']//table//tr/td[text()='SPL']/../td[last()]/a";
 }

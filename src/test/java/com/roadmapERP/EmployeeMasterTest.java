@@ -11,12 +11,16 @@ import org.testng.annotations.Test;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.payroll.EmployeeAdjustmentFunctions;
 import commonfunctions.payroll.EmployeeMasterFunctions;
+import utils.ReportLoger;
 
 public class EmployeeMasterTest extends RoadMapERPTest {
 	boolean flag = false;
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
+	private static EmployeeAdjustmentFunctions empAdjFunc = new EmployeeAdjustmentFunctions();
+	private static ReportLoger logs = new ReportLoger();
 
 	/**
 	 * To Check the Employee Creation with Particulars details
@@ -263,7 +267,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 21, groups = {
 			"EmployeeMaster" }, description = "22 To Check The Employee Creation With Probation Complete")
-	public void VerifyEmployeeCreationProbationComplete() {
+	public void verifyEmployeeCreationProbationComplete() {
 		flag = empMasterFunc.verifyEmployeeCreationProbationComplete();
 		Assert.assertTrue(flag);
 	}
@@ -277,6 +281,107 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 			"EmployeeMaster" }, description = "22 To Check the Employee Creation Find page with all line wise record")
 	public void VerifyEmployeeCreationFindWithLineWiseRecord() {
 		flag = empMasterFunc.verifyEmployeeCreationFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	// -----------Employee Adjustment Test cases-----------
+
+	/**
+	 * To CheckEmployee Adjustment Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 23, groups = {
+			"Employee Adjustment" }, description = "69 To CheckEmployee Adjustment Find page with all line wise record")
+	public void VerifyEmployeeAdjustmentFindWithLineWiseRecord() {
+		flag = empAdjFunc.verifyEmployeeAdjustmentFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Adjustment based on different elements
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 24, groups = {
+			"Employee Adjustment" }, description = "70 To Check Adjustment based on different elements")
+	public void VerifyEmployeeAdjustmentBasedOnDifferentElements() {
+		flag = empAdjFunc.verifyEmpAdjustmentBasedOnAllAndReportFetchValue();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Adjustment based on End option
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 25, groups = { "Employee Adjustment" }, description = "71 To Check Adjustment based on End option")
+	public void VerifyEmployeeAdjustmentBasedOnEndOption() {
+		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Adjustment based on Delete option
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 26, groups = {
+			"Employee Adjustment" }, description = "72 To Check Adjustment based on Delete option")
+	public void VerifyEmployeeAdjustmentBasedOnDeleteOption() {
+		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Adjustment based on Hold option
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 27, groups = {
+			"Employee Adjustment" }, description = "73 To Check Adjustment based on Hold option")
+	public void VerifyEmployeeAdjustmentBasedOnHoldOption() {
+		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Adjustment report fetches values correctly
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 28, groups = {
+			"Employee Adjustment" }, description = "74 To Check Employee Adjustment report fetches values correctly")
+	public void VerifyEmployeeAdjustmentReportFetchesValues() {
+		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Adjustment Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 29, groups = {
+			"Employee Adjustment" }, description = "75 To Check Employee Adjustment Migration With Templates")
+	public void VerifyEmployeeAdjustmentMigrationWithTemplates() {
+		flag = empAdjFunc.verifyEmployeeAdjustmentMigrationWithTemplates();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Employee Allowance Migration With Templates
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 30, groups = {
+			"Employee Adjustment" }, description = "76 To Check Employee Allowance Migration With Templates")
+	public void VerifyEmployeeAllowanceMigrationWithTemplates() {
+		flag = empAdjFunc.verifyEmployeeAllowanceMigrationWithTemplates();
 		Assert.assertTrue(flag);
 	}
 

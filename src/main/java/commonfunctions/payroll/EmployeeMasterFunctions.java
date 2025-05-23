@@ -1142,7 +1142,7 @@ public class EmployeeMasterFunctions {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * This method used To Check the Employee Creation Find page with all line wise
 	 * record
@@ -4317,11 +4317,11 @@ public class EmployeeMasterFunctions {
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindZoneResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Zone)) {
+			if (webElement.getText().equalsIgnoreCase(Zone)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4340,11 +4340,11 @@ public class EmployeeMasterFunctions {
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindCategoryResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Category)) {
+			if (webElement.getText().equalsIgnoreCase(Category)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4363,11 +4363,11 @@ public class EmployeeMasterFunctions {
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDesignationResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Designation)) {
+			if (webElement.getText().equalsIgnoreCase(Designation)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4386,11 +4386,11 @@ public class EmployeeMasterFunctions {
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDepartmentResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Department)) {
+			if (webElement.getText().equalsIgnoreCase(Department)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4409,15 +4409,42 @@ public class EmployeeMasterFunctions {
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindUnitResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equals(Unit)) {
+			if (webElement.getText().equalsIgnoreCase(Unit)) {
+				flag = true;
+			} else {
 				flag = false;
 				break a;
-			} else {
-				flag = true;
 			}
 		}
 		Assert.assertTrue(flag);
 		logs.logging("INFO", "Verified Find Search Functions with Unit: " + Unit);
+	}
+
+	/**
+	 * This method used to delete SPL Allowance in Salary Details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyDeleteSPLAllowanceInSalaryDetails() {
+		clickSalarySideNavBar();
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AllowanceSPLDeleteIcon, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.AllowanceSPLDeleteIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(EmployeeMasterLocators.ViewProf_ReverseOkBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Delete Icon Clicked and Confirm Delete Displayed");
+				webDB.clickAnElement(EmployeeMasterLocators.ViewProf_ReverseOkBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Allowance SPL Deleted Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
 }

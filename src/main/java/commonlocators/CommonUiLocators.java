@@ -290,7 +290,7 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String AddShareOfBusiness = "//button[@id='B2080709082065841085']";
 	/** @locatorType XPATH */
-	public static final String BusFunctionSerachBox = "//input[@id='P0_SEARCH_input']";
+	public static final String BusFunctionSearchBox = "//input[@id='P0_SEARCH_input']";
 	/** @locatorType XPATH */
 	public static final String Sales_Inv_Pend_Btn = "//button[contains(@id,'B986356987649170102')]";
 	/** @locatorType XPATH */
@@ -325,5 +325,7 @@ public class CommonUiLocators {
 	public static final String CustomerAssoFlag = "//label[text()='Customer Associate']";
 	/** @locatorType Xpath */
 	public static final String activeButton = "//*[@id='B147500912587778117']";
+	/** @locatorType Xpath */
+	public static final String EmployeeAdjustmentScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[1]";
 
 }
