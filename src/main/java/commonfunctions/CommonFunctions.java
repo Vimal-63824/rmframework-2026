@@ -563,7 +563,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("SaleOrderScreen"), SalesOrderLocators.AddButtonSalesOrder);
-		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -845,11 +845,12 @@ public class CommonFunctions {
 	 * @author PremKumar.K-RMIT
 	 */
 	public void naviagteGrnPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickPurchaseTransactionTab();
-		ClickGrnPurchase();
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickPurchaseTransactionTab();
+//		ClickGrnPurchase();
+		navigateToSearchTab(webDB.getDataFromProperties("GRNPurchse"), GrnLocators.Lov);
 
 	}
 
@@ -1275,6 +1276,7 @@ public class CommonFunctions {
 //		navigateToInventoryTab();
 //		navigateToInventoryTranscationTab();
 //		navigateToMaterialRequest();
+
 		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequestScreen"),
 				CommonUiLocators.CreateMaterialRequestButton);
 	}
@@ -1480,7 +1482,6 @@ public class CommonFunctions {
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrderScreen"),
 				ProductionOrderLocators.FindMRPNoLovBtn);
-		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -1878,11 +1879,12 @@ public class CommonFunctions {
 	 * 
 	 */
 	public void navigateToGrnSco() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		navigateToSubcontracting();
-		navigateToSubcontractingTransaction();
-		navigateToGrnScoTab();
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		navigateToSubcontracting();
+//		navigateToSubcontractingTransaction();
+//		navigateToGrnScoTab();
+		navigateToSearchTab(webDB.getDataFromProperties("GrnSCo"), CommonUiLocators.PendingGrn);
 	}
 
 	/**
@@ -1957,11 +1959,12 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void navigateSetupInventoryPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		navigateToInventoryTab();
-		clickInventorySetupTab();
-		clickSetupInventoryTab();
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		navigateToInventoryTab();
+//		clickInventorySetupTab();
+//		clickSetupInventoryTab();
+		navigateToSearchTab(webDB.getDataFromProperties("SetUpInventory"), CommonUiLocators.ApplControlLabel);
 	}
 
 	/**
@@ -2412,6 +2415,12 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
+			} else {
+				webDB.pressEnterKey();
+				flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Navigated To " + TabName);
+				}
 			}
 		}
 		assertTrue(flag);

@@ -31,7 +31,7 @@ public class StocksPageLocators {
 	/** @locatorType Xpath */
 	public static final String RemoveFilter = "//button[@aria-label='Remove Filter']";
 	/** @locatorType Xpath */
-	public static final String StockCostItem = "//div[@id='TF_data_panel']/div/div/div[@id='stickyTableHeader_1']/table/tr/th[3]";
+	public static final String StockCostItem = "//div[@id='TF_data_panel']/div/div/div[@id='stickyTableHeader_1']/table/tr/th[2]";
 	/** @locatorType Xpath */
 	public static final String FilterItemStockCost = "//input[@id='TF_sort_widget_search_field']";
 
@@ -42,7 +42,7 @@ public class StocksPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String CostItemRow(int i) {
-		return "//table[@id='2177268981129914442_orig']/tbody/tr[" + i + "]/td[3]";
+		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
@@ -57,7 +57,7 @@ public class StocksPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String CostWHRow(int i) {
-		return "//table[@id='2177268981129914442_orig']/tbody/tr[" + i + "]/td[1]";
+		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -67,7 +67,7 @@ public class StocksPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String CostRow(int i) {
-		return "//table[@id='2177268981129914442_orig']/tbody/tr[" + i + "]/td[8]";
+		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[12]";
 	}
 
 }

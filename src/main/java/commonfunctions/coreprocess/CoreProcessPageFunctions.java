@@ -700,6 +700,7 @@ public class CoreProcessPageFunctions {
 			stockPageFunc.removeFilterStock();
 			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("FGWareHouse"));
 			stockPageFunc.removeFilterStock();
+			System.out.println(itemmultiple[i][0] + " " + itemmultiple[i][1]);
 			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
 			stockPageFunc.removeFilterStock();
 		}
@@ -872,11 +873,17 @@ public class CoreProcessPageFunctions {
 				"TvsUsername");
 		commonFunc.navigateToMaterialIssuanceVoucher();
 		materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+		for (int i = 1; i < itemmultiple.length; i++) {
+			materialIssuanceVoucherFunc.clickLineDetailsIconWithItemName(itemmultiple[i][0]);
+			materialIssuanceVoucherFunc
+					.selectMachineInMIVLineDetails(commonFunc.getDataFromTestDataSheet("Machines100"));
+		}
 		materialIssuanceVoucherFunc.createJournalAndViewJournal();
 		materialIssuanceVoucherFunc.verifyTableDataMivForWip();
 		materialIssuanceVoucherFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("WorkInProgressWH"),
 				commonFunc.getDataFromTestDataSheet("WipType"));
+
 		materialIssuanceVoucherFunc.headerTickAndPostIcon();
 		materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
 				commonFunc.getDataFromTestDataSheet("PostedStatus"));
@@ -936,7 +943,7 @@ public class CoreProcessPageFunctions {
 		materialIssuanceVoucherFunc.createJournalAndViewJournal();
 		materialIssuanceVoucherFunc.verifyTableDataMivForWip();
 		materialIssuanceVoucherFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("POSupplierName"),
 				commonFunc.getDataFromTestDataSheet("Subcontractor"));
 		materialIssuanceVoucherFunc.headerTickAndPostIcon();
 		materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
@@ -952,7 +959,7 @@ public class CoreProcessPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToInventoryStocksTransactionTab();
-		stockTransactionPageFunc.verifyDocumentNoStockTransaction(commonFunc.getDataFromTestDataSheet("POSupplier"),
+		stockTransactionPageFunc.verifyDocumentNoStockTransaction(commonFunc.getDataFromTestDataSheet("POSupplierName"),
 				VariableHandler.getMIVNumber());
 		commonFunc.logoutUser();
 	}

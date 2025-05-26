@@ -532,4 +532,68 @@ public class MaterialIssuanceVoucherFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This method used to switch to line details iframe in MIV
+	 *
+	 * @author Sakthi-GWL
+	 */
+	public void switchToLineDetailsFrameInMIV() {
+		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.LineDetailsIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(MaterialIssuanceVoucherLocators.LineDetailsIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.LineDetailsSaveIcon, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click line details in MIV with Item Name
+	 *
+	 * @author Sakthi-GWL
+	 * @param ItemName
+	 */
+	public void clickLineDetailsIconWithItemName(String ItemName) {
+		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.LinesTableViewDetailsIcon(ItemName),
+				ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(MaterialIssuanceVoucherLocators.LinesTableViewDetailsIcon(ItemName), ElementType.Xpath);
+			webDB.clickAnElement(MaterialIssuanceVoucherLocators.LinesTableViewDetailsIcon(ItemName),
+					ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.LineDetailsIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Line Details Button Clicked for Item: " + ItemName);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to enter Machine Name in Line Details and Save Line Details
+	 *
+	 * @author Sakthi-GWL
+	 * @param Machine
+	 */
+	public void selectMachineInMIVLineDetails(String Machine) {
+		switchToLineDetailsFrameInMIV();
+		webDB.moveToElement(MaterialIssuanceVoucherLocators.LineDetailsMachineLovBtn, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.LineDetailsMachineLovBtn, Machine);
+		logs.logging("INFO", "Machine Selected in Line Details: " + Machine);
+		switchToLineDetailsFrameInMIV();
+		webDB.moveToElement(MaterialIssuanceVoucherLocators.LineDetailsSaveIcon, ElementType.Xpath);
+		webDB.clickAnElement(MaterialIssuanceVoucherLocators.LineDetailsSaveIcon, ElementType.Xpath);
+		webDB.switchToDefaultContent();
+//		flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+//		if (flag) {
+		logs.logging("INFO", "Line Details Saved Successfully in MIV");
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+		}
+		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.LineDetailsIframeCloseIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialIssuanceVoucherLocators.LineDetailsIframeCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
 }

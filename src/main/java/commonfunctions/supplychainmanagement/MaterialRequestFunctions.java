@@ -234,9 +234,10 @@ public class MaterialRequestFunctions {
 		if (flag) {
 			logs.logging("INFO", "View Line Details Is Displayed");
 			webDB.clickAnElement(MaterialRequestLocators.ViewLineDetails, ElementType.Xpath);
-			flag = webDB.waitForClickElement(MaterialRequestLocators.IFrame, ElementType.Xpath);
+			flag = webDB.waitForClickElement(MaterialRequestLocators.OtherDetailsHeader, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Iframe Is Displayed");
+				commonFunc.hardWait(3000);
 				webDB.switchToFrame(MaterialRequestLocators.IFrame, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialRequestLocators.UnitCostLineDetail, ElementType.Xpath);
 				if (flag) {
@@ -376,6 +377,7 @@ public class MaterialRequestFunctions {
 		for (int i = 1; i < itemmultiple.length; i++) {
 			verifyAddItem(itemmultiple[i][0], itemmultiple[i][2]);
 			lineSaveButton();
+			System.out.println(itemmultiple[i][0] + " line Amount");
 			String amount = lineAmountCalculation(itemmultiple[i][2],
 					VariableHandler.getStockCost().get(itemmultiple[i][0]));
 			verifyNavigateToLineDetail(amount, VariableHandler.getStockCost().get(itemmultiple[i][0]));
@@ -641,7 +643,7 @@ public class MaterialRequestFunctions {
 		approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
 		verifyValidatedetailsPoDetails(VariableHandler.getMRNumber(), commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
-				commonFunc.getDataFromTestDataSheet("POSupplier"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("POSupplierName"), commonFunc.getDataFromTestDataSheet("Vinoth"),
 				commonFunc.getDataFromTestDataSheet("EntryStatus"));
 		approvalPageFunc.verifyNavigateback();
 		approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());

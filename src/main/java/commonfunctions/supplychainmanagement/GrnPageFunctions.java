@@ -1233,27 +1233,6 @@ public class GrnPageFunctions {
 	}
 
 	/**
-	 * This Method to Handle POTo GRN Service Price List Same Stock And Supplier UOM
-	 * WO Inspection Plan
-	 * 
-	 * @author PremKumar.K-RMITS
-	 */
-	public void poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan() {
-		POfunc.verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceType();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
-		commonFunc.naviagteGrnPage();
-		clickPendingPoAndSearchPoNo();
-		clickSelectAllButton();
-		createGrn();
-		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		overAllSaveAndPost();
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-	}
-
-	/**
 	 * This Method to Handle PO To GRN Stock Transfer Price List Same Stock and
 	 * Supplier UOM With And WO Inspection
 	 * 
@@ -1746,7 +1725,8 @@ public class GrnPageFunctions {
 		verifyReturnToGrnPageHeaderStatus();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DifferentUOMRateGen"));
 
 		assertTrue(flag);
 	}
@@ -2114,6 +2094,518 @@ public class GrnPageFunctions {
 					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method to Handle POTo GRN Service Price List Same Stock And Supplier UOM
+	 * WO Inspection Plan
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan() throws IOException {
+		POfunc.verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceType(
+				webDB.getDataFromProperties("DirectPoPriceListSer"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListSer"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
+				webDB.getDataFromProperties("DirectPoPriceListMat"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectPoPriceListMat"));
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DifferentUompriceListGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUompriceListGen"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForDifferentUom(
+				webDB.getDataFromProperties("DifferentUompriceListGen"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUompriceListGen"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUompriceListGen"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUompriceListGen"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DifferentUompriceListGen"));
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan() throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DifferentUomPriceListMat"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUomPriceListMat"));
+		POfunc.verifyDirectPODomesticDifferentUomPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
+				webDB.getDataFromProperties("DifferentUomPriceListMat"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUomPriceListMat"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUomPriceListMat"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUomPriceListMat"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DifferentUomPriceListMat"));
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN From PO With General With And
+	 * Without Inspection Document(Multiple Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemWithoutQualityEnabled(
+				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(Material)Without Quality Enabled
+	 * 
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithOutQuality(
+				webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithGrnWithoutQEMaterial"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled(
+				webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithoutQualityRateGen"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create the GRN Document from PO with and
+	 * Without Inspection for RateContract Item(Material)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialWithoutQualityEnabled(
+				webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithoutQualityRateMat"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PriceListGenWOQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanWithoutQualityEnabled(
+				webDB.getDataFromProperties("PriceListGenWOQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PriceListGenWOQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PriceListGenWOQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PriceListGenWOQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialTypeWithoutQualityEnabled(
+				webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PriceListGenMaterialWOQE"));
+	}
+
+	/**
+	 * This Method to Handle PO To GRN General User Defined Stock And Supplier
+	 * DisUom With And Without Inspection Plan Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+		POfunc.verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemWithoutQualityEnabled(
+				webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
+
+	}
+
+	/**
+	 * This Method to Handle PO To GRN Material User Defined Stock And Supplier
+	 * DisUom With And Without Inspection Plan
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+
+	public void poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+		POfunc.verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToGrnDifferentUomMatWOQE"));
+
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type,Dissimilar UOM)Without Quality
+	 * Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
+				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		commonFunc.hardWait(4000);
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Create the GRN Document from PO with and
+	 * Without Inspection for RateContract Item(Material)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialForDifferentUom(
+				webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToGrnRateContractMatWQE"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type WithoutQualityEnabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForDifferentUom(
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document from PO with PriceList Item for
+	 * General Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled()
+			throws IOException {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
+		POfunc.verifyDirectPODomesticDifferentUomPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingPoAndSearchPoNo();
+		clickSelectAllButton();
+		createGrn();
+		supplierBillNumberAndDcNumber();
+		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
 	}
 
 }

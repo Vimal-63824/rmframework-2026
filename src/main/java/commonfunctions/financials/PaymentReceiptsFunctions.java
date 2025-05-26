@@ -66,7 +66,7 @@ public class PaymentReceiptsFunctions {
 									commonFunc.hardWait(8000);
 									webDB.selectDropDownByText(PaymentReceiptsLocators.SelectBank,
 											commonFunc.getDataFromTestDataSheet("Bank"), ElementType.Xpath);
-									commonFunc.hardWait(1000);
+									commonFunc.hardWait(3000);
 									webDB.selectDropDownByText(PaymentReceiptsLocators.PayMode,
 											commonFunc.getDataFromTestDataSheet("Rtgs"), ElementType.Xpath);
 									commonFunc.searchAndSelectValueInFilters(

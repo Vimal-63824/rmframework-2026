@@ -139,4 +139,16 @@ public class ProductionOrderLocators {
 		return "//a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
 	}
 
+	/** @locatorType XPATH */
+	public static final String ProcessMoveType = "//select[@id='P19631010001_PROHD_TRANSFER_TY']";
+	/** @locatorType XPATH */
+	public static final String ProcessTypeList = "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
+
+	/** @locatorType XPATH */
+	public static final String ProcessType(int i) {
+		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+	}
+	
+	
+
 }
