@@ -6,9 +6,17 @@ package commonfunctions.productionplanning;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
+import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.PricelistPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.productionplanning.BillOfMaterialsLocators;
 import utils.ReportLoger;
@@ -21,6 +29,8 @@ public class BillOfMaterialsFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
+	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	private static PricelistPageFunctions priceListFunc = new PricelistPageFunctions();
 
 	/**
 	 * This Method used to search BOM Number and verify Status with Expected Status
@@ -819,8 +829,9 @@ public class BillOfMaterialsFunctions {
 				flag = webDB.waitForElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.moveToElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
-					webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					flag = webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+//					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -831,6 +842,1020 @@ public class BillOfMaterialsFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Add Icon in BOM Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickAddIconInBOMMigration() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMigrationAddBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BillOfMaterialsLocators.BOMMigrationAddBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_CreateIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "BOM Migration Create Icon Clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to switch Create Frame in BOM Migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToCreateBOMMigrationFrame() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_CreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BillOfMaterialsLocators.BOMMig_CreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_CreateUnitLovBtn, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to fill details in BOM Migration Creation
+	 * 
+	 * @param Unit
+	 * @param Ref
+	 */
+	public void fillDetailsInBOMMigrationCreation(String Unit, String Ref) {
+		switchToCreateBOMMigrationFrame();
+		logs.logging("INFO", "Create Iframe Switched in BOM Migration");
+		commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.BOMMig_CreateUnitLovBtn, Unit);
+		logs.logging("INFO", "Unit Selected in BOM Migration Creation: " + Unit);
+		switchToCreateBOMMigrationFrame();
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_CreateRefInput, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.BOMMig_CreateRefInput, Ref, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Ref Entered in BOM Migration Creation: " + Ref);
+				webDB.moveToElement(BillOfMaterialsLocators.BOMMig_CreateTickIcon, ElementType.Xpath);
+				webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_CreateTickIcon, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_DisplayDocNumber, ElementType.Xpath);
+				if (flag) {
+					String DisplayDocNo = webDB.getDomPropertyFromElement(
+							BillOfMaterialsLocators.BOMMig_DisplayDocNumber, ElementType.Xpath,
+							commonFunc.getDataFromTestDataSheet("Value"));
+					VariableHandler.setBOMNumber(DisplayDocNo);
+					logs.logging("INFO", "Displayed BOM Migration Doc Number: " + DisplayDocNo);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to upload template in BOM migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void uploadTemplateInEmployeeAllowanceMigration() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_UploadIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(BillOfMaterialsLocators.BOMMig_UploadIcon, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_UploadIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_UploadInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
+				String file1 = webDB.getDataFromProperties("BOMMigrationFileName");
+				File file = new File(VariableHandler.testdataDir + file1);
+				flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.BOMMig_UploadInput, file.getAbsolutePath(),
+						ElementType.Xpath);
+				if (flag) {
+					flag = webDB.waitForClickElement(BillOfMaterialsLocators.BOMMig_UploadBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_UploadBtn, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.isElementDisplayed(BillOfMaterialsLocators.BOMMig_DisplayDocNumber,
+								ElementType.Xpath)
+								&& webDB.isElementNotDisplayed(BillOfMaterialsLocators.BOMMig_UploadBtn,
+										ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "File Uploaded Succesfully for BOM Migration");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Load Routing Button in BOM migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickLoadRoutingBtnInBOMMigration() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_LoadRoutingBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(BillOfMaterialsLocators.BOMMig_LoadRoutingBtn, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_LoadRoutingBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Load Routing Button Clicked Successfully");
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Create BOM Button in BOM migration
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCreateBOMInBOMMigration() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMMig_CreateBOMBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(BillOfMaterialsLocators.BOMMig_CreateBOMBtn, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.BOMMig_CreateBOMBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Create BOM Clicked and BOM Created Successfully");
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate to Other Details Sub Tab in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToOtherDetailsSubTab() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.OtherDetailsTab_Label, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BillOfMaterialsLocators.OtherDetailsTab_Label, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.CopyBOMBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Other Details Sub tab Navigated Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to verify displaying Status in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Status
+	 */
+	public void checkDisplayStatusInsideBOM(String Status) {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMDisplayStatus, ElementType.Xpath);
+		if (flag) {
+			String DisplayStatus = webDB.getTextFromElement(BillOfMaterialsLocators.BOMDisplayStatus,
+					ElementType.Xpath);
+			logs.logging("INFO", "Displayed Status in BOM: " + DisplayStatus);
+			logs.logging("INFO", "Expected Status : " + Status);
+			flag = DisplayStatus.equalsIgnoreCase(Status);
+			if (flag) {
+				logs.logging("INFO", "BOM Status Verified");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to switch Correction Frame in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToCorrectionFrameInBOM() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.CorrectionIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BillOfMaterialsLocators.CorrectionIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.CorrectionRefInput, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to switch Inactivate Frame in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToInactivateFrameInBOM() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.InactivateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BillOfMaterialsLocators.InactivateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.InactivateRefInput, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to switch Cre. revision Frame in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToRevisionFrameInBOM() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.CreRevisionIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BillOfMaterialsLocators.CreRevisionIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.CreRevisionRefInput, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to switch Copy BOM Frame in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchToCopyBOMFrameInBOM() {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.CopyBOMIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BillOfMaterialsLocators.CopyBOMIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(BillOfMaterialsLocators.CopyBOMItemLovBtn, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click and verify Correction BOM Option
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Ref
+	 */
+	public void clickAndVerifyCorrectBOMOption(String Ref) {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.CorrectionBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BillOfMaterialsLocators.CorrectionBtn, ElementType.Xpath);
+			switchToCorrectionFrameInBOM();
+			logs.logging("INFO", "Correction Button Clicked");
+			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.CorrectionRefInput, Ref, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Reference Entered in Correction: " + Ref);
+				flag = webDB.waitForElement(BillOfMaterialsLocators.CorrectionTickIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BillOfMaterialsLocators.CorrectionTickIcon, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Correction Processed Successfully");
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click and verify Inactive BOM Option
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Ref
+	 */
+	public void clickAndVerifyInactivateBOMOption(String Ref) {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.InactivateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BillOfMaterialsLocators.InactivateBtn, ElementType.Xpath);
+			switchToInactivateFrameInBOM();
+			logs.logging("INFO", "Inactivate Button Clicked");
+			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.InactivateRefInput, Ref, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Reference Entered in Inactivate: " + Ref);
+				flag = webDB.waitForElement(BillOfMaterialsLocators.InactivateTickIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BillOfMaterialsLocators.InactivateTickIcon, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Inactivate Processed Successfully");
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click and verify Revision BOM Option
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Ref
+	 * @param effFrom
+	 * @param effTo
+	 */
+	public void clickAndVerifyRevisionBOMOption(String Ref, String effFrom, String effTo) {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.CreRevisionBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BillOfMaterialsLocators.CreRevisionBtn, ElementType.Xpath);
+			switchToRevisionFrameInBOM();
+			logs.logging("INFO", "Cre. Revision Button Clicked");
+			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.CreRevisionRefInput, Ref, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Reference Entered in Cre. Revision: " + Ref);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreRevisionEffFromInput,
+						BillOfMaterialsLocators.CreRevisionEffFromInput, effFrom);
+				logs.logging("INFO", "Effective From Date Entered: " + effFrom);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CreRevisionEffToInput,
+						BillOfMaterialsLocators.CreRevisionEffToInput, effTo);
+				logs.logging("INFO", "Effective To Date Entered: " + effTo);
+				flag = webDB.waitForElement(BillOfMaterialsLocators.CreRevisionTickIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BillOfMaterialsLocators.CreRevisionTickIcon, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Cre. Revision Processed Successfully");
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click and verify Copy BOM Option
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param effFrom
+	 * @param effTo
+	 * @param BOMName
+	 */
+	public void clickAndVerifyCopyBOMOption(String Item, String effFrom, String effTo, String BOMName) {
+		flag = webDB.waitForElement(BillOfMaterialsLocators.CopyBOMBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BillOfMaterialsLocators.CopyBOMBtn, ElementType.Xpath);
+			switchToCopyBOMFrameInBOM();
+			logs.logging("INFO", "Copy BOM Button Clicked");
+			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.CopyBOMNameInput, BOMName, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "BOM Name Entered in Copy BOM: " + BOMName);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffFromInput,
+						BillOfMaterialsLocators.CopyBOMEffFromInput, effFrom);
+				logs.logging("INFO", "Effective From Date Entered: " + effFrom);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffToInput,
+						BillOfMaterialsLocators.CopyBOMEffToInput, effTo);
+				logs.logging("INFO", "Effective To Date Entered: " + effTo);
+				commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CopyBOMItemLovBtn, Item);
+				logs.logging("INFO", "Item Selected in Copy BOM: " + Item);
+				switchToCopyBOMFrameInBOM();
+				flag = webDB.waitForElement(BillOfMaterialsLocators.CopyBOMTickIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BillOfMaterialsLocators.CopyBOMTickIcon, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Copy BOM Processed Successfully");
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+						flag = webDB.waitForClickElement(BillOfMaterialsLocators.DisplayBOMNumber, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Tick Icon Clicked and BOM Created");
+							commonFunc.hardWait(2000);
+							String BOMNo = webDB.getTextFromElement(BillOfMaterialsLocators.DisplayBOMNumber,
+									ElementType.Xpath);
+							VariableHandler.setBOMNumber(BOMNo);
+							logs.logging("INFO", "Displayed BOM Number after copied: " + BOMNo);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to How to do BOM Migration?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyBOMMigration() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBOMMigrationTab();
+			clickAddIconInBOMMigration();
+			fillDetailsInBOMMigrationCreation(commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			uploadTemplateInEmployeeAllowanceMigration();
+			clickLoadRoutingBtnInBOMMigration();
+			clickCreateBOMInBOMMigration();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyBOMMigration': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to create Bill of materials for the Item with single
+	 * process and assembly
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCreateBOMItemSingleProcessAssembly() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			navigateToBORSubTab();
+			clickAddLineIconInBORTab();
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
+					commonFunc.getDataFromTestDataSheet("AutomationResource"));
+			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
+			fillCycleTimeUnitOrHrsMinAndSecInBORTab("3", "0", "0", "0");
+			fillCycleTimeBatchQntyAndHrsInBORTab("0", "0");
+			fillLagPriorityAndNoOfUnitsInBORTab("0", "1", "3");
+			clickSaveLineIconInBORTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyCreateBOMItemSingleProcessAssembly': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to create Bill of materials for the Item with
+	 * multiple Sub assembly?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCreateBOMItemMultipleSubAssembly() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String RMItem1 = commonFunc.getDataFromTestDataSheet("FG-10002-Item");
+		String RMItem2 = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem3 = commonFunc.getDataFromTestDataSheet("GwlBomItem1001");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
+			clickSaveLineIconInMaterialTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
+			clickSaveLineIconInMaterialTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem3,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FG-WH-KD"));
+			clickSaveLineIconInMaterialTab();
+			navigateToBORSubTab();
+			clickAddLineIconInBORTab();
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
+					commonFunc.getDataFromTestDataSheet("AutomationResource"));
+			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
+			fillCycleTimeUnitOrHrsMinAndSecInBORTab("3", "0", "0", "0");
+			fillCycleTimeBatchQntyAndHrsInBORTab("0", "0");
+			fillLagPriorityAndNoOfUnitsInBORTab("0", "1", "3");
+			clickSaveLineIconInBORTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyCreateBOMItemMultipleSubAssembly': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to Create Multiple BOM for the Same Item?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCreateMultipleBOMSameItem() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName2 = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			navigateToBORSubTab();
+			clickAddLineIconInBORTab();
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
+					commonFunc.getDataFromTestDataSheet("AutomationResource"));
+			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
+			fillCycleTimeUnitOrHrsMinAndSecInBORTab("3", "0", "0", "0");
+			fillCycleTimeBatchQntyAndHrsInBORTab("0", "0");
+			fillLagPriorityAndNoOfUnitsInBORTab("0", "1", "3");
+			clickSaveLineIconInBORTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName2,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			navigateToBORSubTab();
+			clickAddLineIconInBORTab();
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
+					commonFunc.getDataFromTestDataSheet("AutomationResource"));
+			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
+			fillCycleTimeUnitOrHrsMinAndSecInBORTab("3", "0", "0", "0");
+			fillCycleTimeBatchQntyAndHrsInBORTab("0", "0");
+			fillLagPriorityAndNoOfUnitsInBORTab("0", "1", "3");
+			clickSaveLineIconInBORTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			chooseBOMTypeAndSaveHeader(commonFunc.getDataFromTestDataSheet("PrimaryType"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyCreateMultipleBOMSameItem': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to Correct the Bill of Materials?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCorrectBillOfMaterials() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			navigateToOtherDetailsSubTab();
+			clickAndVerifyCorrectBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Draft"));
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyCorrectBillOfMaterials': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to Copy the BOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCopyBillOfMaterials() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName2 = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			navigateToOtherDetailsSubTab();
+			clickAndVerifyCopyBOMOption(commonFunc.getDataFromTestDataSheet("BomItem-2244"), Today, Today, BOMName2);
+			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Draft"));
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyCopyBillOfMaterials': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to revise the BOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyReviseBillOfMaterials() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		LocalDate date1 = LocalDate.now().plusDays(1);
+		String Today = date.format(formatter);
+		String Tomorrow = date1.format(formatter);
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			navigateToOtherDetailsSubTab();
+			clickAndVerifyRevisionBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"), Today, Tomorrow);
+			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Draft"));
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyReviseBillOfMaterials': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to How to Inactivate the BOM?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyInactivateBillOfMaterials() {
+		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToBillOfMaterialsPage();
+			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
+					VariableHandler.getItemName());
+			enterEffFromToDateAndSaveHeader(Today, Today);
+			navigateToRoutingSubTab();
+			clickAddLineIconInRoutingTab();
+			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+			clickSaveLineIconInRoutingTab();
+			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			navigateToMaterialsSubTab();
+			clickAddLineIconInMaterialTab();
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("Kgs"));
+			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
+			clickSaveLineIconInMaterialTab();
+			clickHeaderSaveAndPostButtonInBOM();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+			}
+			commonFunc.navigateToBillOfMaterialsPage();
+			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
+					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
+			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
+			navigateToOtherDetailsSubTab();
+			clickAndVerifyInactivateBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Inactive"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyInactivateBillOfMaterials': " + e);
+			return false;
+		}
 	}
 
 }
