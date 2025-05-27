@@ -114,4 +114,6 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String OrderNo = "//span[@id='P9313101003_IMRLN_ORD_NO_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String OtherDetailsHeader = "//h1[text()='Other Details']";
 }

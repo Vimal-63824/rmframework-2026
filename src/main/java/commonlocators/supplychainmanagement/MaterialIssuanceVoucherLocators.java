@@ -113,4 +113,17 @@ public class MaterialIssuanceVoucherLocators {
 		return "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[14]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String LinesTableViewDetailsIcon(String Name) {
+		return "//table//tr/td[text()='" + Name + "']/../td[last()-1]/a";
+	}
+
+	/** @locatorType Xpath */
+	public static final String LineDetailsIframe = "//iframe[@title='Line Details']";
+	/** @locatorType Xpath */
+	public static final String LineDetailsSaveIcon = "//button[@id='B1687788247186826859']";
+	/** @locatorType Xpath */
+	public static final String LineDetailsMachineLovBtn = "//button[@id='P931311721_ISTLN_RES_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LineDetailsIframeCloseIcon = "//iframe[@title='Line Details']/ancestor::div//button";
 }
