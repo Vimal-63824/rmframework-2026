@@ -96,7 +96,7 @@ public class GrnLocators {
 
 	/** @locatorType Xpath */
 	public static final String GrnStatusTableText(String Grnno) {
-		return "//a[text()='" + Grnno + "']/../../td[14]";
+		return "(//a[text()='" + Grnno + "']/../../td/div[contains(@style,'color')])[1]";
 	}
 
 	/** @locatorType Xpath */
