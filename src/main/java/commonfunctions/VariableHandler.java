@@ -194,6 +194,8 @@ public class VariableHandler {
 	private static ThreadLocal<String> PriceListDocno = new ThreadLocal<>();
 	private static ThreadLocal<String> CatDocno = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpAdjustmentVouNo = new ThreadLocal<>();
+	private static ThreadLocal<String> SalesRegionText = new ThreadLocal<>();
+	private static ThreadLocal<String> SalesZoneText = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1647,5 +1649,21 @@ public class VariableHandler {
 
 	public static void setEmpAdjustmentVouNo(String Data) {
 		EmpAdjustmentVouNo.set(Data);
+	}
+
+	public static String getSalesRegionText() {
+		return SalesRegionText.get();
+	}
+
+	public static void setSalesRegionText(String Data) {
+		SalesRegionText.set(Data);
+	}
+
+	public static String getSalesZoneText() {
+		return SalesZoneText.get();
+	}
+
+	public static void setSalesZoneText(String Data) {
+		SalesZoneText.set(Data);
 	}
 }

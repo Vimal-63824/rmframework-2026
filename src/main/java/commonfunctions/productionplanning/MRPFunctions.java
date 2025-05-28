@@ -7,14 +7,19 @@ package commonfunctions.productionplanning;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
+import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.productionplanning.MRPLocators;
 import utils.ReportLoger;
@@ -31,6 +36,8 @@ public class MRPFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
+	private static SalesOrderFunctions saleOrderFunc = new SalesOrderFunctions();
+	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 
 	/**
 	 * This Method Used to switch Release IFrame
@@ -718,5 +725,74 @@ public class MRPFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to How to create and Run MRP through sales Order?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyCreateAndRunMRPThroughSalesOrder() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String MRPName = "TEST MRP - " + RandomStringUtils.randomNumeric(3);
+		String Today = date.format(formatter);
+		LocalDate nextmonthdate = LocalDate.now().plusMonths(1);
+		String NextMonthToday = nextmonthdate.format(formatter);
+		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
+		LocalDate previousDate = LocalDate.now().minusDays(1);
+		String YesterDay = previousDate.format(formatter);
+		try {
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateSalesOrderPage();
+			saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			clickAddIconInMRP();
+			fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
+			clickAddLinePlusIconInSources();
+			enterUnitCutOffDateInSourcesLine(commonFunc.getDataFromTestDataSheet("Unit_100"), NextMonthToday);
+			clickSalesOrderDemandCheckBoxInSourceLines();
+			clickSaveIconInSourcesTab();
+			clickLoadDemandButtonInMRP();
+			navigateToDemandTabInMRPScreen();
+			searchSONumberInDemandAndSelectSOItems(VariableHandler.getSONumber());
+			clickCheckExceptionAndSaveHeaderInMRP();
+			navigateToExceptionTabInMRPScreen();
+			validateNoExceptionDataShownInTableData();
+			clickRunMRPButton();
+			navigateToResultsTabInMRPScreen();
+			verifyUnitResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("Unit_100"),
+					commonFunc.getDataFromTestDataSheet("Unit_100") });
+			verifyItemResultsDetails(new String[] { FGItem, RMItem });
+			verifyUOMResultsDetails(new String[] { commonFunc.getDataFromTestDataSheet("UomNos"),
+					commonFunc.getDataFromTestDataSheet("Kgs") });
+			clickHeaderSaveAndClickPost();
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRPNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRPNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMRPScreenInProdPlanning();
+			checkStatusOfMRP(VariableHandler.getMRPNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			searchAndClickMRPNoInFindPage(VariableHandler.getMRPNumber());
+			clickReleaseButtonInMRP();
+			chooseOrderTypeFromAndToDateInReleaseDetails("All", YesterDay, Today);
+			clickReleaseButtonInReleaseFrame();
+			checkStatusOfMRP(VariableHandler.getMRPNumber(), commonFunc.getDataFromTestDataSheet("ReleasedStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyInactivateBillOfMaterials': " + e);
+			return false;
+		}
 	}
 }
