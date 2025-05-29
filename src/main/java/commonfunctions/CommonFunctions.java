@@ -1595,19 +1595,21 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void navigateToMaterialIssuanceVoucherTab() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		navigateToInventoryTab();
-		navigateToInventoryTranscationTab();
-		flag = webDB.waitForElement(CommonUiLocators.MIVTab, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.MIVTab, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Material Issuance Voucher Tab Is Clicked");
-
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		navigateToInventoryTab();
+//		navigateToInventoryTranscationTab();
+//		flag = webDB.waitForElement(CommonUiLocators.MIVTab, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.MIVTab, ElementType.Xpath);
+//			flag = webDB.waitForElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Material Issuance Voucher Tab Is Clicked");
+//
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialIssuanceVoucher"),
+				CommonUiLocators.LeftSidePendingIcon);
 		Assert.assertTrue(flag);
 	}
 
@@ -2515,5 +2517,25 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("EmployeeAdjustmentScreen"),
 				EmployeeAdjustmentLocators.FindEmployeeAdjustmentHeader);
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to navigate to BOM Migration screen
+	 *
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToBOMMigrationTab() {
+		navigateToSearchTab(webDB.getDataFromProperties("BOMMigrationStdScreen"),
+				BillOfMaterialsLocators.BOMMigrationAddBtn);
+		Assert.assertTrue(flag);
+	}
+	
+	/**Navigates Setup Sales
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void navigateSetup_Sales() {
+	navigateToSearchTab(webDB.getDataFromProperties("SetupSalesScreen"), CommonUiLocators.salesRegion);
+	
 	}
 }

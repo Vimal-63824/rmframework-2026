@@ -327,5 +327,7 @@ public class CommonUiLocators {
 	public static final String activeButton = "//*[@id='B147500912587778117']";
 	/** @locatorType Xpath */
 	public static final String EmployeeAdjustmentScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[1]";
+	/** Locator Xpath */
+	public static final String  salesRegion = "//label[text()='Sales Region']" ;
 
 }

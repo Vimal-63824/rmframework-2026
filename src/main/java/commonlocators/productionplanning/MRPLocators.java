@@ -110,11 +110,11 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_ResultsTab_Summary = "//div[@id='P131816101001_TAB_RESULT']//label[text()='Summary']";
 	/** @locatorType XPATH */
-	public static final String MRP_ResultSummary_UnitTableDataList = "//div[@id='R2703833153023212486_ig_grid_vc']//table/tbody/tr/td[1]";
+	public static final String MRP_ResultSummary_UnitTableDataList = "//table[@id='677350558498427034_orig']//tbody/tr/td[1]";
 	/** @locatorType XPATH */
-	public static final String MRP_ResultSummary_ItemTableDataList = "//div[@id='R2703833153023212486_ig_grid_vc']//table/tbody/tr/td[2]";
+	public static final String MRP_ResultSummary_ItemTableDataList = "//table[@id='677350558498427034_orig']//tbody/tr/td[2]";
 	/** @locatorType XPATH */
-	public static final String MRP_ResultSummary_UOMTableDataList = "//div[@id='R2703833153023212486_ig_grid_vc']//table/tbody/tr/td[6]";
+	public static final String MRP_ResultSummary_UOMTableDataList = "//table[@id='677350558498427034_orig']//tbody/tr/td[6]";
 	/** @locatorType XPATH */
 	public static final String MRP_ReleaseBtn = "//button[@id='B1418494073427832265']";
 	/** @locatorType XPATH */

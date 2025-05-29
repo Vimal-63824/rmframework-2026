@@ -37,7 +37,6 @@ import commonfunctions.supplychainmanagement.StockTransactionPageFunctions;
 import commonfunctions.supplychainmanagement.StocksPageFunctions;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.supplychainmanagement.GrnLocators;
-import commonlocators.supplychainmanagement.MaterialRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
@@ -1301,6 +1300,9 @@ public class CoreProcessPageFunctions {
 					RMItem, commonFunc.getDataFromTestDataSheet("RMU100_WH"),
 					VariableHandler.getProductionOrderNumber(), VariableHandler.getItemName());
 			materialIssuanceVoucherFunc.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+			materialIssuanceVoucherFunc.clickLineDetailsIconWithItemName(RMItem);
+			materialIssuanceVoucherFunc
+					.selectMachineInMIVLineDetails(commonFunc.getDataFromTestDataSheet("Machines100"));
 			materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
 			commonFunc.navigateToMaterialIssuanceVoucherTab();
 			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(

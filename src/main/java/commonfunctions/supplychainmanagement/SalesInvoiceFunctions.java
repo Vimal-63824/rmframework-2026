@@ -580,12 +580,14 @@ public class SalesInvoiceFunctions {
 			String DisplayedText = webDB.getTextFromElement(SalesInvoiceLocators.Item_Column, ElementType.Xpath);
 			flag = Item.equalsIgnoreCase(DisplayedText);
 			if (flag) {
+				logs.logging("INFO", "Verified Item Name in Pending SO: " + Item);
 				flag = webDB.waitForElement(SalesInvoiceLocators.Alloc_ls_batch_Btn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SalesInvoiceLocators.Alloc_ls_batch_Btn, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					commonFunc.checkSuccessToastMessageDisappear();
+					logs.logging("INFO", "Allocate Lot Serial Button Clicked");
 					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 					}
