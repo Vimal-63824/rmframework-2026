@@ -50,7 +50,7 @@ public class SubcontractOrderFunctions {
 					logs.logging("INFO", "Go Button Is Displayed");
 					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
+					commonFunc.hardWait(12000);
 					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
@@ -193,6 +193,7 @@ public class SubcontractOrderFunctions {
 	public void verifyProcessQuantityCalculation() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.OrderedQuantity, ElementType.Xpath);
 		if (flag) {
+			commonFunc.hardWait(2000);
 			String orderedQty = webDB.getTextFromElement(SubcontractOrderLocators.OrderedQuantity, ElementType.Xpath);
 			String convFactor = webDB.getTextFromElement(SubcontractOrderLocators.ConvFactor, ElementType.Xpath);
 //			String LineUnitCost = webDB.getTextFromElement(SubcontractOrderLocators.LineUnitCost, ElementType.Xpath);
@@ -429,6 +430,27 @@ public class SubcontractOrderFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add HSN Code
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAddHsnCode() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.HsnTable, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(SubcontractOrderLocators.HsnTable, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.HsnLovButton,
+					commonFunc.getDataFromTestDataSheet("HSN2022-5%"));
+			webDB.waitForElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
 	}
 
 }

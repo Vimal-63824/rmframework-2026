@@ -196,6 +196,9 @@ public class VariableHandler {
 	private static ThreadLocal<String> EmpAdjustmentVouNo = new ThreadLocal<>();
 	private static ThreadLocal<String> SalesRegionText = new ThreadLocal<>();
 	private static ThreadLocal<String> SalesZoneText = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> ProductionProcess = new ThreadLocal<>();
+	private static ThreadLocal<Map<String, String>> ProductionProcessType = ThreadLocal.withInitial(HashMap::new);
+	private static ThreadLocal<Map<String, String>> ProductionProcessItem = ThreadLocal.withInitial(HashMap::new);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1666,4 +1669,29 @@ public class VariableHandler {
 	public static void setSalesZoneText(String Data) {
 		SalesZoneText.set(Data);
 	}
+
+	public static ArrayList<String> getProductionProcess() {
+		return ProductionProcess.get();
+	}
+
+	public static void setProductionProcess(ArrayList<String> data) {
+		ProductionProcess.set(data);
+	}
+
+	public static Map<String, String> getProductionProcessType() {
+		return ProductionProcessType.get();
+	}
+
+	public static void setProductionProcess(Map<String, String> data) {
+		ProductionProcessType.set(data);
+	}
+
+	public static Map<String, String> getProductionProcessItem() {
+		return ProductionProcessItem.get();
+	}
+
+	public static void setProductionProcessItem(Map<String, String> data) {
+		ProductionProcessItem.set(data);
+	}
+
 }
