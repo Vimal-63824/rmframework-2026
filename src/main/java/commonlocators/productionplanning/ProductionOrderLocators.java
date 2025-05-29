@@ -148,7 +148,28 @@ public class ProductionOrderLocators {
 	public static final String ProcessType(int i) {
 		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
 	}
-	
-	
+
+	/** @locatorType XPATH */
+	public static final String Routing = "//label[@for='P19631010001_TAB_0']";
+	/** @locatorType XPATH */
+	public static final String MaterialRequestTab = "//label[@for='P19631010001_TAB_1']";
+
+	/** @locatorType XPATH */
+	public static final String ProcessName(int i) {
+		return "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[4]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String MaterialProcess = "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+
+	/** @locatorType XPATH */
+	public static final String MaterialProcess(int i) {
+		return "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String ItemName(int i) {
+		return "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+	}
 
 }

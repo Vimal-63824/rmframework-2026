@@ -95,4 +95,10 @@ public class SubcontractOrderLocators {
 	public static final String SgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[17]";
 	/** @locatorType XPATH */
 	public static final String LineSave = "//button[@id='B4095080566516271569']";
+	/** @locatorType XPATH */
+	public static final String HsnTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]";
+	/** @locatorType XPATH */
+	public static final String HsnLovButton = "//button[@id='C698163527035561601_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String TickButton = "//button[@id='B4055632771849862864']";
 }
