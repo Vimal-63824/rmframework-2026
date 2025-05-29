@@ -136,7 +136,7 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String FindTableStatusWithProdOrderNo(String DocNo) {
-		return "//a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
+		return "//a[contains(text(),'" + DocNo + "')]/../../td/div";
 	}
 
 	/** @locatorType XPATH */
