@@ -1608,9 +1608,9 @@ public class CommonFunctions {
 //
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("MaterialIssuanceVoucher"),
-				CommonUiLocators.LeftSidePendingIcon);
-		Assert.assertTrue(flag);
+
+//		Assert.assertTrue(flag);
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialIssuanceVoucher"), CommonUiLocators.PendingMIV);
 	}
 
 	/**
@@ -2453,7 +2453,6 @@ public class CommonFunctions {
 	 */
 	public void navigateToDebitNoteScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("DBScreen"), CommonUiLocators.DebitNote_Add_Icon);
-
 	}
 
 	/***
@@ -2472,7 +2471,6 @@ public class CommonFunctions {
 	 */
 	public void navigateItemAssoScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("ItemUnitAssoScreen"), CommonUiLocators.unitLov);
-
 	}
 
 	/***
@@ -2482,7 +2480,6 @@ public class CommonFunctions {
 	 */
 	public void navigateCustomerItemScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("CustomerItemScreen"), CommonUiLocators.AddPLusButton);
-
 	}
 
 	/**
@@ -2492,7 +2489,6 @@ public class CommonFunctions {
 	 */
 	public void navigatePriceList_StdPrice_CataloguePrice() {
 		navigateToSearchTab(webDB.getDataFromProperties("PricingScreen"), CommonUiLocators.AddButton);
-
 	}
 
 	/**
@@ -2516,7 +2512,6 @@ public class CommonFunctions {
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("EmployeeAdjustmentScreen"),
 				EmployeeAdjustmentLocators.FindEmployeeAdjustmentHeader);
-		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -2527,15 +2522,48 @@ public class CommonFunctions {
 	public void navigateToBOMMigrationTab() {
 		navigateToSearchTab(webDB.getDataFromProperties("BOMMigrationStdScreen"),
 				BillOfMaterialsLocators.BOMMigrationAddBtn);
-		Assert.assertTrue(flag);
 	}
-	
-	/**Navigates Setup Sales
+
+	/**
+	 * Navigates Setup Sales
 	 * 
 	 * @author Kowshik-RMITS
 	 */
 	public void navigateSetup_Sales() {
-	navigateToSearchTab(webDB.getDataFromProperties("SetupSalesScreen"), CommonUiLocators.salesRegion);
-	
+		navigateToSearchTab(webDB.getDataFromProperties("SetupSalesScreen"), CommonUiLocators.salesRegion);
+	}
+
+	/**
+	 * Verify Add Table Specs
+	 * 
+	 * @author Deepan-GWL
+	 * @param Tablespec
+	 * @param InputParameter
+	 * @param Enteredvalue
+	 */
+	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
+		checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.clearText(InputParameter, ElementType.Xpath);
+			logs.logging("INFO", "Clear Text Field The Input Value");
+			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			if (flag) {
+				hardWait(1000);
+				webDB.clickAnElement(Tablespec, ElementType.Xpath);
+				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
+				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
+						getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Attribute Value Is: " + value);
+				flag = value.contains(Enteredvalue);
+				if (flag) {
+					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

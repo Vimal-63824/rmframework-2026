@@ -8,7 +8,9 @@ import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,10 +18,19 @@ import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
+import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.DeliveryChallanFunctions;
+import commonfunctions.supplychainmanagement.GrnScoPageFunctions;
+import commonfunctions.supplychainmanagement.MaterialIssuanceVoucherFunctions;
+import commonfunctions.supplychainmanagement.MaterialReceiptVoucherFunctions;
+import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
+import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.productionplanning.MRPLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
+import commonlocators.supplychainmanagement.OpenPoRcLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.ShareOfBusinessLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -30,6 +41,14 @@ public class ProductionOrderFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
+	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	private static MaterialRequestFunctions materialRequestFunc = new MaterialRequestFunctions();
+	private static MaterialIssuanceVoucherFunctions materialIssuanceVoucherFunc = new MaterialIssuanceVoucherFunctions();
+	private static MaterialReceiptVoucherFunctions materialReceiptFunctions = new MaterialReceiptVoucherFunctions();
+	private static CompletionProductionOrderFunctions completionProductionOrderFunc = new CompletionProductionOrderFunctions();
+	private static SubcontractOrderFunctions subContractOrderFunc = new SubcontractOrderFunctions();
+	private static GrnScoPageFunctions grnScoPageFunc = new GrnScoPageFunctions();
+	private static DeliveryChallanFunctions deliveryChallanFunc = new DeliveryChallanFunctions();
 
 	/**
 	 * This Method used to verify Status of Production Order with MRP Number
@@ -637,7 +656,7 @@ public class ProductionOrderFunctions {
 				}
 			}
 		}
-
+		assertTrue(flag);
 	}
 
 	/**
@@ -741,6 +760,1139 @@ public class ProductionOrderFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Store Process And Raw Material
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyStoreProcessAndRawMaterial() {
+		Map<String, String> ProcessTypeMap = new HashMap<String, String>();
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
+		for (int i = 1; i <= elements.size(); i++) {
+			flag = webDB.waitForElement(ProductionOrderLocators.ProcessName(i), ElementType.Xpath);
+			if (flag) {
+				String ProcessName = webDB.getTextFromElement(ProductionOrderLocators.ProcessName(i),
+						ElementType.Xpath);
+				String ProcessType = elements.get(i - 1).getText();
+				ProcessTypeMap.put(ProcessType, ProcessName);
+			}
+		}
+		VariableHandler.setProductionProcess(ProcessTypeMap);
+		flag = webDB.waitForElement(ProductionOrderLocators.MaterialRequestTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(ProductionOrderLocators.MaterialRequestTab, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.MaterialProcess, ElementType.Xpath);
+			if (flag) {
+				Map<String, String> ProcessItemMap = new HashMap<String, String>();
+				List<WebElement> MaterialProcess = webDB.getDriver()
+						.findElements(By.xpath(ProductionOrderLocators.MaterialProcess));
+				for (int i = 1; i <= MaterialProcess.size(); i++) {
+					flag = webDB.waitForElement(ProductionOrderLocators.ItemName(i), ElementType.Xpath);
+					if (flag) {
+						String ItemName = webDB.getTextFromElement(ProductionOrderLocators.ItemName(i),
+								ElementType.Xpath);
+						String ProcessName = MaterialProcess.get(i - 1).getText();
+						ProcessItemMap.put(ProcessName, ItemName);
+					}
+				}
+				VariableHandler.setProductionProcessItem(ProcessItemMap);
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Manual Production Order Without SO First
+	 * Process Remaining Inside
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInside() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomNumberOutsideAndInside"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Orderreleases"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("InsideType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		commonFunc.logoutUser();
+		for (String currentProcess : VariableHandler.getProductionProcess()) {
+			if ((currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType")))
+					| (currentProcess.equals(commonFunc.getDataFromTestDataSheet("BothType")))) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc
+						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
+						VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialReceiptVoucher();
+				commonFunc.clickPendingIcon();
+				materialReceiptFunctions.clickPendingInssuanceBtn();
+				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions
+						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+				materialReceiptFunctions.clickTickAndPostIcon();
+				commonFunc.logoutUser();
+				// ---------------------------------------------------------------------------------------
+			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToSubContractOrder();
+				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
+				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"),
+						commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+				subContractOrderFunc.verifyProcessQuantityCalculation();
+				subContractOrderFunc.verifyAddHsnCode();
+				subContractOrderFunc.verifyAddGlAccNumberValue();
+				subContractOrderFunc.verifyIncludeChargesAndPostIcon();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername");
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getScoNumber());
+					subContractOrderFunc.verifyApproveWithDocNumber(VariableHandler.getScoNumber());
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					commonFunc.navigateToSubContractOrder();
+				}
+				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+				materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getScoNumber());
+				materialRequestFunc.headerSaveAndPost();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc.checkStatusOfMRNo(VariableHandler.getMRNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialIssuanceVoucher();
+				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+				materialIssuanceVoucherFunc.headerTickAndPostIcon();
+				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGateEntryDeliveryChallan();
+				deliveryChallanFunc.verifyStatusOfDeliveryChallan(VariableHandler.getDCNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getScoNumber());
+				grnScoPageFunc.addHeatNumberAndTestNumber();
+				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+				grnScoPageFunc.verifyGenMatConsAndAllocate();
+				grnScoPageFunc.checkConsumptionAfterGenerationMat();
+				grnScoPageFunc.verifyViewLineDetails();
+				grnScoPageFunc.saveHeaderAndPost();
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.verifyValidateGrnScoStatus(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialReceiptVoucher();
+				if (flag) {
+					materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocuments(VariableHandler.getScoGrnNumber());
+				} else {
+					commonFunc.clickPendingIcon();
+					materialReceiptFunctions.clickPendingInssuanceBtn();
+					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getScoGrnNumber());
+					materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getScoGrnNumber());
+				}
+				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+				materialReceiptFunctions.clickTickAndPostIcon();
+				materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+						commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				commonFunc.logoutUser();
+			}
+
+		}
+		// -----------------------------------------------------------------------------------------------------
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		flag = commonFunc.logoutUser();
+
+		assertTrue(flag);
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Select Ordered releases In Po
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyProductionOrderMREventAndRestOP(String FirstOpr, String RestOpr, String MoveType) {
+		flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Show More Button Is Displayed");
+			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
+				webDB.selectDropDownByText(ProductionOrderLocators.ProcessMoveType, MoveType, ElementType.Xpath);
+				logs.logging("INFO", "Move Type Is Selected: " + MoveType);
+				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect, FirstOpr, ElementType.Xpath);
+				logs.logging("INFO", "First Opr Select Is: " + FirstOpr);
+				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect, RestOpr, ElementType.Xpath);
+				logs.logging("INFO", "Rest Opr Select Is: " + RestOpr);
+				flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Show Less Button Is Displayed");
+					webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+					flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Process Type
+	 * 
+	 * @author Deepan-GWL
+	 * @param FirstProcessType
+	 * @param OtherProcessType
+	 */
+	public void verifyProcessType(String FirstProcessType, String OtherProcessType) {
+		ArrayList<String> Process = new ArrayList<>();
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(ProductionOrderLocators.ProcessTypeList));
+		for (int i = 1; i <= elements.size(); i++) {
+			flag = webDB.waitForElement(ProductionOrderLocators.ProcessType(i), ElementType.Xpath);
+			if (flag) {
+				String ProcessTypeValue = webDB.getTextFromElement(ProductionOrderLocators.ProcessType(i),
+						ElementType.Xpath);
+				Process.add(ProcessTypeValue);
+			}
+		}
+		VariableHandler.setProductionProcess(Process);
+		for (int i = 1; i <= 1; i++) {
+			flag = webDB.waitForElement(ProductionOrderLocators.ProcessType(i), ElementType.Xpath);
+			if (flag) {
+				String FirstProcessTypeValue = webDB.getTextFromElement(ProductionOrderLocators.ProcessType(i),
+						ElementType.Xpath);
+				flag = FirstProcessTypeValue.equals(FirstProcessType);
+				if (!flag) {
+					assertTrue(false);
+				}
+			}
+		}
+		for (int i = 2; i <= elements.size(); i++) {
+			flag = webDB.waitForElement(ProductionOrderLocators.ProcessType(i), ElementType.Xpath);
+			if (flag) {
+				String OtherProcessTypeValue = webDB.getTextFromElement(ProductionOrderLocators.ProcessType(i),
+						ElementType.Xpath);
+				flag = OtherProcessTypeValue.equals(OtherProcessType);
+				if (!flag) {
+					assertTrue(false);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeSingle() {
+		String RestOpr = commonFunc.getDataFromTestDataSheet("ComQty");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomOutsideAndInsideWithMaterial"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"), RestOpr,
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("InsideType"));
+		verifyStoreProcessAndRawMaterial();
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		commonFunc.logoutUser();
+		for (String currentProcess : VariableHandler.getProductionProcess()) {
+			if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType"))
+					&& (RestOpr.equals(commonFunc.getDataFromTestDataSheet("Orderreleases")))) {
+				if (VariableHandler.getProductionProcessItem()
+						.get((VariableHandler.getProductionProcessType().get(currentProcess))) != null) {
+					// ----------------------------------------------------------------------------------------
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					webDB.navigateToRefresh();
+					commonFunc.navigateToInventoryMaterialRequest();
+					materialRequestFunc
+							.storeMRNoAndCheckStatusApproveWithProdNo(VariableHandler.getProductionOrderNumber());
+					commonFunc.navigateToMaterialIssuanceVoucherTab();
+					commonFunc.clickPendingIcon();
+					materialIssuanceVoucherFunc
+							.searchParticularDocumentWithMRNo(VariableHandler.getMaterialRequestNo());
+					materialIssuanceVoucherFunc
+							.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+					materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+					commonFunc.navigateToMaterialIssuanceVoucherTab();
+					materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
+							VariableHandler.getMaterialIssuanceVoucherNo(),
+							commonFunc.getDataFromTestDataSheet("PostedStatus"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername-Admin");
+					commonFunc.navigateSetupInventoryPage();
+					flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					commonFunc.navigateToMaterialReceiptVoucher();
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						commonFunc.clickPendingIcon();
+						materialReceiptFunctions.clickPendingInssuanceBtn();
+						materialReceiptFunctions
+								.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
+						materialReceiptFunctions
+								.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
+					}
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.logoutUser();
+				}
+			}
+		}
+		// ----------------------------------------------------------------------------------
+		for (String currentProcess : VariableHandler.getProductionProcess()) {
+			if ((currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType")))
+					| (currentProcess.equals(commonFunc.getDataFromTestDataSheet("BothType")))) {
+				for (String currentProcess1 : VariableHandler.getProductionProcess()) {
+					if (currentProcess1.equals(commonFunc.getDataFromTestDataSheet("InsideType"))
+							&& (RestOpr.equals(commonFunc.getDataFromTestDataSheet("ComQty")))) {
+						if (VariableHandler.getProductionProcessItem()
+								.get((VariableHandler.getProductionProcessType().get(currentProcess1))) != null) {
+							// ----------------------------------------------------------------------------------------
+							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
+									System.getProperty("TvsPassword"), "TvsUsername");
+							webDB.navigateToRefresh();
+							commonFunc.navigateToInventoryMaterialRequest();
+							materialRequestFunc.storeMRNoAndCheckStatusApproveWithProdNo(
+									VariableHandler.getProductionOrderNumber());
+							commonFunc.navigateToMaterialIssuanceVoucherTab();
+							commonFunc.clickPendingIcon();
+							materialIssuanceVoucherFunc
+									.searchParticularDocumentWithMRNo(VariableHandler.getMaterialRequestNo());
+							materialIssuanceVoucherFunc
+									.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+							materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+							commonFunc.navigateToMaterialIssuanceVoucherTab();
+							materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
+									VariableHandler.getMaterialIssuanceVoucherNo(),
+									commonFunc.getDataFromTestDataSheet("PostedStatus"));
+							commonFunc.logoutUser();
+							commonFunc.validCommonLogin(System.getProperty("HodUsername"),
+									System.getProperty("HodPassword"), "HodUsername-Admin");
+							commonFunc.navigateSetupInventoryPage();
+							flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+							commonFunc.logoutUser();
+							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
+									System.getProperty("TvsPassword"), "TvsUsername");
+							commonFunc.navigateToMaterialReceiptVoucher();
+							if (flag) {
+								materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+										VariableHandler.getProductionOrderNumber());
+							} else {
+								commonFunc.clickPendingIcon();
+								materialReceiptFunctions.clickPendingInssuanceBtn();
+								materialReceiptFunctions
+										.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
+								materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(
+										VariableHandler.getMaterialIssuanceVoucherNo());
+							}
+							materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+							materialReceiptFunctions.clickTickAndPostIcon();
+							commonFunc.logoutUser();
+						}
+					}
+				}
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc
+						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
+						VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialReceiptVoucher();
+				commonFunc.clickPendingIcon();
+				materialReceiptFunctions.clickPendingInssuanceBtn();
+				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions
+						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+				materialReceiptFunctions.clickTickAndPostIcon();
+				commonFunc.logoutUser();
+				// ---------------------------------------------------------------------------------------
+			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToSubContractOrder();
+				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
+				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"),
+						commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+				subContractOrderFunc.verifyProcessQuantityCalculation();
+				subContractOrderFunc.verifyAddHsnCode();
+				subContractOrderFunc.verifyAddGlAccNumberValue();
+				subContractOrderFunc.verifyIncludeChargesAndPostIcon();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername");
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getScoNumber());
+					subContractOrderFunc.verifyApproveWithDocNumber(VariableHandler.getScoNumber());
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					commonFunc.navigateToSubContractOrder();
+				}
+				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+				materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getScoNumber());
+				materialRequestFunc.headerSaveAndPost();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc.checkStatusOfMRNo(VariableHandler.getMRNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialIssuanceVoucher();
+				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+				materialIssuanceVoucherFunc.headerTickAndPostIcon();
+				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGateEntryDeliveryChallan();
+				deliveryChallanFunc.verifyStatusOfDeliveryChallan(VariableHandler.getDCNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getScoNumber());
+				grnScoPageFunc.addHeatNumberAndTestNumber();
+				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+				grnScoPageFunc.verifyGenMatConsAndAllocate();
+				grnScoPageFunc.checkConsumptionAfterGenerationMat();
+				grnScoPageFunc.verifyViewLineDetails();
+				grnScoPageFunc.saveHeaderAndPost();
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.verifyValidateGrnScoStatus(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialReceiptVoucher();
+				if (flag) {
+					materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocuments(VariableHandler.getScoGrnNumber());
+				} else {
+					commonFunc.clickPendingIcon();
+					materialReceiptFunctions.clickPendingInssuanceBtn();
+					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getScoGrnNumber());
+					materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getScoGrnNumber());
+				}
+				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+				materialReceiptFunctions.clickTickAndPostIcon();
+				materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+						commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				commonFunc.logoutUser();
+			}
+
+		}
+
+		// -----------------------------------------------------------------------------------------------------
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		flag = commonFunc.logoutUser();
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as OR - Move Type - Multiple
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoOrMoveTypeMultiple() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomNumberOutsideAndInside"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Orderreleases"),
+				commonFunc.getDataFromTestDataSheet("MultipleType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("InsideType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeMultiple() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomNumberOutsideAndInside"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"), commonFunc.getDataFromTestDataSheet("MultipleType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("InsideType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as OR - Move Type - Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoOrMoveTypeItem() {
+		String RestOpr = commonFunc.getDataFromTestDataSheet("Orderreleases");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomNumberOutsideAndInside"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"), RestOpr,
+				commonFunc.getDataFromTestDataSheet("ItemType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("InsideType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		commonFunc.logoutUser();
+		for (String currentProcess : VariableHandler.getProductionProcess()) {
+			if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType"))
+					&& (RestOpr.equals(commonFunc.getDataFromTestDataSheet("Orderreleases")))) {
+				if (VariableHandler.getProductionProcessItem()
+						.get((VariableHandler.getProductionProcessType().get(currentProcess))) != null) {
+					// ----------------------------------------------------------------------------------------
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					webDB.navigateToRefresh();
+					commonFunc.navigateToInventoryMaterialRequest();
+					materialRequestFunc
+							.storeMRNoAndCheckStatusApproveWithProdNo(VariableHandler.getProductionOrderNumber());
+					commonFunc.navigateToMaterialIssuanceVoucherTab();
+					commonFunc.clickPendingIcon();
+					materialIssuanceVoucherFunc
+							.searchParticularDocumentWithMRNo(VariableHandler.getMaterialRequestNo());
+					materialIssuanceVoucherFunc
+							.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+					materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+					commonFunc.navigateToMaterialIssuanceVoucherTab();
+					materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
+							VariableHandler.getMaterialIssuanceVoucherNo(),
+							commonFunc.getDataFromTestDataSheet("PostedStatus"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername-Admin");
+					commonFunc.navigateSetupInventoryPage();
+					flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					commonFunc.navigateToMaterialReceiptVoucher();
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						commonFunc.clickPendingIcon();
+						materialReceiptFunctions.clickPendingInssuanceBtn();
+						materialReceiptFunctions
+								.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
+						materialReceiptFunctions
+								.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
+					}
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.logoutUser();
+				}
+			}
+		}
+		// ----------------------------------------------------------------------------------
+		for (String currentProcess : VariableHandler.getProductionProcess()) {
+			if ((currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType")))
+					| (currentProcess.equals(commonFunc.getDataFromTestDataSheet("BothType")))) {
+
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc
+						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
+						VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialReceiptVoucher();
+				commonFunc.clickPendingIcon();
+				materialReceiptFunctions.clickPendingInssuanceBtn();
+				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions
+						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
+				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+				materialReceiptFunctions.clickTickAndPostIcon();
+				commonFunc.logoutUser();
+				// ---------------------------------------------------------------------------------------
+			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToSubContractOrder();
+				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
+				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"),
+						commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+				subContractOrderFunc.verifyProcessQuantityCalculation();
+				subContractOrderFunc.verifyAddHsnCode();
+				subContractOrderFunc.verifyAddGlAccNumberValue();
+				subContractOrderFunc.verifyIncludeChargesAndPostIcon();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername");
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getScoNumber());
+					subContractOrderFunc.verifyApproveWithDocNumber(VariableHandler.getScoNumber());
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					commonFunc.navigateToSubContractOrder();
+				}
+				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+				materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getScoNumber());
+				materialRequestFunc.headerSaveAndPost();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc.checkStatusOfMRNo(VariableHandler.getMRNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialIssuanceVoucher();
+				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+				materialIssuanceVoucherFunc.headerTickAndPostIcon();
+				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGateEntryDeliveryChallan();
+				deliveryChallanFunc.verifyStatusOfDeliveryChallan(VariableHandler.getDCNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getScoNumber());
+				grnScoPageFunc.addHeatNumberAndTestNumber();
+				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+				grnScoPageFunc.verifyGenMatConsAndAllocate();
+				grnScoPageFunc.checkConsumptionAfterGenerationMat();
+				grnScoPageFunc.verifyViewLineDetails();
+				grnScoPageFunc.saveHeaderAndPost();
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.verifyValidateGrnScoStatus(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+				commonFunc.logoutUser();
+
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialReceiptVoucher();
+				if (flag) {
+					materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocuments(VariableHandler.getScoGrnNumber());
+				} else {
+					commonFunc.clickPendingIcon();
+					materialReceiptFunctions.clickPendingInssuanceBtn();
+					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getScoGrnNumber());
+					materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getScoGrnNumber());
+				}
+				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+				materialReceiptFunctions.clickTickAndPostIcon();
+				materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
+						commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				commonFunc.logoutUser();
+			}
+
+		}
+
+		// -----------------------------------------------------------------------------------------------------
+		for (String currentProcess1 : VariableHandler.getProductionProcess()) {
+			if (currentProcess1.equals(commonFunc.getDataFromTestDataSheet("InsideType"))
+					&& (RestOpr.equals(commonFunc.getDataFromTestDataSheet("ComQty")))) {
+				if (VariableHandler.getProductionProcessItem()
+						.get((VariableHandler.getProductionProcessType().get(currentProcess1))) != null) {
+					// ----------------------------------------------------------------------------------------
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					webDB.navigateToRefresh();
+					commonFunc.navigateToInventoryMaterialRequest();
+					materialRequestFunc
+							.storeMRNoAndCheckStatusApproveWithProdNo(VariableHandler.getProductionOrderNumber());
+					commonFunc.navigateToMaterialIssuanceVoucherTab();
+					commonFunc.clickPendingIcon();
+					materialIssuanceVoucherFunc
+							.searchParticularDocumentWithMRNo(VariableHandler.getMaterialRequestNo());
+					materialIssuanceVoucherFunc
+							.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+					materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+					commonFunc.navigateToMaterialIssuanceVoucherTab();
+					materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
+							VariableHandler.getMaterialIssuanceVoucherNo(),
+							commonFunc.getDataFromTestDataSheet("PostedStatus"));
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+							"HodUsername-Admin");
+					commonFunc.navigateSetupInventoryPage();
+					flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+							"TvsUsername");
+					commonFunc.navigateToMaterialReceiptVoucher();
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						commonFunc.clickPendingIcon();
+						materialReceiptFunctions.clickPendingInssuanceBtn();
+						materialReceiptFunctions
+								.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
+						materialReceiptFunctions
+								.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
+					}
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.logoutUser();
+				}
+			}
+		}
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeItem() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomNumberOutsideAndInside"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"), commonFunc.getDataFromTestDataSheet("ItemType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("InsideType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Manual Production Order Without SO First
+	 * Process Remaining Inside
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingBothWithFoCqRoCqMoveTypeSingle() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BOMNumberOutsideAndBoth"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("BothType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingBothWithFoCqRoCqMoveTypeMultiple() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BOMNumberOutsideAndBoth"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"), commonFunc.getDataFromTestDataSheet("MultipleType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("BothType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingBothWithFoCqRoCqMoveTypeItem() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderInProdPlanning();
+		clickAddIconInCreationProductionOrder();
+		createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BOMNumberOutsideAndBoth"),
+				commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+		clickSaveIconInCreationProductionOrder();
+		verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"), commonFunc.getDataFromTestDataSheet("ItemType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
+				commonFunc.getDataFromTestDataSheet("BothType"));
+		clickHeaderSaveAndPostProdOrder();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+		}
+		searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("Inprogress"));
 		assertTrue(flag);
 	}
 }

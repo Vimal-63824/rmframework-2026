@@ -1356,7 +1356,7 @@ public class CoreProcessPageFunctions {
 				materialReceiptFunctions.clickTickAndPostIcon();
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
-			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getMRPNumber(),
+			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			return true;
 		} catch (Exception e) {
