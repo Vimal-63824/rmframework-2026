@@ -6077,5 +6077,114 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
-
+	/**
+	 * This Method Used For Reading DataBase Value For Before Stock Quantity For Scarp
+	 * 
+	 * @author Vimal - RMITS
+	 * @param i1
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void ScrapStockQtyUpdateInExcelSI(int i1, ArrayList<String> ArrayList, String SheetName) {
+		String[][] SODiscountDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		SODiscountDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ItemId = SODiscountDetails[i1][38];
+			String WareHouse = SODiscountDetails[i1][39];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "Before Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				VariableHandler.setBeforeStockQty(BeforeStockQty);
+//				double stockQtyValue = Double.parseDouble(BeforeStockQty);
+//				DecimalFormat df = new DecimalFormat("0.00");
+//				String formattedNumber = df.format(stockQtyValue);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 40, BeforeStockQty);
+				ScrapExcelStockQtyFormulaEvaluatorSI(i1, ItemId, ArrayList, SheetName);
+			}
+		}
+	}
+	/**
+	 * This Method Is used To get The Scrap Stock Qty From The Formula Cell
+	 * 
+	 * @author Vimal - RMITS
+	 * @param i
+	 * @param Item
+	 * @param ArrayList
+	 * @param SheetName
+	 */
+	public void ScrapExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList, String SheetName) {
+		try {
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+					+ "DBSales.xlsx";
+			FileInputStream fis = new FileInputStream(new File(Filepath));
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			XSSFSheet sheet = workbook.getSheet(SheetName);
+			FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+			Row row = sheet.getRow(i); // Row 0 (first row)
+			Cell cell = row.getCell(41); // Column 0 (first column, A1)
+			if (cell.getCellType() == CellType.FORMULA) {
+				CellValue cellValue = formulaEvaluator.evaluate(cell);
+				if (cellValue.getCellType() == CellType.NUMERIC) {
+					double cellNumericValue = cellValue.getNumberValue();
+					if (cellNumericValue == Math.floor(cellNumericValue)) {
+						// It's a whole number
+						System.out.println("Formula result: " + (int) cellNumericValue);
+						int ExpectedStockQtyInt = (int) cellNumericValue;
+						String ExpectedStockQtyAsString = String.valueOf(ExpectedStockQtyInt);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the MRV Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					} else {
+						System.out.println("Formula result: " + cellNumericValue);
+						String ExpectedStockQtyAsString = String.valueOf(cellNumericValue);
+						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
+						logs.logging("INFO",
+								"Expected Stock Qty After Posting the MRV Document For This Item " + Item
+										+ " Is : " + VariableHandler.getExpectedStockQty());
+						ArrayList.add(VariableHandler.getExpectedStockQty());
+					}
+				}
+			} else {
+				System.out.println("Cell does not contain a formula.");
+			}
+			workbook.close();
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			assertTrue(flag);
+		}
+	}
+	/**
+	 * This Method Used For After Scrap The Document Expected Stk Qty
+	 * 
+	 * @author Vimal - RMITS
+	 * @param SheetName
+	 */
+	public void verifyScrapAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(String SheetName) {
+		String[][] SOItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		SOItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOItemDetails.length; i++) {
+			String ItemId = SOItemDetails[i][38];
+			String WareHouse = SOItemDetails[i][39];
+			String AfterRtnStockQty = SOItemDetails[i][41];
+			if (!ItemId.equals("")) {
+				String AfterStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"After MRV Actual Stock Qty For This Item " + ItemId + "Is : " + AfterStockQty);
+				verifyAssertionBothValues(AfterStockQty, AfterRtnStockQty);
+				logs.logging("INFO", "Verified MRV Expected Stock Qty For This Item " + ItemId
+						+ " With Database Values After MRV The Document");
+			}
+		}
+	}
 }

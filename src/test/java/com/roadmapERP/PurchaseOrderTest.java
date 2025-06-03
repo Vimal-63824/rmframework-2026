@@ -279,6 +279,18 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Find the Purchase Orders with all possible search parameters
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 21, groups = {
+			"PurchaseOrder" }, description = "Find the Purchase Orders with all possible search parameters")
+	public void VerifyPoFilterFieldVerification() {
+		purchaseOrderFunc.poFilterAllFieldWorking();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Road Map TestSuite">
+<suite name="Road Map -  Core Process">
 	<listeners>
 		<listener class-name="utils.RetryListener"></listener>
 		<listener class-name="utils.Listener"></listener>

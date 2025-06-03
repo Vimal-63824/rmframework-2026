@@ -13,7 +13,7 @@ import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.ReportLoger;
 
 public class AttendanceLeaveTest extends RoadMapERPTest {
-	private static boolean flag = false;
+	private boolean flag = false;
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static AttendanceLeaveFunctions attendanceLeaveFunc = new AttendanceLeaveFunctions();
@@ -223,6 +223,30 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 			"Leave Adjustment" }, description = "65 To Check Accrual Leave Balance Migration With Templates")
 	public void VerifyAccrualLeaveBalanceMigrationWithTemplates() {
 		flag = attendanceLeaveFunc.verifyAccrualLeaveBalanceMigrationWithTemplates();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Entry Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 18, groups = {
+			"Leave" }, description = "24 To Check Leave Entry Find page with all line wise record")
+	public void VerifyLeaveEntryFindWithLineWiseRecord() {
+		flag = attendanceLeaveFunc.verifyLeaveEntryFindWithLineWiseRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Leave Adjustment Find page with all line wise record
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 19, groups = {
+			"Leave Adjustment" }, description = "59 To Check Leave Adjustment Find page with all line wise record")
+	public void VerifyLeaveAdjustmentFindWithLineWiseRecord() {
+		flag = attendanceLeaveFunc.verifyLeaveAdjustmentFindWithLineWiseRecord();
 		Assert.assertTrue(flag);
 	}
 

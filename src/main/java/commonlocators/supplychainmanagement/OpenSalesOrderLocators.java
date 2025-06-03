@@ -123,4 +123,7 @@ public class OpenSalesOrderLocators {
 		return "//*[text()='" + text + "']/../td[14]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String OpsoOkButtonForwardCat = "//*[text()='Ok']/parent::button" ;
+
 }

@@ -685,4 +685,26 @@ public class EmployeeMasterLocators {
 	public static final String BalanceLeaveDetailsTable = "//div[@id='balance']//table/tbody";
 	/** @locatorType XPATH */
 	public static final String CLBalanceLeaveDetailsTableData = "//div[@id='balance']//table/tbody//td[text()='CL']/../td[3]";
+	/** @locatorType XPATH */
+	public static final String FindZoneLovBtn = "//button[@id='P22_EMP_ZONE_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String FindCategoryLovBtn = "//button[@id='P22_CATEGORY_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String FindDesignationLovBtn = "//button[@id='P22_DESIGNATION_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String FindDepartmentLovBtn = "//button[@id='P22_DEPT_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String FindUnitLovBtn = "//button[@id='P22_UNIT_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String FindZoneResultTable = "//table[@id='9319941881441008958_orig']//tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String FindCategoryResultTable = "//table[@id='9319941881441008958_orig']//tr/td[8]";
+	/** @locatorType XPATH */
+	public static final String FindDesignationResultTable = "//table[@id='9319941881441008958_orig']//tr/td[10]";
+	/** @locatorType XPATH */
+	public static final String FindDepartmentResultTable = "//table[@id='9319941881441008958_orig']//tr/td[11]";
+	/** @locatorType XPATH */
+	public static final String FindUnitResultTable = "//table[@id='9319941881441008958_orig']//tr/td[12]";
+	/** @locatorType XPATH */
+	public static final String AllowanceSPLDeleteIcon = "//div[@id='ig_line_ig_grid_vc']//table//tr/td[text()='SPL']/../td[last()]/a";
 }

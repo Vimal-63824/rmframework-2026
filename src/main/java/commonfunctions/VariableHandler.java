@@ -185,6 +185,20 @@ public class VariableHandler {
 	private static ThreadLocal<String> OrderStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String> BeforeStockQty = new ThreadLocal<>();
 	private static ThreadLocal<String> CSDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> PayrollDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> ApprovedSupplierNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SOBNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> RWdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> RWCdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> DBdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> PriceListDocno = new ThreadLocal<>();
+	private static ThreadLocal<String> CatDocno = new ThreadLocal<>();
+	private static ThreadLocal<String> EmpAdjustmentVouNo = new ThreadLocal<>();
+	private static ThreadLocal<String> SalesRegionText = new ThreadLocal<>();
+	private static ThreadLocal<String> SalesZoneText = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> ProductionProcess = new ThreadLocal<>();
+	private static ThreadLocal<Map<String, String>> ProductionProcessType = ThreadLocal.withInitial(HashMap::new);
+	private static ThreadLocal<Map<String, String>> ProductionProcessItem = ThreadLocal.withInitial(HashMap::new);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1526,7 +1540,6 @@ public class VariableHandler {
 
 	public static void setSsoDocNum(String data) {
 		SsoDocNum.set(data);
-
 	}
 
 	public static String getOPODocNum() {
@@ -1535,7 +1548,6 @@ public class VariableHandler {
 
 	public static void setOPODocNum(String data) {
 		OPODocNum.set(data);
-
 	}
 
 	public static String getGATEDocNum() {
@@ -1544,16 +1556,16 @@ public class VariableHandler {
 
 	public static void setGATEDocNum(String data) {
 		GATEDocNum.set(data);
-
 	}
-	
+
 	public static String getOrderStockQty() {
 		return OrderStockQty.get();
 	}
-	
+
 	public static void setOrderStockQty(String Data) {
 		OrderStockQty.set(Data);
 	}
+
 	public static String getBeforeStockQty() {
 		return BeforeStockQty.get();
 	}
@@ -1561,7 +1573,7 @@ public class VariableHandler {
 	public static void setBeforeStockQty(String Data) {
 		BeforeStockQty.set(Data);
 	}
-	
+
 	public static String getCSDocNumber() {
 		return CSDocNumber.get();
 	}
@@ -1569,4 +1581,117 @@ public class VariableHandler {
 	public static void setCSDocNumber(String data) {
 		CSDocNumber.set(data);
 	}
+
+	public static String getPayrollDocNo() {
+		return PayrollDocNo.get();
+	}
+
+	public static void setPayrollDocNo(String Data) {
+		PayrollDocNo.set(Data);
+	}
+
+	public static String getAppsNumber() {
+		return ApprovedSupplierNumber.get();
+	}
+
+	public static void setAppsNumber(String data) {
+		ApprovedSupplierNumber.set(data);
+	}
+
+	public static String getSOBNumber() {
+		return SOBNumber.get();
+	}
+
+	public static void setSOBNumber(String data) {
+		SOBNumber.set(data);
+	}
+
+	public static String getRWdocno() {
+		return RWdocno.get();
+	}
+
+	public static void setRWdocno(String Data) {
+		RWdocno.set(Data);
+	}
+
+	public static String getRWCdocno() {
+		return RWCdocno.get();
+	}
+
+	public static void setRWCdocno(String Data) {
+		RWCdocno.set(Data);
+	}
+
+	public static String getDBdocno() {
+		return DBdocno.get();
+	}
+
+	public static void setDBdocno(String Data) {
+		DBdocno.set(Data);
+	}
+
+	public static String getPriceListDocno() {
+		return PriceListDocno.get();
+	}
+
+	public static void setPriceListDocno(String data) {
+		PriceListDocno.set(data);
+	}
+
+	public static String getCatalogDocno() {
+		return CatDocno.get();
+	}
+
+	public static void setCatalogDocno(String data) {
+		CatDocno.set(data);
+	}
+
+	public static String getEmpAdjustmentVouNo() {
+		return EmpAdjustmentVouNo.get();
+	}
+
+	public static void setEmpAdjustmentVouNo(String Data) {
+		EmpAdjustmentVouNo.set(Data);
+	}
+
+	public static String getSalesRegionText() {
+		return SalesRegionText.get();
+	}
+
+	public static void setSalesRegionText(String Data) {
+		SalesRegionText.set(Data);
+	}
+
+	public static String getSalesZoneText() {
+		return SalesZoneText.get();
+	}
+
+	public static void setSalesZoneText(String Data) {
+		SalesZoneText.set(Data);
+	}
+
+	public static ArrayList<String> getProductionProcess() {
+		return ProductionProcess.get();
+	}
+
+	public static void setProductionProcess(ArrayList<String> data) {
+		ProductionProcess.set(data);
+	}
+
+	public static Map<String, String> getProductionProcessType() {
+		return ProductionProcessType.get();
+	}
+
+	public static void setProductionProcess(Map<String, String> data) {
+		ProductionProcessType.set(data);
+	}
+
+	public static Map<String, String> getProductionProcessItem() {
+		return ProductionProcessItem.get();
+	}
+
+	public static void setProductionProcessItem(Map<String, String> data) {
+		ProductionProcessItem.set(data);
+	}
+
 }

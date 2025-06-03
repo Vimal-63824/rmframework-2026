@@ -97,7 +97,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String CPC_Column = "//*[@id='P191513109001_SIHD_CC_CODE']";
 	/** @Locator XPATH */
-	public static final String Details_Btn = "(//span[contains(@class,'fa fa-list')])[3]";
+	public static final String Details_Btn = "(//span[contains(@class,'fa fa-list')])[2]";
 	/** @Locator XPATH */
 	public static final String Detail_Btn_Iframe = "//iframe[contains(@title,'Sales Invoice Details')]";
 	/** @Locator XPATH */
@@ -153,19 +153,19 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String UnitPriceTableData = "//table/tbody/tr/td[9]";
 	/** @Locator XPATH */
-	public static final String DiscountAmountTableData = "//table/tbody/tr/td[12]";
+	public static final String DiscountAmountTableData = "//table/tbody/tr/td[11]";
 	/** @Locator XPATH */
-	public static final String LineAmountTableData = "//table/tbody/tr/td[13]";
+	public static final String LineAmountTableData = "//table/tbody/tr/td[12]";
 	/** @Locator XPATH */
-	public static final String TaxPercentField = "//table/tbody/tr/td[15]";
+	public static final String TaxPercentField = "//table/tbody/tr/td[14]";
 	/** @Locator XPATH */
-	public static final String IGSTTaxAmountField = "//table/tbody/tr/td[16]";
+	public static final String IGSTTaxAmountField = "//table/tbody/tr/td[15]";
 	/** @Locator XPATH */
-	public static final String CGSTTaxAmountField = "//table/tbody/tr/td[17]";
+	public static final String CGSTTaxAmountField = "//table/tbody/tr/td[16]";
 	/** @Locator XPATH */
-	public static final String SGSTTaxAmountField = "//table/tbody/tr/td[18]";
+	public static final String SGSTTaxAmountField = "//table/tbody/tr/td[17]";
 	/** @Locator XPATH */
-	public static final String UTGSTTaxAmountField = "//table/tbody/tr/td[19]";
+	public static final String UTGSTTaxAmountField = "//table/tbody/tr/td[18]";
 	/** @Locator XPATH */
 	public static final String TotalAmountDisplayField = "//input[@id='P191513109001_SIHD_TOT_AMT']";
 
@@ -590,5 +590,170 @@ public class SalesInvoiceLocators {
 	public static final String CR_AcptQty_Input = "//input[@id='C5955391527579809240']";
 	/** @Locator XPATH */
 	public static final String SI_Detail_LabelName = "//h1[@id='ui-id-7']";
+	
+	public static final String CR_LS_Acpt_Qty = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
+	/** @Locator XPATH */
+	public static final String CR_LS_Save_Icon = "//button[@id='B999352627418781521']";
+	/** @Locator XPATH */
+	public static final String CR_LS_Acpt_Input = "//input[@id='qty']";
+	/** @Locator XPATH */
+	public static final String Rework_Node = "//span[contains(text(),'PP & Shop Floor')]/ancestor::li/*/li[2]/*/li[3]";
+
+	public static final String Rework_Order_Node = "//span[contains(text(),'PP & Shop Floor')]/ancestor::li/*/li[2]/*/li[3]/*/li[1]";
+	/** @Locator XPATH */
+	public static final String Rework_Pending_Icon = "//button[@id='B1256995407744376701']";
+	/** @Locator XPATH */
+	public static final String Rework_Pend_SalesRtn = "//button[@id='B64323089662263765']";
+	/** @Locator XPATH */
+	public static final String Rework_Pend_Iframe = "//iframe[@title='Sales Return']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_Inv_Lov_Btn = "//button[@id='P2017131225_INV_NO_lov_btn']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_Search_Btn = "//button[@id='B1566928522613435603']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_CheckBox = "(//input[@type='checkbox'])[1]";
+	/** @Locator XPATH */
+	public static final String RW_Pend_CreateRework_Btn = "//button[@id='B2666956887127640020']";
+	/** @Locator XPATH */
+	public static final String CR_Rtn_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[11]";
+	/** @Locator XPATH */
+	public static final String Rw_Rej_Qty = "//*[@id=\"IG_LINE_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[10]";
+	/** @Locator XPATH */
+	public static final String RW_Rej_Qty_input = "//input[@id='C1566948774577465812']";
+	/** @Locator XPATH */
+	public static final String RW_Get_Rej_Qty = "//*[@id=\"IG_LINE_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[11]";
+	/** @Locator XPATH */
+	public static final String RW_Create_OK_Btn = "//button[@id='B2666957075997640022']";
+	/** @Locator XPATH */
+	public static final String RW_Post_btn = "//button[@id='B1130059037826094889']";
+	/** @Locator XPATH */
+	public static final String RW_Doc_No = "//span[@id='P1818131040_RWOHD_ORD_NO_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String ReworkOrd_Completion_Note = "//span[contains(text(),'PP & Shop Floor')]/ancestor::li/*/li[2]/*/li[3]/*/li[2]";
+	/** @Locator XPATH */
+	public static final String ReworkOrd_Completion_Pend_Icon = "//button[@id='B1256998966041376736']";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_Iframe = "//iframe[@title='Pend. Rework Order']";
+	/** @Locator XPATH */
+	public static final String RWC_Doc_No_Lov_Btn = "//button[@id='P18181310501_FIND_RWK_ORD_NO_lov_btn']";
+	/** @Locator XPATH */
+	public static final String RW_Forward_OK_btn = "//button[@id='B1523886808069071518']";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_Search_Btn = "//button[@id='B1543487408283897817']";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_Repair_Column = "//*[@id=\"pendrework_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[11]";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_Repair_input = "//input[@id='C1133761688947996305']";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_CheckBox = "(//input[@type='checkbox'])[1]";
+	/** @Locator XPATH */
+	public static final String RWC_Create_Completion_Btn = "//button[@id='comp']";
+	/** @Locator XPATH */
+	public static final String RWC_Create_OK_Btn = "//button[@id='B1739250531928270512']";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_Save_Icon = "//button[@id='SAVE']";
+	/** @Locator XPATH */
+	public static final String RWC_Close_Toast_Msg = "(//button[@title='Close'])[1]";
+	/** @Locator XPATH */
+	public static final String RWC_CreJournal_Btn = "//button[@id='B2714798163030064514']";
+	/** @Locator XPATH */
+	public static final String RWC_Pend_Rework_Column = "//*[@id=\"pendrework_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[8]";
+	/** @Locator XPATH */
+	public static final String RWC_Doc_No = "//input[@id='P1818131050_RWOCHD_DOC_NO']";
+	/** @Locator XPATH */
+	public static final String ResourceUsageTab = "//label[@for='P1818131050_TAB_1']";
+	/** @Locator XPATH */
+	public static final String ResourceUsageAdd_Icon = "//button[@id='B2714705712801064229']";
+	/** @Locator XPATH */
+	public static final String ResourceUsage_RW_Seq_No = "//*[@id=\"Resource_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";
+	/** @Locator XPATH */
+	public static final String ResourceUsage_RW_Seq_No_Lov = "//button[@id='C231643058817867902_lov_btn']";
+	/** @Locator XPATH */
+	public static final String WorkCenter_Lov_btn = "//button[@id='C14235700622895375140_lov_btn']";
+	/** @Locator XPATH */
+	public static final String Proc_Lov_Btn = "//button[@id='C14235700685116375141_lov_btn']";
+	/** @Locator XPATH */
+	public static final String Resource_Lov_Btn = "//button[@id='C14235700852877375142_lov_btn']";
+	/** @Locator XPATH */
+	public static final String RWC_FromDate_Today = "(//button[@class='a-Button a-DatePicker--today'])[1]";
+	/** @Locator XPATH */
+	public static final String RWC_FromDate_Done = "(//button[@class='a-Button a-DatePicker--close'])[1]";
+	/** @Locator XPATH */
+	public static final String RWC_ToDate_Next = "//td[@class='is-current']/following::td[1]";
+	/** @Locator XPATH */
+	public static final String RWC_ToDate_Today = "//*[@id=\"C14235701061160375144_dialog\"]/div/div[3]/div[2]/button[1]";
+	/** @Locator XPATH */
+	public static final String RWC_ToDate_Done = "//*[@id=\"C14235701061160375144_dialog\"]/div/div[3]/div[2]/button[2]";
+	/** @Locator XPATH */
+	public static final String RWC_Line_save_Icon = "//button[@id='B2714706127467064229']";
+	/** @Locator XPATH */
+	public static final String RWC_Comp_Details = "//label[@for='P1818131050_TAB_0']";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Icon = "(//span[@class='fa fa-list'])[1]";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Iframe = "//iframe[@title='Locator Details']";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Add_icon = "//button[@id='B90653973741871921']";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Column = "//*[@id=\"ldls_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Column_Lov = "//button[@id='C14335774861533370121_lov_btn']";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Qty_Column = "//*[@id=\"ldls_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Qty_Input = "//input[@id='C14335774929305370122']";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Save_Icon = "//button[@id='B90654313153871923']";
+	/** @Locator XPATH */
+	public static final String RWC_Compl_Qty = "//*[@id=\"CD_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[6]";
+	/** @Locator XPATH */
+	public static final String RWC_Post_Btn = "//button[@id='B2714798996451064515']";
+	/** @Locator XPATH */
+	public static final String RWC_Locator_Close_Toast_Msg = "//span[@class='t-Icon icon-close']";
+	/** @Locator XPATH */
+	public static final String RWC_Scrap_Qty_Column = "//*[@id=\"pendrework_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[12]";
+	/** @Locator XPATH */
+	public static final String RWC_Scrap_Qty_Input = "//input[@id='C1133761586674996304']";
+	/** @Locator XPATH */
+	public static final String GetScrapItem = "//*[@id=\"scraps_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
+
+	/** @locatorType Xpath */
+	public static final String ScrapItemTable(int i) {
+		return "//*[@id='scraps_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[\" + i + \"]/td[3]";
+	}
+	/** @Locator XPATH */
+	public static final String Scrap_Details_Tab = "//label[@for='P1818131050_TAB_3']";
+	/** @Locator XPATH */
+	public static final String RW_Header_LocID = "//span[@id='P1818131040_RWOHD_PLNT_LOC_ID_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Header_Unit = "//span[@id='P1818131040_RWOHD_PLNT_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Header_Rework_Ord_Pfx = "//span[@id='P1818131040_RWOHD_ORD_PFX_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Document_No = "//span[@id='P1818131040_RWOHD_ORD_NO_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Item_Field = "//span[@id='P1818131040_RWOHD_PROD_ID_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Item_Desc_Field = "//span[@id='P1818131040_ITEM_DESC_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Type_Field = "//input[@id='P18181310402_RWOHD_ORD_TYPE']";
+	/** @Locator XPATH */
+	public static final String RW_Lot_Field = "//span[@id='P1818131040_RWOHD_LOT_NO_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Source_Doc_No = "//span[@id='P1818131040_RWOHD_SOU_DOC_NO_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Sou_Pfx = "//span[@id='P1818131040_RWOHD_SOU_DOC_PFX_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RW_Qty_Field = "//span[@id='P1818131040_RWOHD_REWORK_QTY_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RWC_Header_LocID = "//span[@id='P1818131050_RWOCHD_PLNT_LOC_ID_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RWC_Header_Unit = "//span[@id='P1818131050_RWOCHD_PLNT_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RWC_Document_No = "//input[@id='P1818131050_RWOCHD_DOC_NO']";
+	/** @Locator XPATH */
+	public static final String RWC_Item_Field = "//span[@id='P1818131050_RWOCHD_PROD_ID_DISPLAY']";
+	/** @Locator XPATH */
+	public static final String RWC_SourceWH_Field = "//span[@id='P1818131050_RWOCHD_SOU_STORE_DISPLAY']";
 
 }

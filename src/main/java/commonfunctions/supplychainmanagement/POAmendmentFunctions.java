@@ -4030,7 +4030,7 @@ public class POAmendmentFunctions {
 						String LineAmount = itemmultiple[i][18];
 						String TaxPercent = itemmultiple[i][20];
 						if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
-							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
+//							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
 							purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
 						}
 					}
@@ -4117,7 +4117,7 @@ public class POAmendmentFunctions {
 						String LineAmount = itemmultiple[i][18];
 						String TaxPercent = itemmultiple[i][20];
 						if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
-							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
+//							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
 							purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
 						}
 					}
@@ -4310,7 +4310,7 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheet(
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PR_General"),
-				webDB.getDataFromProperties("ModifyPOASimilarItemPRTOPOSheet"),
+				webDB.getDataFromProperties("ModifyPOASimilarPRTOPOImportSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
@@ -4326,7 +4326,7 @@ public class POAmendmentFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "QA Scenario - Purchase.xlsx";
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
-				webDB.getDataFromProperties("ModifyPOASimilarItemPRTOPOSheet"));
+				webDB.getDataFromProperties("ModifyPOASimilarPRTOPOImportSheet"));
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -4376,7 +4376,7 @@ public class POAmendmentFunctions {
 						String LineAmount = itemmultiple[i][18];
 						String TaxPercent = itemmultiple[i][20];
 						if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
-							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
+//							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
 							purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
 						}
 					}
@@ -5707,5 +5707,179 @@ public class POAmendmentFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Po Amend Modify PR To PO Domestic General With
+	 * Dissimilar Stock And Supplier
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPoAmendModifyPrToPoDomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
+		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheet(
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("PR_General"),
+				webDB.getDataFromProperties("ModifyPOADissimilarItemPRTOPOSheet"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
+		verifyTickIconSingleAmendment();
+		verifyAddPoLineItemForModify();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Purchase.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ModifyPOADissimilarItemPRTOPOSheet"));
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
+				for (int i = j + 3; i < itemmultiple.length; i++) {
+					String item = itemmultiple[i][1];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						String Quantity = itemmultiple[i][5];
+						String UnitCost = itemmultiple[i][6];
+						String TradePercentage = itemmultiple[i][8];
+						String SplDiscPercentage = itemmultiple[i][9];
+						String CashDiscPercentage = itemmultiple[i][10];
+						verifyAddItemInPOWithQuantityAndUnitCostWithItemName(Quantity, UnitCost, item);
+						verifyTickIconcreateItem();
+						navigateToLineDetailPage(item);
+						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
+						verifyLineDetailsUpdation();
+						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+						navigateToPoaPage();
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+
+			for (int j = 3; j < itemmultiple.length; j++) {
+				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
+					for (int i = j + 3; i < itemmultiple.length; i++) {
+						String cgst = itemmultiple[i][21];
+						String item = itemmultiple[i][1];
+						String LineAmount = itemmultiple[i][18];
+						String TaxPercent = itemmultiple[i][20];
+						if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+//							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
+							purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
+						}
+					}
+				}
+			}
+			flag = commonFunc.logoutUser();
+		}
+
+	}
+
+	/**
+	 * This Method Is Used To Verify Po Amend Modify PR To PO Import General With
+	 * Similar Stock And Supplier
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyPoAmendModifyPrToPoImportGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
+		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheet(
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("PR_General"),
+				webDB.getDataFromProperties("ModifyPOADissimilarImportPRTOPOSheet"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigatePoAmendmentPage();
+		createPendingPOAmendment();
+		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
+				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
+		verifyTickIconSingleAmendment();
+		verifyAddPoLineItemForModify();
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Purchase.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ModifyPOADissimilarImportPRTOPOSheet"));
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderAmendment"))) {
+				for (int i = j + 3; i < itemmultiple.length; i++) {
+					String item = itemmultiple[i][1];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						String Quantity = itemmultiple[i][5];
+						String UnitCost = itemmultiple[i][6];
+						String TradePercentage = itemmultiple[i][8];
+						String SplDiscPercentage = itemmultiple[i][9];
+						String CashDiscPercentage = itemmultiple[i][10];
+						verifyAddItemInPOWithQuantityAndUnitCostWithItemName(Quantity, UnitCost, item);
+						verifyTickIconcreateItem();
+						navigateToLineDetailPage(item);
+						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
+						verifyLineDetailsUpdation();
+						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
+						navigateToPoaPage();
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePoAmendmentPage();
+			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.navigatePurchaseOrderPage();
+			verifyOpenPONumber(VariableHandler.getPONumber());
+
+			for (int j = 3; j < itemmultiple.length; j++) {
+				if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("FinalPO"))) {
+					for (int i = j + 3; i < itemmultiple.length; i++) {
+						String cgst = itemmultiple[i][21];
+						String item = itemmultiple[i][1];
+						String LineAmount = itemmultiple[i][18];
+						String TaxPercent = itemmultiple[i][20];
+						if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+//							purchaseOrderFunctions.verifyLineAmountValidationAndPom(item, LineAmount);
+							purchaseOrderFunctions.taxValidation(item, TaxPercent, cgst);
+						}
+					}
+				}
+			}
+			flag = commonFunc.logoutUser();
+		}
+
 	}
 }

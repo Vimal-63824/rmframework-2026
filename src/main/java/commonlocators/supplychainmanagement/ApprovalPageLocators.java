@@ -76,10 +76,18 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveErrorToast = "//div[contains(text(),'error has occurred')]";
 	/** @locatorType Xpath */
-	public static final String ApprovalTitle = "//h1[contains(text(),'Workflow Approval')]";
+	public static final String ApprovalTitle = "//h1[contains(text(),'Approval')]";
 	/** @locatorType Xpath */
 	public static final String ReturnRadioBtn = "//label[text()='Return']";
 	/** @locatorType Xpath */
 	public static final String ReturnPersonLovBtn = "//button[@id='P236131010_WFDC_NXT_FWD_PERS_1_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String WfTypeLovButton = "//button[@id='P236131010_TYPE_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String SearchButtonWorkFLow = "//button[@id='BUT']";
+	/** @locatorType Xpath */
+	public static final String SalesCataogField = "//span[text()='SALES CATALOG PRICE']";
+	/** @locatorType Xpath */
+	public static final String SearchBoxWorkType = "//*[@id='PopupLov_236131010_P236131010_TYPE_dlg']/div[1]/input";
 
 }

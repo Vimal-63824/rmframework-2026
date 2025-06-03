@@ -37,7 +37,6 @@ import commonfunctions.supplychainmanagement.StockTransactionPageFunctions;
 import commonfunctions.supplychainmanagement.StocksPageFunctions;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.supplychainmanagement.GrnLocators;
-import commonlocators.supplychainmanagement.MaterialRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ExcelUtils;
@@ -700,6 +699,7 @@ public class CoreProcessPageFunctions {
 			stockPageFunc.removeFilterStock();
 			stockPageFunc.getItemStockValue(itemmultiple[i][0], commonFunc.getDataFromTestDataSheet("FGWareHouse"));
 			stockPageFunc.removeFilterStock();
+			System.out.println(itemmultiple[i][0] + " " + itemmultiple[i][1]);
 			stockPageFunc.getItemStockCost(itemmultiple[i][0], itemmultiple[i][1]);
 			stockPageFunc.removeFilterStock();
 		}
@@ -872,11 +872,17 @@ public class CoreProcessPageFunctions {
 				"TvsUsername");
 		commonFunc.navigateToMaterialIssuanceVoucher();
 		materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+		for (int i = 1; i < itemmultiple.length; i++) {
+			materialIssuanceVoucherFunc.clickLineDetailsIconWithItemName(itemmultiple[i][0]);
+			materialIssuanceVoucherFunc
+					.selectMachineInMIVLineDetails(commonFunc.getDataFromTestDataSheet("Machines100"));
+		}
 		materialIssuanceVoucherFunc.createJournalAndViewJournal();
 		materialIssuanceVoucherFunc.verifyTableDataMivForWip();
 		materialIssuanceVoucherFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("WorkInProgressWH"),
 				commonFunc.getDataFromTestDataSheet("WipType"));
+
 		materialIssuanceVoucherFunc.headerTickAndPostIcon();
 		materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
 				commonFunc.getDataFromTestDataSheet("PostedStatus"));
@@ -936,7 +942,7 @@ public class CoreProcessPageFunctions {
 		materialIssuanceVoucherFunc.createJournalAndViewJournal();
 		materialIssuanceVoucherFunc.verifyTableDataMivForWip();
 		materialIssuanceVoucherFunc.headerValidationMiv(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("POSupplierName"),
 				commonFunc.getDataFromTestDataSheet("Subcontractor"));
 		materialIssuanceVoucherFunc.headerTickAndPostIcon();
 		materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceNumber(VariableHandler.getMIVNumber(),
@@ -952,7 +958,7 @@ public class CoreProcessPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToInventoryStocksTransactionTab();
-		stockTransactionPageFunc.verifyDocumentNoStockTransaction(commonFunc.getDataFromTestDataSheet("POSupplier"),
+		stockTransactionPageFunc.verifyDocumentNoStockTransaction(commonFunc.getDataFromTestDataSheet("POSupplierName"),
 				VariableHandler.getMIVNumber());
 		commonFunc.logoutUser();
 	}
@@ -1294,6 +1300,9 @@ public class CoreProcessPageFunctions {
 					RMItem, commonFunc.getDataFromTestDataSheet("RMU100_WH"),
 					VariableHandler.getProductionOrderNumber(), VariableHandler.getItemName());
 			materialIssuanceVoucherFunc.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+			materialIssuanceVoucherFunc.clickLineDetailsIconWithItemName(RMItem);
+			materialIssuanceVoucherFunc
+					.selectMachineInMIVLineDetails(commonFunc.getDataFromTestDataSheet("Machines100"));
 			materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
 			commonFunc.navigateToMaterialIssuanceVoucherTab();
 			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
@@ -1347,7 +1356,7 @@ public class CoreProcessPageFunctions {
 				materialReceiptFunctions.clickTickAndPostIcon();
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
-			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getMRPNumber(),
+			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			return true;
 		} catch (Exception e) {

@@ -635,19 +635,22 @@ public class PurchaseRequestFunctions {
 	 */
 	private void findWithItemId(String Item) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_ItemBtn, Item);
+		clickFindSearchButton();
 		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[9]"));
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableItem,
+					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Item)) {
+				if (webElement.getText().equalsIgnoreCase(Item)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Item: " + Item);
 	}
 
 	/**
@@ -658,19 +661,22 @@ public class PurchaseRequestFunctions {
 	 */
 	private void findWithLocId(String Location) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_LocIDBtn, Location);
+		clickFindSearchButton();
 		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[2]"));
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableLocation,
+					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Location)) {
+				if (webElement.getText().equalsIgnoreCase(Location)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Location: " + Location);
 	}
 
 	/**
@@ -681,19 +687,22 @@ public class PurchaseRequestFunctions {
 	 */
 	private void findWithUnit(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_UnitBtn, Unit);
+		clickFindSearchButton();
 		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[3]"));
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableUnit,
+					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Unit)) {
+				if (webElement.getText().equalsIgnoreCase(Unit)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Unit: " + Unit);
 	}
 
 	/**
@@ -702,21 +711,28 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 * @param PRNo
 	 */
-	private void findWithPRNo(String PRNo) {
-		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_PRNoButton, PRNo);
-		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
+	private void findWithPRType(String PRType) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.FindPR_PRTypeSelect, ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[6]/a"));
-			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(PRNo)) {
-					flag = false;
-					break a;
-				} else {
-					flag = true;
+			webDB.selectDropDownByText(PurchaseRequestLocators.FindPR_PRTypeSelect, PRType, ElementType.Xpath);
+			clickFindSearchButton();
+			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
+					ElementType.Xpath);
+			if (flag) {
+				List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTablePRType,
+						ElementType.Xpath);
+				a: for (WebElement webElement : elements) {
+					if (webElement.getText().equalsIgnoreCase(PRType)) {
+						flag = true;
+					} else {
+						flag = false;
+						break a;
+					}
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with PR Type: " + PRType);
 	}
 
 	/**
@@ -725,24 +741,29 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 * @param PRType
 	 */
-	private void findWithPRType(String PRType) {
-		flag = webDB.selectDropDownByText(PurchaseRequestLocators.FindPR_PRTypeSelect, PRType, ElementType.Xpath);
+	private void findWithPRStatus(String Status) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.FindPR_PRStatusSelect, ElementType.Xpath);
 		if (flag) {
+			webDB.selectDropDownByText(PurchaseRequestLocators.FindPR_PRStatusSelect, Status, ElementType.Xpath);
+			clickFindSearchButton();
 			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
 					ElementType.Xpath);
 			if (flag) {
-				List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[4]"));
+				List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableStatusText,
+						ElementType.Xpath);
 				a: for (WebElement webElement : elements) {
-					if (webElement.getText().equals(PRType)) {
+					if (webElement.getText().equalsIgnoreCase(Status)) {
+						flag = true;
+					} else {
 						flag = false;
 						break a;
-					} else {
-						flag = true;
 					}
 				}
 			}
+
 		}
 		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Status: " + Status);
 	}
 
 	/**
@@ -752,20 +773,23 @@ public class PurchaseRequestFunctions {
 	 * @param Reqstr
 	 */
 	private void findWithRequester(String Reqstr) {
-		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_PRNoButton, Reqstr);
+		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_RequesterBtn, Reqstr);
+		clickFindSearchButton();
 		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
 		if (flag) {
-			List<WebElement> elements = webDB.getDriver().findElements(By.xpath("//table//td[8]"));
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableRequestor,
+					ElementType.Xpath);
 			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equals(Reqstr)) {
+				if (webElement.getText().equalsIgnoreCase(Reqstr)) {
+					flag = true;
+				} else {
 					flag = false;
 					break a;
-				} else {
-					flag = true;
 				}
 			}
 		}
 		Assert.assertTrue(flag);
+		logs.logging("INFO", "Verified Find Search Functions with Requestor: " + Reqstr);
 	}
 
 	/**
@@ -1506,4 +1530,48 @@ public class PurchaseRequestFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This method used to click find Search Button
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickFindSearchButton() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseRequestLocators.PRFindResultSearchBar, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Find the Purchase request with all possible search
+	 * parameters
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFindPRWithPossibleSearchParameters() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		findWithItemId(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
+		webDB.navigateToRefresh();
+		findWithLocId(commonFunc.getDataFromTestDataSheet("Loc_100"));
+		webDB.navigateToRefresh();
+		findWithUnit(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		webDB.navigateToRefresh();
+		findWithPRType(commonFunc.getDataFromTestDataSheet("PR_General"));
+		webDB.navigateToRefresh();
+		findWithPRStatus(commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		webDB.navigateToRefresh();
+		findWithRequester(commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		webDB.navigateToRefresh();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
 }

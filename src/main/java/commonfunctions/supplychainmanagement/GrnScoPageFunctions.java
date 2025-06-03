@@ -328,4 +328,23 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method Is Used To Add Heat Number And Test Number
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void addHeatNumberAndTestNumber() {
+		flag = webDB.waitForElement(GrnScoLocators.SupplierLotNumber, ElementType.Xpath);
+		if (flag) {
+			String HeatValue = webDB.getTextFromElement(GrnScoLocators.SupplierLotNumber, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(GrnScoLocators.HeatNumber, GrnScoLocators.HeatNumberInput, HeatValue);
+			commonFunc.verifyAddTableSpecs(GrnScoLocators.TestNumber, GrnScoLocators.TestNumberInput, HeatValue);
+			webDB.clickAnElement(GrnScoLocators.SaveButton, ElementType.Xpath);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
 }

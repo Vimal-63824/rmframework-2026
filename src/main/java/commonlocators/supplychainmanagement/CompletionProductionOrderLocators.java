@@ -15,15 +15,15 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String PendingProdOrderSearchGoBtn = "//button[@id='PEND_search_button']";
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ProdNoTableData = "//div[@id='PEND_content']//table/tbody/tr/td[3]";
+	public static final String PendingProdOrder_ProdNoTableData = "//div[@id='PEND_content']//table/tbody/tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ItemTableData = "//div[@id='PEND_content']//table/tbody/tr/td[4]";
+	public static final String PendingProdOrder_ItemTableData = "//div[@id='PEND_content']//table/tbody/tr/td[5]";
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[9]";
+	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[14]";
 
 	/** @locatorType XPATH */
 	public static final String PendingProdOrder_SelectCheckboxTableData(String ProdNo) {
-		return "//div[@id='PEND_content']//table/tbody/tr/td[text()='" + ProdNo + "']/../td[16]/input";
+		return "(//div[@id='PEND_content']//table/tbody/tr/td[text()='" + ProdNo + "']/../td/input)[2]";
 	}
 
 	/** @locatorType XPATH */
@@ -52,4 +52,6 @@ public class CompletionProductionOrderLocators {
 	public static final String ComplProdPostBtn = "//button[@id='B2770520109568230593']";
 	/** @locatorType XPATH */
 	public static final String CompletionProcessPendingIcon = "//button[@id='B1164090042492814301']";
+	/** @locatorType XPATH */
+	public static final String ProductionOrderNumber = "//button[@id='P19631714_PROD_ORD_NO_lov_btn']";
 }
