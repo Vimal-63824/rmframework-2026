@@ -6,9 +6,9 @@ package commonlocators.productionplanning;
  */
 public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
-	public static final String BOM_FindSearchBtn = "//button[@id='B660949422212440106']";
+	public static final String BOM_FindSearchBtn = "//button[@data-testid='BOM_FindSearchBtn']";
 	/** @locatorType Xpath */
-	public static final String Find_BOMNoLovBtn = "//button[@id='P21513101012_BOM_NO_lov_btn']";
+	public static final String Find_BOMNoLovBtn = "//input[@data-testid='Find_BOMNoLovBtn']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String Find_BOMStatusTableData(String BOMNo) {
@@ -21,33 +21,33 @@ public class BillOfMaterialsLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String BOM_CreateBtnPlusIcon = "//button[@id='B660949003370440106']";
+	public static final String BOM_CreateBtnPlusIcon = "//button[@data-testid='BOM_CreateBtnPlusIcon']";
 	/** @locatorType Xpath */
 	public static final String CreateBOMIframe = "//iframe[@title='Create BOM']";
 	/** @locatorType Xpath */
-	public static final String CreateBOM_UnitLovBtn = "//button[@id='P21513101013_UNIT_lov_btn']";
+	public static final String CreateBOM_UnitLovBtn = "//input[@data-testid='CreateBOM_UnitLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CreateBOM_ItemLovBtn = "//button[@id='P21513101013_ITEM_REV_lov_btn']";
+	public static final String CreateBOM_ItemLovBtn = "//input[@data-testid='CreateBOM_ItemLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CreateBOM_TickIcon = "//button[@id='B1134982271826399065']";
+	public static final String CreateBOM_TickIcon = "//button[@data-testid='CreateBOM_TickIcon']";
 	/** @locatorType Xpath */
-	public static final String CreateBOM_BOMNameInput = "//input[@id='P21513101013_BOM_NAME']";
+	public static final String CreateBOM_BOMNameInput = "//input[@data-testid='CreateBOM_BOMNameInput']";
 	/** @locatorType Xpath */
-	public static final String CreateBOM_EffFromInput = "//input[@id='P21513101001_BOMHD_EFF_FROM_input']";
+	public static final String CreateBOM_EffFromInput = "//*[@data-testid='CreateBOM_EffFromInput']/input";
 	/** @locatorType Xpath */
-	public static final String CreateBOM_EffToInput = "//input[@id='P21513101001_BOMHD_EFF_TO_input']";
+	public static final String CreateBOM_EffToInput = "//*[@data-testid='CreateBOM_EffToInput']/input";
 	/** @locatorType Xpath */
-	public static final String BOMSaveHeaderIcon = "//button[@id='B234994611759725781']";
+	public static final String BOMSaveHeaderIcon = "//button[@data-testid='BOMSaveHeaderIcon']";
 	/** @locatorType Xpath */
-	public static final String BOMPostBtn = "//button[@id='post']";
+	public static final String BOMPostBtn = "//button[@data-testid='BOMPostBtn']";
 	/** @locatorType Xpath */
-	public static final String DisplayBOMNumber = "//span[@id='P21513101001_BOMHD_BOM_NO_DISPLAY']";
+	public static final String DisplayBOMNumber = "//span[@data-testid='DisplayBOMNumber']";
 	/** @locatorType Xpath */
 	public static final String RoutingTab_Label = "//label[text()='Routing']";
 	/** @locatorType Xpath */
-	public static final String RoutingAddLineBtn = "//button[@id='B234901408095725364']";
+	public static final String RoutingAddLineBtn = "//button[@data-testid='RoutingAddLineBtn']";
 	/** @locatorType Xpath */
-	public static final String RoutingSaveLineBtn = "//button[@id='B234901812899725364']";
+	public static final String RoutingSaveLineBtn = "//button[@data-testid='RoutingSaveLineBtn']";
 	/** @locatorType Xpath */
 	public static final String RoutingProcSeqNoData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
@@ -79,17 +79,17 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String RoutingViewDetailsIframeCloseIcon = "//h1[text()='View Details']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String RoutingViewDts_ConsumptionWHLovBtn = "//button[@id='P215131010002_CONS_WH_DESC_lov_btn']";
+	public static final String RoutingViewDts_ConsumptionWHLovBtn = "//input[@data-testid='RoutingViewDts_ConsumptionWHLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String RoutingViewDts_ReceiptWHLovBtn = "//button[@id='P215131010002_REC_WH_DESC_lov_btn']";
+	public static final String RoutingViewDts_ReceiptWHLovBtn = "//input[@data-testid='RoutingViewDts_ReceiptWHLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String RoutingViewDts_OkBtn = "//button[@id='B1589076839269499147']";
+	public static final String RoutingViewDts_OkBtn = "//button[@data-testid='RoutingViewDts_OkBtn']";
 	/** @locatorType Xpath */
 	public static final String MaterialTab_Label = "//label[text()='Material']";
 	/** @locatorType Xpath */
-	public static final String MaterialAddLineBtn = "//button[@id='B1187162180938226534']";
+	public static final String MaterialAddLineBtn = "//button[@data-testid='MaterialAddLineBtn']";
 	/** @locatorType Xpath */
-	public static final String MaterialSaveLineBtn = "//button[@id='B1187162498089226537']";
+	public static final String MaterialSaveLineBtn = "//button[@data-testid='MaterialSaveLineBtn']";
 	/** @locatorType Xpath */
 	public static final String MaterialProcessDescData = "//div[@id='BOM_LN_STATIC_ig_grid_vc']//table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
@@ -128,9 +128,9 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String BORTab_Label = "//label[text()='BOR']";
 	/** @locatorType Xpath */
-	public static final String BORAddLineBtn = "//button[@id='B1233902479052410959']";
+	public static final String BORAddLineBtn = "//button[@data-testid='BORAddLineBtn']";
 	/** @locatorType Xpath */
-	public static final String BORSaveLineBtn = "//button[@id='B1233902849434410967']";
+	public static final String BORSaveLineBtn = "//button[@data-testid='BORSaveLineBtn']";
 	/** @locatorType Xpath */
 	public static final String BORLineSnoData = "//div[@id='BOR_ig_grid_vc']//table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
@@ -198,9 +198,9 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String ScrapByProductTab_Label = "//label[text()='Scrap / By Product']";
 	/** @locatorType Xpath */
-	public static final String ScrapProductAddLineBtn = "//button[@id='B1233216372959825673']";
+	public static final String ScrapProductAddLineBtn = "//button[@data-testid='ScrapProductAddLineBtn']";
 	/** @locatorType Xpath */
-	public static final String ScrapProductSaveLineBtn = "//button[@id='B1233216769069825684']";
+	public static final String ScrapProductSaveLineBtn = "//button[@data-testid='ScrapProductSaveLineBtn']";
 	/** @locatorType Xpath */
 	public static final String ScrapProductLineSnoData = "//div[@id='SBP_ig_grid_vc']//table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
@@ -230,79 +230,79 @@ public class BillOfMaterialsLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String Header_BOMTypeSelect = "//select[@id='P21513101001_BOMHD_PRIMARY']";
+	public static final String Header_BOMTypeSelect = "//select[@data-testid='Header_BOMTypeSelect']";
 
 	// BOM Migration Std Screen Locators
 	/** @locatorType Xpath */
-	public static final String BOMMigrationGenerateBtn = "//button[@id='B1534456505648284810']";
+	public static final String BOMMigrationGenerateBtn = "//button[@data-testid='BOMMigrationGenerateBtn']";
 	/** @locatorType Xpath */
-	public static final String FindBOMMigrationDocLovBtn = "//button[@id='P21513113203_DOCUMENT_NO_lov_btn']";
+	public static final String FindBOMMigrationDocLovBtn = "//input[@data-testid='FindBOMMigrationDocLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String BOMMigrationAddBtn = "//button[@id='B1534456468300284809']";
+	public static final String BOMMigrationAddBtn = "//button[@data-testid='BOMMigrationAddBtn']";
 	/** @locatorType Xpath */
 	public static final String BOMMig_CreateIframe = "//iframe[@title='BOM Migration']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_CreateUnitLovBtn = "//button[@id='P21513113204_UNIT_lov_btn']";
+	public static final String BOMMig_CreateUnitLovBtn = "//input[@data-testid='BOMMig_CreateUnitLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String BOMMig_CreateRefInput = "//input[@id='P21513113204_REFERENCE']";
+	public static final String BOMMig_CreateRefInput = "//input[@data-testid='BOMMig_CreateRefInput']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_CreateTickIcon = "//button[@id='B1615508531818429817']";
+	public static final String BOMMig_CreateTickIcon = "//button[@data-testid='BOMMig_CreateTickIcon']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_DisplayDocNumber = "//input[@id='P21513113205_MBH_DOC_NO']";
+	public static final String BOMMig_DisplayDocNumber = "//input[@data-testid='BOMMig_DisplayDocNumber']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_UploadIcon = "//button[@id='B1755900166540261131']";
+	public static final String BOMMig_UploadIcon = "//button[@data-testid='BOMMig_UploadIcon']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_UploadInput = "//input[@id='P21513113205_FILE_input']";
+	public static final String BOMMig_UploadInput = "//*[@data-testid='BOMMig_UploadInput']/input";
 	/** @locatorType Xpath */
-	public static final String BOMMig_UploadBtn = "//button[@id='B1756043691806149964']";
+	public static final String BOMMig_UploadBtn = "//button[@data-testid='BOMMig_UploadBtn']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_LoadRoutingBtn = "//button[@id='B1755900496552261134']";
+	public static final String BOMMig_LoadRoutingBtn = "//button[@data-testid='BOMMig_LoadRoutingBtn']";
 	/** @locatorType Xpath */
-	public static final String BOMMig_CreateBOMBtn = "//button[@id='B1755901438901261144']";
+	public static final String BOMMig_CreateBOMBtn = "//button[@data-testid='BOMMig_CreateBOMBtn']";
 	/** @locatorType Xpath */
 	public static final String OtherDetailsTab_Label = "//label[text()='Other Details']";
 	/** @locatorType Xpath */
-	public static final String CorrectionBtn = "//button[@id='B234988091906725768']";
+	public static final String CorrectionBtn = "//button[@data-testid='CorrectionBtn']";
 	/** @locatorType Xpath */
 	public static final String CorrectionIframe = "//iframe[@title='Correction']";
 	/** @locatorType Xpath */
-	public static final String CorrectionRefInput = "//input[@id='P21513101026_REFRENCE']";
+	public static final String CorrectionRefInput = "//input[@data-testid='CorrectionRefInput']";
 	/** @locatorType Xpath */
-	public static final String CorrectionTickIcon = "//button[@id='B1033009382015451530']";
+	public static final String CorrectionTickIcon = "//button[@data-testid='CorrectionTickIcon']";
 	/** @locatorType Xpath */
-	public static final String BOMDisplayStatus = "//span[@id='P21513101001_BOMHD_STATUS_DISPLAY']";
+	public static final String BOMDisplayStatus = "//span[@data-testid='BOMDisplayStatus']";
 	/** @locatorType Xpath */
-	public static final String InactivateBtn = "//button[@id='B234988800140725770']";
+	public static final String InactivateBtn = "//button[@data-testid='InactivateBtn']";
 	/** @locatorType Xpath */
 	public static final String InactivateIframe = "//iframe[@title='Inactivate']";
 	/** @locatorType Xpath */
-	public static final String InactivateRefInput = "//input[@id='P21513101027_REFRENCE']";
+	public static final String InactivateRefInput = "//input[@data-testid='InactivateRefInput']";
 	/** @locatorType Xpath */
-	public static final String InactivateTickIcon = "//button[@id='B1151198551635941777']";
+	public static final String InactivateTickIcon = "//button[@data-testid='InactivateTickIcon']";
 	/** @locatorType Xpath */
-	public static final String CreRevisionBtn = "//button[@id='B234989204418725770']";
+	public static final String CreRevisionBtn = "//button[@data-testid='CreRevisionBtn']";
 	/** @locatorType Xpath */
 	public static final String CreRevisionIframe = "//iframe[@title='BOM Rev.']";
 	/** @locatorType Xpath */
-	public static final String CreRevisionRefInput = "//input[@id='P21513101007_REFRENCE']";
+	public static final String CreRevisionRefInput = "//input[@data-testid='CreRevisionRefInput']";
 	/** @locatorType Xpath */
-	public static final String CreRevisionEffFromInput = "//input[@id='P21513101007_BOMHD_EFF_FROM_input']";
+	public static final String CreRevisionEffFromInput = "//*[@data-testid='CreRevisionEffFromInput']/input";
 	/** @locatorType Xpath */
-	public static final String CreRevisionEffToInput = "//input[@id='P21513101007_BOMHD_EFF_TO_input']";
+	public static final String CreRevisionEffToInput = "//*[@data-testid='CreRevisionEffToInput']/input";
 	/** @locatorType Xpath */
-	public static final String CreRevisionTickIcon = "//button[@id='B1162274097567080087']";
+	public static final String CreRevisionTickIcon = "//button[@data-testid='CreRevisionTickIcon']";
 	/** @locatorType Xpath */
-	public static final String CopyBOMBtn = "//button[@id='B234988405167725768']";
+	public static final String CopyBOMBtn = "//button[@data-testid='CopyBOMBtn']";
 	/** @locatorType Xpath */
 	public static final String CopyBOMIframe = "//iframe[@title='Copy BOM']";
 	/** @locatorType Xpath */
-	public static final String CopyBOMItemLovBtn = "//button[@id='P21513101008_COPY_PROD_ID_lov_btn']";
+	public static final String CopyBOMItemLovBtn = "//input[@data-testid='CopyBOMItemLovBtn']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CopyBOMEffFromInput = "//input[@id='P21513101008_COPY_EFF_TO_input']";
+	public static final String CopyBOMEffFromInput = "//*[@data-testid='CopyBOMEffFromInput']/input";
 	/** @locatorType Xpath */
 	public static final String CopyBOMEffToInput = "//input[@id='P21513101008_COPY_EFF_TO_input']";
 	/** @locatorType Xpath */
-	public static final String CopyBOMNameInput = "//input[@id='P21513101008_COPY_BOM_NAME']";
+	public static final String CopyBOMNameInput = "//*[@data-testid='CopyBOMEffToInput']/input";
 	/** @locatorType Xpath */
-	public static final String CopyBOMTickIcon = "//button[@id='B1176576408788278702']";
+	public static final String CopyBOMTickIcon = "//button[@data-testid='CopyBOMTickIcon']";
 }

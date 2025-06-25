@@ -146,8 +146,8 @@ public class MaterialIssuanceVoucherFunctions {
 				logs.logging("INFO", "Create MI Button Clicked and Created Successfully");
 				String MIVNo = webDB.getTextFromElement(MaterialIssuanceVoucherLocators.DisplayMIVNo,
 						ElementType.Xpath);
-				VariableHandler.setMaterialIssuanceVoucherNo(MIVNo);
-				logs.logging("INFO", "Displayed MIV No: " + VariableHandler.getMaterialIssuanceVoucherNo());
+				VariableHandler.setMIVNumber(MIVNo);
+				logs.logging("INFO", "Displayed MIV No: " + VariableHandler.getMIVNumber());
 			}
 		}
 		assertTrue(flag);

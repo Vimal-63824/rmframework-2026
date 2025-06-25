@@ -45,8 +45,11 @@ import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
+import io.restassured.http.ContentType;
 import utils.ExcelUtils;
 import utils.ReportLoger;
+import utils.RestUtils;
+import utils.RestUtils.methodType;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
@@ -56,6 +59,7 @@ public class CommonFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static ExcelUtils excelUtils = new ExcelUtils();
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
+	private static RestUtils restApi = new RestUtils();
 
 	/**
 	 * This method used to open browser with platformName that was set in maven goal
@@ -230,70 +234,85 @@ public class CommonFunctions {
 	public void searchAndSelectValueInFilters(String locator, String Value) {
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(locator, ElementType.Xpath);
-			webDB.switchToDefaultContent();
-			checkRefreshCellsDisappear();
-			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
-			a: for (int i = 0; i < searchBar.size(); i++) {
-				WebElement element = searchBar.get(i);
+			webDB.moveToElement(locator, ElementType.Xpath);
+			flag = webDB.clickAnElement(locator, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToDefaultContent();
+				checkRefreshCellsDisappear();
+				List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+				a: for (int i = 0; i < searchBar.size(); i++) {
+					WebElement element = searchBar.get(i);
+					try {
+						if (element.isDisplayed()) {
+							element.clear();
+							flag = fluentWaitClickElement(element);
+							if (flag) {
+								checkRefreshCellsDisappear();
+								element.sendKeys(Value);
+								break a;
+							} else {
+								flag = false;
+							}
+						}
+					} catch (Exception e) {
+						logs.logging("INFO", "failed to enter search bar Exception is: " + e);
+						flag = false;
+					}
+				}
+				Assert.assertTrue(flag);
+				// TODO WAIT_LOAD_TIME (will remove future)
+				hardWait(1500);
 				try {
-					if (element.isDisplayed()) {
-						element.clear();
-						flag = fluentWaitClickElement(element);
-						if (flag) {
-							checkRefreshCellsDisappear();
-							element.sendKeys(Value);
+					List<WebElement> SearchBarIcon = webDB.getDriver()
+							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
+					a: for (int i = 0; i < SearchBarIcon.size(); i++) {
+						WebElement element = SearchBarIcon.get(i);
+						if (element.isDisplayed()) {
+							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+									element);
+							element.click();
 							break a;
 						} else {
 							flag = false;
 						}
 					}
 				} catch (Exception e) {
-					logs.logging("INFO", "failed to enter search bar Exception is: " + e);
+					logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
 					flag = false;
 				}
-			}
-			Assert.assertTrue(flag);
-			// TODO WAIT_LOAD_TIME (will remove future)
-			hardWait(1500);
-			try {
-				List<WebElement> SearchBarIcon = webDB.getDriver()
-						.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
-				a: for (int i = 0; i < SearchBarIcon.size(); i++) {
-					WebElement element = SearchBarIcon.get(i);
-					if (element.isDisplayed()) {
-						((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-								element);
-						element.click();
-						break a;
-					} else {
+				// TODO WAIT_LOAD_TIME (will remove future)
+				hardWait(2000);
+				checkRefreshCellsDisappear();
+				List<WebElement> Elements = webDB.getDriver()
+						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
+				for (WebElement webElement : Elements) {
+					try {
+						if (webElement.isDisplayed() && webElement.getText().equalsIgnoreCase(Value)) {
+							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
+									webElement);
+							webElement.click();
+							flag = true;
+						}
+					} catch (Exception e) {
 						flag = false;
 					}
 				}
-			} catch (Exception e) {
-				logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
-				flag = false;
 			}
-			// TODO WAIT_LOAD_TIME (will remove future)
-			hardWait(2000);
-			checkRefreshCellsDisappear();
-			List<WebElement> Elements = webDB.getDriver()
-					.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
-			for (WebElement webElement : Elements) {
+			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+			for (WebElement element : searchBar) {
 				try {
-					if (webElement.isDisplayed()) {
-						((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-								webElement);
-						webElement.click();
-						flag = true;
+					if (element.isDisplayed()) {
+						flag = false;
+						logs.logging("INFO", "Search bar Still Displayed Not Clicked Values in Lov Btn");
+						Assert.fail("Search bar Still Displayed Not Clicked Values in Lov Btn");
+						break;
 					}
 				} catch (Exception e) {
-					flag = false;
 				}
 			}
-			if (flag) {
-				logs.logging("INFO", "Searched and selected '" + Value + "' in Filter");
-			}
+		}
+		if (flag) {
+			logs.logging("INFO", "Searched and selected '" + Value + "' in Filter");
 		}
 		Assert.assertTrue(flag);
 	}
@@ -2566,4 +2585,39 @@ public class CommonFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This method used to approve documents using API
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BU
+	 * @param DocNo
+	 * @param EmpId
+	 * @param Unit
+	 * @param User
+	 */
+	public void approveDocuments(String BU, String DocNo, String EmpId, String Unit, String User) {
+		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
+		restApi.setQueryParam("p_bu", BU);
+		restApi.setQueryParam("p_doc_no", DocNo);
+		restApi.setQueryParam("p_from_empid", EmpId);
+		restApi.setQueryParam("p_plnt", Unit);
+		restApi.setQueryParam("p_user", User);
+		restApi.setQueryParam("p_wfdc_act", "A");
+		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
+		String Value = restApi.response.getHeader("p_out_msg");
+		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
+		logs.logging("INFO", "Displayed Approval Response Status Code: " + restApi.response.getStatusCode());
+		flag = Value.contains("Approved");
+		if (flag) {
+			logs.logging("INFO", "Verified Approval Response Header");
+			flag = restApi.response.getStatusCode() == 200;
+			if (flag) {
+				logs.logging("INFO", "Verified Approval Response Status Code");
+			}
+		}
+		assertTrue(flag);
+		RestUtils.resetRestAssured();
+	}
+
 }

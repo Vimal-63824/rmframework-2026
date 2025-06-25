@@ -259,4 +259,104 @@ public class CompletionProductionOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method Is Used To Verify Search Prod Number And Open Desired Status
+	 * 
+	 * @author Deepan-GWL
+	 * @param ProdNumber
+	 * @param Status
+	 */
+	public void verifySearchProductionOrdeNumberAndOpenDesiredStatus(String ProdNumber, String Status) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProductionOrderNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.TransLovButton, ProdNumber);
+			flag = webDB.selectDropDownByText(CompletionProductionOrderLocators.SelectStatus, Status,
+					ElementType.Xpath);
+			if (flag) {
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionTransNumber(ProdNumber),
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(CompletionProductionOrderLocators.CompletionTransNumber(ProdNumber),
+								ElementType.Xpath);
+						flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
+								ElementType.Xpath);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click pending icon in Completion Multi Process screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingIconInCompletionMultiProcess() {
+		flag = webDB.waitForClickElement(CompletionProductionOrderLocators.MultiProc_PendingIcon, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.MultiProc_PendingIcon, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.MultiProc_PendingIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_PendingIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Completion Prod Order Multi Process- Pending Icon Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to select shift and save header in completion Multi Process
+	 * production order
+	 * 
+	 * @author Sakthi-GWL
+	 * @param shift
+	 */
+	public void selectShiftAndSaveHeaderInCompletionMultiProcess(String shift) {
+		commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.MultiProc_ShiftLovBtn, shift);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_SaveHeaderBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.MultiProc_SaveHeaderBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.MultiProc_SaveHeaderBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Header Saved Succesfully");
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				String ProdComplNo = webDB.getTextFromElement(
+						CompletionProductionOrderLocators.MultiProc_DisplayComplProdOrderNo, ElementType.Xpath);
+				VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+				logs.logging("INFO", "Multi process Production Completion Order Number Is: " + ProdComplNo);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click Post Icon in completion Multi Process production
+	 * order
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPostButtonInCompletionMultiProcess() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_PostBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.MultiProc_PostBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.MultiProc_PostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked Succesfully");
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }
