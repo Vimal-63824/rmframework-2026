@@ -588,8 +588,7 @@ public class CoreProcessPageFunctions {
 			materialIssuanceVoucherFunc.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
 			materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
 			commonFunc.navigateToMaterialIssuanceVoucherTab();
-			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
-					VariableHandler.getMaterialIssuanceVoucherNo(),
+			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
 					commonFunc.getDataFromTestDataSheet("PostedStatus"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -606,9 +605,8 @@ public class CoreProcessPageFunctions {
 			} else {
 				commonFunc.clickPendingIcon();
 				materialReceiptFunctions.clickPendingInssuanceBtn();
-				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
-				materialReceiptFunctions
-						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
+				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMIVNumber());
+				materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMIVNumber());
 			}
 			materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 			materialReceiptFunctions.clickTickAndPostIcon();
@@ -1305,8 +1303,7 @@ public class CoreProcessPageFunctions {
 					.selectMachineInMIVLineDetails(commonFunc.getDataFromTestDataSheet("Machines100"));
 			materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
 			commonFunc.navigateToMaterialIssuanceVoucherTab();
-			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(
-					VariableHandler.getMaterialIssuanceVoucherNo(),
+			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
 					commonFunc.getDataFromTestDataSheet("PostedStatus"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -1314,9 +1311,8 @@ public class CoreProcessPageFunctions {
 			commonFunc.navigateToMaterialReceiptVoucher();
 			commonFunc.clickPendingIcon();
 			materialReceiptFunctions.clickPendingInssuanceBtn();
-			materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMaterialIssuanceVoucherNo());
-			materialReceiptFunctions
-					.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMaterialIssuanceVoucherNo());
+			materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMIVNumber());
+			materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMIVNumber());
 			materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 			materialReceiptFunctions.clickTickAndPostIcon();
 			for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
@@ -1356,7 +1352,7 @@ public class CoreProcessPageFunctions {
 				materialReceiptFunctions.clickTickAndPostIcon();
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
-			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getMRPNumber(),
+			productionOrderFunc.searchAndVerifyStatusWithProdOrderNo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			return true;
 		} catch (Exception e) {

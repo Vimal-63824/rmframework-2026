@@ -765,15 +765,18 @@ public class MaterialRequestFunctions {
 						if (flag) {
 							logs.logging("INFO", "MR Status not Approve selected the Document to post");
 							headerSaveAndPost();
-							commonFunc.logoutUser();
-							commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-									System.getProperty("HodPassword"), "HodUsername-Admin");
-							approvalPageFunc.navigateToApprovals();
-							approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMaterialRequestNo());
-							approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getMaterialRequestNo());
-							flag = commonFunc.logoutUser();
-							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-									System.getProperty("TvsPassword"), "TvsUsername");
+							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+									VariableHandler.getMaterialRequestNo(), webDB.getDataFromProperties("HodEmpId"),
+									commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+//							commonFunc.logoutUser();
+//							commonFunc.validCommonLogin(System.getProperty("HodUsername"),
+//									System.getProperty("HodPassword"), "HodUsername-Admin");
+//							approvalPageFunc.navigateToApprovals();
+//							approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMaterialRequestNo());
+//							approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getMaterialRequestNo());
+//							flag = commonFunc.logoutUser();
+//							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
+//									System.getProperty("TvsPassword"), "TvsUsername");
 							commonFunc.navigateToInventoryMaterialRequest();
 							checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
 									commonFunc.getDataFromTestDataSheet("ApproveStatus"));

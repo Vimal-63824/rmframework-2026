@@ -67,7 +67,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Doc_NO = "//span[@id='P191513109001_SIHD_DOC_NO_DISPLAY']";
 	/** @Locator XPATH */
-	public static final String Header_Tick_Icon = "//button[contains(@id,'B5998922505015564483')]";
+	public static final String Header_Tick_Icon = "//button[contains(@id,'B6000823850562074967')]";
 	/** @Locator XPATH */
 	public static final String Header_CPC_LOV_Btn = "//button[contains(@id,'P191513109001_SIHD_CC_CODE_lov_btn')]";
 	/** @Locator XPATH */

@@ -9,9 +9,9 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String FindLinesBtn = "//button[@id='B1334407739562232708']";
 	/** @locatorType XPATH */
-	public static final String FindMRPNoLovBtn = "//button[@id='P13181610101_MRP_NO_lov_btn']";
+	public static final String FindMRPNoLovBtn = "//input[@data-testid='FindMRPNoLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindSearchBtn = "//button[@id='B337943820726963815']";
+	public static final String FindSearchBtn = "//button[@data-testid='FindSearchBtn']";
 
 	/** @locatorType XPATH */
 	public static final String Find_Status_TableData(String data) {
@@ -24,23 +24,23 @@ public class MRPLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String MRP_AddNewBtn = "//button[@id='B337943478039963809']";
+	public static final String MRP_AddNewBtn = "//button[@data-testid='MRP_AddNewBtn']";
 	/** @locatorType XPATH */
 	public static final String MRP_CreateMRPIframe = "//iframe[@title='Create MRP']";
 	/** @locatorType XPATH */
-	public static final String MRP_AddMRPDateInput = "//input[@id='P13181610102_MRP_DT_input']";
+	public static final String MRP_AddMRPDateInput = "//*[@data-testid='MRP_AddMRPDateInput']/input";
 	/** @locatorType XPATH */
-	public static final String MRP_AddMRPNameInput = "//input[@id='P13181610102_MRP_NAME']";
+	public static final String MRP_AddMRPNameInput = "//input[@data-testid='MRP_AddMRPNameInput']";
 	/** @locatorType XPATH */
-	public static final String MRP_AddSafetyStkDateInput = "//input[@id='P13181610102_SFTY_STK_DT_input']";
+	public static final String MRP_AddSafetyStkDateInput = "//*[@data-testid='MRP_AddSafetyStkDateInput']/input";
 	/** @locatorType XPATH */
-	public static final String MRP_AddSupplyExceptionSelect = "//select[@id='P13181610102_MRPHD_TYPE']";
+	public static final String MRP_AddSupplyExceptionSelect = "//select[@data-testid='MRP_AddSupplyExceptionSelect']";
 	/** @locatorType XPATH */
-	public static final String MRP_TickIcon = "//button[@id='B1348277280741238629']";
+	public static final String MRP_TickIcon = "//button[@data-testid='MRP_TickIcon']";
 	/** @locatorType XPATH */
-	public static final String MRP_MRPNumberDisplayInput = "//input[@id='P131816101001_MRPHD_MRP_NO']";
+	public static final String MRP_MRPNumberDisplayInput = "//input[@data-testid='MRP_MRPNumberDisplayInput']";
 	/** @locatorType XPATH */
-	public static final String MRP_StatusDisplayInput = "//span[@id='P131816101001_MRPHD_STATUS_DISPLAY']";
+	public static final String MRP_StatusDisplayInput = "//span[@data-testid='MRP_StatusDisplayInput']";
 	/** @locatorType XPATH */
 	public static final String MRP_SubTab_Sources = "//label[text()='Sources']";
 	/** @locatorType XPATH */
@@ -60,9 +60,9 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_CheckExceptionLabel = "//label[@id='P131816101001_MRPHD_EXCEP_FLAG_LABEL']";
 	/** @locatorType XPATH */
-	public static final String MRP_AddNewLineSourcesBtn = "//button[@id='B1405000491018243892']";
+	public static final String MRP_AddNewLineSourcesBtn = "//button[@data-testid='MRP_AddNewLineSourcesBtn']";
 	/** @locatorType XPATH */
-	public static final String MRP_SaveLineSourcesBtn = "//button[@id='B1405000562948243893']";
+	public static final String MRP_SaveLineSourcesBtn = "//button[@data-testid='MRP_SaveLineSourcesBtn']";
 	/** @locatorType XPATH */
 	public static final String MRP_SourceTableData_Unit = "(//table[@class='a-GV-table']//tr/td[1])[1]";
 	/** @locatorType XPATH */
@@ -76,13 +76,13 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_Source_SalesOrderCheckbox = "//div[@class='apex-item-single-checkbox']/input[@aria-label='Sales Order']";
 	/** @locatorType XPATH */
-	public static final String MRP_LoadDemandBtn = "//button[@id='Load_Demand_1']";
+	public static final String MRP_LoadDemandBtn = "//button[@data-testid='MRP_LoadDemandBtn']";
 	/** @locatorType XPATH */
-	public static final String MRP_RunMRPBtn = "//button[@id='B1410128083520913811']";
+	public static final String MRP_RunMRPBtn = "//button[@data-testid='MRP_RunMRPBtn']";
 	/** @locatorType XPATH */
-	public static final String MRP_HeaderSaveBtn = "//button[@id='B1370868183685579918']";
+	public static final String MRP_HeaderSaveBtn = "//button[@data-testid='MRP_HeaderSaveBtn']";
 	/** @locatorType XPATH */
-	public static final String MRP_PostBtn = "//button[@id='B1370870222954579921']";
+	public static final String MRP_PostBtn = "//button[@data-testid='MRP_PostBtn']";
 	/** @locatorType XPATH */
 	public static final String MRP_DemandSearchBar = "//input[@id='ContainerSummary_search_field']";
 	/** @locatorType XPATH */
@@ -116,31 +116,31 @@ public class MRPLocators {
 	/** @locatorType XPATH */
 	public static final String MRP_ResultSummary_UOMTableDataList = "//table[@id='677350558498427034_orig']//tbody/tr/td[6]";
 	/** @locatorType XPATH */
-	public static final String MRP_ReleaseBtn = "//button[@id='B1418494073427832265']";
+	public static final String MRP_ReleaseBtn = "//button[@data-testid='MRP_ReleaseBtn']";
 	/** @locatorType XPATH */
 	public static final String MRP_ReleaseIframe = "//iframe[@title='Release']";
 	/** @locatorType XPATH */
 	public static final String MRP_ReleaseIframeCloseIcon = "//h1[text()='Release']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_OrderTypeSelect = "//select[@id='P1318161010003_ORDER_TYPE']";
+	public static final String MRP_Release_OrderTypeSelect = "//select[@data-testid='MRP_Release_OrderTypeSelect']";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_FromData = "//input[@id='P1318161010003_FROM_DATE_input']";
+	public static final String MRP_Release_FromData = "//*[@data-testid='MRP_Release_FromData']/input";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_ToData = "//input[@id='P1318161010003_TO_DATE_input']";
+	public static final String MRP_Release_ToData = "//*[@data-testid='MRP_Release_ToData']/input";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_TentFromData = "//input[@id='P1318161010003_TENT_FROM_DATE_input']";
+	public static final String MRP_Release_TentFromData = "//*[@data-testid='MRP_Release_TentFromData']/input";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_TentToData = "//input[@id='P1318161010003_TENT_TO_DATE_input']";
+	public static final String MRP_Release_TentToData = "//*[@data-testid='MRP_Release_TentToData']/input";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_ReleaseLotSelect = "//select[@id='P1318161010003_LOT_SIZE']";
+	public static final String MRP_Release_ReleaseLotSelect = "//select[@data-testid='MRP_Release_ReleaseLotSelect']";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_FirmTypeSelect = "//select[@id='P1318161010003_FIRM_TYPE']";
+	public static final String MRP_Release_FirmTypeSelect = "//select[@data-testid='MRP_Release_FirmTypeSelect']";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_TentTypeSelect = "//select[@id='P1318161010003_TENT_TYPE']";
+	public static final String MRP_Release_TentTypeSelect = "//select[@data-testid='MRP_Release_TentTypeSelect']";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_LotSizeDays = "//input[@id='P1318161010003_LOT_SIZE_DAYS']";
+	public static final String MRP_Release_LotSizeDays = "//input[@data-testid='MRP_Release_LotSizeDays']";
 	/** @locatorType XPATH */
-	public static final String MRP_Release_ReleaseBtn = "//button[@id='B1421566413936647875']";
+	public static final String MRP_Release_ReleaseBtn = "//button[@data-testid='MRP_Release_ReleaseBtn']";
 	/** @locatorType XPATH */
 	public static final String MRP_ExceptionNoDataFoundContainer = "//div[@id='R1401289497759360278_ig_content_container']//span[text()='No data found']";
 

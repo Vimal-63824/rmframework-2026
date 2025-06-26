@@ -116,7 +116,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
 	/** @locatorType Xpath */
-	public static final String PendingReceiptVoucherButton = "//button[@id='B4724987409116632006']";
+	public static final String PendingReceiptVoucherButton = "//button[@id='B4728042559427458549']";
 	/** @locatorType Xpath */
 	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
 	/** @locatorType Xpath */
@@ -148,13 +148,13 @@ public class CommonUiLocators {
 
 	/** @locatorType Xpath */
 	public static String convertListOfXPath(String text) {
-		return "//*[text()='" + text + "']";
+		return "//td[text()='" + text + "'] | //li[text()='" + text + "'] | //*[text()='" + text + "']/parent::*";
 	}
 
 	/** @locatorType Xpath */
 	public static final String MaterialRequest = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String CreateMaterialRequestButton = "//button[@id='B160814825696813046']";
+	public static final String CreateMaterialRequestButton = "//button[@id='B163869976007639589']";
 	/** @locatorType Xpath */
 	public static final String InventoryReportsTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]";
 	/** @locatorType Xpath */
@@ -184,7 +184,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MIVTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String PendingMIV = "//button[@id='B1493255748221256227']";
+	public static final String PendingMIV = "//button[@id='B1496310898532082770']";
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
@@ -328,6 +328,6 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String EmployeeAdjustmentScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[1]";
 	/** Locator Xpath */
-	public static final String  salesRegion = "//label[text()='Sales Region']" ;
+	public static final String salesRegion = "//label[text()='Sales Region']";
 
 }

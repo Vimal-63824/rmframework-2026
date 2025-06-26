@@ -7,9 +7,9 @@ package commonlocators.productionplanning;
 public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
-	public static final String FindMRPNoLovBtn = "//button[@id='P6419631010_FIND_SCH_MRP_NO_lov_btn']";
+	public static final String FindMRPNoLovBtn = "//input[@data-testid='FindMRPNoLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindSearchBtn = "//button[@id='B1131360267064276001']";
+	public static final String FindSearchBtn = "//button[@data-testid='FindSearchBtn']";
 
 	/** @locatorType XPATH */
 	public static final String Find_TableData_ProdNoWithMRPNo(String MRPNo) {
@@ -27,7 +27,7 @@ public class ProductionOrderLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String FindProdOrderNoLovBtn = "//button[@id='P_FIND_PROD_ORD_ORD_NO_lov_btn']";
+	public static final String FindProdOrderNoLovBtn = "//input[@data-testid='FindProdOrderNoLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String ProdOrderReferenceDisplay = "//input[@id='P19631010001_PROHD_REFERENCE']";
 	/** @locatorType XPATH */
@@ -43,7 +43,11 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ExceptionLabel = "//label[text()='Exception']";
 	/** @locatorType XPATH */
+	public static final String RoutingTable = "//div[@id='ROUTING_ig_grid_vc']";
+	/** @locatorType XPATH */
 	public static final String RoutingProcessNameTableDataLists = "(//div[@id='ROUTING_ig_grid_vc']//table)[2]/tbody/tr/td[4]";
+	/** @locatorType XPATH */
+	public static final String RoutingProcessTypeTableDataLists = "(//div[@id='ROUTING_ig_grid_vc']//table)[2]/tbody/tr/td[5]";
 	/** @locatorType XPATH */
 	public static final String RoutingConsumptionWHTableDataLists = "(//div[@id='ROUTING_ig_grid_vc']//table)[2]/tbody/tr/td[8]";
 	/** @locatorType XPATH */
@@ -51,13 +55,17 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String MaterialReqProcessTableDataLists = "(//div[@id='material_ig_grid_vc']//table)[2]/tbody/tr/td[2]";
 	/** @locatorType XPATH */
+	public static final String MaterialReqTable = "//div[@id='material_ig_grid_vc']";
+	/** @locatorType XPATH */
 	public static final String MaterialReqRMItemTableDataLists = "(//div[@id='material_ig_grid_vc']//table)[2]/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String ResourcesTable = "//div[@id='resource_ig_grid_vc']";
 	/** @locatorType XPATH */
 	public static final String ResourcesProcessTableDataLists = "(//div[@id='resource_ig_grid_vc']//table)[2]/tbody/tr/td[2]";
 	/** @locatorType XPATH */
-	public static final String HeaderSaveIcon = "//button[@id='B862141228532932155']";
+	public static final String HeaderSaveIcon = "//button[@data-testid='HeaderSaveIcon']";
 	/** @locatorType XPATH */
-	public static final String ProdOrderPostBtn = "//button[@id='B944728616712869764']";
+	public static final String ProdOrderPostBtn = "//button[@data-testid='ProdOrderPostBtn']";
 	/** @locatorType XPATH */
 	public static final String ExceptionTableContainer = "//div[@id='R967011785583947865_ig']";
 	/** @locatorType XPATH */
@@ -65,27 +73,27 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String DisplayOrderQuantityInput = "//input[@id='P19631010001_PROHD_ORDER_QTY']";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrderAddIcon = "//button[@id='B1126880384972304449']";
+	public static final String CreateProdOrderAddIcon = "//button[@data-testid='CreateProdOrderAddIcon']";
 	/** @locatorType XPATH */
 	public static final String CreateProdOrderIframe = "//iframe[@title='Production Order']";
 	/** @locatorType XPATH */
 	public static final String CreateProdOrderIframeCloseIcon = "//h1[text()='Production Order']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_LocationLovbtn = "//button[@id='P64196310101_LOC_lov_btn']";
+	public static final String CreateProdOrd_LocationLovbtn = "//input[@data-testid='CreateProdOrd_LocationLovbtn']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_OrderTypeLovbtn = "//button[@id='P64196310101_TYPE_lov_btn']";
+	public static final String CreateProdOrd_OrderTypeLovbtn = "//input[@data-testid='CreateProdOrd_OrderTypeLovbtn']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_PrefixLovbtn = "//button[@id='P64196310101_PFX_lov_btn']";
+	public static final String CreateProdOrd_PrefixLovbtn = "//input[@data-testid='CreateProdOrd_PrefixLovbtn']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_ItemLovbtn = "//button[@id='P64196310101_ITEM_lov_btn']";
+	public static final String CreateProdOrd_ItemLovbtn = "//input[@data-testid='CreateProdOrd_ItemLovbtn']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_BOMTypeSelect = "//select[@id='P64196310101_BOM_TYPE_1']";
+	public static final String CreateProdOrd_BOMTypeSelect = "//select[@data-testid='CreateProdOrd_BOMTypeSelect']";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_OrderQntyInput = "//input[@id='P64196310101_ORDER_QTY']";
+	public static final String CreateProdOrd_OrderQntyInput = "//input[@data-testid='CreateProdOrd_OrderQntyInput']";
 	/** @locatorType XPATH */
-	public static final String CreateProdOrd_TickIcon = "//button[@id='B1134381614013977530']";
+	public static final String CreateProdOrd_TickIcon = "//button[@data-testid='CreateProdOrd_TickIcon']";
 	/** @locatorType XPATH */
-	public static final String DisplayProdOrderNo = "//span[@id='P19631010001_PROHD_ORD_NO_DISPLAY']";
+	public static final String DisplayProdOrderNo = "//span[@data-testid='DisplayProdOrderNo']";
 	/** @locatorType XPATH */
 	public static final String ScrapProductTableContainer = "//div[@id='scrap_ig_grid_vc']";
 
@@ -110,15 +118,15 @@ public class ProductionOrderLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String SoDesc = "//button[@id='P64196310101_P_SO_SCHLD_DESC_lov_btn']";
+	public static final String SoDesc = "//input[@data-testid='SoDesc']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String ShowMore = "//button[@id='show']";
+	public static final String ShowMore = "//button[@data-testid='ShowMore']";
 	/** @locatorType XPATH */
-	public static final String FirstOprSelect = "//select[@id='P19631010001_PROHD_FO_OPRN_MR_']";
+	public static final String FirstOprSelect = "//select[@data-testid='FirstOprSelect']";
 	/** @locatorType XPATH */
-	public static final String RestOprSelect = "//select[@id='P19631010001_PROHD_RO_OPRN_MR_']";
+	public static final String RestOprSelect = "//select[@data-testid='RestOprSelect']";
 	/** @locatorType XPATH */
-	public static final String ShowLess = "//button[@id='hide']";
+	public static final String ShowLess = "//button[@data-testid='ShowLess']";
 	/** @locatorType XPATH */
 	public static final String TotalProcess = "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 
@@ -136,11 +144,11 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String FindTableStatusWithProdOrderNo(String DocNo) {
-		return "//a[contains(text(),'" + DocNo + "')]/../../td[12]/div";
+		return "//a[contains(text(),'" + DocNo + "')]/../../td/div";
 	}
 
 	/** @locatorType XPATH */
-	public static final String ProcessMoveType = "//select[@id='P19631010001_PROHD_TRANSFER_TY']";
+	public static final String ProcessMoveType = "//select[@data-testid='ProcessMoveType']";
 	/** @locatorType XPATH */
 	public static final String ProcessTypeList = "//div[@id='ROUTING_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
 
@@ -171,5 +179,116 @@ public class ProductionOrderLocators {
 	public static final String ItemName(int i) {
 		return "//div[@id='material_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[5]";
 	}
+
+	/** @locatorType XPATH */
+	public static final String ProdOrderCancelBtn = "//button[@data-testid='ProdOrderCancelBtn']";
+	/** @locatorType XPATH */
+	public static final String RoutingAddBtn = "//button[@data-testid='RoutingAddBtn']";
+	/** @locatorType XPATH */
+	public static final String RoutingSaveBtn = "//button[@data-testid='RoutingSaveBtn']";
+	/** @locatorType XPATH */
+	public static final String RoutingProcessSeqTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[1])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingProcessSeqTableInput = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[1])[1]//input";
+	/** @locatorType XPATH */
+	public static final String RoutingOprnNoTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[2])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingOprnNoTableInput = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[2])[1]//input";
+	/** @locatorType XPATH */
+	public static final String RoutingProcessTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[3])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingProcessTableLovBtn = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[3])[1]//button";
+	/** @locatorType XPATH */
+	public static final String RoutingTypeTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[5])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingTypeTableSelect = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[5])[1]//select";
+	/** @locatorType XPATH */
+	public static final String RoutingWorkCenterTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[6])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingWorkCenterTableSelect = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[6])[1]//select";
+	/** @locatorType XPATH */
+	public static final String RoutingConsWHTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[8])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingConsWHTableSelect = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[8])[1]//select";
+	/** @locatorType XPATH */
+	public static final String RoutingRcptWHTableData = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[9])[1]";
+	/** @locatorType XPATH */
+	public static final String RoutingRcptWHTableSelect = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[9])[1]//select";
+	/** @locatorType XPATH */
+	public static final String MaterialReqAddBtn = "//button[@data-testid='MaterialReqAddBtn']";
+	/** @locatorType XPATH */
+	public static final String MaterialReqSaveBtn = "//button[@data-testid='MaterialReqSaveBtn']";
+	/** @locatorType XPATH */
+	public static final String MRProcessTableData = "(//div[@id='material_ig_grid_vc']//table//tr/td[2])[1]";
+	/** @locatorType XPATH */
+	public static final String MRProcessTableLovBtn = "(//div[@id='material_ig_grid_vc']//table//tr/td[2])[1]//button";
+	/** @locatorType XPATH */
+	public static final String MRItemTableData = "(//div[@id='material_ig_grid_vc']//table//tr/td[5])[1]";
+	/** @locatorType XPATH */
+	public static final String MRItemTableLovBtn = "(//div[@id='material_ig_grid_vc']//table//tr/td[5])[1]//button";
+	/** @locatorType XPATH */
+	public static final String MRBOMQntyTableData = "(//div[@id='material_ig_grid_vc']//table//tr/td[10])[1]";
+	/** @locatorType XPATH */
+	public static final String MRBOMQntyTableInput = "(//div[@id='material_ig_grid_vc']//table//tr/td[10])[1]//input";
+	/** @locatorType XPATH */
+	public static final String MRReqQntyTableData = "(//div[@id='material_ig_grid_vc']//table//tr/td[12])[1]";
+	/** @locatorType XPATH */
+	public static final String MRReqQntyTableInput = "(//div[@id='material_ig_grid_vc']//table//tr/td[12])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourcesAddBtn = "//button[@data-testid='ResourcesAddBtn']";
+	/** @locatorType XPATH */
+	public static final String ResourcesSaveBtn = "//button[@data-testid='ResourcesSaveBtn']";
+	/** @locatorType XPATH */
+	public static final String ResourceProcessTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[2])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceProcessTableLovBtn = "(//div[@id='resource_ig_grid_vc']//table//tr/td[2])[1]//button";
+	/** @locatorType XPATH */
+	public static final String ResourceGroupTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[6])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceGroupTableLovBtn = "(//div[@id='resource_ig_grid_vc']//table//tr/td[6])[1]//button";
+	/** @locatorType XPATH */
+	public static final String ResourceTypeTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[4])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceTypeTableSelect = "(//div[@id='resource_ig_grid_vc']//table//tr/td[4])[1]//select";
+	/** @locatorType XPATH */
+	public static final String ResourceBasisTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[5])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceBasisTableSelect = "(//div[@id='resource_ig_grid_vc']//table//tr/td[5])[1]//select";
+	/** @locatorType XPATH */
+	public static final String ResourceDateTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[7])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceDateTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[7])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceEffTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[8])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceEffTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[8])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceSetupHrsTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[9])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceSetupHrsTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[9])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceSetupMinTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[10])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceSetupMinTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[10])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceHrsTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[11])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceHrsTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[11])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceMinTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[12])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceMinTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[12])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceSecTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[13])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceSecTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[13])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourcePriorityTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[17])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourcePriorityTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[17])[1]//input";
+	/** @locatorType XPATH */
+	public static final String ResourceLagHrsTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[19])[1]";
+	/** @locatorType XPATH */
+	public static final String ResourceLagHrsTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[19])[1]//input";
 
 }

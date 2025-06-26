@@ -9,11 +9,11 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String Transactions = "//span[contains(text(),'Transaction')]";
 	/** @locatorType Xpath */
-	public static final String PendingInsurance = "//button[@id='B1648816358459529028']";
+	public static final String PendingInsurance = "//button[@data-testid='PendingInsurance']";
 	/** @locatorType Xpath */
-	public static final String VoucherNumberLovButton = "//button[@id='P93131177_VOU_NO_lov_btn']";
+	public static final String VoucherNumberLovButton = "//input[@data-testid='VoucherNumberLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1651762009575460806']";
+	public static final String SearchButton = "//button[@data-testid='SearchButton']";
 	/** @locatorType Xpath */
 	public static final String PendingSearchField = "//input[@id='PEND_search_field']";
 	/** @locatorType Xpath */
@@ -21,29 +21,29 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String MrvFrame = "//iframe[@title='Create MRV']";
 	/** @locatorType Xpath */
-	public static final String LocationId = "//span[@id='P9313117701_ISTHD_PLNT_LOC_ID_DISPLAY']";
+	public static final String LocationId = "//span[@data-testid='LocationId']";
 	/** @locatorType Xpath */
-	public static final String MRVNO = "//span[@id='P9313117701_ISTHD_DOC_NO_DISPLAY']";
+	public static final String MRVNO = "//span[@data-testid='MRVNO']";
 	/** @locatorType Xpath */
-	public static final String RecptorLocators = "//button[@id='B1869920545287966421']";
+	public static final String RecptorLocators = "//button[@id='B1872975695598792964']";
 	/** @locatorType Xpath */
-	public static final String PutAway = "//button[@id='B4715048519597271101']";
+	public static final String PutAway = "//button[@id='B4718103669908097644']";
 	/** @locatorType Xpath */
 	public static final String TransferFrame = "//iframe[@title='Transfer']";
 	/** @locatorType Xpath */
 	public static final String CloseIcon = "//h1[text()='Transfer']/../button";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIcon = "//button[@id='B4583439391238641038']";
+	public static final String HeaderTickIcon = "//button[@id='B4586494541549467581']";
 	/** @locatorType Xpath */
-	public static final String HeaderPostIcon = "//button[@id='B4670097921149921905']";
+	public static final String HeaderPostIcon = "//button[@id='B4673153071460748448']";
 	/** @locatorType Xpath */
-	public static final String AllCheckBox = "//table[@id='1636069529759209034']//input[@id='check_all']";
+	public static final String AllCheckBox = "//table[@id='1639124680070035577']//input[@id='check_all']";
 	/** @locatorType Xpath */
-	public static final String FindProdNoLovBtn = "//button[@id='P93131177_PROD_ORD_NO_lov_btn']";
+	public static final String FindProdNoLovBtn = "//input[@data-testid='FindProdNoLovBtn']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String MRVCheckBox(String GrnNo) {
-		return "//td[text()='" + GrnNo + "']/../td[11]";
+		return "//td[text()='" + GrnNo + "']/../td[12]";
 	}
 
 	/** @locatorType Xpath */
@@ -79,11 +79,11 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String ViewJournal = "//button[@id='B4670098219152921908']";
 	/** @locatorType Xpath */
-	public static final String MIVNumberLovButton = "//button[@id='P9313117703_DOC_NO_lov_btn']";
+	public static final String MIVNumberLovButton = "//input[@data-testid='MIVNumberLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String MRVSearchButton = "//button[@id='B2057629649584279009']";
+	public static final String MRVSearchButton = "//button[@data-testid='MRVSearchButton']";
 	/** @locatorType Xpath */
-	public static final String VoucherNoLov = "//button[@id='P9313117703_VOU_NO_lov_btn']";
+	public static final String VoucherNoLov = "//input[@data-testid='VoucherNoLov']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String MrvSelectAllBtn = "//input[@id='check_all']";
 	/** @locatorType Xpath */
@@ -95,11 +95,11 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String MrvDocumentNumberToastAlert = "//h6[@class='succ_msg']";
 	/** @locatorType Xpath */
-	public static final String VoucherNo = "//button[@id='P9313117703_VOU_NO_lov_btn']";
+	public static final String VoucherNo = "//input[@data-testid='VoucherNoLov']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String MrvDocLovBtn = "//button[@id='P93131177_VOU_NO_lov_btn']";
+	public static final String MrvDocLovBtn = "//input[@data-testid='VoucherNumberLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String MrvDocNumberDrillDown = "//*[@id=\"2708497647223109870_orig\"]/tbody/tr[2]/td[5]/a";
+	public static final String MrvDocNumberDrillDown = "//*[@id='2708497647223109870_orig']/tbody/tr[2]/td[5]/a";
 	/** @locatorType Xpath */
 	public static final String MrvDocNumberSearchBtn = "//button[@id='B1651762009575460806']";
 	/** @locatorType Xpath */
