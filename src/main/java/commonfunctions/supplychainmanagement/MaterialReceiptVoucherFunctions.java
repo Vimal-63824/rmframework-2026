@@ -546,10 +546,12 @@ public class MaterialReceiptVoucherFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
+			webDB.moveToElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
 			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Pending Insurance IS Displayed");
+				logs.logging("INFO", "Pending Insurance Is Displayed");
+				webDB.moveToElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
 				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
@@ -559,7 +561,6 @@ public class MaterialReceiptVoucherFunctions {
 					commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MIVNumberLovButton, DocNo);
 					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Mrv Frame Is Displayed");
 						webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 						if (flag) {
@@ -858,6 +859,7 @@ public class MaterialReceiptVoucherFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used To Verify CreditNote Post Material Receipt
 	 * 
@@ -874,6 +876,7 @@ public class MaterialReceiptVoucherFunctions {
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
 	}
+
 	/**
 	 * Verify Pending Inspection Documents
 	 * 
@@ -932,6 +935,7 @@ public class MaterialReceiptVoucherFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Auto Post Selected
 	 * 
@@ -942,6 +946,7 @@ public class MaterialReceiptVoucherFunctions {
 		flag = webDB.isElementSelected(CommonUiLocators.AutoPostMRVCheckBox, ElementType.Xpath);
 		return flag;
 	}
+
 	/**
 	 * This Method Used To Verify Rework Completion Post Material Receipt
 	 * 
@@ -958,6 +963,7 @@ public class MaterialReceiptVoucherFunctions {
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
 	}
+
 	/**
 	 * Verify Pending Inspection Documents
 	 * 

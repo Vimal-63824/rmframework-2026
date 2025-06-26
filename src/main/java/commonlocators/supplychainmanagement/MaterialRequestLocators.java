@@ -7,19 +7,19 @@ package commonlocators.supplychainmanagement;
 public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
-	public static final String CreateLocationLov = "//button[@id='P93131019_IMRHD_PLNT_LOC_ID_lov_btn']";
+	public static final String CreateLocationLov = "//input[@data-testid='CreateLocationLov']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String RequestType = "//select[@id='P93131019_IMRHD_RQSTBY_TYPE']";
+	public static final String RequestType = "//select[@data-testid='RequestType']";
 	/** @locatorType Xpath */
-	public static final String RequestorLovButton = "//button[@id='P93131019_IMRHD_RQSTBY_ID_lov_btn']";
+	public static final String RequestorLovButton = "//input[@data-testid='RequestorLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String EmployeeLovButton = "//button[@id='P93131019_IMRHD_EMP_ID_lov_btn']";
+	public static final String EmployeeLovButton = "//input[@data-testid='EmployeeLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String TickIconMaterialRequest = "//button[@id='B1149987200445046040']";
 	/** @locatorType Xpath */
-	public static final String FindSearchBtn = "//button[@id='B166177493378780619']";
+	public static final String FindSearchBtn = "//button[@data-testid='FindSearchBtn']";
 	/** @locatorType Xpath */
-	public static final String FindProdNoLovBtn = "//button[@id='P93131019_PROD_ORD_NO_lov_btn']";
+	public static final String FindProdNoLovBtn = "//input[@data-testid='FindProdNoLovBtn']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String Find_Status_TableData(String Text) {
@@ -89,13 +89,13 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String CloseLineDetail = "//h1[text()='Other Details']/../button";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIcon = "//button[@id='B3780051431886608662']";
+	public static final String HeaderTickIcon = "//button[@data-testid='HeaderTickIcon']";
 	/** @locatorType Xpath */
-	public static final String HeaderPostIcon = "//button[@id='B3780051817563608662']";
+	public static final String HeaderPostIcon = "//button[@data-testid='HeaderPostIcon']";
 	/** @locatorType Xpath */
-	public static final String RequestNumber = "//button[@id='P93131019_REQ_DOC_NO_lov_btn']";
+	public static final String RequestNumber = "//input[@data-testid='RequestNumber']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ISSCodeButton = "//button[@id='P9313101001_IMRHD_ISS_CODE_lov_btn']";
+	public static final String ISSCodeButton = "//input[@data-testid='ISSCodeButton']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String MRApproveStatusTable(String MRNumber) {
@@ -103,9 +103,9 @@ public class MaterialRequestLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String ReqNo = "//button[@id='P93131019_REQ_DOC_NO_lov_btn']";
+	public static final String ReqNo = "//input[@data-testid='RequestNumber']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String HeaderType = "//span[@id='P9313101001_IMRHD_RQSTBY_TYPE_DISPLAY']";
+	public static final String HeaderType = "//span[@data-testid='HeaderType']";
 
 	/** @locatorType Xpath */
 	public static final String RequestMRNo(String MRNumber) {
@@ -113,7 +113,7 @@ public class MaterialRequestLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String OrderNo = "//span[@id='P9313101003_IMRLN_ORD_NO_DISPLAY']";
+	public static final String OrderNo = "//span[@data-testid='OrderNo']";
 	/** @locatorType Xpath */
 	public static final String OtherDetailsHeader = "//h1[text()='Other Details']";
 }
