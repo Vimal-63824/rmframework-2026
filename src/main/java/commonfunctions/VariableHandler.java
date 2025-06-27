@@ -116,9 +116,9 @@ public class VariableHandler {
 	private static ThreadLocal<String> MIVNumber = new ThreadLocal<>();
 	private static ThreadLocal<Boolean> SaleOrderToMRPExecution = ThreadLocal.withInitial(() -> false);
 	private static ThreadLocal<String> MaterialRequestNo = new ThreadLocal<>();
-	private static ThreadLocal<String> MaterialIssuanceVoucherNo = new ThreadLocal<>();
 	private static ThreadLocal<String> ProductionCompletionOrderNo = new ThreadLocal<>();
 	private static ThreadLocal<String[][]> ProcessAndWarehousesBOM = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String[][]> ProcessAndProcessType = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> CustomerSaleGSTType = new ThreadLocal<>();
 	private static ThreadLocal<BigDecimal> SOChargeAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
 	private static ThreadLocal<BigDecimal> TotalSOChargeAmount = ThreadLocal.withInitial(() -> BigDecimal.ZERO);
@@ -1024,14 +1024,6 @@ public class VariableHandler {
 		MaterialRequestNo.set(data);
 	}
 
-	public static String getMaterialIssuanceVoucherNo() {
-		return MaterialIssuanceVoucherNo.get();
-	}
-
-	public static void setMaterialIssuanceVoucherNo(String data) {
-		MaterialIssuanceVoucherNo.set(data);
-	}
-
 	public static String getProductionCompletionOrderNo() {
 		return ProductionCompletionOrderNo.get();
 	}
@@ -1694,4 +1686,11 @@ public class VariableHandler {
 		ProductionProcessItem.set(data);
 	}
 
+	public static String[][] getProcessAndProcessType() {
+		return ProcessAndProcessType.get();
+	}
+
+	public static void setProcessAndProcessType(String[][] data) {
+		ProcessAndProcessType.set(data);
+	}
 }
