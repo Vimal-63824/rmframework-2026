@@ -303,17 +303,19 @@ public class MaterialRequestFunctions {
 				webDB.clickAnElement(MaterialRequestLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-				if (flag) {
-					webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Header Tick Icon Is Displayed");
-						webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-						webDB.switchToDefaultContent();
-						commonFunc.checkSuccessToastMessageDisappear();
-						flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
-					}
-				}
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+//				if (flag) {
+//					webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+//					flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+//					if (flag) {
+//						logs.logging("INFO", "Header Tick Icon Is Displayed");
+//						webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+//						webDB.switchToDefaultContent();
+//						commonFunc.checkSuccessToastMessageDisappear();
+//						flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
+//					}
+//				}
 			}
 		}
 		assertTrue(flag);

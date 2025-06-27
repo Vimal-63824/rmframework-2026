@@ -5,16 +5,13 @@ package com.roadmapERP;
  * @company Galaxy Weblinks June 2, 2025
  */
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
+import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
-
 import commonfunctions.CommonFunctions;
 import commonfunctions.productionplanning.ProductionOrderFunctions;
 
 public class ProductionOrderTest extends RoadMapERPTest {
 	boolean flag = false;
-	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static ProductionOrderFunctions prodOrderFunc = new ProductionOrderFunctions();
 
 	/**
@@ -115,15 +112,121 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Logout The Portal If Testcases Failed
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as OR - Move Type - Single
 	 * 
-	 * @author Sakthi-GWL
-	 * @param result
+	 * @author Deepan-GWL
 	 */
-	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
-		if (result.getStatus() == ITestResult.FAILURE) {
-			commonFunc.verifyAfterMethod();
-		}
+	@Test(priority = 9, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as OR - Move Type - Single")
+	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoOrMoveTypeSingle() {
+		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInside();
 	}
+
+	/**
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 10, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
+	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoCqMoveTypeSingle() {
+		prodOrderFunc
+				.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeSingle();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as OR - Move Type - Multiple
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 11, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as OR - Move Type - Multiple")
+	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoOrMoveTypeMultiple() {
+		prodOrderFunc
+				.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoOrMoveTypeMultiple();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as OR - Move Type - Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 12, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as OR - Move Type - Item")
+	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoOrMoveTypeItem() {
+		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoOrMoveTypeItem();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 13, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Item")
+	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoCqMoveTypeItem() {
+		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeItem();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 14, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
+	public void VerifyPOWithoutSORFirstOutsideOtherBothWithFoCqRoCqMoveTypeSingle() {
+		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingBothWithFoCqRoCqMoveTypeSingle();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 15, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
+	public void VerifyPOWithoutSORAllProcessBothWithFoCqRoCqMoveTypeSingle() {
+		prodOrderFunc.verifyManualProductionOrderWithoutSoAllProcessBothFOCQRoCqWithSingleType();
+	}
+
+	/**
+	 * How Pend. Prod. Queue (IS) is updated?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 16, groups = {
+			"Pending Production Queue" }, description = "How Pend. Prod. Queue (IS) is updated?")
+	public void VerifyManualProductionOrderPendingQueueForInside() {
+		prodOrderFunc.verifyManualProductionOrderPendingQueueInsideAndOutside();
+		flag = true;
+	}
+
+	/**
+	 * How Pend. Prod. Queue (OS) is updated?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 17, groups = {
+			"Pending Production Queue" }, description = "How Pend. Prod. Queue (OS) is updated?")
+	public void VerifyManualProductionOrderPendingQueueForOutside() {
+		assertTrue(flag);
+		// This Test Scenarios Covered In
+		// VerifyManualProductionOrderPendingQueueForInside
+	}
+
+//
+//	/**
+//	 * Verify After Method
+//	 * 
+//	 * @param result
+//	 */
+//	@AfterMethod
+//	public void VerifyAfterMethod(ITestResult result) {
+//		commonFunc.verifyAfterMethod();
+//	}
 }

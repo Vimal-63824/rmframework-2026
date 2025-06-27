@@ -55,9 +55,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String TickIconPO = "//*[@id='B3146205337803717780']";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIconPO = "//*[@id='B3052796012707209524']";
+	public static final String HeaderTickIconPO = "//*[@data-testid='PO_Header_Tick_Icon']";
 	/** @locatorType Xpath */
-	public static final String HeaderTPostIcon = "//*[@id='B3159242797041273061']";
+	public static final String HeaderTPostIcon = "//*[@data-testid='PO_Header_Post_Icon']";
 	/** @locatorType Xpath */
 	public static final String ForwardApproval = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
@@ -69,7 +69,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B162750960319221704']";
+	public static final String SearchButton = "//button[@data-testid='PO_Search_Button']";
 	/** @locatorType Xpath */
 	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']/span";
 	/** @locatorType Xpath */
@@ -88,13 +88,13 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingRFQBtn = "//button[@id='B1022828162906840804']";
 	/** @locatorType Xpath */
-	public static final String PendingPRBtn = "//button[@id='B2145315718133643750']";
+	public static final String PendingPRBtn = "//button[@id='B2148325715393441868']";
 	/** @locatorType Xpath */
 	public static final String PendingPRiframe = "//iframe[@title='Pending PR']";
 	/** @locatorType Xpath */
 	public static final String PendingPR_FindPRNo = "//button[contains(@id,'PR_NO')]";
 	/** @locatorType Xpath */
-	public static final String PendingPR_SearchBtn = "//button[@id='B2403556419484961039']";
+	public static final String PendingPR_SearchBtn = "//button[@id='B2406566416744759157']";
 	/** @locatorType Xpath */
 	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all'])";
 	/** @locatorType Xpath */
@@ -104,7 +104,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPR_CurrencySelectBtn = "//button[@id='P16151310407_CURRENCY_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PendingPR_OkBtn = "//button[@id='B2327883803940919344']";
+	public static final String PendingPR_OkBtn = "//button[@id='B2330893801200717462']";
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(String text) {
@@ -310,7 +310,7 @@ public class PurchaseOrderPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String TickButtonLineOne = "//button[@id='B1467193366803536440']";
+	public static final String TickButtonLineOne = "//button[@id='B1470203364063334558']";
 
 	/** @locatorType Xpath */
 	public static final String ServiceLineDetailButton(int i) {
