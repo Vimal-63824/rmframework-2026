@@ -291,6 +291,54 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * From PR to PO - Domestic Supplier - Material Items with Similar Stock and
+	 * Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 22, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Material Items with Similar Stock and Supplier UOM")
+	public void VerifyDomesticMaterialSimilarUOMFromPRtoPO() {
+		purchaseOrderFunc.verifyPRtoPOWithMultipleItemInExcelSheetForMaterialWithDomestic();
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - Material Items with Similar Stock and
+	 * Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 23, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Material Items with Similar Stock and Supplier UOM")
+	public void VerifyImportMaterialSimilarUOMFromPRtoPO() {
+		purchaseOrderFunc.verifyPRtoPOWithMultipleItemInExcelSheetForMaterialWithImport();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - Material Items with Dissimilar Stock and
+	 * Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 24, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Material Items with Dissimilar Stock and Supplier UOM")
+	public void VerifyDomesticMaterialDissimilarUOMFromPRtoPO() {
+		purchaseOrderFunc.verifyPRtoPOWithMultipleItemInExcelSheetForMaterialWithDomesticDissimilar();
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - Material Items with Dissimilar Stock and
+	 * Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 25, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM")
+	public void VerifyImportMaterialDissimilarUOMFromPRtoPO() {
+		purchaseOrderFunc.verifyPRtoPOWithMultipleItemInExcelSheetForMaterialWithImportDissimilar();
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Deepan-GWL

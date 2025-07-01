@@ -262,7 +262,7 @@ public class MaterialReceiptVoucherFunctions {
 	public void selectVoucherNoAndClickCreateReceipt(String VoucherNo) {
 		switchMRVPendingIframe();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(3000);
+		commonFunc.hardWait(7000);
 		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(VoucherNo), ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Search Go Button Clicked and Filtered with " + VoucherNo);

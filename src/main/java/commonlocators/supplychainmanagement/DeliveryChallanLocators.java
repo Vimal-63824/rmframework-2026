@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -8,7 +9,7 @@ public class DeliveryChallanLocators {
 	/** @locatorType Xpath */
 	public static final String DCNumberLovButton = "//button[@id='P75131101_DC_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B182955682519758259']";
+	public static final String SearchButton = "//button[@id='B186040796030600659']";
 	/** @locatorType Xpath */
 	public static final String ListItem = "//div[@id='dc_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
@@ -25,14 +26,14 @@ public class DeliveryChallanLocators {
 	public static final String StatusDcNumber(String DCNumber) {
 		return "(//a[text()='" + DCNumber + "']/../../td/div[contains(@style,'Green')])[last()]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String ItemTable(int i) {
-		return "//div[@id='dc_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr["+i+"]/td[3]";
+		return "//div[@id='dc_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String ItemCostTable(int i) {
-		return "//div[@id='dc_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr["+i+"]/td[9]";
+		return "//div[@id='dc_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[9]";
 	}
 }

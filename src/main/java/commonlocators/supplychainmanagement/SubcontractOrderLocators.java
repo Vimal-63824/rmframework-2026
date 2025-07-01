@@ -7,11 +7,11 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ProdOrderNo = "//button[@id='P161713106509_FIND_PROD_ORD_NO_lov_btn']";
 	/** @locatorType XPATH */
-	public static final String SearchButton = "//button[@id='B1587754424552999613']";
+	public static final String SearchButton = "//button[@id='B1590764421812797731']";
 	/** @locatorType XPATH */
 	public static final String SubcontractorLovButton = "//button[@id='P161713106509_SUPPLIER_ID_lov_btn']";
 	/** @locatorType XPATH */
-	public static final String OkButton = "//button[@id='B3915265516497868189']";
+	public static final String OkButton = "//button[@id='B3918275513757666307']";
 	/** @locatorType XPATH */
 	public static final String LocationId = "//span[@id='P161713106501_POH_PLNT_LOC_ID_DISPLAY']";
 	/** @locatorType XPATH */
@@ -63,17 +63,17 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String GLAccNo = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[21]";
 	/** @locatorType XPATH */
-	public static final String GLAccNoLovButton = "//button[@id='C6503485586029604743_lov_btn']";
+	public static final String GLAccNoLovButton = "//button[@id='C6506495583289402861_lov_btn']";
 	/** @locatorType XPATH */
-	public static final String IncludeCharges = "//button[@id='B1848841072240042328']";
+	public static final String IncludeCharges = "//button[@id='B1851851069499840446']";
 	/** @locatorType XPATH */
 	public static final String Save = "//button[@id='SAVE']";
 	/** @locatorType XPATH */
-	public static final String HeaderPost = "//button[@id='B4055371142000861527']";
+	public static final String HeaderPost = "//button[@id='B4058381139260659645']";
 	/** @locatorType XPATH */
 	public static final String ScoNo = "//button[@id='P16171310651_DOC_NO_lov_btn']";
 	/** @locatorType XPATH */
-	public static final String ScoSearchButton = "//button[@id='B1474700686627690985']";
+	public static final String ScoSearchButton = "//button[@id='B1477710683887489103']";
 	/** @locatorType XPATH */
 	public static final String TaxPercentage = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[13]";
 	/** @locatorType XPATH */
@@ -94,11 +94,19 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SgstValue = "//div[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[17]";
 	/** @locatorType XPATH */
-	public static final String LineSave = "//button[@id='B4095080566516271569']";
+	public static final String LineSave = "//button[@id='B4098090563776069687']";
 	/** @locatorType XPATH */
 	public static final String HsnTable = "//div[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @locatorType XPATH */
-	public static final String HsnLovButton = "//button[@id='C698163527035561601_lov_btn']";
+	public static final String HsnLovButton = "//button[@id='C701173524295359719_lov_btn']";
 	/** @locatorType XPATH */
-	public static final String TickButton = "//button[@id='B4055632771849862864']";
+	public static final String TickButton = "//button[@id='B4058642769109660982']";
+	/** @locatorType XPATH */
+	public static final String ProcessName = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[10]";
+	/** @locatorType XPATH */
+	public static final String QueueQty = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[11]";
+	/** @locatorType XPATH */
+	public static final String CompQty = "(//table[@id='5935146900431362256_orig']/tbody/tr[2]/td/input)[1]";
+	/** @locatorType XPATH */
+	public static final String OutsideQty = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[15]";
 }

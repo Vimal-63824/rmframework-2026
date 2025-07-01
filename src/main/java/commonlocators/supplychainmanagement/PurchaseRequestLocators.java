@@ -22,15 +22,15 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String FindPR_PRNoButton = "//button[contains(@id,'DOC_NO')]";
 	/** @locatorType Xpath */
-	public static final String FindSearchButton = "//button[@id='B148414063445984831']";
+	public static final String FindSearchButton = "//button[@testid='PR_SEARCH_ICON']";
 	/** @locatorType Xpath */
 	public static final String PRStatusBoldText = "//div[contains(@style,'bold')]";
 	/** @locatorType Xpath */
-	public static final String AddLineIcon = "//button[@title='Add Line']";
+	public static final String AddLineIcon = "//button[@data-testid='PR_ADDLINE']";
 	/** @locatorType Xpath */
-	public static final String SaveLineBtn = "//button[@title='Save Line']";
+	public static final String SaveLineBtn = "//button[@data-testid='PR_SAVELINE']";
 	/** @locatorType Xpath */
-	public static final String SaveHeaderBtn = "//button[@title='Save']";
+	public static final String SaveHeaderBtn = "//button[@testid='PR_SAVEHEADER']";
 	/** @locatorType Xpath */
 	public static final String BackIconBtn = "//button[@title='Back']";
 	/** @locatorType Xpath */
@@ -194,4 +194,13 @@ public class PurchaseRequestLocators {
 	public static final String PRResultTableRequestor = "//table[@id='2095931872759625206_orig']//tr/td[8]";
 	/** @locatorType Xpath */
 	public static final String PRResultTableItem = "//table[@id='2095931872759625206_orig']//tr/td[9]";
+	/** @locatorType Xpath */
+	public static final String GlAccountNoLovButton = "//button[@id='P161513103003_PRL_PUR_ACCT_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String LineDetailSaveButton = "//button[@id='B1501075046306100342']";
+
+	/** @locatorType Xpath */
+	public static final String LineDetailsButton(String Item) {
+		return "//td[text()='" + Item + "']/../td/*/span[@class='fa fa-info-circle']";
+	}
 }
