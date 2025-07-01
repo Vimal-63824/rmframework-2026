@@ -100,6 +100,16 @@ public class PurchaseRequestTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * create Purchase request for Material Type
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 8, groups = { "PurchaseRequest" }, description = " create Purchase request for Material Type")
+	public void VerifyPurchaseRequestMaterialTypeCreation() {
+		PRFunc.verifyPurchaseRequestWithMultipleItemInExcelSheetForMaterial();
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @param result

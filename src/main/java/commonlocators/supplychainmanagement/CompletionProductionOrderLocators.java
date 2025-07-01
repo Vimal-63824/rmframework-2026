@@ -80,4 +80,53 @@ public class CompletionProductionOrderLocators {
 	public static final String MultiProc_PostBtn = "//button[@data-testid='MultiProc_PostBtn']";
 	/** @locatorType XPATH */
 	public static final String MultiProc_DisplayComplProdOrderNo = "//span[@data-testid='MultiProc_DisplayComplProdOrderNo']";
+	/** @locatorType XPATH */
+	public static final String ProcessName = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[14]";
+	/** @locatorType XPATH */
+	public static final String OrderQty = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[15]";
+	/** @locatorType XPATH */
+	public static final String QueueQty = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[16]";
+	/** @locatorType XPATH */
+	public static final String InsideQty = "//table[@id='2554136343121425027_orig']/tbody/tr[2]/td[17]";
+	/** @locatorType XPATH */
+	public static final String CompQty = "(//table[@id='2554136343121425027_orig']/tbody/tr[2]/td/input)[1]";
+	/** @locatorType XPATH */
+	public static final String OperatorLovButton = "//button[@id='P19631031010_PT_OPT_ID_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String MachineLovButton = "//button[@id='P19631031010_PT_MACH_ID_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String ResourcesTab = "//label[@for='P19631031010_TAB_2']";
+	/** @locatorType XPATH */
+	public static final String ResourcesMachineTab = "//label[@for='P19631031010_RESOURCES_0']";
+	/** @locatorType XPATH */
+	public static final String ResourcesLabourTab = "//label[@for='P19631031010_RESOURCES_1']";
+	/** @locatorType XPATH */
+	public static final String MachineLineAmount = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String MachineUnitRate = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
+	/** @locatorType XPATH */
+	public static final String MachineUnit = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String LabourQtyHrs = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
+	/** @locatorType XPATH */
+	public static final String LabourUnitRate = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String LabourLineAmount = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType XPATH */
+	public static final String HeaderProcessName = "//span[@data-testid='ComplProdOrderDisplayProcess']";
+	/** @locatorType XPATH */
+	public static final String MultiProdNo = "//button[@id='P80_FIND_PROD_NO_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String CreateCompProc = "//button[@id='B1']";
+	/** @locatorType XPATH */
+	public static final String MultipleCreateCompletionProcessOkBtn = "//button[@id='CREATE']";
+	/** @locatorType XPATH */
+	public static final String MultipleProceedRestOprYesBtn = "//button[text()='Yes']";
+	/** @locatorType XPATH */
+	public static final String MultipleTransLovButton = "//button[@id='P196310316_TRANS_NO_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String MultipleSelectStatus = "//select[@id='P196310316_STATUS']";
+	/** @locatorType XPATH */
+	public static final String MultipleSearchButton = "//button[@id='B136234895074248868']";
+
 }

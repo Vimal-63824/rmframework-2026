@@ -25,7 +25,6 @@ import javax.xml.xpath.XPathEvaluationResult.XPathResultType;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v124.memory.model.PressureLevel;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;

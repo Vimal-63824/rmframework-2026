@@ -130,8 +130,8 @@ public class MaterialIssuanceVoucherFunctions {
 	 */
 	public void clickCheckBoxWithMRNoAndCreateMI(String MRNo) {
 		switchMaterialRequestLinesIframe();
-		webDB.moveToElement(MaterialIssuanceVoucherLocators.SearchResult_TableSelectBox(MRNo), ElementType.Xpath);
-		webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchResult_TableSelectBox(MRNo), ElementType.Xpath);
+		webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+		webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
 		webDB.waitForClickElement(MaterialIssuanceVoucherLocators.PendingMRCreateMIBtn, ElementType.Xpath);
 		flag = webDB.isElementEnabled(MaterialIssuanceVoucherLocators.PendingMRCreateMIBtn, ElementType.Xpath);
@@ -197,6 +197,7 @@ public class MaterialIssuanceVoucherFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void checkStatusOfMaterialIssuanceVoucher(String MrNo, String ExpectedStatus) {
+		commonFunc.hardWait(3000);
 		commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.VoucherNoLovButton, MrNo);
 		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.MivSearchButton, ElementType.Xpath);
 		if (flag) {
@@ -336,7 +337,7 @@ public class MaterialIssuanceVoucherFunctions {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
 			webDB.moveToElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(5000);
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}

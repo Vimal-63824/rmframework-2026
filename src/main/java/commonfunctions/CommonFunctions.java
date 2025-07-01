@@ -2437,13 +2437,21 @@ public class CommonFunctions {
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
 			} else {
-				webDB.pressEnterKey();
-				flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.SelectSearchTab, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Navigated To " + TabName);
+					webDB.clickAnElement(CommonUiLocators.SelectSearchTab, ElementType.Xpath);
+					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+
+					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Navigated To " + TabName);
+					} else {
+
+					}
 				}
 			}
 		}
+
 		assertTrue(flag);
 	}
 
@@ -2618,6 +2626,36 @@ public class CommonFunctions {
 		}
 		assertTrue(flag);
 		RestUtils.resetRestAssured();
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual And Expected Values");
+		} else {
+			logs.logging("INFO", "Mismatch With Actual And Expected");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * To Navigate Completion Production Order Multiple Process Screen In Production
+	 * Planning
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToCompletionProductionOrderMultipleProcessInProdPlanning() {
+		navigateToSearchTab(webDB.getDataFromProperties("ProductionCompletionMultiple"),
+				CompletionProductionOrderLocators.MultiProc_PendingIcon);
 	}
 
 }
