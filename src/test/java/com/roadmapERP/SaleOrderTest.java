@@ -470,7 +470,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
-	@Test(priority = 38, groups = {
+	@Test(priority = -1, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - Interstate")
 	public void SalesOrderAmendmentQtyChangeInterstateCustomer() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentQtyChange(commonFunc.getDataFromTestDataSheet("Customer"),
@@ -704,6 +704,18 @@ public class SaleOrderTest extends RoadMapERPTest {
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
 				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Closeshort Multiple sales Orders
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 54, groups = { "SalesOrderAmendment" }, description = "Closeshort Multiple sales Orders")
+	public void closeShortMultipleSalesOrder() throws IOException {
+		flag = SalesOrdFunc.closeshortMultipleSalesOrder(commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("SalesOrder"));
 		Assert.assertTrue(flag);
 	}
 

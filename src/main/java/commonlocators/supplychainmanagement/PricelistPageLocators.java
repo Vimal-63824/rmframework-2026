@@ -133,21 +133,21 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindScreenItemField = "//input[@id='P3670200_ITEM_1']";
 	/** @locatorType Xpath */
-	public static final String ItemSearchBtn = "//*[@id=\"B1284581952089961873\"]/span";
+	public static final String ItemSearchBtn = "//*[@id='B1287637102400788416']/span";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "//*[@id=\"15686651324419853443_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String ItemDrillDownBtn = "//*[@id='15689706474730679986_orig']/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String ItemGeneral = "//*[@id=\"P367020004_TAB\"]/div/div/div[3]/label";
 	/** @locatorType Xpath */
-	public static final String ItemCopy = "//*[@id=\"B215754246394063050\"]/span[2]";
+	public static final String ItemCopy = "//button[@id='B218809396704889593']";
 	/** @locatorType Xpath */
 	public static final String ItemIdInputCopy = "//input[@id='P367020004_ITEM']";
 	/** @locatorType Xpath */
 	public static final String ItemDescInputCopy = "//input[@id='P367020004_ITEM_DESC']";
 	/** @locatorType Xpath */
-	public static final String ItemOkCopy = "//*[@id=\"B215751033222063042\"]/span";
+	public static final String ItemOkCopy = "//button[@id='B218806183532889585']";
 	/** @locatorType Xpath */
-	public static final String ItemPost = "//*[@id=\"B215434526869062034\"]/span[2]";
+	public static final String ItemPost = "//button[@id='B218489677179888577']";
 	/** @locatorType Xpath */
 	public static final String ItemFindBtn = "//*[@id=\"B215430562028062028\"]/span";
 	/** @locatorType Xpath */

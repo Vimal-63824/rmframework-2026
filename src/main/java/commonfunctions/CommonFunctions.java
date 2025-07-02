@@ -35,6 +35,7 @@ import commonlocators.productionplanning.MRPLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
+import commonlocators.supplychainmanagement.CustomerItemsLocators;
 import commonlocators.supplychainmanagement.CustomerScheduleLocators;
 import commonlocators.supplychainmanagement.GateEntryPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
@@ -45,6 +46,7 @@ import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
+import commonlocators.supplychainmanagement.SalesPriceListLocators;
 import io.restassured.http.ContentType;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -234,11 +236,11 @@ public class CommonFunctions {
 	public void searchAndSelectValueInFilters(String locator, String Value) {
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(locator, ElementType.Xpath);
+//			webDB.moveToElement(locator, ElementType.Xpath);
 			flag = webDB.clickAnElement(locator, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToDefaultContent();
-				checkRefreshCellsDisappear();
+//				checkRefreshCellsDisappear();
 				List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 				a: for (int i = 0; i < searchBar.size(); i++) {
 					WebElement element = searchBar.get(i);
@@ -261,7 +263,7 @@ public class CommonFunctions {
 				}
 				Assert.assertTrue(flag);
 				// TODO WAIT_LOAD_TIME (will remove future)
-				hardWait(1500);
+//				hardWait(1500);
 				try {
 					List<WebElement> SearchBarIcon = webDB.getDriver()
 							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
@@ -281,7 +283,7 @@ public class CommonFunctions {
 					flag = false;
 				}
 				// TODO WAIT_LOAD_TIME (will remove future)
-				hardWait(2000);
+//				hardWait(2000);
 				checkRefreshCellsDisappear();
 				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
@@ -2034,19 +2036,7 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigateSalesOrderAmendmentPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickSalesTab();
-		clickSalesTransactionTab();
-		flag = webDB.waitForElement(SalesOrderLocators.SOAmendmentScreen, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesOrderLocators.SOAmendmentScreen, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesOrderLocators.SOAmendmentPendingButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated to Sales Order Amendment Screen Sucessfully");
-			}
-		}
-		Assert.assertTrue(flag);
+		navigateToSearchTab(webDB.getDataFromProperties("SOAmd"), SalesOrderLocators.SOAmendmentPendingButton);
 	}
 
 	/**
@@ -2203,19 +2193,7 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigateCustomerScheduleScreen() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickSalesTab();
-		clickSalesTransactionTab();
-		flag = webDB.waitForElement(CustomerScheduleLocators.CustomerScheduleNode, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CustomerScheduleLocators.CustomerScheduleNode, ElementType.Xpath);
-			flag = webDB.waitForElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated To Customer Schedule Screen Sucessfully");
-			}
-		}
-		Assert.assertTrue(flag);
+		navigateToSearchTab(webDB.getDataFromProperties("CustomerSchedule"), CustomerScheduleLocators.CSAddButton);
 	}
 
 	/**
@@ -2658,4 +2636,181 @@ public class CommonFunctions {
 				CompletionProductionOrderLocators.MultiProc_PendingIcon);
 	}
 
+	/**
+	 * This method used to Click The Setup Tab
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	private void clickSetupTab() {
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.SetupTab, ElementType.Xpath, 30);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.SetupTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ExpandAll, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Tranaction tab Is Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Click The Transaction Tab
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	private void clickSetupExpandAllButton() {
+		flag = webDB.waitForElement(CommonUiLocators.ExpandAll, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ExpandAll, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.Items, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Setup Expand All Button Is clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void clickCustomerItemsScreen() {
+		flag = webDB.waitForElement(CommonUiLocators.CustomerItems, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.CustomerItems, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerItemsLocators.AddPLusButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Customer Items Screen");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Click The Transaction Tab
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	private void clickTransactionTab() {
+		flag = webDB.waitForElement(CommonUiLocators.TransactionTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.TransactionTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.ExpandAll, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Tranaction tab Is Clicked Sucessfully");
+				checkRefreshCellsDisappear();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Click The Transaction Tab
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	private void clickTransactionExpandAllButton() {
+		flag = webDB.waitForElement(CommonUiLocators.ExpandAll, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.ExpandAll, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CustomerSchedule, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Expand All Button Is clicked Sucessfully");
+				checkRefreshCellsDisappear();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used To Click The Open SO Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickOpenSOScreen() {
+		flag = webDB.waitForElement(CommonUiLocators.OpenSO, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.OpenSO, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSOAmendRadioBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Open SO Screen");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used To Click The Open SO Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPriceList_Standard_Catalog_Screen() {
+		flag = webDB.waitForElement(CommonUiLocators.PriceList, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PriceList, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesPriceListLocators.AddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Price List Screen");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used To Click The Customer Schedule Amendment Entry Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickCustomerScheduleAmendmentEntry() {
+		flag = webDB.waitForElement(CommonUiLocators.CustomerScheduleAmendment, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.CustomerScheduleAmendment, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Navigated To Customer Schedule Amendment Entry Screen");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to Navigate Customer Items Page
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateCustomerItemsPage() {
+		clickLeftNavigationBar();
+		clickSetupTab();
+		clickSetupExpandAllButton();
+		clickCustomerItemsScreen();
+	}
+
+	/**
+	 * This Method Is Used To Navigate Open So Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateOpenSOScreen() {
+		clickLeftNavigationBar();
+		clickTransactionTab();
+		clickTransactionExpandAllButton();
+		clickOpenSOScreen();
+	}
+
+	/**
+	 * This Method Is Used To Navigate PriceList Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigatePriceList_Standard_Catalog_Screen() {
+		clickLeftNavigationBar();
+		clickTransactionTab();
+		clickTransactionExpandAllButton();
+		clickPriceList_Standard_Catalog_Screen();
+	}
+
+	/**
+	 * This Method Is Used To Navigate Customer Schedule Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateCustomerScheduleAmendmentScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("CustSchAmd"), CustomerScheduleLocators.CSAmdAddButton);
+	}
 }
