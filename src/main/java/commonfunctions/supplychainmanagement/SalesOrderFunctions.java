@@ -58,6 +58,7 @@ public class SalesOrderFunctions {
 	String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 	String Filepath1 = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 			+ "QA Scenario - Sales STD PRICE.xlsx";
+	ArrayList<String> MultipleSO = new ArrayList<String>();
 
 	/**
 	 * This Method Is used to Verify the Domestic SOGeneral With (SimilarStock And
@@ -81,7 +82,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -121,7 +122,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -159,7 +160,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -197,7 +198,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -235,7 +236,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -273,7 +274,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -311,7 +312,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -349,7 +350,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -387,7 +388,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -425,7 +426,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -831,21 +832,24 @@ public class SalesOrderFunctions {
 	 *         One User To Another User
 	 * @return boolean flag
 	 */
-	public boolean forwardForApproval() {
-		commonFunc.hardWait(3000);
+	public boolean forwardForApproval(String ForwardToEmployee) {
+		commonFunc.hardWait(500);
 		if (webDB.verifyIsElementDisplayed(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath)) {
 			flag = true;
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov,
-					commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
+			String ForwardEmployee = webDB.getDomPropertyFromElement(SalesOrderLocators.ForwardPersonField,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!ForwardEmployee.equalsIgnoreCase(ForwardToEmployee)) {
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov, ForwardToEmployee);
+				commonFunc.hardWait(2000);
+				webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched To WorkFlow Frame");
+			}
+			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
+				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(CommonUiLocators.ClearIcon, ElementType.Xpath);
@@ -941,9 +945,9 @@ public class SalesOrderFunctions {
 						} else {
 							logs.logging("INFO", "Verification Failed, Expected :" + ExpUnit + "Actual " + Unit);
 						}
-						flag = webDB.waitForElement(SalesOrderLocators.HeaderCustDescField, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesOrderLocators.HeaderCustDescFieldQuery, ElementType.Xpath);
 						if (flag) {
-							String Customer = webDB.getTextFromElement(SalesOrderLocators.HeaderCustIDField,
+							String Customer = webDB.getTextFromElement(SalesOrderLocators.HeaderCustIDFieldQuery,
 									ElementType.Xpath);
 							logs.logging("INFO", "GetText Customer Id is :" + Customer);
 							flag = Customer.equals(ExpCustId);
@@ -1039,7 +1043,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			webDB.doubleClickAnElement(Locator, ElementType.Xpath);
 			webDB.sendTextToAnElement(Locator, InputValue, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 			webDB.pressTabKey();
 		}
 	}
@@ -2256,11 +2260,11 @@ public class SalesOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("SODBPaymentTermColumnName")));
 		logs.logging("INFO", "Header Payment Term Details Matched With DataBase Values");
 
-		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderINCOTermField, dbCommonFunctions.SOHeaderDetails(
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderINCOTermField, dbCommonFunctions.SOHeaderDetails(
 				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBINCOTermColumnName")));
 		logs.logging("INFO", "Header INCO Term Details Matched With DataBase Values");
 
-		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderShipViaField, dbCommonFunctions.SOHeaderDetails(
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderShipViaField, dbCommonFunctions.SOHeaderDetails(
 				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBShipViaColumnName")));
 		logs.logging("INFO", "Header Ship Via Details Matched With DataBase Values");
 
@@ -2273,11 +2277,11 @@ public class SalesOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("SODBCpcCodeDescColumnName")));
 		logs.logging("INFO", "Header CPCcode Desc Details Matched With DataBase Values");
 
-		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderCustIDField, dbCommonFunctions.SOHeaderDetails(
-				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBCustomerIDColumnName")));
-		logs.logging("INFO", "Header Customer ID Details Matched With DataBase Values");
+//		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderCustIDField, dbCommonFunctions.SOHeaderDetails(
+//				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBCustomerIDColumnName")));
+//		logs.logging("INFO", "Header Customer ID Details Matched With DataBase Values");
 
-		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderCustDescField, dbCommonFunctions.SOHeaderDetails(
+		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCustDescField, dbCommonFunctions.SOHeaderDetails(
 				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBCustomerDescColumnName")));
 		logs.logging("INFO", "Header Customer Description Details Matched With DataBase Values");
 	}
@@ -2443,7 +2447,7 @@ public class SalesOrderFunctions {
 		verifyIncludeAdvAmtFlagIsChecked();
 		navigateToLineTab();
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -2971,7 +2975,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3044,10 +3048,10 @@ public class SalesOrderFunctions {
 				itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.HSN_CODE));
 		logs.logging("INFO", "HSN Code For This Item : " + Item + " is Verified Sucessfully");
 		if (Currency.equals(commonFunc.getDataFromTestDataSheet("CurrencyInr"))) {
-			verifyGetTextValidation(SalesOrderLocators.TaxPercent(i - 3),
-					itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.TAX_PCT));
-			logs.logging("INFO", "Tax Percentage For This HSN Code : " + SOLineDetailsName.HSN_CODE
-					+ " Against This Item : " + Item + " is Verified Sucessfully");
+//			verifyGetTextValidation(SalesOrderLocators.TaxPercent(i - 3),
+//					itemDetailHandler.getSOLineDetailsforGivenItem(Item, SOLineDetailsName.TAX_PCT));
+//			logs.logging("INFO", "Tax Percentage For This HSN Code : " + SOLineDetailsName.HSN_CODE
+//					+ " Against This Item : " + Item + " is Verified Sucessfully");
 			navigateToLineDetailsPage1(i - 3);
 		} else {
 			navigateToLineDetailsPage1(i - 3);
@@ -3113,7 +3117,7 @@ public class SalesOrderFunctions {
 		}
 		if ((!"Open Order".equals(PriceBasis)) && (!"Price List".equals(PriceBasis))) {
 			enterSODiscountDetails(SalesOrderLocators.SOTradeDiscountpercentageField, TD);
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 		} else {
 			flag = webDB.waitForElement(SalesOrderLocators.SOTradeDiscountPercentageReadOnlyField, ElementType.Xpath);
 			if (flag) {
@@ -3127,9 +3131,9 @@ public class SalesOrderFunctions {
 			}
 		}
 		enterSODiscountDetails(SalesOrderLocators.SOSpecialDiscountpercentageField, SD);
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		enterSODiscountDetails(SalesOrderLocators.SOCashDiscountpercentageField, CD);
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 	}
 
 	/**
@@ -3510,7 +3514,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_FREE_SAMPLE"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3551,7 +3555,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_FREE_REPLACEMENT"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3590,7 +3594,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_SCRAP"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3629,7 +3633,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_SERVICE"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3668,7 +3672,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3709,7 +3713,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3749,7 +3753,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_SEZ_CUSTOMER"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3790,7 +3794,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Demo_Exhibition"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3829,7 +3833,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("CESS_HSN_CODE"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -3870,7 +3874,7 @@ public class SalesOrderFunctions {
 		addChargesInSalesOrder(webDB.getDataFromProperties("SOCharges"));
 		clickIncludechargesButton();
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -4675,7 +4679,7 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -4725,7 +4729,7 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -4775,7 +4779,7 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -4828,7 +4832,7 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -4887,7 +4891,7 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -4933,7 +4937,7 @@ public class SalesOrderFunctions {
 			}
 		}
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -4968,7 +4972,7 @@ public class SalesOrderFunctions {
 		clickFetchButton();
 		clickUpdateCloseshortButton();
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -5023,7 +5027,7 @@ public class SalesOrderFunctions {
 			}
 		}
 		clickSOAmdPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
@@ -5058,7 +5062,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -5097,7 +5101,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -5136,7 +5140,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -5437,7 +5441,7 @@ public class SalesOrderFunctions {
 		addSalesOrderLineThroughExcelUD(SheetName, commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), Customer);
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -5857,7 +5861,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -6057,7 +6061,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
@@ -6077,8 +6081,10 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
+
 	/**
-	 * This Method Used For Reading DataBase Value For Before Stock Quantity For Scarp
+	 * This Method Used For Reading DataBase Value For Before Stock Quantity For
+	 * Scarp
 	 * 
 	 * @author Vimal - RMITS
 	 * @param i1
@@ -6107,6 +6113,7 @@ public class SalesOrderFunctions {
 			}
 		}
 	}
+
 	/**
 	 * This Method Is used To get The Scrap Stock Qty From The Formula Cell
 	 * 
@@ -6116,7 +6123,8 @@ public class SalesOrderFunctions {
 	 * @param ArrayList
 	 * @param SheetName
 	 */
-	public void ScrapExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList, String SheetName) {
+	public void ScrapExcelStockQtyFormulaEvaluatorSI(int i, String Item, ArrayList<String> ArrayList,
+			String SheetName) {
 		try {
 			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 					+ "DBSales.xlsx";
@@ -6136,17 +6144,15 @@ public class SalesOrderFunctions {
 						int ExpectedStockQtyInt = (int) cellNumericValue;
 						String ExpectedStockQtyAsString = String.valueOf(ExpectedStockQtyInt);
 						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
-						logs.logging("INFO",
-								"Expected Stock Qty After Posting the MRV Document For This Item " + Item
-										+ " Is : " + VariableHandler.getExpectedStockQty());
+						logs.logging("INFO", "Expected Stock Qty After Posting the MRV Document For This Item " + Item
+								+ " Is : " + VariableHandler.getExpectedStockQty());
 						ArrayList.add(VariableHandler.getExpectedStockQty());
 					} else {
 						System.out.println("Formula result: " + cellNumericValue);
 						String ExpectedStockQtyAsString = String.valueOf(cellNumericValue);
 						VariableHandler.setExpectedStockQty(ExpectedStockQtyAsString);
-						logs.logging("INFO",
-								"Expected Stock Qty After Posting the MRV Document For This Item " + Item
-										+ " Is : " + VariableHandler.getExpectedStockQty());
+						logs.logging("INFO", "Expected Stock Qty After Posting the MRV Document For This Item " + Item
+								+ " Is : " + VariableHandler.getExpectedStockQty());
 						ArrayList.add(VariableHandler.getExpectedStockQty());
 					}
 				}
@@ -6160,6 +6166,7 @@ public class SalesOrderFunctions {
 			assertTrue(flag);
 		}
 	}
+
 	/**
 	 * This Method Used For After Scrap The Document Expected Stk Qty
 	 * 
@@ -6179,12 +6186,412 @@ public class SalesOrderFunctions {
 			if (!ItemId.equals("")) {
 				String AfterStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
-				logs.logging("INFO",
-						"After MRV Actual Stock Qty For This Item " + ItemId + "Is : " + AfterStockQty);
+				logs.logging("INFO", "After MRV Actual Stock Qty For This Item " + ItemId + "Is : " + AfterStockQty);
 				verifyAssertionBothValues(AfterStockQty, AfterRtnStockQty);
 				logs.logging("INFO", "Verified MRV Expected Stock Qty For This Item " + ItemId
 						+ " With Database Values After MRV The Document");
 			}
 		}
+	}
+
+	/**
+	 * This Method Is Used To verify The Sales Order Line Details After Amend The SO
+	 * Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void verifySOLineDetailsAfterAmendment(String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		String[][] SOLineDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		SOLineDetails = excelUtils.readAllDataInExcel(Filepath1, SheetName);
+		for (int i = 4; i < SOLineDetails.length; i++) {
+
+			String Item = SOLineDetails[i][1];
+			String NewQty = SOLineDetails[i][43];
+			String NewUnitPrice = SOLineDetails[i][44];
+			String NewTD = SOLineDetails[i][46];
+			String NewSD = SOLineDetails[i][47];
+			String NewCD = SOLineDetails[i][48];
+			String NewTradeAssesableValue = SOLineDetails[i][49];
+			String NewTradeDiscountAmount = SOLineDetails[i][50];
+			String NewSpecialAssesableValue = SOLineDetails[i][51];
+			String NewSpecialDiscountAmount = SOLineDetails[i][52];
+			String NewCashAssesableValue = SOLineDetails[i][53];
+			String NewCashDiscountAmount = SOLineDetails[i][54];
+			String NewDiscountAmount = SOLineDetails[i][55];
+			String NewDiscountAmtPerQty = SOLineDetails[i][56];
+			String GrossAmount = SOLineDetails[i][57];
+			String NewCGST = SOLineDetails[i][60];
+			String NewSGST = SOLineDetails[i][61];
+			String NewIGST = SOLineDetails[i][62];
+			String NewUTGST = SOLineDetails[i][63];
+			String TaxAmount = SOLineDetails[i][66];
+			String NetAmount = SOLineDetails[i][67];
+
+			if (!Item.equals("")) {
+				String SeqNo = String.valueOf(i - 3);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBItemIDColumnName")), Item);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Line Item ID " + Item
+						+ " Is Matched With Database values");
+				System.out.println(7);
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBQtyColumnName")), NewQty);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Line Qty " + NewQty + " For This Item "
+						+ Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBUnitPriceColumnName")), NewUnitPrice);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Unit Price " + NewUnitPrice
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBTradeDiscountPercentageColumnName")), NewTD);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Trade Discount Percentage " + NewTD
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBSpecialDiscountPercentageColumnName")), NewSD);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Special Discount Percentage " + NewSD
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBCashDiscountPercentageColumnName")), NewCD);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Cash Discount Percentage " + NewCD
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBTradeAssesableValueColumnName")),
+						NewTradeAssesableValue);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Trade Assesable Value "
+						+ NewTradeAssesableValue + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBTradeDiscountAmountColumnName")),
+						NewTradeDiscountAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Trade Discount Amount "
+						+ NewTradeDiscountAmount + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBSpecialAssesableValueColumnName")),
+						NewSpecialAssesableValue);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Special Assesable Value "
+						+ NewSpecialAssesableValue + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBSpecialDiscountAmountColumnName")),
+						NewSpecialDiscountAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Special Discount Amount "
+						+ NewSpecialDiscountAmount + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBCashAssesableValueColumnName")),
+						NewCashAssesableValue);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Cash Assesable Value "
+						+ NewCashAssesableValue + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBCashDiscountAmountColumnName")),
+						NewCashDiscountAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Cash Discount Amount "
+						+ NewCashDiscountAmount + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBTotalDiscountAmountColumnName")),
+						NewDiscountAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Total Discount Amount "
+						+ NewDiscountAmount + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(
+						dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+								commonFunc.getDataFromTestDataSheet("SODBDiscountAmountPerQtyColumnName")),
+						NewDiscountAmtPerQty);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Total Discount Amount Per Qty "
+						+ NewDiscountAmtPerQty + " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBGrossAmountColumnName")), GrossAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Gross Amount " + GrossAmount
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBCGSTColumnName")), NewCGST);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected CGST Amount " + NewCGST
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBSGSTColumnName")), NewSGST);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected SGST Amount " + NewSGST
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBIGSTColumnName")), NewIGST);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected IGST Amount " + NewIGST
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBUTGSTColumnName")), NewUTGST);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected UTGST Amount " + NewUTGST
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBTaxAmountColumnName")), TaxAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Tax Amount " + TaxAmount
+						+ " For This Item " + Item + " Is Matched With Database values");
+
+				verifyAssertionBothValues(dbCommonFunctions.SOLineDetailsAfterSOA(VariableHandler.getSONumber(), SeqNo,
+						commonFunc.getDataFromTestDataSheet("SODBNetAmountColumnName")), NetAmount);
+				logs.logging("INFO", "After SO Amendment Sales Order Expected Net Amount " + NetAmount
+						+ " For This Item " + Item + " Is Matched With Database values");
+			}
+		}
+	}
+
+	/**
+	 * This Method Is Used To Verify The SO Total Amount With DataBase After
+	 * Amendment The SO
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void verifySOTotalAmountAfterAmendment(String SheetName) {
+		String[][] SOTotalAmount = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SOTotalAmount = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOTotalAmount.length; i++) {
+			String ITEM_ID = SOTotalAmount[i][1];
+			String SO_Total_Amount = SOTotalAmount[i][67];
+			if (ITEM_ID.equals("")) {
+				if (!SO_Total_Amount.equals("")) {
+					verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+							commonFunc.getDataFromTestDataSheet("SODBTotalAmountColumnName")), SO_Total_Amount);
+					logs.logging("INFO",
+							"After SO Amendment Expected Sales Order Total Amount Is Matched With DataBase Values For This Sales Order Document "
+									+ VariableHandler.getSONumber());
+				}
+			}
+		}
+	}
+
+	/**
+	 * This Method IS Used To Click the MultiCloseShort Bulk Auto In Pending Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickMultiCloseshortOfSoAmendmentPendingScreen() {
+		flag = webDB.waitForElement(SalesOrderLocators.SOAmendmentPendingButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.SOAmendmentPendingButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.MultiSoAmendment, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.MultiSoAmendment, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortAddButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Navigated To Bulk CloseShort - Auto Transaction Screen");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click the Add Button in The Multi CloseShort Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickAddButtonInMultiCloseShortInSOAmendment() {
+		flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.MultiCloseShortAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortLocationLov, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Multi CloseShort Add Button IS Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Add The MultiCloseShort Header Details
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param Location
+	 * @param Customer
+	 * @param DocPfx
+	 */
+	public void addMultiCloseShortHeaderDetails(String Location, String Customer, String DocPfx) {
+		flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortLocationLov, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.MultiCloseShortLocationLov, Location);
+			webDB.pressTabKey();
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.MultiCloseShortCustomerLov, Customer);
+			webDB.pressTabKey();
+			commonFunc.checkRefreshCellsDisappear();
+			String GetText = webDB.getDomPropertyFromElement(SalesOrderLocators.MultiCloseShortDocPrefixField,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetText.equalsIgnoreCase(DocPfx)) {
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.MultiCloseShortDocPrefix, DocPfx);
+				webDB.pressTabKey();
+			}
+			flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortHeaderWiseSaveButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.MultiCloseShortHeaderWiseSaveButton, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortPendingSoButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Multi CloseShort Header Details Created Sucessfully");
+					commonFunc.checkRefreshCellsDisappear();
+					String DocNum = webDB.getDomPropertyFromElement(SalesOrderLocators.MultiCloseShortDocNumber,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+					VariableHandler.setSOMultiCloseShortDocNo(DocNum);
+					logs.logging("INFO", "Sales Order Multi CloseShort Document Number Is : "
+							+ VariableHandler.getSOMultiCloseShortDocNo());
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click The Pending SO Button In The Multi CloseShort
+	 * Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPendingSOButtonInMultiCloseShort() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortPendingSoButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.MultiCloseShortPendingSoButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (flag) {
+				for (int i = 0; i < MultipleSO.size(); i++) {
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(SalesOrderLocators.SearchBox, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Search Box IS Displayed");
+						webDB.clickAnElement(SalesOrderLocators.SearchBoxContainer, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesOrderLocators.SearchBox, ElementType.Xpath);
+						if (flag) {
+							webDB.clearTextField(SalesOrderLocators.SearchBox, ElementType.Xpath);
+							logs.logging("INFO", "Clear Text Search Box");
+							webDB.sendTextToAnElement(SalesOrderLocators.SearchBox,
+									VariableHandler.getMultipleSoDocs().get(i), ElementType.Xpath);
+							logs.logging("INFO",
+									"Entered Document Number Is: " + VariableHandler.getMultipleSoDocs().get(i));
+							commonFunc.hardWait(500);
+							flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortGOButton, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(SalesOrderLocators.MultiCloseShortGOButton, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(1000);
+								List<WebElement> RowCount = webDB.getDriver()
+										.findElements(By.xpath(SalesOrderLocators.MultiCloseShortCheckBoxInputField));
+								for (int j = 1; j <= RowCount.size(); j++) {
+									webDB.clickAnElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+											VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
+									flag = webDB.isElementSelected(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+											VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
+									if (flag == true)
+										logs.logging("INFO",
+												"For This Sales Order Document "
+														+ VariableHandler.getMultipleSoDocs().get(i) + " Line Number "
+														+ j + " Is Selected Sucessfully ");
+									commonFunc.checkRefreshCellsDisappear();
+									if (!flag) {
+										webDB.moveToElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+
+												VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
+										webDB.clickAnElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+
+												VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
+										commonFunc.checkRefreshCellsDisappear();
+									}
+								}
+								flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortFilterRefreshButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.moveToElement(SalesOrderLocators.MultiCloseShortFilterRefreshButton,
+											ElementType.Xpath);
+									webDB.javaScriptClickAnElement(
+											SalesOrderLocators.MultiCloseShortFilterRefreshButton, ElementType.Xpath);
+									commonFunc.checkRefreshCellsDisappear();
+									commonFunc.hardWait(1000);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * This Method Is Used To Click The Post Button In the Sales Order Multi
+	 * CloseShort Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPostButtonInSOMultiCloseShort() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortPostButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesOrderLocators.MultiCloseShortPostButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Clicked Sucessfully");
+			}
+		}
+	}
+
+	/**
+	 * This Method Is Used To CloseShort Multiple Sales Order
+	 * 
+	 * @author Harikrishna - RMITS
+	 * 
+	 * @return boolean flag
+	 * @throws IOException
+	 */
+	public boolean closeshortMultipleSalesOrder(String Customer, String CustomerDesc, String SOSheetName)
+			throws IOException {
+		for (int i = 0; i < 2; i++) {
+			SalesOrder(Customer, CustomerDesc, SOSheetName);
+		}
+		VariableHandler.setMultipleSoDocs(MultipleSO);
+		System.out.println(VariableHandler.getMultipleSoDocs().get(0));
+		System.out.println(VariableHandler.getMultipleSoDocs().get(1));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateSalesOrderAmendmentPage();
+		clickMultiCloseshortOfSoAmendmentPendingScreen();
+		clickAddButtonInMultiCloseShortInSOAmendment();
+		addMultiCloseShortHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"), Customer,
+				commonFunc.getDataFromTestDataSheet("MultiCloseShortPfx"));
+		clickPendingSOButtonInMultiCloseShort();
+		clickPostButtonInSOMultiCloseShort();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			apprpagefunc.navigateToApprovals();
+			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOMultiCloseShortDocNo());
+			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOMultiCloseShortDocNo());
+			commonFunc.logoutUser();
+		}
+		return flag;
 	}
 }

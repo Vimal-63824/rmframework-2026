@@ -19,6 +19,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -357,6 +358,10 @@ public class ApprovalPageFunctions {
 				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 60);
 				if (flag) {
 					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
+					flag = webDB.waitForElement(ApprovalPageLocators.SearchButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(ApprovalPageLocators.SearchButton, ElementType.Xpath);
+					}
 					break a;
 				} else {
 					webDB.navigateToRefresh();
@@ -466,6 +471,34 @@ public class ApprovalPageFunctions {
 						}
 					}
 				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method used to select forwarder in WorkApproval and click Ok button
+	 * 
+	 * @author Sakthi-GWL
+	 * @param user
+	 */
+	public void waitingForApprovalWithFordwarderOSO(String user) {
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
+		if (flag) {
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_CreatePlusIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ok Button Is Clicked");
+				}
+//				commonFunc.hardWait(3000);
 			}
 		}
 		assertTrue(flag);
