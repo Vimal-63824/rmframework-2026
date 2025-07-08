@@ -91,5 +91,8 @@ public class ApprovalPageLocators {
 	public static final String SearchBoxWorkType = "//*[@id='PopupLov_236131010_P236131010_TYPE_dlg']/div[1]/input";
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@id='BUT']";
+	/** @locatorType Xpath */
+	public static final String VoucherDocNo = "//input[@id='P236131010_DOC_NO']" ;
+
 
 }

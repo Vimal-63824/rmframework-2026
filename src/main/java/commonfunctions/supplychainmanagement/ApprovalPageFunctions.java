@@ -476,6 +476,28 @@ public class ApprovalPageFunctions {
 		assertTrue(flag);
 	}
 	
+	/**Verify Work Flow Doc Type
+	 * 
+	 * @author Kowshik-RMITS
+	 */	
+	public void verifyWorkFlowDocForCatalog() {
+		flag = webDB.waitForElement(ApprovalPageLocators.VoucherDocNo, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(ApprovalPageLocators.VoucherDocNo, VariableHandler.getCatalogDocno(),
+					ElementType.Xpath);
+			webDB.waitForElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Sucessfully Populated a Work Flow Type ");
+				flag = webDB.waitForElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Clicked a Search Button");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
 	/**
 	 * This Method used to select forwarder in WorkApproval and click Ok button
 	 * 

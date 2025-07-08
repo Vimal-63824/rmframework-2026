@@ -69,7 +69,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceSimilarUomAndDomesticCustomer() {
-
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -78,16 +77,12 @@ public class SalesCataloguePrice {
 		if (min_Disc.equals("0")) {
 			min_Disc = "10";
 		}
-
 		String max_Disc = RandomStringUtils.randomNumeric(2);
 		if (max_Disc.equals("00")) {
 			max_Disc = "10";
 		}
-
 		cusItems.createsCataloguePriceSimilarUOMAndDomesticCustomer();
-
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
@@ -107,19 +102,19 @@ public class SalesCataloguePrice {
 		clickPostButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
+		// forwardForApproval();
 		commonFunc.checkRefreshCellsDisappear();
-
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"AshokUsername");
 		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+		approvalFunc.verifyWorkFlowDocForCatalog();
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
-
 	}
 
 	/**
@@ -128,7 +123,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceDisSimilarUomAndDomesticCustomer() {
-
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -137,15 +131,12 @@ public class SalesCataloguePrice {
 		if (min_Disc.equals("0")) {
 			min_Disc = "10";
 		}
-
 		String max_Disc = RandomStringUtils.randomNumeric(2);
 		if (max_Disc.equals("00")) {
 			max_Disc = "10";
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndDomesticCustomer();
-
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
@@ -166,7 +157,6 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.checkRefreshCellsDisappear();
-
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
@@ -174,10 +164,10 @@ public class SalesCataloguePrice {
 				"AshokUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+		approvalFunc.verifyWorkFlowDocForCatalog();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
-
 	}
 
 	/**
@@ -186,7 +176,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceSimilarUomAndExportCustomer() {
-
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -195,15 +184,12 @@ public class SalesCataloguePrice {
 		if (min_Disc.equals("0")) {
 			min_Disc = "10";
 		}
-
 		String max_Disc = RandomStringUtils.randomNumeric(2);
 		if (max_Disc.equals("00")) {
 			max_Disc = "10";
 		}
 		cusItems.createsCataloguePriceSimilarUOMAndExportCustomer();
-
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
@@ -224,7 +210,6 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.checkRefreshCellsDisappear();
-
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
@@ -232,10 +217,10 @@ public class SalesCataloguePrice {
 				"AshokUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+		approvalFunc.verifyWorkFlowDocForCatalog();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
-
 	}
 
 	/**
@@ -244,7 +229,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceDisSimilarUomAndExportCustomer() {
-
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -253,15 +237,12 @@ public class SalesCataloguePrice {
 		if (min_Disc.equals("0")) {
 			min_Disc = "10";
 		}
-
 		String max_Disc = RandomStringUtils.randomNumeric(2);
 		if (max_Disc.equals("00")) {
 			max_Disc = "10";
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
-
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
@@ -282,7 +263,6 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.checkRefreshCellsDisappear();
-
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
@@ -290,10 +270,10 @@ public class SalesCataloguePrice {
 				"AshokUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+		approvalFunc.verifyWorkFlowDocForCatalog();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
-
 	}
 
 	/**
@@ -302,7 +282,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCancelCatalogPrice() {
-
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -311,15 +290,12 @@ public class SalesCataloguePrice {
 		if (min_Disc.equals("0")) {
 			min_Disc = "10";
 		}
-
 		String max_Disc = RandomStringUtils.randomNumeric(2);
 		if (max_Disc.equals("00")) {
 			max_Disc = "10";
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
-
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
@@ -350,7 +326,6 @@ public class SalesCataloguePrice {
 	public void createsMultiplesCataloguePrice() {
 		createCataloguePricewithSamePriceClassAndMultipleItems(
 				commonFunc.getDataFromTestDataSheet("Item_Different_UOM"), 2);
-
 	}
 
 	/**
@@ -439,7 +414,6 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-
 	public void clickAddButtonCatalogueScreen() {
 		flag = webDB.waitForElement(SalesCatalogueLocators.AddButtonCatalogue, ElementType.Xpath);
 		if (flag) {
@@ -457,9 +431,7 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-
 	public void insertItemCataloguePrice() {
-
 		flag = webDB.waitForElement(SalesCatalogueLocators.CatalogueItemField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesCatalogueLocators.CatalogueItemField, ElementType.Xpath);
@@ -479,7 +451,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-Rmits
 	 * @param catalogName
 	 */
-
 	public void insertCatalogueAgainstToItem(String catalogName) {
 		flag = webDB.waitForElement(SalesCatalogueLocators.CatalogueField, ElementType.Xpath);
 		if (flag) {
@@ -499,15 +470,13 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 * @param CatalogueCurcy
 	 */
-
 	public void insertCurcyAgainstToItem(String CatalogueCurcy) {
-
 		commonFunc.searchAndSelectValueInFilters(SalesCatalogueLocators.CurcyFieldLov, CatalogueCurcy);
 		webDB.pressEnterKey();
 		flag = webDB.waitForElement(SalesCatalogueLocators.PriceFieldClick, ElementType.Xpath);
-		if (flag)
+		if (flag) {
 			logs.logging("INFO", "Successfully Inserted a Curcy " + CatalogueCurcy);
-//		}
+		}
 		assertTrue(flag);
 	}
 
@@ -575,13 +544,10 @@ public class SalesCataloguePrice {
 	 * @param EFF_TO
 	 */
 	public void insertEffFromAndEffToDatesCataloguePrice(String EFF_DATE, String EFF_TO) {
-
 		verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.EffitiveFromDateField(1),
 				SalesCatalogueLocators.EffFromDateClick, EFF_DATE);
-
 		verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.EffToDateField(1),
 				SalesCatalogueLocators.EffToDateClick, EFF_TO);
-
 		commonFunc.hardWait(2000);
 	}
 
@@ -591,7 +557,6 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickSaveButtonCataloguePrice() {
-
 		flag = webDB.waitForElement(SalesCatalogueLocators.Savebutton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesCatalogueLocators.Savebutton, ElementType.Xpath);
@@ -620,7 +585,7 @@ public class SalesCataloguePrice {
 	 * Waiting For Approval
 	 * 
 	 * @author Kowshik-RMITS
-	 * @return
+	 * @return boolean flag
 	 */
 	private boolean verifyWaitingForApproval1() {
 		commonFunc.hardWait(3000);
@@ -654,9 +619,7 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-
 	public void getCataloguePriceDocumentno() {
-
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(SalesCatalogueLocators.DocumentNoField(1), ElementType.Xpath);
 		if (flag) {
@@ -666,6 +629,7 @@ public class SalesCataloguePrice {
 			logs.logging("info", "Get Price List Document no " + VariableHandler.getCatalogDocno());
 			commonFunc.hardWait(2000);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -676,7 +640,6 @@ public class SalesCataloguePrice {
 	 * @param i
 	 */
 	public void createCataloguePricewithSamePriceClassAndMultipleItems(String Item1, int i) {
-
 		String Sales_Value1 = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value1.equals("000")) {
 			Sales_Value1 = "100";
@@ -685,7 +648,6 @@ public class SalesCataloguePrice {
 		if (min_Disc1.equals("0")) {
 			min_Disc1 = "10";
 		}
-
 		String max_Disc1 = RandomStringUtils.randomNumeric(2);
 		if (max_Disc1.equals("00")) {
 			max_Disc1 = "10";
@@ -693,20 +655,16 @@ public class SalesCataloguePrice {
 		int maxAttempts = 1;
 		boolean success = false;
 		ArrayList<String> GeneratedItem = new ArrayList<String>();
-
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 //		        commonFunc.hardWait(4000);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateItemPage1();
-
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
-
 			if (flag) {
 				webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
 				logs.logging("INFO", "Search is clicked");
-
 				flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Search Button is clicked ");
@@ -714,15 +672,12 @@ public class SalesCataloguePrice {
 					verifyClickingGeneralTab();
 					verifyGenerateItemSim1(commonFunc.getDataFromTestDataSheet("Sim"),
 							commonFunc.getDataFromTestDataSheet("Items"), attempt, Sales_Value1, min_Disc1, max_Disc1);
-
 					GeneratedItem.add(VariableHandler.getItemName());
 					success = true;
 				}
 			}
-
 			// logs.logging("WARN", "Attempt " + attempt + " failed. Retrying...");
 		}
-
 		System.out.println(GeneratedItem.size());
 		for (int j = 1; j <= GeneratedItem.size(); j++) {
 			ExcelUtils excelUtils = new ExcelUtils();
@@ -730,9 +685,8 @@ public class SalesCataloguePrice {
 			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 					+ "PR_ITEMS.xlsx";
 			excelUtils.writeDataInExcel(Filepath, SheetName1, j, 0, GeneratedItem.get(j - 1));
-
 		}
-
+		assertTrue(flag);
 	}
 
 	/**
@@ -748,36 +702,29 @@ public class SalesCataloguePrice {
 	 */
 	public void verifyGenerateItemSim1(String Itm, String SheetName, int i, String Sales_Value, String min_Disc,
 			String max_Disc) {
-
 		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
 		if (ItemSeqNo.equals("000")) {
 			ItemSeqNo = "10";
 		}
 		String SimItemId = Itm + ItemSeqNo;
-
 		flag = webDB.waitForElement(PricelistPageLocators.ItemIdInputCopy, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(PricelistPageLocators.ItemIdInputCopy, SimItemId, ElementType.Xpath);
 			logs.logging("INFO", "Item ID is Entered");
-
 			flag = webDB.waitForElement(PricelistPageLocators.ItemDescInputCopy, ElementType.Xpath);
 			if (flag) {
 				webDB.sendTextToAnElement(PricelistPageLocators.ItemDescInputCopy, SimItemId, ElementType.Xpath);
 				logs.logging("INFO", "Item Desc is Entered");
-
 				flag = webDB.waitForElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PricelistPageLocators.ItemOkCopy, ElementType.Xpath);
 					logs.logging("INFO", "Ok Button is clicked ");
-
 					flag = webDB.waitForElement(PricelistPageLocators.ItemGetText, ElementType.Xpath);
 					if (flag) {
 						String SimItemName = webDB.getDomPropertyFromElement(PricelistPageLocators.ItemGetText,
 								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 						VariableHandler.setItemName(SimItemName);
-
 						verifyItemPost(VariableHandler.getItemName());
-
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
@@ -789,10 +736,10 @@ public class SalesCataloguePrice {
 						cusItems.clickSearchButton();
 						cusItems.searchedItem();
 						cusItems.customerAssoFlag();
-						cusItems.clickedActiveButton();
+						cusItems.clickSaveButton();
+						// cusItems.clickedActiveButton();
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
-
 						// to Insert Customer Items
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
 								System.getProperty("TvsPassword"), "HodUsername");
@@ -804,18 +751,15 @@ public class SalesCataloguePrice {
 						cusItems.priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 						cusItems.priceBasisSelectInCustomerItems(
 								commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-
 						cusItems.saveButtoninCustomerItems();
-
 						commonFunc.hardWait(3000);
 						cusItems.filltersaItemCustomerItems();
 						commonFunc.hardWait(3000);
 						commonFunc.checkRefreshCellsDisappear();
-						cusItems.clickDefaltFlag();
+						cusItems.clickDefaltFlag1();
 						cusItems.saveButtoninCustomerItems();
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
-
 						// to insert a Catalogue Price
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
 								System.getProperty("TvsPassword"), "HodUsername");
@@ -837,7 +781,6 @@ public class SalesCataloguePrice {
 						commonFunc.checkRefreshCellsDisappear();
 						verifyWaitingForApproval1();
 						commonFunc.checkRefreshCellsDisappear();
-
 						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
 						commonFunc.hardWait(2000);
@@ -846,18 +789,23 @@ public class SalesCataloguePrice {
 						approvalFunc.navigateToApprovals();
 						approvalFunc.verifyWorkFlowTypeForCataloguePrice(
 								commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-						approvalFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+						approvalFunc.verifyWorkFlowDocForCatalog();
+						approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 						flag = commonFunc.logoutUser();
-
 					}
 				}
-
 			}
 		}
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Generate The List Of Items
+	 * 
+	 * @author Kowshik-RMITS
+	 * @return String
+	 */
 	public List<String> getGeneratedItems() {
 		return getGeneratedItems();
 	}
@@ -913,7 +861,6 @@ public class SalesCataloguePrice {
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -933,7 +880,6 @@ public class SalesCataloguePrice {
 				logs.logging("INFO", "Item Copy is Clicked");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -1013,40 +959,27 @@ public class SalesCataloguePrice {
 	 * @author Kowshik-RMITS
 	 */
 	public void CataloguePriceDbValidation() {
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.DocNODb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbDocno")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.ItemsIdDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbItemId")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.ItemsDescDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbItemDesc")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.SalesUOMdB, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbSalesUom")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.CurcyDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbCurcyId")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.SalesPrice, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbSalesPrice")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.MinDiscPercentDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbMinDisc")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.MaxDiscPercentDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbMaxiDisc")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.EffFromDateDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbEffDate")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.EffToDateDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceEffToDate")));
-
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.StatusDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbStatus")));
-
 	}
-
 }
