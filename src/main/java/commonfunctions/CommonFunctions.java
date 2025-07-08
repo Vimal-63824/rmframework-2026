@@ -381,23 +381,24 @@ public class CommonFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void clickLeftNavigationBar() {
-		flag = webDB.waitForElement(CommonUiLocators.UsernameIcon, ElementType.Xpath);
+		checkRefreshCellsDisappear();
+//		flag = webDB.waitForElement(CommonUiLocators.UsernameIcon, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.UsernameIcon, ElementType.Xpath);
+//			logs.logging("INFO", "Username Icon is Clicked");
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftNavigationBar, ElementType.Xpath, 30);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.UsernameIcon, ElementType.Xpath);
-			logs.logging("INFO", "Username Icon is Clicked");
-			flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+			String value = webDB.getDomAttributeFromElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath,
+					"aria-expanded");
+			if (value.equalsIgnoreCase("false")) {
+				webDB.javaScriptClickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(CommonUiLocators.TransactionTab, ElementType.Xpath);
 			if (flag) {
-				String value = webDB.getDomAttributeFromElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath,
-						"aria-expanded");
-				if (value.equalsIgnoreCase("false")) {
-					webDB.javaScriptClickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
-				}
-				flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Left Navigation Bar Is clicked");
-				}
+				logs.logging("INFO", "Left Navigation Bar Is clicked");
 			}
 		}
+//		}
 		Assert.assertTrue(flag);
 	}
 
@@ -2210,7 +2211,6 @@ public class CommonFunctions {
 				flag = webDB.clickAnElement(CommonUiLocators.SetupPurchase, ElementType.Xpath);
 				logs.logging("INFO", "Setup Purchase Tab Is Clicked");
 				flag = webDB.waitForElement(CommonUiLocators.BuyerTab, ElementType.Xpath);
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2294,7 +2294,6 @@ public class CommonFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-
 	public void clickSystemAdministrationTransactionTab() {
 		flag = webDB.waitForElement(CommonUiLocators.SysAdminTransaction, ElementType.Xpath);
 		if (flag) {
@@ -2351,7 +2350,6 @@ public class CommonFunctions {
 				flag = webDB.clickAnElement(CommonUiLocators.ApprovedSupplierPo, ElementType.Xpath);
 				logs.logging("INFO", "Setup Purchase Tab Is Clicked");
 				flag = webDB.waitForElement(CommonUiLocators.AddSupplierButton, ElementType.Xpath);
-
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2429,7 +2427,6 @@ public class CommonFunctions {
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -2799,10 +2796,7 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigatePriceList_Standard_Catalog_Screen() {
-		clickLeftNavigationBar();
-		clickTransactionTab();
-		clickTransactionExpandAllButton();
-		clickPriceList_Standard_Catalog_Screen();
+		navigateToSearchTab(webDB.getDataFromProperties("PCS"), SalesPriceListLocators.AddButton);
 	}
 
 	/**

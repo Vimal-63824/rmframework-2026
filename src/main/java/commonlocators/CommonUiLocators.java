@@ -355,5 +355,8 @@ public class CommonUiLocators {
 	public static final String SalesOrder = "//h3[text()='Sales Order']/ancestor::li/a";
 	/** Locator Xpath */
 	public static final String SalesOrderAmendment = "//h3[text()='SO CS/Amendment']/ancestor::li/a";
+	/** @locatorType Xpath */
+	public static final String SaveButton="//button[@id='B150556062898604660']" ;
+
 
 }

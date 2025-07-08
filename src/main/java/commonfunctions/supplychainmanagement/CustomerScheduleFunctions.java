@@ -1019,11 +1019,12 @@ public class CustomerScheduleFunctions {
 				insertItemField(ITEM_ID);
 				insertSalesPrice(FIRM_PRICE, DISC_PCT);
 				clickSaveButton();
-//				insertEffitiveDates(Today, FIRM_TO_DATE);
-//				clickSaveButton();
+				insertEffitiveDates(Today, FIRM_TO_DATE);
+				clickSaveButton();
 				getPriceListDocumentno(MultiPriceList);
 				clickPostButton1();
 				verifyWaitingForApproval1();
+				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		VariableHandler.setMultiplePriceListDocs(MultiPriceList);
@@ -1335,12 +1336,11 @@ public class CustomerScheduleFunctions {
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			// commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
-			// commonFunc.getDataFromTestDataSheet("HodValue"));
-			// commonFunc.hardWait(2000);
-			// webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame,
-			// ElementType.Xpath);
-			// logs.logging("INFO", "Switched To WorkFlow Frame");
+			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
+					commonFunc.getDataFromTestDataSheet("HodValue"));
+//			 commonFunc.hardWait(2000);
+			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
