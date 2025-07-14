@@ -874,4 +874,50 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("StdItemUniq"), SalesStdPrice, DetailsValue);
 		return value;
 	}
+	
+	/**
+	 * SO Line Details After SO Amendment
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SOLineDetailsAfterSOA(String SONo, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("SOAfterSOALineQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, commonFunc.getDataFromTestDataSheet("PONO"), SeqNo,
+				DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * CS Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String CSHeaderDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("CSHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * CS Line Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SOANo
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String CSLineDetails(String CSNo, String DocNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("CSLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), CSNo, commonFunc.getDataFromTestDataSheet("PONO"), DocNo,
+				DBHeaderColumnValue);
+		return value;
+	}
 }

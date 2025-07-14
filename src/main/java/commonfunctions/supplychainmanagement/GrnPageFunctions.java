@@ -864,7 +864,7 @@ public class GrnPageFunctions {
 	public void PoToGrnStockTransferRateContractSameStockAndSupplierUomWithAndWithoutInspection() {
 		POfunc.verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspection();
 		verifyToStockTransferSaleOrderDocumentPost();
-		saleOrderFunc.forwardForApproval();
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		stockTransferAfterForwardToApproval();
 		verifyToPostStockTransferDocumentForSalesInvoice();
@@ -1219,7 +1219,7 @@ public class GrnPageFunctions {
 	public void poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection() {
 		POfunc.verifyToCreatePoForStockTransferUserDefinedSameStockandSupplierUomWithAndWithoutInspection();
 		verifyToStockTransferSaleOrderDocumentPost();
-		saleOrderFunc.forwardForApproval();
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		stockTransferAfterForwardToApproval();
 		verifyToPostStockTransferDocumentForSalesInvoice();
@@ -1241,7 +1241,7 @@ public class GrnPageFunctions {
 	public void poToGrnStockTransferPriceListSameStockandSupplierUOMWithAndWOInspection() {
 		POfunc.verifyToCreatePoForStockTransferPriceListItemForSameStockandSupplierUomWithAndWithoutInspection();
 		verifyToStockTransferSaleOrderDocumentPost();
-		saleOrderFunc.forwardForApproval();
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		stockTransferAfterForwardToApproval();
 		verifyToPostStockTransferDocumentForSalesInvoice();

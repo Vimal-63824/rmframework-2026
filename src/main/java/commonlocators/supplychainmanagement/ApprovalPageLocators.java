@@ -37,7 +37,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveProcessButton = "//button[@id='B6044863540726153290']";
 	/** @locatorType Xpath */
-	public static final String Backicon = "//button[@title='Back']/span";
+	public static final String Backicon = "//button[@id='B6829351347645011143']/span";
 
 	/** @locatorType Xpath */
 	public static final String PODetailsInfoBtn(String PONumber) {
@@ -89,5 +89,10 @@ public class ApprovalPageLocators {
 	public static final String SalesCataogField = "//span[text()='SALES CATALOG PRICE']";
 	/** @locatorType Xpath */
 	public static final String SearchBoxWorkType = "//*[@id='PopupLov_236131010_P236131010_TYPE_dlg']/div[1]/input";
+	/** @locatorType Xpath */
+	public static final String SearchButton = "//button[@id='BUT']";
+	/** @locatorType Xpath */
+	public static final String VoucherDocNo = "//input[@id='P236131010_DOC_NO']" ;
+
 
 }

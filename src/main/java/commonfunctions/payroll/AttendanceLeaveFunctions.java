@@ -52,7 +52,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.hardWait(1000);
 			logs.logging("INFO", "Permission Button Is Clicked");
 			if (flag) {
-				webDB.clickAnElement(AttendanceLeaveLocators.EmpoloyeePermissionAddButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton, ElementType.Xpath);
 				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionFromDateField, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Permission Add Button Is Clicked");
@@ -114,12 +114,11 @@ public class AttendanceLeaveFunctions {
 					webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionTimeToField, PermissionTimeTo,
 							ElementType.Xpath);
 					logs.logging("INFO", "Permission Time To is Entered");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReferenceField,
+					flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReasonField,
 							ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReferenceField,
-								ElementType.Xpath);
-						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReferenceField,
+						webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField, ElementType.Xpath);
+						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField,
 								PermissionReference, ElementType.Xpath);
 					}
 				}
@@ -147,7 +146,7 @@ public class AttendanceLeaveFunctions {
 				logs.logging("INFO", "Permission Entry is posted");
 				if (flag) {
 					commonFunc.hardWait(5000);
-					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionFindButon, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionEntryFindButton, ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
 							ElementType.Xpath);
 					if (flag) {
@@ -205,12 +204,12 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void permissionReference(String PermissionReference) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReferenceField, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionReasonField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReferenceField, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField, ElementType.Xpath);
 			commonFunc.hardWait(1000);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReferenceField,
-					PermissionReference, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.EmployeePermissionReasonField, PermissionReference,
+					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "On Duty Reference is entered");
 			}
@@ -222,6 +221,7 @@ public class AttendanceLeaveFunctions {
 	 * This method is used to To Check Permission based on Employee Data
 	 * 
 	 * @author Kishore-RMITS
+	 * @return boolean flag
 	 */
 	public boolean verifyCheckpermissionEntryWithEmployeeData() {
 		try {
@@ -261,7 +261,7 @@ public class AttendanceLeaveFunctions {
 	 * This method is used to To Check On-Duty based On Employee Data
 	 * 
 	 * @author Kishore-RMITS
-	 * @return
+	 * @return boolean flag
 	 */
 	public boolean verifyCheckOnDutyEntrWithEmployeeData() {
 		try {
@@ -371,10 +371,11 @@ public class AttendanceLeaveFunctions {
 				if (flag) {
 					logs.logging("INFO", "Permission Type is" + PermissionFindType);
 					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocument, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+							ElementType.Xpath);
 					if (flag) {
 						commonFunc.hardWait(2000);
-						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocument, ElementType.Xpath);
+						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
 						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Permission Document is Clicked");
@@ -466,7 +467,7 @@ public class AttendanceLeaveFunctions {
 	 * user
 	 * 
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean checkPermissionOnDutybasedonFowardtoApprovalReord() {
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -502,7 +503,7 @@ public class AttendanceLeaveFunctions {
 	 * Request User return process.
 	 * 
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean checkPermissionOnDutyBasedOnReturnToRequestRecord() {
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -610,10 +611,12 @@ public class AttendanceLeaveFunctions {
 					if (flag) {
 						logs.logging("INFO", "Permission Type is" + PermissionFindType);
 						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocument, ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+								ElementType.Xpath);
 						if (flag) {
 							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocument, ElementType.Xpath);
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+									ElementType.Xpath);
 							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
 									ElementType.Xpath);
 							if (flag) {
@@ -634,7 +637,7 @@ public class AttendanceLeaveFunctions {
 	 * This method is used to Check Leave Encashment Based On RequestDate
 	 * 
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean CheckLeaveEncashmentbasedonRequestDate() {
 		{
@@ -672,7 +675,7 @@ public class AttendanceLeaveFunctions {
 	 * This method is used to Forward The Encashment Document to Approval Person
 	 * 
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean CheckLeaveEncashmentBasedOnForwardToApprovalRecord() {
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -701,7 +704,7 @@ public class AttendanceLeaveFunctions {
 	 * This method is used to Return The Encashment Document to the Request User
 	 * 
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean CheckLeaveEncashmentBasedOnReturnToRequestRecord() {
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -886,10 +889,6 @@ public class AttendanceLeaveFunctions {
 	 */
 	public void CheckLeaveEncashmentReportFetchesValuesCorrectly(String EmployeeDurai) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, EmployeeDurai);
-		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindPageSearchButton, ElementType.Xpath);
-			webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, ElementType.Xpath);
-		}
 		Assert.assertTrue(flag);
 	}
 
@@ -963,7 +962,7 @@ public class AttendanceLeaveFunctions {
 	 * This method is used To Check Comp-Off Entry based on Leave Types
 	 *
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean CheckCompOffEntryBasedOnLeaveTypes() {
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -993,7 +992,7 @@ public class AttendanceLeaveFunctions {
 	 * Document
 	 * 
 	 * @author Kishore-RMITS
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean CheckCompOffBasedOnReturnToApprovalRecord() {
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -1130,7 +1129,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 * @param EmployeeDurai
-	 * @return flag
+	 * @return boolean flag
 	 */
 	public boolean CheckCompOffFindPageWithAllLineWiseRecord(String EmployeeDurai) {
 		commonFunc.navigateLeaveEncashmentScreen();
