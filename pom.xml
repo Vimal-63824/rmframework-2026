@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>com.galaxy</groupId>
 			<artifactId>EzyAutomate</artifactId>
-			<version>1.21.0</version>
+			<version>1.22.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>

@@ -207,6 +207,9 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultipleItems = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultipleCatalogDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultiplePriceListDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<Boolean> MultipleProcessflag = ThreadLocal.withInitial(() -> false);
+	private static ThreadLocal<String> RawMaterialCost = new ThreadLocal<>();
+	private static ThreadLocal<String> CompletionFgUnitCost = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1764,5 +1767,29 @@ public class VariableHandler {
 
 	public static void setMultipleOpenSoDocs(ArrayList<String> data) {
 		MultipleOpenSODocs.set(data);
+	}
+
+	public static boolean getMultipleProcessFlag() {
+		return MultipleProcessflag.get();
+	}
+
+	public static void setMultipleProcessFlag(boolean flag) {
+		MultipleProcessflag.set(flag);
+	}
+
+	public static String getRawMaterialCost() {
+		return RawMaterialCost.get();
+	}
+
+	public static void setRawMaterialCost(String Cost) {
+		RawMaterialCost.set(Cost);
+	}
+
+	public static String getCompletionFgUnitCost() {
+		return CompletionFgUnitCost.get();
+	}
+
+	public static void setCompletionFgUnitCost(String Cost) {
+		CompletionFgUnitCost.set(Cost);
 	}
 }

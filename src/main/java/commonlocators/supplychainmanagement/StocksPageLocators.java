@@ -7,9 +7,9 @@ package commonlocators.supplychainmanagement;
 public class StocksPageLocators {
 
 	/** @locatorType Xpath */
-	public static final String StockCheckBox = "//input[@id='P93132130_TYPE_0']";
+	public static final String StockCheckBox = "(//input[@data-testid='P93132130_TYPE'])[1]";
 	/** @locatorType Xpath */
-	public static final String StockCost = "//input[@id='P93132130_TYPE_9']/../label";
+	public static final String StockCost = "(//input[@data-testid='P93132130_TYPE'])[10]/../label";
 	/** @locatorType Xpath */
 	public static final String StockSerachField = "//input[@id='HUJ_sort_widget_search_field']";
 	/** @locatorType Xpath */
@@ -19,7 +19,7 @@ public class StocksPageLocators {
 	/** @locatorType Xpath */
 	public static final String CostGoButton = "//button[@id='TF_search_button']";
 	/** @locatorType Xpath */
-	public static final String GenerateButton = "//button[@id='B2023038310147652537']";
+	public static final String GenerateButton = "//button[@data-testid='FIND']";
 	/** @locatorType Xpath */
 	public static final String StockItem = "//div[@id='HUJ_data_panel']/div/div/div[@id='stickyTableHeader_1']/table/tr/th[3]";
 	/** @locatorType Xpath */
