@@ -7,19 +7,19 @@ package commonlocators.payroll;
 public class PreparePayrollLocators {
 
 	/** @locatorType Xpath */
-	public static final String PayrollFindSearchBtn = "//button[@id='B1861433735867800630']";
+	public static final String PayrollFindSearchBtn = "//button[@data-testid='PRE_REPORT_Button']";
 	/** @locatorType Xpath */
-	public static final String PreparePayrollAddIcon = "//button[@id='B1861433669887800629']";
+	public static final String PreparePayrollAddIcon = "//button[@data-testid='PRE_ADD_Button']";
 	/** @locatorType Xpath */
-	public static final String CreatePayrollCalendarLovBtn = "//button[@id='P1625131050_PAY_CALENDAR_lov_btn']";
+	public static final String CreatePayrollCalendarLovBtn = "//*[@data-testid='PAY_CALENDER']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CreatePayrollYearLovBtn = "//button[@id='P1625131050_PAY_YEAR_lov_btn']";
+	public static final String CreatePayrollYearLovBtn = "//*[@data-testid='PAY_YEAR']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CreatePayrollPeriodLovBtn = "//button[@id='P1625131050_PAY_PERIOD_lov_btn']";
+	public static final String CreatePayrollPeriodLovBtn = "//*[@data-testid='PAY_PERIOD']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CreatePayrollNarrationInput = "//input[@id='P1625131050_PAY_NAR']";
+	public static final String CreatePayrollNarrationInput = "//input[@data-testid='PAY_NAR']";
 	/** @locatorType Xpath */
-	public static final String CreatePayrollTickIcon = "//button[@id='B1862487255790819706']";
+	public static final String CreatePayrollTickIcon = "//button[@data-testid='PAY_SAVE_Button']";
 	/** @locatorType Xpath */
 	public static final String PayrollProcessDisplayDocNo = "//*[@id='a_Collapsible1_R6108407611166170106_heading']/b";
 	/** @locatorType Xpath */
@@ -33,9 +33,9 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String PayrollLabel = "//label[text()='Payroll']";
 	/** @locatorType Xpath */
-	public static final String LoadUnitGroupBtn = "//button[@id='B3422386613938126250']";
+	public static final String LoadUnitGroupBtn = "//button[@data-testid='HPPH_LOADU_Button']";
 	/** @locatorType Xpath */
-	public static final String UnloadUnitGroupBtn = "//button[@id='B3422387008305126250']";
+	public static final String UnloadUnitGroupBtn = "//button[@data-testid='HPPH_UNLOADU_Button']";
 	/** @locatorType Xpath */
 	public static final String UnitContentContainer = "//div[@id='unit_content']";
 	/** @locatorType Xpath */
@@ -49,9 +49,9 @@ public class PreparePayrollLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String LoadEmployeeBtn = "//button[@id='B3422387428419126252']";
+	public static final String LoadEmployeeBtn = "//button[@data-testid='HPPH_LOAD1_Button']";
 	/** @locatorType Xpath */
-	public static final String UnloadEmployeeBtn = "//button[@id='B3422387854589126252']";
+	public static final String UnloadEmployeeBtn = "//button[@data-testid='HPPH_UNLOADE_Button']";
 	/** @locatorType Xpath */
 	public static final String EmployeeSearchBarInput = "//input[@id='TAB2_search_field']";
 	/** @locatorType Xpath */
@@ -130,7 +130,7 @@ public class PreparePayrollLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String PreparePayrollBtn = "//button[@id='B3422388199030126252']";
+	public static final String PreparePayrollBtn = "//button[@data-testid='HPPH_PREPARE_Button']";
 	/** @locatorType Xpath */
 	public static final String ExceptionDataView = "//div[@aria-label='Data view of Exception']";
 	/** @locatorType Xpath */
@@ -166,9 +166,9 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String PayrollNetSalaryDisplayText = "//span[@id='P16251310506_NET_SAL1_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String ReviewCompletedBtn = "//button[@id='B3422389009058126254']";
+	public static final String ReviewCompletedBtn = "//button[@data-testid='HPPH_REVIEW_Button']";
 	/** @locatorType Xpath */
-	public static final String ProcessPayrollBtn = "//button[@id='B3422388658127126254']";
+	public static final String ProcessPayrollBtn = "//button[@data-testid='HPPH_PROCESS_Button']";
 	/** @locatorType Xpath */
 	public static final String FindHeaderRadioBtn = "//label[text()='Header']";
 	/** @locatorType Xpath */
@@ -176,17 +176,17 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String FindResultSearchBar = "//input[@id='detail_search_field']";
 	/** @locatorType Xpath */
-	public static final String FindYearLovBtn = "//button[@id='P1625131050_YEAR_lov_btn']";
+	public static final String FindYearLovBtn = "//*[@data-testid='PRE_YEAR']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPeriodLovBtn = "//button[@id='P1625131050_PERIOD_lov_btn']";
+	public static final String FindPeriodLovBtn = "//*[@data-testid='PRE_YEAR']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindCalenderLovBtn = "//button[@id='P1625131050_CALENDER_lov_btn']";
+	public static final String FindCalenderLovBtn = "//*[@data-testid='PRE_CALANDER']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindDesignationLovBtn = "//button[@id='P1625131050_DESIG_lov_btn']";
+	public static final String FindDesignationLovBtn = "//*[@data-testid='PRE_DESIG']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindDepartmentLovBtn = "//button[@id='P1625131050_DEPT_lov_btn']";
+	public static final String FindDepartmentLovBtn = "//*[@data-testid='PRE_DEPT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindUnitLovBtn = "//button[@id='P1625131050_UNIT_lov_btn']";
+	public static final String FindUnitLovBtn = "//*[@data-testid='PRE_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String FindYearHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[3]";
 	/** @locatorType Xpath */

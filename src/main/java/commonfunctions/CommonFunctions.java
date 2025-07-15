@@ -2417,13 +2417,13 @@ public class CommonFunctions {
 				if (flag) {
 					webDB.clickAnElement(CommonUiLocators.SelectSearchTab, ElementType.Xpath);
 					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
-
-					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Navigated To " + TabName);
 					} else {
 
 					}
+				} else {
+					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
 				}
 			}
 		}
