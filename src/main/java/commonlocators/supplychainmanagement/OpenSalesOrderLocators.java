@@ -125,5 +125,6 @@ public class OpenSalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String OpsoOkButtonForwardCat = "//*[text()='Ok']/parent::button";
-
+	/** @locatorType Xpath */
+	public static final String OpsoForwardApproval = "//BUTTON[@ID='P236131090_FWD_PERSON_lov_btn']";
 }

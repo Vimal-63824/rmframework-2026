@@ -45,11 +45,11 @@ public class EmployeeMasterLocators {
 	public static final String AddEmp_NoticePeriod = "//*[@data-testid=' AddEmp_NoticePeriod']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_SaveButton = "//*[@data-testid=' AddEmp_SaveButton']";
-	/** Asked to change @locatorType XPATH */
+	/** @locatorType XPATH */
 	public static final String AddEmp_DisplayEmpID = "//*[@data-testid=' AddEmp_DisplayEmpID']";
-	/** Asked to change comma added before @locatorType XPATH */
+	/** @locatorType XPATH */
 	public static final String AddEmp_ContactAddLinesIcon = "//*[@data-testid=' AddEmp_ContactAddLinesIcon']";
-	/** Asked to change comma added after @locatorType XPATH */
+	/** @locatorType XPATH */
 	public static final String AddEmp_QualificationAddLinesIcon = "//*[@data-testid=',AddEmp_QualificationAddLinesIcon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_SkillAddLinesIcon = "//*[@data-testid=' AddEmp_SkillAddLinesIcon']";
@@ -139,7 +139,7 @@ public class EmployeeMasterLocators {
 	public static final String AddEmp_OT_ElegibleLabel = "//*[@data-testid=' AddEmp_OT_ElegibleLabel']/following-sibling::label";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LoadAllowanceBtn = "//*[@data-testid=' AddEmp_LoadAllowanceBtn']";
-	/** Wrong Update @locatorType XPATH */
+	/** @locatorType XPATH */
 	public static final String AddEmp_SaveAllowanceTableBtn = "//*[@data-testid=' AddEmp_SaveAllowanceTableBtn']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AllowanceTableAmountData = "(//b[text()='Allowances']/following::table)[2]//tr/td[3]";
