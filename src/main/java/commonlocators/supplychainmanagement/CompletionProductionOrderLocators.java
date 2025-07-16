@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
-	public static final String PendingProdOrderIframe = "//iframe[contains(@title,'Pend. Prod. Ord.')]";
+	public static final String PendingProdOrderIframe = "(//iframe[@scrolling='auto'])[1]";
 	/** @locatorType XPATH */
 	public static final String PendingProdOrderIframeCloseIcon = "//h1[text()='Pend. Prod. Ord.']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -123,10 +123,83 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String MultipleProceedRestOprYesBtn = "//button[text()='Yes']";
 	/** @locatorType XPATH */
+	public static final String MultipleProceedRestOprNoBtn = "//button[text()='No']";
+	/** @locatorType XPATH */
 	public static final String MultipleTransLovButton = "//button[@id='P196310316_TRANS_NO_lov_btn']";
 	/** @locatorType XPATH */
 	public static final String MultipleSelectStatus = "//select[@id='P196310316_STATUS']";
 	/** @locatorType XPATH */
 	public static final String MultipleSearchButton = "//button[@id='B136234895074248868']";
+	/** @locatorType XPATH */
+	public static final String MultipleMachineAddButton = "//button[@id='B1243193033311894963']";
+	/** @locatorType XPATH */
+	public static final String MultipleMachine = "//button[@id='B1243193033311894963']";
 
+	/** @locatorType XPATH */
+	public static final String ProcessHeader = "//h1[text()='Process Details']";
+	/** @locatorType XPATH */
+	public static final String CloseButton = "(//iframe[@scrolling='auto'])[2]/../../div[1]/h1/following::button[@title='Close']";
+	/** @locatorType XPATH */
+	public static final String MultiplePendingMovingLocId = "//button[@id='P80_LOC_ID_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String MultipleProcessDetailIframe = "(//iframe[@scrolling='auto'])[2]";
+
+	/** @locatorType XPATH */
+	public static final String MultipleProcessDetails(String ProdNo) {
+		return "//td[text()='" + ProdNo + "']/../td[21]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String MultipleProductionOrderNo(String ProdNo) {
+		return "//td[text()='" + ProdNo + "']";
+	}
+
+	/** @locatorType XPATH */
+	public static final String MultipleProcessCheckBox(int No) {
+		return "//table[@id='2062393616266069054_orig']/tbody/tr[" + No + "]/td[7]/input";
+	}
+
+	/** @locatorType XPATH */
+	public static final String MaterialUnitCost(int i) {
+		return "//div[@id='consumption_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[14]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String TotalMaterialUnitCost = "//div[@id='consumption_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	/** @locatorType XPATH */
+	public static final String MaterialNextButton = "//div[@aria-label='Pagination']/button[@title='Next']";
+	/** @locatorType XPATH */
+	public static final String CostTab = "//label[@for='P19631031001_TABS_5']";
+	/** @locatorType XPATH */
+	public static final String CostElementTab = "//label[@for='P19631031001_COST_0']";
+	/** @locatorType XPATH */
+	public static final String SubElementTab = "//label[@for='P19631031001_COST_1']";
+	/** @locatorType XPATH */
+	public static final String CostElementTable = "//table[@id='2709599923838646133_orig']/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String SubElementTableUnitCost = "//table[@id='2709600758706646142_orig']/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String SubElementTableValue = "//table[@id='2709600758706646142_orig']/tbody/tr/td[6]";
+
+	/** @locatorType XPATH */
+	public static final String CostElementTable(int i) {
+		return "//table[@id='2709599923838646133_orig']/tbody/tr[" + i + "]/td[5]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String SubElementTableUnitCost(int i) {
+		return "//table[@id='2709600758706646142_orig']/tbody/tr[" + i + "]/td[5]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String SubElementTableValue(int i) {
+		return "//table[@id='2709600758706646142_orig']/tbody/tr[" + i + "]/td[6]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String SingleLocId = "//button[@id='P33_LOC_ID_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String Consumption = "//input[@data-display='Consumption']/following-sibling::label";
+	/** @locatorType XPATH */
+	public static final String FinishProcessName = "//span[@id='P19631031001_PT_PROCESS_DISPLAY']";
 }

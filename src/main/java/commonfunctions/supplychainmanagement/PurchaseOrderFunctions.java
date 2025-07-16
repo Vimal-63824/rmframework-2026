@@ -1872,7 +1872,7 @@ public class PurchaseOrderFunctions {
 			if (ItemName.contains(Item)) {
 				commonFunc.hardWait(2000);
 				webDB.moveToElement(PurchaseOrderPageLocators.ItemName(i), ElementType.Xpath);
-				if (PoType != null) {
+				if (PoType.length > 0) {
 					webDB.moveToElement(PurchaseOrderPageLocators.ServiceLineDetailButton(i), ElementType.Xpath);
 					flag = webDB.waitForElement(PurchaseOrderPageLocators.ServiceLineDetailButton(i),
 							ElementType.Xpath);

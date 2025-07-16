@@ -110,4 +110,7 @@ public class MaterialReceiptVoucherLocators {
 		return "(//td[text()='" + GrnNo + "']/../td/a)[2]";
 	}
 
+	/** @locatorType Xpath */
+	public static final String UnitCost = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
+
 }
