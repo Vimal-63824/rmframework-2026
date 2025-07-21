@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
-	public static final String PendingProdOrderIframe = "(//iframe[@scrolling='auto'])[1]";
+	public static final String PendingProdOrderIframe = "//iframe";//"//iframe[contains(@title,'Pend. Prod. Ord.')]";
 	/** @locatorType XPATH */
 	public static final String PendingProdOrderIframeCloseIcon = "//h1[text()='Pend. Prod. Ord.']/following-sibling::button";
 	/** @locatorType XPATH */

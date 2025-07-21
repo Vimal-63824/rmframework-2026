@@ -4483,7 +4483,8 @@ public class ProductionOrderFunctions {
 			fillProcessTypeBasisInResourceTab(commonFunc.getDataFromTestDataSheet("GwlProcess1"),
 					commonFunc.getDataFromTestDataSheet("ResourceText"),
 					commonFunc.getDataFromTestDataSheet("ItemType"));
-			fillResourceDateEffPercentInResourceTab(commonFunc.getDataFromTestDataSheet("Emp_LName"), Today, "0");
+			fillResourceDateEffPercentInResourceTab(commonFunc.getDataFromTestDataSheet("Emp_LName").toUpperCase(),
+					Today, "0");
 			fillSetupHrsMinsAndPriorityLagHrsInResourceTab("0", "0", "1", "0");
 			fillHrsMinsAndSecInResourceTab("1", "0", "0");
 			clickSaveLineIconInResourceTab();
@@ -4828,6 +4829,9 @@ public class ProductionOrderFunctions {
 		}
 		materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 		materialReceiptFunctions.clickTickAndPostIcon();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 	}
 
 	/**
@@ -4864,6 +4868,14 @@ public class ProductionOrderFunctions {
 		}
 		materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 		materialReceiptFunctions.clickTickAndPostIcon();
+		completionProductionOrderFunc.verifySearchProductionOrdeNumberAndOpenDesiredStatus(
+				VariableHandler.getProductionOrderNumber(), commonFunc.getDataFromTestDataSheet("Draft"));
+		completionProductionOrderFunc
+				.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+		completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 	}
 
 	/**
@@ -4944,7 +4956,10 @@ public class ProductionOrderFunctions {
 							.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 					completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 					commonFunc.navigateToMaterialReceiptVoucher();
-					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					commonFunc.clickPendingIcon();
+					materialReceiptFunctions.clickPendingInssuanceBtn();
+					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionOrderNumber());
+//					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
 					materialReceiptFunctions
 							.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
 					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
@@ -5036,27 +5051,29 @@ public class ProductionOrderFunctions {
 						if (i == 0) {
 							orderReleaseOperationsProcessesInsideType();
 						}
-
+						commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+						completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+						completionProductionOrderFunc
+								.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+						completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
+								VariableHandler.getProductionOrderNumber());
+						completionProductionOrderFunc
+								.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+						completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+						commonFunc.navigateToMaterialReceiptVoucher();
+						commonFunc.clickPendingIcon();
+						materialReceiptFunctions.clickPendingInssuanceBtn();
+						materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionOrderNumber());
+//						materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+						materialReceiptFunctions
+								.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
+						materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+						materialReceiptFunctions.clickTickAndPostIcon();
 					} else if (Operation.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ComQty"))) {
-						if (i == 0) {
-							completionQuantityOperationsProcessesInsideType();
-						}
+//						if (i == 0) {
+						completionQuantityOperationsProcessesInsideType();
+//						}
 					}
-					commonFunc.navigateToCompletionProductionOrderInProdPlanning();
-					completionProductionOrderFunc.clickPendingIconInCompletionProcess();
-					completionProductionOrderFunc
-							.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
-					completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-							VariableHandler.getProductionOrderNumber());
-					completionProductionOrderFunc
-							.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
-					completionProductionOrderFunc.clickPostButtonInCompletionProcess();
-					commonFunc.navigateToMaterialReceiptVoucher();
-					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-					materialReceiptFunctions
-							.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
-					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
-					materialReceiptFunctions.clickTickAndPostIcon();
 				} else if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("OutsideType"))) {
 					if (Operation.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Orderreleases"))) {
 						// -----------------------------------------------------------------------------------------------------
@@ -5160,7 +5177,10 @@ public class ProductionOrderFunctions {
 							.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 					completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 					commonFunc.navigateToMaterialReceiptVoucher();
-					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					commonFunc.clickPendingIcon();
+					materialReceiptFunctions.clickPendingInssuanceBtn();
+					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionOrderNumber());
+//					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
 					materialReceiptFunctions
 							.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
 					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
@@ -5268,7 +5288,10 @@ public class ProductionOrderFunctions {
 							.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 					completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 					commonFunc.navigateToMaterialReceiptVoucher();
-					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					commonFunc.clickPendingIcon();
+					materialReceiptFunctions.clickPendingInssuanceBtn();
+					materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getProductionOrderNumber());
+//					materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
 					materialReceiptFunctions
 							.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
 					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();

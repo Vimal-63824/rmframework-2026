@@ -132,7 +132,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingCrDocs = "//button[@id='B1918502594088484019']";
+	public static final String PendingCrDocs = "//button[@id='B1920165536554853812']";
 	/** Locator Xpath */
 	public static final String SalesSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]";
 	/** Locator Xpath */
@@ -188,7 +188,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
-	public static final String ItemMasterAdd = "//*[@id='B1287636716616788407']/span";
+	public static final String ItemMasterAdd = "//button[@id='B1287636716616788407']";
 	/** @locatorType Xpath */
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */
@@ -292,7 +292,7 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String BusFunctionSearchBox = "//input[@id='P0_SEARCH_input']";
 	/** @locatorType XPATH */
-	public static final String Sales_Inv_Pend_Btn = "//button[contains(@id,'B986356987649170102')]";
+	public static final String Sales_Inv_Pend_Btn = "//button[@data-testid='SALES INVOICE PENDING ICON']";
 	/** @locatorType XPATH */
 	public static final String DebitNote_Add_Icon = "//button[@id='B1012787680560179762']";
 	/** @locatorType XPATH */

@@ -61,7 +61,7 @@ public class PaymentReceiptsLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String PendingDrDocsBtn = "//button[@id='B1918502607122484020']";
+	public static final String PendingDrDocsBtn = "//button[@id='B1920165549588853813']";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesBtn = "//span[text()='Pending Receivable']/parent::button";
 	/** @locatorType Xpath */
@@ -75,7 +75,7 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String PendReceive_SearchGoBtn = "//button[@id='PEND_search_button']";
 	/** @locatorType Xpath */
-	public static final String PendReceive_SearchBtn = "//button[@id='B1889773523896176533']";
+	public static final String PendReceive_SearchBtn = "//button[@id='B1891436466362546326']";
 	/** @locatorType Xpath */
 	public static final String PendReceive_CreateBtn = "//button[@id='B1']";
 	/** @locatorType Xpath */
@@ -89,7 +89,7 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String PendReceive_BankCashierLovBtn = "//button[@id='P3413101003_BANK_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PendReceive_OkBtn = "//button[@id='B1547715561905421086']";
+	public static final String PendReceive_OkBtn = "//button[@id='B1549378504371790879']";
 	/** @locatorType Xpath */
 	public static final String BankReceipt_RefNoInput = "//input[@id='P3413103005_BTRANS_TRANS_REF_N']";
 	/** @locatorType Xpath */
@@ -97,7 +97,7 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceipt_CreateJournalBtn = "//button[@id='CREATE_JOURNAL']";
 	/** @locatorType Xpath */
-	public static final String BankReceipt_ViewJournalBtn = "//button[@id='B1269680928025184394']";
+	public static final String BankReceipt_ViewJournalBtn = "//button[@id='B1271343870491554187']";
 	/** @locatorType Xpath */
 	public static final String BankReceipt_PostBtn = "//button[@id='POST']";
 	/** @locatorType Xpath */
