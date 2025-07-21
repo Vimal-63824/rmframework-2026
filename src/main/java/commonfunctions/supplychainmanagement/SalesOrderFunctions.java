@@ -82,19 +82,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -122,19 +115,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -160,19 +146,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -198,19 +177,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -236,19 +208,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -274,19 +239,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -312,19 +270,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -350,19 +301,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -388,19 +332,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -426,19 +363,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("SO_Export_Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -2975,15 +2905,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3514,15 +3441,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_FREE_SAMPLE"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3555,15 +3479,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_FREE_REPLACEMENT"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3594,15 +3515,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_SCRAP"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3633,15 +3551,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_SERVICE"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3672,15 +3587,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3713,15 +3625,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3753,15 +3662,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("SO_SEZ_CUSTOMER"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3794,15 +3700,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Demo_Exhibition"),
 				commonFunc.getDataFromTestDataSheet("SO_HSNCode"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3833,15 +3736,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("CESS_HSN_CODE"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -4679,15 +4579,11 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4729,15 +4625,12 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4779,15 +4672,11 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4832,15 +4721,11 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4891,15 +4776,11 @@ public class SalesOrderFunctions {
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4937,15 +4818,12 @@ public class SalesOrderFunctions {
 			}
 		}
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4972,15 +4850,12 @@ public class SalesOrderFunctions {
 		clickFetchButton();
 		clickUpdateCloseshortButton();
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -5027,15 +4902,12 @@ public class SalesOrderFunctions {
 			}
 		}
 		clickSOAmdPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOAmdNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOAmdNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -5062,19 +4934,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -5101,19 +4966,12 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -6582,15 +6440,16 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("MultiCloseShortPfx"));
 		clickPendingSOButtonInMultiCloseShort();
 		clickPostButtonInSOMultiCloseShort();
-		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSOMultiCloseShortDocNo());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSOMultiCloseShortDocNo());
-			commonFunc.logoutUser();
+			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getSOMultiCloseShortDocNo(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifySalesOrderAmendmentDocApprovedStatusWithDB();
+			}
 		}
 		return flag;
 	}

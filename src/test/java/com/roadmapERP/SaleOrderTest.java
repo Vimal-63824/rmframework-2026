@@ -470,7 +470,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
-	@Test(priority = -1, groups = {
+	@Test(priority = 38, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - Interstate")
 	public void SalesOrderAmendmentQtyChangeInterstateCustomer() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentQtyChange(commonFunc.getDataFromTestDataSheet("Customer"),

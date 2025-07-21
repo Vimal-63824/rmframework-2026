@@ -40,19 +40,19 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSLineWiseFirmQtyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseFirmQtyInputField = "//input[@data-testid='COLN_FRM_QTY']";
+	public static final String CSLineWiseFirmQtyInputField = "//input[@data-testid='CSLineWiseFirmQtyField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseUnitPriceField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseUnitPriceInputField = "//input[@data-testid='COLN_PRICE1']";
+	public static final String CSLineWiseUnitPriceInputField = "//input[@data-testid='CSLineWiseUnitPriceField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseMRPField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseMRPInputField = "//input[@data-testid='COLN_MRP_PRICE']";
+	public static final String CSLineWiseMRPInputField = "//input[@data-testid='CSLineWiseMRPField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseDiscField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseDiscInputField = "//input[@data-testid='COLN_DISC_PCT1']";
+	public static final String CSLineWiseDiscInputField = "//input[@data-testid='CSLineWiseDiscField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseSaveButton = "//BUTTON[@data-testid='CS_LINE_WISE _SAVE _BUTTON']";
 	/** @Locator Xpath */
@@ -74,7 +74,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSBucketTypeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[19]";
 	/** @Locator Xpath */
-	public static final String CSBucketTypeDropDown = "//select[@data-testid='COLN_FRM_FREQ_TYPE']";
+	public static final String CSBucketTypeDropDown = "//select[@data-testid='CSBucketTypeField']";
 	/** @Locator Xpath */
 	public static final String CSScheduleTypeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @Locator Xpath */

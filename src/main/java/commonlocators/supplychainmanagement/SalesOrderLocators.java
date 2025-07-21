@@ -36,7 +36,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String HeaderCustDescField = "//INPUT[@data-testid='P191513134001_SOH_CUST_NAME']";
 	/** @Locator Xpath */
-	public static final String HeaderCustIDFieldQuery = "//span[@data-testid='P191513134001_SOH_CUST_ID']";
+	public static final String HeaderCustIDFieldQuery = "//span[@data-testid='HeaderCustIDField']";
 	/** @Locator Xpath */
 	public static final String HeaderCustDescFieldQuery = "//span[@data-testid='P191513134001_SOH_CUST_NAME']";
 	/** @Locator Xpath */
@@ -48,7 +48,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String ItemLovSearchField = "//input[contains(@class,'a-PopupLOV-search')]";
 	/** @Locator Xpath */
-	public static final String ItemInputField = "//input[@data-testid='DUM_PROD_ID']";
+	public static final String ItemInputField = "//input[@data-testid='SO_LN_PROD_ID']";
 	/** @Locator Xpath */
 	public static final String QtyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @Locator Xpath */
@@ -62,7 +62,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String HSNCodeLOV = "//button[@id='C11990275358524342024_lov_btn']/span";
 	/** @Locator Xpath */
-	public static final String HSNCodeInputField = "//input[@data-testid='SOQ_HSN_CODE']";
+	public static final String HSNCodeInputField = "//input[@data-testid='HSNCodeLOV']";
 	/** @Locator Xpath */
 	public static final String LineWiseSaveIcon = "//BUTTON[@data-testid='SO_LineWise_SaveButton']";
 	/** @Locator Xpath */
@@ -80,7 +80,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String FindSearchButton = "//BUTTON[@data-testid='SO_Srch_Button']";
 	/** @Locator Xpath */
-	public static final String SOTotalAmountFieldTrans = "//input[@data-testid='P191513134001_SOH_TOT_AMT']";
+	public static final String SOTotalAmountFieldTrans = "//input[@data-testid='SOTotalAmountFieldQuery']";
 	/** @Locator Xpath */
 	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
@@ -448,9 +448,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdfetchFrame = "//iframe[@title='Fetch']";
 	/** @Locator Xpath */
-	public static final String SoAmdNewUnitPriceInputField = "//input[@data-testid='SALC_NEW_UNIT_COST']";
+	public static final String SoAmdNewUnitPriceInputField = "//input[@data-testid='SoAmdNewUnitPriceField']";
 	/** @Locator Xpath */
-	public static final String SoAmdNewQtyInputField = "//input[@data-testid='SALC_NEW_SO_QTY']";
+	public static final String SoAmdNewQtyInputField = "//input[@data-testid='SoAmdNewQtyField']";
 	/** @Locator Xpath */
 	public static final String SoAmdLineWiseSaveButton = "//BUTTON[@data-testid='SO AMD SINLE LINE WISE SAVE BUTTON']";
 	/** @Locator Xpath */
@@ -688,7 +688,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String SOAmdLineDetails(int i) {
 		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[14]/a/span[contains(@style,'blue')]	";
+				+ "]/td[16]/a/span[contains(@style,'blue')]	";
 	}
 
 	/** @locatorType Xpath */
