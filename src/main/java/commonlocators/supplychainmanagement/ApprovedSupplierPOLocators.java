@@ -7,25 +7,25 @@ package commonlocators.supplychainmanagement;
 public class ApprovedSupplierPOLocators {
 
 	/** @locatorType XPATH */
-	public static final String UnitLovButton = "//button[@id='P367018501_SUPRPROD_PLNT_lov_btn']";
+	public static final String UnitLovButton = "//input[@data-testid='P367018501_SUPRPROD_PLNT']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String DocLovButton = "//button[@id='P367018501_SUPRPROD_DOC_PFX_lov_btn']";
+	public static final String DocLovButton = "//input[@data-testid='P367018501_SUPRPROD_DOC_PFX']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String SupplierLovButton = "//button[@id='P367018501_SUPRPROD_SUPLR_ID_lov_btn']";
+	public static final String SupplierLovButton = "//input[@data-testid='P367018501_SUPRPROD_SUPLR_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String ItemLovButton = "//button[@id='P367018501_PROD_ID_lov_btn']";
+	public static final String ItemLovButton = "//input[@data-testid='P367018501_PROD_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String PriceBasisSelect = "//select[@id='P367018501_SUPPROD_PUR_PRICE_BASIS']";
+	public static final String PriceBasisSelect = "//select[@data-testid='P367018501_SUPPROD_PUR_PRICE_BASIS']";
 	/** @locatorType XPATH */
-	public static final String HsnCodeButton = "//button[@id='P367018501_SUPRPROD_HSN_CODE_lov_btn']";
+	public static final String HsnCodeButton = "//input[@data-testid='P367018501_SUPRPROD_HSN_CODE']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String SaveButton = "//button[@id='B3245400177054517028']";
+	public static final String SaveButton = "//button[@data-testid='CREATE']";
 	/** @locatorType XPATH */
-	public static final String PostButton = "//button[@id='B1187882492788356201']";
+	public static final String PostButton = "//button[@data-testid='Entry_Completed']";
 	/** @locatorType XPATH */
-	public static final String DocNumberLovButton = "//button[@id='P36700185_DOC_NO_lov_btn']";
+	public static final String DocNumberLovButton = "//input[@data-testid='P36700185_DOC_NO']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindButton = "//button[@id='B1183371159186794287']";
+	public static final String FindButton = "//button[@data-testid='Find_Lines_s']";
 
 	/** @locatorType XPATH */
 	public static final String ApprovedStatus(String DocNo) {

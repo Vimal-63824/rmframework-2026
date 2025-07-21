@@ -199,6 +199,17 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> ProductionProcess = new ThreadLocal<>();
 	private static ThreadLocal<Map<String, String>> ProductionProcessType = ThreadLocal.withInitial(HashMap::new);
 	private static ThreadLocal<Map<String, String>> ProductionProcessItem = ThreadLocal.withInitial(HashMap::new);
+	private static ThreadLocal<ArrayList<String>> MultipleOpenSODocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> CSAmdDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> SOMultiCloseShortDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> CSLineDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> MultipleSODocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> MultipleItems = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> MultipleCatalogDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> MultiplePriceListDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<Boolean> MultipleProcessflag = ThreadLocal.withInitial(() -> false);
+	private static ThreadLocal<String> RawMaterialCost = new ThreadLocal<>();
+	private static ThreadLocal<String> CompletionFgUnitCost = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1692,5 +1703,93 @@ public class VariableHandler {
 
 	public static void setProcessAndProcessType(String[][] data) {
 		ProcessAndProcessType.set(data);
+	}
+
+	public static ArrayList<String> getMultipleSoDocs() {
+		return MultipleSODocs.get();
+	}
+
+	public static void setMultipleSoDocs(ArrayList<String> data) {
+		MultipleSODocs.set(data);
+	}
+
+	public static String getSOMultiCloseShortDocNo() {
+		return SOMultiCloseShortDocNo.get();
+	}
+
+	public static void setSOMultiCloseShortDocNo(String data) {
+		SOMultiCloseShortDocNo.set(data);
+	}
+
+	public static String getCSLineDocNumber() {
+		return CSLineDocNumber.get();
+	}
+
+	public static void setCSLineDocNumber(String data) {
+		CSLineDocNumber.set(data);
+	}
+
+	public static String getCSAmdDocno() {
+		return CSAmdDocNumber.get();
+	}
+
+	public static void setCSAmdDocno(String data) {
+		CSAmdDocNumber.set(data);
+	}
+
+	public static ArrayList<String> getMultipleItems() {
+		return MultipleItems.get();
+	}
+
+	public static void setMultipleItems(ArrayList<String> data) {
+		MultipleItems.set(data);
+	}
+
+	public static ArrayList<String> getMultipleCatalogDocs() {
+		return MultipleCatalogDocs.get();
+	}
+
+	public static void setMultipleCatalogDocs(ArrayList<String> data) {
+		MultipleCatalogDocs.set(data);
+	}
+
+	public static ArrayList<String> getMultiplePriceListDocs() {
+		return MultiplePriceListDocs.get();
+	}
+
+	public static void setMultiplePriceListDocs(ArrayList<String> data) {
+		MultiplePriceListDocs.set(data);
+	}
+
+	public static ArrayList<String> getMultipleOpenSoDocs() {
+		return MultipleOpenSODocs.get();
+	}
+
+	public static void setMultipleOpenSoDocs(ArrayList<String> data) {
+		MultipleOpenSODocs.set(data);
+	}
+
+	public static boolean getMultipleProcessFlag() {
+		return MultipleProcessflag.get();
+	}
+
+	public static void setMultipleProcessFlag(boolean flag) {
+		MultipleProcessflag.set(flag);
+	}
+
+	public static String getRawMaterialCost() {
+		return RawMaterialCost.get();
+	}
+
+	public static void setRawMaterialCost(String Cost) {
+		RawMaterialCost.set(Cost);
+	}
+
+	public static String getCompletionFgUnitCost() {
+		return CompletionFgUnitCost.get();
+	}
+
+	public static void setCompletionFgUnitCost(String Cost) {
+		CompletionFgUnitCost.set(Cost);
 	}
 }

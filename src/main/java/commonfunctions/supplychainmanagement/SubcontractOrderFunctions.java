@@ -451,6 +451,141 @@ public class SubcontractOrderFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Queue Quantity For Subcontract
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyQueueQuantityForSubcontract(String ExpectedProcessName) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.QueueQty, ElementType.Xpath);
+		if (flag) {
+			String ProcessName = webDB.getTextFromElement(SubcontractOrderLocators.ProcessName, ElementType.Xpath);
+			logs.logging("INFO", "Process Name Is: " + ProcessName);
+			flag = ProcessName.equals(ExpectedProcessName);
+			if (flag) {
+				String QueueQty = webDB.getTextFromElement(SubcontractOrderLocators.QueueQty, ElementType.Xpath);
+				logs.logging("INFO", "Queue Quantity Is: " + QueueQty);
+				String CompQty = webDB.getDomPropertyFromElement(SubcontractOrderLocators.CompQty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Completion Quantity Is: " + CompQty);
+				flag = QueueQty.equals(CompQty);
+				if (flag) {
+					logs.logging("INFO", "Verified Queue Quantity And Completion Quantity");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Queue Quantity For Subcontract
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyQueueQuantityForSubcontractAfterOutside(String ExpectedProcessName) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.QueueQty, ElementType.Xpath);
+		if (flag) {
+			String ProcessName = webDB.getTextFromElement(SubcontractOrderLocators.ProcessName, ElementType.Xpath);
+			logs.logging("INFO", "Process Name Is: " + ProcessName);
+			flag = ProcessName.equals(ExpectedProcessName);
+			if (flag) {
+				String QueueQty = webDB.getTextFromElement(SubcontractOrderLocators.QueueQty, ElementType.Xpath);
+				logs.logging("INFO", "Queue Quantity Is: " + QueueQty);
+				String CompQty = webDB.getDomPropertyFromElement(SubcontractOrderLocators.CompQty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				String OutsideQty = webDB.getTextFromElement(SubcontractOrderLocators.OutsideQty, ElementType.Xpath);
+				flag = OutsideQty.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
+				if (!flag) {
+					logs.logging("INFO", "Outside Qty Is Greater Than Zero");
+					logs.logging("INFO", "Completion Quantity Is: " + CompQty);
+					flag = QueueQty.equals(CompQty);
+					if (flag) {
+						logs.logging("INFO", "Verified Queue Quantity And Outside Quantity");
+						flag = CompQty.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
+						if (flag) {
+							logs.logging("INFO", "Verified Comp Quantity Is Zero");
+						}
+					}
+				} else {
+					flag = false;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Search Pending Subcontract Order
+	 * 
+	 * @author Deepan-GWL
+	 * @param DocNo
+	 */
+	public void verifySearchPendingSubcontractOrder(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingSubcontractOrder, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Subcontract Order Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingSubcontractOrder, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Frame Is Displayed");
+				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
+				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Go Button Is Displayed");
+					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(12000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method Is Used To Verify Select Check
+	 * 
+	 * @author Deepan-GWL
+	 * @param DocNo
+	 */
+	public void verifyselectCheckBoxForPendingSubcontractOrder(String DocNo) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(2000);
+				logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+				webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractorLovButton,
+							commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+					webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(2000);
+						logs.logging("INFO", "Ok Button Is Displayed");
+						webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+						storeSCODocumentsNumber();
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 
 }

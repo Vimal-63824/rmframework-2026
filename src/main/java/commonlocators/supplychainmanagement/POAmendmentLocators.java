@@ -6,39 +6,39 @@ package commonlocators.supplychainmanagement;
  */
 public class POAmendmentLocators {
 	/** @locatorType Xpath */
-	public static final String POPendingIcon = "//button[@id='B1542579773567124656']";
+	public static final String POPendingIcon = "//button[@data-testid='Add_PO']";
 	/** @locatorType Xpath */
-	public static final String SingleAmendButton = "//button[@id='B1542586401121126023']";
+	public static final String SingleAmendButton = "//button[@data-testid='Single_Closeshort']";
 	/** @locatorType Xpath */
-	public static final String POLocationLovButton = "//button[@id='P59_PAH_PLNT_LOC_ID_lov_btn']";
+	public static final String POLocationLovButton = "//input[@data-testid='P59_PAH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PoPrefixLovButton = "//button[@id='P59_PFX_lov_btn']";
+	public static final String PoPrefixLovButton = "//input[@data-testid='P59_PFX']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PoNumberInput = "//input[@id='P59_PAH_PO_NO']";
+	public static final String PoNumberInput = "//input[@data-testid='P59_PAH_PO_NO']";
 	/** @locatorType Xpath */
-	public static final String BuyerName = "//input[@id='P59_BUYER_NAME']";
+	public static final String BuyerName = "//input[@data-testid='P59_BUYER_NAME']";
 	/** @locatorType Xpath */
-	public static final String SupplierName = "//input[@id='P59_SUPLR_NAME']";
+	public static final String SupplierName = "//input[@data-testid='P59_SUPLR_NAME']";
 	/** @locatorType Xpath */
-	public static final String Currency = "//input[@id='P59_PO_CURCY']";
+	public static final String Currency = "//input[@data-testid='P59_PO_CURCY']";
 	/** @locatorType Xpath */
-	public static final String TickButton = "//button[@id='B3842107840119423713']";
+	public static final String TickButton = "//button[@data-testid='CREATE']";
 	/** @locatorType Xpath */
-	public static final String HeaderLocationId = "//span[@id='P59_PAH_PLNT_LOC_ID_DISPLAY']";
+	public static final String HeaderLocationId = "//span[@data-testid='P59_PAH_PLNT_LOC_ID']";
 	/** @locatorType Xpath */
-	public static final String PONumberHeaderInput = "//input[@id='P59_PAH_PO_NO']";
+	public static final String PONumberHeaderInput = "//input[@data-testid='P59_PAH_PO_NO']";
 	/** @locatorType Xpath */
-	public static final String SupplierNameHeaderInput = "//input[@id='P59_SUPLR_NAME']";
+	public static final String SupplierNameHeaderInput = "//input[@data-testid='P59_SUPLR_NAME']";
 	/** @locatorType Xpath */
-	public static final String CurrencyHeaderInput = "//input[@id='P59_PO_CURCY']";
+	public static final String CurrencyHeaderInput = "//input[@data-testid='P59_PO_CURCY']";
 	/** @locatorType Xpath */
-	public static final String StatusHeader = "//span[@id='P59_PAH_STATUS_DISPLAY']";
+	public static final String StatusHeader = "//span[@data-testid='P59_PAH_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AddItemButton = "//button[@id='B3835875345988262779']";
+	public static final String AddItemButton = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String ItemInput = "//input[@id='C3844873038362461661']";
+	public static final String ItemInput = "//input[@data-testid='PALC_PROD_ID_REV']";
 	/** @locatorType Xpath */
-	public static final String ItemInputButton = "//button[@id='C3844873038362461661_lov_btn']";
+	public static final String ItemInputButton = "//input[@data-testid='PALC_PROD_ID_REV']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String ItemTable(int i) {
@@ -73,79 +73,79 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String LocationIdInput = "//input[@id='P59_PAH_PLNT_LOC_ID']";
 	/** @locatorType Xpath */
-	public static final String PONumberInput = "//input[@id='P59_PAH_PO_NO']";
+	public static final String PONumberInput = "//input[@data-testid='P59_PAH_PO_NO']";
 	/** @locatorType Xpath */
-	public static final String SupplierInput = "//input[@id='P59_SUPLR_NAME']";
+	public static final String SupplierInput = "//input[@data-testid='P59_SUPLR_NAME']";
 	/** @locatorType Xpath */
-	public static final String CurrencyInput = "//input[@id='P59_PO_CURCY']";
+	public static final String CurrencyInput = "//input[@data-testid='P59_PO_CURCY']";
 	/** @locatorType Xpath */
-	public static final String NewQuantity = "//input[@id='C3495329369077066995']";
+	public static final String NewQuantity = "//input[@data-testid='PALC_NEW_PO_QTY']";
 	/** @locatorType Xpath */
-	public static final String NewUnitCost = "//input[@id='C2717150439837688550']";
+	public static final String NewUnitCost = "//input[@data-testid='PALC_NEW_UNIT_COST1']";
 	/** @locatorType Xpath */
-	public static final String POANumber = "//input[@id='P59_PAH_DOC_NO']";
+	public static final String POANumber = "//input[@data-testid='P59_PAH_DOC_NO']";
 	/** @locatorType Xpath */
-	public static final String ItemTickButton = "//button[@id='B3835875430928262780']";
+	public static final String ItemTickButton = "//button[@data-testid='Save_Line']";
 	/** @locatorType Xpath */
-	public static final String HeaderTickButton = "//button[@id='B3842107483554423711']";
+	public static final String HeaderTickButton = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String NewTradeAssembleValue = "//input[@id='P161513116813_PALC_NEW_TRD_ASSBL_VAL']";
+	public static final String NewTradeAssembleValue = "//input[@data-testid='P161513116813_PALC_NEW_TRD_ASSBL_VAL']";
 	/** @locatorType Xpath */
-	public static final String NewTradeAssemblePct = "//input[@id='P161513116813_PALC_NEW_TRD_DISC_PCT_1']";
+	public static final String NewTradeAssemblePct = "//input[contains(@data-testid,'P161513116813_PALC_NEW_TRD_DISC_PCT_1')]";
 	/** @locatorType Xpath */
-	public static final String NewTradeAssembleAmount = "//input[@id='P161513116813_PALC_NEW_TRD_DISC_AMT']";
+	public static final String NewTradeAssembleAmount = "//input[@data-testid='P161513116813_PALC_NEW_TRD_DISC_AMT']";
 	/** @locatorType Xpath */
-	public static final String NewSplAssembleValue = "//input[@id='P161513116813_PALC_NEW_SPL_ASSBL_VAL']";
+	public static final String NewSplAssembleValue = "//input[@data-testid='P161513116813_PALC_NEW_SPL_ASSBL_VAL']";
 	/** @locatorType Xpath */
-	public static final String NewSplAssemblePct = "//input[@id='P161513116813_PALC_NEW_SPL_DISC_PCT_1']";
+	public static final String NewSplAssemblePct = "//input[@data-testid='P161513116813_PALC_NEW_SPL_DISC_PCT_1']";
 	/** @locatorType Xpath */
-	public static final String NewSplAssembleAmount = "//input[@id='P161513116813_PALC_NEW_SPL_DISC_AMT']";
+	public static final String NewSplAssembleAmount = "//input[@data-testid='P161513116813_PALC_NEW_SPL_DISC_AMT']";
 	/** @locatorType Xpath */
-	public static final String NewCashAssembleValue = "//input[@id='P161513116813_PALC_NEW_CASH_ASSBL_VAL']";
+	public static final String NewCashAssembleValue = "//input[@data-testid='P161513116813_PALC_NEW_CASH_ASSBL_VAL']";
 	/** @locatorType Xpath */
-	public static final String NewCashAssemblePct = "//input[@id='P161513116813_PALC_NEW_CASH_DISC_PCT_1']";
+	public static final String NewCashAssemblePct = "//input[@data-testid='P161513116813_PALC_NEW_CASH_DISC_PCT_1']";
 	/** @locatorType Xpath */
-	public static final String NewCashAssembleAmount = "//input[@id='P161513116813_PALC_NEW_CASH_DISC_AMT']";
+	public static final String NewCashAssembleAmount = "//input[@data-testid='P161513116813_PALC_NEW_CASH_DISC_AMT']";
 	/** @locatorType Xpath */
 	public static final String Details = "//h1[text()='Details']";
 	/** @locatorType Xpath */
 	public static final String ListQuantity = "//div[@id='amd_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @locatorType Xpath */
-	public static final String SupplierUOM = "//span[@id='P161513116813_PALC_SUPLR_UOM_DISPLAY']";
+	public static final String SupplierUOM = "//span[@data-testid='P161513116813_PALC_SUPLR_UOM']";
 	/** @locatorType Xpath */
-	public static final String WareHouseName = "//input[@id='P161513116813_PALC_NEW_STORE_NAME']";
+	public static final String WareHouseName = "//input[@data-testid='P161513116813_PALC_NEW_STORE_NAME']";
 	/** @locatorType Xpath */
-	public static final String PriceBasis = "//span[@id='P161513116813_PALC_COST_BASIS_DISPLAY']";
+	public static final String PriceBasis = "//span[@data-testid='P161513116813_PALC_COST_BASIS']";
 	/** @locatorType Xpath */
-	public static final String CPCCode = "//span[@id='P161513116813_PALC_NEW_CC_CODE_DISPLAY']";
+	public static final String CPCCode = "//span[@data-testid='P161513116813_PALC_NEW_CC_CODE']";
 	/** @locatorType Xpath */
-	public static final String CPC_Desc = "//span[@id='P161513116813_PALC_NEW_CC_CODE_DESC_DISPLAY']";
+	public static final String CPC_Desc = "//span[@data-testid='P161513116813_PALC_NEW_CC_CODE_DESC']";
 	/** @locatorType Xpath */
-	public static final String ConvFactor = "//input[@id='P161513116813_PALC_CONV_FACTOR']";
+	public static final String ConvFactor = "//input[@data-testid='P161513116813_PALC_CONV_FACTOR']";
 	/** @locatorType Xpath */
-	public static final String LineTickButton = "//button[@id='B1552589212233491101']";
+	public static final String LineTickButton = "//button[@data-testid='SAVE'and @title='Apply Changes']";
 	/** @locatorType Xpath */
 	public static final String LineDetailsIframe = "//iframe[@title='Details']";
 	/** @locatorType Xpath */
-	public static final String GL_Acc_No = "//span[@id='P161513116813_PALC_NEW_PUR_ACCT_DISPLAY']";
+	public static final String GL_Acc_No = "//span[@data-testid='P161513116813_PALC_NEW_PUR_ACCT']";
 	/** @locatorType Xpath */
-	public static final String GL_Acc_Desc = "//span[@id='P161513116813_PALC_NEW_PUR_ACCT_DESC_DISPLAY']";
+	public static final String GL_Acc_Desc = "//span[@data-testid='P161513116813_PALC_NEW_PUR_ACCT_DESC']";
 	/** @locatorType Xpath */
 	public static final String Line_CloseButton = "//h1[text()='Details']/following-sibling::button[@title='Close']";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIcon = "//button[@id='B3842107483554423711']";
+	public static final String HeaderTickIcon = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String HeaderPostIcon = "//button[@id='B3842109903683423714']";
+	public static final String HeaderPostIcon = "//button[@data-testid='Entry_Completed']";
 	/** @locatorType Xpath */
-	public static final String HSNCode = "//button[@id='P161513116813_PALC_HSN_CODE_lov_btn']";
+	public static final String HSNCode = "//input[@data-testid='P161513116813_PALC_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String LineDetailsTwo = "//label[text()='Line Details2']";
+	public static final String LineDetailsTwo = "(//input[@data-testid='P161513116813_TYPE']/following-sibling::label)[2]";
 	/** @locatorType Xpath */
-	public static final String POANumberButton = "//button[@id='P1615131168_DOC_NO_lov_btn']";
+	public static final String POANumberButton = "//input[@data-testid='P1615131168_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1542580827822124668']";
+	public static final String SearchButton = "//button[@data-testid='Find_Lines']";
 	/** @locatorType Xpath */
-	public static final String POANumberLovButton = "//button[@id='P1615131168_DOC_NO_lov_btn']";
+	public static final String POANumberLovButton = "//input[@data-testid='P1615131168_DOC_NO']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String PONumber(String Number) {
@@ -154,7 +154,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String POANumberStatus(String POno) {
-		return "//a[text()='" + POno + "']/../../td[19]";
+		return "//a[text()='" + POno + "']/../../td[20]";
 	}
 
 	/** @locatorType Xpath */
@@ -190,7 +190,7 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String Wh_Dept_Name = "//input[@id='P161513106045_POL_STORE_NAME']/../span";
 	/** @locatorType Xpath */
-	public static final String CostBasis = "//input[@id='P161513106045_POL_COST_BASIS']/../span";
+	public static final String CostBasis = "//span[@data-testid='POL_COST_BASIS']";
 	/** @locatorType Xpath */
 	public static final String StockUOM = "//input[@id='P161513106045_POL_PROD_UOM']/../span";
 	/** @locatorType Xpath */
@@ -204,7 +204,7 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String CPCDesc = "//input[@id='P161513106045_POL_CC_CODE_DESC']/../span";
 	/** @locatorType Xpath */
-	public static final String TradePercentage = "//input[@id='P161513106045_POL_TRD_DISC_PCT']/../span";
+	public static final String TradePercentage = "//span[@data-testid='POL_TRD_DISC_PCT']";
 	/** @locatorType Xpath */
 	public static final String TradeAssembleValue = "//input[@id='P161513106045_POL_TRD_ASSBL_VAL']/../span";
 	/** @locatorType Xpath */
@@ -212,13 +212,13 @@ public class POAmendmentLocators {
 	/** @locatorType Xpath */
 	public static final String SpecialAssembleValue = "//input[@id='P161513106045_POL_SPL_ASSBL_VAL']/../span";
 	/** @locatorType Xpath */
-	public static final String SpecialDiscountPercentage = "//input[@id='P161513106045_POL_SPL_DISC_PCT']/../span";
+	public static final String SpecialDiscountPercentage = "//span[@data-testid='POL_SPL_DISC_PCT']";
 	/** @locatorType Xpath */
 	public static final String SpecialDiscountAmount = "//input[@id='P161513106045_POL_SPL_DISC_AMT']/../span";
 	/** @locatorType Xpath */
 	public static final String CashAssembleValue = "//input[@id='P161513106045_POL_CASH_ASSBL_VAL']/../span";
 	/** @locatorType Xpath */
-	public static final String CashDiscountPercentage = "//input[@id='P161513106045_POL_CASH_DISC_PCT']/../span";
+	public static final String CashDiscountPercentage = "//span[@data-testid='POL_CASH_DISC_PCT']";
 	/** @locatorType Xpath */
 	public static final String CashDiscountAmount = "//input[@id='P161513106045_POL_CASH_DISC_AMT']/../span";
 	/** @locatorType Xpath */
@@ -288,7 +288,7 @@ public class POAmendmentLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String AddPoLine = "//button[@id='B3842109469851423714']";
+	public static final String AddPoLine = "//button[@data-testid='Add_PO']";
 	/** @locatorType Xpath */
 	public static final String CheckBox = "//input[@id='check_all']";
 	/** @locatorType Xpath */
@@ -319,7 +319,7 @@ public class POAmendmentLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String CloseShort = "//button[@id='B3842110667850423716']";
+	public static final String CloseShort = "//button[@data-testid='Closeshort']";
 
 	/** @locatorType Xpath */
 	public static final String CloseshortType(String text) {
@@ -332,7 +332,7 @@ public class POAmendmentLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String CancelDoc = "//button[@id='B3842110217324423714']";
+	public static final String CancelDoc = "//button[@data-testid='Cancel']";
 
 	/** @locatorType Xpath */
 	public static final String Item(String text) {
@@ -340,9 +340,9 @@ public class POAmendmentLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String HeaderCheckbox = "//label[@for='P1615131168_HEAD_LINE_0']";
+	public static final String HeaderCheckbox = "(//input[@data-testid='P1615131168_HEAD_LINE']/following-sibling::label)[1]";
 	/** @locatorType Xpath */
-	public static final String LineCheckbox = "//label[@for='P1615131168_HEAD_LINE_1']";
+	public static final String LineCheckbox = "(//input[@data-testid='P1615131168_HEAD_LINE']/following-sibling::label)[2]";
 
 	/** @locatorType Xpath */
 	public static final String POANumberCancelStatus(String POno) {

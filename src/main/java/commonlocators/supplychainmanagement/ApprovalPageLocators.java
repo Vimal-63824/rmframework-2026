@@ -25,7 +25,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ToastCloseIcon = "//button[@title='Close']";
 	/** @locatorType Xpath */
-	public static final String SearchTableResult = "//table[@id='26244491392720942738_orig']/tbody/tr[2]/td[1]";
+	public static final String SearchTableResult = "//table[@id='26246932244479633564_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Id */
 	public static final String CURRENCY = "P161513106044_POH_CURRENCY_DISPLAY";
 	/** @locatorType Id */
@@ -35,9 +35,9 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String BackButton = "//button[@id='B720942771947006229']";
 	/** @locatorType Xpath */
-	public static final String ApproveProcessButton = "//button[@id='B6042422688967462464']";
+	public static final String ApproveProcessButton = "//button[@id='B6044863540726153290']";
 	/** @locatorType Xpath */
-	public static final String Backicon = "//button[@title='Back']/span";
+	public static final String Backicon = "//button[@id='B6829351347645011143']/span";
 
 	/** @locatorType Xpath */
 	public static final String PODetailsInfoBtn(String PONumber) {
@@ -89,5 +89,10 @@ public class ApprovalPageLocators {
 	public static final String SalesCataogField = "//span[text()='SALES CATALOG PRICE']";
 	/** @locatorType Xpath */
 	public static final String SearchBoxWorkType = "//*[@id='PopupLov_236131010_P236131010_TYPE_dlg']/div[1]/input";
+	/** @locatorType Xpath */
+	public static final String SearchButton = "//button[@id='BUT']";
+	/** @locatorType Xpath */
+	public static final String VoucherDocNo = "//input[@id='P236131010_DOC_NO']" ;
+
 
 }

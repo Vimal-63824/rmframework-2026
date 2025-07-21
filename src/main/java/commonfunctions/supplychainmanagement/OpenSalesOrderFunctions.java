@@ -8,6 +8,7 @@ import static org.testng.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -515,6 +516,33 @@ public class OpenSalesOrderFunctions {
 		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 				commonFunc.getDataFromTestDataSheet("CancelStatus"));
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method used to click Tick Icon and Fill PO Date in Open SO and Store
+	 * Open SO Number
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickTickIconAndGetOpenSODocNo(ArrayList<String> DocNum) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.OpenSO_FormTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSODisplayDocNumber, ElementType.Xpath);
+			if (flag) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				logs.logging("INFO", "Open SO Tick Icon Clicked");
+				String DocNo = webDB.getTextFromElement(OpenSalesOrderLocators.OpenSODisplayDocNumber,
+						ElementType.Xpath);
+				VariableHandler.setOpenSONumber(DocNo);
+				logs.logging("INFO", "Displayed SO Document Number: " + DocNo);
+				DocNum.add(VariableHandler.getOpenSONumber());
+			}
+		}
 		assertTrue(flag);
 	}
 }

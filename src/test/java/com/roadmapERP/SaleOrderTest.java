@@ -708,6 +708,18 @@ public class SaleOrderTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Closeshort Multiple sales Orders
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	@Test(priority = 54, groups = { "SalesOrderAmendment" }, description = "Closeshort Multiple sales Orders")
+	public void closeShortMultipleSalesOrder() throws IOException {
+		flag = SalesOrdFunc.closeshortMultipleSalesOrder(commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("SalesOrder"));
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * @author Harikrishna -RMITS Is Used to set the Variable Handler To Zero After
 	 *         Finishing One Test Scenarios
 	 * @param result

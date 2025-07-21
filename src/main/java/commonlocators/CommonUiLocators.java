@@ -188,7 +188,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
-	public static final String ItemMasterAdd = "//*[@id=\"B1284581566305961864\"]/span";
+	public static final String ItemMasterAdd = "//*[@id='B1287636716616788407']/span";
 	/** @locatorType Xpath */
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */
@@ -208,7 +208,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String GateEntryTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[5]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingChallan = "//button[@id='B1790356342430100439']";
+	public static final String PendingChallan = "//button[@id='B1793441455940942839']";
 	/** @locatorType Xpath */
 	public static final String ProdPlan_Transaction_BillOfMaterials = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[1]";
 	/** @locatorType Xpath */
@@ -228,11 +228,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SubcontractOrder = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingSubcontractOrder = "//button[@id='B1474698600580690981']";
+	public static final String PendingSubcontractOrder = "//button[@id='B1477708597840489099']";
 	/** @locatorType Xpath */
 	public static final String GrnSco = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String PendingGrn = "//button[@id='B1188359340019632450']";
+	public static final String PendingGrn = "//button[@id='B1191369337279430568']";
 	/** @locatorType Xpath */
 	public static final String RfqTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
@@ -329,5 +329,34 @@ public class CommonUiLocators {
 	public static final String EmployeeAdjustmentScreen = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]/*/li[1]";
 	/** Locator Xpath */
 	public static final String salesRegion = "//label[text()='Sales Region']";
+	/** Locator Xpath */
+	public static final String SelectSearchTab = "//li[contains(@id,'P0_SEARCH_option_0')]";
+	/** Locator Xpath */
+	public static final String TransactionTab = "//a[text()='Transaction']/ancestor::li";
+	/** Locator Xpath */
+	public static final String ExpandAll = "//button[@id='EXP']";
+	/** Locator Xpath */
+	public static final String SalesHeader = "//h2[@id='a_Collapsible19_R1795689823716090493_heading']";
+	/** Locator Xpath */
+	public static final String CustomerSchedule = "//h3[text()='Customer Schedule Entry']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String CustomerScheduleAmendment = "//h3[text()='Cust. Schld. Amend/CS (multi)']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String SetupTab = "//a[text()='Setup']/ancestor::li";
+	/** Locator Xpath */
+	public static final String Items = "//h3[text()='Items']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String CustomerItems = "//h3[text()='Customer Item']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String OpenSO = "//h3[text()='Open SO']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String PriceList = "//h3[text()='Price List/Standard/Catalog']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String SalesOrder = "//h3[text()='Sales Order']/ancestor::li/a";
+	/** Locator Xpath */
+	public static final String SalesOrderAmendment = "//h3[text()='SO CS/Amendment']/ancestor::li/a";
+	/** @locatorType Xpath */
+	public static final String SaveButton="//button[@id='B150556062898604660']" ;
+
 
 }

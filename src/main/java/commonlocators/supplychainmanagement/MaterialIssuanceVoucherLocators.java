@@ -63,6 +63,7 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String SearchButton = "//button[@data-testid=' PendingMRSearchBar']";
 	/** @locatorType XPATH */
+
 	public static final String CheckBox = "//input[@id='check_all']";
 	/** @locatorType XPATH */
 	public static final String CreateMiButton = "//button[@data-testid='PendingMRCreateMIBtn']";
@@ -93,6 +94,7 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String VoucherNoLovButton = "//input[@data-testid='VoucherNoLovButton']/following-sibling::button";
 	/** @locatorType XPATH */
+
 	public static final String MivSearchButton = "//button[@id='B169311723934634049']";
 
 	/** @locatorType XPATH */
