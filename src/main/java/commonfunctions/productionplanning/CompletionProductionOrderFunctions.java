@@ -275,7 +275,7 @@ public class CompletionProductionOrderFunctions {
 	public void verifySearchProductionOrdeNumberAndOpenDesiredStatus(String ProdNumber, String Status) {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProductionOrderNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.TransLovButton, ProdNumber);
+			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.ProductionOrderNumber, ProdNumber);
 			flag = webDB.selectDropDownByText(CompletionProductionOrderLocators.SelectStatus, Status,
 					ElementType.Xpath);
 			if (flag) {
