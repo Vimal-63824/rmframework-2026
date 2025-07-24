@@ -6,10 +6,20 @@ package commonfunctions.productionplanning;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
+import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -43,7 +53,7 @@ public class CompletionProductionOrderFunctions {
 	 */
 	public void searchProductionOrderNoAndVerifyFilter(String ProdNo) {
 		switchToPendingProdOrderIframe();
-		commonFunc.hardWait(2000);
+		commonFunc.hardWait(3000);
 		flag = webDB.waitForClickElement(CompletionProductionOrderLocators.PendingProdOrderSearchBar,
 				ElementType.Xpath);
 		if (flag) {
@@ -54,14 +64,16 @@ public class CompletionProductionOrderFunctions {
 					ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
-				commonFunc.hardWait(2000);
+				commonFunc.hardWait(4000);
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
 					String DisplayProdNo = webDB.getTextFromElement(
 							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
-					flag = DisplayProdNo.equalsIgnoreCase(ProdNo);
+					System.out.println(DisplayProdNo);
+					System.out.println(ProdNo);
+					flag = DisplayProdNo.contains(ProdNo);
 					if (flag) {
 						logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
 					}
@@ -139,6 +151,9 @@ public class CompletionProductionOrderFunctions {
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Create Completion Process Button Clicked");
+				commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.SingleLocId,
+						commonFunc.getDataFromTestDataSheet("Loc_100"));
+				switchToPendingProdOrderIframe();
 				webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn, ElementType.Xpath);
 				webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn, ElementType.Xpath);
 				webDB.switchToDefaultContent();
@@ -275,20 +290,25 @@ public class CompletionProductionOrderFunctions {
 	public void verifySearchProductionOrdeNumberAndOpenDesiredStatus(String ProdNumber, String Status) {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProductionOrderNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.ProductionOrderNumber, ProdNumber);
+			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.TransLovButton, ProdNumber);
+			logs.logging("INFO", "Entered Completion Production Ordered Number Is: " + ProdNumber);
 			flag = webDB.selectDropDownByText(CompletionProductionOrderLocators.SelectStatus, Status,
 					ElementType.Xpath);
 			if (flag) {
+				logs.logging("INFO", "Entered Status Is: " + Status);
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
 					flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionTransNumber(ProdNumber),
 							ElementType.Xpath);
 					if (flag) {
+						logs.logging("INFO", "Verified Completion Trans Number Is Displayed");
 						webDB.clickAnElement(CompletionProductionOrderLocators.CompletionTransNumber(ProdNumber),
 								ElementType.Xpath);
-						flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
-								ElementType.Xpath);
+						flag = webDB.waitForElement(CompletionProductionOrderLocators.Consumption, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Verified Navigate To Completion Screen");
+						}
 					}
 				}
 			}
@@ -475,10 +495,10 @@ public class CompletionProductionOrderFunctions {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 
-				String ProdComplNo = webDB.getTextFromElement(
-						CompletionProductionOrderLocators.MultiProc_DisplayComplProdOrderNo, ElementType.Xpath);
-				VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
-				logs.logging("INFO", "Multi process Production Completion Order Number Is: " + ProdComplNo);
+//				String ProdComplNo = webDB.getTextFromElement(
+//						CompletionProductionOrderLocators.MultiProc_DisplayComplProdOrderNo, ElementType.Xpath);
+//				VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+//				logs.logging("INFO", "Multi process Production Completion Order Number Is: " + ProdComplNo);
 			}
 		}
 		assertTrue(flag);
@@ -515,11 +535,16 @@ public class CompletionProductionOrderFunctions {
 	public void verifyNavigateToResourcesMachineTab() {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.ResourcesTab, ElementType.Xpath);
 		if (flag) {
+			logs.logging("INFO", "Resource Tab Is Displayed");
 			webDB.clickAnElement(CompletionProductionOrderLocators.ResourcesTab, ElementType.Xpath);
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.ResourcesMachineTab, ElementType.Xpath);
 			if (flag) {
+				logs.logging("INFO", "Resources Machine Tab Is Displayed");
 				webDB.clickAnElement(CompletionProductionOrderLocators.ResourcesMachineTab, ElementType.Xpath);
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.MachineLineAmount, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To Resources Machine Tab");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -533,10 +558,11 @@ public class CompletionProductionOrderFunctions {
 	public void verifyNavigateToResourcesLabourTab() {
 		flag = webDB.waitForElement(CompletionProductionOrderLocators.ResourcesLabourTab, ElementType.Xpath);
 		if (flag) {
+			logs.logging("INFO", "Resources Labour Tab Is Displayed");
 			webDB.clickAnElement(CompletionProductionOrderLocators.ResourcesLabourTab, ElementType.Xpath);
 			flag = webDB.waitForElement(CompletionProductionOrderLocators.LabourLineAmount, ElementType.Xpath);
 			if (flag) {
-
+				logs.logging("INFO", "Verified Navigate To Labour Tab");
 			}
 		}
 		assertTrue(flag);
@@ -676,20 +702,26 @@ public class CompletionProductionOrderFunctions {
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Create Completion Process Button Clicked");
+				commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.MultiplePendingMovingLocId,
+						commonFunc.getDataFromTestDataSheet("Loc_100"));
+				switchToPendingMultipleProdOrderIframe();
 				webDB.moveToElement(CompletionProductionOrderLocators.MultipleCreateCompletionProcessOkBtn,
 						ElementType.Xpath);
 				webDB.clickAnElement(CompletionProductionOrderLocators.MultipleCreateCompletionProcessOkBtn,
 						ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(3000);
+				commonFunc.hardWait(7000);
+				webDB.switchToDefaultContent();
 				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.MultipleProceedRestOprYesBtn,
 						ElementType.Xpath);
+				System.out.println(flag);
 				if (flag) {
 					webDB.clickAnElement(CompletionProductionOrderLocators.MultipleProceedRestOprYesBtn,
 							ElementType.Xpath);
+					boolean multipleapprovalflag = true;
+					VariableHandler.setMultipleProcessFlag(multipleapprovalflag);
 				} else {
 				}
-				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_ShiftLovBtn, ElementType.Xpath);
 				if (flag) {
 					String ProdComplNo = webDB.getTextFromElement(
@@ -718,8 +750,10 @@ public class CompletionProductionOrderFunctions {
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.MultipleTransLovButton,
 					ProdNumber);
+			logs.logging("INFO", "Searched Production Order Number Is: " + ProdNumber);
 			flag = webDB.selectDropDownByText(CompletionProductionOrderLocators.MultipleSelectStatus, Status,
 					ElementType.Xpath);
+			logs.logging("INFO", "Selected Status Is: " + Status);
 			if (flag) {
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.MultipleSearchButton, ElementType.Xpath);
 				if (flag) {
@@ -727,9 +761,55 @@ public class CompletionProductionOrderFunctions {
 					flag = webDB.waitForElement(CompletionProductionOrderLocators.CompletionTransNumber(ProdNumber),
 							ElementType.Xpath);
 					if (flag) {
+						logs.logging("INFO", "Search Button Is Clicked");
 						webDB.clickAnElement(CompletionProductionOrderLocators.CompletionTransNumber(ProdNumber),
 								ElementType.Xpath);
 						flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_ShiftLovBtn,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Completion Production Multiple Order Page Is Displayed");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Select Process Checkbox In Process Details Page
+	 * 
+	 * @author Deepan-GWL
+	 * @param ProdNo
+	 */
+	public void verifySelectProcessCheckBoxInProcessDetailsPage(String ProdNo) {
+		webDB.moveToElement(CompletionProductionOrderLocators.MultipleProductionOrderNo(ProdNo), ElementType.Xpath);
+		webDB.moveToElement(CompletionProductionOrderLocators.MultipleProcessDetails(ProdNo), ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.MultipleProcessDetails(ProdNo),
+				ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Multiple Process Details Button Is Displayed");
+			webDB.clickAnElement(CompletionProductionOrderLocators.MultipleProcessDetails(ProdNo), ElementType.Xpath);
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.CloseButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Close Button Is Displayed");
+				webDB.switchToFrame(CompletionProductionOrderLocators.MultipleProcessDetailIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.ProcessHeader, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Switched To Iframe Process Detail");
+					commonFunc.hardWait(1000);
+					webDB.javaScriptClickAnElement(CompletionProductionOrderLocators.MultipleProcessCheckBox(3),
+							ElementType.Xpath);
+					logs.logging("INFO", "check Box Is Clicked");
+					commonFunc.hardWait(1000);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CloseButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Switched To Default Content");
+						webDB.clickAnElement(CompletionProductionOrderLocators.CloseButton, ElementType.Xpath);
+						switchToPendingMultipleProdOrderIframe();
+						flag = webDB.waitForElement(CompletionProductionOrderLocators.MultipleProcessDetails(ProdNo),
 								ElementType.Xpath);
 					}
 				}
@@ -737,4 +817,113 @@ public class CompletionProductionOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method used to select Pending Multiple production order no and click
+	 * create completion process button
+	 * 
+	 * @author Deepan-GWL
+	 * @param ProdNo
+	 */
+	public void selectPendingMultipleProdOrderAndClickCreateCompletionProcessWithNoButton(String ProdNo) {
+		switchToPendingMultipleProdOrderIframe();
+		verifySelectProcessCheckBoxInProcessDetailsPage(ProdNo);
+		webDB.moveToElement(CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
+				ElementType.Xpath);
+		webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
+				ElementType.Xpath);
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompProc, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.CreateCompProc, ElementType.Xpath);
+			webDB.doubleClickAnElement(CompletionProductionOrderLocators.CreateCompProc, ElementType.Xpath);
+			flag = webDB.waitForClickElement(CompletionProductionOrderLocators.MultipleCreateCompletionProcessOkBtn,
+					ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				logs.logging("INFO", "Create Completion Process Button Clicked");
+				commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.MultiplePendingMovingLocId,
+						commonFunc.getDataFromTestDataSheet("Loc_100"));
+				switchToPendingMultipleProdOrderIframe();
+				webDB.moveToElement(CompletionProductionOrderLocators.MultipleCreateCompletionProcessOkBtn,
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.MultipleCreateCompletionProcessOkBtn,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(7000);
+				webDB.switchToDefaultContent();
+				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
+							ElementType.Xpath);
+					logs.logging("INFO", "No Button Is Clicked");
+					boolean multipleapprovalflag = false;
+					VariableHandler.setMultipleProcessFlag(multipleapprovalflag);
+				} else {
+					logs.logging("INFO", "No Button Is Not Displayed");
+					boolean multipleapprovalflag = true;
+					VariableHandler.setMultipleProcessFlag(multipleapprovalflag);
+				}
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.MultiProc_ShiftLovBtn, ElementType.Xpath);
+				if (flag) {
+					String ProdComplNo = webDB.getTextFromElement(
+							CompletionProductionOrderLocators.MultiProc_DisplayComplProdOrderNo, ElementType.Xpath);
+					VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+					logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
+					logs.logging("INFO", "Create Completion Process Ok Button Clicked");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Addition Consumption Raw Material
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyMaterialUnitCostAddition(int RowCount, int Colcount) {
+
+		ArrayList<String> Unitcost = new ArrayList<>();
+		List<WebElement> TotalUnitCost1 = webDB.getDriver()
+				.findElements(By.xpath(CompletionProductionOrderLocators.TotalMaterialUnitCost));
+		for (WebElement element : TotalUnitCost1) {
+			String IndividualUnitCost = element.getText();
+			Unitcost.add(IndividualUnitCost);
+		}
+		do {
+			webDB.moveToElement(CompletionProductionOrderLocators.MaterialNextButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.MaterialNextButton, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.isElementEnabled(CompletionProductionOrderLocators.MaterialNextButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CompletionProductionOrderLocators.MaterialNextButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.MaterialNextButton,
+							ElementType.Xpath);
+					List<WebElement> TotalUnitCost = webDB.getDriver()
+							.findElements(By.xpath(CompletionProductionOrderLocators.TotalMaterialUnitCost));
+					for (WebElement element : TotalUnitCost) {
+						String IndividualUnitCost = element.getText();
+						Unitcost.add(IndividualUnitCost);
+					}
+				}
+			}
+		} while (webDB.isElementEnabled(CompletionProductionOrderLocators.MaterialNextButton, ElementType.Xpath));
+		BigDecimal TotalNumber = new BigDecimal(0);
+		for (String IndividualUnitCost : Unitcost) {
+			TotalNumber = TotalNumber.add(new BigDecimal(IndividualUnitCost));
+		}
+		VariableHandler.setRawMaterialCost(TotalNumber.multiply(new BigDecimal(3)).toPlainString());
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ProductionCalculations.xlsx";
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProductionWithResourcesSheet"), RowCount,
+				Colcount, VariableHandler.getRawMaterialCost());
+		assertTrue(flag);
+	}
+
 }

@@ -75,9 +75,9 @@ public class MaterialReceiptVoucherLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String CreateJournal = "//button[@id='B1648817004038529035']";
+	public static final String CreateJournal = "//button[@id='B1651872154349355578']";
 	/** @locatorType Xpath */
-	public static final String ViewJournal = "//button[@id='B4670098219152921908']";
+	public static final String ViewJournal = "//button[@id='B4673153369463748451']";
 	/** @locatorType Xpath */
 	public static final String MIVNumberLovButton = "//input[@data-testid='MIVNumberLovButton']/following-sibling::button";
 	/** @locatorType Xpath */

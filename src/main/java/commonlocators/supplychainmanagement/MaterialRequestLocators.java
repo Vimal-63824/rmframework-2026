@@ -15,7 +15,7 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String EmployeeLovButton = "//input[@data-testid='EmployeeLovButton']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String TickIconMaterialRequest = "//button[@id='B1149987200445046040']";
+	public static final String TickIconMaterialRequest = "//button[@id='B1153042350755872583']";
 	/** @locatorType Xpath */
 	public static final String FindSearchBtn = "//button[@data-testid='FindSearchBtn']";
 	/** @locatorType Xpath */
@@ -63,21 +63,21 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderSource = "//span[@id='P9313101001_IMRHD_REC_SOURCE_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String AddButton = "//button[@id='B3779994317478608526']";
+	public static final String AddButton = "//button[@id='B3783049467789435069']";
 	/** @locatorType Xpath */
 	public static final String ItemTableButton = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
-	public static final String ItemLovButton = "//button[@id='C3811682735420768400_lov_btn']";
+	public static final String ItemLovButton = "//button[@id='C3814737885731594943_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String RequestQuantity = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[12]";
 	/** @locatorType Xpath */
-	public static final String RequestQuantityInput = "//input[@id='C5888770709962396888']";
+	public static final String RequestQuantityInput = "//input[@id='C5891825860273223431']";
 	/** @locatorType Xpath */
 	public static final String UOM = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
 	public static final String Warehouse = "//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[8]";
 	/** @locatorType Xpath */
-	public static final String LineTickIcon = "//button[@id='B3779994596961608526']";
+	public static final String LineTickIcon = "//button[@id='B3783049747272435069']";
 	/** @locatorType Xpath */
 	public static final String ViewLineDetails = "(//div[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[last()]/td/a/span[contains(@class,'list')])";
 	/** @locatorType Xpath */

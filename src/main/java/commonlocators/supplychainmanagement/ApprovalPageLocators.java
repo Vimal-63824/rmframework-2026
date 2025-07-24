@@ -37,7 +37,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveProcessButton = "//button[@id='B6044863540726153290']";
 	/** @locatorType Xpath */
-	public static final String Backicon = "//button[@id='B6829351347645011143']/span";
+	public static final String Backicon = "//button[@id='B995904273613778252']";
 
 	/** @locatorType Xpath */
 	public static final String PODetailsInfoBtn(String PONumber) {
@@ -92,7 +92,6 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@id='BUT']";
 	/** @locatorType Xpath */
-	public static final String VoucherDocNo = "//input[@id='P236131010_DOC_NO']" ;
-
+	public static final String VoucherDocNo = "//input[@id='P236131010_DOC_NO']";
 
 }

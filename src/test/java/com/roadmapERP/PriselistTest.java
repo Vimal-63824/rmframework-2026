@@ -34,19 +34,17 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListDomesticSimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticSimilarUom();
 	}
-
 	/**
 	 * Create pricelist for domestic supplier with Disssimilar UOM directly to the
 	 * system through excel upload
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 2, groups = {
+	@Test(priority = 1, groups = {
 			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM dissimilar")
 	public void VerifyCreationOfPriceListDomesticDissimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticDissimilarUom();
 	}
-
 	/**
 	 * Create pricelist for Import supplier with Disssimilar UOM directly to the
 	 * system through excel upload
@@ -58,7 +56,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListImportSmilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListImportSimilarUom();
 	}
-
 	/**
 	 * Create pricelist for Import supplier with Disssimilar UOM directly to the
 	 * system through excel upload
@@ -70,7 +67,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListImportDissimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListImportDissimilarUom();
 	}
-
 	/**
 	 * PriceListEntryCancel
 	 * 
@@ -80,7 +76,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyPriceListEntryCancel() {
 		PriceListfunc.priceListEntryCancel();
 	}
-
 	/**
 	 * PriceListEntry Find Checking
 	 * 
@@ -90,7 +85,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCheckingOfPriceListFindScreenChecking() {
 		PriceListfunc.priceListEntryFindScreenChecking();
 	}
-
 	/**
 	 * Create Price List entry for Domestic Supplier with Stock and Supplier UOM
 	 * similar
@@ -102,7 +96,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListAmendmentDomesticSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentDomesticSimilarUom();
 	}
-
 	/**
 	 * Create Price List entry for Domestic Supplier with Stock and Supplier UOM
 	 * Dissimilar
@@ -114,7 +107,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListAmendmentDomesticDisSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentDomesticDisSimilarUom();
 	}
-
 	/**
 	 * Create Price List entry for Import Supplier with Stock and Supplier UOM
 	 * Dissimilar
@@ -126,7 +118,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListAmendmentImportSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentImportSimilarUom();
 	}
-
 	/**
 	 * Create Price List entry for Import Supplier with Stock and Supplier UOM
 	 * Dissimilar
@@ -138,7 +129,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListAmendmentImportDisSimilarUom() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentImportDisSimilarUom();
 	}
-
 	/**
 	 * Create Price List entry for Import Supplier with Stock and Supplier UOM
 	 * Dissimilar
@@ -149,12 +139,34 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListAmendmentCancel() {
 		PriceListfunc.verifyCreationOfPriceListAmendmentCancel();
 	}
-
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 12,groups = {
+	"GRN" }, description = "Check whether all the filter fields are working?")
+	public void verifyCreationOfPricelistFilterAllFieldWorking(){
+		PriceListfunc.verifyCreationOfPricelistFilterAllFieldWorking();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 13,groups = {
+	"GRN" }, description = "Check whether all the filter fields are working?")
+	public void verifyCreationOfPricelistAmdFilterAllFieldWorking(){
+		PriceListfunc.verifyCreationOfPricelistAmdFilterAllFieldWorking();
+	}
 	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Durai-RMITS
 	 * @param result
+	 * 
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result) {

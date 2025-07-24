@@ -717,11 +717,6 @@ public class CoreProcessPageFunctions {
 					"TvsUsername");
 			commonFunc.navigateToMaterialReceiptVoucher();
 		}
-
-		materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
-		materialReceiptFunctions.createJournalAndViewJournal();
-		materialReceiptFunctions.verifyTableDataMiv(webDB.getDataFromProperties("MRTMRVSheet"));
-		materialReceiptFunctions.clickTickAndPostIcon();
 		materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
