@@ -268,18 +268,21 @@ public class CustomerScheduleFunctions {
 	 *         One User To Another User
 	 * @return boolean flag
 	 */
-	public boolean forwardForApproval() {
+	public boolean forwardForApproval(String ForwardToEmployee) {
 		commonFunc.hardWait(3000);
 		if (webDB.verifyIsElementDisplayed(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath)) {
 			flag = true;
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov,
-					commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
+			String ForwardEmployee = webDB.getDomPropertyFromElement(SalesOrderLocators.ForwardPersonField,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!ForwardEmployee.equalsIgnoreCase(ForwardToEmployee)) {
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov, ForwardToEmployee);
+				commonFunc.hardWait(2000);
+				webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched To WorkFlow Frame");
+			}
 			flag = webDB.waitForElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesOrderLocators.OkButtonForward, ElementType.Xpath);
@@ -367,15 +370,12 @@ public class CustomerScheduleFunctions {
 		}
 		clickGenerateScheduleButton();
 		clickPostButton();
-		forwardForApproval();
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifyCustomerScheduleDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifyCustomerScheduleDocumentStatusApprovedWithDB();
@@ -699,15 +699,16 @@ public class CustomerScheduleFunctions {
 		}
 		clickGenerateScheduleButton();
 		clickPostButton();
-		forwardForApproval();
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSDocNumber());
+			verifyCustomerScheduleDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifyCustomerScheduleDocumentStatusApprovedWithDB();
+			}
 		}
 		return flag;
 	}
@@ -1067,15 +1068,16 @@ public class CustomerScheduleFunctions {
 		}
 		clickGenerateScheduleButton();
 		clickPostButton();
-		forwardForApproval();
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSDocNumber());
+			verifyCustomerScheduleDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifyCustomerScheduleDocumentStatusApprovedWithDB();
+			}
 		}
 		return flag;
 	}
@@ -1495,15 +1497,16 @@ public class CustomerScheduleFunctions {
 		}
 		clickGenerateScheduleButton();
 		clickPostButton();
-		forwardForApproval();
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSDocNumber());
+			verifyCustomerScheduleDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifyCustomerScheduleDocumentStatusApprovedWithDB();
+			}
 		}
 		return flag;
 	}
@@ -1868,15 +1871,16 @@ public class CustomerScheduleFunctions {
 		}
 		clickGenerateScheduleButton();
 		clickPostButton();
-		forwardForApproval();
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSDocNumber());
+			verifyCustomerScheduleDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
+			if (flag) {
+				verifyCustomerScheduleDocumentStatusApprovedWithDB();
+			}
 		}
 		return flag;
 	}
@@ -2436,14 +2440,11 @@ public class CustomerScheduleFunctions {
 		passDocumentNumberAndClickOKButton(VariableHandler.getCSDocNumber());
 		changeTypeInCSAmd(commonFunc.getDataFromTestDataSheet("CSAmdType"));
 		clickPostButtonInCSAmd();
-		salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSAmdDocno());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSAmdDocno());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSAmdDocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 		}
 		return flag;
@@ -2473,14 +2474,11 @@ public class CustomerScheduleFunctions {
 		clickLineWiseSaveButtonInCSAmd();
 //		changeTypeInCSAmd(commonFunc.getDataFromTestDataSheet("CSAmdType"));
 		clickPostButtonInCSAmd();
-		salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSAmdDocno());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSAmdDocno());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSAmdDocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 		}
 		return flag;
@@ -2511,14 +2509,11 @@ public class CustomerScheduleFunctions {
 		clickLineWiseSaveButtonInCSAmd();
 //		changeTypeInCSAmd(commonFunc.getDataFromTestDataSheet("CSAmdType"));
 		clickPostButtonInCSAmd();
-		salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSAmdDocno());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSAmdDocno());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSAmdDocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 		}
 		return flag;
@@ -2549,14 +2544,11 @@ public class CustomerScheduleFunctions {
 		addEndDateInTentativeField("30-06-2025");
 		clickLineWiseSaveButtonInCSAmd();
 		clickPostButtonInCSAmd();
-		salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-		flag = commonFunc.logoutUser();
+		flag = salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSAmdDocno());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSAmdDocno());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSAmdDocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 		}
 		return flag;
@@ -2640,15 +2632,12 @@ public class CustomerScheduleFunctions {
 		verifyUploadTemplateInCustomerSchedule(updatedFileName);
 		clickGenerateScheduleButton();
 		clickPostButton();
-		forwardForApproval();
-		flag = commonFunc.logoutUser();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifyCustomerScheduleDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getCSDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getCSDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCSDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifyCustomerScheduleDocumentStatusApprovedWithDB();

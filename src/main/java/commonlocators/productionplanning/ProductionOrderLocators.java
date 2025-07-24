@@ -67,9 +67,9 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ProdOrderPostBtn = "//button[@data-testid='ProdOrderPostBtn']";
 	/** @locatorType XPATH */
-	public static final String ExceptionTableContainer = "//div[@id='R967011785583947865_ig']";
+	public static final String ExceptionTableContainer = "//div[@id='R969944313922705858_ig']";
 	/** @locatorType XPATH */
-	public static final String ExceptionNoDataFoundContainer = "//div[@id='R967011785583947865_ig']//span[text()='No data found']";
+	public static final String ExceptionNoDataFoundContainer = "//div[@id='R969944313922705858_ig']//span[text()='No data found']";
 	/** @locatorType XPATH */
 	public static final String DisplayOrderQuantityInput = "//input[@id='P19631010001_PROHD_ORDER_QTY']";
 	/** @locatorType XPATH */

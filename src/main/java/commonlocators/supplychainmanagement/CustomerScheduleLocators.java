@@ -40,23 +40,23 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSLineWiseFirmQtyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseFirmQtyInputField = "//input[@data-testid='COLN_FRM_QTY']";
+	public static final String CSLineWiseFirmQtyInputField = "//input[@data-testid='CSLineWiseFirmQtyField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseUnitPriceField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseUnitPriceInputField = "//input[@data-testid='COLN_PRICE1']";
+	public static final String CSLineWiseUnitPriceInputField = "//input[@data-testid='CSLineWiseUnitPriceField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseMRPField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseMRPInputField = "//input[@data-testid='COLN_MRP_PRICE']";
+	public static final String CSLineWiseMRPInputField = "//input[@data-testid='CSLineWiseMRPField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseDiscField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseDiscInputField = "//input[@data-testid='COLN_DISC_PCT1']";
+	public static final String CSLineWiseDiscInputField = "//input[@data-testid='CSLineWiseDiscField']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseSaveButton = "//BUTTON[@data-testid='CS_LINE_WISE _SAVE _BUTTON']";
 	/** @Locator Xpath */
-	public static final String CSDocNumberField = "//span[@id='P19151310201_COHD_BATCH_NO_DISPLAY']";
+	public static final String CSDocNumberField = "//span[@data-testid='P19151310201_COHD_BATCH_NO']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseEndDateField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */
@@ -74,7 +74,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSBucketTypeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[19]";
 	/** @Locator Xpath */
-	public static final String CSBucketTypeDropDown = "//select[@data-testid='COLN_FRM_FREQ_TYPE']";
+	public static final String CSBucketTypeDropDown = "//select[@data-testid='CSBucketTypeField']";
 	/** @Locator Xpath */
 	public static final String CSScheduleTypeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @Locator Xpath */
@@ -84,7 +84,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CITypeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @Locator Xpath */
-	public static final String CSAmdAddButton = "//button[@id='B20014883737691200']";
+	public static final String CSAmdAddButton = "//button[@data-testid='CSAmdAddButton']";
 	/** @Locator Xpath */
 	public static final String CSAmdLocationLov = "//button[@id='P191513102023_CAMH_PLNT_LOC_ID_lov_btn']";
 	/** @Locator Xpath */
@@ -92,15 +92,15 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdCustomerId = "//button[@id='P191513102023_CAMH_CUST_ID_lov_btn']";
 	/** @Locator Xpath */
-	public static final String CSAmdHeaderWiseSaveButton = "//button[@id='B353049989948163903']";
+	public static final String CSAmdHeaderWiseSaveButton = "//button[@data-testid='CSAmdHeaderWiseSaveButton']";
 	/** @Locator Xpath */
-	public static final String CSAmdFetchButton = "//button[@id='B353051519638163918']";
+	public static final String CSAmdFetchButton = "//button[@data-testid='CSAmdFetchButton']";
 	/** @Locator Xpath */
 	public static final String CSAmdCancelAlert = "//H6[@CLASS='succ_msg']/SPAN";
 	/** @Locator Xpath */
-	public static final String CSAmdPostButton = "//button[@id='B42474608093284910']";
+	public static final String CSAmdPostButton = "//button[@data-testid='CSAmdPostButton']";
 	/** @Locator Xpath */
-	public static final String CSAmdCancelButton = "//button[@id='B20253757746826403']";
+	public static final String CSAmdCancelButton = "//button[@data-testid='CSAmdCancelButton']";
 	/** @Locator Xpath */
 	public static final String CSAmdFetchOkButton = "//button[@id='B1']";
 	/** @Locator Xpath */
@@ -114,35 +114,35 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdLineRow = "//TR[@DATA-ID='AAATk/AAHAADqecAAD']";
 	/** @Locator Xpath */
-	public static final String CSAmdTypeDropDown = "//select[@id='C20252443377826389']";
+	public static final String CSAmdTypeDropDown = "//select[@data-testid='CSAmdTypeField']";
 	/** @Locator Xpath */
 	public static final String CSAmdSchTypeDropDown = "//select[@data-testid='CAML_FIRM_TYPE']";
 	/** @Locator Xpath */
-	public static final String CSAmdLineWiseSaveButton = "//button[@id='B24132371841146827']";
+	public static final String CSAmdLineWiseSaveButton = "//button[@data-testid='CSAmdLineWiseSaveButton']";
 	/** @Locator Xpath */
 	public static final String CSAmdTypeField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator Xpath */
 	public static final String CSAmdSchTypeField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator Xpath */
-	public static final String CSAmdDocNumberField = "//input[@id='P191513102023_CAMH_DOC_NO']";
+	public static final String CSAmdDocNumberField = "//input[@data-testid='P191513102023_CAMH_DOC_NO']";
 	/** @Locator Xpath */
 	public static final String CSAmdQtyField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @Locator Xpath */
-	public static final String CSAmdQtyInputField = "//input[@id='C360458573268043505']";
+	public static final String CSAmdQtyInputField = "//input[@data-testid='CAML_FRM_QTY']";
 	/** @Locator Xpath */
 	public static final String CSAmdPriceField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator Xpath */
 	public static final String CSAmdTentativeQtyField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
 	/** @Locator Xpath */
-	public static final String CSAmdPriceInputField = "//input[@id='C20256881262826434']";
+	public static final String CSAmdPriceInputField = "//input[@data-testid='CAML_PRICE1']";
 	/** @Locator Xpath */
-	public static final String CSAmdTentativeQtyInputField = "//input[@id='C360457737543043496']";
+	public static final String CSAmdTentativeQtyInputField = "//input[@data-testid='CSAmdTentativeQtyInputField']";
 	/** @Locator Xpath */
 	public static final String CSAmdTentativeDateInputField = "//input[@id='C360457911114043498_input']";
 	/** @Locator Xpath */
 	public static final String CSAmdTentaiveDateField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */
-	public static final String CSTemplateUploadButton = "//button[@id='B2075392021622456501']";
+	public static final String CSTemplateUploadButton = "//button[@data-testid='CS_HEADER_WISE_UPLOAD_TEMPLATE_BUTTON']";
 	/** @Locator Xpath */
 	public static final String CSFileInputField = "//input[@id='P19151310201_BRN_BROWSE_input']";
 	/** @Locator Xpath */

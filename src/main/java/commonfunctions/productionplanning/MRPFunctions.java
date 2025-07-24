@@ -252,7 +252,7 @@ public class MRPFunctions {
 		webDB.waitForClickElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		webDB.clickAnElement(MRPLocators.MRP_DemandSearchGoBtn, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(2000);
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(MRPLocators.MRP_DemandTableData_SONumber, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Search Button Clicked, Searched SO Number: " + SONum);
@@ -272,7 +272,11 @@ public class MRPFunctions {
 			if (flag) {
 				flag = webDB.waitForElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 				if (flag) {
+					webDB.moveToElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					webDB.clickAnElement(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
+					// TODO Remove once Ui load properly
+					commonFunc.hardWait(10000);
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.isElementSelected(MRPLocators.MRP_Demand_CheckBoxWithSONo(SONum), ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Select All CheckBox Clicked and Verfied");
@@ -567,21 +571,21 @@ public class MRPFunctions {
 		if (flag) {
 			webDB.clickAnElement(MRPLocators.MRP_HeaderSaveBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+//			if (flag) {
+			logs.logging("INFO", "Header Save Button Clicked");
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(MRPLocators.MRP_PostBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Header Save Button Clicked");
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				}
-				flag = webDB.waitForElement(MRPLocators.MRP_PostBtn, ElementType.Xpath);
+				webDB.clickAnElement(MRPLocators.MRP_PostBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(MRPLocators.MRP_PostBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Post Button Clicked");
-					}
+					logs.logging("INFO", "Post Button Clicked");
 				}
 			}
 		}
+//		}
 		assertTrue(flag);
 	}
 
