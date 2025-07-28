@@ -1,6 +1,7 @@
 package commonlocators.supplychainmanagement;
 
 public class SalesPriceListLocators {
+
 	/** @locatorType Xpath */
 	public static final String PRICEStdCatalogNode = "//a[text()='Price List/Standard/Catalog']";
 	/** @locatorType Xpath */
@@ -8,11 +9,11 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String PriceList = "//span[text()='Price List']";
 	/** @locatorType Xpath */
-	public static final String PlusButton = "//button[@id='B6926130547167881701']";
+	public static final String PlusButton = "//button[@data-testid='add']";
 	/** @locatorType Xpath */
 	public static final String LocationLovButton = "//button[@id='C6927543945996873562_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PriceListPfx = "//button[@id='C1356999248353367831_lov_btn']";
+	public static final String PriceListPfx = "//button[@id='C925489020389137917_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String PricePfxFiled = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
@@ -20,22 +21,17 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String CustomerFieldLov = "//button[@id='C6927509919195873520_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String ItemField = "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[7]";
+	public static final String ItemField = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
 	public static final String ItemFieldLov = "//button[@id='C6951393780705646997_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SalesPrice = "//input[@data-testid='CPL_SALES_PRICE']";
+	public static final String SalesPrice = "//input[@data-testid='SalesPrice']";
 	/** @locatorType Xpath */
-	public static final String SalesDiscPercent = "//input[@data-testid='CPL_DISC_PCT']";
+	public static final String SalesDiscPercent = "//input[@data-testid='SalesDiscPercent']";
 	/** @locatorType Xpath */
-	public static final String EffiticeFrom = "//input[@id='C6925616584058363047_input']";
+	public static final String EffiticeFrom = "//input[@id='C6927517929604873531_input']";
 	/** @locatorType Xpath */
-	public static final String EffiticeTo = "//input[@id='C6925617612575363047_input']";
-	/** @locatorType Xpath */
-	public static final String SaveButton = "//*[@id='B1136656890090427901']";
-	/** @locatorType Xpath */
-	public static final String SearchIcon = "//button[@id='B1761097005543648825']";
-
+	public static final String EffiticeTo = "//input[@id='C6927518958121873531_input']";
 	/** @locatorType Xpath */
 	public static final String SalesPriceFields(int i) {
 		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[11] ";
@@ -44,36 +40,47 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String SalesDiscFields(int i) {
 		return " //*[@id=\'SO_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[12] ";
+
 	}
 
 	/** @locatorType Xpath */
 	public static final String EffDateField(int i) {
-		return "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[16]";
+		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[16]";
+
 	}
 
 	/** @locatorType Xpath */
 	public static final String EffDateTo(int i) {
-		return "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[17]";
+		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[17]";
+
 	}
 
 	/** @locatorType Xpath */
+	public static final String SaveButton = "//button[@id='B1136656890090427901']";
+	/** @locatorType Xpath */
+
+	/** @locatorType Xpath */
+	public static final String SearchIcon = "//BUTTON[@id='B1762998351090159309']";
+
+	/** @locatorType Xpath */
 	public static final String Documentno(int i) {
-		return "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
+		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String postButton(int i) {
-		return " //*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13] ";
+		return " //*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13] ";
+
 	}
 
 	/** @locatorType Xpath */
-	public static final String postBtnField = "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[13]";
+	public static final String postBtnField = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[13]";
 	/** @locatorType Xpath */
-	public static final String postBtnn = "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[13]/a/span";
+	public static final String postBtnn = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[13]/a/span";
 	/** @locatorType Xpath */
-	public static final String Docno = "//*[@id=\"C6925606525131363033\"]";
+	public static final String Docno = "//*[@id='C6925606525131363033']";
 	/** @locatorType Xpath */
-	public static final String SearchButtoninFindPage = "//button[@id='B1249682153685311228']";
+	public static final String SearchButtoninFindPage = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
 	public static final String SearchBoxFind = "//input[@id='PCS_search_field']";
 	/** @locatorType Xpath */
@@ -95,15 +102,15 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String PriceListFlagFindPage = "//label[@id='P1915131012_PRICE_LIST_LABEL']";
 	/** @locatorType Xpath */
-	public static final String PriceListHyperLink = "#\\31 251726598233886012_orig > tbody > tr:nth-child(2) > td:nth-child(4) > a";
+	public static final String PriceListHyperLink = "(//table[@id='1253627943780396496_orig']//tr/td[4])[1]" ;
 	/** @locatorType Xpath */
-	public static final String AmdendButton = "#SO_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(14) > a";
+	public static final String AmdendButton = "//*[@id='SO_ig_grid_vc']//div[3]/table/tbody/tr/td[14]/a";
 	/** @locatorType Xpath */
 	public static final String CloseDataAmdend = "//*[@id='P3670210201_DA_AMD_DATE_input']";
 	/** @locatorType Xpath */
 	public static final String adjustmentFrame = "//*[@id='apex_dialog_1']/iframe";
 	/** @locatorType Xpath */
-	public static final String okButton = "//button[@id='B1769961232587977143']";
+	public static final String okButton = "//button[@data-testid='OK_Amnt']";
 	/** @locatorType Xpath */
 	public static final String CancelButton = "#SO_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(21) > a";
 	/** @locatorType Xpath */
@@ -123,7 +130,7 @@ public class SalesPriceListLocators {
 	/** @Locator XPATH */
 	public static final String SalesPriceDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[11]";
 	/** @Locator XPATH */
-	public static final String DiscPercentDb = "//*[@id=\"SO_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[12]";
+	public static final String DiscPercentDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[12]";
 	/** @Locator XPATH */
 	public static final String AmdNoDb = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[18]";
 }

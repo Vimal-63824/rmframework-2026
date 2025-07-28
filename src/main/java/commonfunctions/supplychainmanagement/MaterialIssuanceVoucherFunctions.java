@@ -369,11 +369,12 @@ public class MaterialIssuanceVoucherFunctions {
 		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.ToastMessagePopup, ElementType.Xpath, 60);
 		if (flag) {
 			String MessagePopup = webDB.getTextFromElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
-			Pattern pattern = Pattern.compile("DC\\d{2}-\\d{4}-\\d{5}");
+			System.out.println(MessagePopup);
+			Pattern pattern = Pattern.compile("DC Created.-([A-Z0-9/-]+)");
 			Matcher matcher = pattern.matcher(MessagePopup.trim());
 			if (matcher.find()) {
-				System.out.println("Extracted Number: " + matcher.group());
-				ChallanNo = matcher.group();
+				System.out.println("Extracted Number: " + matcher.group(1));
+				ChallanNo = matcher.group(1);
 				logs.logging("INFO", "Delivery Challan Number Is: " + ChallanNo);
 				VariableHandler.setDCNumber(ChallanNo);
 			} else {

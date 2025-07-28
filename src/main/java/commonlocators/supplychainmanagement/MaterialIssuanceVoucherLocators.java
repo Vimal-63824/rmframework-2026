@@ -78,9 +78,9 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String ViewJournal = "//button[@data-testid='ViewJournal']";
 	/** @locatorType XPATH */
-	public static final String DebitTable = "//table[@id='4579198317374253820_orig']/tbody/tr[last()]/td[last()-1]";
+	public static final String DebitTable = "//table[@id='4581639169132944646_orig']/tbody/tr[last()]/td[last()-1]";
 	/** @locatorType XPATH */
-	public static final String CreditTable = "//table[@id='4579198317374253820_orig']/tbody/tr[last()]/td[last()]";
+	public static final String CreditTable = "//table[@id='4581639169132944646_orig']/tbody/tr[last()]/td[last()]";
 	/** @locatorType XPATH */
 	public static final String ViewJournalFrame = "//iframe[@title='View Journal']";
 	/** @locatorType XPATH */

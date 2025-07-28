@@ -6,21 +6,21 @@ package commonlocators.supplychainmanagement;
  */
 public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
-	public static final String PurchaseIDHeader = "//span[contains(@id,'PRH_RQST_NO_DISPLAY')]";
+	public static final String PurchaseIDHeader = "//span[@data-testid='PR_DOC_NO_TEXT']";
 	/** @locatorType Xpath */
-	public static final String PRLocationButton = "//button[contains(@id,'PRH_PLNT_LOC_ID')]";
+	public static final String PRLocationButton = "//input[@data-testid='PR_LOC_ID_SELECTION']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PRCPCCodeButton = "//button[contains(@id,'PRH_CC_CODE')]";
+	public static final String PRCPCCodeButton = "//input[@data-testid='PR_CPC_CODE_SELECTION']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PRTypeSelect = "//select[contains(@id,'PRH_REC_SOURCE')]";
+	public static final String PRTypeSelect = "//select[@data-testid='PR_TYPE_SELECTION']";
 	/** @locatorType Xpath */
-	public static final String PRDepartmentSelect = "//select[contains(@id,'PRH_RQST_DEPT_ID')]";
+	public static final String PRDepartmentSelect = "//select[@data-testid='PR_DEPARTMENT_SELECTION']";
 	/** @locatorType Xpath */
-	public static final String PRRequesterSelect = "//select[contains(@id,'PRH_REQSTR_ID')]";
+	public static final String PRRequesterSelect = "//select[@data-testid='PR_REQUESTER_SELECTION']";
 	/** @locatorType Xpath */
-	public static final String PRPrefixSelect = "//button[@id='P161513103_PRH_RQST_PFX_lov_btn']";
+	public static final String PRPrefixSelect = "//input[@data-testid='PR_PREFIX_SELECTION']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_PRNoButton = "//button[contains(@id,'DOC_NO')]";
+	public static final String FindPR_PRNoButton = "//input[@data-testid='PR_FIND_PR.NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String FindSearchButton = "//button[@testid='PR_SEARCH_ICON']";
 	/** @locatorType Xpath */
@@ -55,27 +55,27 @@ public class PurchaseRequestLocators {
 	public static final String ItemDataSearchFirstResult = "//tr/td[1][contains(@data-id,'FG00011')]";
 
 	/** @locatorType Xpath */
-	public static final String FindPR_LocIDBtn = "//button[contains(@id,'LOCATION')]";
+	public static final String FindPR_LocIDBtn = "//input[@data-testid='PR_FIND_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_UnitBtn = "//button[contains(@id,'PLNT_lov')]";
+	public static final String FindPR_UnitBtn = "//input[@data-testid='PR_FIND_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_ItemBtn = "//button[contains(@id,'PROD_ID')]";
+	public static final String FindPR_ItemBtn = "//input[@data-testid='PR_FIND_ITEM']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_RequesterBtn = "//button[contains(@id,'REQ_ID')]";
+	public static final String FindPR_RequesterBtn = "//input[@data-testid='PR_FIND_REQUESTER']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_ClassBtn = "//button[contains(@id,'CLASS')]";
+	public static final String FindPR_ClassBtn = "//input[@data-testid='PR_FIND_CLASS']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_SubclassBtn = "//button[contains(@id,'SUBCLS')]";
+	public static final String FindPR_SubclassBtn = "//input[@data-testid='PR_FIND_SUBCLASS']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_SOPrjRefBtn = "//button[contains(@id,'SO_SCHLD_DESC')]";
+	public static final String FindPR_SOPrjRefBtn = "//input[@data-testid='PR_FIND_Prj-Ref(SO)']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_WHDeptBtn = "//button[contains(@id,'STORE_ID')]";
+	public static final String FindPR_WHDeptBtn = "//input[@data-testid='PR_FIND_WAREHOUSE-DEPT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPR_MRPNoBtn = "//button[contains(@id,'MRP_NO')]";
+	public static final String FindPR_MRPNoBtn = "//input[@data-testid='PR_FIND_MRP-NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String FindPR_PRTypeSelect = "//select[contains(@id,'DOC_TYPE')]";
 	/** @locatorType Xpath */
-	public static final String FindPR_PRStatusSelect = "//select[contains(@id,'STATUS')]";
+	public static final String FindPR_PRStatusSelect = "//select[@data-testid='PR_FIND_STATUS']";
 	/** @locatorType Xpath */
 	public static final String FindPR_ReqDateFROMINPUT = "//input[contains(@id,'REQ_DATE_FROM_input')]";
 	/** @locatorType Xpath */
@@ -83,7 +83,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PR_TableViewCountSelect = "//select[@id='ld_row_select']";
 	/** @locatorType Xpath */
-	public static final String PR_Cancelbtn = "//button[@id='B4691386861259104744']";
+	public static final String PR_Cancelbtn = "//button[@data-testid='PR_CANCEL_BUTTON']";
 
 	/** @locatorType Xpath */
 	public static final String PR_LineDeleteIconWithData(String Text) {
@@ -97,7 +97,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PR_UploadedFileText = "//div[contains(@id,'FILE_DROPZON')]//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
-	public static final String PR_UploadOkBtn = "//button[@id='B1122765554844427422']";
+	public static final String PR_UploadOkBtn = "//button[@id='B1125775552104225540']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_AddNewBtn = "//button[@title='Add']";
 	/** @locatorType Xpath */
@@ -111,7 +111,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_Reference = "//input[contains(@id,'PCH_REF')]";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_TickIcon = "//button[@id='B1765045895689011518']";
+	public static final String PRCloseShort_TickIcon = "//button[@id='B1768055892948809636']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */

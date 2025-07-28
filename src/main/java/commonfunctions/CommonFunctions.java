@@ -236,11 +236,11 @@ public class CommonFunctions {
 	public void searchAndSelectValueInFilters(String locator, String Value) {
 		flag = webDB.waitForElement(locator, ElementType.Xpath);
 		if (flag) {
-//			webDB.moveToElement(locator, ElementType.Xpath);
+			webDB.moveToElement(locator, ElementType.Xpath);
 			flag = webDB.clickAnElement(locator, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToDefaultContent();
-//				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
 				List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 				a: for (int i = 0; i < searchBar.size(); i++) {
 					WebElement element = searchBar.get(i);
@@ -263,7 +263,7 @@ public class CommonFunctions {
 				}
 				Assert.assertTrue(flag);
 				// TODO WAIT_LOAD_TIME (will remove future)
-//				hardWait(1500);
+				hardWait(1500);
 				try {
 					List<WebElement> SearchBarIcon = webDB.getDriver()
 							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
@@ -283,7 +283,7 @@ public class CommonFunctions {
 					flag = false;
 				}
 				// TODO WAIT_LOAD_TIME (will remove future)
-//				hardWait(2000);
+				hardWait(2000);
 				checkRefreshCellsDisappear();
 				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));

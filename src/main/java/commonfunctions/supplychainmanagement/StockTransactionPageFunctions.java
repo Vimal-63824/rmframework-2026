@@ -216,4 +216,47 @@ public class StockTransactionPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method Is Used To Verify Stock SFG Transaction
+	 * 
+	 * @author Deepan-GWL
+	 * @param Number
+	 */
+	public void verifyStockSFGTransaction(String Number) {
+		flag = webDB.waitForElement(StockTransactionPageLocators.SFGTransaction, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(StockTransactionPageLocators.SFGTransaction, ElementType.Xpath);
+			flag = webDB.waitForElement(StockTransactionPageLocators.SFGGenerateButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(StockTransactionPageLocators.SFGGenerateButton, ElementType.Xpath);
+				flag = webDB.waitForElement(StockTransactionPageLocators.SearchField, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(StockTransactionPageLocators.SearchField, Number, ElementType.Xpath);
+					flag = webDB.waitForElement(StockTransactionPageLocators.GoButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(StockTransactionPageLocators.GoButton, ElementType.Xpath);
+						flag = webDB.waitForElement(StockTransactionPageLocators.RemoveFilter, ElementType.Xpath);
+						if (flag) {
+							List<WebElement> element = webDB.getDriver()
+									.findElements(By.xpath(StockTransactionPageLocators.SFGWareHouse));
+							List<WebElement> UnitCost = webDB.getDriver()
+									.findElements(By.xpath(StockTransactionPageLocators.SFGUnitCost));
+							flag = false;
+							for (int i = 0; i < element.size(); i++) {
+								if (element.get(i).getText()
+										.equals(commonFunc.getDataFromTestDataSheet("WIPU100_WH"))) {
+									if (UnitCost.get(i).getText().equals(VariableHandler.getCompletionFgUnitCost())) {
+										flag = true;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }
