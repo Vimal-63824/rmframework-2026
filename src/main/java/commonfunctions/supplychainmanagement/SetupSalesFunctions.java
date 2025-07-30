@@ -7,6 +7,7 @@ import org.apache.poi.poifs.dev.POIFSViewEngine;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.SalesCatalogueLocators;
 import commonlocators.supplychainmanagement.SetupSalesLocators;
 import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
@@ -21,7 +22,8 @@ public class SetupSalesFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 
-	/**Creates Sales Setup
+	/**
+	 * Creates Sales Setup
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -137,7 +139,9 @@ public class SetupSalesFunctions {
 			webDB.pressTabKey();
 		}
 	}
-	/**Creates Sales SubTerritory
+
+	/**
+	 * Creates Sales SubTerritory
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param Itm
@@ -148,12 +152,12 @@ public class SetupSalesFunctions {
 			SalesSubTerritory = "10";
 		}
 		String SimItemId = Itm + SalesSubTerritory;
-		
+
 		flag = webDB.waitForElement(SetupSalesLocators.SubTerritoryField, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.javaScriptClickAnElement(SetupSalesLocators.SubTerritoryField, ElementType.Xpath);
 			webDB.sendTextToAnElement(SetupSalesLocators.SubTerritoryInput, SalesSubTerritory, ElementType.Xpath);
-			logs.logging("INFO", "Successfully Creates a Subterritory " + SalesSubTerritory) ;
+			logs.logging("INFO", "Successfully Creates a Subterritory " + SalesSubTerritory);
 		}
 		assertTrue(flag);
 	}
@@ -220,7 +224,8 @@ public class SetupSalesFunctions {
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(SetupSalesLocators.SalesRegionFielddoc, ElementType.Xpath);
 		if (flag) {
-			String SalesRegionText = webDB.getTextFromElement(SetupSalesLocators.SalesRegionFielddoc, ElementType.Xpath);
+			String SalesRegionText = webDB.getTextFromElement(SetupSalesLocators.SalesRegionFielddoc,
+					ElementType.Xpath);
 			VariableHandler.setSalesRegionText(SalesRegionText);
 			logs.logging("info", "Get Price List Document no " + VariableHandler.getSalesRegionText());
 			commonFunc.hardWait(2000);
@@ -261,8 +266,6 @@ public class SetupSalesFunctions {
 			commonFunc.hardWait(2000);
 		}
 	}
-	
-	
 
 	/**
 	 * Insert Sales Region Sales Zone Tap
@@ -349,54 +352,56 @@ public class SetupSalesFunctions {
 		}
 		assertTrue(flag);
 	}
-	
-	/**Insert Sales Zone In SubTerriTory Tab
+
+	/**
+	 * Insert Sales Zone In SubTerriTory Tab
 	 * 
 	 * @author Kowshik-RMITS
 	 */
 	public void InsertSalesZoneInSubTerritoryTab() {
-		
+
 		webDB.pressTabKey();
-		commonFunc.searchAndSelectValueInFilters(SetupSalesLocators.SalesZoneLovSubTerritoryField,VariableHandler.getSalesZoneText());
+		commonFunc.searchAndSelectValueInFilters(SetupSalesLocators.SalesZoneLovSubTerritoryField,
+				VariableHandler.getSalesZoneText());
 		flag = webDB.waitForElement(SetupSalesLocators.SubTerritoryManagerLov, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Successfully Inserted a Manager " + VariableHandler.getSalesZoneText());
 		}
 		assertTrue(flag);
 	}
-	/**Insert SubTerritory Manager 
+
+	/**
+	 * Insert SubTerritory Manager
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param SalesRegionManager
 	 */
 	public void insertSubTerritoryManagerLovField(String SalesRegionManager) {
 		webDB.pressTabKey();
-		commonFunc.searchAndSelectValueInFilters(SetupSalesLocators.SubTerritoryManagerLov,  SalesRegionManager);
+		commonFunc.searchAndSelectValueInFilters(SetupSalesLocators.SubTerritoryManagerLov, SalesRegionManager);
 		flag = webDB.waitForElement(SetupSalesLocators.SaveButtonInSubTerritory, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Successfully Inserted a Manager " + SalesRegionManager);
 		}
 		assertTrue(flag);
 	}
-	/**Click Save Button In SubTerritory
+
+	/**
+	 * Click Save Button In SubTerritory
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void clickSaveButtonInSubTerritory() {		
+	public void clickSaveButtonInSubTerritory() {
 		flag = webDB.waitForElement(SetupSalesLocators.SaveButtonInSubTerritory, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.javaScriptClickAnElement(SetupSalesLocators.SaveButtonInSubTerritory, ElementType.Xpath);
-			flag = webDB.waitForElement(SetupSalesLocators.SalesPersonLabel, ElementType.Xpath);
-			if(flag) {
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
 				logs.logging("INFO", "Successfully Click a Save Button");
 			}
-			
+
 		}
 		assertTrue(flag);
 	}
-	
-	
-}
-	
-	
 
+}

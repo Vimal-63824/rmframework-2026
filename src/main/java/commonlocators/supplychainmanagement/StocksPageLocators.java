@@ -25,7 +25,7 @@ public class StocksPageLocators {
 	/** @locatorType Xpath */
 	public static final String FilterItemsearch = "//input[@id='HUJ_sort_widget_search_field']";
 	/** @locatorType Xpath */
-	public static final String NoOfRow = "//table[@id='2161990363345258109_orig']/tbody/tr/td[1]";
+	public static final String NoOfRow = "//table[@id='2366542636707917625_orig']/tbody/tr/td[1]";
 	/** @locatorType Xpath */
 	public static final String CostNoOfRow = "//table[@id='2177268981129914442_orig']/tbody/tr/td[1]";
 	/** @locatorType Xpath */
@@ -37,12 +37,12 @@ public class StocksPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String ItemRow(int i) {
-		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[3]";
+		return "//table[@id='2366542636707917625_orig']/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String CostItemRow(int i) {
-		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[3]";
+		return "//table[@id='2366542636707917625_orig']/tbody/tr[" + i + "]/td[3]";
 	}
 
 	/** @locatorType Xpath */
@@ -52,22 +52,22 @@ public class StocksPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String WHRow(int i) {
-		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[1]";
+		return "//table[@id='2366542636707917625_orig']/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String CostWHRow(int i) {
-		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[1]";
+		return "//table[@id='2366542636707917625_orig']/tbody/tr[" + i + "]/td[1]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String StockQtyRow(int i) {
-		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[7]";
+		return "//table[@id='2366542636707917625_orig']/tbody/tr[" + i + "]/td[7]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String CostRow(int i) {
-		return "//table[@id='2161990363345258109_orig']/tbody/tr[" + i + "]/td[12]";
+		return "//table[@id='2366542636707917625_orig']/tbody/tr[" + i + "]/td[12]";
 	}
 
 }

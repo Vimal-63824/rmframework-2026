@@ -5,9 +5,12 @@ package com.roadmapERP;
  * @company Galaxy Weblinks June 2, 2025
  */
 import org.testng.Assert;
+import org.testng.ITestResult;
+
 import static org.testng.Assert.assertTrue;
+
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import commonfunctions.CommonFunctions;
 import commonfunctions.productionplanning.ProductionOrderFunctions;
 
 public class ProductionOrderTest extends RoadMapERPTest {
@@ -148,11 +151,24 @@ public class ProductionOrderTest extends RoadMapERPTest {
 
 	/**
 	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
-	 * Event as OR - Move Type - Item
+	 * Event as CQ - Move type Multiple
 	 * 
 	 * @author Deepan-GWL
 	 */
 	@Test(priority = 12, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Multiple")
+	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoCqMoveTypeMultiple() {
+		prodOrderFunc
+				.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeMultiple();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as OR - Move Type - Item
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 13, groups = {
 			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as OR - Move Type - Item")
 	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoOrMoveTypeItem() {
 		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoOrMoveTypeItem();
@@ -164,7 +180,7 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	@Test(priority = 13, groups = {
+	@Test(priority = 14, groups = {
 			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Item")
 	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoCqMoveTypeItem() {
 		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeItem();
@@ -176,10 +192,23 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	@Test(priority = 14, groups = {
+	@Test(priority = 15, groups = {
 			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
 	public void VerifyPOWithoutSORFirstOutsideOtherBothWithFoCqRoCqMoveTypeSingle() {
 		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingBothWithFoCqRoCqMoveTypeSingle();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Multiple
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 16, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Multiple")
+	public void VerifyPOWithoutSORFirstOutsideOtherBothWithFoCqRoCqMoveTypeMultiple() {
+		prodOrderFunc
+				.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingBothWithFoCqRoCqMoveTypeMultiple();
 	}
 
 	/**
@@ -188,10 +217,22 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	@Test(priority = 15, groups = {
+	@Test(priority = 17, groups = {
 			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
 	public void VerifyPOWithoutSORAllProcessBothWithFoCqRoCqMoveTypeSingle() {
 		prodOrderFunc.verifyManualProductionOrderWithoutSoAllProcessBothFOCQRoCqWithSingleType();
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Multiple
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 18, groups = {
+			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Multiple")
+	public void VerifyPOWithoutSORAllProcessBothWithFoCqRoCqMoveTypeMultiple() {
+		prodOrderFunc.verifyManualProductionOrderWithoutSoAllProcessBothFOCQRoCqWithMultipleType();
 	}
 
 	/**
@@ -199,7 +240,7 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	@Test(priority = 16, groups = {
+	@Test(priority = 19, groups = {
 			"Pending Production Queue" }, description = "How Pend. Prod. Queue (IS) is updated?")
 	public void VerifyManualProductionOrderPendingQueueForInside() {
 		prodOrderFunc.verifyManualProductionOrderPendingQueueInsideAndOutside();
@@ -211,7 +252,7 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	@Test(priority = 17, groups = {
+	@Test(priority = 20, groups = {
 			"Pending Production Queue" }, description = "How Pend. Prod. Queue (OS) is updated?")
 	public void VerifyManualProductionOrderPendingQueueForOutside() {
 		assertTrue(flag);
@@ -219,14 +260,14 @@ public class ProductionOrderTest extends RoadMapERPTest {
 		// VerifyManualProductionOrderPendingQueueForInside
 	}
 
-//
-//	/**
-//	 * Verify After Method
-//	 * 
-//	 * @param result
-//	 */
-//	@AfterMethod
-//	public void VerifyAfterMethod(ITestResult result) {
-//		commonFunc.verifyAfterMethod();
-//	}
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result) {
+		commonFunc.verifyAfterMethod();
+	}
 }

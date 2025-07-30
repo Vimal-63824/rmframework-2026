@@ -202,4 +202,31 @@ public class CompletionProductionOrderLocators {
 	public static final String Consumption = "//input[@data-display='Consumption']/following-sibling::label";
 	/** @locatorType XPATH */
 	public static final String FinishProcessName = "//span[@id='P19631031001_PT_PROCESS_DISPLAY']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleProcessName = "//div[@id='R6395198950450638961_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[3]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineAddButton = "//button[@title='Add']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineSaveButton = "//button[@id='B1243193467708894964']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineTable = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[1]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineNameTable = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineLovButton = "//input[@id='C2761760820481593017']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourAddButton = "//button[@title='Add Labar']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourSaveButton = "//button[@title='Save Labour']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourTable = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourNameTable = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourLovButton = "//input[@id='C2760687462192087715']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String ComplMultipleConsumptionTab = "//input[@id='P1963103102_TAB_1']/following-sibling::label";
+	/** @locatorType XPATH */
+	public static final String ComplMultipleConsumptionNextButton = "//div[@id='consumption_ig_grid_vc_floatingItem_dialog']/following::div[@aria-label='Pagination']/button[@title='Next']";
+
 }
