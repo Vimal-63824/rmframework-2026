@@ -62,6 +62,7 @@ public class MaterialReceiptVoucherFunctions {
 					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
+						commonFunc.clearFiltersInFindPage();
 						commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.VoucherNo, DocNo);
 						webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
@@ -558,6 +559,7 @@ public class MaterialReceiptVoucherFunctions {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					commonFunc.hardWait(3000);
+					commonFunc.clearFiltersInFindPage();
 					commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MIVNumberLovButton, DocNo);
 					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					if (flag) {
@@ -1022,4 +1024,57 @@ public class MaterialReceiptVoucherFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**
+	 * This Method Is USed To Verify Open ALready Created MRV Documents
+	 * 
+	 * @author Deepan-GWL
+	 * @param VoucherNumber
+	 */
+	public void verifyOpenAlreadyCreatedMRVDocumentsWithGRNScreen(String MRVNumber) {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MrvDocLovBtn, MRVNumber);
+			logs.logging("INFO", "MRV Document Number Is:" + MRVNumber);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocNumberSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberSearchBtn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown, ElementType.Xpath);
+				flag = webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown, ElementType.Xpath);
+				verifyToPostWithOrWithoutLocator();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is To Post MRV Document From Pending Issuance Voucher for With
+	 * And Without Locator
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyPostMaterialReceiptWithAndWithoutLocatorBasedOnApplicationControl() {
+		verifyToCreateMrvDocumentFromPendingMivWithGrnDocument();
+		getMaterialReceiptVoucherNumberFromToastMessage();
+		verifyToPostWithOrWithoutLocator();
+		try {
+			String alertText = VariableHandler.getMRVDocumentNumber();
+			System.out.println("Alert text: " + alertText);
+			String pattern = "MV100/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*MV100/\\d{5}/\\d{2}-\\d{2}";
+			if (alertText.matches(".*" + pattern + ".*")) {
+				System.out.println("Specific receipt document alert found, proceeding with the process.");
+				searchAndSelectLovForMrvDocumentFindPage();
+				commonFunc.logoutUser();
+			} else {
+				System.out.println("Other alert detected, no action taken.");
+				commonFunc.logoutUser();
+			}
+		} catch (Exception e) {
+			System.out.println("No alert appeared or other error: " + e.getMessage());
+		}
+	}
+
+
 }

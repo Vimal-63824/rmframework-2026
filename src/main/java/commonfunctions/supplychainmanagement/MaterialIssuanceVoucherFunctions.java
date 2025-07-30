@@ -497,6 +497,7 @@ public class MaterialIssuanceVoucherFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending MR Iframe Is Displayed");
 				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
+				commonFunc.clearFiltersInFindPage();
 				commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
 				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);

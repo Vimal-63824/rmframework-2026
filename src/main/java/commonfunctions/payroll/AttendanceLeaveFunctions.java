@@ -3226,4 +3226,268 @@ public class AttendanceLeaveFunctions {
 			return false;
 		}
 	}
+	
+	/**
+	 * This method is used to Enter Loan Data with Employee
+	 * 
+	 * @author Kishore-RMITS
+	 * @param PermFromDate2
+	 * @param EmployeeDurai
+	 * @param LoanTypes
+	 * @param LoanReference
+	 */
+	public void LoanRequestEntry(String PermFromDate1, String EmployeeDurai, String LoanTypes, String LoanReference) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Loan Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestEntryRequestDate, ElementType.Xpath);
+				if (flag) {
+					webDB.clearText(AttendanceLeaveLocators.LoanRequestEntryRequestDate, ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestEntryRequestDate, PermFromDate1,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Request Date Is Entered");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestEntryEmployeeLOV,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(1000);
+							commonFunc.searchAndSelectValueInFilters(
+									AttendanceLeaveLocators.LoanRequestEntryEmployeeLOV, EmployeeDurai);
+							if (flag) {
+								logs.logging("INFO", "Employee IS Selected in Employee LOV");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestEntryLoanLOV,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(1000);
+									commonFunc.searchAndSelectValueInFilters(
+											AttendanceLeaveLocators.LoanRequestEntryLoanLOV, LoanTypes);
+									if (flag) {
+										logs.logging("INFO", "Loan  Type " + LoanTypes + " is Selected");
+										flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestReferenceField,
+												ElementType.Xpath);
+										if (flag) {
+											flag = webDB.sendTextToAnElement(
+													AttendanceLeaveLocators.LoanRequestReferenceField, LoanReference,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Loan Refernce " + LoanReference + " is Entered");
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Enter The Loan Required Details
+	 * 
+	 * @author Kishore-RMITS
+	 * @param PermFromDate2
+	 * @param LoanAmount
+	 * @param LoanInstallmentAmount
+	 * @param LoanSuretyEmployee1
+	 * @param LoanSuretyEmployee2
+	 */
+	public void LoanRequiredDetails(String PermFromDate1, String LoanAmount, String LoanInstallmentAmount,
+			String LoanSuretyEmployee1, String LoanSuretyEmployee2) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, ElementType.Xpath);
+		if (flag) {
+			webDB.clearText(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestRequiredDetailsDateField, PermFromDate1,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Loan Required Date is Entered");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					webDB.clearText(AttendanceLeaveLocators.LoanRequestAmountField, ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestAmountField, LoanAmount,
+							ElementType.Xpath);
+					logs.logging("INFO", "Loan amount is Entered");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.doubleClickAnElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
+								ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						webDB.clearText(AttendanceLeaveLocators.LoanRequestNoofInstallmentField, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
+								LoanInstallmentAmount, ElementType.Xpath);
+						logs.logging("INFO", "Installment Is Entered");
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestSuretyEmployee1,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LoanRequestSuretyEmployee1,
+									LoanSuretyEmployee1);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestSuretyEmployee2,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(
+										AttendanceLeaveLocators.LoanRequestSuretyEmployee2, LoanSuretyEmployee2);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestSaveIcon,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestSaveIcon,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Loan Request Doc is Saved");
+									}
+									flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+									if (flag) {
+										commonFunc.checkSuccessToastMessageDisappear();
+										webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocNoField,
+												ElementType.Xpath);
+										String LoanRequestDocNo = webDB.getDomPropertyFromElement(
+												AttendanceLeaveLocators.LoanRequestDocNoField, ElementType.Xpath,
+												commonFunc.getDataFromTestDataSheet("Value"));
+										VariableHandler.setLoanRequestDocNo(LoanRequestDocNo);
+										logs.logging("info",
+												"Loan Request No is:" + VariableHandler.getLoanRequestDocNo());
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check Loan Request based on Required Date
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void LoanRequestDocumentProcess() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.PermissionWorkApprovalFrame,
+					ElementType.Xpath, 45);
+			if (flag) {
+				webDB.switchToFrame(AttendanceLeaveLocators.PermissionWorkApprovalFrame, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
+						commonFunc.getDataFromTestDataSheet("KishoreValue"));
+				logs.logging("INFO", "Forward User is Selected");
+				webDB.switchToFrame(AttendanceLeaveLocators.PermissionWorkApprovalFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button Is Clicked");
+					webDB.switchToDefaultContent();
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check Loan Request Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void CheckLoanRequestFindPageWithAllLineWiseRecord() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindSearch, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindSearch, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Loan Request Find Serach Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(3000);
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Loan Request document have been clicked");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Loan Request Document Have been Cancelled");
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * This method is used To Check Loan Request based on Required Date
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckLoanRequestBasedOnRequiredDate() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateToLoanRequestScreen();
+		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
+				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
+				commonFunc.getDataFromTestDataSheet("LoanReference"));
+		LoanRequiredDetails(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
+				commonFunc.getDataFromTestDataSheet("LoanAmount"),
+				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"),
+				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee1"),
+				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee2"));
+		LoanRequestDocumentProcess();
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+				System.getProperty("HRMSelfApprovePassword"));
+		approvalFunc.navigateToApprovals();
+		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Loan Request based on Return to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckLoanRequestBasedonReturnToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateToLoanRequestScreen();
+		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
+				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
+				commonFunc.getDataFromTestDataSheet("LoanReference"));
+		LoanRequiredDetails(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
+				commonFunc.getDataFromTestDataSheet("LoanAmount"),
+				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"),
+				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee1"),
+				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee2"));
+		LoanRequestDocumentProcess();
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+				System.getProperty("HRMSelfApprovePassword"));
+		approvalFunc.navigateToApprovals();
+		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+		verifyReturnWithDocNumber(VariableHandler.getLoanRequestDocNo());
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		approvalFunc.navigateToApprovals();
+		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+		verifyReturnWithDocNumber(VariableHandler.getLoanRequestDocNo());
+		commonFunc.navigateToLoanRequestScreen();
+		CheckLoanRequestFindPageWithAllLineWiseRecord();
+		return flag;
+	}
 }

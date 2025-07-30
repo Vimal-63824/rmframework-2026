@@ -228,5 +228,13 @@ public class CompletionProductionOrderLocators {
 	public static final String ComplMultipleConsumptionTab = "//input[@id='P1963103102_TAB_1']/following-sibling::label";
 	/** @locatorType XPATH */
 	public static final String ComplMultipleConsumptionNextButton = "//div[@id='consumption_ig_grid_vc_floatingItem_dialog']/following::div[@aria-label='Pagination']/button[@title='Next']";
+	/** @locatorType XPATH */
+	public static final String Pend_ProdOrderLovBtn = "//button[@id='P33_FIND_PROD_NO_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String PendingSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
+	/** @locatorType XPATH */
+	public static final String SearchResultStatusData = "//table[@id='2775888757349079215_orig']//tbody/tr/td/div[contains(@style,'color')]";
+	/** @locatorType XPATH */
+	public static final String Pending_TableSelectAllCheckBox = "//table[@id='2554136343121425027']/tr/th//input[@id='check_all']";
 
 }

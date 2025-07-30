@@ -23,7 +23,7 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String Find_TableData_Status(String DocNo) {
-		return "//td[contains(text(),'" + DocNo + "')]/../td[13]/div";
+		return "//td[contains(text(),'" + DocNo + "')]/../td/div[contains(@style,'color')]";
 	}
 
 	/** @locatorType XPATH */

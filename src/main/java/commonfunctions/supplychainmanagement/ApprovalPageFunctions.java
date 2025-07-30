@@ -526,4 +526,40 @@ public class ApprovalPageFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * Verify Validate Details PO Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PONumber
+	 * @param ExpCurrency
+	 * @param POHType
+	 * @param UOM
+	 */
+	public void verifyValidatedetailsPoDetails(String PONumber, String ExpCurrency, String POHType) {
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForClickElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(ApprovalPageLocators.PODetailsInfoBtn(PONumber), ElementType.Xpath);
+			flag = webDB.waitForElement(ApprovalPageLocators.CURRENCY, ElementType.Id);
+			if (flag) {
+				logs.logging("INFO", "INFO Button Is Clicked ");
+				String currency = webDB.getTextFromElement(ApprovalPageLocators.CURRENCY, ElementType.Id);
+				logs.logging("INFO", "Get Text Currency Is: " + currency);
+				flag = currency.equals(ExpCurrency);
+				if (flag) {
+					logs.logging("INFO", "Verified Expected Currency With Actual Currency");
+					flag = webDB.waitForElement(ApprovalPageLocators.POTYPE, ElementType.Id);
+					if (flag) {
+						String Potype = webDB.getTextFromElement(ApprovalPageLocators.POTYPE, ElementType.Id);
+						logs.logging("INFO", "Get Text Po Type Is: " + Potype);
+						flag = Potype.equals(POHType);
+						if (flag) {
+							logs.logging("INFO", "Verified Expected PO Type With Actual PO Type");
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }
