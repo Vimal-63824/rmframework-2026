@@ -7,7 +7,7 @@ package commonlocators.productionplanning;
 public class MRPLocators {
 
 	/** @locatorType XPATH */
-	public static final String FindLinesBtn = "//button[@id='B1334407739562232708']";
+	public static final String FindLinesBtn = "//button[@id='B1337340267900990701']";
 	/** @locatorType XPATH */
 	public static final String FindMRPNoLovBtn = "//input[@data-testid='FindMRPNoLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */

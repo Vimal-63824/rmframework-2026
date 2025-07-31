@@ -396,4 +396,36 @@ public class AttendanceLeaveLocators {
 	public static final String Adj_FindDepartmentResultTable = "//table[@id='1355184171300003912_orig']//tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String Adj_FindUnitResultTable = "//table[@id='1355184171300003912_orig']//tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String LoanRequestAddButton = "//button[@data-testid='LOAN_REQ_ADD_BUTTON']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestEntryRequestDate = "//*[@id='P818121011_ELR_RQST_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestEntryEmployeeLOV = "//button[@data-testid='ELR_EMP_find_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestEntryLoanLOV = "//button[@data-testid='ELR_LOAN_find_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestReferenceField = "//Input[@data-testid='LOAN_REQ_REF']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestRequiredDetailsDateField = "//*[@id='P818121011_ELR_RQRD_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestAmountField = "//Input[@data-testid='ELR_AMOUNT']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestNoofInstallmentField = "//Input[@data-testid='ELR_INST_NO']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestSuretyEmployee1 = "//Button[@data-testid='ELR_EMP1_find_LEV_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestSuretyEmployee2 = "//Button[@data-testid='ELR_EMP2_find_EMP_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestSaveIcon = "//button[@data-testid='LOAN_REQ_CREATE_Button']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestPostIcon = "//button[@data-testid='LOAN_REQ_ENTRY_Button']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestDocNoField = "//Input[@data-testid='LOAN_REQ_NO']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestFindDocNoClick = "//*[@id='4342056657228940913_orig']/tbody/tr[2]/td[2]";
+	/** @locatorType Xpath */
+	public static final String LoanRequestFindSearch = "//button[@data-testid='LOAN_REQ_SEARCH_BUTTON']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestDocCancel = "//Button[@data-testid='LOAN_REQ_CANCEL_Button']";
 }

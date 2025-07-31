@@ -53,7 +53,7 @@ public class CompletionProductionOrderFunctions {
 	 */
 	public void searchProductionOrderNoAndVerifyFilter(String ProdNo) {
 		switchToPendingProdOrderIframe();
-		commonFunc.hardWait(3000);
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForClickElement(CompletionProductionOrderLocators.PendingProdOrderSearchBar,
 				ElementType.Xpath);
 		if (flag) {
@@ -926,4 +926,97 @@ public class CompletionProductionOrderFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This method used to create Compl Document using Prod No in Pending
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Location
+	 * @param ProdNo
+	 */
+	public void selectComplProdOrderDocUsingProdNoInPending(String Location, String ProdNo) {
+		switchToPendingProdOrderIframe();
+		commonFunc.clearFiltersInFindPage();
+		commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.Pend_ProdOrderLovBtn, ProdNo);
+		switchToPendingProdOrderIframe();
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
+					ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
+							ElementType.Xpath);
+					webDB.doubleClickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
+							ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.SingleLocId, Location);
+					switchToPendingProdOrderIframe();
+					flag = webDB.waitForClickElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+							ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						logs.logging("INFO", "Create Completion Process Button Clicked");
+						webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+								ElementType.Xpath);
+						webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+								ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
+								ElementType.Xpath);
+						if (flag) {
+							String ProdComplNo = webDB.getTextFromElement(
+									CompletionProductionOrderLocators.ComplProdOrderDisplayCompletionProdOrderNo,
+									ElementType.Xpath);
+							VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+							logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
+							logs.logging("INFO", "Create Completion Process Ok Button Clicked");
+							if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+			assertTrue(flag);
+		}
+	}
+
+	/**
+	 * This Method Is Used To Verify Search Prod Number Status
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdNumber
+	 * @param Status
+	 */
+	public void verifyCompletionProductionOrdeNumberWithDesiredStatus(String ProdNumber, String Status) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ProductionOrderNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.TransLovButton, ProdNumber);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CompletionProductionOrderLocators.SearchButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.SearchResultStatusData,
+						ElementType.Xpath);
+				if (flag) {
+					String DisplayStatus = webDB.getTextFromElement(
+							CompletionProductionOrderLocators.SearchResultStatusData, ElementType.Xpath);
+					logs.logging("INFO", "Displayed Prod.Comp Status: " + DisplayStatus);
+					logs.logging("INFO", "Expected Prod.Comp Status: " + Status);
+					flag = DisplayStatus.equalsIgnoreCase(Status);
+					if (flag) {
+						logs.logging("INFO", "Completion Prod Order Document Status Verified");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }
