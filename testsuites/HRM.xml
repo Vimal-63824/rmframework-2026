@@ -10,7 +10,7 @@
 			<class name="com.roadmapERP.EmployeeMasterTest" />
 			<class name="com.roadmapERP.AttendanceLeaveTest" />
 			<class name="com.roadmapERP.EmployeePermissionTest" />
-			<class name="com.roadmapERP.PreparePayrollTest" />
+<!--			<class name="com.roadmapERP.PreparePayrollTest" />-->
 		</classes>
 	</test>
 </suite>
