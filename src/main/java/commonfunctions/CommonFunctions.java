@@ -264,6 +264,7 @@ public class CommonFunctions {
 				Assert.assertTrue(flag);
 				// TODO WAIT_LOAD_TIME (will remove future)
 				hardWait(1500);
+				checkRefreshCellsDisappear();
 				try {
 					List<WebElement> SearchBarIcon = webDB.getDriver()
 							.findElements(By.xpath(CommonUiLocators.SearchBarIcon));
@@ -2409,7 +2410,9 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
-			flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
+			checkRefreshCellsDisappear();
+			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
+			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
 			if (flag) {
 				logs.logging("INFO", "Navigated To " + TabName);
 			} else {
@@ -2419,11 +2422,7 @@ public class CommonFunctions {
 					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Navigated To " + TabName);
-					} else {
-
 					}
-				} else {
-					flag = webDB.waitForElement(PageLocators, ElementType.Xpath);
 				}
 			}
 		}
@@ -2806,5 +2805,37 @@ public class CommonFunctions {
 	 */
 	public void navigateCustomerScheduleAmendmentScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("CustSchAmd"), CustomerScheduleLocators.CSAmdAddButton);
+	}
+	
+	/**
+	 * This Method Is Used To Employee Loan Request Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToLoanRequestScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("EmpLoanRequestScreen"), AttendanceLeaveLocators.LoanRequestAddButton);
+	}
+
+	/**
+	 * This method used to click clear icons in find page for all screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clearFiltersInFindPage() {
+		checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(CommonUiLocators.ClearFindFilterIcon, ElementType.Xpath);
+		if (flag) {
+			List<WebElement> Clearicon = webDB.getListOfElements(CommonUiLocators.ClearFindFilterIcon,
+					ElementType.Xpath);
+			for (WebElement icon : Clearicon) {
+				try {
+					icon.click();
+					checkRefreshCellsDisappear();
+				} catch (Exception e) {
+
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

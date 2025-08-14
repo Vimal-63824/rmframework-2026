@@ -5950,12 +5950,10 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct PO with Service Item for Similar UOM
 	 * 
 	 * @author PremKumar.K-RM ITS
-	 * 
-	 *
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultiple(String SheetName) {
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
-		commonFunc.navigatePurchaseOrderPageForPurchaseUser();
+		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
@@ -5988,7 +5986,6 @@ public class PurchaseOrderFunctions {
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
 			}
-
 		}
 		commonFunc.hardWait(3000);
 		verifyHeaderTickAndPost();
@@ -6000,15 +5997,13 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
-					commonFunc.getDataFromTestDataSheet("ServiceType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("ServiceType"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
-
 		}
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -6229,7 +6224,8 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
 	 * UOM(General)
 	 * 
-	 * @author PremKumar.K-RM ITS @
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
 	 * 
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(String SheetName) {
@@ -6278,13 +6274,11 @@ public class PurchaseOrderFunctions {
 			approvalFunc.navigateToApprovals();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
-					commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
-
 		}
 		assertTrue(flag);
 	}
@@ -6444,9 +6438,9 @@ public class PurchaseOrderFunctions {
 	 * This Methods Method to handle Create the PO Document for Rate
 	 * ContractItem(Material)
 	 * 
-	 * @author PremKumar.K-RMITS @
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
 	 */
-
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial(String SheetName) {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigatePurchaseOrderPage();
@@ -6482,7 +6476,6 @@ public class PurchaseOrderFunctions {
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
 			}
-
 		}
 		commonFunc.hardWait(3000);
 		verifyHeaderTickAndPost();
@@ -6494,24 +6487,22 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
-					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("MaterialType"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
-
 		}
 		assertTrue(flag);
 	}
 
 	/**
-	 * 
 	 * This Method Is Used To Verify Direct PO Domestic Supplier for material Type
 	 * with Multiple Item For UserDefined Item
 	 * 
-	 * @author PremKumar.K-RM ITs @
+	 * @author PremKumar.K-RM ITs
+	 * @throws IOException
 	 */
-
 	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 			String SheetName) {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
@@ -6562,12 +6553,11 @@ public class PurchaseOrderFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
 					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
-					commonFunc.getDataFromTestDataSheet("MaterialType"), commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("MaterialType"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
-
 		}
 		assertTrue(flag);
 	}
@@ -6576,7 +6566,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 * This Method Is Used To Verify Direct PO Domestic General with Multiple Item
 	 * 
-	 * @author PremKumar.K-RM ITS @
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
 	 */
 	public void verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem(String SheetName) {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
@@ -6621,16 +6612,13 @@ public class PurchaseOrderFunctions {
 			approvalFunc.navigateToApprovals();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
-					commonFunc.getDataFromTestDataSheet("UomNos"));
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"));
 			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
-
 		}
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -6893,10 +6881,7 @@ public class PurchaseOrderFunctions {
 	 * This Method Is Used To Verify The Discount Amount For PO Document
 	 * 
 	 * @author PremKumar.K-RM ITS
-	 * 
-	 *
 	 */
-
 	public void verifyDiscountAmountForPo(int i2, String SheetName) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
@@ -6915,7 +6900,11 @@ public class PurchaseOrderFunctions {
 			String TaxAmountCGST = PRMultipleline[i2][21];
 			String TaxAmountSGST = PRMultipleline[i2][22];
 			String TaxAmountIGST = PRMultipleline[i2][23];
+			String TaxAmountUTGST = PRMultipleline[i2][24];
+			String TaxAmountCESS = PRMultipleline[i2][26];
 			if (!ItemId.equals("")) {
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
 						commonFunc.getDataFromTestDataSheet("TradeAssessableValue")), TradeAssessbleValue);
 				logs.logging("INFO", "Trade Assessable Value Matched With DB Values For This Item " + ItemId);
@@ -6946,7 +6935,12 @@ public class PurchaseOrderFunctions {
 				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
 						commonFunc.getDataFromTestDataSheet("PoIgstAmount")), TaxAmountIGST);
 				logs.logging("INFO", "Tax Amount IGST" + TaxAmountIGST + "For This Item" + ItemId);
-
+				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("PoUtgstAmount")), TaxAmountUTGST);
+				logs.logging("INFO", "Tax Amount UTGST" + TaxAmountUTGST + "For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("PoCessAmount")), TaxAmountCESS);
+				logs.logging("INFO", "Tax Amount CESS Amount" + TaxAmountCESS + "For This Item" + ItemId);
 			}
 		}
 	}
@@ -8433,4 +8427,67 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 	}
 
+	/**
+	 * This Methods Method to handle Verify To create PO with RateContract Item for
+	 * Service Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceTypeWithIgstSupplier(String SheetName) {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location14"),
+				commonFunc.getDataFromTestDataSheet("OpenPoIgstSup"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				verifyDirectPoQtyEntered(QUANTITY);
+				verifyPoWithGrnServiceFlagChecked();
+				verifyDirectPoLineWiseSaved();
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPoIgstSup"));
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+			}
+		}
+		commonFunc.hardWait(3000);
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+					commonFunc.getDataFromTestDataSheet("CurrencyInr"),
+					commonFunc.getDataFromTestDataSheet("ServiceType"));
+			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+
+		}
+		assertTrue(flag);
+	}
 }

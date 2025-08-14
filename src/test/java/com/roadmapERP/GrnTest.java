@@ -15,7 +15,6 @@ import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import java.io.IOException;
 
 public class GrnTest extends RoadMapERPTest {
 	boolean flag = false;
@@ -43,11 +42,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * RateContract Document For General Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 2, groups = {
 			"GRN" }, description = "231 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithInspectionGeneralType() throws IOException {
+	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithInspectionGeneralType() throws Exception {
 		grnPageFunc.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralType();
 	}
 
@@ -73,11 +72,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * RateContract Document for Material Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 4, groups = {
 			"GRN" }, description = "233 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithInspectionMaterial() throws IOException {
+	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithInspectionMaterial() throws Exception {
 		grnPageFunc.poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterial();
 	}
 
@@ -105,7 +104,7 @@ public class GrnTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 6, groups = {
 			"GRN" }, description = "226 PO to GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
-	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithInspectionPlan() throws IOException {
+	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan();
 	}
 
@@ -117,7 +116,7 @@ public class GrnTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 7, groups = {
 			"GRN" }, description = "227 PO to GRN-Material-User Defined-Same Stock and Supplier UOM - WithOut Inspection Plan")
-	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithoutInspectionPlan() throws IOException {
+	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithoutInspectionPlan() throws Exception {
 		logs.logging("INFO",
 				"This Test Scenarios Is Covered Under PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithInspectionPlan");
 		// TODO Covered
@@ -133,7 +132,7 @@ public class GrnTest extends RoadMapERPTest {
 	@Test(priority = 8, groups = {
 			"GRN" }, description = "224 PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 
-	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithInspectionPlan() throws IOException {
+	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlan();
 	}
 
@@ -146,7 +145,7 @@ public class GrnTest extends RoadMapERPTest {
 	@Test(priority = 9, groups = {
 			"GRN" }, description = "225 PO to GRN-General-User Defined-Same Stock and Supplier UOM - Without Inspection Plan")
 
-	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithoutInspectionPlan() throws IOException {
+	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithoutInspectionPlan() throws Exception {
 		logs.logging("INFO",
 				"This Test Scenarios Is Covered Under PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithInspectionPlan");
 		// TODO Covered
@@ -158,11 +157,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * RateContract Document for Service Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 10, groups = {
 			"GRN" }, description = "235 PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void PoToGrnServiceRateContractSameStockandSupplierUOMWoInspectionPlan() throws IOException {
+	public void PoToGrnServiceRateContractSameStockandSupplierUOMWoInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan();
 	}
 
@@ -171,11 +170,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for General Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 11, groups = {
 			"GRN" }, description = "238 PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-	public void PotoGrnGeneralPriceListSameStockAndSupplierUOMWithInspectionPlan() throws IOException {
+	public void PotoGrnGeneralPriceListSameStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan();
 	}
 
@@ -200,11 +199,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Service Type(Price List Type)
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 17, groups = {
 			"GRN" }, description = "240 PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlan() throws IOException {
+	public void POToGRNServicePriceListSameStockaAndSupplierUOMWOInspectionPlan() throws Exception {
 		grnPageFunc.poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan();
 	}
 
@@ -213,11 +212,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for General Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 20, groups = {
 			"GRN" }, description = "245 PO to GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
-	public void PoToGrnGeneralUserDefinedStockAndSupplierDisUomWithInspectionPlan() throws IOException {
+	public void PoToGrnGeneralUserDefinedStockAndSupplierDisUomWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlan();
 	}
 
@@ -241,11 +240,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for Material Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 22, groups = {
 			"GRN" }, description = "247 PO to GRN-Material-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
-	public void PoToGrnMaterialUserDefinedStockAndSupplierDisUomWithInspectionPlan() throws IOException {
+	public void PoToGrnMaterialUserDefinedStockAndSupplierDisUomWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlan();
 	}
 
@@ -271,11 +270,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * General Rate Contract Item
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 26, groups = {
 			"GRN" }, description = "252 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
-	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithInspectionPlan() throws IOException {
+	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType();
 	}
 
@@ -284,7 +283,7 @@ public class GrnTest extends RoadMapERPTest {
 	 * General Rate Contract Item
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 27, groups = {
 			"GRN" }, description = "253 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - Without Inspection Plan")
@@ -302,11 +301,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * General Rate Contract Item
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 28, groups = {
 			"GRN" }, description = "254 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
-	public void POToGRNMaterialRateContractDifferentStockAndSupplierUOMWithInspectionPlan() throws IOException {
+	public void POToGRNMaterialRateContractDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterial();
 	}
 
@@ -315,7 +314,7 @@ public class GrnTest extends RoadMapERPTest {
 	 * Rate Contract Item
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 29, groups = {
 			"GRN" }, description = "255 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
@@ -333,11 +332,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for Material Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 30, groups = {
 			"GRN" }, description = "240 PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithInspectionPlan() throws IOException {
+	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan();
 	}
 
@@ -363,11 +362,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for General Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 32, groups = {
 			"GRN" }, description = "259 PO to GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
-	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithInspectionPlan() throws IOException {
+	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan();
 	}
 
@@ -393,11 +392,11 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for Material Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 34, groups = {
 			"GRN" }, description = "261 PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
-	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlan() throws IOException {
+	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlan();
 	}
 
@@ -428,7 +427,7 @@ public class GrnTest extends RoadMapERPTest {
 			"GRN" }, description = "296 PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 
 	public void PoToGrnGeneralUserDefinedSameStockAndSupplierUomWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled();
 	}
 
@@ -458,7 +457,7 @@ public class GrnTest extends RoadMapERPTest {
 	@Test(priority = 38, groups = {
 			"GRN" }, description = "298 PO to GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void PoToGrnMaterialUserDefinedSameStockAndSupplierUomWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGrnMaterialUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithoutQualityEnabled();
 	}
@@ -502,12 +501,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * RateContract Document For General Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 41, groups = {
 			"GRN" }, description = "303 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
 	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithoutQualityEnabledWithInspectionGeneralType()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled();
 	}
@@ -534,12 +533,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * RateContract Document for Material Type
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 43, groups = {
 			"GRN" }, description = "305 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
 	public void PoToGrnGeneralRateContractSameStockAndSupplierUOMWithInspectionMaterialWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc.poToGrnlRateContractSameStockAndSupplierUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled();
 	}
 
@@ -581,12 +580,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for General Type Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 46, groups = {
 			"GRN" }, description = "310 PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan")
 	public void PotoGrnGeneralPriceListSameStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc.poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
 	}
 
@@ -612,12 +611,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for Material Type Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 48, groups = {
 			"GRN" }, description = "312 PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
 	public void PotoGrnMateriallPriceListSameStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc.poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
 	}
 
@@ -660,12 +659,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * for General Type Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 51, groups = {
 			"GRN" }, description = "317 PO to GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection PlanWithoutQualityEnabled")
 	public void PoToGrnGeneralUserDefinedStockAndSupplierDisUomWithInspectionPlanWithoutEnabledQuality()
-			throws IOException {
+			throws Exception {
 		grnPageFunc.poToGrnGeneralUserDefinedStockAndSupplierDisUomWithAndWithoutInspectionPlanWithoutQualityEnabled();
 	}
 
@@ -690,12 +689,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * for Material Type Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 53, groups = {
 			"GRN" }, description = "319 PO to GRN-Material-User Defined-Different Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
 	public void PoToGrnMaterialUserDefinedStockAndSupplierDisUomWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithAndWithOutInspectionPlanWithoutQualityEnabled();
 		// MrvFunc.verifyPostMaterialReceiptWithAndWithoutLocator();
@@ -723,12 +722,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * General Rate Contract Item Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 55, groups = {
 			"GRN" }, description = "322 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection PlanWithout Quality Enabled")
 	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeWithoutQualityEnabled();
 	}
@@ -738,7 +737,7 @@ public class GrnTest extends RoadMapERPTest {
 	 * General Rate Contract Item Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 56, groups = {
 			"GRN" }, description = "323 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
@@ -756,12 +755,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * Material Rate Contract Item Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 57, groups = {
 			"GRN" }, description = "324 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan WithoutQuality Enabled")
 	public void POToGRNMaterialRateContractDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGrnlRateContractStockAndSupplierDifferentUOMWithAndWithoutInspectionMaterialWithoutQualityEnabled();
 	}
@@ -771,7 +770,7 @@ public class GrnTest extends RoadMapERPTest {
 	 * Rate Contract Item
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 58, groups = {
 			"GRN" }, description = "325 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan Without Quality Enabled")
@@ -789,12 +788,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for General Type Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 59, groups = {
 			"GRN" }, description = "327 PO to GRN-General-Price List-Different Stock and Supplier UOM - With Inspection PlanWithout Quality Enabled")
 	public void PotoGrnGeneralPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGrnGeneralPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
 	}
@@ -821,12 +820,12 @@ public class GrnTest extends RoadMapERPTest {
 	 * Document for Material Type Without Quality Enabled
 	 * 
 	 * @author PremKumar.K-RMITS
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	@Test(priority = 61, groups = {
 			"GRN" }, description = "329 PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan Without Quality Enabled")
 	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabled()
-			throws IOException {
+			throws Exception {
 		grnPageFunc
 				.poToGrnMaterialPriceListDifferentStockAndSupplierUOMWithandWithoutInspectionPlanWithoutQualityEnabled();
 	}

@@ -282,6 +282,90 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 		// TODO Covered in checkCompOffBasedOnReturnToApprovalRecord() Method
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * To Check Loan Request based on Required Date
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 23, groups = {
+			"Employee Loan Request" }, description = "102.To Check Loan Request based on Required Date")
+	public void checkLoanRequestBasedOnRequiredDate() {
+		flag = attendanceLeave.CheckLoanRequestBasedOnRequiredDate();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Loan Request based on No of installment and Installment Amount
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 24, groups = {
+			"Employee Loan Request" }, description = "103.To Check Loan Request based on No of installment and Installment Amount")
+	public void CheckLoanRequestBasedOnNoOfInstallmentAndInstallmentAmount() {
+		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To CheckLoan Request Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 25, groups = {
+			"Employee Loan Request" }, description = "103.To CheckLoan Request Find page with all line wise record")
+	public void ToCheckLoanRequestFindpageWithAllLineWiseRecord() {
+		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Loan Request entry with adding surety employee
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 26, groups = {
+			"Employee Loan Request" }, description = "104.To Check Loan Request entry with adding surety employee")
+	public void CheckLoanRequestEntryWithAddingSuretyEmployee() {
+		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Loan Request With all the field validations and Note alerts
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 27, groups = {
+			"Employee Loan Request" }, description = "To Check Loan Request With all the field validations and Note alerts")
+	public void CheckLoanRequestWithAllTheFieldValidationsAndNoteAlerts() {
+		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Loan Request based on forward to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 28, groups = {
+			"Employee Loan Request" }, description = "104.To Check Loan Request based on forward to approval record")
+	public void CheckLoanRequestBasedOnForwardToApprovalRecord() {
+		// TODO Covered in checkLoanRequestBasedOnRequiredDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Loan Request based on Return to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 29, groups = {
+			"Employee Loan Request" }, description = "104.To Check Loan Request based on Return to approval record")
+	public void CheckLoanRequestBasedonReturnToApprovalRecord() {
+		flag = attendanceLeave.CheckLoanRequestBasedonReturnToApprovalRecord();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Logout The Portal If Testcases Failed

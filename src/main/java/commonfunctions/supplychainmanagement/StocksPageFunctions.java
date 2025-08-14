@@ -55,9 +55,10 @@ public class StocksPageFunctions {
 					if (flag) {
 						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
-						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+						webDB.pressEnterKey();
+//						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
 							if (flag) {
@@ -87,7 +88,7 @@ public class StocksPageFunctions {
 											}
 										}
 									}
-								}
+//								}
 							}
 						}
 					}
@@ -146,9 +147,10 @@ public class StocksPageFunctions {
 					if (flag) {
 						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
-						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+						webDB.pressEnterKey();
+//						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
 							if (flag) {
@@ -174,8 +176,7 @@ public class StocksPageFunctions {
 											}
 										}
 									}
-
-								}
+//								}
 							}
 						}
 					}
@@ -210,9 +211,10 @@ public class StocksPageFunctions {
 					if (flag) {
 						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
-						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+						webDB.pressEnterKey();
+//						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
 							if (flag) {
@@ -242,8 +244,7 @@ public class StocksPageFunctions {
 											}
 										}
 									}
-
-								}
+//								}
 							}
 						}
 					}
@@ -279,9 +280,10 @@ public class StocksPageFunctions {
 					if (flag) {
 						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
-						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+//						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
+							webDB.pressEnterKey();
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
 							if (flag) {
@@ -308,7 +310,7 @@ public class StocksPageFunctions {
 											}
 										}
 									}
-								}
+//								}
 							}
 						}
 					}
