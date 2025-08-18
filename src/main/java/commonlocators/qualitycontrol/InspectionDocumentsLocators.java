@@ -11,21 +11,21 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String GoButton = "//button[@id='PEND_search_button']";
 	/** @locatorType Xpath */
-	public static final String CreateQCDoc = "//button[@id='B1']";
+	public static final String CreateQCDoc = "//button[@data-testid='Create_QC_Doc']";
 	/** @locatorType Xpath */
-	public static final String OKButton = "//button[@id='B3544221197950765660']";
+	public static final String OKButton = "//button[@data-testid='QC_OK']";
 	/** @locatorType Xpath */
 	public static final String LocationId = "//span[@id='P20171310201_TQHD_PLNT_LOC_ID_DISPLAY']";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIcon = "//button[@id='B3490118160695547080']";
+	public static final String HeaderTickIcon = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String HeaderPostIcon = "//button[@id='B3505599130370286602']";
+	public static final String HeaderPostIcon = "//button[@data-testid='Entry_Completed']";
 	/** @locatorType Xpath */
-	public static final String InspactionDocumentsNumber = "//span[@id='P20171310201_TQHD_QC_NO_DISPLAY']";
+	public static final String InspactionDocumentsNumber = "//span[@data-testid='P20171310201_TQHD_QC_NO']";
 	/** @locatorType Xpath */
 	public static final String QcDocumentsButton = "//button[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1239031076426494989']";
+	public static final String SearchButton = "//button[@data-testid='Find_line']";
 	/** @locatorType Xpath */
 	public static final String PendingInspectionFrame = "//iframe[@title='Pend. Inspection Request']";
 	/** @locatorType Xpath */
@@ -40,37 +40,37 @@ public class InspectionDocumentsLocators {
 
 	/** @locatorType Xpath */
 	public static final String InspectionStatusTableText(String Idno) {
-		return "(//a[text()='" + Idno + "']/../../td/div[contains(@style,'green')])[1]";
+		return "//a[text()='" + Idno + "']/../../td/div[contains(@style,'green')]";
 	}
 
 	/** @locatorType Xpath */
-	public static final String VoucherLov = "//*[@id='P20171310150_VOU_NO_lov_btn']";
+	public static final String VoucherLov = "//button[@id='P20171310150_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PendingInspectionSearchBtn = "//*[@id='B2195636680544488712']";
+	public static final String PendingInspectionSearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
 	public static final String PendingInspectionSelectAllBtn = "//*[@id='check_all']";
 	/** @locatorType Xpath */
-	public static final String InspectionPlanNumber = "//*[@id='P20171310201_TQHD_INSP_PLAN_NO_1']";
+	public static final String InspectionPlanNumber = "//input[@data-testid='P20171310201_TQHD_INSP_PLAN_NO_1']";
 	/** @locatorType Xpath */
-	public static final String InspectiondocumentShowMore = "//*[@id='SHOW_MORE']";
+	public static final String InspectiondocumentShowMore = "//button[@data-testid='Show_More']";
 	/** @locatorType Xpath */
-	public static final String observationTab = "//*[@id='P20171310201_TAB']/div/div/div[5]/label";
+	public static final String observationTab = "//label[@for='P20171310201_TAB_4']";
 	/** @locatorType Xpath */
 	public static final String Observationvalue = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
-	public static final String ObservationSaveBtn = "//*[@id='B2163567216713391242']";
+	public static final String ObservationSaveBtn = "//button[@data-testid='Save_variable']";
 	/** @locatorType Xpath */
-	public static final String ObservationValueInput = "//*[@id='C5659279342068436784']";
+	public static final String ObservationValueInput = "//input[@data-testid='TQOB_VALUE']";
 	/** @locatorType Xpath */
-	public static final String InspectiondocumentShowLess = "//*[@id='SHOW_LESS']/span[2]";
+	public static final String InspectiondocumentShowLess = "//button[@data-testid='Show_Less']";
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentSuccessMsg = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//*[@id='11572094511624389335_orig']/tbody/tr[2]/td[7]/a";
+	public static final String InspectionDocumentNumberDrillDown = "//*[@id=\"11575179625135231735_orig\"]/tbody/tr[2]/td[7]";
 	/** @locatorType Xpath */
-	public static final String FindPageSearchBtn = "//*[@id='B1239031076426494989']";
+	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
 
 	/** @locatorType Xpath */
 	public static final String InspectionCheckBox(int i) {
@@ -85,4 +85,11 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String ObsLineNumber = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
 
+	/** @locatorType Xpath */
+	public static final String EnterAcceptQty = "//input[@id=\"P20171310201_TQHD_ACPT_QTY\"]";
+	/** @locatorType Xpath */
+	public static final String EnterAODtQty = "//input[@id=\"P20171310201_TQHD_AOD_QTY\"]";
+
+	/** @locatorType Xpath */
+	public static final String RejtQty = "//input[@id=\"P20171310201_TQHD_REJ_QTY\"]";
 }

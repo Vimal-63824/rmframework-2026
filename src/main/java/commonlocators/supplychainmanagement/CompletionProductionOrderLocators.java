@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
-	public static final String PendingProdOrderIframe = "//iframe";//"//iframe[contains(@title,'Pend. Prod. Ord.')]";
+	public static final String PendingProdOrderIframe = "//iframe";// "//iframe[contains(@title,'Pend. Prod. Ord.')]";
 	/** @locatorType XPATH */
 	public static final String PendingProdOrderIframeCloseIcon = "//h1[text()='Pend. Prod. Ord.']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -19,7 +19,7 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String PendingProdOrder_ItemTableData = "//div[@id='PEND_content']//table/tbody/tr/td[5]";
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[14]";
+	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[15]";
 
 	/** @locatorType XPATH */
 	public static final String PendingProdOrder_SelectCheckboxTableData(String ProdNo) {

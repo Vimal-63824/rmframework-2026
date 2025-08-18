@@ -9,6 +9,8 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import org.testng.Assert;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
+import commonlocators.payroll.CommonPayrollLocators;
 import commonlocators.payroll.EmployeeAdjustmentLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
 import commonlocators.payroll.PreparePayrollLocators;
@@ -43,6 +46,7 @@ import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
+import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
@@ -2547,21 +2551,21 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-			logs.logging("INFO", "Table Input Box Is Clicked");
+//			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.clearText(InputParameter, ElementType.Xpath);
-			logs.logging("INFO", "Clear Text Field The Input Value");
+//			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
 				hardWait(1000);
 				webDB.clickAnElement(Tablespec, ElementType.Xpath);
 				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
-				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
 				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
 						getDataFromTestDataSheet("Value"));
-				logs.logging("INFO", "Get Attribute Value Is: " + value);
+//				logs.logging("INFO", "Get Attribute Value Is: " + value);
 				flag = value.contains(Enteredvalue);
 				if (flag) {
-					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
+//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
 				}
 			}
 		}
@@ -2806,14 +2810,51 @@ public class CommonFunctions {
 	public void navigateCustomerScheduleAmendmentScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("CustSchAmd"), CustomerScheduleLocators.CSAmdAddButton);
 	}
-	
+
+	/**
+	 * This Method Is Used To Add Table Lov Details
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAddTableLovDetails(String TableLocator, String LovButton, String LovValue,
+			String LovInputLocator) {
+		flag = webDB.waitForElement(TableLocator, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(TableLocator, ElementType.Xpath);
+			logs.logging("INFO", "Table Is Clicked");
+			searchAndSelectValueInFilters(LovButton, LovValue);
+			flag = webDB.waitForElement(LovInputLocator, ElementType.Xpath);
+			if (flag) {
+				String value = webDB.getAttributeFromElement(LovInputLocator, ElementType.Xpath,
+						getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Text Value from Table Is: " + value);
+				flag = value.contains(LovValue);
+				if (flag) {
+					logs.logging("INFO", "Verified Value Successfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 	/**
 	 * This Method Is Used To Employee Loan Request Screen
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToLoanRequestScreen() {
-		navigateToSearchTab(webDB.getDataFromProperties("EmpLoanRequestScreen"), AttendanceLeaveLocators.LoanRequestAddButton);
+		navigateToSearchTab(webDB.getDataFromProperties("EmpLoanRequestScreen"),
+				AttendanceLeaveLocators.LoanRequestAddButton);
+	}
+
+	/**
+	 * This Method Is Used To Navigate To Setup Leave Loan Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToSetupLeaveLoanScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("LeaveLoanSetupScreen"),
+				CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab);
 	}
 
 	/**

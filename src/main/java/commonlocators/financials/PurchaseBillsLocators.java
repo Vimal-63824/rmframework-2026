@@ -48,7 +48,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String TableData = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[8]";
 	/** @locatorType Xpath */
-	public static final String TDSU_S = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[26]";
+	public static final String TDSU_S = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[27]";
 	/** @locatorType Xpath */
 	public static final String TDSLovButton = "//button[@id='tds_lov_btn']";
 	/** @locatorType Xpath */

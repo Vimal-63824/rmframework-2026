@@ -191,7 +191,7 @@ public class GrnScoPageFunctions {
 					if (flag) {
 						String text1 = webDB.getTextFromElement(GrnScoLocators.DCNumber(1), ElementType.Xpath);
 						logs.logging("INFO", "Get Text Value Is: " + text1);
-						flag = text1.contains("DC");
+						flag = text1.contains("D");
 						if (flag) {
 							webDB.switchToDefaultContent();
 							flag = webDB.waitForElement(GrnScoLocators.ConsumptionCloseButton, ElementType.Xpath);

@@ -221,9 +221,13 @@ public class MaterialIssuanceVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void storeMaterialIssuanceNumber() {
-		String Number = webDB.getTextFromElement(MaterialIssuanceVoucherLocators.MIVNo, ElementType.Xpath);
-		logs.logging("INFO", "Get Text MIV Number Is: " + Number);
-		VariableHandler.setMIVNumber(Number);
+		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.MIVNo, ElementType.Xpath);
+		if (flag) {
+			String Number = webDB.getTextFromElement(MaterialIssuanceVoucherLocators.MIVNo, ElementType.Xpath);
+			logs.logging("INFO", "Get Text MIV Number Is: " + Number);
+			VariableHandler.setMIVNumber(Number);
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -405,6 +409,7 @@ public class MaterialIssuanceVoucherFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void checkStatusOfMaterialIssuanceNumber(String MrNo, String ExpectedStatus) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.VoucherNoLovButton, MrNo);
 		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.MivSearchButton, ElementType.Xpath);
 		if (flag) {
@@ -493,7 +498,11 @@ public class MaterialIssuanceVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending MIV Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
+			switchMaterialRequestLinesIframe();
+			commonFunc.clearFiltersInFindPage();
+			commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
+			switchMaterialRequestLinesIframe();
+			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending MR Iframe Is Displayed");
 				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
@@ -501,32 +510,33 @@ public class MaterialIssuanceVoucherFunctions {
 				commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
 				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Displayed");
+				webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Search Button Is Displayed");
-					webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
+					logs.logging("INFO", "CheckBox IS Displayed");
+					commonFunc.hardWait(3000);
+					webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+					webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "CheckBox IS Displayed");
-						commonFunc.hardWait(3000);
-						webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
-						flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+						logs.logging("INFO", "Create Mi Button Is Displayed");
+						webDB.moveToElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+						webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						switchMaterialRequestLinesIframe();
+						flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMIVButton, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "Create Mi Button Is Displayed");
-							webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+							webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMIVButton, ElementType.Xpath);
+							logs.logging("INFO", "MIV Documents Created Successfully");
 							webDB.switchToDefaultContent();
-							flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.MILocationId,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "MIV Documents Created Successfully");
-								storeMaterialIssuanceNumber();
-							}
-							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-										ElementType.Xpath);
-							}
+							storeMaterialIssuanceNumber();
+						}
+						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 						}
 					}
 				}
@@ -597,6 +607,14 @@ public class MaterialIssuanceVoucherFunctions {
 			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 		}
 		assertTrue(flag);
+	}
+
+	public void verifyClickCreateMivButton() {
+		flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMIVButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMIVButton, ElementType.Xpath);
+		}
+
 	}
 
 }

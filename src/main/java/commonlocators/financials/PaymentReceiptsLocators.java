@@ -77,7 +77,7 @@ public class PaymentReceiptsLocators {
 	/** @locatorType Xpath */
 	public static final String PendReceive_SearchBtn = "//button[@id='B1891436466362546326']";
 	/** @locatorType Xpath */
-	public static final String PendReceive_CreateBtn = "//button[@id='B1']";
+	public static final String PendReceive_CreateBtn = "//button[@id='B5']";
 	/** @locatorType Xpath */
 	public static final String PendReceive_SingleRadioBtn = "//label[@for='P3413101003_GLOBAL_TYPE_0']";
 	/** @locatorType Xpath */

@@ -29,7 +29,7 @@ public class MaterialIssuanceVoucherLocators {
 
 	/** @locatorType XPATH */
 	public static final String SearchResult_ProdOrderNo_TableData(String MRNo) {
-		return "//div[@id='PEND_content']//table/tbody/tr/td[text()='" + MRNo + "']/../td[22]";
+		return "//div[@id='PEND_content']//table/tbody/tr/td[text()='" + MRNo + "']/../td[21]";
 	}
 
 	/** @locatorType XPATH */
@@ -39,7 +39,7 @@ public class MaterialIssuanceVoucherLocators {
 
 	/** @locatorType XPATH */
 	public static final String SearchResult_FGItem_TableData(String MRNo) {
-		return "//div[@id='PEND_content']//table/tbody/tr/td[text()='" + MRNo + "']/../td[23]";
+		return "//div[@id='PEND_content']//table/tbody/tr/td[text()='" + MRNo + "']/../td[22]";
 	}
 
 	/** @locatorType XPATH */
@@ -128,4 +128,6 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String LineDetailsMachineLovBtn = "//input[@data-testid='LineDetailsMachineLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String LineDetailsIframeCloseIcon = "//iframe[@title='Line Details']/ancestor::div//button";
+	/** @locatorType XPATH */
+	public static final String CreateMIVButton = "//button[@id='B535610713637463114']";
 }

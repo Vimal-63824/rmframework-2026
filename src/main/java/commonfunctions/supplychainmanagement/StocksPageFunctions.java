@@ -59,38 +59,34 @@ public class StocksPageFunctions {
 //						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 //						if (flag) {
 //							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "No Of Item In Row Is Displayed");
-								int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
-										.size();
-								for (int i = 2; i <= totalvalue + 1; i++) {
-									flag = webDB.waitForElement(StocksPageLocators.ItemRow(i), ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "No Of Item In Row Is Displayed");
+							int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
+									.size();
+							for (int i = 2; i <= totalvalue + 1; i++) {
+								flag = webDB.waitForElement(StocksPageLocators.ItemRow(i), ElementType.Xpath);
+
+								if (flag) {
+									flag = webDB.getTextFromElement(StocksPageLocators.WHRow(i), ElementType.Xpath)
+											.contains(Warehouse);
 									if (flag) {
-										flag = webDB
-												.getTextFromElement(StocksPageLocators.ItemRow(i), ElementType.Xpath)
-												.contains(Item);
-										if (flag) {
-											flag = webDB
-													.getTextFromElement(StocksPageLocators.WHRow(i), ElementType.Xpath)
-													.contains(Warehouse);
-											if (flag) {
-												String StockQty = webDB.getTextFromElement(
-														StocksPageLocators.StockQtyRow(i), ElementType.Xpath);
-												logs.logging("INFO", "Stock Quantity For Item " + Item + " WareHouse "
-														+ Warehouse + " Is: " + StockQty);
-												Map<String, String> map = VariableHandler.getStockQty();
-												map.put(Item + Warehouse, StockQty);
-												VariableHandler.setStockQty(map);
-												flag = true;
-												break;
-											}
-										}
+										String StockQty = webDB.getTextFromElement(StocksPageLocators.StockQtyRow(i),
+												ElementType.Xpath);
+										logs.logging("INFO", "Stock Quantity For Item " + Item + " WareHouse "
+												+ Warehouse + " Is: " + StockQty);
+										Map<String, String> map = VariableHandler.getStockQty();
+										map.put(Item + Warehouse, StockQty);
+										VariableHandler.setStockQty(map);
+										flag = true;
+										break;
 									}
+								}
 //								}
 							}
 						}
+//						}
 					}
 				}
 			}
@@ -151,35 +147,36 @@ public class StocksPageFunctions {
 //						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 //						if (flag) {
 //							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "No Of Item In Row Is Displayed");
-								int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
-										.size();
-								for (int i = 2; i <= totalvalue + 1; i++) {
-									flag = webDB.waitForElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath);
-									if (flag) {
-										if (webDB.getTextFromElement(StocksPageLocators.CostItemRow(i),
-												ElementType.Xpath).equals(Item)) {
-											if (webDB.getTextFromElement(StocksPageLocators.CostWHRow(i),
-													ElementType.Xpath).equals(Warehouse)) {
-												String cost = webDB.getTextFromElement(StocksPageLocators.CostRow(i),
-														ElementType.Xpath);
-												logs.logging("INFO", "Stock Cost For Item " + Item + " In WareHouse "
-														+ Warehouse + " Is: " + cost);
-												Map<String, String> map = VariableHandler.getStockCost();
-												map.put(Item, cost);
-												VariableHandler.setStockCost(map);
-												flag = true;
-												break;
-											}
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "No Of Item In Row Is Displayed");
+							int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
+									.size();
+							for (int i = 2; i <= totalvalue + 1; i++) {
+								flag = webDB.waitForElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath);
+								if (flag) {
+									if (webDB.getTextFromElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath)
+											.equals(Item)) {
+										if (webDB.getTextFromElement(StocksPageLocators.CostWHRow(i), ElementType.Xpath)
+												.equals(Warehouse)) {
+											String cost = webDB.getTextFromElement(StocksPageLocators.CostRow(i),
+													ElementType.Xpath);
+											logs.logging("INFO", "Stock Cost For Item " + Item + " In WareHouse "
+													+ Warehouse + " Is: " + cost);
+											Map<String, String> map = VariableHandler.getStockCost();
+											map.put(Item, cost);
+											VariableHandler.setStockCost(map);
+											flag = true;
+											break;
 										}
 									}
-//								}
+								}
+
 							}
 						}
 					}
+//					}
 				}
 			}
 		}
@@ -215,35 +212,30 @@ public class StocksPageFunctions {
 //						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 //						if (flag) {
 //							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "No Of Item In Row Is Displayed");
-								int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
-										.size();
-								for (int i = 2; i <= totalvalue + 1; i++) {
-									flag = webDB.waitForElement(StocksPageLocators.ItemRow(i), ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "No Of Item In Row Is Displayed");
+							int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
+									.size();
+							for (int i = 2; i <= totalvalue + 1; i++) {
+								flag = webDB.waitForElement(StocksPageLocators.ItemRow(i), ElementType.Xpath);
+
+								if (flag) {
+									flag = webDB.getTextFromElement(StocksPageLocators.WHRow(i), ElementType.Xpath)
+											.equals(Warehouse);
 									if (flag) {
-										flag = webDB
-												.getTextFromElement(StocksPageLocators.ItemRow(i), ElementType.Xpath)
-												.equals(Item);
-										if (flag) {
-											flag = webDB
-													.getTextFromElement(StocksPageLocators.WHRow(i), ElementType.Xpath)
-													.equals(Warehouse);
-											if (flag) {
-												String StockQty = webDB.getTextFromElement(
-														StocksPageLocators.StockQtyRow(i), ElementType.Xpath);
-												logs.logging("INFO", "Stock Quantity For Item " + Item
-														+ " In WareHouse " + Warehouse + "Is: " + StockQty);
-												Map<String, String> map = VariableHandler.getAfterStockQty();
-												map.put(Item + Warehouse, StockQty);
-												VariableHandler.setAfterStockQty(map);
-												flag = true;
-												break;
-											}
-										}
+										String StockQty = webDB.getTextFromElement(StocksPageLocators.StockQtyRow(i),
+												ElementType.Xpath);
+										logs.logging("INFO", "Stock Quantity For Item " + Item + " In WareHouse "
+												+ Warehouse + "Is: " + StockQty);
+										Map<String, String> map = VariableHandler.getAfterStockQty();
+										map.put(Item + Warehouse, StockQty);
+										VariableHandler.setAfterStockQty(map);
+										flag = true;
+										break;
 									}
+								}
 //								}
 							}
 						}
@@ -280,36 +272,38 @@ public class StocksPageFunctions {
 					if (flag) {
 						webDB.sendTextToAnElement(StocksPageLocators.StockSerachField, Item, ElementType.Xpath);
 						logs.logging("INFO", "Entered Item Value Is: " + Item);
+
 //						flag = webDB.waitForElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
 //						if (flag) {
 //							webDB.clickAnElement(StocksPageLocators.SelectItem(Item), ElementType.Xpath);
-							webDB.pressEnterKey();
-							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "No Of Item In Row Is Displayed");
-								int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
-										.size();
-								commonFunc.hardWait(4000);
-								for (int i = 2; i <= totalvalue + 1; i++) {
-									flag = webDB.waitForElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath);
-									if (flag) {
-										if (webDB.getTextFromElement(StocksPageLocators.CostItemRow(i),
-												ElementType.Xpath).equals(Item)) {
-											if (webDB.getTextFromElement(StocksPageLocators.CostWHRow(i),
-													ElementType.Xpath).equals(Warehouse)) {
-												String cost = webDB.getTextFromElement(StocksPageLocators.CostRow(i),
-														ElementType.Xpath);
-												logs.logging("INFO", "Stock Cost For Item " + Item + " In WareHouse "
-														+ Warehouse + " Is: " + cost);
-												Map<String, String> map = VariableHandler.getAfterStockCost();
-												map.put(Item, cost);
-												VariableHandler.setAfterStockCost(map);
-												flag = true;
-												break;
-											}
+						webDB.pressEnterKey();
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(StocksPageLocators.NoOfRow, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "No Of Item In Row Is Displayed");
+							int totalvalue = webDB.getDriver().findElements(By.xpath(StocksPageLocators.NoOfRow))
+									.size();
+							commonFunc.hardWait(4000);
+							for (int i = 2; i <= totalvalue + 1; i++) {
+								flag = webDB.waitForElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath);
+								if (flag) {
+									if (webDB.getTextFromElement(StocksPageLocators.CostItemRow(i), ElementType.Xpath)
+											.equals(Item)) {
+										if (webDB.getTextFromElement(StocksPageLocators.CostWHRow(i), ElementType.Xpath)
+												.equals(Warehouse)) {
+											String cost = webDB.getTextFromElement(StocksPageLocators.CostRow(i),
+													ElementType.Xpath);
+											logs.logging("INFO", "Stock Cost For Item " + Item + " In WareHouse "
+													+ Warehouse + " Is: " + cost);
+											Map<String, String> map = VariableHandler.getAfterStockCost();
+											map.put(Item, cost);
+											VariableHandler.setAfterStockCost(map);
+											flag = true;
+											break;
 										}
+
 									}
+								}
 //								}
 							}
 						}
@@ -317,6 +311,7 @@ public class StocksPageFunctions {
 				}
 			}
 		}
+
 		assertTrue(flag);
 	}
 

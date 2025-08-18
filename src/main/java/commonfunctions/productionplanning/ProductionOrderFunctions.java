@@ -664,12 +664,14 @@ public class ProductionOrderFunctions {
 				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_ItemLovbtn, Item);
 				logs.logging("INFO", "Item Selected in Prod Order: " + Item);
 				switchToCreateProductionOrderFrame();
+				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.SoDesc, SoDesc);
+				logs.logging("INFO", "So Desc Entered in Prod Order: " + SoDesc);
+				switchToCreateProductionOrderFrame();
 				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 						ProductionOrderLocators.CreateProdOrd_OrderQntyInput, OrdQnty);
 				logs.logging("INFO", "Order Quantity Entered in Prod Order: " + OrdQnty);
-				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.SoDesc, SoDesc);
-				logs.logging("INFO", "So Desc Entered in Prod Order: " + SoDesc);
-//				switchToCreateProductionOrderFrame();
+				webDB.switchToDefaultContent();
+//				
 			}
 		}
 		assertTrue(flag);
@@ -716,6 +718,7 @@ public class ProductionOrderFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void searchAndVerifyStatusOfPONo(String PONo, String ExpectedStatus) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.FindProdOrderNoLovBtn, PONo);
 		flag = webDB.waitForElement(ProductionOrderLocators.FindSearchBtn, ElementType.Xpath);
 		if (flag) {
@@ -2589,8 +2592,6 @@ public class ProductionOrderFunctions {
 
 		assertTrue(flag);
 	}
-
-	
 
 	/**
 	 * This Method used to click Save icon in Line details in routing tab

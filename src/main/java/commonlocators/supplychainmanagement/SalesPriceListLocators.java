@@ -32,6 +32,7 @@ public class SalesPriceListLocators {
 	public static final String EffiticeFrom = "//input[@id='C6927517929604873531_input']";
 	/** @locatorType Xpath */
 	public static final String EffiticeTo = "//input[@id='C6927518958121873531_input']";
+
 	/** @locatorType Xpath */
 	public static final String SalesPriceFields(int i) {
 		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[11] ";
@@ -102,7 +103,7 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String PriceListFlagFindPage = "//label[@id='P1915131012_PRICE_LIST_LABEL']";
 	/** @locatorType Xpath */
-	public static final String PriceListHyperLink = "(//table[@id='1253627943780396496_orig']//tr/td[4])[1]" ;
+	public static final String PriceListHyperLink = "(//table[@id='1253627943780396496_orig']//tr/td[4])[1]";
 	/** @locatorType Xpath */
 	public static final String AmdendButton = "//*[@id='SO_ig_grid_vc']//div[3]/table/tbody/tr/td[14]/a";
 	/** @locatorType Xpath */
