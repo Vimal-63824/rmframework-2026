@@ -358,8 +358,9 @@ public class ApprovalPageFunctions {
 				flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 60);
 				if (flag) {
 					logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
-					flag = webDB.waitForElement(ApprovalPageLocators.SearchButton, ElementType.Xpath);
-					if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					if (webDB.verifyIsElementDisplayed(ApprovalPageLocators.SearchButton, ElementType.Xpath)) {
 						webDB.clickAnElement(ApprovalPageLocators.SearchButton, ElementType.Xpath);
 					}
 					break a;

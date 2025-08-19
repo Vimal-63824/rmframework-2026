@@ -1624,7 +1624,7 @@ public class PricelistPageFunctions {
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To Workflow Frame");
 					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PRLForwardLov,
-							commonFunc.getDataFromTestDataSheet("AshokValue"));
+							System.getProperty("HodUsername"));
 					commonFunc.hardWait(2000);
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To WorkFlow Frame");
@@ -1634,8 +1634,8 @@ public class PricelistPageFunctions {
 						webDB.switchToDefaultContent();
 //					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-								System.getProperty("AshokPassword"), "AshokUsername");
+						commonFunc.validCommonLogin(System.getProperty("HodUsername"),
+								System.getProperty("HodPassword"), "HodUsername");
 						approvalFunc.navigateToApprovals();
 						approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
 						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());

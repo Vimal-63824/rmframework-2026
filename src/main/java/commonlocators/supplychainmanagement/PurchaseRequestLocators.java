@@ -14,7 +14,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRTypeSelect = "//select[@data-testid='PR_TYPE_SELECTION']";
 	/** @locatorType Xpath */
-	public static final String PRDepartmentSelect = "//select[@data-testid='PR_DEPARTMENT_SELECTION']";
+	public static final String PRDepartmentSelect = "//select[contains(@id,'PRH_RQST_DEPT_ID')]";
 	/** @locatorType Xpath */
 	public static final String PRRequesterSelect = "//select[@data-testid='PR_REQUESTER_SELECTION']";
 	/** @locatorType Xpath */
@@ -147,7 +147,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String UOMDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[5])[1]";
 	/** @locatorType Xpath */
-	public static final String PR_LastItemDetailIcon = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[15])[1]//span[@class='fa fa-info-circle']";
+	public static final String PR_LastItemDetailIcon = "//table//tbody/tr[contains(@class,'a-GV-row')]/td//span[@class='fa fa-info-circle']";
 	/** @locatorType Xpath */
 	public static final String PR_LineDetailsIframe = "//iframe[@title='Line Details']";
 	/** @locatorType Xpath */
@@ -203,4 +203,10 @@ public class PurchaseRequestLocators {
 	public static final String LineDetailsButton(String Item) {
 		return "//td[text()='" + Item + "']/../td/*/span[@class='fa fa-info-circle']";
 	}
+
+	/** @locatorType Xpath */
+	public static final String RequiredDateTable = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]";
+	/** @locatorType Xpath */
+	public static final String RequiredDateInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]//input";
+
 }

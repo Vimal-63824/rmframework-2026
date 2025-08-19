@@ -743,6 +743,350 @@ public class POAmendmentTest extends RoadMapERPTest {
 				.verifyPoAmendCloseshortPRToPOImportMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput();
 	}
 
+	// --------------------------------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Direct PO - Domestic Supplier With Local Registered - General Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 1, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local Registered - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralSimilarStockAndSupplierUOMWithLocalReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithLocalRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate Registered - General Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 2, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate Registered - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralSimilarStockAndSupplierUOMWithInterstateReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithInterstateRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local UnRegistered - General Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 3, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local UnRegistered - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralSimilarStockAndSupplierUOMWithLocalUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithLocaUnRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate UnRegistered - General Items
+	 * with Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 4, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistered - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralSimilarStockAndSupplierUOMWithInterstateUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithInterstateUnRg();
+	}
+
+	/**
+	 * Direct PO - Import Supplier - General Items with Similar Stock and Supplier
+	 * UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 5, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Import Supplier - General Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralSimilarStockAndSupplierUOMWithImport() {
+		poAmendmentFunc.verifyDirectPOGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithImport();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local Registered - General Items with
+	 * Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 6, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local Registered - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralDissimilarStockAndSupplierUOMWithLocalReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithLocalRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate Registered - General Items with
+	 * Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 7, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate Registered - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralDissimilarStockAndSupplierUOMWithInterstateReg() {
+		poAmendmentFunc
+				.verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithInterstateRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local UnRegistered - General Items with
+	 * Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 8, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local UnRegistered - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralDissimilarStockAndSupplierUOMWithLocalUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithLocaUnRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate UnRegistered - General Items
+	 * with Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 9, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistered - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralDissimilarStockAndSupplierUOMWithInterstateUnReg() {
+		poAmendmentFunc
+				.verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithInterstateUnRg();
+	}
+
+	/**
+	 * Direct PO - Import Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 10, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOGeneralDissimilarStockAndSupplierUOMWithImport() {
+		poAmendmentFunc.verifyDirectPOGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithImport();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local Registered - Material Items with
+	 * Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 11, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local Registered - Material Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialDissimilarStockAndSupplierUOMWithLocalReg() {
+		poAmendmentFunc.verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOMWithMultipleItemWithLocalRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate Registered - Material Items
+	 * with Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 12, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate Registered - Material Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialDissimilarStockAndSupplierUOMWithInterstateReg() {
+		poAmendmentFunc
+				.verifyDirectPODomesticMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithInterstateRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local UnRegistered - Material Items with
+	 * Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 13, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local UnRegistered - Material Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialDissimilarStockAndSupplierUOMWithLocalUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithLocaUnRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate UnRegistered - Material Items
+	 * with Dissimilar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 14, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistered - Material Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialDissimilarStockAndSupplierUOMWithInterstateUnReg() {
+		poAmendmentFunc
+				.verifyDirectPODomesticMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithInterstateUnRg();
+	}
+
+	/**
+	 * Direct PO - Import Supplier - Material Items with Dissimilar Stock and
+	 * Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 15, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialDissimilarStockAndSupplierUOMWithImport() {
+		poAmendmentFunc.verifyDirectPOMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithImport();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local Registered - Material Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 16, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local Registered - Material Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialSimilarStockAndSupplierUOMWithLocalReg() {
+		poAmendmentFunc.verifyDirectPODomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithLocalRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate Registered - Material Items
+	 * with Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 17, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate Registered - Material Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialSimilarStockAndSupplierUOMWithInterstateReg() {
+		poAmendmentFunc.verifyDirectPODomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithInterstateRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local UnRegistered - Material Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 18, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local UnRegistered - Material Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialSimilarStockAndSupplierUOMWithLocalUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithLocaUnRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate UnRegistered - Material Items
+	 * with Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 19, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistered - Material Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialSimilarStockAndSupplierUOMWithInterstateUnReg() {
+		poAmendmentFunc
+				.verifyDirectPODomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithInterstateUnRg();
+	}
+
+	/**
+	 * Direct PO - Import Supplier - Material Items with Similar Stock and Supplier
+	 * UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 20, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Import Supplier - Material Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOMaterialSimilarStockAndSupplierUOMWithImport() {
+		poAmendmentFunc.verifyDirectPOMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithImport();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local registered - Service Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 21, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local registered - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOServiceSimilarStockAndSupplierUOMWithLocalReg() {
+		poAmendmentFunc.verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOMWithMultipleItemWithLocalRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate registered - Service Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 22, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate registered - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOserviceSimilarStockAndSupplierUOMWithInterstateReg() {
+		poAmendmentFunc.verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOMWithMultipleItemWithInterstateRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Local Unregistered - Service Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 23, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Local Unregistered - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOServiceSimilarStockAndSupplierUOMWithLocalUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOMWithMultipleItemWithLocaUnRg();
+	}
+
+	/**
+	 * Direct PO - Domestic Supplier With Interstate Unregistered - Service Items
+	 * with Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 24, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Domestic Supplier With Interstate Unregistered - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOServiceSimilarStockAndSupplierUOMWithInterstateUnReg() {
+		poAmendmentFunc.verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOMWithMultipleItemWithInterstateUnRg();
+	}
+
+	/**
+	 * Direct PO - Import Supplier - Service Items with Similar Stock and Supplier
+	 * UOM?
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	@Test(priority = 25, groups = {
+			"Purchase Order Amendment" }, description = "Direct PO - Import Supplier - Service Items with Similar Stock and Supplier UOM?")
+	public void VerifyPoAmendDirectPOServiceSimilarStockAndSupplierUOMWithImport() {
+		poAmendmentFunc.verifyDirectPOServiceWithSimilarStockAndSupplierUOMWithMultipleItemWithImport();
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier With Local registered - General Items with
+	 * Similar Stock and Supplier UOM?
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Test(priority = 26, groups = { "Purchase Order Amendment" }, description = "")
+	public void VerifyPoAmendPRToPODomesticGeneralSimilarStockAndSupplierUOMWithLocalReg() {
+		poAmendmentFunc.verifyPRToPODomesticGeneralWithSimilarStockAndSupplierUOMWithMultipleItemWithLocalReg();
+	}
+
 	/**
 	 * Logout The Portal If Testcases Failed
 	 * 

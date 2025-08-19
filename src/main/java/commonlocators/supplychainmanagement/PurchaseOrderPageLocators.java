@@ -11,23 +11,23 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderheader = "//h1[@id='ui-id-2']";
 	/** @locatorType Xpath */
-	public static final String LocationIdInput = "(//input[@data-testid='PO_LocationId_Input'])[2]";
+	public static final String LocationIdInput = "//input[@data-testid='P1615131061_POH_PLNT_LOC_ID']";
 	/** @locatorType Xpath */
 	public static final String UnitIdInput = "//input[@id='P1615131061_POH_PLANT']";
 	/** @locatorType Xpath */
-	public static final String PoTypeSelect = "//select[@data-testid='PO_Type_Select']";
+	public static final String PoTypeSelect = "//select[@data-testid='P1615131061_POH_TYPE_1']";
 	/** @locatorType Xpath */
-	public static final String PoPfxSelect = "//select[@data-testid='PO_Prefix_Select']";
+	public static final String PoPfxSelect = "//select[@data-testid='P1615131061_POH_ORDER_PFX_1']";
 	/** @locatorType Xpath */
 	public static final String PoDate = "//*[@id='P1615131061_POH_ORDER_DATE_input']";
 	/** @locatorType Xpath */
-	public static final String SupplierName = "//input[@data-testid='PO_SupplierName']";
+	public static final String SupplierName = "//input[@data-testid='P1615131061_POH_SUPLR_ID']";
 	/** @locatorType Xpath */
 	public static final String Buyer = "//*[@id='P1615131061_POH_BUYER_ID']";
 	/** @locatorType Xpath */
-	public static final String LocationIdButton = "//input[@data-testid='PO_LocationId_Input']/following-sibling::button";
+	public static final String LocationIdButton = "//input[@data-testid='P1615131061_POH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SupplierNameButton = "//input[@data-testid='PO_SupplierName']/following-sibling::button";
+	public static final String SupplierNameButton = "//input[@data-testid='P1615131061_POH_SUPLR_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String searchBar = "//input[@aria-label='Search']";
 	/** @locatorType Xpath */
@@ -35,29 +35,29 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String LocationheaderBar = "//*[@id='ui-id-4']";
 	/** @locatorType Xpath */
-	public static final String DPOTickButton = "//div[@data-testid='TickButton']";
+	public static final String DPOTickButton = "//button[@data-testid='Create_PO_Form']";
 	/** @locatorType Xpath */
 	public static final String ItemAddButton = "//button[@data-testid='PO_Item_Add_Button']";
 	/** @locatorType Xpath */
 	public static final String POPageItemTable = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String ItemSelectButton = "//input[@data-testid='PO_Item_Select_Button']/following-sibling::button";
+	public static final String ItemSelectButton = "//input[@data-testid='DUM_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String InputItemPO = "//input[@id='C3750778132967408970']";
+	public static final String InputItemPO = "//input[@data-testid='DUM_PROD_ID_REV']";
 	/** @locatorType Xpath */
 	public static final String OrderedQuantity = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String OrderedQuantityInput = "//input[@data-testid='PO_Ordered_Quantity_Table']";
+	public static final String OrderedQuantityInput = "//input[@data-testid='POL_ORDERED_QTY']";
 	/** @locatorType Xpath */
 	public static final String UnitCost = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String UnitCostInput = "//input[@data-testid='PO_UnitCost_Table']";
+	public static final String UnitCostInput = "//input[@data-testid='POL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String TickIconPO = "//button[@data-testid='PO_Item_Tick_Icon']";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIconPO = "//button[@data-testid='PO_Header_Tick_Icon']";
+	public static final String HeaderTickIconPO = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String HeaderTPostIcon = "//button[@data-testid='PO_Header_Post_Icon']";
+	public static final String HeaderTPostIcon = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
 	public static final String ForwardApproval = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
@@ -69,7 +69,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@data-testid='PO_Search_Button']";
+	public static final String SearchButton = "//button[@data-testid='Find_Lines']";
 	/** @locatorType Xpath */
 	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']/span";
 	/** @locatorType Xpath */
@@ -414,9 +414,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCode = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[10]";
 	/** @locatorType Xpath */
-	public static final String HsnCodeLovButton = "//input[@id='C3138043587156640997']/following-sibling::button";
+	public static final String HsnCodeLovButton = "//input[@data-testid='POL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String HsnCodeInput = "//input[@id='C3138043587156640997']";
+	public static final String HsnCodeInput = "//input[@data-testid='POL_HSN_CODE']";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetails = "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[19]";
 	/** @locatorType Xpath */
@@ -447,5 +447,14 @@ public class PurchaseOrderPageLocators {
 	public static final String locationDetails = "//span[@class='fa fa-indent']";
 	/** @locatorType Xpath */
 	public static final String NextPageButton = "//button[@class=\"a-GV-pageButton a-GV-pageButton--nav a-Button js-pg-next\"]";
+	/** @locatorType Xpath */
+	public static final String GlAccountNoLovButton = "//input[@id='P161513106045_POL_PUR_ACCT']/following-sibling::button";
 
+	/** @locatorType Xpath */
+	public static final String HsnCodeTableWithItem(String Item) {
+		return "(//td[text()='" + Item + "']/../td[10])[1]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String ServiceItemButton = "//button[contains(@id,'POL_SERV_PROD_ID_lov_btn')]";
 }

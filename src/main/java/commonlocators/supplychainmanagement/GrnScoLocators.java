@@ -29,7 +29,7 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String Consmp = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[30]";
 	/** @locatorType Xpath */
-	public static final String ViewDetails = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[31]";
+	public static final String ViewDetails = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[32]";
 	/** @locatorType Xpath */
 	public static final String ConsumptionFrame = "//iframe[@title='Subcontract GRN Consumption Details']";
 	/** @locatorType Xpath */

@@ -755,9 +755,7 @@ public class SalesInvoiceLocators {
 	public static final String RWC_Document_No = "//input[@id='P1818131050_RWOCHD_DOC_NO']";
 
 	public static final String RWC_Item_Field = "//span[@id='P1818131050_RWOCHD_PROD_ID_DISPLAY']";
-	
+
 	public static final String RWC_SourceWH_Field = "//span[@id='P1818131050_RWOCHD_SOU_STORE_DISPLAY']";
-	
-	
 
 }
