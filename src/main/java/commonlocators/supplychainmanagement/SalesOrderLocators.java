@@ -695,4 +695,7 @@ public class SalesOrderLocators {
 	public static final String AmdType(int i) {
 		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[ " + i + " ]/td[3]";
 	}
+
+	/** @Locator Xpath */
+	public static final String HeaderCPCcodeLovBtn = "//input[@data-testid='P191513134001_SOH_CC_ID']/following-sibling::button";
 }

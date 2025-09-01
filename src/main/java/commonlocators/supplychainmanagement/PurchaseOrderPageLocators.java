@@ -88,7 +88,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingRFQBtn = "//button[@id='B1022828162906840804']";
 	/** @locatorType Xpath */
-	public static final String PendingPRBtn = "//button[@id='B2145315718133643750']";
+	public static final String PendingPRBtn = "//button[@data-testid='Pend_PR']";
 	/** @locatorType Xpath */
 	public static final String PendingPRiframe = "//iframe[@title='Pending PR']";
 	/** @locatorType Xpath */

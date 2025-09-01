@@ -831,7 +831,7 @@ public class BillOfMaterialsFunctions {
 					webDB.moveToElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 					flag = webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-//					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {

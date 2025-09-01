@@ -19,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 
 import commonfunctions.CommonFunctions;
@@ -606,19 +607,24 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.ItemField, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Wise Add Button is Clicked");
-				webDB.clickAnElement(SalesOrderLocators.ItemField, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ItemLov, Item);
-				flag = webDB.waitForElement(SalesOrderLocators.ItemInputField, ElementType.Xpath);
+				if (!webDB.verifyIsElementDisplayed(SalesOrderLocators.ItemLov, ElementType.Xpath)) {
+					webDB.clickAnElement(SalesOrderLocators.ItemField, ElementType.Xpath);
+					flag = webDB.waitForElementUntilGivenTime(SalesOrderLocators.ItemLov, ElementType.Xpath, 10);
+				}
 				if (flag) {
-					String Value = webDB.getAttributeFromElement(SalesOrderLocators.ItemInputField, ElementType.Xpath,
-							commonFunc.getDataFromTestDataSheet("Value"));
-					logs.logging("INFO", "Get Text Item Id : " + Value);
-					flag = Value.contains(Item);
+					commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ItemLov, Item);
+					flag = webDB.waitForElement(SalesOrderLocators.ItemInputField, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Verified Item Id Successfully");
-					} else {
-						logs.logging("INFO", "Item Id Verification Failed In Sales Order Lines");
-						logs.logging("INFO", "Expected Item Id :" + Item + "Actual Item Id :" + Value);
+						String Value = webDB.getAttributeFromElement(SalesOrderLocators.ItemInputField,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						logs.logging("INFO", "Get Text Item Id : " + Value);
+						flag = Value.contains(Item);
+						if (flag) {
+							logs.logging("INFO", "Verified Item Id Successfully");
+						} else {
+							logs.logging("INFO", "Item Id Verification Failed In Sales Order Lines");
+							logs.logging("INFO", "Expected Item Id :" + Item + "Actual Item Id :" + Value);
+						}
 					}
 				}
 			}
@@ -6452,5 +6458,32 @@ public class SalesOrderFunctions {
 			}
 		}
 		return flag;
+	}
+
+	/**
+	 * This method used to select CPC code in Header and Click Save Header Icon
+	 *
+	 * @author Sakthi-GWL
+	 * @param CPCCode
+	 */
+	public void chooseHeaderCPCCodeAndSaveHeader(String CPCCode) {
+		flag = webDB.waitForClickElement(SalesOrderLocators.HeaderCPCcodeLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.HeaderCPCcodeLovBtn, CPCCode);
+			logs.logging("INFO", "Header CPC Code Selected: " + CPCCode);
+			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderHeaderSaveButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(SalesOrderLocators.SalesOrderHeaderSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(SalesOrderLocators.SalesOrderHeaderSaveButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Header Save Icon Clicked Successfully");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }

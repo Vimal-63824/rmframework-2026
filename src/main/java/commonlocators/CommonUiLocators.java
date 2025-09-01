@@ -288,7 +288,7 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String ShareOfBusiness = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[1]";
 	/** @locatorType XPATH */
-	public static final String AddShareOfBusiness = "//button[@id='B2080709082065841085']";
+	public static final String AddShareOfBusiness = "//button[@data-testid='Add']";
 	/** @locatorType XPATH */
 	public static final String BusFunctionSearchBox = "//input[@id='P0_SEARCH_input']";
 	/** @locatorType XPATH */

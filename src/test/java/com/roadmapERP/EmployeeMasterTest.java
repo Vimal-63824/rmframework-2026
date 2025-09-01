@@ -47,6 +47,18 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To check Employee Creation with Dependent details
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Test(priority = 3, groups = {
+			"EmployeeMaster" }, description = "7 To check Employee Creation with Dependent details")
+	public void VerifyCheckEmployeeCreationWithDependentDetails() {
+		flag = empMasterFunc.verifyCheckEmployeeCreationDependentDetails();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * To Check the Employee creation with salary details With Allowance Values
 	 * 
 	 * @author Sakthi-GWL
@@ -102,18 +114,6 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 			"EmployeeMaster" }, description = "9 To check Employee Creation with Additional info details")
 	public void VerifyEmployeeCreationWithAdditionalInfoDetails() {
 		flag = empMasterFunc.verifyEmployeeCreationAdditionalInfoDetails();
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * To check Employee Creation with Dependent details
-	 * 
-	 * @author Sakthi-GWL
-	 */
-	@Test(priority = 3, groups = {
-			"EmployeeMaster" }, description = "7 To check Employee Creation with Dependent details")
-	public void VerifyCheckEmployeeCreationWithDependentDetails() {
-		flag = empMasterFunc.verifyCheckEmployeeCreationDependentDetails();
 		Assert.assertTrue(flag);
 	}
 

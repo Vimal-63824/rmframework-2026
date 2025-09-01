@@ -4998,6 +4998,7 @@ public class PurchaseOrderFunctions {
 	 * @param value
 	 */
 	public void verifyLineAmountValidationAndPom(String Item, String value) {
+		System.out.println("Line " + value + " Item " + Item);
 		verifyAssertionBothValues(value, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("LINE_AMT")));
 
@@ -12421,9 +12422,111 @@ public class PurchaseOrderFunctions {
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 						verifyNavigateLineDetailTwo();
-						verifyTaxValidation(item, TaxPercent, cgst);
+						verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 								CDAssemblValue, CDAmt);
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		verifyHeaderTickAndPost();
+		verifyApprovePOUsingAshokUser();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * Verify From PR to PO - Domestic Supplier Service Item (Similar UOM)
+	 * 
+	 * @return boolean
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyServiceFromPRtoPOWithMultipleItemInExcelSheetWithTaxValidation(String Supplier, String PRType,
+			String Sheet, String Prefix) {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), PRType, Prefix,
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Purchase.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheet);
+		for (int i = 3; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][1];
+			if (!(item.equals("") || item.equals("Total"))) {
+				String Quantity = itemmultiple[i][5];
+				String UnitCost = itemmultiple[i][6];
+				String GrossValue = itemmultiple[i][7];
+				PR_Func.fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost);
+				verifyLineAmountCalculationValidation(GrossValue, item);
+			} else {
+				break;
+			}
+		}
+		PR_Func.saveHeaderAndClickPost();
+		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickPendingIcon();
+		clickPendingPRAndSearchPRNo();
+		selectAllPendingPRAndClickCreatePO();
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier,
+				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
+				for (int i = j + 3; i < itemmultiple.length; i++) {
+					String item = itemmultiple[i][1];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						String Quantity = itemmultiple[i][5];
+						String UnitCost = itemmultiple[i][6];
+						String LineAmount = itemmultiple[i][7];
+						String TradePercentage = itemmultiple[i][8];
+						String SplDiscPercentage = itemmultiple[i][9];
+						String CashDiscPercentage = itemmultiple[i][10];
+						String TradeAssblValue = itemmultiple[i][11];
+						String TradeAmt = itemmultiple[i][12];
+						String SDAssemblValue = itemmultiple[i][13];
+						String SDAmt = itemmultiple[i][14];
+						String CDAssemblValue = itemmultiple[i][15];
+						String CDAmt = itemmultiple[i][16];
+						String TaxPercent = itemmultiple[i][20];
+						String cgst = itemmultiple[i][21];
+						String sgst = itemmultiple[i][22];
+						String Igst = itemmultiple[i][23];
+						String Utgst = itemmultiple[i][24];
+						String CessPercent = itemmultiple[i][25];
+						String Cess = itemmultiple[i][26];
+						String TaxAmount = itemmultiple[i][27];
+						String NetAmount = itemmultiple[i][28];
+						String HsnCode = itemmultiple[i][19];
+						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
+								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
+						verifyTickIconcreateItem();
+						verifyLineAmountValidationAndPom(item, LineAmount);
+						navigateToLineDetailPage(item);
+						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
+						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+						verifyNavigateLineDetailTwo();
+						verifyAddServiceItem();
+						verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
+						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
+								CDAssemblValue, CDAmt);
+
+					} else {
+						break;
 					}
 				}
 			}

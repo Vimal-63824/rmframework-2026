@@ -110,12 +110,12 @@ public class OpenSalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithDocNo(String Docno) {
-		return "//*[text()='" + Docno + "']/../../td[15]/div";
+		return "//*[text()='" + Docno + "']/../../td/div";
 	}
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithText(String Docno) {
-		return "//*[text()='" + Docno + "']/../td[15]/div";
+		return "//*[text()='" + Docno + "']/../td/div";
 	}
 
 	/** @locatorType Xpath */

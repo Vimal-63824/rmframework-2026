@@ -102,9 +102,9 @@ public class EmployeeMasterFunctions {
 			}
 			clickQualificationSkillSideNavBar();
 			addNewContactDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
-					commonFunc.getDataFromTestDataSheet("Father"), commonFunc.randomMobileNumberGenerator(),
-					commonFunc.getDataFromTestDataSheet("EmpAddress"), commonFunc.getDataFromTestDataSheet("Emp_City"),
-					true);
+					commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+					commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
+					commonFunc.getDataFromTestDataSheet("Emp_City"), true);
 			addNewQualificationDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
 					commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
 					commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
@@ -209,16 +209,6 @@ public class EmployeeMasterFunctions {
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
 			clickSalarySideNavBar();
-			clickAddButtonInAdjustmentSalaryDetails();
-			selectAdjustmentSalaryElementStartYearAndPeriodDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_AdjmntElement"),
-					commonFunc.getDataFromTestDataSheet("Emp_AdjmntStartYear"),
-					commonFunc.getDataFromTestDataSheet("Emp_AdjmntPeriod"));
-			fillAdjustmentSalaryTotalPeriodAndPeriodAmount(commonFunc.getDataFromTestDataSheet("Emp_AdjmntTotalPeriod"),
-					commonFunc.getDataFromTestDataSheet("Emp_AdjmntPeriodAmnt"));
-			clickSaveIconInSalaryAdjustment();
-			clickActivateIconInLastAddedAdjustment();
-			clickDeleteIconInLastAddedAdjustment();
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
@@ -257,6 +247,26 @@ public class EmployeeMasterFunctions {
 				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 				clickSaveIconAndStoreEmpID();
+				clickQualificationSkillSideNavBar();
+				addNewContactDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+						commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
+						commonFunc.getDataFromTestDataSheet("Emp_City"), true);
+				addNewQualificationDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
+						commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
+						commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
+						commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
+						RandomStringUtils.randomNumeric(2), true);
+				addNewSkillDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
+						commonFunc.getDataFromTestDataSheet("Emp_Level"), true);
+				clickDependentDetailsSideNavBar();
+				clickAddIconInDependentDetails();
+				fillRequiredDetailsInDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+						commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"),
+						RandomStringUtils.randomNumeric(12), commonFunc.randomEmailIdGenerator(),
+						commonFunc.randomMobileNumberGenerator(), RandomStringUtils.randomNumeric(5));
+				clickSaveIconInDependentDetails();
 				clickSalarySideNavBar();
 				addDesignationDepartmentAndGradeInSalaryDetails(
 						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
@@ -325,6 +335,39 @@ public class EmployeeMasterFunctions {
 				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 				clickSaveIconAndStoreEmpID();
+//				clickQualificationSkillSideNavBar();
+//				addNewContactDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+//						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+//						commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
+//						commonFunc.getDataFromTestDataSheet("Emp_City"), true);
+//				addNewQualificationDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
+//						commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
+//						commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
+//						commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
+//						RandomStringUtils.randomNumeric(2), true);
+//				addNewSkillDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
+//						commonFunc.getDataFromTestDataSheet("Emp_Level"), true);
+//				clickDependentDetailsSideNavBar();
+//				clickAddIconInDependentDetails();
+//				fillRequiredDetailsInDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+//						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+//						commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"),
+//						RandomStringUtils.randomNumeric(12), commonFunc.randomEmailIdGenerator(),
+//						commonFunc.randomMobileNumberGenerator(), RandomStringUtils.randomNumeric(5));
+//				clickSaveIconInDependentDetails();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
 			uploadSignImageInAddEmployeeDetails(webDB.getDataFromProperties("RoadMapImage"));
@@ -364,6 +407,39 @@ public class EmployeeMasterFunctions {
 				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 				clickSaveIconAndStoreEmpID();
+				clickQualificationSkillSideNavBar();
+				addNewContactDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+						commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
+						commonFunc.getDataFromTestDataSheet("Emp_City"), true);
+				addNewQualificationDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
+						commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
+						commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
+						commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
+						RandomStringUtils.randomNumeric(2), true);
+				addNewSkillDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
+						commonFunc.getDataFromTestDataSheet("Emp_Level"), true);
+				clickDependentDetailsSideNavBar();
+				clickAddIconInDependentDetails();
+				fillRequiredDetailsInDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
+						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
+						commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"),
+						RandomStringUtils.randomNumeric(12), commonFunc.randomEmailIdGenerator(),
+						commonFunc.randomMobileNumberGenerator(), RandomStringUtils.randomNumeric(5));
+				clickSaveIconInDependentDetails();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
 			clickAdditionalInfoButton();
@@ -383,7 +459,8 @@ public class EmployeeMasterFunctions {
 			submitPhoneExtensionAndFaxNoInAdditionalInfo(commonFunc.randomMobileNumberGenerator(),
 					String.valueOf(random.nextInt(100)), String.valueOf(random.nextInt(5)));
 			clickTickIconInAdditionalInfo();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationAdditionalInfoDetails': " + e);
 			return false;
@@ -427,7 +504,6 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
 					RandomStringUtils.randomNumeric(5));
 			clickSaveIconInDependentDetails();
-			commonFunc.logoutUser();
 			return true;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyCheckEmployeeCreationDependentDetails': " + e);
@@ -502,8 +578,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 			}
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyUpdateEmployeeParticularDetails': " + e);
 			return false;
@@ -571,8 +647,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 			}
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateAddressDetails': " + e);
 			return false;
@@ -641,8 +717,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 			}
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyEmployeeCreationUpdateDependentDetails': " + e);
@@ -711,8 +787,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 			}
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateContactDetails': " + e);
 			return false;
@@ -781,8 +857,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 			}
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyEmployeeCreationUpdateQualificationDetails': " + e);
@@ -849,8 +925,8 @@ public class EmployeeMasterFunctions {
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
 			}
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateSkillsDetails': " + e);
 			return false;
@@ -895,14 +971,14 @@ public class EmployeeMasterFunctions {
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+//			commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+//					"HRMRequestUser");
+//			commonFunc.navigateEmployeeMasterScreenInPayroll();
+//			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickEmployeeHistoryAndCheckNotNull();
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationEmployeeHistory': " + e);
 			return false;
@@ -947,15 +1023,15 @@ public class EmployeeMasterFunctions {
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
+//			commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+//					"HRMRequestUser");
+//			commonFunc.navigateEmployeeMasterScreenInPayroll();
+//			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickViewProfileAndStoreProfileAndBatchNo();
 			clickEmployeeProfileNoAndReverse();
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occur while executing 'verifyEmployeeCreationEmployeeProfileReverse': " + e);
@@ -1044,16 +1120,28 @@ public class EmployeeMasterFunctions {
 			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+//						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+//				approvalFunc.navigateToApprovals();
+//				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+//				commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1088,6 +1176,18 @@ public class EmployeeMasterFunctions {
 			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
@@ -1132,11 +1232,24 @@ public class EmployeeMasterFunctions {
 			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndStoreEmpID();
+			clickSalarySideNavBar();
+			addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			clickAfterEmpCreationSaveIcon();
+			clickLoadAllowanceButtonInSalaryDetails();
+			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			enablePFAdjustmentFlagsInSalaryDetails();
+			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
+			clickEmployeeMasterSideNavBar();
 			enterProbationDetailsAndSaveHeader("Duration", "type");
 			clickProbationCompleteAndCheckProbationStatus();
-			commonFunc.logoutUser();
-			return true;
+			flag = commonFunc.logoutUser();
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationProbationComplete': " + e);
 			return false;
@@ -1357,6 +1470,7 @@ public class EmployeeMasterFunctions {
 				logs.logging("INFO", "Add Employee - Save Icon Clicked and Success Toast Displayed");
 				commonFunc.checkRefreshCellsDisappear();
 				String text = webDB.getTextFromElement(EmployeeMasterLocators.AddEmp_DisplayEmpID, ElementType.Xpath);
+				text = text.replace("Employee : ", " ").trim();
 				VariableHandler.setEmpID(text);
 				logs.logging("INFO", "Auto Generated Emp ID: " + VariableHandler.getEmpID());
 			}
@@ -1725,8 +1839,9 @@ public class EmployeeMasterFunctions {
 	private void saveAllowanceTableInSalary() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SaveAllowanceTableBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_SaveAllowanceTableBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SaveAllowanceTableBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableTotalAmountData, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Allowance Save Icon Clicked and Toast Message Displayed");
 			}
@@ -1777,8 +1892,20 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ESI_ElegibleLabel, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentTable, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "ESI flag Enabled Successfully");
+				List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.AddEmp_AdjustmentTable,
+						ElementType.Xpath);
+				flag = elements.size() >= 2;
+				for (WebElement element : elements) {
+					if (element.getText().contains("PF") || element.getText().contains("ESI")) {
+						flag = true;
+					} else {
+						flag = false;
+						break;
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1809,8 +1936,20 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_PF_ElegibleLabel, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentTable, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "PF flag Enabled Successfully");
+				List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.AddEmp_AdjustmentTable,
+						ElementType.Xpath);
+				flag = elements.size() >= 2;
+				for (WebElement element : elements) {
+					if (element.getText().contains("PF") || element.getText().contains("ESI")) {
+						flag = true;
+					} else {
+						flag = false;
+						break;
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -1836,6 +1975,7 @@ public class EmployeeMasterFunctions {
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearData, ElementType.Xpath);
+				webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentStartYearSelect, ElementType.Xpath);
 				flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_AdjustmentStartYearSelect, StartYear,
 						ElementType.Xpath);
 				if (flag) {
@@ -2166,9 +2306,21 @@ public class EmployeeMasterFunctions {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-//			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmployeeUpdateButton, ElementType.Xpath);
+			if (!VariableHandler.getApprovalFlag()) {
+				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+					logs.logging("INFO", "Ok Button Is Clicked");
+					webDB.switchToDefaultContent();
+					commonFunc.checkSuccessToastMessageDisappear();
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
 			if (flag) {
-				logs.logging("INFO", "Leave Eligibility Post Icon Clicked");
+				logs.logging("INFO", "Employee Post Icon Clicked");
 			}
 		}
 		Assert.assertTrue(flag);

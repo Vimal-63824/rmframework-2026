@@ -68,7 +68,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//*[@id=\"11575179625135231735_orig\"]/tbody/tr[2]/td[7]";
+	public static final String InspectionDocumentNumberDrillDown = "//*[@id='11575179625135231735_orig']/tbody/tr[2]/td[7]";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
 
@@ -86,10 +86,10 @@ public class InspectionDocumentsLocators {
 	public static final String ObsLineNumber = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
 
 	/** @locatorType Xpath */
-	public static final String EnterAcceptQty = "//input[@id=\"P20171310201_TQHD_ACPT_QTY\"]";
+	public static final String EnterAcceptQty = "//input[@id='P20171310201_TQHD_ACPT_QTY']";
 	/** @locatorType Xpath */
-	public static final String EnterAODtQty = "//input[@id=\"P20171310201_TQHD_AOD_QTY\"]";
+	public static final String EnterAODtQty = "//input[@id='P20171310201_TQHD_AOD_QTY']";
 
 	/** @locatorType Xpath */
-	public static final String RejtQty = "//input[@id=\"P20171310201_TQHD_REJ_QTY\"]";
+	public static final String RejtQty = "//input[@id='P20171310201_TQHD_REJ_QTY']";
 }

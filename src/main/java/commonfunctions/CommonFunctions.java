@@ -266,8 +266,6 @@ public class CommonFunctions {
 					}
 				}
 				Assert.assertTrue(flag);
-				// TODO WAIT_LOAD_TIME (will remove future)
-				hardWait(1500);
 				checkRefreshCellsDisappear();
 				try {
 					List<WebElement> SearchBarIcon = webDB.getDriver()
@@ -287,8 +285,6 @@ public class CommonFunctions {
 					logs.logging("INFO", "failed to locate and click search bar icon Exception is: " + e);
 					flag = false;
 				}
-				// TODO WAIT_LOAD_TIME (will remove future)
-				hardWait(2000);
 				checkRefreshCellsDisappear();
 				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
@@ -1357,6 +1353,7 @@ public class CommonFunctions {
 //		navigateToInventoryTab();
 //		navigateToInventoryReportsTab();
 //		navigateToStocksTab();
+		navigatePurchaseOrderPage();
 		navigateToSearchTab(webDB.getDataFromProperties("CurrentStocks"), CommonUiLocators.StocksCheckBox);
 	}
 
@@ -2413,6 +2410,8 @@ public class CommonFunctions {
 	public void navigateToSearchTab(String TabName, String PageLocators) {
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
+			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
@@ -2879,4 +2878,5 @@ public class CommonFunctions {
 		}
 		assertTrue(flag);
 	}
+
 }

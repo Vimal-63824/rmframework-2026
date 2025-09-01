@@ -504,12 +504,6 @@ public class MaterialIssuanceVoucherFunctions {
 			switchMaterialRequestLinesIframe();
 			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Pending MR Iframe Is Displayed");
-				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
-				commonFunc.clearFiltersInFindPage();
-				commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
-				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
-				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 				logs.logging("INFO", "Search Button Is Displayed");
 				webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();

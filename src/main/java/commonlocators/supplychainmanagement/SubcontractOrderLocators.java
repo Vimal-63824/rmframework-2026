@@ -109,4 +109,6 @@ public class SubcontractOrderLocators {
 	public static final String CompQty = "(//table[@id='5935146900431362256_orig']/tbody/tr[2]/td/input)[1]";
 	/** @locatorType XPATH */
 	public static final String OutsideQty = "//table[@id='5935146900431362256_orig']/tbody/tr[2]/td[15]";
+	/** @locatorType XPATH */
+	public static final String CreateSoc = "//button[@data-testid='CREATE_SCO']";
 }

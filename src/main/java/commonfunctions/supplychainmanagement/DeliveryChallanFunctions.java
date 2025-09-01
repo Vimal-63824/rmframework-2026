@@ -31,6 +31,7 @@ public class DeliveryChallanFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void verifyStatusOfDeliveryChallan(String DocNo, String ExpectedStatus) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(DeliveryChallanLocators.DCNumberLovButton, DocNo);
 		flag = webDB.waitForElement(DeliveryChallanLocators.SearchButton, ElementType.Xpath);
 		if (flag) {

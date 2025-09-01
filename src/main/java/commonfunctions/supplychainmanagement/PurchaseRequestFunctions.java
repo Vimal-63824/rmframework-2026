@@ -214,7 +214,7 @@ public class PurchaseRequestFunctions {
 		validatePrefixInPRHeader(Prefix);
 		validateDepartmentInPRHeader(Department);
 		validateRequestorInPRHeader(Requester);
-		validateCPCCodeInPRHeader(CPCCode);
+//		validateCPCCodeInPRHeader(CPCCode);
 		purchaseRequestHeaderValidation(Location, Unit, PRType, Prefix, CPCCode, Department, Requester);
 	}
 

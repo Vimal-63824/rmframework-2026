@@ -64,51 +64,31 @@ public class CommonPayrollFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void openLeaveLoanSetupInNewTabAndStoreLeaveEntitlement() {
-		flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
+		commonFunc.checkSuccessToastMessageDisappear();
+		commonFunc.hardWait(3000);
+		commonFunc.navigateToSetupLeaveLoanScreen();
+		flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
 		if (flag) {
-			String value = webDB.getDomAttributeFromElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath,
-					"aria-expanded");
-			if (value.equalsIgnoreCase("false")) {
-				webDB.javaScriptClickAnElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
-			}
-			flag = webDB.waitForElement(CommonUiLocators.SupplyChainTab, ElementType.Xpath);
+			logs.logging("INFO", "Setup Leave & Loan Screen clicked");
+			String LeaveLoanURL = webDB.getDriver().getCurrentUrl();
+			logs.logging("INFO", "Leave And Loan Setup Page URL getted: " + LeaveLoanURL);
+			webDB.navigateToBack();
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Left Navigation Bar Is clicked");
-				commonFunc.clickPayrollTab();
-				commonFunc.clickPayrollSetupTab();
-				flag = webDB.waitForElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
+				logs.logging("INFO", "Navigated Back to Employee Creation Page");
+				webDB.openNewTabWithUrl(LeaveLoanURL);
+				flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(CommonUiLocators.PayrollLeaveAndLoanTab, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Leave & Loan Screen clicked");
-						String LeaveLoanURL = webDB.getDriver().getCurrentUrl();
-						logs.logging("INFO", "Leave And Loan Setup Page URL getted: " + LeaveLoanURL);
-						webDB.navigateToBack();
-						flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Navigated Back to Employee Creation Page");
-							webDB.openNewTabWithUrl(LeaveLoanURL);
-							flag = webDB.waitForElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "New Tab Opened With Leave Loan Page URL: " + LeaveLoanURL);
-								webDB.clickAnElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab,
-										ElementType.Xpath);
-								flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists,
-										ElementType.Xpath);
-							}
-						}
-					}
+					logs.logging("INFO", "New Tab Opened With Leave Loan Page URL: " + LeaveLoanURL);
+					webDB.clickAnElement(CommonPayrollLocators.LeaveAndLoadScreen_LeaveSubTab, ElementType.Xpath);
+					flag = webDB.waitForElement(EmployeeMasterLocators.LeaveEntitlementLists, ElementType.Xpath);
 				}
 			}
 		}
 		checkLeaveEntitlementForLeaveCategory();
 		webDB.closeExistingTab();
 		webDB.switchToMainTab();
-		flag = webDB.getDriver().getTitle().contains("Employee");
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Switched to Main Tab Successfully");
 		}
