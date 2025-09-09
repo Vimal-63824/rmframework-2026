@@ -114,12 +114,11 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Production Order to Completion to MRV ETE
+	 * Bill Of Materials Creation
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	@Test(priority = 9, groups = {
-			"Core Process" }, description = "Production Order to Completion to MRV End to End Process")
+	@Test(priority = 9, groups = { "Core Process" }, description = "Bill Of Materials Creation")
 	public void VerifyCreationOfBillOfMaterials() {
 		flag = coreProcessPageFunctions.verifyCreationOfBillOfMaterials();
 		Assert.assertTrue(flag);

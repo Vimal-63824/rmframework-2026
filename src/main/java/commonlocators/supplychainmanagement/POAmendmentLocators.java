@@ -154,7 +154,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String POANumberStatus(String POno) {
-		return "//a[text()='" + POno + "']/../../td[20]";
+		return "//a[text()='" + POno + "']/../../td/div[contains(@style,'Green')]";
 	}
 
 	/** @locatorType Xpath */

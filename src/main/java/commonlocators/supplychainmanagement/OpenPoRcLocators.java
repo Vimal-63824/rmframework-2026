@@ -49,7 +49,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AggregateNumber = "//input[@data-testid='P161513102501_PRCHD_AGGR_NO']";
 	/** @locatorType Xpath */
-	public static final String AggregateDate = "//*[@data-testid='P161513102501_PRCHD_AGGR_DATE']/input//input[@id='P161513102501_PRCHD_AGGR_DATE_input']";
+	public static final String AggregateDate = "//*[@data-testid='P161513102501_PRCHD_AGGR_DATE']/input";
 	/** @locatorType Xpath */
 	public static final String EffFrom = "//*[@data-testid='P161513102501_PRCHD_START_DATE']/input";
 	/** @locatorType Xpath */
@@ -65,7 +65,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderCancelButton = "//button[@data-testid='CANCEL']";
 	/** @locatorType Xpath */
-	public static final String OpenPOTable = "//table[@id='1944270716454143242_orig']/tbody/tr[2]/td[1]";
+	public static final String OpenPOTable = "//table[@id='1947280713713941360_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String FindLocationButton = "//input[@data-testid='P1615131025_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -95,7 +95,7 @@ public class OpenPoRcLocators {
 
 	/** @locatorType Xpath */
 	public static final String FindTableData(int i) {
-		return "//table[@id='1944270716454143242_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='1947280713713941360_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
@@ -227,7 +227,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendFindTable = "//table[@id='1950966915442829331_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='387662055082151248_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@id='390672052341949366_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 

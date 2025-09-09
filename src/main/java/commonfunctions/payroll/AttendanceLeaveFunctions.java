@@ -1203,15 +1203,18 @@ public class AttendanceLeaveFunctions {
 			clickPostButtonInLeaveRequest();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveRequestNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HRMSelfApproveUser"));
+//				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+//						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+//				approvalFunc.navigateToApprovals();
+//				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
+//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
+//				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+//						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
 			}
 			commonFunc.navigateLeaveEntryScreen();
 			clickFetchButtonAndSearchLeaveRequestNo(VariableHandler.getLeaveRequestNo());
@@ -1220,12 +1223,15 @@ public class AttendanceLeaveFunctions {
 			clickSaveAndPostInLeaveEntry();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveEntryDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HRMSelfApproveUser"));
+//				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+//						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+//				approvalFunc.navigateToApprovals();
+//				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
+//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
 			}
 			flag = commonFunc.logoutUser();
 			if (flag) {
@@ -1526,13 +1532,13 @@ public class AttendanceLeaveFunctions {
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Header Saved Successfully in Leave Request");
-				String totalText = webDB.getTextFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
-						ElementType.Xpath);
-				int startIndex = totalText.indexOf(": ") + 1;
-				int endIndex = totalText.indexOf("(", startIndex) - 1;
-				String ReqNo = (totalText.substring(startIndex, endIndex)).trim();
-				logs.logging("INFO", "Before Substring total text Displayed: " + totalText);
-				logs.logging("INFO", "After Substring Displayed Request No: " + ReqNo);
+				String ReqNo = webDB.getAttributeFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
+						ElementType.Xpath,commonFunc.getDataFromTestDataSheet("Value"));
+//				logs.logging("INFO", "Before Substring total text Displayed: " + totalText);
+//				int startIndex = totalText.indexOf(": ") + 1;
+//				int endIndex = totalText.indexOf("(", startIndex) - 1;
+//				String ReqNo = (totalText.substring(startIndex, endIndex)).trim();
+				logs.logging("INFO", "Displayed Request No: " + ReqNo);
 				VariableHandler.setLeaveRequestNo(ReqNo);
 			}
 		}
@@ -1815,8 +1821,6 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
 				String file1 = webDB.getDataFromProperties("AccrualLeaveMigrationFileName");
-//				String SheetName = "LeaveTemplate";
-//				modifyDateInAccuralMigrationTemplate(VariableHandler.testdataDir + file1, SheetName);
 				File file = new File(VariableHandler.testdataDir + file1);
 				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LRMigrationAccrualUploadInput,
 						file.getAbsolutePath(), ElementType.Xpath);
@@ -2396,7 +2400,7 @@ public class AttendanceLeaveFunctions {
 			clickSaveAndStoreDocNoInAdjustment();
 			clickPostButtonInAdjustmentVerifyStatus();
 			clickAttachmentInLeaveEntry();
-			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("ApplicationOption"),
+			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("AttachmentDocTypeOption"),
 					Today, "0");
 			fillFromToDateAndFileUploadInLeaveEntryAttachment(Today, Today,
 					VariableHandler.testdataDir + webDB.getDataFromProperties("RoadMapImage"));
@@ -2492,8 +2496,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyAccrualLeaveBalanceMigrationWithTemplates() {
 		LocalDate date1 = LocalDate.now();
-		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMMM");
-		String month = date1.format(formatter1) + " - 1";
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM");
+		String month = date1.format(formatter1);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
@@ -2752,19 +2756,23 @@ public class AttendanceLeaveFunctions {
 	private void fillHeaderInAdjustmentMigration(String Calendar, String Year, String Period, String Mode, String Ref) {
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.AdjmntMigrationCalendarLovBtn, Calendar);
 		logs.logging("INFO", "Adjustment Migration Calendar Selected: " + Calendar);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(AttendanceLeaveLocators.AdjmntMigrationYearSelect, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.AdjmntMigrationYearSelect, Year,
 					ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Adjustment Migration Year Selected: " + Year);
-				flag = webDB.selectDropDownByText(AttendanceLeaveLocators.AdjmntMigrationPeriodSelect, Period,
-						ElementType.Xpath);
+				flag = webDB.selectDropDownByIndex(AttendanceLeaveLocators.AdjmntMigrationPeriodSelect,
+						Integer.parseInt(Period), ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					logs.logging("INFO", "Adjustment Migration Period Selected: " + Period);
 					flag = webDB.selectDropDownByText(AttendanceLeaveLocators.AdjmntMigrationModeSelect, Mode,
 							ElementType.Xpath);
 					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
 						logs.logging("INFO", "Adjustment Migration Mode Selected: " + Mode);
 						webDB.clearText(AttendanceLeaveLocators.AdjmntMigrationReferenceInput, ElementType.Xpath);
 						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.AdjmntMigrationReferenceInput, Ref,
@@ -2857,13 +2865,19 @@ public class AttendanceLeaveFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickPostInAdjustmentMigration() {
-		flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
+		flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
-			webDB.clickAnElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
-			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			webDB.moveToElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn, ElementType.Xpath);
+			flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Migration - Adjustment Posted Successfully");
+				logs.logging("INFO", "Migration - Adjustment Check Exception Clicked Successfully");
+				webDB.moveToElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				if (flag) {
+					logs.logging("INFO", "Migration - Adjustment Posted Successfully");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2875,10 +2889,10 @@ public class AttendanceLeaveFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickReportAndVerifyDisplayedInLeaveAdjustment() {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.AdjmntMigrationReportBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.AdjustmentReportBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(AttendanceLeaveLocators.AdjmntMigrationReportBtn, ElementType.Xpath);
-			webDB.clickAnElement(AttendanceLeaveLocators.AdjmntMigrationReportBtn, ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.AdjustmentReportBtn, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.AdjustmentReportBtn, ElementType.Xpath);
 			commonFunc.hardWait(5000);
 			ArrayList<String> tabs = new ArrayList<String>(webDB.getDriver().getWindowHandles());
 			flag = tabs.size() > 1;
@@ -2892,7 +2906,7 @@ public class AttendanceLeaveFunctions {
 				if (flag) {
 					webDB.closeExistingTab();
 					webDB.switchToMainTab();
-					flag = webDB.waitForElement(AttendanceLeaveLocators.AdjmntMigrationReportBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.AdjustmentReportBtn, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Existing tab closed and Switch to main window");
 					}

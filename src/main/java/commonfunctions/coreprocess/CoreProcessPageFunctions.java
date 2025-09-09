@@ -211,6 +211,7 @@ public class CoreProcessPageFunctions {
 			saleOrderFunc.verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 					CustomerID);
+			saleOrderFunc.chooseHeaderCPCCodeAndSaveHeader(commonFunc.getDataFromTestDataSheet("GeneralU100-CPC"));
 			saleOrderFunc.addItemsInSO(Item);
 			saleOrderFunc.addLineItemQty(Unit);
 			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(OpenSOHSN);
@@ -282,6 +283,7 @@ public class CoreProcessPageFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBankReceiptVouNo(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HodUsername"));
+			paymentReceiptFunc.verifyPaymentReceiptApprovalStatus();
 			flag = commonFunc.logoutUser();
 			return true;
 		} catch (
@@ -502,9 +504,6 @@ public class CoreProcessPageFunctions {
 			productionOrderFunc.verifyItemInMaterialRequirement(new String[] { RMItem });
 			productionOrderFunc.verifyProcessInMaterialRequirement(
 					new String[] { commonFunc.getDataFromTestDataSheet("GwlProcess1") });
-//			productionOrderFunc.navigateToResourcesSubTab();
-//			productionOrderFunc
-//					.verifyProcessInResources(new String[] { commonFunc.getDataFromTestDataSheet("GwlProcess1") });
 			productionOrderFunc.navigateToExceptionSubTab();
 			productionOrderFunc.validateNoExceptionsShowsInExceptionTab();
 			productionOrderFunc.clickHeaderSaveAndPostProdOrder();
@@ -513,7 +512,6 @@ public class CoreProcessPageFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
-				// commonFunc.navigateToProductionOrderInProdPlanning();
 			}
 			webDB.navigateToRefresh();
 			commonFunc.navigateToInventoryMaterialRequest();
@@ -1124,9 +1122,9 @@ public class CoreProcessPageFunctions {
 			bomFunc.clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-						VariableHandler.getBOMNumber(), webDB.getDataFromProperties("HodEmpId"),
-						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),

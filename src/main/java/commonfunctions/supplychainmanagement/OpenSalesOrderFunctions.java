@@ -315,8 +315,10 @@ public class OpenSalesOrderFunctions {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
-				if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindNoDataMessageContainer,
-						ElementType.Xpath)) {
+				if (!(webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindStatusTableWithText(Item),
+						ElementType.Xpath))
+						|| webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindNoDataMessageContainer,
+								ElementType.Xpath)) {
 					logs.logging("INFO", "No Data was in Approved Status");
 					flag = false;
 				} else {

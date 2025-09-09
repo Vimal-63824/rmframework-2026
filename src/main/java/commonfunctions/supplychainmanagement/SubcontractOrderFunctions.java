@@ -5,13 +5,19 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.testng.Assert;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.SubcontractOrderLocators;
+import io.restassured.http.ContentType;
 import utils.ReportLoger;
+import utils.RestUtils;
+import utils.RestUtils.methodType;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
@@ -22,6 +28,7 @@ public class SubcontractOrderFunctions {
 	public CommonFunctions commonFunc = new CommonFunctions();
 	public static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	public static ApprovalPageFunctions approvalPageFunc = new ApprovalPageFunctions();
+	public static RestUtils restApi = new RestUtils();
 
 	/**
 	 * Verify Pending Subcontract Order
@@ -55,11 +62,11 @@ public class SubcontractOrderFunctions {
 					if (flag) {
 						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						flag = webDB.waitForElement(SubcontractOrderLocators.CreateSoc, ElementType.Xpath);
 						if (flag) {
 							commonFunc.hardWait(2000);
 							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
-							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							webDB.clickAnElement(SubcontractOrderLocators.CreateSoc, ElementType.Xpath);
 
 							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
 									ElementType.Xpath);
@@ -586,6 +593,50 @@ public class SubcontractOrderFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to approve document and extract Material Request Number From
+	 * API Response
+	 *
+	 * @author Sakthi-GWL
+	 * @param BU
+	 * @param DocNo
+	 * @param EmpId
+	 * @param Unit
+	 * @param User
+	 */
+	public void approveSCODocsAndStoreMRNumber(String BU, String DocNo, String EmpId, String Unit, String User) {
+		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
+		restApi.setQueryParam("p_bu", BU);
+		restApi.setQueryParam("p_doc_no", DocNo);
+		restApi.setQueryParam("p_from_empid", EmpId);
+		restApi.setQueryParam("p_plnt", Unit);
+		restApi.setQueryParam("p_user", User);
+		restApi.setQueryParam("p_wfdc_act", "A");
+		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
+		String Value = restApi.response.getHeader("p_out_msg");
+		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
+		logs.logging("INFO", "Displayed Approval Response Status Code: " + restApi.response.getStatusCode());
+		flag = Value.contains("Approved");
+		if (flag) {
+			logs.logging("INFO", "Verified Approval Response Header");
+			flag = restApi.response.getStatusCode() == 200;
+			if (flag) {
+				logs.logging("INFO", "Verified Approval Response Status Code");
+			}
+		}
+		assertTrue(flag);
+		Pattern pattern = Pattern.compile("MR\\d+/\\d+/\\d+-\\d+");
+		Matcher matcher = pattern.matcher(restApi.response.getHeader("p_out_msg"));
+		if (matcher.find()) {
+			String documentNumber = matcher.group();
+			VariableHandler.setMRNumber(documentNumber);
+			logs.logging("INFO", "Extracted MR Number from API Response: " + VariableHandler.getMRNumber());
+		} else {
+			logs.logging("INFO", "Extracted MR Number from API Response Failed.....");
+			Assert.fail("Extracted MR Number from API Response Failed.....");
+		}
 	}
 
 }
