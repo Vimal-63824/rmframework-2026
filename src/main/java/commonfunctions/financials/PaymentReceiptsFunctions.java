@@ -382,13 +382,14 @@ public class PaymentReceiptsFunctions {
 		flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBar, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Search Button Clicked in Pending Receivables");
-				webDB.sendTextToAnElement(PaymentReceiptsLocators.PendReceive_SearchBar, InvoiceNo, ElementType.Xpath);
-				flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+//			flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchBar, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Search Button Clicked in Pending Receivables");
+//				webDB.sendTextToAnElement(PaymentReceiptsLocators.PendReceive_SearchBar, InvoiceNo, ElementType.Xpath);
+//				flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
+//				if (flag) {
+//					webDB.clickAnElement(PaymentReceiptsLocators.PendReceive_SearchGoBtn, ElementType.Xpath);
 					flag = webDB.waitForElement(PaymentReceiptsLocators.PendReceive_CheckBox(InvoiceNo),
 							ElementType.Xpath);
 					if (flag) {
@@ -410,8 +411,8 @@ public class PaymentReceiptsFunctions {
 						}
 					}
 				}
-			}
-		}
+//			}
+//		}
 		webDB.switchToDefaultContent();
 		assertTrue(flag);
 	}
@@ -438,7 +439,7 @@ public class PaymentReceiptsFunctions {
 					logs.logging("INFO", "Header Saved Successfully");
 					String VocNo = webDB.getTextFromElement(PaymentReceiptsLocators.BankReceipt_VoucherNoText,
 							ElementType.Xpath);
-					VariableHandler.setBankReceiptVouNo(VocNo);
+					VariableHandler.setBpvNumber(VocNo);
 					logs.logging("INFO", "Displayed Bank Receipt Voucher No " + VocNo);
 				}
 			}

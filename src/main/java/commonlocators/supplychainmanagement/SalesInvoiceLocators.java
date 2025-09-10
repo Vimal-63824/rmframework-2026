@@ -31,67 +31,67 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Sales_Inv_Pend_Btn = "//button[contains(@id,'B986356987649170102')]";
 	/** @Locator XPATH */
-	public static final String SI_Add_Icon = "//button[contains(@id,'B612292070306061723')]";
+	public static final String SI_Add_Icon = "//button[@data-testid='SALES INVOICE ADD ICON']";
 	/** @Locator XPATH */
 	public static final String SI_header = "//h1[contains(@id,'ui-id-2')]";
 	/** @Locator XPATH */
-	public static final String Loc_ID_Btn = "//button[contains(@id,'P1915131343_SIHD_PLNT_LOC_ID_lov_btn')]";
+	public static final String Loc_ID_Btn = "//input[@data-testid='P1915131343_SIHD_PLNT_LOC_ID']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String SI_Type_Btn = "//button[contains(@id,'P1915131343_SIHD_TYPE_lov_btn')]";
+	public static final String SI_Type_Btn = "//input[@data-testid='P1915131343_SIHD_TYPE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Customer_ID_Btn = "//button[contains(@id,'P1915131343_SIHD_SUPLR_ID_lov_btn')]";
+	public static final String Customer_ID_Btn = "//input[@data-testid='P1915131343_SIHD_SUPLR_ID']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Create_SI = "//button[contains(@id,'B1488740300066368406')]";
+	public static final String Create_SI = "//button[@data-testid='SI CREATE TICK ICON']";
 	/** @Locator XPATH */
 	public static final String Invoice_column = "//*[@id='P191513109001_SIHD_EXC_INV_PFX']";
 	/** @Locator XPATH */
-	public static final String Invoice_Pfx = "//button[contains(@id,'P191513109001_SIHD_EXC_INV_PFX_lov_btn')]";
+	public static final String Invoice_Pfx = "//input[@data-testid='P191513109001_SIHD_EXC_INV_PFX']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String LineWise_Add_Btn = "//button[contains(@id,'B5999450502886567181')]";
+	public static final String LineWise_Add_Btn = "//button[@data-testid='SI LINE ADD ICON']";
 	/** @Locator XPATH */
 	public static final String Item_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator XPATH */
-	public static final String Item_Lov_Btn = "//button[contains(@id,'C6599438351994141897_lov_btn')]";
+	public static final String Item_Lov_Btn = "//input[@data-testid='SILN_PROD_ID_REV']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String Sales_GL_Acc_Desc_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @Locator XPATH */
-	public static final String Sales_GL_Acc_Desc_LOV_Btn = "//button[contains(@id,'C7485440183888279703_lov_btn')]";
+	public static final String Sales_GL_Acc_Desc_LOV_Btn = "//input[@data-testid='SILN_SAL_ACCT_ID']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String Invoice_Column_Qty = "(//td[contains(@class,'a-GV-cell u-tE')])[3]";
 	/** @Locator XPATH */
-	public static final String Invoice_Qty = "//input[contains(@id,'C7456671431231493810')]";
+	public static final String Invoice_Qty = "//input[@data-testid='SILN_INV_QTY']";
 	/** @Locator XPATH */
 	public static final String UnitCost_Column = "(//td[contains(@class,'a-GV-cell u-tE')])[4]";
 	/** @Locator XPATH */
-	public static final String UnitCost_Input = "//input[contains(@id,'C2665351770536171637')]";
+	public static final String UnitCost_Input = "//input[@data-testid='SILN_PRICE1']";
 	/** @Locator XPATH */
 	public static final String SI_Doc_NO = "//span[@id='P191513109001_SIHD_DOC_NO_DISPLAY']";
 	/** @Locator XPATH */
 	public static final String Header_Tick_Icon = "//button[contains(@id,'B6000823850562074967')]";
 	/** @Locator XPATH */
-	public static final String Header_CPC_LOV_Btn = "//button[contains(@id,'P191513109001_SIHD_CC_CODE_lov_btn')]";
+	public static final String Header_CPC_LOV_Btn = "//input[@data-testid='P191513109001_SIHD_CC_CODE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String HSNcode_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	public static final String HSNcode_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @Locator XPATH */
-	public static final String HSN_Code_LOV_Btn = "//button[contains(@id,'C7485416639058279620_lov_btn')]";
+	public static final String HSN_Code_LOV_Btn = "//input[@data-testid='SILN_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Headerwise_TickIcon = "//button[contains(@id,'B5998922505015564483')]";
+	public static final String Headerwise_TickIcon = "//button[contains(@id,'B6000823850562074967')]";
 	/** @Locator XPATH */
-	public static final String Alloc_ls_batch_Btn = "//button[contains(@id,'B6196397171725445500')]";
+	public static final String Alloc_ls_batch_Btn = "//button[@data-testid='SI ALLOC.LS/BATCH BUTTON']";
 	/** @Locator XPATH */
-	public static final String Pick_Btn = "//button[contains(@id,'B5972704148425270012')]";
+	public static final String Pick_Btn = "//button[@data-testid='SI PICK BUTTON']";
 	/** @Locator XPATH */
-	public static final String Cre_Inv_No = "//button[contains(@id,'B5972703876602270009')]";
+	public static final String Cre_Inv_No = "//button[@data-testid='SI CRE.INVOICE BUTTON']";
 	/** @Locator XPATH */
-	public static final String Post_Btn = "//button[contains(@id,'B6174047766812218733')]";
+	public static final String Post_Btn = "//button[@data-testid='SI POST BUTTON']";
 	/** @Locator XPATH */
 	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @Locator XPATH */
 	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator XPATH */
-	public static final String OkButtonForward = "//BUTTON[@ID='B1612723241586671539']";
+	public static final String OkButtonForward = "//BUTTON[@ID='B1614624587133182023']";
 	/** @Locator XPATH */
-	public static final String Lut_No_LOV_Btn = "//button[contains(@id,'P191513109001_LUT_NO_lov_btn')]";
+	public static final String Lut_No_LOV_Btn = "//input[@data-testid='P191513109001_LUT_NO']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String Lut_No_Column = "//*[@id='P191513109001_LUT_NO']";
 	/** @Locator XPATH */
@@ -103,9 +103,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Price_Basis_Field = "//span[contains(@id,'P191513109011_SILN_PRICE_BASIS_DISPLAY')]";
 	/** @Locator XPATH */
-	public static final String Line_Det_save_Btn = "//button[contains(@id,'B1674942967321665734')]";
+	public static final String Line_Det_save_Btn = "//button[contains(@id,'B1676844312868176218')]";
 	/** @Locator XPATH */
-	public static final String PendingSORadioBtn = "//button[@id='B990529693486838107']";
+	public static final String PendingSORadioBtn = "//button[@id='B992431039033348591']";
 	/** @Locator XPATH */
 	public static final String PendingSOIframe = "//iframe[@title='Pending Invoice']";
 	/** @Locator XPATH */
@@ -147,7 +147,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String FindSalesInvoiceNoLovBtn = "//button[@id='P1915131343_DOC_NO_lov_btn']";
 	/** @Locator XPATH */
-	public static final String FindSalesInvoiceSearchBtn = "//button[@id='B612291637658061723']";
+	public static final String FindSalesInvoiceSearchBtn = "//button[@id='B614192983204572207']";
 	/** @Locator XPATH */
 	public static final String InvoiceQntyTableData = "//table/tbody/tr/td[8]";
 	/** @Locator XPATH */
@@ -177,53 +177,53 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Proforma_Inv_Node = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[9]";
 	/** @Locator XPATH */
-	public static final String Proforma_Inv_Pend_Btn = "//button[contains(@id,'B1792826455129644632')]";
+	public static final String Proforma_Inv_Pend_Btn = "//button[@data-testid='PROFORMA INVOICE PENDING ICON']";
 	/** @Locator XPATH */
-	public static final String Proforma_FindPage_Add_Btn = "//button[contains(@id,'B2133960405315551418')]";
+	public static final String Proforma_FindPage_Add_Btn = "//button[@data-testid='PROFORMA INVOICE ADD ICON']";
 	/** @Locator XPATH */
-	public static final String Proforma_Inv_Loc_Btn = "//button[contains(@id,'P1915131085_PIHD_PLNT_LOC_ID_lov_btn')]";
+	public static final String Proforma_Inv_Loc_Btn = "//input[@data-testid='P1915131085_PIHD_PLNT_LOC_ID']";
 	/** @Locator XPATH */
-	public static final String PI_Type_Field = "//button[contains(@id,'P1915131085_PIHD_TYPE_lov_btn')]";
+	public static final String PI_Type_Field = "//input[@data-testid='P1915131085_PIHD_TYPE']";
 	/** @Locator XPATH */
-	public static final String PI_Customer_Name = "//button[contains(@id,'P1915131085_PIHD_CUST_ID_lov_btn')]";
+	public static final String PI_Customer_Name = "//input[@data-testid='P1915131085_PIHD_CUST_ID']";
 	/** @Locator XPATH */
-	public static final String PI_TickIcon = "//button[contains(@id,'B2133961055178551424')]";
+	public static final String PI_TickIcon = "//button[@data-testid='PI CREATE TICK ICON']";
 	/** @Locator XPATH */
-	public static final String Proforma_Inv_Pfx_Btn = "//button[contains(@id,'P191513108501_PIHD_INV_PFX_lov_btn')]";
+	public static final String Proforma_Inv_Pfx_Btn = "//input[@data-testid='P191513108501_PIHD_INV_PFX']";
 	/** @Locator XPATH */
-	public static final String Proforma_inv_Header_TickIcon = "//button[contains(@id,'B6617175240589040289')]";
+	public static final String Proforma_inv_Header_TickIcon = "//button[@data-testid='PI HEADER TICK ICON']";
 	/** @Locator XPATH */
 	public static final String PI_Header_Success_Msg = "//h6[@class='succ_msg']";
 	/** @Locator XPATH */
 	public static final String PI_Header_Close_Success_msg = "(//button[@title='Close'])[1]";
 	/** @Locator XPATH */
-	public static final String PI_Line_Add_Icon = "//button[contains(@id,'B6617423162686158316')]";
+	public static final String PI_Line_Add_Icon = "//button[@data-testid='PI LINE ADD ICON']";
 	/** @Locator XPATH */
 	public static final String PI_SO_Ref_Column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator XPATH */
-	public static final String PI_SO_Ref_Btn = "//button[contains(@id,'C6616619700773674942_lov_btn')]";
+	public static final String PI_SO_Ref_Btn = "//input[@data-testid='PILN_SO_SCHLD_DESC']";
 	/** @Locator XPATH */
 	public static final String PI_Item_ID_column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator XPATH */
-	public static final String PI_Item_Id_Btn = "//button[contains(@id,'C24211453294370612_lov_btn')]";
+	public static final String PI_Item_Id_Btn = "//input[@data-testid='DUM_PROD_ID']";
 	/** @Locator XPATH */
-	public static final String PI_Inv_Qty = "//input[contains(@id,'C110181054946870822')]";
+	public static final String PI_Inv_Qty = "//input[@data-testid='PILN_PROD_QTY1']";
 	/** @Locator XPATH */
 	public static final String PI_Qty_Column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
 	public static final String PI_UnitCost_Column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
 	/** @Locator XPATH */
-	public static final String PI_UnitCost = "//input[contains(@id,'C124179642839916002')]";
+	public static final String PI_UnitCost = "//input[@data-testid='PILN_SALES_PRICE1']";
 	/** @Locator XPATH */
 	public static final String PI_Discount_Column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[9]";
 	/** @Locator XPATH */
 	public static final String PI_HSN_Column = "//*[@id=\"line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator XPATH */
-	public static final String PI_HSN_Btn = "//button[contains(@id,'C6616619814109674943_lov_btn')]";
+	public static final String PI_HSN_Btn = "//input[@data-testid='PILN_HSN_CODE']";
 	/** @Locator XPATH */
-	public static final String PI_Line_tickIcon = "//button[contains(@id,'B2200252161799405125')]";
+	public static final String PI_Line_tickIcon = "//button[contains(@id,'B2202153507345915609')]";
 	/** @Locator XPATH */
-	public static final String PI_Post_Btn = "//button[contains(@id,'B1009132619800812029')]";
+	public static final String PI_Post_Btn = "//button[@data-testid='PI POST BUTTON']";
 	/** @Locator XPATH */
 	public static final String PI_DocNo = "//span[contains(@id,'P191513108501_PIHD_DOC_NO_DISPLAY')]";
 	/** @Locator XPATH */
@@ -231,11 +231,11 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String PI_Pend_Iframe = "//iframe[@title='Pending Proforma Invoice ']";
 	/** @Locator XPATH */
-	public static final String PI_Pend_SO_No = "//button[@id='P1915131084_SO_NO_lov_btn']";
+	public static final String PI_Pend_SO_No = "//input[@data-testid='P1915131084_SO_NO']";
 	/** @Locator XPATH */
 	public static final String PI_Pend_SO_No_Column = "//input[@id='P1915131084_SO_NO']";
 	/** @Locator XPATH */
-	public static final String PI_Pend_Search_Btn = "//button[@id='B2544328050445486141']";
+	public static final String PI_Pend_Search_Btn = "//button[@id='B2546229395991996625']";
 	/** @Locator XPATH */
 	public static final String PI_Pend_SelectAll = "//input[@id='check_all']";
 	/** @Locator XPATH */
@@ -247,11 +247,11 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Location_Detail_Iframe = "//iframe[@title='Location Details']";
 	/** @Locator XPATH */
-	public static final String Location_Details_Btn = "//button[@id='B1535298099298704016']";
+	public static final String Location_Details_Btn = "//button[@data-testid='SI LOCATION DETAILS']";
 	/** @Locator XPATH */
 	public static final String Customer_Name = "//input[@id='P191513109001_SIHD_SUPLR_NAME']";
 	/** @Locator XPATH */
-	public static final String Location_det_tickIcon = "//button[@id='B1540936501607727024']";
+	public static final String Location_det_tickIcon = "//button[@id='B1542837847154237508']";
 	/** @Locator XPATH */
 	public static final String SI_Currency = "//span[@id='P191513109001_SIHD_CURRENCY_DISPLAY']";
 	/** @Locator XPATH */
@@ -287,9 +287,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Pend_CS_CreateInvoice_Btn = "//button[@id='B2']";
 	/** @Locator XPATH */
-	public static final String SI_Unpick_Btn = "//button[@id='B5972704278504270013']";
+	public static final String SI_Unpick_Btn = "//button[@id='B5974605624050780497']";
 	/** @Locator XPATH */
-	public static final String SI_Cancel_Btn = "//button[@id='B6031722077341075600']";
+	public static final String SI_Cancel_Btn = "//button[@data-testid='SI CANCEL BUTTON']";
 	/** @Locator XPATH */
 	public static final String SI_Cancel_OK_Btn = "//button[@id='B6742500232153772095']";
 	/** @Locator XPATH */
@@ -314,7 +314,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_LineDetails2_Tab = "//label[@for='P191513109011_TAB_1']";
 	/** @Locator XPATH */
-	public static final String SI_Shipset_Btn = "//button[@id='B2544243130766413021']";
+	public static final String SI_Shipset_Btn = "//button[@id='B2546144476312923505']";
 	/** @Locator XPATH */
 	public static final String SI_Shipset_Close_Btn = "(//button[@title='Close'])[7]";
 	/** @Locator XPATH */
@@ -425,7 +425,7 @@ public class SalesInvoiceLocators {
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
 		return "//*[@id=\'ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[20]/a/span[contains(@style,'blue')]";
+				+ "]/td[19]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Xpath */
@@ -433,7 +433,7 @@ public class SalesInvoiceLocators {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[9]";
 	}
 
-	public static final String SI_Store_ID = "//input[@id='P191513109011_SILN_STORE_ID_HIDDENVALUE']";
+	public static final String SI_Store_ID = "//input[@id='P191513109011_SILN_STORE_ID']";
 	/** @Locator XPATH */
 	public static final String SI_LineDet_UnitCost = "//input[@id='P191513109011_SILN_UNIT_COST']";
 	/** @Locator XPATH */
@@ -590,7 +590,9 @@ public class SalesInvoiceLocators {
 	public static final String CR_AcptQty_Input = "//input[@id='C5955391527579809240']";
 	/** @Locator XPATH */
 	public static final String SI_Detail_LabelName = "//h1[@id='ui-id-7']";
-	
+
+	// Recent Update
+
 	public static final String CR_LS_Acpt_Qty = "//*[@id=\"ig_line1_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
 	/** @Locator XPATH */
 	public static final String CR_LS_Save_Icon = "//button[@id='B999352627418781521']";
@@ -710,50 +712,50 @@ public class SalesInvoiceLocators {
 	public static final String RWC_Post_Btn = "//button[@id='B2714798996451064515']";
 	/** @Locator XPATH */
 	public static final String RWC_Locator_Close_Toast_Msg = "//span[@class='t-Icon icon-close']";
-	/** @Locator XPATH */
+
 	public static final String RWC_Scrap_Qty_Column = "//*[@id=\"pendrework_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[12]";
-	/** @Locator XPATH */
+
 	public static final String RWC_Scrap_Qty_Input = "//input[@id='C1133761586674996304']";
-	/** @Locator XPATH */
+
 	public static final String GetScrapItem = "//*[@id=\"scraps_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
 
 	/** @locatorType Xpath */
 	public static final String ScrapItemTable(int i) {
 		return "//*[@id='scraps_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[\" + i + \"]/td[3]";
 	}
-	/** @Locator XPATH */
+
 	public static final String Scrap_Details_Tab = "//label[@for='P1818131050_TAB_3']";
-	/** @Locator XPATH */
+
 	public static final String RW_Header_LocID = "//span[@id='P1818131040_RWOHD_PLNT_LOC_ID_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Header_Unit = "//span[@id='P1818131040_RWOHD_PLNT_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Header_Rework_Ord_Pfx = "//span[@id='P1818131040_RWOHD_ORD_PFX_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Document_No = "//span[@id='P1818131040_RWOHD_ORD_NO_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Item_Field = "//span[@id='P1818131040_RWOHD_PROD_ID_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Item_Desc_Field = "//span[@id='P1818131040_ITEM_DESC_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Type_Field = "//input[@id='P18181310402_RWOHD_ORD_TYPE']";
-	/** @Locator XPATH */
+
 	public static final String RW_Lot_Field = "//span[@id='P1818131040_RWOHD_LOT_NO_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Source_Doc_No = "//span[@id='P1818131040_RWOHD_SOU_DOC_NO_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Sou_Pfx = "//span[@id='P1818131040_RWOHD_SOU_DOC_PFX_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RW_Qty_Field = "//span[@id='P1818131040_RWOHD_REWORK_QTY_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RWC_Header_LocID = "//span[@id='P1818131050_RWOCHD_PLNT_LOC_ID_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RWC_Header_Unit = "//span[@id='P1818131050_RWOCHD_PLNT_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RWC_Document_No = "//input[@id='P1818131050_RWOCHD_DOC_NO']";
-	/** @Locator XPATH */
+
 	public static final String RWC_Item_Field = "//span[@id='P1818131050_RWOCHD_PROD_ID_DISPLAY']";
-	/** @Locator XPATH */
+
 	public static final String RWC_SourceWH_Field = "//span[@id='P1818131050_RWOCHD_SOU_STORE_DISPLAY']";
 
 }

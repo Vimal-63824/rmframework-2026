@@ -12,7 +12,7 @@ public class BillOfMaterialsLocators {
 
 	/** @locatorType Xpath */
 	public static final String Find_BOMStatusTableData(String BOMNo) {
-		return "(//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + BOMNo + "']/../../td[10])[1]";
+		return "//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + BOMNo + "']/../../td/div[contains(@style,'color')]";
 	}
 
 	/** @locatorType Xpath */

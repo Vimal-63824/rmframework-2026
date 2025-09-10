@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
-	public static final String PendingProdOrderIframe = "(//iframe[@scrolling='auto'])[1]";
+	public static final String PendingProdOrderIframe = "//iframe";// "//iframe[contains(@title,'Pend. Prod. Ord.')]";
 	/** @locatorType XPATH */
 	public static final String PendingProdOrderIframeCloseIcon = "//h1[text()='Pend. Prod. Ord.']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -19,7 +19,7 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String PendingProdOrder_ItemTableData = "//div[@id='PEND_content']//table/tbody/tr/td[5]";
 	/** @locatorType XPATH */
-	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[14]";
+	public static final String PendingProdOrder_ProcessTableData = "//div[@id='PEND_content']//table/tbody/tr/td[15]";
 
 	/** @locatorType XPATH */
 	public static final String PendingProdOrder_SelectCheckboxTableData(String ProdNo) {
@@ -202,4 +202,39 @@ public class CompletionProductionOrderLocators {
 	public static final String Consumption = "//input[@data-display='Consumption']/following-sibling::label";
 	/** @locatorType XPATH */
 	public static final String FinishProcessName = "//span[@id='P19631031001_PT_PROCESS_DISPLAY']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleProcessName = "//div[@id='R6395198950450638961_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[3]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineAddButton = "//button[@title='Add']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineSaveButton = "//button[@id='B1243193467708894964']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineTable = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[1]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineNameTable = "//div[@id='ST_MACH_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleMachineLovButton = "//input[@id='C2761760820481593017']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourAddButton = "//button[@title='Add Labar']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourSaveButton = "//button[@title='Save Labour']";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourTable = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourNameTable = "//div[@id='LAB_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[2]";
+	/** @locatorType XPATH */
+	public static final String CompMultipleLabourLovButton = "//input[@id='C2760687462192087715']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String ComplMultipleConsumptionTab = "//input[@id='P1963103102_TAB_1']/following-sibling::label";
+	/** @locatorType XPATH */
+	public static final String ComplMultipleConsumptionNextButton = "//div[@id='consumption_ig_grid_vc_floatingItem_dialog']/following::div[@aria-label='Pagination']/button[@title='Next']";
+	/** @locatorType XPATH */
+	public static final String Pend_ProdOrderLovBtn = "//button[@id='P33_FIND_PROD_NO_lov_btn']";
+	/** @locatorType XPATH */
+	public static final String PendingSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
+	/** @locatorType XPATH */
+	public static final String SearchResultStatusData = "//table[@id='2775888757349079215_orig']//tbody/tr/td/div[contains(@style,'color')]";
+	/** @locatorType XPATH */
+	public static final String Pending_TableSelectAllCheckBox = "//table[@id='2554136343121425027']/tr/th//input[@id='check_all']";
+
 }

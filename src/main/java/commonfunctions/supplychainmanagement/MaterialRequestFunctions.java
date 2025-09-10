@@ -516,7 +516,7 @@ public class MaterialRequestFunctions {
 				"TvsUsername");
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DepartmentValue"), commonFunc.getDataFromTestDataSheet("Prod100"),
+				commonFunc.getDataFromTestDataSheet("DepartmentValue"), commonFunc.getDataFromTestDataSheet("Prod-100"),
 				commonFunc.getDataFromTestDataSheet("Vinoth"));
 		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
@@ -770,15 +770,6 @@ public class MaterialRequestFunctions {
 							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 									VariableHandler.getMaterialRequestNo(), webDB.getDataFromProperties("HodEmpId"),
 									commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
-//							commonFunc.logoutUser();
-//							commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-//									System.getProperty("HodPassword"), "HodUsername-Admin");
-//							approvalPageFunc.navigateToApprovals();
-//							approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMaterialRequestNo());
-//							approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getMaterialRequestNo());
-//							flag = commonFunc.logoutUser();
-//							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-//									System.getProperty("TvsPassword"), "TvsUsername");
 							commonFunc.navigateToInventoryMaterialRequest();
 							checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
 									commonFunc.getDataFromTestDataSheet("ApproveStatus"));

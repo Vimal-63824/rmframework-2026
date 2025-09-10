@@ -281,7 +281,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LEAttachmentChooseFileInput = "//input[@id='P37_FILE_input']";
 	/** @locatorType Xpath */
-	public static final String LEAttachmentUploadBtn = "//button[@id='B2290116279942754239']";
+	public static final String LEAttachmentUploadBtn = "//button[@id='B2292967027785479117']";
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDisplayedFileName = "//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
@@ -315,7 +315,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjustmentDisplayDocNo = "//input[@data-testid='LE_DOC_NO_INPUT']";
 	/** @locatorType Xpath */
-	public static final String AdjustmentDisplayStatus = "//h2[@id='R908484335077219106_heading']/b";
+	public static final String AdjustmentDisplayStatus = "//h2[@id='R911335082919943984_heading']/b";
 	/** @locatorType Xpath */
 	public static final String AdjustmentReverseBtn = "//button[@data-testid='LE_ADJ_REV_Button']";
 	/** @locatorType Xpath */
@@ -325,7 +325,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjustmentMigrationBtn = "//button[@data-testid='MIG_ADJ_Button']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationCreateAddBtn = "//button[@id='B1294363498798691301']";
+	public static final String AdjmntMigrationCreateAddBtn = "//button[@id='B1297214246641416179']";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationCalendarLovBtn = "//button[@id='P367011501_ELHD_CLNDR_ID_lov_btn']";
 	/** @locatorType Xpath */
@@ -339,17 +339,17 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationReferenceInput = "//input[@id='P367011501_ELHD_REF']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationHeaderSaveBtn = "//button[@id='B3441485342751693741']";
+	public static final String AdjmntMigrationHeaderSaveBtn = "//button[@id='B3444336090594418619']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationUploadIcon = "//button[@id='B3438013596273822878']";
+	public static final String AdjmntMigrationUploadIcon = "//button[@id='B3440864344116547756']";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationUploadIFrame = "//iframe[@title='Upload File']";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationUploadInput = "//input[@id='P367011502_UPLOAD_input']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationUploadBtn = "//button[@id='B3445018050893053515']";
+	public static final String AdjmntMigrationUploadBtn = "//button[@id='B3447868798735778393']";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationCheckExceptionBtn = "//button[@id='B3442971615561850266']";
+	public static final String AdjmntMigrationCheckExceptionBtn = "//button[@id='B3445822363404575144']";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationPostBtn = "//button[@id='B3438013868412822880']";
 	/** @locatorType Xpath */
@@ -396,4 +396,36 @@ public class AttendanceLeaveLocators {
 	public static final String Adj_FindDepartmentResultTable = "//table[@id='1355184171300003912_orig']//tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String Adj_FindUnitResultTable = "//table[@id='1355184171300003912_orig']//tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String LoanRequestAddButton = "//button[@data-testid='LOAN_REQ_ADD_BUTTON']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestEntryRequestDate = "//*[@id='P818121011_ELR_RQST_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestEntryEmployeeLOV = "//button[@data-testid='ELR_EMP_find_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestEntryLoanLOV = "//button[@data-testid='ELR_LOAN_find_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestReferenceField = "//Input[@data-testid='LOAN_REQ_REF']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestRequiredDetailsDateField = "//*[@id='P818121011_ELR_RQRD_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestAmountField = "//Input[@data-testid='ELR_AMOUNT']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestNoofInstallmentField = "//Input[@data-testid='ELR_INST_NO']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestSuretyEmployee1 = "//Button[@data-testid='ELR_EMP1_find_LEV_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestSuretyEmployee2 = "//Button[@data-testid='ELR_EMP2_find_EMP_lov']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestSaveIcon = "//button[@data-testid='LOAN_REQ_CREATE_Button']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestPostIcon = "//button[@data-testid='LOAN_REQ_ENTRY_Button']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestDocNoField = "//Input[@data-testid='LOAN_REQ_NO']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestFindDocNoClick = "//*[@id='4342056657228940913_orig']/tbody/tr[2]/td[2]";
+	/** @locatorType Xpath */
+	public static final String LoanRequestFindSearch = "//button[@data-testid='LOAN_REQ_SEARCH_BUTTON']";
+	/** @locatorType Xpath */
+	public static final String LoanRequestDocCancel = "//Button[@data-testid='LOAN_REQ_CANCEL_Button']";
 }

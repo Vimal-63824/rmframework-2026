@@ -46,9 +46,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_SaveButton = "//*[@data-testid=' AddEmp_SaveButton']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_DisplayEmpID = "//*[@data-testid=' AddEmp_DisplayEmpID']";
+	public static final String AddEmp_DisplayEmpID = "//div[@id='emp_dtl']//b";// "//*[@data-testid='
+																				// AddEmp_DisplayEmpID']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ContactAddLinesIcon = "//*[@data-testid=' AddEmp_ContactAddLinesIcon']";
+	public static final String AddEmp_ContactAddLinesIcon = "//button[@id='B802333821857817712']";// "//*[@data-testid='
+																									// AddEmp_ContactAddLinesIcon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_QualificationAddLinesIcon = "//*[@data-testid=',AddEmp_QualificationAddLinesIcon']";
 	/** @locatorType XPATH */
@@ -140,7 +142,8 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_LoadAllowanceBtn = "//*[@data-testid=' AddEmp_LoadAllowanceBtn']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_SaveAllowanceTableBtn = "//*[@data-testid=' AddEmp_SaveAllowanceTableBtn']";
+	public static final String AddEmp_SaveAllowanceTableBtn = "//button[@id='B802104698240817212']";// "//*[@data-testid='
+																									// AddEmp_SaveAllowanceTableBtn']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AllowanceTableAmountData = "(//b[text()='Allowances']/following::table)[2]//tr/td[3]";
 	/** @locatorType XPATH */
@@ -156,11 +159,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_AdjustmentStartYearData = "(//b[text()='Adjustments']/following::table)[2]//tr/td[4]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AdjustmentStartYearSelect = "//*[@data-testid=' AddEmp_AdjustmentStartYearSelect']";
+	public static final String AddEmp_AdjustmentStartYearSelect = "//*[@data-testid=' AddEmp_AdjustmentStartYearData']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AdjustmentPeriodData = "(//b[text()='Adjustments']/following::table)[2]//tr/td[5]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AdjustmentPeriodSelect = "//*[@data-testid=' AddEmp_AdjustmentPeriodSelect']";
+	public static final String AddEmp_AdjustmentPeriodSelect = "//*[@data-testid=' AddEmp_AdjustmentPeriodData']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AdjustmentTotalPeriodData = "(//b[text()='Adjustments']/following::table)[2]//tr/td[6]";
 	/** @locatorType XPATH */
@@ -176,7 +179,8 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_AdjustmentTableFirstTrashIcon = "((//b[text()='Adjustments']/following::table)[2]//tr/td//span[@class='fa fa-trash'])[1]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AfterCreationSaveIcon = "//*[@data-testid=' AddEmp_AfterCreationSaveIcon']";
+	public static final String AddEmp_AfterCreationSaveIcon = "//*[@data-testid='BTN_save_sal_emp_empIcon']";// "//*[@data-testid='
+																												// AddEmp_AfterCreationSaveIcon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_SalaryAdjustmentSaveBtn = "//*[@data-testid=' AddEmp_SalaryAdjustmentSaveBtn']";
 	/** @locatorType XPATH */
@@ -230,9 +234,9 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmployeeUpdateButton = "//*[@data-testid=' AddEmployeeUpdateButton']";
 	/** @locatorType XPATH */
-	public static final String LeaveEntitlementLists = "//table[@id='4101162321820191783_orig']//tr/td[9]/span";
+	public static final String LeaveEntitlementLists = "//table[@id='4104013069662916661_orig']//tr/td[9]/span";
 	/** @locatorType XPATH */
-	public static final String AddEmp_SignUploadbtn = "//button[@id='B801977274821816881']";
+	public static final String AddEmp_SignUploadbtn = "//*[@data-testid='BTN_Sign_Upload_empIcon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LoadIframe = "//iframe[@title='LOAD']";
 	/** @locatorType XPATH */
@@ -252,57 +256,57 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_CloseFrameIcon = "//h1[text()='LOAD']/following-sibling::button[@title='Close']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AdditionalInfoBtn = "//button[@id='B801977742778816881']";
+	public static final String AddEmp_AdditionalInfoBtn = "//*[@data-testid='BTN_Additional_Info_empIcon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoVehicleSelect = "//select[@id='P8186111102_EMP_TWO_WHLR_FLAG']";
+	public static final String AddEmp_AddInfoVehicleSelect = "//*[@data-testid='P8186111102_EMP_TWO_WHLR_FLAG_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoVehicleNoInput = "//input[@id='P8186111102_EMP_VEHICLE_NO']";
+	public static final String AddEmp_AddInfoVehicleNoInput = "//*[@data-testid='P8186111102_EMP_VEHICLE_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoPrevExpYear = "//input[@id='P8186111102_EMP_PREV_EXP_YEARS']";
+	public static final String AddEmp_AddInfoPrevExpYear = "//*[@data-testid='P8186111102_EMP_PREV_EXP_YEARS_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoPrevExpMonth = "//input[@id='P8186111102_EMP_PREV_EXP_MONTH']";
+	public static final String AddEmp_AddInfoPrevExpMonth = "//*[@data-testid='P8186111102_EMP_PREV_EXP_MONTH_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoHouseType = "//select[@id='P8186111102_EMP_HOME_TYPE']";
+	public static final String AddEmp_AddInfoHouseType = "//*[@data-testid='P8186111102_EMP_HOME_TYPE_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoStayType = "//select[@id='P8186111102_EMP_STAY_TYPE']";
+	public static final String AddEmp_AddInfoStayType = "//*[@data-testid='P8186111102_EMP_STAY_TYPE_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoOfcApplID = "//input[@id='P8186111102_EMP_RECRUIT_APPL_N']";
+	public static final String AddEmp_AddInfoOfcApplID = "//*[@data-testid='P8186111102_EMP_RECRUIT_APPL_N_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoOfcPrevEmpID = "//input[@id='P8186111102_EMP_PREV_EMP_ID']";
+	public static final String AddEmp_AddInfoOfcPrevEmpID = "//*[@data-testid='P8186111102_EMP_PREV_EMP_ID_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoOfcIDCardNo = "//input[@id='P8186111102_EMP_ID_CARD_NO']";
+	public static final String AddEmp_AddInfoOfcIDCardNo = "//*[@data-testid='P8186111102_EMP_ID_CARD_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationMobileOfc = "//input[@id='P8186111102_EMP_OFF_MOBILE_NO']";
+	public static final String AddEmp_AddInfoWorkLocationMobileOfc = "//*[@data-testid='P8186111102_EMP_OFF_MOBILE_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationEmailOfc = "//input[@id='P8186111102_EMP_OFF_EMAIL_ID']";
+	public static final String AddEmp_AddInfoWorkLocationEmailOfc = "//*[@data-testid='P8186111102_EMP_OFF_EMAIL_ID_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationEmailPersonal = "//input[@id='P8186111102_EMP_EMAIL_ID']";
+	public static final String AddEmp_AddInfoWorkLocationEmailPersonal = "//*[@data-testid='P8186111102_EMP_EMAIL_ID_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationBuildingNo = "//input[@id='P8186111102_EMP_BULDING_NO']";
+	public static final String AddEmp_AddInfoWorkLocationBuildingNo = "//*[@data-testid='P8186111102_EMP_BULDING_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationSectionNo = "//input[@id='P8186111102_EMP_SECTION_NO']";
+	public static final String AddEmp_AddInfoWorkLocationSectionNo = "//*[@data-testid='P8186111102_EMP_SECTION_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationRoomNo = "//input[@id='P8186111102_EMP_ROOM_NO']";
+	public static final String AddEmp_AddInfoWorkLocationRoomNo = "//*[@data-testid='P8186111102_EMP_ROOM_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationMobilePersonalNo = "//input[@id='P8186111102_EMP_MOBILE_NO']";
+	public static final String AddEmp_AddInfoWorkLocationMobilePersonalNo = "//*[@data-testid='P8186111102_EMP_MOBILE_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationAlterMobileNo = "//input[@id='P8186111102_EMP_ALT_MOBILE_NO']";
+	public static final String AddEmp_AddInfoWorkLocationAlterMobileNo = "//*[@data-testid='P8186111102_EMP_ALT_MOBILE_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationSimCardNo = "//input[@id='P8186111102_EMP_SIM_CARD_NO']";
+	public static final String AddEmp_AddInfoWorkLocationSimCardNo = "//*[@data-testid='P8186111102_EMP_SIM_CARD_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationPhoneNo = "//input[@id='P8186111102_EMP_PHONE_ID']";
+	public static final String AddEmp_AddInfoWorkLocationPhoneNo = "//*[@data-testid='P8186111102_EMP_PHONE_ID_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationExtensionNo = "//input[@id='P8186111102_EMP_EXTENSION_NO']";
+	public static final String AddEmp_AddInfoWorkLocationExtensionNo = "//*[@data-testid='P8186111102_EMP_EXTENSION_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoWorkLocationFaxNo = "//input[@id='P8186111102_EMP_FAX_NO']";
+	public static final String AddEmp_AddInfoWorkLocationFaxNo = "//*[@data-testid='P8186111102_EMP_FAX_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AddInfoSaveButton = "//button[@id='B3465950645421562443']";
+	public static final String AddEmp_AddInfoSaveButton = "//*[@data-testid='BTN_Add_save_additinfor']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AddInfoIframe = "//button[@title='Close']/following::iframe";
 	/** @locatorType XPATH */
-	public static final String AddEmp_DependentAddIcon = "//*[@data-testid=' AddEmp_DependentAddIcon']";
+	public static final String AddEmp_DependentAddIcon = "//*[@data-testid='add_dep_Icon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_DependentSaveIcon = "//*[@data-testid=' AddEmp_DependentSaveIcon']";
+	public static final String AddEmp_DependentSaveIcon = "//*[@data-testid='Save_dep_Icon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_DependentNameData = "//h2[text()='Dependent']/following::table[2]//tr/td[1]";
 	/** @locatorType XPATH */
@@ -314,7 +318,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_DependentDOBData = "//h2[text()='Dependent']/following::table[2]//tr/td[3]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_DependentDOBInput = "//input[@id='C12182378540296255232_input']";
+	public static final String AddEmp_DependentDOBInput = "//*[@data-testid='DOB_depend']//input";
 	/** @locatorType XPATH */
 	public static final String AddEmp_DependentAadharNoData = "//h2[text()='Dependent']/following::table[2]//tr/td[4]";
 	/** @locatorType XPATH */
@@ -340,56 +344,56 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_UpdateAddressTab = "//label[text()='Address']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateFirstName = "//input[@id='P9001_EE_EMP_FIRST_NAME']";
+	public static final String AddEmp_UpdateFirstName = "//*[@data-testid='P9001_EE_EMP_FIRST_NAME_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateLastName = "//input[@id='P9001_EE_EMP_LAST_NAME']";
+	public static final String AddEmp_UpdateLastName = "//*[@data-testid='P9001_EE_EMP_LAST_NAME_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateGender = "//select[@id='P9001_EE_EMP_GENDER']";
+	public static final String AddEmp_UpdateGender = "//*[@data-testid='P9001_EE_EMP_GENDER_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateDOB = "//input[@id='P9001_EE_EMP_DOB_input']";
+	public static final String AddEmp_UpdateDOB = "//*[@data-testid='P9001_EE_EMP_DOB_iteminpu']/input";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateCalenderLovbtn = "//button[@id='P9001_EE_EMP_CLNDR_ID_lov_btn']";
+	public static final String AddEmp_UpdateCalenderLovbtn = "//*[@data-testid='P9001_EE_EMP_CLNDR_ID_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateZoneLovbtn = "//button[@id='P9001_EE_EMP_ZONE_lov_btn']";
+	public static final String AddEmp_UpdateZoneLovbtn = "//*[@data-testid='P9001_EE_EMP_ZONE_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateCategoryLovbtn = "//button[@id='P9001_EE_EMP_CAT_ID_lov_btn']";
+	public static final String AddEmp_UpdateCategoryLovbtn = "//*[@data-testid='P9001_EE_EMP_CAT_ID_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAccountCategoryLovbtn = "//button[@id='P9001_EE_EMP_ACCT_CAT_ID_lov_btn']";
+	public static final String AddEmp_UpdateAccountCategoryLovbtn = "//*[@data-testid='P9001_EE_EMP_ACCT_CAT_ID_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdatePayrollGroupLovbtn = "//button[@id='P9001_EE_EMP_GROUP_lov_btn']";
+	public static final String AddEmp_UpdatePayrollGroupLovbtn = "//*[@data-testid='P9001_EE_EMP_GROUP_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateNoticePeriod = "//input[@id='P9001_EE_EMP_NOTICE']";
+	public static final String AddEmp_UpdateNoticePeriod = "//*[@data-testid='P9001_EE_EMP_NOTICE_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateShift = "//select[@id='P9001_EE_EMP_SHIFT']";
+	public static final String AddEmp_UpdateShift = "//*[@data-testid='P9001_EE_EMP_SHIFT_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateMaritalStatus = "//select[@id='P9001_EE_EMP_MARITAL_STATUS']";
+	public static final String AddEmp_UpdateMaritalStatus = "//*[@data-testid='P9001_EE_EMP_MARITAL_STATUS_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateEmpParticularSaveIcon = "//div[@id='Emp_Particulars']//button[@title='Save']";
+	public static final String AddEmp_UpdateEmpParticularSaveIcon = "//*[@data-testid='BTN_Save_Icon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateEmpAddressSaveIcon = "//div[@id='Address']//button[@title='Save']";
+	public static final String AddEmp_UpdateEmpAddressSaveIcon = "//*[@data-testid='BTN_Address_save_Icon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddress1 = "//input[@id='P9001_EACR_ADDRES1']";
+	public static final String AddEmp_UpdateAddress1 = "//*[@data-testid='P9001_EACR_ADDRES1_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddress3 = "//input[@id='P9001_EACR_ADDRES3']";
+	public static final String AddEmp_UpdateAddress3 = "//*[@data-testid='P9001_EACR_ADDRES3_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddress2 = "//input[@id='P9001_EACR_ADDRES2']";
+	public static final String AddEmp_UpdateAddress2 = "//*[@data-testid='P9001_EACR_ADDRES2_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddressZipCode = "//input[@id='P9001_EACR_ZIP']";
+	public static final String AddEmp_UpdateAddressZipCode = "//*[@data-testid='P9001_EACR_ZIP_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddressTelephone = "//input[@id='P9001_EACR_TELE1']";
+	public static final String AddEmp_UpdateAddressTelephone = "//*[@data-testid='P9001_EACR_TELE1_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddressCityLovBtn = "//button[@id='P9001_EACR_CITY_lov_btn']";
+	public static final String AddEmp_UpdateAddressCityLovBtn = "//*[@data-testid='P9001_EACR_CITY_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateAddressSameAsPermBtn = "//button[@id='B1048663588335210323']";
+	public static final String AddEmp_UpdateAddressSameAsPermBtn = "//*[@data-testid='BTN_Same_addres_Icon']";
 
 	/** @locatorType XPATH */
 	public static final String LeaveEntitlementIcon(int i) {
-		return "//table[@id='4101162321820191783_orig']//tr[" + i + "]/td[9]/span";
+		return "//table[@id='4104013069662916661_orig']//tr[" + i + "]/td[9]/span";
 	}
 
 	/** @locatorType XPATH */
 	public static final String LeaveTypeTableLeaveIDTexts(int i) {
-		return "//table[@id='4101162321820191783_orig']//tr[" + i + "]/td[1]/a";
+		return "//table[@id='4104013069662916661_orig']//tr[" + i + "]/td[1]/a";
 	}
 
 	/** @locatorType XPATH */
@@ -413,9 +417,9 @@ public class EmployeeMasterLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_EmpParticularPostBtn = "//button[@id='B1045940314885850740']";
+	public static final String UpdateEmp_EmpParticularPostBtn = "//*[@data-testid='BTN_Post_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_AddressPostBtn = "//button[@id='B1048663432558210322']";
+	public static final String UpdateEmp_AddressPostBtn = "//*[@data-testid='BTN_Address_post_Icon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_UpdateDependentTab = "//label[text()='Dependent']";
 	/** @locatorType XPATH */
@@ -425,11 +429,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_DependentRemoveLabel = "//div[@id='P9001_DEPE_RADIO']//label[text()='Remove']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_DependentAddIcon = "//button[@id='B1048876373691529233']";
+	public static final String UpdateEmp_DependentAddIcon = "//*[@data-testid='BTN_Dependent_Add_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_DependentSaveIcon = "//button[@id='B1048875925411529229']";
+	public static final String UpdateEmp_DependentSaveIcon = "//*[@data-testid='BTN_Dependent_Save_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_DependentPostBtn = "//button[@id='B1048875867489529228']";
+	public static final String UpdateEmp_DependentPostBtn = "//*[@data-testid='BTN_Dependent_Post_Icon']";
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_DependentNameData = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
@@ -467,11 +471,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_ContactRemoveLabel = "//div[@id='P9001_CONT_RADIO']//label[text()='Remove']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_ContactAddIcon = "//button[@id='B1060327871010750412']";
+	public static final String UpdateEmp_ContactAddIcon = "//*[@data-testid='BTN_Contact_Add_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_ContactSaveIcon = "//button[@id='B1060327990451750413']";
+	public static final String UpdateEmp_ContactSaveIcon = "//*[@data-testid='BTN_Contact_Save_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_ContactPostBtn = "//button[@id='B1060328029784750414']";
+	public static final String UpdateEmp_ContactPostBtn = "//*[@data-testid='BTN_Contact_Post_Icon']";
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_ContactNameData = "//div[@id='ig_contact_ig_grid_vc']//table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
@@ -501,11 +505,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_QualificationRemoveLabel = "//div[@id='P9001_QUALI_RADIO']//label[text()='Remove']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_QualificationAddIcon = "//button[@id='B1060329957650750433']";
+	public static final String UpdateEmp_QualificationAddIcon = "//*[@data-testid='BTN_Qualification_Add_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_QualificationSaveIcon = "//button[@id='B1060330064003750434']";
+	public static final String UpdateEmp_QualificationSaveIcon = "//*[@data-testid='BTN_Qualification_Save_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_QualificationPostBtn = "//button[@id='B1060330156212750435']";
+	public static final String UpdateEmp_QualificationPostBtn = "//*[@data-testid='BTN_Qulification_Post_Icon']";
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_QualificationTableData = "//div[@id='ig_qualification_ig_grid_vc']//table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
@@ -543,11 +547,11 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_SkillRemoveLabel = "//div[@id='P9001_SKILL_RADIO']//label[text()='Remove']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_SkillAddIcon = "//button[@id='B1063487633024735329']";
+	public static final String UpdateEmp_SkillAddIcon = "//*[@data-testid='BTN_Skill_Add_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_SkillSaveIcon = "//button[@id='B1063487746645735330']";
+	public static final String UpdateEmp_SkillSaveIcon = "//*[@data-testid='BTN_Skill_Save_Icon']";
 	/** @locatorType XPATH */
-	public static final String UpdateEmp_SkillPostBtn = "//button[@id='B1063487869097735331']";
+	public static final String UpdateEmp_SkillPostBtn = "//*[@data-testid='BTN_Skill_Post_Icon']";
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_SkillTableData = "//div[@id='ig_skill_ig_grid_vc']//table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
@@ -557,17 +561,17 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_SkillLevelLovBtn = "//div[@id='ig_skill_ig_grid_vc']//table/tbody/tr/td[2]//button";
 	/** @locatorType XPATH */
-	public static final String EmployeeHistoryBtn = "//button[@id='B151534516717127710']";
+	public static final String EmployeeHistoryBtn = "//*[@data-testid='BTN_Emp_Hist_empIcon']";
 	/** @locatorType XPATH */
 	public static final String EmployeeHistoryIframe = "//iframe[@title='Emp Hist']";
 	/** @locatorType XPATH */
 	public static final String EmpHistIframeCloseIcon = "//iframe[@title='Emp Hist']/preceding::button[@title='Close'][1]";
 	/** @locatorType XPATH */
-	public static final String EmployeeHistoryTableRowCount = "//table[@id='155455181388850714']/tbody//td/parent::tr";
+	public static final String EmployeeHistoryTableRowCount = "//table[@id='158305929231575592']/tbody//td/parent::tr";
 	/** @locatorType XPATH */
-	public static final String Find_EmpNameLovBtn = "//button[@id='P22_EMPLOYEE_lov_btn']";
+	public static final String Find_EmpNameLovBtn = "//*[@data-testid='P22_EMPLOYEE_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindSearchBtn = "//button[@id='B1550114006442178295']";
+	public static final String FindSearchBtn = "//*[@data-testid='BTN_Go_Report_clcon']";
 	/** @locatorType XPATH */
 	public static final String FindSearchBar = "//input[@id='detail_search_field']";
 	/** @locatorType XPATH */
@@ -584,17 +588,17 @@ public class EmployeeMasterLocators {
 	}
 
 	/** @locatorType XPATH */
-	public static final String ViewProfileBtn = "//button[@id='B801975295236816878']";
+	public static final String ViewProfileBtn = "//*[@data-testid='BTN_View_Profile_empIcon']";
 	/** @locatorType XPATH */
-	public static final String ViewProf_ProfileNo = "//table[@id='2198137723027972805_orig']/tbody/tr/td[1]/a";
+	public static final String ViewProf_ProfileNo = "//table[@id='2200988470870697683_orig']/tbody/tr/td[1]/a";
 	/** @locatorType XPATH */
-	public static final String ViewProf_BatchNo = "//table[@id='2198137723027972805_orig']/tbody/tr/td[2]";
+	public static final String ViewProf_BatchNo = "//table[@id='2200988470870697683_orig']/tbody/tr/td[2]";
 	/** @locatorType XPATH */
 	public static final String ViewProf_ReverseBtn = "//button[@id='B3396719266470105264']";
 	/** @locatorType XPATH */
 	public static final String ViewProf_ReverseOkBtn = "//button[text()='OK']";
 	/** @locatorType XPATH */
-	public static final String MigrationBtn = "//button[@id='B1539147672458060040']";
+	public static final String MigrationBtn = "//*[@data-testid='BTN_Migration_clcon']";
 	/** @locatorType XPATH */
 	public static final String MigrationIframe = "//iframe[@title='Select The Type']";
 	/** @locatorType XPATH */
@@ -602,53 +606,53 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpMigrationLabel = "//label[text()='Emp.Migration']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationAddButton = "//button[@id='B1588071132988399798']";
+	public static final String EmpMigrationAddButton = "//button[@id='B1590921880831124676']";// TODO Nondata-testid
 	/** @locatorType XPATH */
-	public static final String EmpMigrationCalendarLov = "//button[@id='P367011401_EMHD_CLNDR_ID_lov_btn']";
+	public static final String EmpMigrationCalendarLov = "//*[@data-testid='P367011401_EMHD_CLNDR_ID_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationPaymentSelect = "//select[@id='P367011401_EMHD_PAY_BASIS']";
+	public static final String EmpMigrationPaymentSelect = "//*[@data-testid='P367011401_EMHD_PAY_BASIS_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationPaymentTypeSelect = "//select[@id='P367011401_EMHD_PAY_SAL_WAGE']";
+	public static final String EmpMigrationPaymentTypeSelect = "//*[@data-testid='P367011401_EMHD_PAY_SAL_WAGE_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationReferenceInput = "//input[@id='P367011401_EMHD_REF']";
+	public static final String EmpMigrationReferenceInput = "//*[@data-testid='P367011401_EMHD_REF_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationDocNoDisplay = "//input[@id='P367011401_EMHD_DOC_NO']";
+	public static final String EmpMigrationDocNoDisplay = "//*[@data-testid='P367011401_EMHD_DOC_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationCreateSaveIcon = "//button[@id='B1588148533023408856']";
+	public static final String EmpMigrationCreateSaveIcon = "//*[@data-testid='BTN_CREATE_Icon']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationHeaderSaveIcon = "//button[@id='B1588148130093408856']";
+	public static final String EmpMigrationHeaderSaveIcon = "//*[@data-testid='BTN_SAVE_Icon']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationUploadTemplateBtn = "//button[@id='B1588149380771408859']";
+	public static final String EmpMigrationUploadTemplateBtn = "//*[@data-testid='BTN_Load_Icon']";
 	/** @locatorType XPATH */
 	public static final String EmpMigrationUploadInput = "//input[@id='P367011401_UPLOAD_input']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationUploadBtn = "//button[@id='B1588210334595409209']";
+	public static final String EmpMigrationUploadBtn = "//*[@data-testid='BTN_UploadIcon']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationCheckExceptionBtn = "//button[@id='B1588150167297408860']";
+	public static final String EmpMigrationCheckExceptionBtn = "//*[@data-testid='BTN_Check_excep_N_Icon']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationPostBtn = "//button[@id='B1588150526412408862']";
+	public static final String EmpMigrationPostBtn = "//*[@data-testid='BTN_Post_Icon']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationLabel = "//label[text()='Emp.Details Migration']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationCreateAddIcon = "//button[@id='B1588806298624934579']";
+	public static final String EmpDetailsMigrationCreateAddIcon = "//button[@id='B1591657046467659457']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationSelectFieldLabel = "//label[text()='Select Field']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationUploadLabel = "//label[text()='Upload']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationReferenceInput = "//input[@id='P74_EDMHD_REF']";
+	public static final String EmpDetailsMigrationReferenceInput = "//*[@data-testid='P74_EDMHD_REF_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationCreateSaveButton = "//button[@id='B1588849515245950548']";
+	public static final String EmpDetailsMigrationCreateSaveButton = "//*[@data-testid='BTN_CREATEIcon']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationDocNoDisplay = "//input[@id='P74_EDMHD_DOC_NO']";
+	public static final String EmpDetailsMigrationDocNoDisplay = "//*[@data-testid='P74_EDMHD_DOC_NO_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationSelectFieldAddIcon = "//button[@id='B1588890336495950665']";
+	public static final String EmpDetailsMigrationSelectFieldAddIcon = "//*[@data-testid='BTN_Add_sectionlcon']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationSelectFieldSaveIcon = "//button[@id='B1588890746945950667']";
+	public static final String EmpDetailsMigrationSelectFieldSaveIcon = "//*[@data-testid='BTN_Save_sectionlcon']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationHeaderSaveIcon = "//button[@id='B1588849515245950548']";
+	public static final String EmpDetailsMigrationHeaderSaveIcon = "//*[@data-testid='BTN_CREATEIcon']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationUploadIcon = "//button[@id='B1588850301527950550']";
+	public static final String EmpDetailsMigrationUploadIcon = "//*[@data-testid='BTN_LoadIcon']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsSelectFieldDataTypeTableData = "//div[@id='ig_line_ig_grid_vc']//table/tbody/tr[1]/td[2]";
 	/** @locatorType XPATH */
@@ -664,21 +668,22 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationUploadInput = "//input[@id='P367090602_UPLOAD_input']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationUploadBtn = "//button[@id='B3452247500282750518']";
+	public static final String EmpDetailsMigrationUploadBtn = "//button[@id='B3455098248125475396']";// TODO
+																										// Nondata-testid
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationCheckExceptionBtn = "//button[@id='B1588850738192950550']";
+	public static final String EmpDetailsMigrationCheckExceptionBtn = "//*[@data-testid='BTN_Check_yIcon']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationPostBtn = "//button[@id='B1588852368955950553']";
+	public static final String EmpDetailsMigrationPostBtn = "//*[@data-testid='BTN_PostIcon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationDurationInput = "//input[@id='P38_EMP_PROB_DURE']";
+	public static final String AddEmp_ProbationDurationInput = "//*[@data-testid='P38_EMP_PROB_DURE_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationSelect = "//select[@id='P38_EMP_PROB_FREQ_ID']";
+	public static final String AddEmp_ProbationSelect = "//*[@data-testid='P38_EMP_PROB_FREQ_ID_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationDateFrom = "//input[@id='P38_EMP_PROB_START_DATE_input']";
+	public static final String AddEmp_ProbationDateFrom = "//*[@data-testid='P38_EMP_PROB_START_DATE_iteminpu']/input";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationDateTo = "//input[@id='P38_EMP_PROB_END_DATE_input']";
+	public static final String AddEmp_ProbationDateTo = "//*[@data-testid='P38_EMP_PROB_END_DATE_iteminpu']/input";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationCompleteBtn = "//button[@id='B799165312758092118']";
+	public static final String AddEmp_ProbationCompleteBtn = "//*[@data-testid='BTN_Complete_empIcon']";
 	/** @locatorType XPATH */
 	public static final String ProbationStatusVerificationTableData = "//td[text()='Probation Status']/../td[3]";
 	/** @locatorType XPATH */
@@ -686,25 +691,27 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String CLBalanceLeaveDetailsTableData = "//div[@id='balance']//table/tbody//td[text()='CL']/../td[3]";
 	/** @locatorType XPATH */
-	public static final String FindZoneLovBtn = "//button[@id='P22_EMP_ZONE_lov_btn']";
+	public static final String FindZoneLovBtn = "//*[@data-testid='P22_EMP_ZONE_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindCategoryLovBtn = "//button[@id='P22_CATEGORY_lov_btn']";
+	public static final String FindCategoryLovBtn = "//*[@data-testid='P22_CATEGORY_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindDesignationLovBtn = "//button[@id='P22_DESIGNATION_lov_btn']";
+	public static final String FindDesignationLovBtn = "//*[@data-testid='P22_DESIGNATION_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindDepartmentLovBtn = "//button[@id='P22_DEPT_lov_btn']";
+	public static final String FindDepartmentLovBtn = "//*[@data-testid='P22_DEPT_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindUnitLovBtn = "//button[@id='P22_UNIT_lov_btn']";
+	public static final String FindUnitLovBtn = "//*[@data-testid='P22_UNIT_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String FindZoneResultTable = "//table[@id='9319941881441008958_orig']//tr/td[7]";
+	public static final String FindZoneResultTable = "//table[@id='9322792629283733836_orig']//tr/td[7]";
 	/** @locatorType XPATH */
-	public static final String FindCategoryResultTable = "//table[@id='9319941881441008958_orig']//tr/td[8]";
+	public static final String FindCategoryResultTable = "//table[@id='9322792629283733836_orig']//tr/td[8]";
 	/** @locatorType XPATH */
-	public static final String FindDesignationResultTable = "//table[@id='9319941881441008958_orig']//tr/td[10]";
+	public static final String FindDesignationResultTable = "//table[@id='9322792629283733836_orig']//tr/td[10]";
 	/** @locatorType XPATH */
-	public static final String FindDepartmentResultTable = "//table[@id='9319941881441008958_orig']//tr/td[11]";
+	public static final String FindDepartmentResultTable = "//table[@id='9322792629283733836_orig']//tr/td[11]";
 	/** @locatorType XPATH */
-	public static final String FindUnitResultTable = "//table[@id='9319941881441008958_orig']//tr/td[12]";
+	public static final String FindUnitResultTable = "//table[@id='9322792629283733836_orig']//tr/td[12]";
 	/** @locatorType XPATH */
 	public static final String AllowanceSPLDeleteIcon = "//div[@id='ig_line_ig_grid_vc']//table//tr/td[text()='SPL']/../td[last()]/a";
+	/** @locatorType XPATH */
+	public static final String AddEmp_AdjustmentTable = "(//b[text()='Adjustments']/following::table)[2]//tr/td[1]";
 }

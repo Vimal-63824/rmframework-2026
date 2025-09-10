@@ -84,9 +84,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
-	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
+	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(19) > a";
 	/** @Locator Xpath */
-	public static final String LinewisedetailsHeader = "(//h1[@class='ui-dialog-title'])[5]";
+	public static final String LinewisedetailsHeader = "//h1[contains(text(),'Line Details')]";
 	/** @Locator Xpath */
 	public static final String SOTradeDiscountpercentageField = "//input[@data-testid='SOTradeDiscountpercentageField']";
 	/** @Locator Xpath */
@@ -545,7 +545,7 @@ public class SalesOrderLocators {
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
-		return "//a[text()='" + SOno + "']/../../td[28]/div";
+		return "//a[text()='" + SOno + "']/../../td/div[contains(@style,'color')]";
 	}
 
 	/** @Locator Xpath */
@@ -695,4 +695,7 @@ public class SalesOrderLocators {
 	public static final String AmdType(int i) {
 		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[ " + i + " ]/td[3]";
 	}
+
+	/** @Locator Xpath */
+	public static final String HeaderCPCcodeLovBtn = "//input[@data-testid='P191513134001_SOH_CC_ID']/following-sibling::button";
 }

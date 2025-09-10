@@ -7,19 +7,19 @@ package commonlocators.supplychainmanagement;
 public class DeliveryChallanLocators {
 
 	/** @locatorType Xpath */
-	public static final String DCNumberLovButton = "//button[@id='P75131101_DC_NO_lov_btn']";
+	public static final String DCNumberLovButton = "//input[@data-testid='P75131101_DC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B186040796030600659']";
+	public static final String SearchButton = "//button[@data-testid='Find_line']";
 	/** @locatorType Xpath */
 	public static final String ListItem = "//div[@id='dc_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String BackButton = "//button[@id='back']";
+	public static final String BackButton = "//button[@data-testid='Back']";
 	/** @locatorType Xpath */
-	public static final String POTotal = "//span[@id='P751311006_DCHD_TOT_VALUE_DISPLAY']";
+	public static final String POTotal = "//span[@data-testid='P751311006_DCHD_TOT_VALUE']";
 
 	/** @locatorType Xpath */
 	public static final String DCNumber(String DCNumber) {
-		return "(//table[@id='141851938041998744_orig']/tbody/tr/td[4]/a[text()='" + DCNumber + "'])[last()]";
+		return "(//table[@id='144937051552841144_orig']/tbody/tr/td[4]/a[text()='" + DCNumber + "'])[last()]";
 	}
 
 	/** @locatorType Xpath */

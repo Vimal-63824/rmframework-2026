@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import utils.ExcelUtils;
@@ -874,7 +875,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("StdItemUniq"), SalesStdPrice, DetailsValue);
 		return value;
 	}
-	
+
 	/**
 	 * SO Line Details After SO Amendment
 	 * 
@@ -890,7 +891,7 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * CS Header Details
 	 * 
@@ -904,7 +905,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * CS Line Details
 	 * 
@@ -920,4 +921,78 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
+
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String InAplctrl(String Aplctl, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("MRVApllicationCtrl"),
+				commonFunc.getDataFromTestDataSheet("APLCTRLBU"), Aplctl, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * 
+	 * @author Premkumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public ArrayList<String> MrvDocDetails(String MRVNumber, String DetailsValue) {
+		ArrayList<String> value = getDataFromDBUsingQueryWithArrayList(getDataFromDBTestDataSheet("MRVDocumentQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNSourceNumber"), MRVNumber, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * get Required Data From DB Using Query
+	 * 
+	 * @author Deepan-GWL
+	 * @param Query
+	 * @param ExpectedData
+	 * @return String Value
+	 */
+	public ArrayList<String> getDataFromDBUsingQueryWithArrayList(String Query, String Replacechar, String Replacedchar,
+			String ExpectedData) {
+		ArrayList<String> returnnameArray = new ArrayList<String>();
+		String returnname = null;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (getConnection() == null) {
+				establishDBConnection();
+			}
+			Statement statement = getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(Query.replace(Replacechar, Replacedchar));
+			while (resultSet.next()) {
+				returnname = resultSet.getString(ExpectedData);
+				System.out.println("Data Is: " + returnname);
+				returnnameArray.add(returnname);
+			}
+			resultSet.close();
+			statement.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return returnnameArray;
+	}
+	
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String GrnHeaderDetails(String GRNNumber, String DetailsValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("GRNHeaderStatus"),
+				commonFunc.getDataFromTestDataSheet("GRNSourceNumber"), GRNNumber, DetailsValue);
+		return value;
+	}
+
 }

@@ -154,7 +154,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String POANumberStatus(String POno) {
-		return "//a[text()='" + POno + "']/../../td[20]";
+		return "//a[text()='" + POno + "']/../../td/div[contains(@style,'Green')]";
 	}
 
 	/** @locatorType Xpath */
@@ -343,6 +343,8 @@ public class POAmendmentLocators {
 	public static final String HeaderCheckbox = "(//input[@data-testid='P1615131168_HEAD_LINE']/following-sibling::label)[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckbox = "(//input[@data-testid='P1615131168_HEAD_LINE']/following-sibling::label)[2]";
+	/** @locatorType Xpath */
+	public static final String OKButtonLast = "(//button[text()='OK'])[last()]";
 
 	/** @locatorType Xpath */
 	public static final String POANumberCancelStatus(String POno) {

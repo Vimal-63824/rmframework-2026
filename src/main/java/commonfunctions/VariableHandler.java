@@ -210,6 +210,9 @@ public class VariableHandler {
 	private static ThreadLocal<Boolean> MultipleProcessflag = ThreadLocal.withInitial(() -> false);
 	private static ThreadLocal<String> RawMaterialCost = new ThreadLocal<>();
 	private static ThreadLocal<String> CompletionFgUnitCost = new ThreadLocal<>();
+	private static ThreadLocal<String> LoanRequestDocNo = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> MultiMRVDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> MultiMRVDocStatus = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1791,5 +1794,29 @@ public class VariableHandler {
 
 	public static void setCompletionFgUnitCost(String Cost) {
 		CompletionFgUnitCost.set(Cost);
+	}
+
+	public static String getLoanRequestDocNo() {
+		return PermissionDocNo.get();
+	}
+
+	public static void setLoanRequestDocNo(String data) {
+		PermissionDocNo.set(data);
+	}
+
+	public static ArrayList<String> getMultiMRVDocNumber() {
+		return MultiMRVDocNumber.get();
+	}
+
+	public static void setMultiMRVDocNumber(ArrayList<String> data) {
+		MultiMRVDocNumber.set(data);
+	}
+
+	public static ArrayList<String> getMultiMRVDocStatus() {
+		return MultiMRVDocStatus.get();
+	}
+
+	public static void setMultiMRVDocStatus(ArrayList<String> data) {
+		MultiMRVDocStatus.set(data);
 	}
 }

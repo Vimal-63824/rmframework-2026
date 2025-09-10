@@ -35,7 +35,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreateTickIcon = "//span[contains(@class,'check')]/parent::button[contains(@title,'Create')]";
 	/** @locatorType Xpath */
-	public static final String PostToastMessage = "//*[@class='succ_msg']";
+	public static final String PostToastMessage = "//*[@class='succ_msg'] | //*[@id='APEX_SUCCESS_MESSAGE']//h2";
 	/** @locatorType Xpath */
 	public static final String searchBar = "//input[@aria-label='Search']";
 	/** @locatorType Xpath */
@@ -108,7 +108,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String QualityInspectionDocuments = "//span[text()='Quality Control']/ancestor::li/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingInspectionDocuments = "//button[@id='B1239030231502494975']";
+	public static final String PendingInspectionDocuments = "//button[@data-testid='Add_Ins']";
 	/** @locatorType Xpath */
 	public static final String Inventory = "//span[text()='Supply Chain']/ancestor::li/*/li[3]";
 	/** @locatorType Xpath */
@@ -126,13 +126,13 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String FinancialPurchaseBill = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[2]/*/li[1]";
 	/** @locatorType Xpath */
-	public static final String PendingPurchaseBill = "//button[@id='B1552826677951175484']";
+	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
 	/** @locatorType Xpath */
 	public static final String PaymentReceiptTab = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]";
 	/** @locatorType Xpath */
 	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingCrDocs = "//button[@id='B1918502594088484019']";
+	public static final String PendingCrDocs = "//button[@id='B1920165536554853812']";
 	/** Locator Xpath */
 	public static final String SalesSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]";
 	/** Locator Xpath */
@@ -188,7 +188,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
-	public static final String ItemMasterAdd = "//*[@id='B1287636716616788407']/span";
+	public static final String ItemMasterAdd = "//button[@id='B1287636716616788407']";
 	/** @locatorType Xpath */
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */
@@ -288,11 +288,11 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String ShareOfBusiness = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[1]";
 	/** @locatorType XPATH */
-	public static final String AddShareOfBusiness = "//button[@id='B2080709082065841085']";
+	public static final String AddShareOfBusiness = "//button[@data-testid='Add']";
 	/** @locatorType XPATH */
 	public static final String BusFunctionSearchBox = "//input[@id='P0_SEARCH_input']";
 	/** @locatorType XPATH */
-	public static final String Sales_Inv_Pend_Btn = "//button[contains(@id,'B986356987649170102')]";
+	public static final String Sales_Inv_Pend_Btn = "//button[@data-testid='SALES INVOICE PENDING ICON']";
 	/** @locatorType XPATH */
 	public static final String DebitNote_Add_Icon = "//button[@id='B1012787680560179762']";
 	/** @locatorType XPATH */
@@ -356,7 +356,9 @@ public class CommonUiLocators {
 	/** Locator Xpath */
 	public static final String SalesOrderAmendment = "//h3[text()='SO CS/Amendment']/ancestor::li/a";
 	/** @locatorType Xpath */
-	public static final String SaveButton="//button[@id='B150556062898604660']" ;
-
-
+	public static final String SaveButton = "//button[@id='B150556062898604660']";
+	/** @locatorType Xpath */
+	public static final String ClearFindFilterIcon = "//button[@aria-label='Clear'] | //button[@aria-label='clear']";
+	/** @locatorType Xpath */
+	public static final String ToastErrorMsg = "//div[contains(@class,'a-Notification--error')]";
 }

@@ -24,7 +24,7 @@ public class OpenSalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSO_PONumberInput = "//input[@data-testid='P19151310131_SRCHD_PO_NO']";
 	/** @locatorType Xpath */
-	public static final String OpenSO_PODateInput = "//*[@data-testid='P19151310131_SRCHD_PO_DATE']/input";
+	public static final String OpenSO_PODateInput = "//*[contains(@data-testid,'SRCHD_PO_DATE')]/input";
 	/** @locatorType Xpath */
 	public static final String OpenSO_FormTickIcon = "//button[@id='B2098611267006247133']";
 	/** @locatorType Xpath */
@@ -110,12 +110,12 @@ public class OpenSalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithDocNo(String Docno) {
-		return "//*[text()='" + Docno + "']/../../td[15]/div";
+		return "//*[text()='" + Docno + "']/../../td/div";
 	}
 
 	/** @locatorType Xpath */
 	public static final String FindStatusTableWithText(String Docno) {
-		return "//*[text()='" + Docno + "']/../td[15]/div";
+		return "//*[text()='" + Docno + "']/../td/div";
 	}
 
 	/** @locatorType Xpath */

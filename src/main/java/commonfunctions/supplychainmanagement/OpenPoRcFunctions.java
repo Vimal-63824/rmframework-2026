@@ -2000,6 +2000,7 @@ public class OpenPoRcFunctions {
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.hardWait(3000);
 		commonFunc.clickCreateIcon();
 		purchaseOrderFunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GoogleSupplier"),
