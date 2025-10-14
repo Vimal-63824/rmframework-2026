@@ -184,9 +184,10 @@ public class CommonFunctions {
 				if (flag) {
 					String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName,
 							ElementType.Xpath);
-					if (Name.length > 0 && Username.equals(GetTextUserName)) {
+					if ( Username.equals(GetTextUserName)) {
 						logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
 					} else {
+						flag = false;
 						logs.logging("INFO", "Some Other User Logged In  Expected user: " + Username
 								+ " but found: " + GetTextUserName);
 					}
