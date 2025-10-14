@@ -116,4 +116,45 @@ public class MaterialRequestLocators {
 	public static final String OrderNo = "//span[@data-testid='OrderNo']";
 	/** @locatorType Xpath */
 	public static final String OtherDetailsHeader = "//h1[text()='Other Details']";
+	/** @locatorType Xpath */
+	public static final String FindLocationInputField = "//input[@data-testid='P93131019_LOCATION']";
+	/** @locatorType Xpath */
+	public static final String FindUnitInputField = "//input[@data-testid='P93131019_PLNT']";
+	/** @locatorType Xpath */
+	public static final String FindSubVoucherTypeSelectField = "//select[@data-testid='P93131019_REQ_DOC_TYPE']";
+	/** @locatorType Xpath */
+	public static final String FindMRNumberInputField = "//input[@data-testid='RequestNumber']";
+	/** @locatorType Xpath */
+	public static final String FindProductionOrderNumberInputField = "//input[@data-testid='FindProdNoLovBtn']";
+	/** @locatorType Xpath */
+	public static final String FindFromDateInputField = "//input[@id='P93131019_REQ_DOC_DATE_FROM_input']";
+	/** @locatorType Xpath */
+	public static final String FindToDateInputField = "//input[@id='P93131019_REQ_DOC_DATE_TO_input']";
+	/** @locatorType Xpath */
+	public static final String FindRequestorInputField = "//input[@data-testid='P93131019_TO_WH']";
+	/** @locatorType Xpath */
+	public static final String FindSOPRJRefInputField = "//input[@data-testid='P93131019_SO_REF']";
+	/** @locatorType Xpath */
+	public static final String FindStatusSelectField = "//select[@data-testid='P93131019_STATUS']";
+	/** @locatorType Xpath */
+	public static final String FindItemIDInputField = "//input[@data-testid='P93131019_PROD_ID']";
+	/** @locatorType Xpath */
+	public static final String FindItemDescInputField = "//input[@data-testid='P93131019_PROD_DESC']";
+	/** @locatorType Xpath */
+	public static final String FindSourceSelectField = "//select[@data-testid='P93131019_SOURCE']";
+	/** @locatorType Xpath */
+	public static final String FindSearchButton = "//button[@data-testid='FindSearchBtn']";
+	/** @locatorType Xpath */
+	public static final String FindBrushIcon = "//button[@id='Clear1']";
+	/** @locatorType Xpath */
+	public static final String MRFrame = "//iframe[@title='Material Request']";
+	/** @locatorType Xpath */
+	public static final String ShiftLovButton = "//button[@id='P93131011_IMRHD_SHIFT_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String HeaderShiftField = "//span[@id='P9313101001_IMRHD_SHIFT_ID_DISPLAY']";
+
+	/** @locatorType Xpath */
+	public static final String MRLineDetails(int i) {
+		return "//*[@id='line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[13]";
+	}
 }

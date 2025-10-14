@@ -980,7 +980,7 @@ public class DBCommonFunctions {
 		}
 		return returnnameArray;
 	}
-	
+
 	/**
 	 * StockQuery
 	 * 
@@ -992,6 +992,67 @@ public class DBCommonFunctions {
 	public String GrnHeaderDetails(String GRNNumber, String DetailsValue) {
 		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("GRNHeaderStatus"),
 				commonFunc.getDataFromTestDataSheet("GRNSourceNumber"), GRNNumber, DetailsValue);
+		return value;
+	}
+
+	/**
+	 * SOM Control
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String SOMControl(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOMCONTROL"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Item Master Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String ItemMaster(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("ItemMaster"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Lot Serial Stock Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param VoucherNo
+	 * @param ItemID
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String LotSerialStockDetails(String VoucherNo, String ItemID, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("LotSerialStockQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), VoucherNo, commonFunc.getDataFromTestDataSheet("PONO"),
+				ItemID, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Serial Stock Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param VoucherNo
+	 * @param ItemID
+	 * @param SerialNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SerialNumberDetails(String VoucherNo, String ItemID, String SerialNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("SerialStockQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), VoucherNo, commonFunc.getDataFromTestDataSheet("PONO"),
+				ItemID, commonFunc.getDataFromTestDataSheet("SRNO"), SerialNo, DBHeaderColumnValue);
 		return value;
 	}
 
