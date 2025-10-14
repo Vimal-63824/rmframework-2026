@@ -2057,24 +2057,7 @@ public class CommonFunctions {
 	 * @author Vimal-RMITS
 	 */
 	public void navigateTogateEntry() {
-		clickSupplyChainTab();
-		flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryNode, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.GateEntryNode, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryTransaction, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SalesInvoiceLocators.GateEntryTransaction, ElementType.Xpath);
-				flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryInward, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(SalesInvoiceLocators.GateEntryInward, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryPendingIcon, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "GateEntry Note Tab Clicked Successfully");
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
+		navigateToSearchTab(webDB.getDataFromProperties("GEScreen"), CommonUiLocators.GateEntryPendingIcon);
 	}
 
 	/**
