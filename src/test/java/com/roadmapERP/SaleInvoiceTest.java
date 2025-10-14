@@ -720,10 +720,34 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 * 
 	 */
-	@Test(priority = 61, groups = {
+	@Test(priority = 60, groups = {
 			"SalesInvoice" }, description = "              Multiple Lines In Sales Invoice With DB Validation")
 	public void MultipleLinesInSalesInvoice() {
 		flag = salesInvoiceFunc.multipleLinesInSalesInvoice();
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * Create Repair - rework order for Sales return rejection
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 61, groups = {
+			"SalesInvoice" }, description = "       190 -         Create Repair - rework order for Sales return rejection")
+	public void CreateRepairReworkorderforSalesreturnrejection() {
+		flag = salesInvoiceFunc.createRepairReworkorderforSalesreturnrejection();
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * Create Scrap - rework order for Sales return rejection
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	@Test(priority = 62, groups = {
+			"SalesInvoice" }, description = "       190 -         Create Scrap - rework order for Sales return rejection")
+	public void CreateScrapReworkorderforSalesreturnrejection() {
+		flag = salesInvoiceFunc.createScrapReworkorderforSalesreturnrejection();
 		Assert.assertTrue(flag);
 	}
 
