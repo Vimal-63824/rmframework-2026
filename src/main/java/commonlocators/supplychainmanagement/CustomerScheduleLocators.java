@@ -5,14 +5,21 @@ package commonlocators.supplychainmanagement;
  * @company RoadMap It Solutions May 05, 2025
  */
 public class CustomerScheduleLocators {
-
+	
+	/** @Locator Xpath */
+	public static final String CatalogFindButton = "//button[@data-testid='Search']";
+	/** @Locator Xpath */
 	public static final String CustomerScheduleNode = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[4]";
+	/** @Locator Xpath */
+	public static final String CSFrame = "//iframe[@title='Customer Schedule']";
+	/** @Locator Xpath */
+	public static final String CSButton = "//button[@id='B928452610454148508']";
 	/** @Locator Xpath */
 	public static final String CSAddButton = "//BUTTON[@data-testid='CS_AddButton']";
 	/** @Locator Xpath */
-	public static final String CSLocationLov = "//button[@id='P191513102011_COHD_PLNT_LOC_ID_lov_btn']";
+	public static final String CSLocationLov = "//input[@data-testid='CSLocationLov']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String CSBatchPrefixLov = "//button[@id='P191513102011_COHD_BATCH_PFX_lov_btn']";
+	public static final String CSBatchPrefixLov = "//input[@data-testid='CSBatchPrefixLov']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String CSNarrationField = "//input[@data-testid='P191513102011_COHD_NARRATION']";
 	/** @Locator Xpath */
@@ -92,7 +99,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdCustomerId = "//button[@id='P191513102023_CAMH_CUST_ID_lov_btn']";
 	/** @Locator Xpath */
-	public static final String CSAmdHeaderWiseSaveButton = "//button[@data-testid='CSAmdHeaderWiseSaveButton']";
+	public static final String CSAmdHeaderWiseSaveButton = "//button[@id='B353049989948163903']/span";
 	/** @Locator Xpath */
 	public static final String CSAmdFetchButton = "//button[@data-testid='CSAmdFetchButton']";
 	/** @Locator Xpath */
@@ -142,13 +149,13 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdTentaiveDateField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */
-	public static final String CSTemplateUploadButton = "//button[@data-testid='CS_HEADER_WISE_UPLOAD_TEMPLATE_BUTTON']";
+	public static final String CSTemplateUploadButton = "//button[@data-testid='Upload_hd']";
 	/** @Locator Xpath */
 	public static final String CSFileInputField = "//input[@id='P19151310201_BRN_BROWSE_input']";
 	/** @Locator Xpath */
 	public static final String CSUploadFileText = "//div[contains(@id,'P19151310201_BRN_BROWSE_DROPZONE')]";
 	/** @Locator Xpath */
-	public static final String CSUploadOkButton = "//button[@id='B2075392329883456504']";
+	public static final String CSUploadOkButton = "//button[@data-testid='Upload']";
 	/** @Locator Xpath */
 	public static final String CSHeaderLocationField = "//input[@data-testid='P19151310201_COHD_PLNT_LOC_ID']";
 	/** @Locator Xpath */
@@ -163,6 +170,19 @@ public class CustomerScheduleLocators {
 	public static final String CSHeaderNarrationField = "//input[@data-testid='P19151310201_COHD_NARRATION']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseDocNumberField = "//input[@data-testid='COLN_DOC_NO']";
+	/** @Locator Xpath */
+	public static final String CSDocLOVInFindScreen = "//button[@id='P191513102011_BATCH_NO_lov_btn']";
+	/** @Locator Xpath */
+	public static final String CSFindScreenSearchButton = "//button[@data-testid='CS_SearchButton']";
+	/** @Locator Xpath */
+	public static final String CSFindScreenHeaderradioButton = "//label[@for='P191513102011_HD_LN_0']";
+	/** @Locator Xpath */
+	public static final String CSAddFrameName = "//h1[@id='ui-id-1']";
+
+	/** @Locator Xpath */
+	public static final String CSStatusHeaderTableText(String CSno) {
+		return "//a[text()='" + CSno + "']/../../td[16]";
+	}
 
 	/** @locatorType Xpath */
 	public static final String CSFetchSelectCheckBox(String CSNumber) {

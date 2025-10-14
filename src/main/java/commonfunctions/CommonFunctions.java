@@ -51,6 +51,7 @@ import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesPriceListLocators;
+import commonlocators.supplychainmanagement.StockAdjustmentLocators;
 import io.restassured.http.ContentType;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -147,6 +148,7 @@ public class CommonFunctions {
 	 * This method used to Login with valid credentials
 	 * 
 	 * @author Sakthi-GWL
+	 * @author Harikrishna - RMITS
 	 * @throws InterruptedException
 	 */
 	public void validCommonLogin(String Username, String Password, String... Name) {
@@ -160,15 +162,14 @@ public class CommonFunctions {
 				webDB.sendTextToAnElement(CommonUiLocators.LoginPasswordTextBox, Password, ElementType.Xpath);
 				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 				if (flag) {
-					hardWait(2000);
-					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
 					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath, 15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Retrying Login....");
-							webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+							webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 							flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
 						}
 					}
@@ -176,11 +177,20 @@ public class CommonFunctions {
 			}
 		}
 		if (flag) {
-			if (Name.length > 0) {
-				logs.logging("INFO", "'" + Arrays.toString(Name) + "' User Logged In Successfully");
-
-			} else {
-				logs.logging("INFO", "User Logged In Successfully");
+			flag = webDB.waitForElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
+				flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
+				if (flag) {
+					String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName,
+							ElementType.Xpath);
+					if (Name.length > 0 && Username.equals(GetTextUserName)) {
+						logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
+					} else {
+						logs.logging("INFO", "Some Other User Logged In  Expected user: " + Username
+								+ " but found: " + GetTextUserName);
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -585,7 +595,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("SaleOrderScreen"), SalesOrderLocators.AddButtonSalesOrder);
+		navigateToSearchTab(webDB.getDataFromProperties("SaleOrderScreen"), SalesOrderLocators.SOSearchButton);
 
 	}
 
@@ -2860,6 +2870,24 @@ public class CommonFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Navigate Customer Master Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateCustomerMasterScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("CustomerMaster"), SalesOrderLocators.CustomerMasterAddButton);
+	}
+
+	/**
+	 * This Method Is Used To Navigate Customer Master Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateStockAdjustmentScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("StockAdjustment"), StockAdjustmentLocators.FindAddButton);
 	}
 
 }

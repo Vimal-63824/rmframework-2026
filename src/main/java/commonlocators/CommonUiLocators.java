@@ -361,4 +361,8 @@ public class CommonUiLocators {
 	public static final String ClearFindFilterIcon = "//button[@aria-label='Clear'] | //button[@aria-label='clear']";
 	/** @locatorType Xpath */
 	public static final String ToastErrorMsg = "//div[contains(@class,'a-Notification--error')]";
+	/** @locatorType CSS Selector */
+	public static final String ProfileIcon = "#t_Header > div > img";
+	/** @locatorType Xpath */
+	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
 }

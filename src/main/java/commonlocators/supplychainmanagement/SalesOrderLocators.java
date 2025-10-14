@@ -5,14 +5,17 @@ package commonlocators.supplychainmanagement;
  * @company Galaxy Weblinks Feburary 12, 2025
  */
 public class SalesOrderLocators {
+
 	/** @Locator Xpath */
-	public static final String AddButtonSalesOrder = "//BUTTON[@data-testid='SO_Add_Button']";
+	public static final String SOButton = "//button[@id='B928452581571148507']";
+	/** @Locator Xpath */
+	public static final String AddButtonSalesOrder = "//BUTTON[@ID='B928452305017148505']";
 	/** @Locator Xpath */
 	public static final String SalesOrderHeader = "//h1[@id='ui-id-1']";
 	/** @Locator Xpath */
-	public static final String LocationLOV = "//button[contains(@id,'P1915131339_UNIT_LOC_lov_btn')]";
+	public static final String LocationLOV = "//button[contains(@id,'P19151313402_UNIT_LOC_lov_btn')]";
 	/** @Locator Xpath */
-	public static final String SalesSubVoucherTypeLOV = "//button[contains(@id,'P1915131339_SOH_ORDER_TYPE_lov_btn')]";
+	public static final String SalesSubVoucherTypeLOV = "//button[@id='P19151313402_SOH_ORDER_TYPE_lov_btn']";
 	/** @Locator Xpath */
 	public static final String SalesTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]";
 	/** @Locator Xpath */
@@ -20,7 +23,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SalesOrderTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[6]";
 	/** @Locator Xpath */
-	public static final String CustomerLov = "//button[@id='P1915131339_SOH_CUST_ID_lov_btn']";
+	public static final String CustomerLov = "//input[@data-testid='CustomerLov']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String TickIcon = "//button[@data-testid='TickIcon']";
 	/** @Locator Xpath */
@@ -71,8 +74,8 @@ public class SalesOrderLocators {
 	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @Locator Xpath */
 	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
-
-	public static final String CPForwardLOV = "//button[@id='P236131090_FWD_PERSON_lov_btn']";
+	/** @Locator Xpath */
+	public static final String CPForwardLOV = "//BUTTON[@ID='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator Xpath */
 	public static final String OkButtonForward = "//BUTTON[@ID='B1614624587133182023']";
 	/** @Locator Xpath */
@@ -84,11 +87,11 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOTotalAmountFieldQuery = "//span[@id='P191513134001_SOH_TOT_AMT_DISPLAY']";
 	/** Locator @CssSelector */
-	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(19) > a";
+	public static final String SOLineWiseDetailsButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(17) > a";
 	/** @Locator Xpath */
-	public static final String LinewisedetailsHeader = "//h1[contains(text(),'Line Details')]";
+	public static final String LinewisedetailsHeader = "(//h1[@class='ui-dialog-title'])[6]";
 	/** @Locator Xpath */
-	public static final String SOTradeDiscountpercentageField = "//input[@data-testid='SOTradeDiscountpercentageField']";
+	public static final String SOTradeDiscountpercentageField = "//input[@data-testid='P191513134002_SOQ_DISC_PCT']";
 	/** @Locator Xpath */
 	public static final String SOSpecialDiscountpercentageField = "//input[@data-testid='SOSpecialDiscountpercentageField']";
 	/** @Locator Xpath */
@@ -148,7 +151,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String DiscountAmtPerQty = "//input[@data-testid='SODiscAmountField']";
 	/** @Locator Xpath */
-	public static final String Currency = "//span[@data-testid='P191513134001_SOH_CURRENCY']";
+	public static final String Currency = "//select[@data-testid='P191513134001_SOH_CURRENCY']";
+	/** @Locator Xpath */
+	public static final String AfterLineSaveCurrency = "//span[@data-testid='P191513134001_SOH_CURRENCY']";
 	/** @Locator Xpath */
 	public static final String LinedetailsTab2 = "//label[@for='P191513134002_TAB_1']";
 	/** @Locator Xpath */
@@ -162,7 +167,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String Class = "//input[@data-testid='Class']";
 	/** @Locator Xpath */
-	public static final String Promotional = "//input[@data-testid='Promotional']";
+	public static final String Promotional = "//input[@data-testid='P191513134002_SOQ_PROMOTION_FLAG']";
 	/** @Locator Xpath */
 	public static final String PriceClass = "//input[@data-testid='PriceClass']";
 	/** @Locator Xpath */
@@ -218,11 +223,11 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String UTGSTtable = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
 	/** @Locator Xpath */
-	public static final String HeaderCancelButton = "//BUTTON[@data-testid='SO_Header_Wise_CancelButton']";
+	public static final String HeaderCancelButton = "//BUTTON[@data-testid='Cancel_hd']";
 	/** @Locator Xpath */
 	public static final String NoteAlertMessage = "//h6[@class='succ_msg']";
 	/** @Locator Xpath */
-	public static final String FindHeaderRadioButton = "//label[@for='P1915131339_RADIO_0']";
+	public static final String FindHeaderRadioButton = "//label[@for='P1915131339_HD_LN_0']";
 	/** @Locator Xpath */
 	public static final String ChargesTab = "//label[@for='P191513134001_OVERALL_REG_PRM_1']";
 	/** @Locator Xpath */
@@ -394,9 +399,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String HeaderShipViaField = "//input[@data-testid='P191513134001_SOH_SHIPVIA_ID']";
 	/** @Locator Xpath */
-	public static final String AdvMaterialPercentage = "//input[@id='P191513134001_SOH_ADV_PCT']";
+	public static final String AdvMaterialPercentage = "//input[@data-testid='P191513134001_SOH_ADV_PCT']";
 	/** @Locator Xpath */
-	public static final String AdvTaxPercentage = "//input[@id='P191513134001_SOH_ADV_TAX_PCT']";
+	public static final String AdvTaxPercentage = "//input[@data-testid='P191513134001_SOH_ADV_TAX_PCT']";
 	/** @Locator Xpath */
 	public static final String CESSPct = "//input[@id='P191513134002_SOQ_CESS_PCT']";
 	/** @Locator Xpath */
@@ -408,7 +413,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
 	/** Locator @CssSelector */
-	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(22) > a > span";
+	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(25) > a > span";
 	/** @Locator Xpath */
 	public static final String ShipSetFrame = "//iframe[@title='Sales Order Shipset Item']";
 	/** @Locator Xpath */
@@ -416,9 +421,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOAmendmentPendingButton = "//BUTTON[@data-testid='SO AMD CREATE SO AMD BUTTON']";
 	/** @Locator Xpath */
-	public static final String SingleSOAmendment = "//BUTTON[@data-testid='SO AMD SINGLE CLS BUTTON']";
+	public static final String SingleSOAmendment = "//BUTTON[@data-testid='Single_Closeshort']";
 	/** @Locator Xpath */
-	public static final String MultiSoAmendment = "//BUTTON[@data-testid='SO AMD MULTI CLOSESHORT BUTTON']";
+	public static final String MultiSoAmendment = "//BUTTON[@data-testid='Multi_Closeshort']";
 	/** @Locator Xpath */
 	public static final String UpdateCloseshortButton = "//BUTTON[@data-testid='SO AMD SINGLE HEADER WISE UPD CLS BUTTON']";
 	/** @Locator Xpath */
@@ -492,7 +497,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdChargesAmountField = "//*[@id='Crg_itm_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 	/** @Locator Xpath */
-	public static final String SoAmdChargesAmountInputField = "//input[@data-testid='SAOTC_CHRG_AMT']";
+	public static final String SoAmdChargesAmountInputField = "//input[@data-testid='SoAmdChargesAmountField']";
 	/** @Locator Xpath */
 	public static final String SoAmdChargeSaveButton = "//BUTTON[@data-testid='SO AMD SINGLE CHARGES TAB SAVE BUTTON']/span";
 	/** @Locator Xpath */
@@ -504,9 +509,9 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdHeaderCurrencyField = "//input[@data-testid='SoAmdHeaderCurrencyField']";
 	/** @Locator Xpath */
-	public static final String SOLocatioField = "//input[@id='P1915131339_UNIT_LOC']";
+	public static final String SOLocationField = "//input[@data-testid='LocationLOV']";
 	/** @Locator Xpath */
-	public static final String SOSubVoucherType = "//input[@id='P1915131339_SOH_ORDER_TYPE']";
+	public static final String SOSubVoucherType = "//input[@data-testid='SalesSubVoucherTypeLOV']";
 	/** @Locator Xpath */
 	public static final String SOAmdTypeField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
@@ -518,7 +523,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String MultiCloseShortDocPrefix = "//button[@id='P1915131078_SAMH_DOC_PFX_lov_btn']";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortHeaderWiseSaveButton = "//button[@data-testid='MultiCloseShortHeaderWiseSaveButton']";
+	public static final String MultiCloseShortHeaderWiseSaveButton = "//BUTTON[@ID='B160256709041057125']";
 	/** @Locator Xpath */
 	public static final String MultiCloseShortPendingSoButton = "//button[@data-testid='MultiCloseShortPendingSoButton']";
 	/** @Locator Xpath */
@@ -537,6 +542,36 @@ public class SalesOrderLocators {
 	public static final String MultiCloseShortPostButton = "//button[@data-testid='MultiCloseShortPostButton']";
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortDocNumber = "//input[@data-testid='MultiCloseShortDocNumber']";
+	/** @locatorType Xpath */
+	public static final String ShipFromLocIDField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[17]";
+	/** @locatorType Xpath */
+	public static final String ShipFromLocLovButton = "//button[@id='C121068505371972733_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String CustomerMasterAddButton = "//button[@id='B561978827785799421']";
+	/** @locatorType Xpath */
+	public static final String CustomerIDLovButton = "//button[@id='P367006005_SUPLR_SUPLR_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String CustomerMasterSearchButton = "//button[@id='B561977247363799415']";
+	/** @locatorType Xpath */
+	public static final String CustomerDrillDown = "#\\31 166452744436430511_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	/** @locatorType Xpath */
+	public static final String CustomerUpdateButton = "//button[@id='Update']";
+	/** @locatorType Xpath */
+	public static final String CustomerUpdDetailsFrame = "//button[@id='B24209226926315496']";
+	/** @locatorType Xpath */
+	public static final String CustomerUpdateCreditLimitButton = "//button[@id='B697540159875201178']";
+	/** @locatorType Xpath */
+	public static final String CustomerCLAddButton = "//label[@for='P367006006_CRE_ADD_INS_0']";
+	/** @locatorType Xpath */
+	public static final String UpdateCustomerDetailsFrame = "//iframe[@title='Update Customer Details']";
+	/** @locatorType Xpath */
+	public static final String UpdateCustomerDetailsSaveButton = "//button[@id='B696232377504141223']";
+	/** @locatorType Xpath */
+	public static final String UpdCLEffFromDateInputField = "//input[@id='P3670058_UCCL_EFF_FRM_input']";
+	/** @locatorType Xpath */
+	public static final String SOFrame = "//IFRAME[@title='Sales Order']";
+	/** @locatorType Xpath */
+	public static final String SOSearchButton = "//button[@data-testid='SO_Srch_Button']";
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {
@@ -545,12 +580,12 @@ public class SalesOrderLocators {
 
 	/** @Locator Xpath */
 	public static final String SOStatusLineTableText(String SOno) {
-		return "//a[text()='" + SOno + "']/../../td/div[contains(@style,'color')]";
+		return "//a[text()='" + SOno + "']/../../td[28]/div";
 	}
 
 	/** @Locator Xpath */
 	public static final String SOStatusHeaderTableText(String SOno) {
-		return "//a[text()='" + SOno + "']/../../td[12]";
+		return "//a[text()='" + SOno + "']/../../td[48]";
 	}
 
 	/** @locatorType Xpath */
@@ -625,7 +660,7 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "(//*[@id='ig_line_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[18]/a";
+		return "(//*[@id='ig_line_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[19]/a";
 	}
 
 	/** @Locator Xpath */
@@ -646,7 +681,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ShipSetDetails(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[19]/a/span[contains(@style,'blue')]";
+				+ "]/td[22]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Css Selector */

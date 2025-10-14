@@ -1,6 +1,8 @@
 package com.roadmapERP;
 
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.CommonFunctions;
@@ -22,8 +24,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	private static ReportLoger logs = new ReportLoger();
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is user
-	 *         defined- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is user defined- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 1, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is user defined- Similar Stock and Customer UOM")
@@ -36,8 +40,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is user
-	 *         defined- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is user defined- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 2, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is user defined- Similar Stock and Customer UOM")
@@ -49,8 +55,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is user
-	 *         defined- DisSimilar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is user defined- DisSimilar Stock
+	 * and Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 3, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is user defined- DisSimilar Stock and Customer UOM")
@@ -63,8 +71,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is user
-	 *         defined- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is user defined- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 4, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is user defined- DisSimilar Stock and Customer UOM")
@@ -76,8 +86,11 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is rate
-	 *         Contract- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is rate Contract- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 5, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Rate Contract - Similar Stock and Customer UOM")
@@ -91,8 +104,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is rate
-	 *         Contract- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is rate Contract- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 6, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is rate Contract - Similar Stock and Customer UOM")
@@ -105,8 +120,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is rate
-	 *         Contract- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is rate Contract- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 7, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Rate Contract - DisSimilar Stock and Customer UOM")
@@ -120,8 +137,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is rate
-	 *         Contract- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is rate Contract- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 8, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is rate Contract - DisSimilar Stock and Customer UOM")
@@ -134,8 +153,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is
-	 *         PriceList- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is PriceList- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 9, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is PriceList - Similar Stock and Customer UOM")
@@ -148,8 +169,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is
-	 *         PriceList- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is PriceList- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 10, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is PriceList - Similar Stock and Customer UOM")
@@ -162,8 +185,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is
-	 *         PriceList- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is PriceList- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 11, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is PriceList - DisSimilar Stock and Customer UOM")
@@ -177,8 +202,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is
-	 *         PriceList- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is PriceList- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 12, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is PriceList - DisSimilar Stock and Customer UOM")
@@ -191,8 +218,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is
-	 *         Standard Price- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is Standard Price- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 13, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Standard Price - Similar Stock and Customer UOM")
@@ -206,8 +235,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is
-	 *         Standard Price- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is Standard Price- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 14, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Standard Price - Similar Stock and Customer UOM")
@@ -220,8 +251,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is
-	 *         Standard Price- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is Standard Price- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 15, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Standard Price - DisSimilar Stock and Customer UOM")
@@ -235,8 +268,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is
-	 *         Standard Price- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is Standard Price- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 16, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Standard Price - DisSimilar Stock and Customer UOM")
@@ -249,8 +284,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is
-	 *         Catalog Price - Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is Catalog Price - Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 17, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Catalog Price - Similar Stock and Customer UOM")
@@ -264,8 +301,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is
-	 *         Standard Price- Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is Standard Price- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 18, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Catalog Price - Similar Stock and Customer UOM")
@@ -278,8 +317,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Domestic Customer Schedule - price basis is
-	 *         Catalog Price- Similar Stock and Customer UOM
+	 * Domestic Customer Schedule - price basis is Catalog Price- Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 19, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Catalog Price - DisSimilar Stock and Customer UOM")
@@ -293,8 +334,10 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna - RMITS Export Customer Schedule - price basis is Catalog
-	 *         Price - Similar Stock and Customer UOM
+	 * Export Customer Schedule - price basis is Catalog Price - Similar Stock and
+	 * Customer UOM
+	 * 
+	 * @author Harikrishna - RMITS
 	 */
 	@Test(priority = 20, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Catalog Price - DisSimilar Stock and Customer UOM")
@@ -386,5 +429,17 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Is Used to set the Variable Handler To Zero After Finishing One Test
+	 * Scenarios
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result) {
+		customerScheduleFunctions.verifyAfterMethod();
 	}
 }
