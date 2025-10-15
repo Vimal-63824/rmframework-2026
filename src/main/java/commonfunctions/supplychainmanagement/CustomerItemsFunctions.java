@@ -113,7 +113,7 @@ public class CustomerItemsFunctions {
 			webDB.clickAnElement(CustomerItemsLocators.Pricecls, ElementType.Xpath);
 			webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown, priceClassName,
 					ElementType.Xpath);
-			webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
 				logs.logging("Info", "Price Basis Changes Done Successfully" + priceClassName);
 			}
@@ -132,7 +132,7 @@ public class CustomerItemsFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 			if(flag) {
 				webDB.clickAnElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
-				webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
+				flag = webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
 				if(flag) {
 					logs.logging("INFO","Successfully Changed a Type" +  QcFlag);
 				}
@@ -148,7 +148,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
-			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			flag = webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if(flag) {
 				logs.logging("INFO", "Default Flag Is Checked ");
@@ -195,13 +195,13 @@ public class CustomerItemsFunctions {
 							if (PriceClass.equals(commonFunc.getDataFromTestDataSheet("Dom"))) {
 								commonFunc.hardWait(2000);
 								commonFunc.checkRefreshCellsDisappear();
-								webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown,
+								flag = webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown,
 										commonFunc.getDataFromTestDataSheet("Dom"), ElementType.Xpath);
 								logs.logging("Info", "Successfully Dom Is Selected");
 							} else {
 								commonFunc.hardWait(2000);
 								commonFunc.checkRefreshCellsDisappear();
-								webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown,
+								flag = webDB.selectDropDownByText(CustomerItemsLocators.PriceClassSelectDropdown,
 										commonFunc.getDataFromTestDataSheet("Inter"), ElementType.Xpath);
 								logs.logging("Info", "Successfully Inter Is Selected");
 							}
@@ -236,7 +236,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
-			webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
+			flag = webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
 					ElementType.Xpath);
 			webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
@@ -272,7 +272,7 @@ public class CustomerItemsFunctions {
 	public void saveButtoninCustomerItems() {
 		flag = webDB.waitForClickElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+			webDB.clickAnElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			logs.logging("Info", "Save Button Clicked Successfully");
 			flag = webDB.waitForClickElement(CustomerItemsLocators.ToastAlertMessageCustomerItems, ElementType.Xpath);
 		}
@@ -287,7 +287,7 @@ public class CustomerItemsFunctions {
 	public void clickDefaltFlag1() {
 		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 		if (flag) {
-			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			flag = webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Defalt Flag Checked Stage");
 		}
@@ -356,7 +356,7 @@ public class CustomerItemsFunctions {
 			webDB.clickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlag, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CustomerItemsLocators.DefaultFlag, ElementType.Xpath);
+				flag = webDB.clickAnElement(CustomerItemsLocators.DefaultFlag, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Default Flag is Checcked Successfully");
 				}
@@ -375,9 +375,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.unitLov, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.unitLov, Unit_100);
-			if (flag) {
 				logs.logging("INFO", "Successfully Searched a unit" + Unit_100);
-			}
 		}
 		assertTrue(flag);
 	}
@@ -415,7 +413,7 @@ public class CustomerItemsFunctions {
 	public void clickSearchButton() {
 		flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
+			flag = webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -470,7 +468,7 @@ public class CustomerItemsFunctions {
 	public void clickedActiveButton() {
 		flag = webDB.waitForElement(CommonUiLocators.activeButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.activeButton, ElementType.Xpath);
+			flag = webDB.clickAnElement(CommonUiLocators.activeButton, ElementType.Xpath);
 			logs.logging("INFO", "Item Actived Successfully");
 			commonFunc.checkRefreshCellsDisappear();
 		}
@@ -485,7 +483,7 @@ public class CustomerItemsFunctions {
 	public void clickSaveButton() {
 		flag = webDB.waitForElement(CommonUiLocators.SaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.SaveButton, ElementType.Xpath);
+			flag = webDB.clickAnElement(CommonUiLocators.SaveButton, ElementType.Xpath);
 			logs.logging("INFO", "Save Button is Clicked");
 		}
 		assertTrue(flag);
