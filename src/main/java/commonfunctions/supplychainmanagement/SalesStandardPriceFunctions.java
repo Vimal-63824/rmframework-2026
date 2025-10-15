@@ -502,7 +502,6 @@ public class SalesStandardPriceFunctions {
 			webDB.waitForElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
-				//webDB.clickAnElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
 				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MapPriceField(2),
 						SalesStandardPriceLocators.MapPriceInput, Map_Value);
 				if (flag) {
@@ -523,7 +522,6 @@ public class SalesStandardPriceFunctions {
 		webDB.waitForElement(SalesStandardPriceLocators.LandingCostField(2), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.LandingCostInput, ElementType.Xpath);
-			//webDB.clickAnElement(SalesStandardPriceLocators.LandingCostInput, ElementType.Xpath);
 			verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.LandingCostField(2),
 					SalesStandardPriceLocators.LandingCostInput, Landing_Cost);
 			if (flag) {
@@ -602,9 +600,7 @@ public class SalesStandardPriceFunctions {
 	public void insertMaxDisc(String Max_Disc_Value) {
 		flag = webDB.waitForElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
 		if (flag) {
-			//webDB.clickAnElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
 			webDB.doubleClickAnElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
-
 			flag = webDB.waitForElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);

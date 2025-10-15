@@ -122,7 +122,7 @@ public class OpenSalesOrderFunctions {
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpenSO_PONumberInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Selected SO Type in Open SO: " + SOType);
-				flag = webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber,
+				 webDB.sendTextToAnElement(OpenSalesOrderLocators.OpenSO_PONumberInput, PoNumber,
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Entered PO Number in Open SO: " + PoNumber);
@@ -333,7 +333,7 @@ public class OpenSalesOrderFunctions {
 				if (flag) {
 					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
-					flag = webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+					webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 				}
 			}

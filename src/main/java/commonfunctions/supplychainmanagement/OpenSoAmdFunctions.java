@@ -839,14 +839,11 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-
 		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-
 		cusItems.createOpenSoItemOpenSoForDomesticCustomer();
 		commonFunc.logoutUser();
 		openso.verifyOpenSOForLocalCustomer();
-		commonFunc.logoutUser();
-		
+		commonFunc.logoutUser();		
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -906,7 +903,6 @@ public class OpenSoAmdFunctions {
 		commonFunc.logoutUser();
 		openso.verifyOpenSOForLocalCustomer();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -964,7 +960,6 @@ public class OpenSoAmdFunctions {
 
 		cusItems.createOpenSoItemForDomesticCustomerForAdditionOfItem();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -982,18 +977,14 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1014,9 +1005,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 * @return boolean flag
 	 */
-	public boolean verifyLocalCustomerDomesticDeletationofItem() {
-		
-		
+	public boolean verifyLocalCustomerDomesticDeletationofItem() {				
 		createOpenSoDocLocalCustomer();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1031,15 +1020,11 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		validateTaxAmountInLineDetails();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1108,7 +1093,6 @@ public class OpenSoAmdFunctions {
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemInterstateCustomer();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1123,14 +1107,11 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
@@ -1165,14 +1146,11 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);		
 		cusItems.createOpenItemInterstateForAdditionOfItem();
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemInterstateCustomer();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1187,19 +1165,14 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1231,11 +1204,9 @@ public class OpenSoAmdFunctions {
 			Mrp = "100";
 		}
 
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);		
 		cusItems.createOpenItemInterstateForAdditionOfItem();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1253,20 +1224,15 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1302,15 +1268,11 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		validateTaxAmountInLineDetails();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1348,8 +1310,6 @@ public class OpenSoAmdFunctions {
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemExportCustomer();
 		commonFunc.logoutUser();
-
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1364,19 +1324,15 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1407,15 +1363,11 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);		
 		cusItems.createOpenSoForExportCustomer();
 		commonFunc.logoutUser();
 		openso.verifyOfOpenSoItemExportCustomer();
 		commonFunc.logoutUser();
-
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1430,20 +1382,15 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1474,12 +1421,9 @@ public class OpenSoAmdFunctions {
 		if (Mrp.equals("000")) {
 			Mrp = "100";
 		}
-
-		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);
-		
+		String MrpValue = String.valueOf(Integer.parseInt(Mrp) + 1000);	
 		cusItems.createOpenSoForExportCustomer();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1497,20 +1441,15 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(3000);
@@ -1522,7 +1461,6 @@ public class OpenSoAmdFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
-
 		return flag;
 	}
 
@@ -1533,8 +1471,7 @@ public class OpenSoAmdFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportCustomerDeletationOfItem() {
-		cusItems.createOpenSoForExportCustomer();
-		
+		cusItems.createOpenSoForExportCustomer();		
 		createOpenSoExportCustomer();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1549,15 +1486,11 @@ public class OpenSoAmdFunctions {
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
-
 		validateTaxAmountInLineDetails();
-
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1595,8 +1528,6 @@ public class OpenSoAmdFunctions {
 		commonFunc.logoutUser();
 		openso.verifyOpenSoUTGSTCustomer();
 		commonFunc.logoutUser();
-
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1611,19 +1542,15 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		verifyPoDateNullOrNot(commonFunc.getDataFromTestDataSheet("PO_Date"));
 		toClickSaveButtonInHeader();
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(1000);
@@ -1662,7 +1589,6 @@ public class OpenSoAmdFunctions {
 		commonFunc.logoutUser();
 		openso.verifyOpenSoUTGSTCustomer();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1677,19 +1603,15 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		ToChangesPriceChanges1(commonFunc.getDataFromTestDataSheet("Price_Class_OSOA"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		toClickSaveButtonInHeader();
 		GetDocumentFromScreen();
-
 		String locution = null;
 		openSoAmdHeaderValidation(locution);
 		checkDbValidationTaxAmount();
-
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
@@ -1727,7 +1649,6 @@ public class OpenSoAmdFunctions {
 		
 		cusItems.createOpenSoForUTGSTCustomer();
 		commonFunc.logoutUser();
-
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatesOpenSoAmdScreen();
@@ -1745,9 +1666,7 @@ public class OpenSoAmdFunctions {
 		verifyHsnCodeFieldIsNullOrNot(commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyPriceClassNullOrNot(commonFunc.getDataFromTestDataSheet("Openso_Price"));
 		toClickaSaveButton();
-
 		validateTaxAmountInLineDetails();
-
 		validTaxAmountInLineDetailsForExportCustomerbigdecimal();
 		insertEffdateAndEfftoDateInHeaderDetails(commonFunc.getDataFromTestDataSheet("EFF_DATE"),
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
@@ -2070,8 +1989,7 @@ public class OpenSoAmdFunctions {
 				webDB.clickAnElement(OpenSoAmdLocators.AddButtoninAdditionType, ElementType.Xpath);
 				flag = webDB.waitForElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
 				if (flag) {
-					logs.logging("Info", "Successfully Clicked A Add Button ");
-
+					logs.logging("Info", "Successfully Clicked A Add Button ");					
 					flag = webDB.waitForElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(OpenSoAmdLocators.ItemClickField, ElementType.Xpath);
@@ -2090,7 +2008,6 @@ public class OpenSoAmdFunctions {
 									flag = webDB.waitForElement(OpenSoAmdLocators.DiscFieldClick, ElementType.Xpath);
 									if (flag) {
 										logs.logging("Info", "Revision price & Mrp Price Inserted Successfully ");
-
 										commonFunc.checkRefreshCellsDisappear();
 										flag = webDB.waitForElement(OpenSoAmdLocators.HsnCodeField, ElementType.Xpath);
 										if (flag) {

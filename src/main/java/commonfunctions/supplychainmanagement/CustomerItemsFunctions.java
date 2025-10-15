@@ -148,7 +148,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
-			flag = webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			if(flag) {
 				logs.logging("INFO", "Default Flag Is Checked ");
@@ -236,9 +236,9 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
-			flag = webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
+			 webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
 					ElementType.Xpath);
-			webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
 				logs.logging("Info", "Price Basis Changes Done Successfully" + priceBasisValue);
 			}
@@ -252,10 +252,10 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik To Select Catalogue
 	 */
 	public void catalogSelectInCustomerItems(String catalogName) {
-		webDB.waitForClickElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
-		flag = webDB.moveToElement(CustomerItemsLocators.CatalogSelectDropdown, ElementType.Xpath);
+			flag = webDB.waitForClickElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.selectDropDownByText(CustomerItemsLocators.CatalogSelectDropdown, catalogName,
+			webDB.moveToElement(CustomerItemsLocators.CatalogSelectDropdown, ElementType.Xpath);
+			webDB.selectDropDownByText(CustomerItemsLocators.CatalogSelectDropdown, catalogName,
 					ElementType.Xpath);
 			if (flag) {
 				logs.logging("Info", "Catalog Fixed Done Successfully" + catalogName);
@@ -287,7 +287,7 @@ public class CustomerItemsFunctions {
 	public void clickDefaltFlag1() {
 		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Defalt Flag Checked Stage");
 		}
@@ -413,7 +413,8 @@ public class CustomerItemsFunctions {
 	public void clickSearchButton() {
 		flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
+			logs.logging("Info","Search Button Is Clicked");
 		}
 		assertTrue(flag);
 	}
@@ -468,7 +469,7 @@ public class CustomerItemsFunctions {
 	public void clickedActiveButton() {
 		flag = webDB.waitForElement(CommonUiLocators.activeButton, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(CommonUiLocators.activeButton, ElementType.Xpath);
+			 webDB.clickAnElement(CommonUiLocators.activeButton, ElementType.Xpath);
 			logs.logging("INFO", "Item Actived Successfully");
 			commonFunc.checkRefreshCellsDisappear();
 		}
@@ -483,7 +484,7 @@ public class CustomerItemsFunctions {
 	public void clickSaveButton() {
 		flag = webDB.waitForElement(CommonUiLocators.SaveButton, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.clickAnElement(CommonUiLocators.SaveButton, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.SaveButton, ElementType.Xpath);
 			logs.logging("INFO", "Save Button is Clicked");
 		}
 		assertTrue(flag);

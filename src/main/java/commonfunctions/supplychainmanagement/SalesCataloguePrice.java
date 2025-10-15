@@ -493,7 +493,6 @@ public class SalesCataloguePrice {
 				Sales_Value);
 		if (flag) {
 			logs.logging("INFO", "Successfully Inserted a Sales Prices " + Sales_Value);
-
 			verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.MinDiscountPercentField(1),
 					SalesCatalogueLocators.MinDiscInsert, min_Disc);
 			if (flag) {
