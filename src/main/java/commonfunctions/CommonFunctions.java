@@ -353,6 +353,16 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	/**
+	 * Navigates Open So Amd
+	 * 
+	 * @author Kowshik-RITS
+	 * @return
+	 */
+	public boolean navigatesOpenSoAmdScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("OpenSOScreen"), OpenSoAmdLocators.OpenSoAmdRadio);
+		return flag;
+	}
 
 	/**
 	 * This Method used to click pending icon - left watch icon

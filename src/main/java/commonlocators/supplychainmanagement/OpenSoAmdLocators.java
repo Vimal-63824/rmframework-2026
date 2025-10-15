@@ -55,9 +55,9 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String OpsoWorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String PriceClassChange = "//select[contains(@id,'C882950809038082817')]";
+	public static final String PriceClassChange = "//select[@data-testid='SRCALN_CLASS_ID']";
 	/** @locatorType Xpath */
-	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[19]";
+	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[21]";
 	/** @locatorType Xpath */
 	public static final String AdditionofItemRadioButton = "//label[contains(text(),'Addition of Item')]";
 	/** @locatorType Xpath */
@@ -83,7 +83,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCodeLov = "//button[@id='C884852776050593307_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String IgstFieldInLineDetails = "//*[@id='ig_line_ig_grid_vc's]/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String IgstFieldInLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 
 	/** @locatorType Xpath */
 	public static final String CgstFieldLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
@@ -158,15 +158,20 @@ public class OpenSoAmdLocators {
 	public static final String RevPriceField(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[7]";
 	}
-
+	/** @locatorType Xpath */
 	public static final String UtgstField(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[16]";
 
 	}
-
+	/** @locatorType Xpath */
 	public static final String OpensoDoc(int i) {
 		return "/html/body/form/div[1]/div[2]/div[2]/main/div[2]/div/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div["
 				+ i + "]/input";
 	}
+	/** @locatorType Xpath */
+	public static final String PriceClassField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[21]" ;
+	/** @locatorType Xpath */
+	public static final String PriceClassSelect = "//select[@data-testid='SRCALN_CLASS_ID']" ;
+
 
 }

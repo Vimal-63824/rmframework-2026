@@ -41,6 +41,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 			"Open Sales Amdenment" }, description = "Amend Sales Order -Price Class Change - Domestic Customer - Local")
 	public void verifyOpenSoAmdinLocalCustomerPriceClass() {
 		OSOA.verifyDomesticCustomerLocalGstTypePriceClassChange();
+		
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Amend Sales Order -Price Change - Export Customer
+	 * Amend Sales Order -Price Change - Export Customer / *
 	 * 
 	 * @author Kowshik
 	 */
@@ -160,7 +161,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 13, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Deletion of Item - Export Customer")
-	public void verifyOpenDeletationOfItemsExportCustomer() {
+	public void verifyOpenSoDeletationOfItemsExportCustomer() {
 		OSOA.verifyExportCustomerDeletationOfItem();
 	}
 
@@ -208,6 +209,13 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 			"Open Sales Order " }, description = "Amend Sales Order - Deletion of Item - Domestic Customer - UTGST")
 	public void verifyOpenSoAmdUTGSTCustomerDeletationOfitem() {
 		OSOA.verifyUTGSTDeletationOfItem();
+	}
+
+
+	@Test(priority = 18 , groups = {
+	"Open Sales Order " }, description = "verifyOpenSoamdMultiplesLines"	)
+	public void verifyOpenSoamdMultiplesLines() {
+		OSOA.verifyMutiplesAddTypes();
 	}
 
 	/**

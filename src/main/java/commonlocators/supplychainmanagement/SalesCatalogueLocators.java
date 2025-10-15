@@ -26,7 +26,7 @@ public class SalesCatalogueLocators {
 	/** @locatorType Xpath */
 	public static final String CurcyFieldLov = "//button[@id='C1129621731141049824_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PriceField = "//input[@data-testid='Cataog_Price']";
+	public static final String PriceField = "//input[@data-testid='SCTLN_PRICE']";
 
 	/** @locatorType Xpath */
 	public static final String PriceFieldClick(int i) {

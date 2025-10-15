@@ -365,4 +365,8 @@ public class CommonUiLocators {
 	public static final String ProfileIcon = "#t_Header > div > img";
 	/** @locatorType Xpath */
 	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
+	public static final String QualityTab="//label[text()='Quality']" ;
+	/** @locatorType Xpath */
+	public static final String TypeDropDown= "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']" ;
+
 }

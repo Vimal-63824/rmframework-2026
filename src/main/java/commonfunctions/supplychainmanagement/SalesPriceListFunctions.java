@@ -97,8 +97,6 @@ public class SalesPriceListFunctions {
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
-//		clickSearchButton();
-//		searchDocumentNumebrFindPage();
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
@@ -140,7 +138,6 @@ public class SalesPriceListFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
-		clickPriceListStdCatalogNode();
 		clickAddButton();
 		clickPriceListButton();
 		clickPlusButton();
@@ -154,8 +151,6 @@ public class SalesPriceListFunctions {
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
-//		clickSearchButton();
-//		searchDocumentNumebrFindPage();
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
@@ -196,7 +191,6 @@ public class SalesPriceListFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
-		clickPriceListStdCatalogNode();
 		clickAddButton();
 		clickPriceListButton();
 		clickPlusButton();
@@ -210,8 +204,6 @@ public class SalesPriceListFunctions {
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
-//		clickSearchButton();
-//		searchDocumentNumebrFindPage();
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
@@ -256,7 +248,6 @@ public class SalesPriceListFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
-		clickPriceListStdCatalogNode();
 		clickAddButton();
 		clickPriceListButton();
 		clickPlusButton();
@@ -270,8 +261,6 @@ public class SalesPriceListFunctions {
 				commonFunc.getDataFromTestDataSheet("EFF_TO"));
 		clickSaveButton();
 		getPriceListDocumentno();
-//		clickSearchButton();
-//		searchDocumentNumebrFindPage();
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
@@ -289,12 +278,12 @@ public class SalesPriceListFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
-		clickPriceListStdCatalogNode();
+
 		searchItemINFindPageForAmdendTheRecord(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("CUSTOMER_ID"));
 		uncheckRadioButtonInFindPage();
 		clickSearchButtonInFindPage();
-//		searchRecordFindPage();
+
 		clickHyperLinkPriceLink();
 		clickAmdendButton();
 		insertCloseDateForAmend(Today);
@@ -340,7 +329,6 @@ public class SalesPriceListFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
-		clickPriceListStdCatalogNode();
 		clickAddButton();
 		clickPriceListButton();
 		clickPlusButton();
@@ -377,12 +365,11 @@ public class SalesPriceListFunctions {
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			// commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
-			// commonFunc.getDataFromTestDataSheet("HodValue"));
-			// commonFunc.hardWait(2000);
-			// webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame,
-			// ElementType.Xpath);
-			// logs.logging("INFO", "Switched To WorkFlow Frame");
+			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
+					commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
 			flag = webDB.waitForElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
@@ -795,10 +782,11 @@ public class SalesPriceListFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickHyperLinkPriceLink() {
-		flag = webDB.waitForElement(SalesPriceListLocators.PriceListHyperLink, ElementType.CssSelector);
+		flag = webDB.waitForElement(SalesPriceListLocators.PriceListHyperLink2, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesPriceListLocators.PriceListHyperLink, ElementType.CssSelector);
-			flag = webDB.waitForClickElement(SalesPriceListLocators.AmdendButton, ElementType.CssSelector);
+			webDB.moveToElement(SalesPriceListLocators.PriceListHyperLink2, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(SalesPriceListLocators.PriceListHyperLink2, ElementType.Xpath);
+			flag = webDB.waitForClickElement(SalesPriceListLocators.AmdendButton2, ElementType.CssSelector);
 			if (flag) {
 				logs.logging("INFO", "Successfully Navigates a PriceList Document");
 			}
@@ -812,9 +800,10 @@ public class SalesPriceListFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickAmdendButton() {
-		flag = webDB.waitForElement(SalesPriceListLocators.AmdendButton, ElementType.CssSelector);
+		flag = webDB.waitForElement(SalesPriceListLocators.AmdendButton2, ElementType.CssSelector);
 		if (flag) {
-			webDB.clickAnElement(SalesPriceListLocators.AmdendButton, ElementType.CssSelector);
+			webDB.moveToElement(SalesPriceListLocators.AmdendButton2, ElementType.CssSelector);
+			webDB.javaScriptClickAnElement(SalesPriceListLocators.AmdendButton2, ElementType.CssSelector);
 			webDB.switchToFrame(SalesPriceListLocators.adjustmentFrame, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesPriceListLocators.CloseDataAmdend, ElementType.Xpath);
 			if (flag) {

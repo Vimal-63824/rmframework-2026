@@ -56,12 +56,16 @@ public class CustomerItemsLocators {
 	/** Locator Xpath */
 	public static final String DefaultFlag = "//input[@aria-labelledby='C6072442655543065813_HDR']";
 	/** Locator Xpath */
-	public static final String DefaultFlagField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[15]/div";
+	public static final String DefaultFlagField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]/div";
 
 	/** Locator Xpath */
 	public static final String CustomerItemsSearchBox = "//input[@id='ig_line_ig_toolbar_search_field']";
 	/** Locator Xpath */
 	public static final String Gobutton = "(//button[@class='a-Button a-Toolbar-item'])[1]";
 
+	/** @locatorType Xpath */
+	public static final String DefaultFlagItem(String item) {
+		return "//td[normalize-space(text())='" + item + "']/ancestor::tr/td[14]//input[@type='checkbox']";
+	}
 
 }
