@@ -11,7 +11,7 @@ import commonfunctions.supplychainmanagement.SalesPriceListFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class SalesPriceListTest {
+public class SalesPriceListTest extends RoadMapERPTest{
 
 	private static final String String = null;
 	boolean flag = false;

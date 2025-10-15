@@ -603,8 +603,7 @@ public class SalesStandardPriceFunctions {
 			webDB.doubleClickAnElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
-				//webDB.clickAnElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
+				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);			
 				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MaxDiscField,
 						SalesStandardPriceLocators.MaxDiscInput, Max_Disc_Value);
 				if (flag) {
@@ -685,7 +684,6 @@ public class SalesStandardPriceFunctions {
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
