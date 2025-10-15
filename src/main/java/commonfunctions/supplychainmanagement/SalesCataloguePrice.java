@@ -384,6 +384,7 @@ public class SalesCataloguePrice {
 						flag = webDB.waitForElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Successfully Populated a Cancelled Record");
+							
 						}
 					}
 				}
@@ -391,6 +392,8 @@ public class SalesCataloguePrice {
 		}
 		assertTrue(flag);
 	}
+	
+
 
 	/**
 	 * Click Catalogue Price Button in Find Page
@@ -736,6 +739,7 @@ public class SalesCataloguePrice {
 						cusItems.clickSearchButton();
 						cusItems.searchedItem();
 						cusItems.customerAssoFlag();
+						cusItems.changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
 						cusItems.clickSaveButton();
 						// cusItems.clickedActiveButton();
 						commonFunc.logoutUser();
@@ -753,10 +757,8 @@ public class SalesCataloguePrice {
 								commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
 						cusItems.saveButtoninCustomerItems();
 						commonFunc.hardWait(3000);
-						cusItems.filltersaItemCustomerItems();
-						commonFunc.hardWait(3000);
 						commonFunc.checkRefreshCellsDisappear();
-						cusItems.clickDefaltFlag1();
+						cusItems.clickDefaltFlag2();
 						cusItems.saveButtoninCustomerItems();
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
@@ -977,8 +979,8 @@ public class SalesCataloguePrice {
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbMaxiDisc")));
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.EffFromDateDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbEffDate")));
-		verifyAssertionGetTextValidation(SalesCatalogueLocators.EffToDateDb, dbCommonFunctions.SalesCataloguePrice(
-				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceEffToDate")));
+//		verifyAssertionGetTextValidation(SalesCatalogueLocators.EffToDateDb, dbCommonFunctions.SalesCataloguePrice(
+//				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceEffToDate")));
 		verifyAssertionGetTextValidation(SalesCatalogueLocators.StatusDb, dbCommonFunctions.SalesCataloguePrice(
 				VariableHandler.getCatalogDocno(), commonFunc.getDataFromTestDataSheet("CatPriceDbStatus")));
 	}

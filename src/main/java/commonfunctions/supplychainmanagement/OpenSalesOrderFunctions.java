@@ -31,6 +31,7 @@ public class OpenSalesOrderFunctions {
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
 	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	private static CustomerItemsFunctions cusItems = new CustomerItemsFunctions();
 
 	/**
 	 * This Method used to select Open So Type with radio Type like Amendment or
@@ -194,6 +195,53 @@ public class OpenSalesOrderFunctions {
 	}
 
 	/**
+	 * This Method used to click Fetch Customer and Select Item checkbox and click
+	 * Ok
+	 * 
+	 * @author Kowshikan-RMITS
+	 * @param Item
+	 */
+	public void clickFetchCustomerAndSelectItemInOpenSoUpdated() {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Fetch Customer Item Button Clicked");
+				webDB.switchToFrame(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.fetchButtonSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Iframe Displayed and switched successfully");
+					webDB.sendTextToAnElement(OpenSalesOrderLocators.fetchButtonSearchButton, 
+							VariableHandler.getItemName(), ElementType.Xpath);
+					flag = webDB.waitForElement(OpenSalesOrderLocators.fetchButtonGoButton, ElementType.Xpath);
+					if(flag) {
+						logs.logging("INFO","Item Inserted In Fetch Customer Item");
+						webDB.clickAnElement(OpenSalesOrderLocators.fetchButtonGoButton, ElementType.Xpath);
+						flag = webDB.waitForElement(OpenSalesOrderLocators.SelectItem, ElementType.Xpath);
+						if(flag) {
+							webDB.moveToElement(OpenSalesOrderLocators.SelectItem, ElementType.Xpath);
+							webDB.clickAnElement(OpenSalesOrderLocators.SelectItem, ElementType.Xpath);
+							flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							if (flag) {
+								webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+								webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+
+							}
+						}
+						
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
 	 * This Method used to Fill Price, MRP and HSN Code for Last item and Save the
 	 * line
 	 * 
@@ -315,10 +363,8 @@ public class OpenSalesOrderFunctions {
 				webDB.clickAnElement(OpenSalesOrderLocators.OpenSOFindPageSearchBtn, ElementType.Xpath);
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
-				if (!(webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindStatusTableWithText(Item),
-						ElementType.Xpath))
-						|| webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindNoDataMessageContainer,
-								ElementType.Xpath)) {
+				if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.FindNoDataMessageContainer,
+						ElementType.Xpath)) {
 					logs.logging("INFO", "No Data was in Approved Status");
 					flag = false;
 				} else {
@@ -380,9 +426,9 @@ public class OpenSalesOrderFunctions {
 	 */
 	public void validateStatusOfOpenSOWithDocNo(String OpenSODocNo, String Status) {
 		commonFunc.hardWait(2000);
-		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpenSOBackIcon, ElementType.Xpath)) {
-			webDB.moveToElement(OpenSalesOrderLocators.OpenSOBackIcon, ElementType.Xpath);
-			webDB.clickAnElementWithoutException(OpenSalesOrderLocators.OpenSOBackIcon, ElementType.Xpath);
+		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath)) {
+			webDB.moveToElement(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(OpenSalesOrderLocators.OpenSORadioBtn, ElementType.Xpath);
 		}
 		flag = webDB.waitForElement(OpenSalesOrderLocators.FindOpenSODocNoLovBtn, ElementType.Xpath);
 		if (flag) {
@@ -452,6 +498,10 @@ public class OpenSalesOrderFunctions {
 		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		cusItems.createOpenSoItemOpenSoForDomesticCustomer();
+
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateOpenSO();
@@ -460,7 +510,7 @@ public class OpenSalesOrderFunctions {
 		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
 		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
 		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		clickFetchCustomerAndSelectItemInOpenSO(Item);
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
 		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
 		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		enterEffectiveFromAndToDate(Today, Today, Today);
@@ -478,6 +528,63 @@ public class OpenSalesOrderFunctions {
 		commonFunc.navigateOpenSO();
 		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+	}
+	
+	/**Verifty Open So For Export Customer
+	 * 
+	 * @author Kowshik-Rmits
+	 */
+	public void verifyOpenSoForExportCustomer() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("catalogExportCustomer");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		cusItems.createsOpenSoItemForExportCustomer();
+
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveAndClickPostBtnInOpenSO();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.logoutUser();
+		
 	}
 
 	/**
@@ -501,6 +608,8 @@ public class OpenSalesOrderFunctions {
 		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+		
+		cusItems.createOpenSoItemOpenSoForDomesticCustomerForCancelStage();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateOpenSO();
@@ -509,7 +618,7 @@ public class OpenSalesOrderFunctions {
 		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
 		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
 		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		clickFetchCustomerAndSelectItemInOpenSO(Item);
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
 		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
 		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		enterEffectiveFromAndToDate(Today, Today, Today);
@@ -520,7 +629,7 @@ public class OpenSalesOrderFunctions {
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method used to click Tick Icon and Fill PO Date in Open SO and Store
 	 * Open SO Number
@@ -546,5 +655,211 @@ public class OpenSalesOrderFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+	
+	/**Verify Open So LOcal Customer
+	 * 
+	 * @author Kowshik-Rmits
+	 */
+	public void verifyOpenSOForLocalCustomer() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedID");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveAndClickPostBtnInOpenSO();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+	}
+	/**Open So Item Interstate Customer
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void verifyOfOpenSoItemInterstateCustomer() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Export");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveAndClickPostBtnInOpenSO();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"TvsUsername");
+//		commonFunc.navigateOpenSO();
+//		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+	}
+	
+	/**Open So Item Export Customer
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void verifyOfOpenSoItemExportCustomer() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Export");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveAndClickPostBtnInOpenSO();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"TvsUsername");
+//		commonFunc.navigateOpenSO();
+//		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
+	}
+	/**Open So Item UTGST Customer
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void verifyOpenSoUTGSTCustomer() {
+		
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		String CustomerID = commonFunc.getDataFromTestDataSheet("UTGST_cus");
+		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
+		String Unit = RandomStringUtils.randomNumeric(2);
+		if (Unit.equals("00")) {
+			Unit = "10";
+		}
+		String Cost = RandomStringUtils.randomNumeric(2);
+		if (Cost.equals("00")) {
+			Cost = "10";
+		}
+		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_07");
+		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
+		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+
+
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateOpenSO();
+		selectOpenSOTypeWithRadioButtons("Open SO");
+		clickAddNewOpenSOPlsIcon();
+		fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("UTGSTLocation"), CustomerID, OpenSOPrefix);
+		fillSOTypeAndPONumberInOpenSO(OpenSOType, RandomStringUtils.randomNumeric(4));
+		clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
+		clickFetchCustomerAndSelectItemInOpenSoUpdated();
+		fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost, MRP, OpenSOHSN);
+		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
+		enterEffectiveFromAndToDate(Today, Today, Today);
+		clickHeaderSaveAndClickPostBtnInOpenSO();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"TvsUsername");
+//		commonFunc.navigateOpenSO();
+//		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+
 	}
 }

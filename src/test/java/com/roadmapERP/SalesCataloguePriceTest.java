@@ -1,14 +1,18 @@
 package com.roadmapERP;
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.CustomerItemsFunctions;
 import commonfunctions.supplychainmanagement.SalesCataloguePrice;
 import utils.Mailer;
 import utils.WebDriverBase;
 
 public class SalesCataloguePriceTest {
+
 
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
@@ -79,5 +83,13 @@ public class SalesCataloguePriceTest {
 	@Test(priority = 6, groups = { "Sales Catalogue Price" }, description = "Multiples Lines Creates")
 	public void veriftyCreatesMultiplesCataloguePrice() {
 		Scp.createsMultiplesCataloguePrice();
+	}
+	
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
+			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(false);
+			commonFunc.verifyAfterMethod();
+		}
 	}
 }

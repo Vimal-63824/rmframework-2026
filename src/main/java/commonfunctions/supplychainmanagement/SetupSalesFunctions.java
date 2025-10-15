@@ -244,7 +244,7 @@ public class SetupSalesFunctions {
 			webDB.javaScriptClickAnElement(SetupSalesLocators.SalesZoneAddPlus, ElementType.Xpath);
 			flag = webDB.waitForElement(SetupSalesLocators.SalesZoneField, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Successfully Insert a Sales Zone ");
+				logs.logging("INFO", "Successfully Click a Sales Zone Add Button ");
 			}
 
 			assertTrue(flag);

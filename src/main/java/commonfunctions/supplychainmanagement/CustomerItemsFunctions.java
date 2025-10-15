@@ -120,6 +120,44 @@ public class CustomerItemsFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**To Changes a Qc Type 
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param QcFlag
+	 */
+	public void changesNotApplicabeType(String QcFlag) {
+		flag = webDB.waitForElement(CommonUiLocators.QualityTab, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
+			if(flag) {
+				webDB.clickAnElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
+				webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
+				if(flag) {
+					logs.logging("INFO","Successfully Changed a Type" +  QcFlag);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**Click Default Flag
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickDefaltFlag2() {
+		flag = webDB.waitForElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if(flag) {
+				logs.logging("INFO", "Default Flag Is Checked ");
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	
 
 	/**
 	 * Price Class Select
@@ -569,6 +607,272 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		clickDefaltFlag();
 		saveButtoninCustomerItems();
+	}
+	/**Creates Open So Item - Domestic Customer
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenSoItemOpenSoForDomesticCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedName"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		
+	}
+	/**Creates Open So Item - Domestic Customer -Price Class Change
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenSoItemForDomesticCustomerForPriceClass() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedName"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+	}
+	/**Creates Open So Item - Domestic Customer -Addition of Item
+	 * 
+	 * @author Kowshik-Rmits
+	 */
+	public void createOpenSoItemForDomesticCustomerForAdditionOfItem() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedName"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+	
+	}
+	/**Creates Open So Item - Interstate Customer -Addition of Item
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenItemInterstateForAdditionOfItem() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Export"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+
+	}
+	/**Creates a Open So
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenSoForExportCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Export"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		commonFunc.logoutUser();
+
+	}
+	/**Create Item Open So
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenSoForUTGSTCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("UTGST_cus"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		commonFunc.logoutUser();
+
+	}
+	/**Creates Open So Item - Export Customer
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createsOpenSoItemForExportCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogExportCustomer"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+
+	}
+	/**Creates Open So Item - Domestic Customer - Cancel Stage
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenSoItemOpenSoForDomesticCustomerForCancelStage() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("ERPPrivateLimitedName"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		commonFunc.logoutUser();
+		
 	}
 
 	/**
