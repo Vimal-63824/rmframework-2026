@@ -2456,7 +2456,7 @@ public class CustomerScheduleFunctions {
 					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 			String LineStatus = dbCommonFunctions.CSLineDetails(VariableHandler.getCSDocNumber(),
-					VariableHandler.getMultipleCSLineDocs().getFirst(),
+					VariableHandler.getMultipleCSLineDocs().get(0),
 					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
 			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
 					commonFunc.getDataFromTestDataSheet("CloseshortedLineStatus"));
@@ -2495,7 +2495,7 @@ public class CustomerScheduleFunctions {
 					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 			String LineStatus = dbCommonFunctions.CSLineDetails(VariableHandler.getCSDocNumber(),
-					VariableHandler.getMultipleCSLineDocs().getFirst(),
+					VariableHandler.getMultipleCSLineDocs().get(0),
 					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
 			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
 					commonFunc.getDataFromTestDataSheet("CSAmendedLineStatus"));
@@ -2535,7 +2535,7 @@ public class CustomerScheduleFunctions {
 					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
 			String LineStatus = dbCommonFunctions.CSLineDetails(VariableHandler.getCSDocNumber(),
-					VariableHandler.getMultipleCSLineDocs().getFirst(),
+					VariableHandler.getMultipleCSLineDocs().get(0),
 					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
 			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
 					commonFunc.getDataFromTestDataSheet("CSAmendedLineStatus"));
