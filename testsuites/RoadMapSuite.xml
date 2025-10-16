@@ -21,6 +21,7 @@
 			<class name="com.roadmapERP.PriselistTest" />
 			<class name="com.roadmapERP.OpenSOTest" />
 			<class name="com.roadmapERP.GrnTest" />
+			<class name="com.roadmapERP.DirectGrnTest" />
 			<class name="com.roadmapERP.OpenSoAmdTest" />
 			<class name="com.roadmapERP.RfqTest" />
 			<class name="com.roadmapERP.OpenPoRcTest" />

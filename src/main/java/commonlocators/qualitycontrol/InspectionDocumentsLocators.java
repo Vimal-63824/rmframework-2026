@@ -25,24 +25,21 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String QcDocumentsButton = "//button[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@data-testid='Find_line']";
+	public static final String SearchButton = "//button[@id='B1239031076426494989']";
 	/** @locatorType Xpath */
 	public static final String PendingInspectionFrame = "//iframe[@title='Pend. Inspection Request']";
 	/** @locatorType Xpath */
 	public static final String AcceptedQuantity = "//input[@id='P20171310201_TQHD_ACPT_QTY']";
 	/** @locatorType Xpath */
 	public static final String BackButton = "//button[@id='B2664662933700794505']";
-
 	/** @locatorType Xpath */
 	public static final String InspectionCheckBox(String GrnNo) {
 		return "//td[text()='" + GrnNo + "']/../td/input[@type='checkbox']";
 	}
-
 	/** @locatorType Xpath */
 	public static final String InspectionStatusTableText(String Idno) {
-		return "//a[text()='" + Idno + "']/../../td/div[contains(@style,'green')]";
+		return "//a[text()='" + Idno + "']/../../td[20]";
 	}
-
 	/** @locatorType Xpath */
 	public static final String VoucherLov = "//button[@id='P20171310150_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
@@ -68,28 +65,24 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//*[@id='11575179625135231735_orig']/tbody/tr[2]/td[7]";
+	public static final String InspectionDocumentNumberDrillDown = "//*[@id=\"11575179625135231735_orig\"]/tbody/tr[2]/td[7]";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
-
 	/** @locatorType Xpath */
 	public static final String InspectionCheckBox(int i) {
 		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[4]";
 	}
-
 	/** @locatorType Xpath */
 	public static final String Observationvalue(int i) {
 		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[10]";
 	}
-
 	/** @locatorType Xpath */
 	public static final String ObsLineNumber = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
-
 	/** @locatorType Xpath */
-	public static final String EnterAcceptQty = "//input[@id='P20171310201_TQHD_ACPT_QTY']";
+	public static final String EnterAcceptQty = "//input[@id=\"P20171310201_TQHD_ACPT_QTY\"]";
 	/** @locatorType Xpath */
-	public static final String EnterAODtQty = "//input[@id='P20171310201_TQHD_AOD_QTY']";
-
+	public static final String EnterAODtQty = "//input[@id=\"P20171310201_TQHD_AOD_QTY\"]";
+	
 	/** @locatorType Xpath */
-	public static final String RejtQty = "//input[@id='P20171310201_TQHD_REJ_QTY']";
+	public static final String RejtQty = "//input[@id=\"P20171310201_TQHD_REJ_QTY\"]";
 }
