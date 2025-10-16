@@ -60,7 +60,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 
-		// assertTrue(flag);
 	}
 
 	/**
@@ -261,6 +260,7 @@ public class DirectGrnPageFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -496,6 +496,7 @@ public class DirectGrnPageFunctions {
 				logs.logging("INFO", "Grn Item Field Is Checked");
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -513,6 +514,7 @@ public class DirectGrnPageFunctions {
 			logs.logging("INFO", "Entered Item Is:" + ITEM_NAME);
 			commonFunc.checkRefreshCellsDisappear();
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -529,6 +531,7 @@ public class DirectGrnPageFunctions {
 			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineHsnLov, HSN);
 			logs.logging("INFO", "Entered HSN Code Is:" + HSN);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -544,6 +547,7 @@ public class DirectGrnPageFunctions {
 			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSupQtyInput, QTY, ElementType.Xpath);
 			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -574,6 +578,7 @@ public class DirectGrnPageFunctions {
 			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCostInput, COST, ElementType.Xpath);
 			logs.logging("INFO", "Entered Cost Is:" + COST);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -588,6 +593,7 @@ public class DirectGrnPageFunctions {
 			logs.logging("INFO", "GRN Line Is Saved");
 			commonFunc.hardWait(4000);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1114,6 +1120,7 @@ public class DirectGrnPageFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1329,6 +1336,7 @@ public class DirectGrnPageFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**

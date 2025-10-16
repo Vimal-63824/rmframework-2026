@@ -57,10 +57,12 @@ public class PurchaseOrderFunctions {
 	 * @param POType
 	 */
 	public void verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
+		verifyCLickPurchaseOrderFrame();
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
+		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);		
 		}
 		assertTrue(flag);
 	}
@@ -247,11 +249,13 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyTickIconcreatePO() {
 		commonFunc.checkRefreshCellsDisappear();
+		verifyCLickPurchaseOrderFrame();
 		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Tick Icon Is Displayed");
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.clickAnElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
+			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Verified Navigate To PO Edit Page");
@@ -13136,4 +13140,25 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**
+	 * Verify Create Direct PO Adding Parameter
+	 * 
+	 * @author PremKumar.K RMIT
+	 * @param LocationId
+	 * @param SupplierName
+	 * @param POType
+	 */
+	public void verifyCLickPurchaseOrderFrame() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
+			logs.logging("INFO", "Switch To Purchase Order Frame");
+			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Purchase Order Tick Icon Displayed");
+			}
+		}
+		assertTrue(flag);
+	}
+	
 }

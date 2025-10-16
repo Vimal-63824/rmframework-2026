@@ -346,9 +346,18 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			if (flag) {
-				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				flag = webDB.waitForElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
+					logs.logging("INFO", "Create PO Button is Displayed and Clicked");
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Purchase order Frame is Enabled");
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);

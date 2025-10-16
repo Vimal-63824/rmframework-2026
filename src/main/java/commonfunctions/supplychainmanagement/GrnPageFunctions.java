@@ -3991,7 +3991,7 @@ public class GrnPageFunctions {
 							logs.logging("INFO", "Charges Add Button Clicked succesfully");
 
 							if (ChargesBasis.equals(commonFunc.getDataFromTestDataSheet("Percentage"))) {
-								PercentageBasedItem(ItemName, Amount, GLAccount);
+								percentageBasedItem(ItemName, Amount, GLAccount);
 							} else {
 								valueBasedItem(ItemName, Amount, GLAccount);
 							}
@@ -4025,7 +4025,7 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void PercentageBasedItem(String ItemName, String Amount, String GLAccount) {
+	public void percentageBasedItem(String ItemName, String Amount, String GLAccount) {
 		commonFunc.hardWait(2000);
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(GrnLocators.GrnChargesBasis, ElementType.Xpath);
@@ -4116,7 +4116,7 @@ public class GrnPageFunctions {
 				verifyToSelectItem(LandedCostItem);
 				verifyToSelectSupplier(LandedCostSupplier);
 				verifyToenteredLandedcostAmount(LandedCostAmount);
-				VerfytoEnteredLandedCostDocumentNumber(LandedCostDocumentNumber);
+				verfytoEnteredLandedCostDocumentNumber(LandedCostDocumentNumber);
 				verifyToEnteredLandedCostDateField();
 				verifyToSelectAvailOrNotAvailField(AICSelection);
 				verifyToSavetheLineDetails();
@@ -4344,7 +4344,7 @@ public class GrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void VerfytoEnteredLandedCostDocumentNumber(String LandedCostDocumentNumber) {
+	public void verfytoEnteredLandedCostDocumentNumber(String LandedCostDocumentNumber) {
 		flag = webDB.waitForElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.GrnLandedCostDocumentGrid, ElementType.Xpath);
