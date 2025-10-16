@@ -34,7 +34,7 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingOpenSCO_FindAddIcon() {
+	public void clickingOpenSCO_FindAddIcon() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.Open_SCO_Find_AddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.Open_SCO_Find_AddIcon, ElementType.Xpath);
@@ -64,7 +64,7 @@ public class SubcontractSetUpFunctions {
 	 * @param OpenPriceSupplier
 	 * @param OpenPriceTodateInput
 	 */
-	public void AddingParametersinOpenSCO(String LocationId, String SelectTypeSIP, String OpenPriceItem,
+	public void addingParametersinOpenSCO(String LocationId, String SelectTypeSIP, String OpenPriceItem,
 			String OpenPriceSupplier, String OpenPriceTodateInput) {
 		webDB.switchToFrame(SubcontractOrderLocators.OP_Iframe, ElementType.Xpath);
 		commonFunc.hardWait(1000);
@@ -131,7 +131,7 @@ public class SubcontractSetUpFunctions {
 	 * @param OpenPriceSupplier
 	 * @param OpenPriceTodateInput
 	 */
-	public void AddingParametersinOpenSCOForItem_Process(String LocationId, String SelectTypeIP, String OpenPriceItem,
+	public void addingParametersinOpenSCOForItem_Process(String LocationId, String SelectTypeIP, String OpenPriceItem,
 			String OpenPriceSupplier, String OpenPriceTodateInput) {
 		webDB.switchToFrame(SubcontractOrderLocators.OP_Iframe, ElementType.Xpath);
 		commonFunc.hardWait(1000);
@@ -197,7 +197,7 @@ public class SubcontractSetUpFunctions {
 	 * @param OpenPriceSupplier
 	 * @param OpenPriceTodateInput
 	 */
-	public void AddingParametersinOpenSCOForSupplier_Process(String LocationId, String SelectTypeSP,
+	public void addingParametersinOpenSCOForSupplier_Process(String LocationId, String SelectTypeSP,
 			String OpenPriceItem, String OpenPriceSupplier, String OpenPriceTodateInput) {
 		webDB.switchToFrame(SubcontractOrderLocators.OP_Iframe, ElementType.Xpath);
 		commonFunc.hardWait(1000);
@@ -264,7 +264,7 @@ public class SubcontractSetUpFunctions {
 	 * @param OpenPriceSupplier
 	 * @param OpenPriceTodateInput
 	 */
-	public void AddingParametersinOpenSCOForProcess(String LocationId, String SelectTypeP, String OpenPriceItem,
+	public void addingParametersinOpenSCOForProcess(String LocationId, String SelectTypeP, String OpenPriceItem,
 			String OpenPriceSupplier, String OpenPriceTodateInput) {
 		webDB.switchToFrame(SubcontractOrderLocators.OP_Iframe, ElementType.Xpath);
 		commonFunc.hardWait(1000);
@@ -326,7 +326,7 @@ public class SubcontractSetUpFunctions {
 	 * @author Vimal - RMITS
 	 * @param SheetName
 	 */
-	public void AddingProcessLineFromExcelSheet(String SheetName) {
+	public void addingProcessLineFromExcelSheet(String SheetName) {
 		String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -337,7 +337,7 @@ public class SubcontractSetUpFunctions {
 			String BatchQty = SOMultipleline[i][2];
 			String BatchCost = SOMultipleline[i][3];
 			if (!ProcessID.equals("")) {
-				AddingProcessLine(ProcessID, BatchQty, BatchCost);
+				addingProcessLine(ProcessID, BatchQty, BatchCost);
 			}
 		}
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineWise_Save, ElementType.Xpath);
@@ -369,7 +369,7 @@ public class SubcontractSetUpFunctions {
 	 * @author Vimal - RMITS
 	 * @param SheetName
 	 */
-	public void AddingProcessLineFromExcelSheetAndCancelledTheDocument(String SheetName) {
+	public void addingProcessLineFromExcelSheetAndCancelledTheDocument(String SheetName) {
 		String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -380,7 +380,7 @@ public class SubcontractSetUpFunctions {
 			String BatchQty = SOMultipleline[i][2];
 			String BatchCost = SOMultipleline[i][3];
 			if (!ProcessID.equals("")) {
-				AddingProcessLine(ProcessID, BatchQty, BatchCost);
+				addingProcessLine(ProcessID, BatchQty, BatchCost);
 			}
 		}
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineWise_Save, ElementType.Xpath);
@@ -413,7 +413,7 @@ public class SubcontractSetUpFunctions {
 	 * @param BatchQty
 	 * @param BatchCost
 	 */
-	public void AddingProcessLine(String ProcessID, String BatchQty, String BatchCost) {
+	public void addingProcessLine(String ProcessID, String BatchQty, String BatchCost) {
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
@@ -440,7 +440,7 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void OpenSCOforwardForApproval() {
+	public void openSCOforwardForApproval() {
 		commonFunc.hardWait(3000);
 		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath)) {
 			flag = true;
@@ -482,14 +482,14 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeSIP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_S+I+P"));
-		OpenSCOforwardForApproval();
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_S+I+P"));
+		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
@@ -510,14 +510,14 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeIP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_I+P"));
-		OpenSCOforwardForApproval();
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_I+P"));
+		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
@@ -538,14 +538,14 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeSP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_S+P"));
-		OpenSCOforwardForApproval();
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_S+P"));
+		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
@@ -566,14 +566,14 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_P"));
-		OpenSCOforwardForApproval();
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_P"));
+		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
@@ -697,7 +697,7 @@ public class SubcontractSetUpFunctions {
 		assertTrue(flag);
 	}
 
-	public void AfterReviseTheDocumentAndDrillDown(String Revdocno) {
+	public void afterReviseTheDocumentAndDrillDown(String Revdocno) {
 		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_DocNO, ElementType.Xpath);
 		if (flag) {
@@ -761,14 +761,14 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_P"));
-		OpenSCOforwardForApproval();
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_P"));
+		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername");
@@ -781,7 +781,7 @@ public class SubcontractSetUpFunctions {
 		commonFunc.navigateToOpenPriceSCO();
 		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
-		AfterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
+		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
 
 		return flag;
 	}
@@ -797,13 +797,13 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_P"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -819,13 +819,13 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeSIP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_S+I+P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_S+I+P"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -841,13 +841,13 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeIP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_I+P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_I+P"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -862,13 +862,13 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		ClickingOpenSCO_FindAddIcon();
-		AddingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SelectTypeSP"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		AddingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_S+P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_S+P"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}

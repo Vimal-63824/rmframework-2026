@@ -663,7 +663,7 @@ public class SubcontractOrderFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingAddIconForSCO() {
+	public void clickingAddIconForSCO() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractFindAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractFindAddIcon, ElementType.Xpath);
@@ -683,7 +683,7 @@ public class SubcontractOrderFunctions {
 	 * @param LocationId
 	 * @param SubcontractSupplier
 	 */
-	public void InsertingSubcontractParameters(String LocationId, String SubcontractSupplier) {
+	public void insertingSubcontractParameters(String LocationId, String SubcontractSupplier) {
 		commonFunc.hardWait(1000);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractLocId, LocationId);
 		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
@@ -758,7 +758,7 @@ public class SubcontractOrderFunctions {
 			String SCOQty = SOMultipleline[i][2];
 			String SCOProcess = SOMultipleline[i][3];
 			if (!SCOItemID.equals("")) {
-				ClickLineWiseAddIcon(SCOItemID, SCOQty, SCOProcess);
+				clickLineWiseAddIcon(SCOItemID, SCOQty, SCOProcess);
 			}
 		}
 	}
@@ -771,7 +771,7 @@ public class SubcontractOrderFunctions {
 	 * @param SCOQty
 	 * @param SCOProcess
 	 */
-	public void ClickLineWiseAddIcon(String SCOItemID, String SCOQty, String SCOProcess) {
+	public void clickLineWiseAddIcon(String SCOItemID, String SCOQty, String SCOProcess) {
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractlineAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractlineAddIcon, ElementType.Xpath);
@@ -824,7 +824,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @param SCOProcess
 	 */
-	public void AddingSubcontractOrderProcess(String SCOProcess) {
+	public void addingSubcontractOrderProcess(String SCOProcess) {
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
@@ -908,7 +908,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * 
 	 */
-	public void ClickingMRPconsumptionTab() {
+	public void clickingMRPconsumptionTab() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "MRP Button Is Displayed");
@@ -938,8 +938,8 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		ClickingAddIconForSCO();
-		InsertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		clickingGenMRPbutton();
@@ -994,7 +994,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * 
 	 */
-	public void ClickingIncludeChargesAndPostIcon() {
+	public void clickingIncludeChargesAndPostIcon() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Include Charges Is Displayed");
@@ -1058,11 +1058,11 @@ public class SubcontractOrderFunctions {
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		ClickingMRPconsumptionTab();
-		ClickingIncludeChargesAndPostIcon();
+		clickingMRPconsumptionTab();
+		clickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
-					.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername");
@@ -1098,7 +1098,7 @@ public class SubcontractOrderFunctions {
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 			grnScoPageFunc.saveHeaderAndPost();
-			approvalFunc.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername-Admin");
@@ -1112,11 +1112,11 @@ public class SubcontractOrderFunctions {
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
 			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			ClickingMRPconsumptionTab();
-			ClickingIncludeChargesAndPostIcon();
+			clickingMRPconsumptionTab();
+			clickingIncludeChargesAndPostIcon();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
-						.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername");
@@ -1154,7 +1154,7 @@ public class SubcontractOrderFunctions {
 //				grnScoPageFunc.verifyViewLineDetails();
 				grnScoPageFunc.saveHeaderAndPost();
 				approvalFunc
-						.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername-Admin");
@@ -1202,11 +1202,11 @@ public class SubcontractOrderFunctions {
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		ClickingMRPconsumptionTab();
-		ClickingIncludeChargesAndPostIcon();
+		clickingMRPconsumptionTab();
+		clickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
-					.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername");
@@ -1242,7 +1242,7 @@ public class SubcontractOrderFunctions {
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 			grnScoPageFunc.saveHeaderAndPost();
-			approvalFunc.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername-Admin");
@@ -1256,11 +1256,11 @@ public class SubcontractOrderFunctions {
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
 			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			ClickingMRPconsumptionTab();
-			ClickingIncludeChargesAndPostIcon();
+			clickingMRPconsumptionTab();
+			clickingIncludeChargesAndPostIcon();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
-						.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername");
@@ -1299,7 +1299,7 @@ public class SubcontractOrderFunctions {
 //				grnScoPageFunc.verifyViewLineDetails();
 				grnScoPageFunc.saveHeaderAndPost();
 				approvalFunc
-						.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername-Admin");
@@ -1347,11 +1347,11 @@ public class SubcontractOrderFunctions {
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		ClickingMRPconsumptionTab();
-		ClickingIncludeChargesAndPostIcon();
+		clickingMRPconsumptionTab();
+		clickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
-					.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername");
@@ -1388,7 +1388,7 @@ public class SubcontractOrderFunctions {
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 			grnScoPageFunc.saveHeaderAndPost();
-			approvalFunc.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 					"HodUsername-Admin");
@@ -1402,11 +1402,11 @@ public class SubcontractOrderFunctions {
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
 			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			ClickingMRPconsumptionTab();
-			ClickingIncludeChargesAndPostIcon();
+			clickingMRPconsumptionTab();
+			clickingIncludeChargesAndPostIcon();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
-						.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername");
@@ -1444,7 +1444,7 @@ public class SubcontractOrderFunctions {
 //				grnScoPageFunc.verifyViewLineDetails();
 				grnScoPageFunc.saveHeaderAndPost();
 				approvalFunc
-						.SubcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 						"HodUsername-Admin");

@@ -664,5 +664,4 @@ public class MaterialIssuanceVoucherFunctions {
 		}
 		assertTrue(flag);
 	}
-
 }

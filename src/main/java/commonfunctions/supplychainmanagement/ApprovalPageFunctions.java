@@ -569,7 +569,7 @@ public class ApprovalPageFunctions {
 	 * @author Vimal - RMITS
 	 * @param user
 	 */
-	public void SubcontractwaitingForApprovalWithFordwarder(String user) {
+	public void subcontractwaitingForApprovalWithFordwarder(String user) {
 		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
 		if (flag) {
 			VariableHandler.setApprovalFlag(flag);
