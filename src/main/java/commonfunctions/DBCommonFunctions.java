@@ -1055,5 +1055,20 @@ public class DBCommonFunctions {
 				ItemID, commonFunc.getDataFromTestDataSheet("SRNO"), SerialNo, DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * This Method Is Used To Validate po Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String StockQuery4(String GRNNumber, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNQuery1"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("GRNID"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
 
 }

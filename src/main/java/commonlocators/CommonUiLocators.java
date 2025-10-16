@@ -368,5 +368,7 @@ public class CommonUiLocators {
 	public static final String QualityTab="//label[text()='Quality']" ;
 	/** @locatorType Xpath */
 	public static final String TypeDropDown= "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']" ;
+	/** @locatorType Xpath */
+	public static final String CreatePORadioButton = "//button[@id='B927512421169129619']";
 
 }
