@@ -563,4 +563,32 @@ public class ApprovalPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	/**
+	 * This Method used to select forwarder in WorkApproval and click Ok button
+	 * 
+	 * @author Vimal - RMITS
+	 * @param user
+	 */
+	public void SubcontractwaitingForApprovalWithFordwarder(String user) {
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
+		if (flag) {
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn_SCO, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn_SCO, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				commonFunc.checkSuccessToastMessageDisappear();
+				commonFunc.hardWait(3000);
+			}
+		} else {
+			VariableHandler.setApprovalFlag(flag);
+			flag = true;
+		}
+		assertTrue(flag);
+	}
 }

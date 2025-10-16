@@ -184,12 +184,12 @@ public class CommonFunctions {
 				if (flag) {
 					String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName,
 							ElementType.Xpath);
-					if ( Username.equals(GetTextUserName)) {
+					if (Username.equals(GetTextUserName)) {
 						logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
 					} else {
 						flag = false;
-						logs.logging("INFO", "Some Other User Logged In  Expected user: " + Username
-								+ " but found: " + GetTextUserName);
+						logs.logging("INFO", "Some Other User Logged In  Expected user: " + Username + " but found: "
+								+ GetTextUserName);
 					}
 				}
 			}
@@ -362,6 +362,7 @@ public class CommonFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Navigates Open So Amd
 	 * 
@@ -1213,20 +1214,12 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * Navigate To Material Request
+	 * This method is used to Navigate Material Request Screen
 	 * 
-	 * @author Deepan-GWL
+	 * @author Vimal - RMITS
 	 */
-	public void navigateToMaterialRequest() {
-		flag = webDB.waitForElement(CommonUiLocators.MaterialRequest, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.MaterialRequest, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Material Request Button Is Clicked");
-			}
-		}
-		Assert.assertTrue(flag);
+	public void navigateToMaterialRequestScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequest"), CommonUiLocators.MaterialReq_AddIcon);
 	}
 
 	/**
@@ -1802,20 +1795,14 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * This Method Is Used To Navigate To Subcontracting
+	 * This Method Is Used To Navigate To SubCntarct Order
 	 * 
-	 * @author Deepan-GWL
+	 * @author Vimal - RMITS
+	 * 
 	 */
-	public void navigateToSubcontracting() {
-		flag = webDB.waitForElement(CommonUiLocators.Subcontracting, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.Subcontracting, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.SubcontractingTransaction, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Subcontracting Tab Is Clicked");
-			}
-		}
-		Assert.assertTrue(flag);
+	public void navigateToSubcontractOrder() {
+		navigateToSearchTab(webDB.getDataFromProperties("SubcontractScreen"),
+				CommonUiLocators.Subcontract_Pending_Icon);
 	}
 
 	/**
@@ -1894,21 +1881,6 @@ public class CommonFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This Method Is Used To Navigate To SubCntarct Order
-	 * 
-	 * @author Deepan-GWL
-	 * 
-	 */
-	public void navigateToSubContractOrder() {
-//		clickLeftNavigationBar();
-//		clickSupplyChainTab();
-//		navigateToSubcontracting();
-//		navigateToSubcontractingTransaction();
-//		navigateToSubcontractOrderTab();
-		navigateToSearchTab(webDB.getDataFromProperties("SubcontractOrder"), CommonUiLocators.PendingSubcontractOrder);
 	}
 
 	/**
@@ -2910,4 +2882,22 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("StockAdjustment"), StockAdjustmentLocators.FindAddButton);
 	}
 
+	/**
+	 * Navigate To Production Screen
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToProductionOrderScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrder"), CommonUiLocators.CreateProdOrderAddIcon);
+
+	}
+
+	/**
+	 * Navigate To Open SCO Tab
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToOpenPriceSCO() {
+		navigateToSearchTab(webDB.getDataFromProperties("OpenscoScreen"), CommonUiLocators.Open_SCO_Find_AddIcon);
+	}
 }

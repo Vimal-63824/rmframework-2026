@@ -290,5 +290,11 @@ public class ProductionOrderLocators {
 	public static final String ResourceLagHrsTableData = "(//div[@id='resource_ig_grid_vc']//table//tr/td[19])[1]";
 	/** @locatorType XPATH */
 	public static final String ResourceLagHrsTableInput = "(//div[@id='resource_ig_grid_vc']//table//tr/td[19])[1]//input";
+	/** @Locator XPATH */
+	public static final String WorkApprovalFrame = "//iframe[@title='Approval']";
+	/** @Locator XPATH */
+	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
+	/** @Locator XPATH */
+	public static final String OkButtonForward = "//BUTTON[@ID='B479819303601188310']";//TODO
 
 }
