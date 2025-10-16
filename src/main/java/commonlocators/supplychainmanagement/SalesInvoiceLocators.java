@@ -13,7 +13,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Password = "//input[@name ='P9999_PASSWORD']";
 	/** @Locator XPATH */
-	public static final String SignBtn = "//button[@class='t-Button t-Button--hot t-Button--stretch']";
+	public static final String SignBtn = "//button[@class='-Button t-Button--hot t-Button--stretch']";
 	/** @Locator XPATH */
 	public static final String USER_ID = "TVSAADMIN";
 	/** @Locator XPATH */
@@ -539,7 +539,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String CR_GE_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String CR_GE_CreateReturn_Btn = "//button[@id='B1']";
+	public static final String CR_GE_CreateReturn_Btn = "//button[@data-testid='CREATE_GE']";
 	/** @Locator XPATH */
 	public static final String CR_GE_ToastMsg = "(//button[@title='Close'])[1]";
 	/** @Locator XPATH */
@@ -559,7 +559,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Charges_Tab = "//label[@for='P191513109001_TAB_LINE_1']";
 	/** @Locator XPATH */
-	public static final String SI_Charges_Add_Icon = "//button[@data-testid='SI CHARGES ADD ICON']";
+	public static final String SI_Charges_Add_Icon = "//button[@data-testid='add_tax']";
 	/** @Locator XPATH */
 	public static final String SI_Charge_ItemColumn = "//*[@id='IG_TAX_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator XPATH */
@@ -585,7 +585,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_General_Tab = "//label[@for='P191513109001_TAB_LINE_2']";
 	/** @Locator XPATH */
-	public static final String SI_Predispatch_Btn = "//button[@id='B42476968814284934']";
+	public static final String SI_Predispatch_Btn = "//button[@data-testid='Cre_pre_disp']";
 	/** @Locator XPATH */
 	public static final String CR_AcptQty_Column = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator XPATH */
@@ -607,17 +607,17 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Rework_Pending_Icon = "//button[@data-testid='Rework_Pending_Icon']";
 	/** @Locator XPATH */
-	public static final String Rework_Pend_SalesRtn = "//button[@id='B67255618001021758']";
+	public static final String Rework_Pend_SalesRtn = "//button[@data-testid='Sales_Return']";
 	/** @Locator XPATH */
 	public static final String Rework_Pend_Iframe = "//iframe[@title='Sales Return']";
 	/** @Locator XPATH */
-	public static final String RW_Pend_Inv_Lov_Btn = "//input[@data-testid='RW_Pend_Inv_Lov_Btn']/following-sibling::button";
+	public static final String RW_Pend_Inv_Lov_Btn = "//input[@data-testid='P2017131225_INV_NO']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String RW_Pend_Search_Btn = "//button[@data-testid='RW_Pend_Search_Btn']";
+	public static final String RW_Pend_Search_Btn = "//button[@data-testid='FILTER']";
 	/** @Locator XPATH */
 	public static final String RW_Pend_CheckBox = "(//input[@type='checkbox'])[1]";
 	/** @Locator XPATH */
-	public static final String RW_Pend_CreateRework_Btn = "//button[@data-testid='RW_Pend_CreateRework_Btn']";
+	public static final String RW_Pend_CreateRework_Btn = "//button[@data-testid='Create_Rework']";
 	/** @Locator XPATH */
 	public static final String CR_Rtn_Qty = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
 	/** @Locator XPATH */
@@ -671,7 +671,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String ResourceUsage_RW_Seq_No = "//*[@id='Resource_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator XPATH */
-	public static final String ResourceUsage_RW_Seq_No_Lov = "//input[@data-testid='RWC_Res_Seq_Field']/following-sibling::button";
+	public static final String ResourceUsage_RW_Seq_No_Lov = "//input[@id='C519624675795660805']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String WorkCenter_Lov_btn = "//input[@data-testid='RWC_Res_WC_Field']/following-sibling::button";
 	/** @Locator XPATH */
@@ -746,7 +746,7 @@ public class SalesInvoiceLocators {
 	public static final String RW_Lot_Field = "//span[@id='P1818131040_RWOHD_LOT_NO_DISPLAY']";
 	/** @Locator XPATH */
 	public static final String RW_Source_Doc_No = "//span[@id='P1818131040_RWOHD_SOU_DOC_NO_DISPLAY']";
-	/** @Locator XPATH */
+	/** @Locator XPATH */ 
 	public static final String RW_Sou_Pfx = "//span[@id='P1818131040_RWOHD_SOU_DOC_PFX_DISPLAY']";
 	/** @Locator XPATH */
 	public static final String RW_Qty_Field = "//span[@id='P1818131040_RWOHD_REWORK_QTY_DISPLAY']";

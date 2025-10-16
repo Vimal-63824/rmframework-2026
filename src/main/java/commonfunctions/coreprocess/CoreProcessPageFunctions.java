@@ -898,7 +898,7 @@ public class CoreProcessPageFunctions {
 		for (String process : VariableHandler.getTotalProductionProcess()) {
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
-			commonFunc.navigateToSubContractOrder();
+			commonFunc.navigateToSubcontractOrder();
 			subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 			subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 					commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -921,7 +921,7 @@ public class CoreProcessPageFunctions {
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 			}
 			subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));

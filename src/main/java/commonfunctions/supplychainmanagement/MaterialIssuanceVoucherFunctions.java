@@ -610,5 +610,58 @@ public class MaterialIssuanceVoucherFunctions {
 		}
 
 	}
-
+	/**
+	 * This Method Is Used To Create The Pending MIV Documents
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void CreateThePendingMIVDocumentFromMaterialRequest(String MRNumber) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending MIV Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Iframe Is Displayed");
+				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
+				webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button Is Displayed");
+					webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "CheckBox IS Displayed");
+						commonFunc.hardWait(3000);
+						webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Create Mi Button Is Displayed");
+							webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+							webDB.switchToDefaultContent();
+							webDB.switchToFrame(MaterialIssuanceVoucherLocators.PendingMrIframe, ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.PendingCreateMIV,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(MaterialIssuanceVoucherLocators.PendingCreateMIV, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								commonFunc.hardWait(4000);
+								storeMaterialIssuanceNumber();
+							}
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

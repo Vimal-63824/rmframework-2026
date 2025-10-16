@@ -130,4 +130,6 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String LineDetailsIframeCloseIcon = "//iframe[@title='Line Details']/ancestor::div//button";
 	/** @locatorType XPATH */
 	public static final String CreateMIVButton = "//button[@id='B535610713637463114']";
+	/** @locatorType XPATH */
+	public static final String PendingCreateMIV = "//button[@id='B535610713637463114']";//TODO
 }
