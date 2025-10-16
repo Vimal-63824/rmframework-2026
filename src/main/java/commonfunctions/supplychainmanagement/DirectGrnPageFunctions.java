@@ -2330,15 +2330,6 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
-	/**
-	 * This Method Is Used To Verify Unit Cost and Discount Amount For Rate Contract
-	 * Item UOM(General)
-	 * 
-	 * @author PremKumar.K-RM ITS
-	 * 
-	 */
-
 	/**
 	 * This Method Is Used To Verify The Discount Amount For PO Document
 	 * 

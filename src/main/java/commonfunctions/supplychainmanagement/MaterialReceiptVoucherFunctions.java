@@ -1409,10 +1409,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
