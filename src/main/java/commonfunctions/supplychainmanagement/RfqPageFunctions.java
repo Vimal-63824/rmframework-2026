@@ -6,6 +6,8 @@ package commonfunctions.supplychainmanagement;
  */
 import static org.testng.Assert.assertTrue;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,6 +22,7 @@ import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
@@ -67,6 +70,7 @@ public class RfqPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPendingRfqDomestic() {
+		verifyCreationOfPRGeneralRfq();
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.navigateRfqPage();
@@ -136,12 +140,14 @@ public class RfqPageFunctions {
 	 * This Methods Is Used To Verify Creation Of Pending Po From Rfq
 	 * 
 	 * @author Durai-RMITS
+	 * @return 
 	 */
-	public void verifyCreationOfPendingPOFromRfq() {
+	public boolean verifyCreationOfPendingPOFromRfq() {
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		verifyClickingPndPo();
+		return flag;
 	}
 
 	/**
@@ -189,13 +195,15 @@ public class RfqPageFunctions {
 				filterDocumentsForPriceListApproval(VariableHandler.getPONumber());
 				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
+				if(flag) {
 				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 						"SelvaUsername");
 				commonFunc.navigatePurchaseOrderPage();
 				verifyPoRefind();
 			}
 		}
-		Assert.assertTrue(flag);
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -207,22 +215,20 @@ public class RfqPageFunctions {
 	public void verifyPoRefind() {
 		ArrayList<String> PONumbers = VariableHandler.getPONumbers();
 		logs.logging("INFO", "PO Number Is:" + PONumbers.size());
-		for (int i = 1; i <= PONumbers.size(); i++) {
+		for (int i = 1; i < PONumbers.size(); i++) {
 			String PORfqNum = PONumbers.get(i);
 			PONumbers.get(i);
 			flag = webDB.waitForElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(RfqLocators.FindPoSearchField, ElementType.Xpath);
-				webDB.sendTextToAnElement(RfqLocators.FindPoSearchField, PORfqNum, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(RfqLocators.FindPoSearchField, PORfqNum);
 				logs.logging("INFO", "PONumbers Is Entered:" + PORfqNum);
-
 				flag = webDB.waitForElement(RfqLocators.POSearchBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(RfqLocators.POSearchBtn, ElementType.Xpath);
 					logs.logging("INFO", "Search Button Is Clicked");
-					flag = webDB.waitForElement(RfqLocators.PODrillDown, ElementType.Xpath);
+					flag = webDB.waitForElement(RfqLocators.PODrillDown, ElementType.CssSelector);
 					if (flag) {
-						webDB.clickAnElement(RfqLocators.PODrillDown, ElementType.Xpath);
+						webDB.clickAnElement(RfqLocators.PODrillDown, ElementType.CssSelector);
 						logs.logging("INFO", "Document Is Moved ");
 						verifyRfqNumInPoDetails();
 						verifyPoRfqPost();
@@ -230,12 +236,12 @@ public class RfqPageFunctions {
 						forwardApprovalScreen();
 						filterDocumentsForPriceListApproval(VariableHandler.getPONumber());
 						verifyApproveWithDocNumber(VariableHandler.getPONumber());
-						flag = commonFunc.logoutUser();
+						commonFunc.logoutUser();
 					}
 				}
 			}
 		}
-		Assert.assertTrue(flag);
+		assertTrue(flag);
 	}
 
 	/**
@@ -264,14 +270,15 @@ public class RfqPageFunctions {
 	 * @param Number
 	 */
 	public void verifySelectTheRfqDocument(String Number) {
-		flag = webDB.waitForElement(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+		flag = webDB.waitForElement(RfqLocators.RfqPOPendingFrame, ElementType.Xpath);
 		if (flag) {
-			webDB.switchToFrame(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+			webDB.switchToFrame(RfqLocators.RfqPOPendingFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
-			flag = webDB.waitForElement(RfqLocators.PendingRfQNum, ElementType.Xpath);
+			flag = webDB.waitForElement(RfqLocators.RfqPendingRfqNolov, ElementType.Xpath);
 			if (flag) {
-				webDB.sendTextToAnElement(RfqLocators.PendingRfQNum, Number, ElementType.Xpath);
-				logs.logging("INFO", "Document Number Is :");
+//				webDB.sendTextToAnElement(RfqLocators.RfqPendingPrNolov, Number, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(RfqLocators.RfqPendingRfqNolov, Number);
+				logs.logging("INFO", "Document Number Is :" + Number);
 			}
 		}
 		Assert.assertTrue(flag);
@@ -283,14 +290,19 @@ public class RfqPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void selectTheDocumentRfq() {
-		flag = webDB.waitForElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
+		flag = webDB.waitForElement(RfqLocators.RfqPOPendingFrame, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
-			logs.logging("INFO", "Search Button Is Clicked");
-			flag = webDB.waitForElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
+			webDB.switchToFrame(RfqLocators.RfqPOPendingFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Frame");
+			flag = webDB.waitForElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
-				logs.logging("INFO", "Select All Is Checked");
+				webDB.clickAnElement(RfqLocators.PORfqPendingSearchbutton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				flag = webDB.waitForElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(RfqLocators.PoRfqPendingSelectall, ElementType.Xpath);
+					logs.logging("INFO", "Select All Is Checked");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -302,7 +314,7 @@ public class RfqPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void createPOButton() {
-		commonFunc.hardWait(500);
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(RfqLocators.CreatePoBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(RfqLocators.CreatePoBtn, ElementType.Xpath);
@@ -323,11 +335,12 @@ public class RfqPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Value"));
 		VariableHandler.setPONumber(PONumbervalue);
 		logs.logging("INFO", "Get PO Number Is: " + VariableHandler.getPONumber());
-		flag = webDB.waitForElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(RfqLocators.PoDetailsBtnCSS, ElementType.CssSelector);
 		if (flag) {
-			webDB.clickAnElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
+//			webDB.clickAnElement(RfqLocators.PoDetailsBtn, ElementType.Xpath);
+			webDB.clickAnElement(RfqLocators.PoDetailsBtnCSS, ElementType.CssSelector);
 			logs.logging("INFO", "PO Details Button is Clicked");
-			webDB.switchToFrame(RfqLocators.RfqPendingFrame, ElementType.Xpath);
+			webDB.switchToFrame(RfqLocators.RfqPODetailsFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched to Frame");
 			flag = webDB.waitForElement(RfqLocators.PoLineDetails2, ElementType.Xpath);
 			if (flag) {
@@ -396,6 +409,7 @@ public class RfqPageFunctions {
 		logs.logging("INFO", "PO Number Is:" + PONumbers);
 		VariableHandler.setPONumbers(PONumbers);
 		PONumbers.size();
+		assertTrue(flag);
 	}
 
 	/**
@@ -509,12 +523,19 @@ public class RfqPageFunctions {
 									if (flag) {
 										commonFunc.searchAndSelectValueInFilters(RfqLocators.RfqSupplierLov, Supplier);
 										logs.logging("INFO", "Supplier Is Entered:" + Supplier);
-										webDB.waitForElement(RfqLocators.RfqlineSupplierSaveButton, ElementType.Xpath);
+										commonFunc.hardWait(4000);
+										flag = webDB.waitForElement(RfqLocators.RfqSupplierfield, ElementType.Xpath);
 										if (flag) {
-											webDB.clickAnElement(RfqLocators.RfqlineSupplierSaveButton,
+											webDB.clickAnElement(RfqLocators.RfqSupplierfield, ElementType.Xpath);
+											logs.logging("INFO", "SupplierField Is Clicked");
+											webDB.waitForElement(RfqLocators.RfqlineSupplierSaveButton,
 													ElementType.Xpath);
-											logs.logging("INFo", "Supplier Is Saved");
-											commonFunc.hardWait(3000);
+											if (flag) {
+												webDB.clickAnElement(RfqLocators.RfqlineSupplierSaveButton,
+														ElementType.Xpath);
+												logs.logging("INFo", "Supplier Is Saved");
+												commonFunc.hardWait(3000);
+											}
 										}
 									}
 								}
@@ -874,10 +895,10 @@ public class RfqPageFunctions {
 		flag = webDB.waitForElement(RfqLocators.SpclDiscField(i), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(RfqLocators.SpclDiscField(i), ElementType.Xpath);
-			logs.logging("INFO", "Trade Discount Field Is Clicked");
+			logs.logging("INFO", "Special Discount Field Is Clicked");
 			webDB.clearText(RfqLocators.RfqsuplineSpclDisinput, ElementType.Xpath);
 			webDB.sendTextToAnElement(RfqLocators.RfqsuplineSpclDisinput, SpclDiscount, ElementType.Xpath);
-			logs.logging("INFO", "Entered Trade Discount Is: " + SpclDiscount);
+			logs.logging("INFO", "Entered Special Discount Is: " + SpclDiscount);
 		}
 		Assert.assertTrue(flag);
 	}
@@ -892,10 +913,10 @@ public class RfqPageFunctions {
 		flag = webDB.waitForElement(RfqLocators.CashDiscField(i), ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(RfqLocators.CashDiscField(i), ElementType.Xpath);
-			logs.logging("INFO", "Trade Discount Field Is Clicked");
+			logs.logging("INFO", "Cash Discount Field Is Clicked");
 			webDB.clearText(RfqLocators.RfqsuplineCashlDisinput, ElementType.Xpath);
 			webDB.sendTextToAnElement(RfqLocators.RfqsuplineCashlDisinput, CashDiscount, ElementType.Xpath);
-			logs.logging("INFO", "Entered Trade Discount Is: " + CashDiscount);
+			logs.logging("INFO", "Entered Cash Discount Is: " + CashDiscount);
 		}
 		Assert.assertTrue(flag);
 	}
@@ -1031,7 +1052,6 @@ public class RfqPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(RfqLocators.CreateRfq, ElementType.Xpath);
 				logs.logging("INFO", "Create Rfq Is Clicked");
-
 				flag = webDB.waitForElement(RfqLocators.CreateRfqDateField, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(RfqLocators.CreateRfqDateField, ElementType.Xpath);
@@ -1040,12 +1060,12 @@ public class RfqPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(RfqLocators.CreateRfqOK, ElementType.Xpath);
 						logs.logging("INFO", "Rfq Is Created");
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(RfqLocators.RfqHeaderSendRfq, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Rfq Send Button Is Checked");
-						}
+//						commonFunc.checkRefreshCellsDisappear();
+//						commonFunc.hardWait(2000);
+//						flag = webDB.waitForElement(RfqLocators.RfqSupplierAdd, ElementType.Xpath);
+//						if (flag) {
+//							logs.logging("INFO", "Rfq Send Button Is Checked");
+//						}
 					}
 				}
 			}
@@ -1069,11 +1089,31 @@ public class RfqPageFunctions {
 	public void clickAddIconFillDetailsOfPurchaseRequestRfq(String Location, String Unit, String PRType, String Prefix,
 			String CPCCode, String Department, String Requester) {
 		commonFunc.clickCreateIcon();
+		clickFrame();
+		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
+		clickFrame();
+		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
 		commonFunc.checkRefreshCellsDisappear();
+		clickFrame();
 		clickTickIconCreateRequestRfq();
+
+	}
+
+	private void clickFrame() {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRAddFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PurchaseRequestLocators.PRAddFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Frame");
+			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Switched To Frame");
+			}
+		}
+		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -1085,6 +1125,7 @@ public class RfqPageFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Create Tick Icon Clicked");
@@ -1269,7 +1310,7 @@ public class RfqPageFunctions {
 			flag = webDB.waitForClickElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
-				webDB.moveToElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
+//				webDB.moveToElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -1437,6 +1478,8 @@ public class RfqPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	private void verifyMultipleLinesPR() {
+
+		System.out.println("TEST");
 		flag = webDB.waitForElement(RfqLocators.PRHeaderUnit, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(RfqLocators.PRHeaderUnit, ElementType.Xpath);
@@ -1461,37 +1504,24 @@ public class RfqPageFunctions {
 						logs.logging("INFO", "Add Button Is Clicked");
 						flag = webDB.waitForElement(RfqLocators.PRItemLov, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(RfqLocators.PRItemLov, ElementType.Xpath);
-							logs.logging("INFO", "Item Lov Is Clicked");
-							flag = webDB.waitForElement(RfqLocators.PRItemsearch, ElementType.Xpath);
+							commonFunc.searchAndSelectValueInFilters(RfqLocators.PRItemLov, ITEM);
+							logs.logging("INFO", "Item Is Entered:" + ITEM);
+							commonFunc.hardWait(4000);
+							flag = webDB.waitForElement(RfqLocators.PRQtyField, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(RfqLocators.PRItemsearch, ElementType.Xpath);
-								logs.logging("INFO", "Search Filed Is Clicked");
-								commonFunc.hardWait(4000);
-								webDB.sendTextToAnElement(RfqLocators.PRItemsearch, ITEM, ElementType.Xpath);
-								logs.logging("INFO", "Item Is Entered" + ITEM);
-								flag = webDB.waitForElement(RfqLocators.PRItemSelect, ElementType.Xpath);
+								webDB.doubleClickAnElement(RfqLocators.PRQtyField, ElementType.Xpath);
+								logs.logging("INFO", "QTY Field Is Clicked");
+								webDB.clearText(RfqLocators.PRQtyInput, ElementType.Xpath);
+								webDB.sendTextToAnElement(RfqLocators.PRQtyInput, QTY, ElementType.Xpath);
+								logs.logging("INFO", "Entered Qty Is:" + QTY);
+								commonFunc.hardWait(2000);
+								webDB.pressTabKey();
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(RfqLocators.PRLineSave, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(RfqLocators.PRItemSelect, ElementType.Xpath);
-									logs.logging("INFO", "Item Is Selected");
-									commonFunc.hardWait(4000);
-									flag = webDB.waitForElement(RfqLocators.PRQtyField, ElementType.Xpath);
-									if (flag) {
-										webDB.doubleClickAnElement(RfqLocators.PRQtyField, ElementType.Xpath);
-										logs.logging("INFO", "QTY Field Is Clicked");
-										webDB.clearText(RfqLocators.PRQtyInput, ElementType.Xpath);
-										webDB.sendTextToAnElement(RfqLocators.PRQtyInput, QTY, ElementType.Xpath);
-										logs.logging("INFO", "Entered Qty Is:" + QTY);
-										commonFunc.hardWait(2000);
-										webDB.pressTabKey();
-										commonFunc.hardWait(2000);
-										flag = webDB.waitForElement(RfqLocators.PRLineSave, ElementType.Xpath);
-										if (flag) {
-											webDB.clickAnElement(RfqLocators.PRLineSave, ElementType.Xpath);
-											logs.logging("INFO", "Line Is Saved");
-											commonFunc.hardWait(3000);
-										}
-									}
+									webDB.clickAnElement(RfqLocators.PRLineSave, ElementType.Xpath);
+									logs.logging("INFO", "Line Is Saved");
+									commonFunc.hardWait(3000);
 								}
 							}
 						}
@@ -1919,6 +1949,318 @@ public class RfqPageFunctions {
 		} else {
 			logs.logging("INFO",
 					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To PO Filter All Field Working
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyCreationOfRfqFilterAllFieldWorking() {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigateRfqPage();
+//		verifyDateAfterAndBefore();
+		verifyAmendFilterSearchSOB(RfqLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(RfqLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(RfqLocators.RFQNO, commonFunc.getDataFromTestDataSheet("RFQNumber"), 8,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(RfqLocators.SupplierNameLovButton,
+				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), 11,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(RfqLocators.ItemId, commonFunc.getDataFromTestDataSheet("Rfqitem"), 15,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(RfqLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("Rfqitem"), 17,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		verifyAmendFilterSearchSOB(RfqLocators.RFQ_Status, commonFunc.getDataFromTestDataSheet("ApproveStatus"), 13,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * This Method Is Used To Verify Filter Search Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 * @param LovButton
+	 * @param Value
+	 * @param i
+	 */
+	@SuppressWarnings("unlikely-arg-type")
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
+		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
+			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SelectType"))) {
+			webDB.selectDropDownByText(LovButton, Value, ElementType.Xpath);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SendTextInput"))) {
+			webDB.sendTextToAnElement(LovButton, Value, ElementType.Xpath);
+		}
+		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
+			clickSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
+		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
+			clickLineSearchButton();
+			commonFunc.hardWait(3000);
+			verifyLineAmendTableValue(i, Value);
+		}
+		clearSearchFilter();
+	}
+
+	/**
+	 * Verify Date From And To
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDateAfterAndBefore() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtFrom, ElementType.Xpath);
+		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtFrom, commonFunc.getDataFromTestDataSheet("EffFrom"),
+				ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueAfterDate(5, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		clearSearchFilter();
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtTo, ElementType.Xpath);
+		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+				ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueBeforeDate(5, commonFunc.getDataFromTestDataSheet("EffTo"));
+		clearSearchFilter();
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
+//		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
+//				commonFunc.getDataFromTestDataSheet("EffFrom"), ElementType.Xpath);
+//		clickLineSearchButton();
+//		commonFunc.hardWait(3000);
+//		verifyLineAmendTableValueAfterDate(23, commonFunc.getDataFromTestDataSheet("EffFrom"));
+//		clearSearchFilter();
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtTo, ElementType.Xpath);
+//		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+//				ElementType.Xpath);
+//		clickLineSearchButton();
+//		commonFunc.hardWait(3000);
+//		verifyLineAmendTableValueBeforeDate(23, commonFunc.getDataFromTestDataSheet("EffTo"));
+//		clearSearchFilter();
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSearchButton() {
+		flag = webDB.waitForElement(RfqLocators.HeaderCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header CheckBox Is Displayed");
+			webDB.clickAnElement(RfqLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(RfqLocators.RFQSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.RFQSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(RfqLocators.AmendFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickLineSearchButton() {
+		flag = webDB.waitForElement(RfqLocators.LineCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(RfqLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(RfqLocators.RFQSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(RfqLocators.RFQSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(RfqLocators.AmendLineFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Clear Search Filter
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clearSearchFilter() {
+		commonFunc.hardWait(1000);
+		System.out.println("Test2");
+		flag = webDB.waitForElement(RfqLocators.ClearButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(RfqLocators.ClearButton, ElementType.Xpath);
+			logs.logging("INFO", "Clear Button Is Clicked");
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(RfqLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+
+					} else {
+						break;
+					}
+				}
+			}
 		}
 		assertTrue(flag);
 	}

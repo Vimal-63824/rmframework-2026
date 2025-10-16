@@ -24,6 +24,7 @@
 			<class name="com.roadmapERP.DirectGrnTest" />
 			<class name="com.roadmapERP.OpenSoAmdTest" />
 			<class name="com.roadmapERP.RfqTest" />
+			<class name="com.roadmapERP.SsoTest" />
 			<class name="com.roadmapERP.OpenPoRcTest" />
 			<class name="com.roadmapERP.GateEntryTest" />
 			<class name="com.roadmapERP.CustomerScheduleTest" />

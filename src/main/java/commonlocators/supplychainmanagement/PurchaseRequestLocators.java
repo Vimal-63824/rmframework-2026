@@ -208,5 +208,6 @@ public class PurchaseRequestLocators {
 	public static final String RequiredDateTable = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]";
 	/** @locatorType Xpath */
 	public static final String RequiredDateInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]//input";
-
+	/** @locatorType Xpath */
+	public static final String PRAddFrame = "//iframe[@title='Purchase Request']";
 }

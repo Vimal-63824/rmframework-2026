@@ -40,7 +40,7 @@ public class PriselistTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 1, groups = {
+	@Test(priority = 2, groups = {
 			"PriceList" }, description = "Create Price List entry for Domestic Supplier with Stock and Supplier UOM dissimilar")
 	public void VerifyCreationOfPriceListDomesticDissimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticDissimilarUom();

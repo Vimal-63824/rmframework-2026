@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks May 02, 2025
@@ -31,7 +33,6 @@ public class RfqTest {
 	public void VerifyCreationOfPRGeneralRfq() {
 		Rfqfunc.verifyCreationOfPRGeneralRfq();
 	}
-
 	/**
 	 * Create Purchase Order from approved RFQ for multiple suppliers (Only
 	 * Domestic)
@@ -63,7 +64,8 @@ public class RfqTest {
 	 */
 	@Test(priority = 4, groups = { "Request For Quotation" }, description = "Create Purchase Order From Pending RfQ")
 	public void VerifyCreationOfPendingPOFromRfq() {
-		Rfqfunc.verifyCreationOfPendingPOFromRfq();
+		flag =Rfqfunc.verifyCreationOfPendingPOFromRfq();
+		assertTrue(flag);
 	}
 
 	/**
@@ -77,6 +79,17 @@ public class RfqTest {
 		// TODO Covered
 		// VerifyCreationOfPendingRfqDomestic()
 		// Method
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 6,groups = {
+	"GRN" }, description = "Find the RFQ with all possible search parameters")
+	public void verifyCreationOfRfqFilterAllFieldWorking(){
+		Rfqfunc.verifyCreationOfRfqFilterAllFieldWorking();
 	}
 
 	/**
