@@ -45,22 +45,26 @@ public class ShareOfBusinessFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.AddShareOfBusiness, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.AddShareOfBusiness, ElementType.Xpath);
-			flag = webDB.waitForElement(ShareOfBusinessLocators.ShareOfBusinessHeader, ElementType.Xpath);
+			flag = webDB.waitForElement(ShareOfBusinessLocators.SOBFrame, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add SOB Button IS Clicked");
+				webDB.switchToFrame(ShareOfBusinessLocators.SOBFrame, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(ShareOfBusinessLocators.LocationIdButton, Location);
+				webDB.switchToFrame(ShareOfBusinessLocators.SOBFrame, ElementType.Xpath);
 				webDB.sendTextToAnElement(ShareOfBusinessLocators.EffectiveFromInput, EffectiveFrom, ElementType.Xpath);
 				commonFunc.hardWait(500);
 				logs.logging("INFO", "Effective Send Text Is: " + EffectiveFrom);
-				webDB.clickAnElement(ShareOfBusinessLocators.ShareOfBusinessHeader, ElementType.Xpath);
+				webDB.clickAnElement(ShareOfBusinessLocators.EffectiveToInput, ElementType.Xpath);
 				webDB.sendTextToAnElement(ShareOfBusinessLocators.EffectiveToInput, EffTo, ElementType.Xpath);
 				commonFunc.hardWait(500);
 				logs.logging("INFO", "Effective To Send Text Is: " + EffTo);
 				webDB.clickAnElement(ShareOfBusinessLocators.ShareOfBusinessHeader, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(ShareOfBusinessLocators.ItemLovButton, Item);
+				webDB.switchToFrame(ShareOfBusinessLocators.SOBFrame, ElementType.Xpath);
 				flag = webDB.waitForElement(ShareOfBusinessLocators.TickButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(ShareOfBusinessLocators.TickButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
 					flag = webDB.waitForElement(ShareOfBusinessLocators.LocationPage, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "SOB Is Created Successfully");
@@ -243,10 +247,10 @@ public class ShareOfBusinessFunctions {
 	 */
 	public void verifyAddShareOfBusinessTableDetailsWithManufactureAndPurchase() {
 		verifyAddShareOfBusinessTableDetailsForPurchase(commonFunc.getDataFromTestDataSheet("PurchaseType"),
-				commonFunc.getDataFromTestDataSheet("JJAutomobileId"), commonFunc.getDataFromTestDataSheet("L1"),
+				commonFunc.getDataFromTestDataSheet("JJAutomobileId"), commonFunc.getDataFromTestDataSheet("U1"),
 				commonFunc.getDataFromTestDataSheet("Perc_1"), commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
 		verifyAddShareOfBusinessTableDetailsForManufacture(commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("L1"), commonFunc.getDataFromTestDataSheet("Perc_1"),
+				commonFunc.getDataFromTestDataSheet("U1"), commonFunc.getDataFromTestDataSheet("Perc_1"),
 				commonFunc.getDataFromTestDataSheet("Trd_Discount"));
 	}
 
@@ -365,7 +369,7 @@ public class ShareOfBusinessFunctions {
 				commonFunc.getDataFromTestDataSheet("EffToDate"),
 				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"));
 		verifyAddShareOfBusinessTableDetailsForPurchase(commonFunc.getDataFromTestDataSheet("PurchaseType"),
-				commonFunc.getDataFromTestDataSheet("JJAutomobileId"), commonFunc.getDataFromTestDataSheet("L1"),
+				commonFunc.getDataFromTestDataSheet("JJAutomobileId"), commonFunc.getDataFromTestDataSheet("U1"),
 				commonFunc.getDataFromTestDataSheet("Perc_1"), commonFunc.getDataFromTestDataSheet("SO_Cash_Disc"));
 		verifyShareOfBusinessCancelLine();
 		verifyCancelDocuments();

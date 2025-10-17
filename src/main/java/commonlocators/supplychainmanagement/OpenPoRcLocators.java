@@ -11,7 +11,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String CreateButton = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String LocationId = "//input[@data-testid='P1615131025_PRCHD_PLNT_LOC_ID']/following-sibling::button";
+	public static final String LocationId = "//input[@data-testid='P1615131025_PRCHD_PLNT_LOC_ID']/following-sibling::button[@id='P16151310254_PRCHD_PLNT_LOC_ID_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String PoTypeSelect = "//select[@data-testid='P1615131025_PRCHD_SERV_TYPE']";
 	/** @locatorType Xpath */
@@ -169,7 +169,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendTypeSelect = "//select[@data-testid='PRCALN_AMD_TYPE']";
 	/** @locatorType Xpath */
-	public static final String TermsAndCondition = "//label[@for='P1615131020_TAB_LINES_1']";
+	public static final String TermsAndCondition = "//input[@data-testid='P161513102501_TAB_LINES' and @aria-label='T & C']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String AddTCButton = "//button[@data-testid='Add_Attribute']";
 	/** @locatorType Xpath */
@@ -217,7 +217,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendUnitId = "//input[@data-testid='P1615131021_PLNT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String AmendOOAPNo = "//input[@data-testid='P1615131022_DOC_NO']/following-sibling::button";
+	public static final String AmendOOAPNo = "//input[@data-testid='P1615131021_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String AmendOpenPONo = "//input[@data-testid='P1615131021_PO_NO']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -225,7 +225,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendSelectStatus = "//select[@data-testid='P1615131021_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='1950966915442829331_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='1953976912702627449_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTable = "//table[@id='390672052341949366_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
@@ -240,4 +240,7 @@ public class OpenPoRcLocators {
 	public static final String AmendFindTableData(int i) {
 		return "//table[@id='1950966915442829331_orig']/tbody/tr/td[" + i + "]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String CreateOpenPoFrame = "//iframe[@title='Open PO/RC ']";
 }

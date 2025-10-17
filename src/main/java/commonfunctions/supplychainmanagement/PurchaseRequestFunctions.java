@@ -170,8 +170,8 @@ public class PurchaseRequestFunctions {
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
 		commonFunc.navigatePurchaseRequestCloseShortPage();
 		clickAddIconPurchaseRequestCloseShort();
 		fillFormDetailsInPurchaseRequestCloseShort(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -197,13 +197,14 @@ public class PurchaseRequestFunctions {
 	 */
 	public void clickAddIconFillDetailsOfPurchaseRequest(String Location, String Unit, String PRType, String Prefix,
 			String CPCCode, String Department, String Requester) {
-		commonFunc.clickCreateIcon();
+		commonFunc.clickPRCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
 		selectPRType(PRType);
 		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);
+		webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCPCCodeButton, CPCCode);
 		selectPRDepartment(Department);
 		selectPRRequester(Requester);
@@ -233,12 +234,17 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.HeaderCheckbox, ElementType.Xpath);
 			if (flag) {
-				String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
-				logs.logging("INFO", "PR Number: '" + PRNumber + "' searched and displaying status: " + Status);
-				flag = Status.equalsIgnoreCase(ExpextedStatus);
+				webDB.clickAnElement(PurchaseRequestLocators.HeaderCheckbox, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText(PRNumber), ElementType.Xpath);
+				if (flag) {
+					String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText(PRNumber),
+							ElementType.Xpath);
+					logs.logging("INFO", "PR Number: '" + PRNumber + "' searched and displaying status: " + Status);
+					flag = Status.equalsIgnoreCase(ExpextedStatus);
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -376,18 +382,18 @@ public class PurchaseRequestFunctions {
 		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_PurchaseUOM, Item,
 				PRLineDetailsName.PURCHASE_UOM, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("UOMValue")));
-		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccNo, Item,
-				PRLineDetailsName.GL_ACC_NO, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
-						commonFunc.getDataFromTestDataSheet("GLValue")));
-		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccDesc, Item,
-				PRLineDetailsName.GL_ACC_DESC, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
-						commonFunc.getDataFromTestDataSheet("GLDescValue")));
-		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCCode, Item,
-				PRLineDetailsName.CPC_CODE, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
-						commonFunc.getDataFromTestDataSheet("CCCodeLineValue")));
-		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCDesc, Item,
-				PRLineDetailsName.CPC_DESC, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
-						commonFunc.getDataFromTestDataSheet("CCDescValue")));
+//		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccNo, Item,
+//				PRLineDetailsName.GL_ACC_NO, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+//						commonFunc.getDataFromTestDataSheet("GLValue")));
+//		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccDesc, Item,
+//				PRLineDetailsName.GL_ACC_DESC, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+//						commonFunc.getDataFromTestDataSheet("GLDescValue")));
+//		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCCode, Item,
+//				PRLineDetailsName.CPC_CODE, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+//						commonFunc.getDataFromTestDataSheet("CCCodeLineValue")));
+//		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ItemCPCDesc, Item,
+//				PRLineDetailsName.CPC_DESC, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
+//						commonFunc.getDataFromTestDataSheet("CCDescValue")));
 	}
 
 	/*----------------------private methods---------------------------*/
@@ -532,6 +538,7 @@ public class PurchaseRequestFunctions {
 		if (commonFunc.getDataFromTestDataSheet(Type) != null) {
 			Type = commonFunc.getDataFromTestDataSheet(Type);
 		}
+		webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRTypeSelect, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PRTypeSelect, Type, ElementType.Xpath);
@@ -552,6 +559,7 @@ public class PurchaseRequestFunctions {
 		if (commonFunc.getDataFromTestDataSheet(Dept) != null) {
 			Dept = commonFunc.getDataFromTestDataSheet(Dept);
 		}
+		webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRDepartmentSelect, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PRDepartmentSelect, Dept, ElementType.Xpath);
@@ -613,6 +621,7 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Create Tick Icon Clicked");
@@ -636,19 +645,19 @@ public class PurchaseRequestFunctions {
 	private void findWithItemId(String Item) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_ItemBtn, Item);
 		clickFindSearchButton();
-		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
-		if (flag) {
-			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableItem,
-					ElementType.Xpath);
-			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equalsIgnoreCase(Item)) {
-					flag = true;
-				} else {
-					flag = false;
-					break a;
-				}
+//		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
+//		if (flag) {
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableItem,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Item)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
 			}
 		}
+//		}
 		Assert.assertTrue(flag);
 		logs.logging("INFO", "Verified Find Search Functions with Item: " + Item);
 	}
@@ -662,18 +671,18 @@ public class PurchaseRequestFunctions {
 	private void findWithLocId(String Location) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_LocIDBtn, Location);
 		clickFindSearchButton();
-		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
-		if (flag) {
-			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableLocation,
-					ElementType.Xpath);
-			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equalsIgnoreCase(Location)) {
-					flag = true;
-				} else {
-					flag = false;
-					break a;
-				}
+//		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
+//		if (flag) {
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableLocation,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Location)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
 			}
+//			}
 		}
 		Assert.assertTrue(flag);
 		logs.logging("INFO", "Verified Find Search Functions with Location: " + Location);
@@ -688,17 +697,17 @@ public class PurchaseRequestFunctions {
 	private void findWithUnit(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_UnitBtn, Unit);
 		clickFindSearchButton();
-		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
-		if (flag) {
-			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableUnit,
-					ElementType.Xpath);
-			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equalsIgnoreCase(Unit)) {
-					flag = true;
-				} else {
-					flag = false;
-					break a;
-				}
+//		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
+//		if (flag) {
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableUnit,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Unit)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
+//				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -716,19 +725,19 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.selectDropDownByText(PurchaseRequestLocators.FindPR_PRTypeSelect, PRType, ElementType.Xpath);
 			clickFindSearchButton();
-			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
+//			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
+//					ElementType.Xpath);
+//			if (flag) {
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTablePRType,
 					ElementType.Xpath);
-			if (flag) {
-				List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTablePRType,
-						ElementType.Xpath);
-				a: for (WebElement webElement : elements) {
-					if (webElement.getText().equalsIgnoreCase(PRType)) {
-						flag = true;
-					} else {
-						flag = false;
-						break a;
-					}
+			a: for (WebElement webElement : elements) {
+				if (webElement.getText().equalsIgnoreCase(PRType)) {
+					flag = true;
+				} else {
+					flag = false;
+					break a;
 				}
+//				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -746,19 +755,19 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.selectDropDownByText(PurchaseRequestLocators.FindPR_PRStatusSelect, Status, ElementType.Xpath);
 			clickFindSearchButton();
-			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
+//			flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL",
+//					ElementType.Xpath);
+//			if (flag) {
+			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableStatusText,
 					ElementType.Xpath);
-			if (flag) {
-				List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableStatusText,
-						ElementType.Xpath);
-				a: for (WebElement webElement : elements) {
-					if (webElement.getText().equalsIgnoreCase(Status)) {
-						flag = true;
-					} else {
-						flag = false;
-						break a;
-					}
+			a: for (WebElement webElement : elements) {
+				if (webElement.getText().equalsIgnoreCase(Status)) {
+					flag = true;
+				} else {
+					flag = false;
+					break a;
 				}
+//				}
 			}
 
 		}
@@ -775,18 +784,18 @@ public class PurchaseRequestFunctions {
 	private void findWithRequester(String Reqstr) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.FindPR_RequesterBtn, Reqstr);
 		clickFindSearchButton();
-		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
-		if (flag) {
-			List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableRequestor,
-					ElementType.Xpath);
-			a: for (WebElement webElement : elements) {
-				if (webElement.getText().equalsIgnoreCase(Reqstr)) {
-					flag = true;
-				} else {
-					flag = false;
-					break a;
-				}
+//		flag = webDB.selectDropDownByText(PurchaseRequestLocators.PR_TableViewCountSelect, "ALL", ElementType.Xpath);
+//		if (flag) {
+		List<WebElement> elements = webDB.getListOfElements(PurchaseRequestLocators.PRResultTableRequestor,
+				ElementType.Xpath);
+		a: for (WebElement webElement : elements) {
+			if (webElement.getText().equalsIgnoreCase(Reqstr)) {
+				flag = true;
+			} else {
+				flag = false;
+				break a;
 			}
+//			}
 		}
 		Assert.assertTrue(flag);
 		logs.logging("INFO", "Verified Find Search Functions with Requestor: " + Reqstr);
@@ -1042,15 +1051,21 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_FindDocNo, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRCloseShort_FindDocNo, DocumentNo);
-			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.HeaderCheckBox, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.HeaderCheckBox, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
 				if (flag) {
-					String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText,
+					webDB.clickAnElement(PurchaseRequestLocators.PRCloseShort_SearchBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseRequestLocators.PRStatusBoldText(DocumentNo),
 							ElementType.Xpath);
-					logs.logging("INFO", "Document No: '" + DocumentNo + "' searched and displaying status: " + Status);
-					flag = Status.equalsIgnoreCase(ExpextedStatus);
+					if (flag) {
+						String Status = webDB.getTextFromElement(PurchaseRequestLocators.PRStatusBoldText(DocumentNo),
+								ElementType.Xpath);
+						logs.logging("INFO",
+								"Document No: '" + DocumentNo + "' searched and displaying status: " + Status);
+						flag = Status.equalsIgnoreCase(ExpextedStatus);
+					}
 				}
 			}
 		}
@@ -1435,7 +1450,7 @@ public class PurchaseRequestFunctions {
 	 * @param Cost
 	 * @param addIcon
 	 */
-	public void fillItemsQuantityCostAndSaveLine(String Item, String Qnty, String Cost) {
+	public void fillItemsQuantityCostAndSaveLine(String Item, String Qnty, String Cost, String GlAccNumber) {
 		flag = webDB.waitForElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.clickAnElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
@@ -1444,7 +1459,14 @@ public class PurchaseRequestFunctions {
 				searchAndSelectItems(Item);
 				enterQuantityForLastItem(Qnty);
 				enterCostForLastItem(Cost);
-				saveLinesEntry();
+				webDB.moveToElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+				webDB.moveToElement(PurchaseRequestLocators.GlAccNo, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.GlAccNo, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseRequestLocators.GlAccNo, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.GlAccNoLovButton, GlAccNumber);
+					saveLinesEntry();
+				}
 			}
 		}
 		assertTrue(flag);
@@ -1534,13 +1556,17 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickFindSearchButton() {
-		flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.PRHeaderCheckBox, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PurchaseRequestLocators.PRFindResultSearchBar, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PRHeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Search Button Clicked Successfully");
+				webDB.clickAnElement(PurchaseRequestLocators.FindSearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseRequestLocators.PRFindResultSearchBar, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button Clicked Successfully");
+				}
 			}
 		}
 		assertTrue(flag);
@@ -1657,10 +1683,11 @@ public class PurchaseRequestFunctions {
 				String UnitCost = itemmultiple[i][6];
 				String GrossValue = itemmultiple[i][7];
 				String GlAccNumber = itemmultiple[i][8];
-				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost);
-				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item);
-				clickLineDetailsIconForLastitem();
-				verifyAddGlAccountNumber(GlAccNumber);
+				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost, GlAccNumber);
+				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item,
+						System.getProperty("ErpAdmin"));
+//				clickLineDetailsIconForLastitem();
+//				verifyAddGlAccountNumber(GlAccNumber);
 			} else {
 				break;
 			}

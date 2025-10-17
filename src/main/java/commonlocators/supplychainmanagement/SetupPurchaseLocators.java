@@ -7,9 +7,9 @@ package commonlocators.supplychainmanagement;
 public class SetupPurchaseLocators {
 
 	/** @locatorType XPATH */
-	public static final String AddBuyerButton = "//button[@id='B247739678189345495']";
+	public static final String AddBuyerButton = "//button[@data-testid='BTN_ADD_BUYER']";
 	/** @locatorType XPATH */
-	public static final String TickBuyerButton = "//button[@id='B247740005191345496']";
+	public static final String TickBuyerButton = "//button[@data-testid='BTN_SAVE_BUYER']";
 	/** @locatorType XPATH */
 	public static final String BuyerNameTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[1]";
 	/** @locatorType XPATH */
@@ -21,17 +21,17 @@ public class SetupPurchaseLocators {
 	/** @locatorType XPATH */
 	public static final String EffToIdTable = "//div[@id='ig_line_buy_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[5]";
 	/** @locatorType XPATH */
-	public static final String BuyerNameInput = "//input[@id='C7569265267698351335']";
+	public static final String BuyerNameInput = "//input[@data-testid='BUYER_ID']";
 	/** @locatorType XPATH */
-	public static final String EmployeeLovButton = "//button[@id='C7569265343355351336_lov_btn']";
+	public static final String EmployeeLovButton = "//input[@data-testid='BUYER_EMP_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String EffFromToday = "//div[@role='region']/button[@aria-controls='C7569265567915351338_input']";
+	public static final String EffFromToday = "//div[@role='region']/button[@aria-controls='C7572275565175149456_input']";
 	/** @locatorType XPATH */
 	public static final String TableTop = "//div[@id='C']/table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
 	public static final String EffToInput = "//input[@id='C7569265663973351339_input']";
 	/** @locatorType XPATH */
-	public static final String EffToToday = "//div[@role='region']/button[@aria-controls='C7569265663973351339_input']";
+	public static final String EffToToday = "//div[@role='region']/button[@aria-controls='C7572275661233149457_input']";
 	/** @locatorType XPATH */
 	public static final String BuyerSearch = "//input[@aria-label='Search']";
 	/** @locatorType XPATH */
@@ -55,7 +55,7 @@ public class SetupPurchaseLocators {
 	/** @locatorType XPATH */
 	public static final String EmployeeEffTo = "//input[@id='P36701802101_EFF_TO_input']";
 	/** @locatorType XPATH */
-	public static final String OkButton = "//button[@id='B3305686721941456768']";
+	public static final String OkButton = "//button[@id='B3308696719201254886']";
 
 	/** @locatorType XPATH */
 	public static final String BuyerName(String Name) {

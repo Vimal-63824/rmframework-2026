@@ -5,11 +5,11 @@ public class ShareOfBusinessLocators {
 	/** @locatorType Xpath */
 	public static final String LocationIdButton = "//input[@data-testid='P1615131010_PDSHD_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ShareOfBusinessHeader = "//h1[text()='Share of Business']";
+	public static final String ShareOfBusinessHeader = "(//h1[text()='Share of Business'])[first()]";
 	/** @locatorType Xpath */
 	public static final String EffectiveFromInput = "//*[@data-testid='P1615131010_PDSHD_EFF_FROM']/input";
 	/** @locatorType Xpath */
-	public static final String EffectiveToInput = "//*[@data-testid='P1615131010_PDSHD_EFF_TO']/input";
+	public static final String EffectiveToInput = "//input[@id='P1615131011_PDSHD_EFF_TO_input']";
 	/** @locatorType Xpath */
 	public static final String ItemLovButton = "//input[@data-testid='P1615131010_PDSHD_PROD_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -33,7 +33,7 @@ public class ShareOfBusinessLocators {
 	/** @locatorType Xpath */
 	public static final String PriorityTable = "//div[@id='SOB_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String SOBTickButton = "//button[@id='B2068945594358533011']";
+	public static final String SOBTickButton = "//button[@data-testid='Save']";
 	/** @locatorType Xpath */
 	public static final String TypeSelect = "//select[@data-testid='PDSLN_TYPE']";
 	/** @locatorType Xpath */
@@ -59,9 +59,9 @@ public class ShareOfBusinessLocators {
 	/** @locatorType Xpath */
 	public static final String CancelDocuments = "//button[@data-testid='Cancel']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='2072975497432236651_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='2075985494692034769_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='2068946608094533022_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@id='2071956605354331140_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String SOBLocId = "//input[@data-testid='P1615131010_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -95,4 +95,7 @@ public class ShareOfBusinessLocators {
 	public static final String AmendFindTableData(int i) {
 		return "//table[@id='2072975497432236651_orig']/tbody/tr/td[" + i + "]";
 	}
+
+	/** @locatorType Xpath */
+	public static final String SOBFrame = "//iframe[@title='Share of Business']";
 }

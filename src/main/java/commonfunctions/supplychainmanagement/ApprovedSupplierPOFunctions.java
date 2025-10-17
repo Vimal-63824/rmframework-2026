@@ -41,7 +41,7 @@ public class ApprovedSupplierPOFunctions {
 	 * @param HsnCode
 	 */
 	public void verifyCreateApprovedSupplier(String Unit, String Doc, String Supplier, String Item, String PriceBasis,
-			String HsnCode) {
+			String HsnCode, String LeadTime) {
 		flag = webDB.waitForElement(CommonUiLocators.AddSupplierButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.AddSupplierButton, ElementType.Xpath);
@@ -51,6 +51,7 @@ public class ApprovedSupplierPOFunctions {
 			commonFunc.searchAndSelectValueInFilters(ApprovedSupplierPOLocators.ItemLovButton, Item);
 			commonFunc.searchAndSelectValueInFilters(ApprovedSupplierPOLocators.HsnCodeButton, HsnCode);
 			webDB.selectDropDownByText(ApprovedSupplierPOLocators.PriceBasisSelect, PriceBasis, ElementType.Xpath);
+			webDB.sendTextToAnElement(ApprovedSupplierPOLocators.LeadTimeInput, LeadTime, ElementType.Xpath);
 			flag = webDB.waitForElement(ApprovedSupplierPOLocators.SaveButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(ApprovedSupplierPOLocators.SaveButton, ElementType.Xpath);
@@ -111,7 +112,8 @@ public class ApprovedSupplierPOFunctions {
 		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
 				commonFunc.getDataFromTestDataSheet("Apps"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UserDefinedGeneral"),
-				commonFunc.getDataFromTestDataSheet("HSN2022-5%"));
+				commonFunc.getDataFromTestDataSheet("HSN2022-5%"),
+				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
@@ -160,7 +162,8 @@ public class ApprovedSupplierPOFunctions {
 		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
 				commonFunc.getDataFromTestDataSheet("Apps"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("OpenBlanket"),
-				commonFunc.getDataFromTestDataSheet("HSN2022-5%"));
+				commonFunc.getDataFromTestDataSheet("HSN2022-5%"),
+				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
@@ -195,7 +198,8 @@ public class ApprovedSupplierPOFunctions {
 		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
 				commonFunc.getDataFromTestDataSheet("Apps"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("PriceListApprovedSupplier"),
-				commonFunc.getDataFromTestDataSheet("HSN2022-5%"));
+				commonFunc.getDataFromTestDataSheet("HSN2022-5%"),
+				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();

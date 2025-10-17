@@ -33,7 +33,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String LeftSidePendingIcon = "//button[contains(@class,'warning')]";
 	/** @locatorType Xpath */
-	public static final String CreateTickIcon = "//span[contains(@class,'check')]/parent::button[contains(@title,'Create')]";
+	public static final String CreateTickIcon = "//button[@data-testid='Create_PO_Form']";
 	/** @locatorType Xpath */
 	public static final String PostToastMessage = "//*[@class='succ_msg'] | //*[@id='APEX_SUCCESS_MESSAGE']//h2";
 	/** @locatorType Xpath */
@@ -268,7 +268,7 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String SetupPurchase = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[1]/*/li[1]";
 	/** @locatorType XPATH */
-	public static final String BuyerTab = "//label[@for='P367018021_TAB_1']";
+	public static final String BuyerTab = "//label[@for='P367018021_TAB_2']";
 	/** @locatorType Xpath */
 	public static final String PayrollTransactionPayroll = "//span[text()='Payroll']/ancestor::li/*/li[2]/*/li[6]";
 	/** @locatorType Xpath */
@@ -280,11 +280,11 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String EmployeeQuickEntryTab = "//span[text()='Sys. Administration']/ancestor::li/*/li[2]/*/li[2]";
 	/** @locatorType XPATH */
-	public static final String AddEmployeeButton = "//button[@id='B258815408672299509']";
+	public static final String AddEmployeeButton = "//button[@data-testid='Emp_Qik_Etry_add']";
 	/** @locatorType XPATH */
 	public static final String ApprovedSupplierPo = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[1]/*/li[2]";
 	/** @locatorType XPATH */
-	public static final String AddSupplierButton = "//button[@id='B1183371576871794287']";
+	public static final String AddSupplierButton = "//button[@data-testid='add']";
 	/** @locatorType XPATH */
 	public static final String ShareOfBusiness = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[1]";
 	/** @locatorType XPATH */
@@ -365,9 +365,9 @@ public class CommonUiLocators {
 	public static final String ProfileIcon = "#t_Header > div > img";
 	/** @locatorType Xpath */
 	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
-	public static final String QualityTab="//label[text()='Quality']" ;
+	public static final String QualityTab = "//label[text()='Quality']";
 	/** @locatorType Xpath */
-	public static final String TypeDropDown= "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']" ;
+	public static final String TypeDropDown = "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']";
 	/** @locatorType Xpath */
 	public static final String CreatePORadioButton = "//button[@id='B927512421169129619']";
 	/** @Locator XPATH */
@@ -386,4 +386,16 @@ public class CommonUiLocators {
 	public static final String CreateProdOrderAddIcon = "//button[@data-testid='CreateProdOrderAddIcon']";
 	/** @locatorType XPATH */
 	public static final String WorkAppoval_OkBtn_SCO = "//button[@data-testid='Entry']";
+	/** @locatorType Xpath */
+	public static final String CreatePoButton = "//button[contains(@onclick,'ADD_PO')]";
+	/** @locatorType Xpath */
+	public static final String PoCreateFrame = "//iframe[@title='Purchase Order']";
+	/** @locatorType Xpath */
+	public static final String PrCreateButton = "//button[@title='Create PR/SSR']";
+	/** @locatorType Xpath */
+	public static final String PrCreateFrame = "//iframe[@title='Purchase Request']";
+	/** @locatorType Xpath */
+	public static final String CreatePrButton = "//button[@id='B938864189401882606']";
+	/** @locatorType Xpath */
+	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 }

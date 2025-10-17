@@ -16,7 +16,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoTypeSelect = "//select[@data-testid='P161513106101_POH_TYPE_1']";
 	/** @locatorType Xpath */
-	public static final String PoPfxSelect = "//select[@data-testid='PO_Prefix_Select']";
+	public static final String PoPfxSelect = "//select[@data-testid='P161513106101_POH_ORDER_PFX_2']";
 	/** @locatorType Xpath */
 	public static final String PoDate = "//*[@id='P1615131061_POH_ORDER_DATE_input']";
 	/** @locatorType Xpath */
@@ -39,7 +39,7 @@ public class PurchaseOrderPageLocators {
 	public static final String ItemAddButton = "//button[@data-testid='PO_Item_Add_Button']";
 	/** @locatorType Xpath */
 	public static final String POPageItemTable = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";
-	
+
 	/** @locatorType Xpath */
 	public static final String ItemSelectButton = "//input[@data-testid='DUM_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -69,9 +69,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String WorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B162750960319221704']";
+	public static final String SearchButton = "//span[text()='Search']/../../button[1]";
 	/** @locatorType Xpath */
-	public static final String PONumberSelect = "//button[@id='P1615131061_DOC_NO_lov_btn']/span";
+	public static final String PONumberSelect = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String CancelButton = "//button[@id='B3159242843298273062']";
 
@@ -82,7 +82,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String POStatusTableText(String POno) {
-		return "//a[text()='" + POno + "']/../../td[last()]";
+		return "(//a[text()='" + POno + "']/../../td/div[contains(@style,'green')])[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -218,7 +218,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String LineDetailButton(int i) {
 		return "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i
-				+ "]/td/a/span[contains(@style,'Orange')]";
+				+ "]/td/a/span[contains(@style,'004153')]";
 	}
 
 	/** @locatorType Xpath */
@@ -252,7 +252,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String UnRegisterHeader = "//h2[text()='Unregister RCM Details']";
 	/** @locatorType Xpath */
-	public static final String CurrencyInput = "//*[@id='P1615131061_POH_CURRENCY']";
+	public static final String CurrencyInput = "//input[@data-testid='P1615131061_POH_CURRENCY']";
 	/** @locatorType Xpath */
 	public static final String LineDetailsIframePO = "//iframe[@title='Line Details']";
 	/** @locatorType Xpath */
@@ -268,16 +268,12 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String RCMCatId = "//div[@id='P161513106045_POL_RCM_CAT_ID_CONTAINER']/following::input[contains(@id,'P161513106045_POL_RCM_CAT_ID')]";
 	/** @locatorType Xpath */
-	public static final String TradePercentage = "//input[@data-testid='P161513106045_POL_TRD_DISC_PCT']";
+	public static final String TradePercentage = "//input[contains(@data-testid,'POL_TRD_DISC_PCT')]";
 	/** @locatorType Xpath */
 	public static final String TradePercentageField = "//*[@id=\"P161513106045_POL_TRD_DISC_PCT_CONTAINER\"]";
 	/** @locatorType Xpath */
 	public static final String POClassField = "//*[@id=\"P161513106045_POL_PROD_CLS_DESC\"]";
-	
-	
-	
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String TradeAssembleValue = "//input[@id='P161513106045_POL_TRD_ASSBL_VAL']";
 	/** @locatorType Xpath */
@@ -439,30 +435,29 @@ public class PurchaseOrderPageLocators {
 	public static final String POType = "//*[@id=\"P161513106041_POH_TYPE_DISPLAY\"]";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailsForServiceItem = "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[20]";
-	
+
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr["+ i +"]/td[33]";
-	} 
-	
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[33]";
+	}
+
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr["+ i +"]/td[32]";
-	}      
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[32]";
+	}
 
-	
 	/** @locatorType Xpath */
 	public static final String POSubClass = "//span[@id='P161513106045_POL_PROD_SUB_CLS_DISPLAY']";
 	public static final String LineDeatilsSave = "//button[@data-testid='POL_DET_SAVE']";
-	
+
 	/** @locatorType Xpath */
-	public static final String PrefixLovButton = "//button[@id='P16151310407_PFX_lov_btn']";	
+	public static final String PrefixLovButton = "//button[@id='P16151310407_PFX_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String locationDetails = "//span[@class='fa fa-indent']";
 	/** @locatorType Xpath */
-	public static final String NextPageButton = "//button[@class=\"a-GV-pageButton a-GV-pageButton--nav a-Button js-pg-next\"]";	
+	public static final String NextPageButton = "//button[@class=\"a-GV-pageButton a-GV-pageButton--nav a-Button js-pg-next\"]";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderAddButtonframe = "//iframe[@title='Purchase Order']";
-	
-	
+	/** @locatorType Xpath */
+	public static final String LineLabel = "//input[@data-display='Line(s)']/following-sibling::label";
 }
