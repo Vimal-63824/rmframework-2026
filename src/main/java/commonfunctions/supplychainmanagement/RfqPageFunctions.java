@@ -1102,6 +1102,11 @@ public class RfqPageFunctions {
 
 	}
 
+	/**
+	 * This method used to click frame
+	 * 
+	 * @author Durai-RMITS
+	 */
 	private void clickFrame() {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRAddFrame, ElementType.Xpath);
 		if (flag) {
