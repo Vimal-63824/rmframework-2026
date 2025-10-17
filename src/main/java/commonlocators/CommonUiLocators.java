@@ -29,7 +29,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PageHeaderText = "//div[@class='t-Header-logo']//span";
 	/** @locatorType Xpath */
-	public static final String LeftSideAddIcon = "//button[@data-testid='Add']";
+	public static final String LeftSideAddIcon = "//button[contains(@title,'Add')]";
 	/** @locatorType Xpath */
 	public static final String LeftSidePendingIcon = "//button[contains(@class,'warning')]";
 	/** @locatorType Xpath */
@@ -396,4 +396,6 @@ public class CommonUiLocators {
 	public static final String PrCreateFrame = "//iframe[@title='Purchase Request']";
 	/** @locatorType Xpath */
 	public static final String CreatePrButton = "//button[@id='B938864189401882606']";
+	/** @locatorType Xpath */
+	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 }

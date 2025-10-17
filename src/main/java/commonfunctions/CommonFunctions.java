@@ -213,7 +213,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.LeftSideAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.PurchaseAddIcon);
 		Assert.assertTrue(flag);
 	}
 
