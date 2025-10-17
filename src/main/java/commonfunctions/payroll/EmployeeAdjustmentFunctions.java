@@ -7,6 +7,8 @@ package commonfunctions.payroll;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.EmployeeAdjustmentLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -45,7 +48,7 @@ public class EmployeeAdjustmentFunctions {
 	 */
 	public boolean verifyEmpAdjustmentBasedOnAllAndReportFetchValue() {
 		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String Month = date.format(formatter).toUpperCase();
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
@@ -68,16 +71,10 @@ public class EmployeeAdjustmentFunctions {
 			clickApproveIconForLastAddedAdjustment();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpAdjustmentVouNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpAdjustmentVouNo());
-				commonFunc.logoutUser();
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"),
+						VariableHandler.getEmpAdjustmentVouNo(), webDB.getDataFromProperties("KSRAdminEmpId"), null,
+						System.getProperty("HRMSelfApproveUser"));
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			checkTableStatusForLastAddedAdjustment(commonFunc.getDataFromTestDataSheet("PostedStatus"));
@@ -234,7 +231,7 @@ public class EmployeeAdjustmentFunctions {
 	private void fillTotalPeriodAndPeriodicAmountInAdjustment(String TotalPeriod, String Amount) {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
+			webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
 			if (flag) {
 				flag = webDB.sendTextToAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput,
@@ -244,7 +241,7 @@ public class EmployeeAdjustmentFunctions {
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
 							ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
+						webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntData,
 								ElementType.Xpath);
 						flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
 								ElementType.Xpath);
@@ -298,8 +295,10 @@ public class EmployeeAdjustmentFunctions {
 	private void clickApproveIconForLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData, ElementType.Xpath);
-			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon, ElementType.Xpath);
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
@@ -374,7 +373,9 @@ public class EmployeeAdjustmentFunctions {
 	private void clickEndAndEnterNarrationForLastAddedAdjustment(String Narration) {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableEndIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableEndIcon, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableEndIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentTableEndIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeAdjustmentLocators.EndNarrationIframe, ElementType.Xpath);
 			if (flag) {
@@ -412,11 +413,12 @@ public class EmployeeAdjustmentFunctions {
 	private void clickSaveIconInAdjustmentTable() {
 		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.AdjustmentSaveIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Adjustment table Add Icon Clicked Successfully");
+				logs.logging("INFO", "Adjustment table Save Icon Clicked Successfully");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
@@ -476,12 +478,14 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Unit
 	 */
 	private void findWithUnitInAdjustment(String Unit) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(EmployeeAdjustmentLocators.FindUnitLovBtn, Unit);
 		clickSearchButtonInAdjustment();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeAdjustmentLocators.FindUnitResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Unit)) {
+			if (webElement.getText().contains(Unit)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -499,12 +503,14 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Designation
 	 */
 	private void findWithDesignationInAdjustment(String Designation) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(EmployeeAdjustmentLocators.FindDesignationLovBtn, Designation);
 		clickSearchButtonInAdjustment();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeAdjustmentLocators.FindDesignationResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Designation)) {
+			if (webElement.getText().contains(Designation)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -522,12 +528,14 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Year
 	 */
 	private void findWithYearInAdjustment(String Year) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(EmployeeAdjustmentLocators.FindYearLovBtn, Year);
 		clickSearchButtonInAdjustment();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeAdjustmentLocators.FindYearResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Year)) {
+			if (webElement.getText().contains(Year)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -545,12 +553,14 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Department
 	 */
 	private void findWithDepartmentInAdjustment(String Department) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(EmployeeAdjustmentLocators.FindDepartmentLovBtn, Department);
 		clickSearchButtonInAdjustment();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeAdjustmentLocators.FindDepartmentResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Department)) {
+			if (webElement.getText().contains(Department)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -568,12 +578,14 @@ public class EmployeeAdjustmentFunctions {
 	 * @param Element
 	 */
 	private void findWithElementInAdjustment(String Element) {
+		commonFunc.clearFiltersInFindPage();
 		commonFunc.searchAndSelectValueInFilters(EmployeeAdjustmentLocators.FindElementLovBtn, Element);
 		clickSearchButtonInAdjustment();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeAdjustmentLocators.FindElementResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Element)) {
+			if (webElement.getText().contains(Element)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -592,6 +604,9 @@ public class EmployeeAdjustmentFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyEmployeeAdjustmentMigrationWithTemplates() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MMM-dd");
+		String Today = date.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
@@ -600,9 +615,10 @@ public class EmployeeAdjustmentFunctions {
 			clickAddNewInEmployeeAdjustmentMigration();
 			fillHeaderDetailsInEmployeeAdjustmentMigration(commonFunc.getDataFromTestDataSheet("RefText_Test"),
 					commonFunc.getDataFromTestDataSheet("AdditionText"));
-			uploadTemplateInEmployeeAdjustmentMigration();
+			uploadTemplateInEmployeeAdjustmentMigration(Today);
 			checkExceptionAndSaveHeaderInEmployeeAdjustmentMigration();
 			clickPostEmployeeAdjustmentButton();
+			webDB.navigateToRefresh();
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickCancelIconForLastAddedAdjustment();
@@ -629,6 +645,36 @@ public class EmployeeAdjustmentFunctions {
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			empMasterFunc.clickAddIconAddEmployee();
+			empMasterFunc.clickEmployeeMasterSideNavBar();
+			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			empMasterFunc.selectCompanyAndAccountCatecory(
+					commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+					commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			empMasterFunc.clickSaveIconAndStoreEmpID();
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			empMasterFunc.clickAfterEmpCreationSaveIcon();
+			empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+			empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			clickMigrationAndSelectEmpAllowance();
 			clickAddNewInEmployeeAllowanceMigration();
@@ -638,7 +684,7 @@ public class EmployeeAdjustmentFunctions {
 			checkExceptionAndSaveHeaderInEmployeeAllowanceMigration();
 			clickPostEmployeeAllowanceButton();
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
+			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			empMasterFunc.verifyDeleteSPLAllowanceInSalaryDetails();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -659,6 +705,7 @@ public class EmployeeAdjustmentFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeAdjustmentLocators.EA_MigrationBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.EA_MigrationBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Migration Button Clicked Successfully");
@@ -666,6 +713,7 @@ public class EmployeeAdjustmentFunctions {
 				flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjustmentMigrationRadioBtn,
 						ElementType.Xpath);
 				if (flag) {
+					webDB.moveToElement(EmployeeAdjustmentLocators.EmpAdjustmentMigrationRadioBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAdjustmentMigrationRadioBtn, ElementType.Xpath);
 					webDB.switchToDefaultContent();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationAddNewBtn, ElementType.Xpath);
@@ -732,7 +780,7 @@ public class EmployeeAdjustmentFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void uploadTemplateInEmployeeAdjustmentMigration() {
+	private void uploadTemplateInEmployeeAdjustmentMigration(String date) {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationUploadIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeAdjustmentLocators.EmpAdjMigrationUploadIcon, ElementType.Xpath);
@@ -741,7 +789,10 @@ public class EmployeeAdjustmentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
 				String file1 = webDB.getDataFromProperties("EmployeeAdjustmentMigrationFileName");
-				File file = new File(VariableHandler.testdataDir + file1);
+				String Path = VariableHandler.testdataDir + file1;
+//				ExcelUtils excel = new ExcelUtils();
+//				excel.writeDataInExcel(Path, "Sheet1", 1, 1, date);
+				File file = new File(Path);
 				flag = webDB.sendTextToAnElement(EmployeeAdjustmentLocators.EmpAdjMigrationUploadInput,
 						file.getAbsolutePath(), ElementType.Xpath);
 				if (flag) {
@@ -772,6 +823,8 @@ public class EmployeeAdjustmentFunctions {
 	private void checkExceptionAndSaveHeaderInEmployeeAdjustmentMigration() {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationCheckExcptionBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(EmployeeAdjustmentLocators.EmpAdjMigrationCheckExcptionBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAdjMigrationCheckExcptionBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
@@ -798,6 +851,7 @@ public class EmployeeAdjustmentFunctions {
 	private void clickPostEmployeeAdjustmentButton() {
 		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -825,10 +879,10 @@ public class EmployeeAdjustmentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Migration Button Clicked Successfully");
 				webDB.switchToFrame(EmployeeAdjustmentLocators.EmpAdjMigrationIframe, ElementType.Xpath);
-				flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationAddNewBtn,
+				flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationRadioBtn,
 						ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationAddNewBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationRadioBtn, ElementType.Xpath);
 					webDB.switchToDefaultContent();
 					flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationAddNewBtn,
 							ElementType.Xpath);
@@ -875,8 +929,9 @@ public class EmployeeAdjustmentFunctions {
 		commonPayrollFunctions.addDetailInTableWithoutLovButton(EmployeeAdjustmentLocators.EmpAllowanceMigrationDateTo,
 				EmployeeAdjustmentLocators.EmpAllowanceMigrationDateTo, DateTo);
 		logs.logging("INFO", "Date To Entered in Employee Allowance: " + DateTo);
-		commonPayrollFunctions.addDetailInTableWithoutLovButton(EmployeeAdjustmentLocators.EmpAdjMigrationRefInput,
-				EmployeeAdjustmentLocators.EmpAdjMigrationRefInput, Ref);
+		commonPayrollFunctions.addDetailInTableWithoutLovButton(
+				EmployeeAdjustmentLocators.EmpAllowanceMigrationRefInput,
+				EmployeeAdjustmentLocators.EmpAllowanceMigrationRefInput, Ref);
 		logs.logging("INFO", "Reference Entered in Employee Allowance: " + Ref);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationCreateSaveIcon, ElementType.Xpath);
 		if (flag) {
@@ -907,7 +962,12 @@ public class EmployeeAdjustmentFunctions {
 			if (flag) {
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
 				String file1 = webDB.getDataFromProperties("EmployeeAllowanceMigrationFileName");
-				File file = new File(VariableHandler.testdataDir + file1);
+				String Path = VariableHandler.testdataDir + file1;
+				ExcelUtils excel = new ExcelUtils();
+				excel.writeDataInExcel(Path, "Sheet1", 1, 0, VariableHandler.getEmpID());
+				logs.logging("INFO",
+						"Employee Id Edited in file for " + file1 + " with value: " + VariableHandler.getEmpID());
+				File file = new File(Path);
 				flag = webDB.sendTextToAnElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationUploadInput,
 						file.getAbsolutePath(), ElementType.Xpath);
 				if (flag) {
@@ -940,6 +1000,8 @@ public class EmployeeAdjustmentFunctions {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationCheckExcptionBtn,
 				ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationCheckExcptionBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationCheckExcptionBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
@@ -966,6 +1028,7 @@ public class EmployeeAdjustmentFunctions {
 	private void clickPostEmployeeAllowanceButton() {
 		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAllowanceMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);

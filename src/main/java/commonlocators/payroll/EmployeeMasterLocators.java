@@ -179,8 +179,9 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_AdjustmentTableFirstTrashIcon = "((//b[text()='Adjustments']/following::table)[2]//tr/td//span[@class='fa fa-trash'])[1]";
 	/** @locatorType XPATH */
-	public static final String AddEmp_AfterCreationSaveIcon = "//*[@data-testid='BTN_save_sal_emp_empIcon']";// "//*[@data-testid='
-																												// AddEmp_AfterCreationSaveIcon']";
+	public static final String AddEmp_AfterCreationSaveIcon = "//*[@data-testid='BTN_save_sal_emp_empIcon']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_AfterCreationSaveIcon2 = "//*[@data-testid='BTN_Save_emp_dtl_empIcon']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_SalaryAdjustmentSaveBtn = "//*[@data-testid=' AddEmp_SalaryAdjustmentSaveBtn']";
 	/** @locatorType XPATH */
@@ -463,7 +464,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_DependentMonthlyEarnInput = "//div[@id='ig_depent_ig_grid_vc']//table/tbody/tr/td[7]//input";
 	/** @locatorType XPATH */
-	public static final String AddEmp_UpdateContactTab = "//label[text()='Contact']";
+	public static final String AddEmp_UpdateContactTab = "//label[text()='Contacts']";
 	/** @locatorType XPATH */
 	public static final String UpdateEmp_ContactAddLabel = "//div[@id='P9001_CONT_RADIO']//label[text()='Add']";
 	/** @locatorType XPATH */
@@ -675,9 +676,9 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationPostBtn = "//*[@data-testid='BTN_PostIcon']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationDurationInput = "//*[@data-testid='P38_EMP_PROB_DURE_iteminpu']";
+	public static final String AddEmp_ProbationDurationInput = "//input[@data-testid='P38_EMP_PROB_DURE_iteminpu']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ProbationSelect = "//*[@data-testid='P38_EMP_PROB_FREQ_ID_iteminpu']";
+	public static final String AddEmp_ProbationSelect = "//select[@data-testid='P38_EMP_PROB_FREQ_ID_iteminpu']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_ProbationDateFrom = "//*[@data-testid='P38_EMP_PROB_START_DATE_iteminpu']/input";
 	/** @locatorType XPATH */

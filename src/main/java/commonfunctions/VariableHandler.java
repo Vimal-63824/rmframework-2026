@@ -219,6 +219,8 @@ public class VariableHandler {
 	private static ThreadLocal<String> oscdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> Revdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> SCOdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> EmpUpdateDocNo = new ThreadLocal<>();
+	private static ThreadLocal<Boolean> EmpLeaveEntryAutoPost = ThreadLocal.withInitial(() -> false);
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1803,11 +1805,11 @@ public class VariableHandler {
 	}
 
 	public static String getLoanRequestDocNo() {
-		return PermissionDocNo.get();
+		return LoanRequestDocNo.get();
 	}
 
 	public static void setLoanRequestDocNo(String data) {
-		PermissionDocNo.set(data);
+		LoanRequestDocNo.set(data);
 	}
 
 	public static ArrayList<String> getMultiMRVDocNumber() {
@@ -1872,5 +1874,21 @@ public class VariableHandler {
 
 	public static void setSCOdocno(String data) {
 		SCOdocno.set(data);
+	}
+
+	public static String getEmpUpdateDocNo() {
+		return EmpUpdateDocNo.get();
+	}
+
+	public static void setEmpUpdateDocNo(String data) {
+		EmpUpdateDocNo.set(data);
+	}
+
+	public static void setEmpLeaveEntryAutoPost(boolean flag) {
+		EmpLeaveEntryAutoPost.set(flag);
+	}
+
+	public static boolean getEmpLeaveEntryAutoPost() {
+		return EmpLeaveEntryAutoPost.get();
 	}
 }

@@ -299,14 +299,17 @@ public class CommonFunctions {
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
 					try {
-						if (webElement.isDisplayed() && webElement.getText().equalsIgnoreCase(Value)) {
+						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
 									webElement);
+//							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();", webElement);
 							webElement.click();
 							flag = true;
+						} else {
 						}
 					} catch (Exception e) {
 						flag = false;
+//						logs.loggingconsole("INFO", e.toString());
 					}
 				}
 			}
@@ -1677,13 +1680,17 @@ public class CommonFunctions {
 	 * @return boolean
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
-		if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
+		webDB.switchToDefaultContent();
+		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
+			VariableHandler.setApprovalFlag(true);
+			return true;
+		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			VariableHandler.setApprovalFlag(true);
-			return true;
+			logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
+			return false;
 		}
 	}
 
@@ -2036,6 +2043,16 @@ public class CommonFunctions {
 	 */
 	public void navigateSalesOrderAmendmentPage() {
 		navigateToSearchTab(webDB.getDataFromProperties("SOAmd"), SalesOrderLocators.SOAmendmentPendingButton);
+	}
+
+	/**
+	 * This method is used to Navigate Setup Payroll Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigatePayrollApplicationScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("PayrollApplicaionCrtlScreen"),
+				AttendanceLeaveLocators.SetupLeaveLabel);
 	}
 
 	/**
@@ -2496,7 +2513,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("EmployeeAdjustmentScreen"),
-				EmployeeAdjustmentLocators.FindEmployeeAdjustmentHeader);
+				EmployeeAdjustmentLocators.EA_MigrationBtn);
 	}
 
 	/**
@@ -2580,6 +2597,43 @@ public class CommonFunctions {
 			flag = restApi.response.getStatusCode() == 200;
 			if (flag) {
 				logs.logging("INFO", "Verified Approval Response Status Code");
+			}
+		}
+		assertTrue(flag);
+		RestUtils.resetRestAssured();
+	}
+
+	/**
+	 * This method used to return documents using API
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BU
+	 * @param DocNo
+	 * @param EmpId
+	 * @param Unit
+	 * @param User
+	 * @param ReturnUserEmpId
+	 */
+	public void returnDocuments(String BU, String DocNo, String EmpId, String Unit, String User,
+			String ReturnUserEmpId) {
+		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
+		restApi.setQueryParam("p_bu", BU);
+		restApi.setQueryParam("p_doc_no", DocNo);
+		restApi.setQueryParam("p_from_empid", EmpId);
+		restApi.setQueryParam("p_plnt", Unit);
+		restApi.setQueryParam("p_user", User);
+		restApi.setQueryParam("p_wfdc_act", "R");
+		restApi.setQueryParam("p_nxt_fwd_person", ReturnUserEmpId);
+		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
+		String Value = restApi.response.getHeader("p_out_msg");
+		logs.logging("INFO", "Displayed Returned Response Header: " + Value);
+		logs.logging("INFO", "Displayed Returned Response Status Code: " + restApi.response.getStatusCode());
+		flag = Value.contains("Returned");
+		if (flag) {
+			logs.logging("INFO", "Verified Returned Response Header");
+			flag = restApi.response.getStatusCode() == 200;
+			if (flag) {
+				logs.logging("INFO", "Verified Returned Response Status Code");
 			}
 		}
 		assertTrue(flag);

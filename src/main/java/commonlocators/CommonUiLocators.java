@@ -358,7 +358,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SaveButton = "//button[@id='B150556062898604660']";
 	/** @locatorType Xpath */
-	public static final String ClearFindFilterIcon = "//button[@aria-label='Clear'] | //button[@aria-label='clear']";
+	public static final String ClearFindFilterIcon = "//button[contains(@aria-label,'Clear') or contains(@aria-label,'clear')]";
 	/** @locatorType Xpath */
 	public static final String ToastErrorMsg = "//div[contains(@class,'a-Notification--error')]";
 	/** @locatorType CSS Selector */

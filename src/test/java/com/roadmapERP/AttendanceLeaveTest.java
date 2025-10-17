@@ -17,6 +17,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static AttendanceLeaveFunctions attendanceLeaveFunc = new AttendanceLeaveFunctions();
+	private static int previousStatus = ITestResult.SUCCESS;
 
 	/**
 	 * To Check Leave Entry Based on the Request date
@@ -37,9 +38,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	@Test(priority = 2, groups = {
 			"Leave" }, description = "26 To Check Leave Entry Based on Leave types in Leave Master")
 	public void VerifyLeaveEntryBasedLeaveTypesLeaveMaster() {
-		// This test covered in 'VerifyLeaveEntryBasedRequestDate' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveEntryBasedRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -49,9 +53,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 3, groups = { "Leave" }, description = "27 To check Leave Entry Based on the Leave Balances")
 	public void VerifyLeaveEntryBasedLeaveBalances() {
-		// This test covered in 'VerifyLeaveEntryBasedRequestDate' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveEntryBasedRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -62,9 +69,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	@Test(priority = 4, groups = {
 			"Leave" }, description = "28 To Check Leave Entry Based on different Start session and End session")
 	public void VerifyLeaveEntryBasedDifferentStartEndSession() {
-		// This test covered in 'VerifyLeaveEntryBasedRequestDate' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveEntryBasedRequestDate) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -85,9 +95,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 6, groups = { "Leave" }, description = "32 To Check the Leave Entry with the attachment field")
 	public void VerifyLeaveEntryWithAttachmentField() {
-		// This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus' Test
-		logs.logging("INFO", "This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyCancelLeaveDataCheckLeaveStatus) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -97,9 +110,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 7, groups = { "Leave" }, description = "33 To Check Leave report fetches values correctly")
 	public void VerifyLeaveEntryReportFetchesValues() {
-		// This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus' Test
-		logs.logging("INFO", "This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyCancelLeaveDataCheckLeaveStatus) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -146,9 +162,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	@Test(priority = 11, groups = {
 			"Leave Adjustment" }, description = "61 To Check Leave Adjustment based on the Addition and Deduction Prefix")
 	public void VerifyLeaveAdjustmentBasedAdditionDeductionPrefix() {
-		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveAdjustmentBasedLeaveTypes) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -159,9 +178,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	@Test(priority = 12, groups = {
 			"Leave Adjustment" }, description = "62 To Check Leave Adjustment Based on the Request date")
 	public void VerifyLeaveAdjustmentBasedRequestDate() {
-		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveAdjustmentBasedLeaveTypes) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -172,9 +194,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	@Test(priority = 13, groups = {
 			"Leave Adjustment" }, description = "64 To Check the Leave Adjustment with the attachment field")
 	public void VerifyLeaveAdjustmentWithAttachmentField() {
-		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveAdjustmentBasedLeaveTypes) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -185,9 +210,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	@Test(priority = 14, groups = {
 			"Leave Adjustment" }, description = "66 To Check Leave Adjustment report fetches values correctly")
 	public void VerifyLeaveAdjustmentReportFetchesValuesCorrectly() {
-		// This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test
-		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyLeaveAdjustmentBasedLeaveTypes'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO", "Previous test (VerifyLeaveAdjustmentBasedLeaveTypes) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -258,7 +286,8 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result) {
-		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			commonFunc.verifyAfterMethod();
 		}
 	}

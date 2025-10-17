@@ -9,6 +9,9 @@ import static org.testng.Assert.assertTrue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 /**
@@ -223,14 +226,21 @@ public class ApprovalPageFunctions {
 			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
+			logs.logging("INFO", "Document Forwarder Person: " + user);
+			webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
-				webDB.switchToDefaultContent();
+				webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+				flag = webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				commonFunc.checkSuccessToastMessageDisappear();
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
+				flag = !webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Workflow Approval Ok Button Clicked");
+				}
+				webDB.switchToDefaultContent();
 			}
 		}
 		assertTrue(flag);
@@ -387,6 +397,7 @@ public class ApprovalPageFunctions {
 		a: do {
 			flag = webDB.waitForElement(ApprovalPageLocators.ReturnRadioBtn, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(ApprovalPageLocators.ReturnRadioBtn, ElementType.Xpath);
 				webDB.clickAnElement(ApprovalPageLocators.ReturnRadioBtn, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
@@ -421,9 +432,11 @@ public class ApprovalPageFunctions {
 			clickCheckBoxForDocument(DocNumber);
 			clickReturnRadioBtn(DocNumber);
 			commonFunc.searchAndSelectValueInFilters(ApprovalPageLocators.ReturnPersonLovBtn, ReturnPerson);
+			logs.logging("INFO", "For Return Employee Name Entered: " + ReturnPerson);
 			flag = webDB.waitForClickElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Return Process Button Is Displayed");
+				webDB.moveToElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 				webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
@@ -439,8 +452,9 @@ public class ApprovalPageFunctions {
 		} while ((i <= 3));
 		assertTrue(flag);
 	}
-	
-	/**Approval For Catalogue Price 
+
+	/**
+	 * Approval For Catalogue Price
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param WorkFlowType
@@ -460,7 +474,7 @@ public class ApprovalPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(ApprovalPageLocators.SalesCataogField, ElementType.Xpath);
 						logs.logging("INFO", "Successfully Clicked a Sales Catalog Price");
-						
+
 						webDB.waitForElement(ApprovalPageLocators.SearchButtonWorkFLow, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Sucessfully Populated a Work Flow Type ");
@@ -476,11 +490,12 @@ public class ApprovalPageFunctions {
 		}
 		assertTrue(flag);
 	}
-	
-	/**Verify Work Flow Doc Type
+
+	/**
+	 * Verify Work Flow Doc Type
 	 * 
 	 * @author Kowshik-RMITS
-	 */	
+	 */
 	public void verifyWorkFlowDocForCatalog() {
 		flag = webDB.waitForElement(ApprovalPageLocators.VoucherDocNo, ElementType.Xpath);
 		if (flag) {
@@ -498,7 +513,7 @@ public class ApprovalPageFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method used to select forwarder in WorkApproval and click Ok button
 	 * 
