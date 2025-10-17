@@ -1,8 +1,9 @@
 package com.roadmapERP;
 
 /**
- * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks May 02, 2025
+ /**
+ * @author Durai
+ * @company Roadmap May 02, 2025
  */
 import org.testng.annotations.Test;
 import commonfunctions.CommonFunctions;
@@ -36,7 +37,7 @@ public class SsoTest {
 	@Test(priority = 2, groups = {
 			"Request For Quotation" }, description = "Import Supplier - General Items with Similar Stock and Supplier UOM")
 	public void verifyCreationOfSsoImportSupplierSimilarUom() {
-		Ssofunc.verifyCreationOfSsoImportSupplierSimilarUom();
+		Ssofunc.verifyCreationOfSsoImportSupplierSimilarUom();                                 
 	}
 
 	/**

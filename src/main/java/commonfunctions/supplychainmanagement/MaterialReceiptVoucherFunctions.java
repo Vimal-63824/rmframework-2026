@@ -52,10 +52,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -77,12 +77,12 @@ public class MaterialReceiptVoucherFunctions {
 								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
@@ -250,9 +250,9 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickPendingInssuanceBtn() {
-		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 		}
 		assertTrue(flag);
@@ -553,11 +553,11 @@ public class MaterialReceiptVoucherFunctions {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.moveToElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance Is Displayed");
-				webDB.moveToElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.moveToElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -578,12 +578,12 @@ public class MaterialReceiptVoucherFunctions {
 								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
@@ -614,10 +614,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -896,10 +896,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -983,10 +983,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -1409,10 +1409,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");

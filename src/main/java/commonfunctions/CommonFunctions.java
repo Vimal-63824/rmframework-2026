@@ -9,9 +9,6 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -48,9 +45,10 @@ import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
-import commonlocators.supplychainmanagement.SalesInvoiceLocators;
+import commonlocators.supplychainmanagement.RfqLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesPriceListLocators;
+import commonlocators.supplychainmanagement.SsoPageLocators;
 import commonlocators.supplychainmanagement.StockAdjustmentLocators;
 import io.restassured.http.ContentType;
 import utils.ExcelUtils;
@@ -776,18 +774,13 @@ public class CommonFunctions {
 	 * @author Durai
 	 */
 	public void navigatePricelistPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickPricelistTransactionTab();
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.PricelistTab, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
-			if (flag) {
-				logs.logging("INFO", "Pricelist clicked and navigated successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickPricelistTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("PRICELISTENTRY"), PricelistPageLocators.AddPriceList);
 		Assert.assertTrue(flag);
+		
 	}
 
 	/**
@@ -1922,9 +1915,10 @@ public class CommonFunctions {
 	 */
 	public void navigateRfqPage() {
 		// clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickRfqTransactionTab();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickRfqTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("RFQ"), RfqLocators.PendBTN);
 	}
 
 	/**
@@ -2069,9 +2063,10 @@ public class CommonFunctions {
 	 */
 	public void navigateOpenPoOrderPage() {
 		// clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickOpenPoTransactionTab();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickOpenPoTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("OPENPO"), SsoPageLocators.OPORadioBtn);
 	}
 
 	/**
@@ -2104,9 +2099,10 @@ public class CommonFunctions {
 	 */
 	public void navigateSupplierScheduleOrderPage() {
 		// clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickSSOTransactionTab();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickSSOTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("PURCHASEORDER"), SsoPageLocators.SsoPendingBtnNew);
 	}
 
 	/**

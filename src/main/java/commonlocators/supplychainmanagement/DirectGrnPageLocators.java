@@ -1,5 +1,8 @@
 package commonlocators.supplychainmanagement;
-
+/**
+ * @author Durai
+ * @company Roadmap May 02, 2025
+ */
 public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnAddBtn = "//*[@id=\"active\"]/span";
@@ -137,4 +140,27 @@ public class DirectGrnPageLocators {
 	public static final String OpenPoSearchButton = "//button/span[text()='Search']";
 	/** @locatorType Xpath */
 	public static final String AddHeaderFrame = "//iframe[@title='GRN - Purchase']";
+	/** @locatorType Xpath */
+	public static final String AmendLineFindTable = "//*[@id='6849051547812470028_orig']/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String AmendLineFindTableData(int i) {
+		return "//table[@id='6849051547812470028_orig']/tbody/tr/td[" + i + "]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String AmendFindTableData(int i) {
+		return "//table[@id='11313277488189564682']/tbody/tr/td[" + i + "]";
+	}
+	/** @locatorType Xpath */
+	public static final String GRNDtFrom = "//input[@id='P1615131103_DATE_FROM_input']";
+	/** @locatorType Xpath */
+	public static final String GRNDtTo = "//input[@id='P1615131103_DATE_TO_input']";
+	/** @locatorType Xpath */
+	public static final String ClearButton = "//*[@id=\"Clear\"]";
+	/** @locatorType Xpath */
+	public static final String LineCheckBox = "//label[text()='Line(s)']";
+	/** @locatorType Xpath */
+	public static final String AmendFindTable = "//*[@id='11313277488189564682']/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String GRN_Status = "//select[@id='P1615131103_STATUS']";
 }
