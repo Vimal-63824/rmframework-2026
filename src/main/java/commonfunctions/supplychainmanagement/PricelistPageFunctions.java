@@ -1,8 +1,8 @@
 package commonfunctions.supplychainmanagement;
 
 /**
- * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks Feburary 12, 2025
+ * @author Durai
+ * @company Roadmap May 02, 2025
  */
 import static org.testng.Assert.assertTrue;
 

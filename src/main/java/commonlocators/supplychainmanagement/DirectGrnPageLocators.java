@@ -1,5 +1,8 @@
 package commonlocators.supplychainmanagement;
-
+/**
+ * @author Durai
+ * @company Roadmap May 02, 2025
+ */
 public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnAddBtn = "//*[@id=\"active\"]/span";
