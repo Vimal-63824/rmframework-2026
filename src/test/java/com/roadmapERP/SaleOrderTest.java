@@ -667,7 +667,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 51, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentPriceChangeUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentPriceChange(commonFunc.getDataFromTestDataSheet("Customer"),
+		flag = SalesOrdFunc.SalesOrderAmendmentPriceChangeUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
 				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTPriceChange"),
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
@@ -683,7 +683,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 52, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentDiscountChangeUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChange(commonFunc.getDataFromTestDataSheet("Customer"),
+		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChangeUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
 				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTDiscChange"),
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
@@ -699,7 +699,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 53, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - UTGST")
 	public void SalesOrderAmendmentAdditionOfLinesUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLines(commonFunc.getDataFromTestDataSheet("Customer"),
+		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLinesUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
 				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTAddOfItem"),
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),

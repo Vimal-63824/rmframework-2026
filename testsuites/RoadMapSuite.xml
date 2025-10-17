@@ -21,8 +21,10 @@
 			<class name="com.roadmapERP.PriselistTest" />
 			<class name="com.roadmapERP.OpenSOTest" />
 			<class name="com.roadmapERP.GrnTest" />
+			<class name="com.roadmapERP.DirectGrnTest" />
 			<class name="com.roadmapERP.OpenSoAmdTest" />
 			<class name="com.roadmapERP.RfqTest" />
+			<class name="com.roadmapERP.SsoTest" />
 			<class name="com.roadmapERP.OpenPoRcTest" />
 			<class name="com.roadmapERP.GateEntryTest" />
 			<class name="com.roadmapERP.CustomerScheduleTest" />
@@ -34,6 +36,11 @@
 			<class name="com.roadmapERP.SalesCataloguePriceTest" />
 			<class name="com.roadmapERP.SalesStandardPriceTest" />
 			<class name="com.roadmapERP.SetupSalesTest" />
+			<class name="com.roadmapERP.MaterialRequestTest" />
+			<class name="com.roadmapERP.StockAdjustmentTest" />
+			<class name="com.roadmapERP.SetupSalesTest" />
+			<class name="com.roadmapERP.SubcontractSetUpTest" />
+			<class name="com.roadmapERP.SubcontractTransactionTest" />
 		</classes>
 	</test>
 </suite>

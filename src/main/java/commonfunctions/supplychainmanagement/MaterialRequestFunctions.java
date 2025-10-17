@@ -6,14 +6,18 @@ package commonfunctions.supplychainmanagement;
  */
 import static org.testng.Assert.assertTrue;
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.supplychainmanagement.MaterialRequestLocators;
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import org.testng.Assert;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import commonlocators.supplychainmanagement.SalesOrderLocators;
+import net.bytebuddy.implementation.FieldAccessor.FieldNameExtractor.ForBeanProperty;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -26,6 +30,7 @@ public class MaterialRequestFunctions {
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	public PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	public ApprovalPageFunctions approvalPageFunc = new ApprovalPageFunctions();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This method used to store Material Request Number And Validate Status With
@@ -65,22 +70,30 @@ public class MaterialRequestFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void verifyCreateMaterialRequest(String Location, String RequestType, String Requestor, String Employee) {
+	public void verifyCreateMaterialRequest(String Location, String RequestType, String Requestor, String Employee,
+			String Shift) {
 		flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Create Material Request Button Is Dsiplayed");
 			webDB.clickAnElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
+			FrameSwitching(MaterialRequestLocators.MRFrame);
 			flag = webDB.waitForElement(MaterialRequestLocators.CreateLocationLov, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Create Location Lov Button Is Displayed");
 				commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.CreateLocationLov, Location);
+				FrameSwitching(MaterialRequestLocators.MRFrame);
 				webDB.selectDropDownByText(MaterialRequestLocators.RequestType, RequestType, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.RequestorLovButton, Requestor);
+				FrameSwitching(MaterialRequestLocators.MRFrame);
 				commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.EmployeeLovButton, Employee);
+				FrameSwitching(MaterialRequestLocators.MRFrame);
+				commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.ShiftLovButton, Shift);
+				FrameSwitching(MaterialRequestLocators.MRFrame);
 				flag = webDB.waitForElement(MaterialRequestLocators.TickIconMaterialRequest, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Tick Icon Is Displayed");
 					webDB.clickAnElement(MaterialRequestLocators.TickIconMaterialRequest, ElementType.Xpath);
+					webDB.switchToDefaultContent();
 					flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Location Id Is Displayed");
@@ -166,13 +179,13 @@ public class MaterialRequestFunctions {
 					if (flag) {
 						webDB.sendTextToAnElement(MaterialRequestLocators.RequestQuantityInput, RequestQty,
 								ElementType.Xpath);
-						String value = webDB.getAttributeFromElement(MaterialRequestLocators.RequestQuantityInput,
-								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						logs.logging("INFO", "Get Text Quantity Name Value from Table Is: " + value);
-						flag = value.contains(RequestQty);
-						if (flag) {
-							logs.logging("INFO", "Quantity Entered: " + RequestQty);
-						}
+//						String value = webDB.getAttributeFromElement(MaterialRequestLocators.RequestQuantityInput,
+//								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+//						logs.logging("INFO", "Get Text Quantity Name Value from Table Is: " + value);
+//						flag = value.contains(RequestQty);
+//						if (flag) {
+//							logs.logging("INFO", "Quantity Entered: " + RequestQty);
+//						}
 					}
 				}
 			}
@@ -212,13 +225,15 @@ public class MaterialRequestFunctions {
 	 * @param Requestor
 	 * @param Employee
 	 */
-	public void verifyHeaderMaterialRequestValidation(String Location, String Unit, String Source, String Requestor,
-			String Employee) {
+	public void verifyHeaderMaterialRequestValidation(String Location, String Unit, String SubVoucherType,
+			String Requestor, String Employee, String Shift, String Source) {
 		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderLocationId, Location);
-		purchaseOrderFunc.verifyDomPropertyValidation(MaterialRequestLocators.HeaderEmployee, Employee);
-//		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderRequestor, Requestor);
-		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderSource, Source);
 		purchaseOrderFunc.verifyDomPropertyValidation(MaterialRequestLocators.HeaderUnitId, Unit);
+		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderType, SubVoucherType);
+		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderRequestor, Requestor);
+		purchaseOrderFunc.verifyDomPropertyValidation(MaterialRequestLocators.HeaderEmployee, Employee);
+		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderShiftField, Shift);
+		purchaseOrderFunc.verifyGetTextValidation(MaterialRequestLocators.HeaderSource, Source);
 		storeMaterialRequestNumber();
 	}
 
@@ -358,17 +373,20 @@ public class MaterialRequestFunctions {
 	 * This Method Is Used To Verify Create Material Request
 	 * 
 	 * @author Deepan-GWL
+	 * @return
 	 */
-	public void verifyCreateMaterialRequest() {
+	public boolean verifyCreateMaterialRequest() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("IntraTransfer"),
-				commonFunc.getDataFromTestDataSheet("Warehouse100"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Warehouse100"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"));
 		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
-				commonFunc.getDataFromTestDataSheet("Warehouse100"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("IntraTransfer"),
+				commonFunc.getDataFromTestDataSheet("Warehouse100"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"), commonFunc.getDataFromTestDataSheet("ManualValue"));
 		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -402,7 +420,7 @@ public class MaterialRequestFunctions {
 				"TvsUsername");
 		commonFunc.navigateToInventoryMaterialRequest();
 		checkStatusOfMRNo(VariableHandler.getMRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-		commonFunc.logoutUser();
+		return commonFunc.logoutUser();
 	}
 
 	/**
@@ -467,10 +485,12 @@ public class MaterialRequestFunctions {
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Inter Transfer"),
-				commonFunc.getDataFromTestDataSheet("EmpWareHouse"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("EmpWareHouse"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"));
 		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
-				commonFunc.getDataFromTestDataSheet("EmpWareHouse"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Inter Transfer"),
+				commonFunc.getDataFromTestDataSheet("Warehouse100"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"), commonFunc.getDataFromTestDataSheet("ManualValue"));
 		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -516,11 +536,12 @@ public class MaterialRequestFunctions {
 				"TvsUsername");
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("DepartmentValue"), commonFunc.getDataFromTestDataSheet("Prod-100"),
-				commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("DepartmentValue"), commonFunc.getDataFromTestDataSheet("Prod100"),
+				commonFunc.getDataFromTestDataSheet("Vinoth"), commonFunc.getDataFromTestDataSheet("ShiftMR"));
 		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
-				commonFunc.getDataFromTestDataSheet("Prod100"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("DepartmentValue"),
+				commonFunc.getDataFromTestDataSheet("Prod100"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"), commonFunc.getDataFromTestDataSheet("ManualValue"));
 		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -569,10 +590,11 @@ public class MaterialRequestFunctions {
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("WipType"), commonFunc.getDataFromTestDataSheet("WIP100"),
-				commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Vinoth"), commonFunc.getDataFromTestDataSheet("ShiftMR"));
 		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
-				commonFunc.getDataFromTestDataSheet("WorkInProgressWH"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("WipType"),
+				commonFunc.getDataFromTestDataSheet("WorkInProgressWH"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"), commonFunc.getDataFromTestDataSheet("ManualValue"));
 		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -619,10 +641,12 @@ public class MaterialRequestFunctions {
 		commonFunc.navigateToInventoryMaterialRequest();
 		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Subcontractor"), commonFunc.getDataFromTestDataSheet("POSupplier"),
-				commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Vinoth"), commonFunc.getDataFromTestDataSheet("Shift"));
 		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("ManualValue"),
-				commonFunc.getDataFromTestDataSheet("POSupplier"), commonFunc.getDataFromTestDataSheet("Vinoth"));
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Subcontractor"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("Shift"), commonFunc.getDataFromTestDataSheet("ManualValue"));
+
 		VariableHandler.setTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setLineAmount(BigDecimal.ZERO);
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -770,6 +794,15 @@ public class MaterialRequestFunctions {
 							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 									VariableHandler.getMaterialRequestNo(), webDB.getDataFromProperties("HodEmpId"),
 									commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+//							commonFunc.logoutUser();
+//							commonFunc.validCommonLogin(System.getProperty("HodUsername"),
+//									System.getProperty("HodPassword"), "HodUsername-Admin");
+//							approvalPageFunc.navigateToApprovals();
+//							approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMaterialRequestNo());
+//							approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getMaterialRequestNo());
+//							flag = commonFunc.logoutUser();
+//							commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
+//									System.getProperty("TvsPassword"), "TvsUsername");
 							commonFunc.navigateToInventoryMaterialRequest();
 							checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
 									commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -779,5 +812,256 @@ public class MaterialRequestFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Create MR Customer Type
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @return boolean flag
+	 */
+	public boolean createMRCustomerType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				System.getProperty("TvsUsername"));
+		commonFunc.navigateToInventoryMaterialRequest();
+		verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("CustomerMR"), commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("Vinoth"), commonFunc.getDataFromTestDataSheet("ShiftMR"));
+		verifyHeaderMaterialRequestValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("CustomerMR"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("Vinoth"),
+				commonFunc.getDataFromTestDataSheet("ShiftMR"), commonFunc.getDataFromTestDataSheet("ManualValue"));
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "ItemDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("MRCustomer"));
+		for (int i = 1; i < itemmultiple.length; i++) {
+			String ItemID = itemmultiple[i][0];
+			String WHID = itemmultiple[i][1];
+			String ReqQty = itemmultiple[i][2];
+			String LineAmount = itemmultiple[i][5];
+			String StockCost = dbCommonFunctions.StockQuery1(WHID, ItemID,
+					commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+			logs.logging("INFO",
+					"Stock Cost For This Item " + ItemID + " Against This Warehouse " + WHID + " Is " + StockCost);
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("MRCustomer"), i, 4, StockCost);
+			BigDecimal stockCostValue = new BigDecimal(StockCost);
+			stockCostValue = stockCostValue.setScale(2, RoundingMode.HALF_UP);
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("MRCustomer"), i, 3,
+					stockCostValue.toString());
+			verifyAddItem(ItemID, ReqQty);
+			lineSaveButton();
+			clickLineWiseDetails(i, stockCostValue.toString(), LineAmount);
+		}
+		clickHeaderPostButton();
+		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+		approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Click The line Wise Details
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param i
+	 * @param StockCost
+	 * @param LineAmount
+	 */
+	public void clickLineWiseDetails(int i, String StockCost, String LineAmount) {
+		flag = webDB.waitForElement(MaterialRequestLocators.MRLineDetails(i), ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialRequestLocators.MRLineDetails(i), ElementType.Xpath);
+			FrameSwitching(MaterialRequestLocators.IFrame);
+			flag = webDB.waitForElement(MaterialRequestLocators.UnitCostLineDetail, ElementType.Xpath);
+			if (flag) {
+				purchaseOrderFunc.verifyDomPropertyValidation(MaterialRequestLocators.UnitCostLineDetail, StockCost);
+				purchaseOrderFunc.verifyDomPropertyValidation(MaterialRequestLocators.LineDetailLineAmount, LineAmount);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Close Line Details Is Displayed");
+					webDB.clickAnElement(MaterialRequestLocators.CloseLineDetail, ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialRequestLocators.AddButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Line Details Is Closed Successfully");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Methos Is Used To Click The Header Post Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickHeaderPostButton() {
+		flag = webDB.waitForClickElement(MaterialRequestLocators.HeaderPostIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.clickAnElement(MaterialRequestLocators.HeaderPostIcon, ElementType.Xpath);
+			logs.logging("INFO", "Header Post Icon Is Clicked");
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Is Clicked Successfully");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Enter Value In All The Fields In The MR Find Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param Location
+	 * @param Unit
+	 * @param SubVoucherType
+	 * @param MRNumber
+	 * @param ProdOrdNumber
+	 * @param FromDate
+	 * @param ToDate
+	 * @param Requestor
+	 * @param SOPRJRef
+	 * @param Status
+	 * @param ItemID
+	 * @param ItemDesc
+	 * @param SourceType
+	 */
+	public void enterValueInAllFieldsInTheMRFindScreen(String Location, String Unit, String SubVoucherType,
+			String MRNumber, String ProdOrdNumber, String FromDate, String ToDate, String Requestor, String SOPRJRef,
+			String Status, String ItemID, String ItemDesc, String SourceType) {
+		flag = webDB.waitForElement(MaterialRequestLocators.FindLocationInputField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(MaterialRequestLocators.FindLocationInputField, Location, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialRequestLocators.FindUnitInputField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Loaction Inserted Successfully");
+				webDB.pressTabKey();
+				webDB.sendTextToAnElement(MaterialRequestLocators.FindUnitInputField, Unit, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialRequestLocators.FindSubVoucherTypeSelectField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Unit Inserted Successfully");
+					webDB.pressTabKey();
+					webDB.selectDropDownByValue(MaterialRequestLocators.FindSubVoucherTypeSelectField, SubVoucherType,
+							ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialRequestLocators.FindMRNumberInputField, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", SubVoucherType + " Is Inserted Successfully");
+						webDB.pressTabKey();
+						webDB.sendTextToAnElement(MaterialRequestLocators.FindMRNumberInputField, MRNumber,
+								ElementType.Xpath);
+						flag = webDB.waitForElement(MaterialRequestLocators.FindProductionOrderNumberInputField,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", MRNumber + " Is Inserted Successfully");
+							webDB.pressTabKey();
+							webDB.sendTextToAnElement(MaterialRequestLocators.FindProductionOrderNumberInputField,
+									ProdOrdNumber, ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialRequestLocators.FindFromDateInputField,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", ProdOrdNumber + " Is Inserted Successfully");
+								webDB.pressTabKey();
+								webDB.sendTextToAnElement(MaterialRequestLocators.FindFromDateInputField, FromDate,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(MaterialRequestLocators.FindToDateInputField,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", FromDate + " Is Inserted Successfully");
+									webDB.pressTabKey();
+									webDB.sendTextToAnElement(MaterialRequestLocators.FindToDateInputField, ToDate,
+											ElementType.Xpath);
+									flag = webDB.waitForElement(MaterialRequestLocators.FindRequestorInputField,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", ToDate + " Is Inserted successfully");
+										webDB.pressTabKey();
+										webDB.sendTextToAnElement(MaterialRequestLocators.FindRequestorInputField,
+												Requestor, ElementType.Xpath);
+										flag = webDB.waitForElement(MaterialRequestLocators.FindSOPRJRefInputField,
+												ElementType.Xpath);
+										if (flag) {
+											logs.logging("INFO", Requestor + " Is Inserted Successfully");
+											webDB.pressTabKey();
+											webDB.sendTextToAnElement(MaterialRequestLocators.FindSOPRJRefInputField,
+													SOPRJRef, ElementType.Xpath);
+											flag = webDB.waitForElement(MaterialRequestLocators.FindStatusSelectField,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", SOPRJRef + " Is Inserted Sucessfully");
+												webDB.pressTabKey();
+												webDB.selectDropDownByValue(
+														MaterialRequestLocators.FindStatusSelectField, Status,
+														ElementType.Xpath);
+												flag = webDB.waitForElement(
+														MaterialRequestLocators.FindItemIDInputField,
+														ElementType.Xpath);
+												if (flag) {
+													logs.logging("INFO", Status + " Is Inserted Successfully");
+													webDB.pressTabKey();
+													webDB.sendTextToAnElement(
+															MaterialRequestLocators.FindItemIDInputField, ItemID,
+															ElementType.Xpath);
+													flag = webDB.waitForElement(
+															MaterialRequestLocators.FindItemDescInputField,
+															ElementType.Xpath);
+													if (flag) {
+														logs.logging("INFO", ItemID + " Is Inserted Successfully");
+														webDB.pressTabKey();
+														webDB.sendTextToAnElement(
+																MaterialRequestLocators.FindItemDescInputField,
+																ItemDesc, ElementType.Xpath);
+														flag = webDB.waitForElement(
+																MaterialRequestLocators.FindSourceSelectField,
+																ElementType.Xpath);
+														if (flag) {
+															logs.logging("INFO",
+																	ItemDesc + " Is Inserted successfully");
+															webDB.pressTabKey();
+															webDB.selectDropDownByValue(
+																	MaterialRequestLocators.FindSourceSelectField,
+																	SourceType, ElementType.Xpath);
+															flag = webDB.waitForElement(
+																	MaterialRequestLocators.FindSearchButton,
+																	ElementType.Xpath);
+															if (flag) {
+																logs.logging("INFO",
+																		SourceType + " Is choosen successfully");
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Switch Frame In Material Request Header creation
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void FrameSwitching(String Locator) {
+		flag = webDB.waitForElement(Locator, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(Locator, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Frame Sucessfully");
+		}
+		Assert.assertTrue(flag);
 	}
 }

@@ -13,7 +13,7 @@ import commonfunctions.supplychainmanagement.SalesStandardPriceFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class SalesStandardPriceTest {
+public class SalesStandardPriceTest extends RoadMapERPTest {
 
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();

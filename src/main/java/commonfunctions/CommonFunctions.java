@@ -9,9 +9,6 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -48,9 +45,11 @@ import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
-import commonlocators.supplychainmanagement.SalesInvoiceLocators;
+import commonlocators.supplychainmanagement.RfqLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesPriceListLocators;
+import commonlocators.supplychainmanagement.SsoPageLocators;
+import commonlocators.supplychainmanagement.StockAdjustmentLocators;
 import io.restassured.http.ContentType;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -147,6 +146,7 @@ public class CommonFunctions {
 	 * This method used to Login with valid credentials
 	 * 
 	 * @author Sakthi-GWL
+	 * @author Harikrishna - RMITS
 	 * @throws InterruptedException
 	 */
 	public void validCommonLogin(String Username, String Password, String... Name) {
@@ -160,15 +160,14 @@ public class CommonFunctions {
 				webDB.sendTextToAnElement(CommonUiLocators.LoginPasswordTextBox, Password, ElementType.Xpath);
 				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 				if (flag) {
-					hardWait(2000);
-					webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
 					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath, 15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Retrying Login....");
-							webDB.doubleClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+							webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 							flag = webDB.waitForElement(CommonUiLocators.PageHeaderText, ElementType.Xpath);
 						}
 					}
@@ -176,11 +175,21 @@ public class CommonFunctions {
 			}
 		}
 		if (flag) {
-			if (Name.length > 0) {
-				logs.logging("INFO", "'" + Arrays.toString(Name) + "' User Logged In Successfully");
-
-			} else {
-				logs.logging("INFO", "User Logged In Successfully");
+			flag = webDB.waitForElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
+				flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
+				if (flag) {
+					String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName,
+							ElementType.Xpath);
+					if (Username.equals(GetTextUserName)) {
+						logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
+					} else {
+						flag = false;
+						logs.logging("INFO", "Some Other User Logged In  Expected user: " + Username + " but found: "
+								+ GetTextUserName);
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -335,12 +344,32 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			if (flag) {
-				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				flag = webDB.waitForElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
+					logs.logging("INFO", "Create PO Button is Displayed and Clicked");
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Purchase order Frame is Enabled");
+					}
+				}
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Navigates Open So Amd
+	 * 
+	 * @author Kowshik-RITS
+	 * @return
+	 */
+	public boolean navigatesOpenSoAmdScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("OpenSOScreen"), OpenSoAmdLocators.OpenSoAmdRadio);
+		return flag;
 	}
 
 	/**
@@ -585,7 +614,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Navigated to Sales Order Screen Sucessfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("SaleOrderScreen"), SalesOrderLocators.AddButtonSalesOrder);
+		navigateToSearchTab(webDB.getDataFromProperties("SaleOrderScreen"), SalesOrderLocators.SOSearchButton);
 
 	}
 
@@ -745,18 +774,13 @@ public class CommonFunctions {
 	 * @author Durai
 	 */
 	public void navigatePricelistPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickPricelistTransactionTab();
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.PricelistTab, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath, 45);
-			if (flag) {
-				logs.logging("INFO", "Pricelist clicked and navigated successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickPricelistTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("PRICELISTENTRY"), PricelistPageLocators.AddPriceList);
 		Assert.assertTrue(flag);
+		
 	}
 
 	/**
@@ -1183,20 +1207,12 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * Navigate To Material Request
+	 * This method is used to Navigate Material Request Screen
 	 * 
-	 * @author Deepan-GWL
+	 * @author Vimal - RMITS
 	 */
-	public void navigateToMaterialRequest() {
-		flag = webDB.waitForElement(CommonUiLocators.MaterialRequest, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.MaterialRequest, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Material Request Button Is Clicked");
-			}
-		}
-		Assert.assertTrue(flag);
+	public void navigateToMaterialRequestScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequest"), CommonUiLocators.MaterialReq_AddIcon);
 	}
 
 	/**
@@ -1772,20 +1788,14 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * This Method Is Used To Navigate To Subcontracting
+	 * This Method Is Used To Navigate To SubCntarct Order
 	 * 
-	 * @author Deepan-GWL
+	 * @author Vimal - RMITS
+	 * 
 	 */
-	public void navigateToSubcontracting() {
-		flag = webDB.waitForElement(CommonUiLocators.Subcontracting, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.Subcontracting, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.SubcontractingTransaction, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Subcontracting Tab Is Clicked");
-			}
-		}
-		Assert.assertTrue(flag);
+	public void navigateToSubcontractOrder() {
+		navigateToSearchTab(webDB.getDataFromProperties("SubcontractScreen"),
+				CommonUiLocators.Subcontract_Pending_Icon);
 	}
 
 	/**
@@ -1867,21 +1877,6 @@ public class CommonFunctions {
 	}
 
 	/**
-	 * This Method Is Used To Navigate To SubCntarct Order
-	 * 
-	 * @author Deepan-GWL
-	 * 
-	 */
-	public void navigateToSubContractOrder() {
-//		clickLeftNavigationBar();
-//		clickSupplyChainTab();
-//		navigateToSubcontracting();
-//		navigateToSubcontractingTransaction();
-//		navigateToSubcontractOrderTab();
-		navigateToSearchTab(webDB.getDataFromProperties("SubcontractOrder"), CommonUiLocators.PendingSubcontractOrder);
-	}
-
-	/**
 	 * This Method Is Used To Navigate To Grn Sco Tab
 	 * 
 	 * @author Deepan-GWL
@@ -1920,9 +1915,10 @@ public class CommonFunctions {
 	 */
 	public void navigateRfqPage() {
 		// clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickRfqTransactionTab();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickRfqTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("RFQ"), RfqLocators.PendBTN);
 	}
 
 	/**
@@ -2057,24 +2053,7 @@ public class CommonFunctions {
 	 * @author Vimal-RMITS
 	 */
 	public void navigateTogateEntry() {
-		clickSupplyChainTab();
-		flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryNode, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.GateEntryNode, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryTransaction, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SalesInvoiceLocators.GateEntryTransaction, ElementType.Xpath);
-				flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryInward, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(SalesInvoiceLocators.GateEntryInward, ElementType.Xpath);
-					flag = webDB.waitForElement(SalesInvoiceLocators.GateEntryPendingIcon, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "GateEntry Note Tab Clicked Successfully");
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
+		navigateToSearchTab(webDB.getDataFromProperties("GEScreen"), CommonUiLocators.GateEntryPendingIcon);
 	}
 
 	/**
@@ -2084,9 +2063,10 @@ public class CommonFunctions {
 	 */
 	public void navigateOpenPoOrderPage() {
 		// clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickOpenPoTransactionTab();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickOpenPoTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("OPENPO"), SsoPageLocators.OPORadioBtn);
 	}
 
 	/**
@@ -2119,9 +2099,10 @@ public class CommonFunctions {
 	 */
 	public void navigateSupplierScheduleOrderPage() {
 		// clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickSSOTransactionTab();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickSSOTransactionTab();
+		navigateToSearchTab(webDB.getDataFromProperties("PURCHASEORDER"), SsoPageLocators.SsoPendingBtnNew);
 	}
 
 	/**
@@ -2879,4 +2860,40 @@ public class CommonFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Navigate Customer Master Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateCustomerMasterScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("CustomerMaster"), SalesOrderLocators.CustomerMasterAddButton);
+	}
+
+	/**
+	 * This Method Is Used To Navigate Customer Master Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void navigateStockAdjustmentScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("StockAdjustment"), StockAdjustmentLocators.FindAddButton);
+	}
+
+	/**
+	 * Navigate To Production Screen
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToProductionOrderScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrder"), CommonUiLocators.CreateProdOrderAddIcon);
+
+	}
+
+	/**
+	 * Navigate To Open SCO Tab
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToOpenPriceSCO() {
+		navigateToSearchTab(webDB.getDataFromProperties("OpenscoScreen"), CommonUiLocators.Open_SCO_Find_AddIcon);
+	}
 }

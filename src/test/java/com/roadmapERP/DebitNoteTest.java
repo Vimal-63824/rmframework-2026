@@ -15,16 +15,16 @@ public class DebitNoteTest extends RoadMapERPTest {
 	static WebDriverBase webDB = new WebDriverBase();
 	static DebitNoteFunctions DebitNoteFunc = new DebitNoteFunctions();
 
-//	/**
-//	 * Create Debit Memo With  GRN (General)
-//	 * 
-//	 * @author Vimal - RMITS
-//	 */
-//	@Test(priority = 1, groups = { "DebitNote" }, description = "      381 - Create Debit Memo With  GRN (General)")
-//	public void CreateDebitMemoWithGRNGeneral() {
-//		flag = DebitNoteFunc.createDebitMemoWithGRNGeneral();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * Create Debit Memo With  GRN (General)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 1, groups = { "DebitNote" }, description = "      381 - Create Debit Memo With  GRN (General)")
+	public void CreateDebitMemoWithGRNGeneral() {
+		flag = DebitNoteFunc.createDebitMemoWithGRNGeneral();
+		Assert.assertTrue(flag);
+	}
 	/**
 	 * Create Debit Memo With  GRN (General)
 	 * 

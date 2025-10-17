@@ -213,6 +213,12 @@ public class VariableHandler {
 	private static ThreadLocal<String> LoanRequestDocNo = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultiMRVDocNumber = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultiMRVDocStatus = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> MultipleCSLineDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> HeaderCurrencyAfterSaveTheLine = new ThreadLocal<>();
+	private static ThreadLocal<String> StkAdjDocNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> oscdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> Revdocno = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOdocno = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1818,5 +1824,53 @@ public class VariableHandler {
 
 	public static void setMultiMRVDocStatus(ArrayList<String> data) {
 		MultiMRVDocStatus.set(data);
+	}
+
+	public static ArrayList<String> getMultipleCSLineDocs() {
+		return MultipleCSLineDocs.get();
+	}
+
+	public static void setMultipleCSLineDocs(ArrayList<String> data) {
+		MultipleCSLineDocs.set(data);
+	}
+
+	public static String getHeaderCurrencyAfterSaveTheLine() {
+		return HeaderCurrencyAfterSaveTheLine.get();
+	}
+
+	public static void setHeaderCurrencyAfterSaveTheLine(String data) {
+		HeaderCurrencyAfterSaveTheLine.set(data);
+	}
+
+	public static String getStkAdjDocNumber() {
+		return StkAdjDocNumber.get();
+	}
+
+	public static void setStkAdjDocNumber(String data) {
+		StkAdjDocNumber.set(data);
+	}
+
+	public static String getoscdocno() {
+		return oscdocno.get();
+	}
+
+	public static void setoscdocno(String data) {
+		oscdocno.set(data);
+	}
+
+	public static String getRevdocno() {
+		return Revdocno.get();
+	}
+
+	public static void setRevdocno(String data) {
+		Revdocno.set(data);
+	}
+
+	public static String getSCOdocno() {
+		return SCOdocno.get();
+	}
+
+	public static void setSCOdocno(String data) {
+		SCOdocno.set(data);
 	}
 }

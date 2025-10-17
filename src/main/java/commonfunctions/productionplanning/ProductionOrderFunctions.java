@@ -1160,7 +1160,7 @@ public class ProductionOrderFunctions {
 			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -1180,7 +1180,7 @@ public class ProductionOrderFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
-					commonFunc.navigateToSubContractOrder();
+					commonFunc.navigateToSubcontractOrder();
 				}
 				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -1448,7 +1448,7 @@ public class ProductionOrderFunctions {
 			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -1468,7 +1468,7 @@ public class ProductionOrderFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
-					commonFunc.navigateToSubContractOrder();
+					commonFunc.navigateToSubcontractOrder();
 				}
 				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -1746,7 +1746,7 @@ public class ProductionOrderFunctions {
 			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -1766,7 +1766,7 @@ public class ProductionOrderFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
-					commonFunc.navigateToSubContractOrder();
+					commonFunc.navigateToSubcontractOrder();
 				}
 				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2465,7 +2465,7 @@ public class ProductionOrderFunctions {
 			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 				subContractOrderFunc.verifySearchPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 				subContractOrderFunc.verifyQueueQuantityForSubcontract(
 						VariableHandler.getProductionProcessType().get(currentProcess));
@@ -2489,7 +2489,7 @@ public class ProductionOrderFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
-					commonFunc.navigateToSubContractOrder();
+					commonFunc.navigateToSubcontractOrder();
 				}
 				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4200,7 +4200,7 @@ public class ProductionOrderFunctions {
 			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -4220,7 +4220,7 @@ public class ProductionOrderFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
-					commonFunc.navigateToSubContractOrder();
+					commonFunc.navigateToSubcontractOrder();
 				}
 				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4458,7 +4458,7 @@ public class ProductionOrderFunctions {
 			} else if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("Outside"))) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
-				commonFunc.navigateToSubContractOrder();
+				commonFunc.navigateToSubcontractOrder();
 				subContractOrderFunc.verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 				subContractOrderFunc.verifyHeaderValidation(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -4478,7 +4478,7 @@ public class ProductionOrderFunctions {
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 							"TvsUsername");
-					commonFunc.navigateToSubContractOrder();
+					commonFunc.navigateToSubcontractOrder();
 				}
 				subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -5449,5 +5449,40 @@ public class ProductionOrderFunctions {
 					"Exception occurs while executing 'verifyProdOrderWithoutSOAllInsideOperCQCQMoveTypeItem': " + e);
 			return false;
 		}
+	}
+	/**
+	 * Verify forwardForApproval for Production
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void forwardForApproval() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(ProductionOrderLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(ProductionOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.ForwardApprovalLov,
+					commonFunc.getDataFromTestDataSheet("SI_HOD"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(ProductionOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(ProductionOrderLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(ProductionOrderLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(ProductionOrderLocators.CreateProdOrderAddIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To PO Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
+		}
+		assertTrue(flag);
 	}
 }

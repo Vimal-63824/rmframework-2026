@@ -294,17 +294,17 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String Sales_Inv_Pend_Btn = "//button[@data-testid='SALES INVOICE PENDING ICON']";
 	/** @locatorType XPATH */
-	public static final String DebitNote_Add_Icon = "//button[@id='B1012787680560179762']";
+	public static final String DebitNote_Add_Icon = "//button[@data-testid='Add_Debit_Note']";
 	/** @locatorType XPATH */
 	public static final String Proforma_FindPage_Add_Btn = "//button[contains(@id,'B2133960405315551418')]";
 	/** @Locator XPATH */
-	public static final String GateEntryPendingIcon = "//button[@id='B1166918765449991606']";
+	public static final String GateEntryPendingIcon = "//button[@data-testid='Create_GE']";
 	/** @Locator XPATH */
-	public static final String CreditNote_Pending_Icon = "//button[@id='B1779749669062514607']";
+	public static final String CreditNote_Pending_Icon = "//button[@data-testid='Create_Sales_Return']";
 	/** @Locator XPATH */
-	public static final String Rework_Pending_Icon = "//button[@id='B1256995407744376701']";
+	public static final String Rework_Pending_Icon = "//button[@data-testid='Rework_Pending_Icon']";
 	/** @Locator XPATH */
-	public static final String ReworkOrd_Completion_Pend_Icon = "//button[@id='B1256998966041376736']";
+	public static final String ReworkOrd_Completion_Pend_Icon = "//button[@data-testid='RWC_Pend_Btn']";
 	/** @Locator XPATH */
 	public static final String FindScreenItemField = "//input[@id='P3670200_ITEM_1']";
 	/** @Locator XPATH */
@@ -361,4 +361,29 @@ public class CommonUiLocators {
 	public static final String ClearFindFilterIcon = "//button[@aria-label='Clear'] | //button[@aria-label='clear']";
 	/** @locatorType Xpath */
 	public static final String ToastErrorMsg = "//div[contains(@class,'a-Notification--error')]";
+	/** @locatorType CSS Selector */
+	public static final String ProfileIcon = "#t_Header > div > img";
+	/** @locatorType Xpath */
+	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
+	public static final String QualityTab="//label[text()='Quality']" ;
+	/** @locatorType Xpath */
+	public static final String TypeDropDown= "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']" ;
+	/** @locatorType Xpath */
+	public static final String CreatePORadioButton = "//button[@id='B927512421169129619']";
+	/** @Locator XPATH */
+	public static final String Open_SCO_Find_AddIcon = "//button[@id='B1629410608331693435']";
+	/** @Locator XPATH */
+	public static final String OP_Find_DocNO = "//input[@data-testid='P193151010_FIND_PO_NO']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String SubcontractFindAddIcon = "//button[@data-testid='Add']";
+	/** @Locator XPATH */
+	public static final String Subcontract_Pending_Icon = "//button[@data-testid='Create_SCO']";
+	/** @Locator XPATH */
+	public static final String MaterialReq_AddIcon = "//button[@data-testid='Add_MR']";
+	/** @Locator XPATH */
+	public static final String GRNSCO_Pending_Icon = "//button[@data-testid='Pending_PO_SCO']";
+	/** @locatorType XPATH */
+	public static final String CreateProdOrderAddIcon = "//button[@data-testid='CreateProdOrderAddIcon']";
+	/** @locatorType XPATH */
+	public static final String WorkAppoval_OkBtn_SCO = "//button[@data-testid='Entry']";
 }

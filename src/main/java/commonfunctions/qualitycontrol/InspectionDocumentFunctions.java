@@ -19,6 +19,7 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
+import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
@@ -351,7 +352,179 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyAttributeTabClicking() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.InspAttrTabBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.InspAttrTabBtn, ElementType.Xpath);
+			logs.logging("INFO", "Attribute Tab Button Is Clicked");
+			if (webDB.waitForElementUntilGivenTime(DirectGrnPageLocators.InspAttrSpecField, ElementType.Xpath, 20)) {
+				verifyEnteringAttributeVAlue();
+			} else if (webDB.waitForElement(DirectGrnPageLocators.AttrNoDataFound, ElementType.Xpath)) {
+				flag = webDB.waitForElement(DirectGrnPageLocators.AttrNoDataFound, ElementType.Xpath);
+				String NoData = webDB.getTextFromElement(DirectGrnPageLocators.AttrNoDataFound, ElementType.Xpath);
+				logs.logging("INFO", "Get Text Document Is:" + NoData);
+				flag = webDB.waitForElement(DirectGrnPageLocators.InspTextTab, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Text Tab Is Clicked");
+				}
 
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyEnteringAttributeVAlue() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.InspAttrSpecField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.InspAttrSpecField, ElementType.Xpath);
+			webDB.doubleClickAnElement(DirectGrnPageLocators.InspAttrSpecField, ElementType.Xpath);
+			logs.logging("INFO", "Attribute Tab Is Clicked");
+
+			flag = webDB.waitForElement(DirectGrnPageLocators.InspAttrSpecLov, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.InspAttrSpecLov, "RUBBER TYPE");
+				flag = webDB.waitForElement(DirectGrnPageLocators.InspAttrSave, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.InspAttrSave, ElementType.Xpath);
+					logs.logging("INFO", "Document Saved Successfully");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyTextTabClicking() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.InspTextTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.InspTextTab, ElementType.Xpath);
+			logs.logging("INFO", "Text Tab Button Is Clicked");
+			if (webDB.waitForElementUntilGivenTime(DirectGrnPageLocators.InspTextField, ElementType.Xpath, 20)) {
+				verifyEnteringTextVAlue();
+			} else if (webDB.waitForElement(DirectGrnPageLocators.TextNoDataFound, ElementType.Xpath)) {
+				flag = webDB.waitForElement(DirectGrnPageLocators.TextNoDataFound, ElementType.Xpath);
+				String NoData = webDB.getTextFromElement(DirectGrnPageLocators.TextNoDataFound, ElementType.Xpath);
+				logs.logging("INFO", "Get Text Document Is:" + NoData);
+				flag = webDB.waitForElement(DirectGrnPageLocators.OverallSave, ElementType.Xpath);
+				logs.logging("INFO", "Overall Save Is Clicked");
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyEnteringTextVAlue() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.InspTextField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.InspTextField, ElementType.Xpath);
+			webDB.doubleClickAnElement(DirectGrnPageLocators.InspTextField, ElementType.Xpath);
+			webDB.sendTextToAnElement(DirectGrnPageLocators.InspTextInput, "YELLOW", ElementType.Xpath);
+			logs.logging("INFO", "Text Is Entered");
+			flag = webDB.waitForElement(DirectGrnPageLocators.InspTextSave, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(DirectGrnPageLocators.InspTextSave, ElementType.Xpath);
+				logs.logging("INFO", "Document Saved Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyRejectQuanityDefect(String Defect) {
+		flag = webDB.waitForElement(DirectGrnPageLocators.RejectQty, ElementType.Xpath);
+		if (flag) {
+			String RejectQty = webDB.getDomPropertyFromElement(DirectGrnPageLocators.RejectQty, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Reject Quantity Is:" + RejectQty);
+			if (!RejectQty.equals(commonFunc.getDataFromTestDataSheet("Reject_Qty"))) {
+
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+					logs.logging("INFO", "Overall Save Is clicked");
+					flag = webDB.waitForElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
+						logs.logging("INFO", "Defect Tab Is Clicked");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
+							logs.logging("INFO", "Add Button Is Clicked");
+							flag = webDB.waitForElement(DirectGrnPageLocators.DefectField, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.DefectField, ElementType.Xpath);
+								logs.logging("INFO", "Defect Field Is Clicked");
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.DefectLov, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.DefectLov, ElementType.Xpath);
+									commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.DefectLov, Defect);
+									logs.logging("INFO", "Entered Defect Is:" + Defect);
+									flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyField,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
+
+										flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyInput,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clearText(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
+											webDB.sendTextToAnElement(DirectGrnPageLocators.DefectQtyInput, RejectQty,
+													ElementType.Xpath);
+											logs.logging("INFO", "Reject Quantity Is Entered:" + RejectQty);
+											flag = webDB.waitForElement(DirectGrnPageLocators.DefectPrimaryQty,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.clickAnElement(DirectGrnPageLocators.DefectPrimaryQty,
+														ElementType.Xpath);
+												logs.logging("INFO", "Primary Reject Field Is Clicked");
+
+												flag = webDB.waitForElement(DirectGrnPageLocators.DefectSave,
+														ElementType.Xpath);
+												if (flag) {
+													webDB.clickAnElement(DirectGrnPageLocators.DefectSave,
+															ElementType.Xpath);
+													logs.logging("INFO", "Line Is Saved");
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			} else {
+				flag = webDB.waitForClickElement(InspectionDocumentsLocators.HeaderPostIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Post Button Is Verified");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 	/**
 	 * This Methods Is Used To Get Inspection Document Number from Toast Message
 	 * 

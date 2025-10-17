@@ -38,6 +38,7 @@ import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
+import commonlocators.supplychainmanagement.SalesPriceListLocators;
 import commonlocators.supplychainmanagement.SalesStandardPriceLocators;
 import groovyjarjarantlr4.v4.parse.ANTLRParser.element_return;
 import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
@@ -107,7 +108,6 @@ public class SalesStandardPriceFunctions {
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
 		insertLandingCost(Landing_Cost);
-//		insertMinDisc(Min_Disc_Value);
 		insertMaxDisc(Max_Disc_Value);
 		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		clickSaveButton();
@@ -158,7 +158,6 @@ public class SalesStandardPriceFunctions {
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
 		insertLandingCost(Landing_Cost);
-//		insertMinDisc(Min_Disc_Value);
 		insertMaxDisc(Max_Disc_Value);
 		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		clickSaveButton();
@@ -209,7 +208,6 @@ public class SalesStandardPriceFunctions {
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
 		insertLandingCost(Landing_Cost);
-//		insertMinDisc(Min_Disc_Value);
 		insertMaxDisc(Max_Disc_Value);
 		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		clickSaveButton();
@@ -259,7 +257,6 @@ public class SalesStandardPriceFunctions {
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
 		insertLandingCost(Landing_Cost);
-//		insertMinDisc(Min_Disc_Value);
 		insertMaxDisc(Max_Disc_Value);
 		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		clickSaveButton();
@@ -310,12 +307,13 @@ public class SalesStandardPriceFunctions {
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
 		insertLandingCost(Landing_Cost);
-//		insertMinDisc(Min_Disc_Value);
 		insertMaxDisc(Max_Disc_Value);
 		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		clickSaveButton();
 		StdPriceDbValidation();
 		clickCancelButton();
+		clickSearchInStandardPrice();
+		takenStandardPriceRecordInFindPage();
 		commonFunc.logoutUser();
 
 	}
@@ -337,7 +335,6 @@ public class SalesStandardPriceFunctions {
 	 */
 	public void createsMultiplesItemStdPriceDifferentPriceClass() {
 		createsMultipesItemDifferPriceClassWithCustomerItems(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		toInsertCustomerItems();
 		commonFunc.logoutUser();
 
 	}
@@ -355,6 +352,47 @@ public class SalesStandardPriceFunctions {
 			if (flag) {
 				logs.logging("INFO", "Click Cancel Item Successfully");
 			}
+		}
+		assertTrue(flag);
+	}
+	/**Click a Search Button In Std Price 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickSearchInStandardPrice() {
+		flag =webDB.waitForElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+		if(flag) {
+			webDB.moveToElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "Sucessfully Clicked a Search Button");
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**Taken Standard Price Item In Find Page
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void takenStandardPriceRecordInFindPage() {
+		flag = webDB.waitForElement(SalesPriceListLocators.PriceListFlagFindPage, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesPriceListLocators.PriceListFlagFindPage, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
+			if(flag) {
+				webDB.clickAnElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesStandardPriceLocators.ItemInputField, ElementType.Xpath);
+				if(flag) {
+					webDB.sendTextToAnElement(SalesStandardPriceLocators.ItemInputField,
+							VariableHandler.getItemName() , ElementType.Xpath);
+					flag = webDB.waitForElement(SalesStandardPriceLocators.SearchFindPage, ElementType.Xpath);
+					if(flag) {
+						webDB.clickAnElement(SalesStandardPriceLocators.SearchFindPage, ElementType.Xpath);
+					}
+				}
+			}
+			
 		}
 		assertTrue(flag);
 	}
@@ -440,7 +478,7 @@ public class SalesStandardPriceFunctions {
 
 		flag = webDB.waitForElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
+			//webDB.clickAnElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesStandardPriceLocators.CurcyLov, CatalogueCurcy);
 			webDB.pressTabKey();
 			webDB.waitForElement(SalesStandardPriceLocators.MapPriceField, ElementType.Xpath);
@@ -460,13 +498,10 @@ public class SalesStandardPriceFunctions {
 	public void insertMapPriceStdPrice(String Map_Value) {
 		webDB.waitForElement(SalesStandardPriceLocators.MapPriceField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.MapPriceField, ElementType.Xpath);
 			webDB.doubleClickAnElement(SalesStandardPriceLocators.MapPriceField, ElementType.Xpath);
-
 			webDB.waitForElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
-				webDB.clickAnElement(SalesStandardPriceLocators.MapPriceInput, ElementType.Xpath);
 				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MapPriceField(2),
 						SalesStandardPriceLocators.MapPriceInput, Map_Value);
 				if (flag) {
@@ -487,7 +522,6 @@ public class SalesStandardPriceFunctions {
 		webDB.waitForElement(SalesStandardPriceLocators.LandingCostField(2), ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.LandingCostInput, ElementType.Xpath);
-			webDB.clickAnElement(SalesStandardPriceLocators.LandingCostInput, ElementType.Xpath);
 			verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.LandingCostField(2),
 					SalesStandardPriceLocators.LandingCostInput, Landing_Cost);
 			if (flag) {
@@ -566,13 +600,10 @@ public class SalesStandardPriceFunctions {
 	public void insertMaxDisc(String Max_Disc_Value) {
 		flag = webDB.waitForElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
 			webDB.doubleClickAnElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
-
 			flag = webDB.waitForElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
-				webDB.clickAnElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
+				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);			
 				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MaxDiscField,
 						SalesStandardPriceLocators.MaxDiscInput, Max_Disc_Value);
 				if (flag) {
@@ -597,7 +628,7 @@ public class SalesStandardPriceFunctions {
 			commonFunc.searchAndSelectValueInFilters(SalesStandardPriceLocators.PriceClassLov, priceClassName);
 			webDB.waitForElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", " Successfully Inserted a Curcy Field " + priceClassName);
+				logs.logging("INFO", " Successfully Inserted a Price Class Field " + priceClassName);
 			}
 		}
 		assertTrue(flag);
@@ -609,10 +640,10 @@ public class SalesStandardPriceFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickSaveButton() {
-
 		flag = webDB.waitForElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
+			webDB.moveToElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
 			if (flag) {
 				logs.logging("INFO", "Successfully Saved a Record ");
@@ -653,7 +684,6 @@ public class SalesStandardPriceFunctions {
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
-
 		assertTrue(flag);
 	}
 
@@ -676,6 +706,7 @@ public class SalesStandardPriceFunctions {
 
 		assertTrue(flag);
 	}
+	
 
 	/**
 	 * Verify Genrate Item
@@ -731,7 +762,8 @@ public class SalesStandardPriceFunctions {
 						cusItems.clickSearchButton();
 						cusItems.searchedItem();
 						cusItems.customerAssoFlag();
-						cusItems.clickedActiveButton();
+						cusItems.changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+						cusItems.clickSaveButton();
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
 
@@ -746,14 +778,9 @@ public class SalesStandardPriceFunctions {
 						cusItems.priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 						cusItems.priceBasisSelectInCustomerItems(
 								commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-
-						cusItems.saveButtoninCustomerItems();
-
-						commonFunc.hardWait(3000);
-						cusItems.filltersaItemCustomerItems();
 						commonFunc.hardWait(3000);
 						commonFunc.checkRefreshCellsDisappear();
-						cusItems.clickDefaltFlag();
+						cusItems.clickDefaltFlag2();
 						cusItems.saveButtoninCustomerItems();
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
@@ -770,12 +797,12 @@ public class SalesStandardPriceFunctions {
 						insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 						insertMapPriceStdPrice(Map_Value);
 						insertLandingCost(Landing_Cost);
-//						insertMinDisc(Min_Disc_Value);
 						insertMaxDisc(Max_Disc_Value);
 						insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
 						clickSaveButton();
 						StdPriceDbValidation();
 						clickActiveButton();
+						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
 
@@ -929,10 +956,10 @@ public class SalesStandardPriceFunctions {
 		System.out.println(GeneratedItem.size());
 		for (int j = 1; j <= GeneratedItem.size(); j++) {
 			ExcelUtils excelUtils = new ExcelUtils();
-			String SheetName1 = "Items";
+			String SheetName2 = "Items";
 			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 					+ "PR_ITEMS.xlsx";
-			excelUtils.writeDataInExcel(Filepath, SheetName1, j, 0, GeneratedItem.get(j - 1));
+			excelUtils.writeDataInExcel(Filepath, SheetName2, j, 0, GeneratedItem.get(j - 1));
 
 		}
 	}
@@ -943,7 +970,6 @@ public class SalesStandardPriceFunctions {
 	 * @author Kowshik-RMITS
 	 * @param Itm
 	 */
-
 	public void verifyGenerateItemSim2(String Itm) {
 
 		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
@@ -976,19 +1002,24 @@ public class SalesStandardPriceFunctions {
 						verifyItemPost(VariableHandler.getItemName());
 
 						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
 								System.getProperty("TvsPassword"), "HodUsername");
-						// item Asoo
+						// item Asso
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 						cusItems.searchItemInFindPage();
 						cusItems.clickSearchButton();
 						cusItems.searchedItem();
 						cusItems.customerAssoFlag();
-						cusItems.clickedActiveButton();
+						cusItems.changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+						cusItems.clickSaveButton();
+						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
+						commonFunc.hardWait(2000);
 						commonFunc.checkRefreshCellsDisappear();
+						
 					}
 				}
 			}
@@ -1010,18 +1041,13 @@ public class SalesStandardPriceFunctions {
 		commonFunc.navigateCustomerItemScreen();
 		cusItems.addPLusButton();
 		cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
-		// cusItems.addPlusInCustomerItem();
-		// cusItems.insertIteminCustomerItemsAfterCustomerAssoFlag();
+		cusItems.addPlusInCustomerItem();
+		cusItems.insertIteminCustomerItemsAfterCustomerAssoFlag();
 		cusItems.priceClassSelect();
 		cusItems.priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-
-		cusItems.saveButtoninCustomerItems();
-
-		commonFunc.hardWait(3000);
-		cusItems.filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		cusItems.clickDefaltFlag();
+		cusItems.clickDefaltFlag2();
 		cusItems.saveButtoninCustomerItems();
 		commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();

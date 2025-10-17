@@ -30,14 +30,615 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class AttendanceLeaveFunctions {
-	boolean flag = false;
+	private static boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private CommonFunctions commonFunc = new CommonFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
-	private static CommonPayrollFunctions commonPayrollFunctions = new CommonPayrollFunctions();
-	private static ExcelUtils excelUtils = new ExcelUtils();
-	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
+	public CommonPayrollFunctions commonPayrollFunctions = new CommonPayrollFunctions();
+	public EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
+	public ExcelUtils excelUtils = new ExcelUtils();
+
+	/**
+	 * This method is used to To Check Permission based on Employee Data
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean verifyCheckpermissionEntryWithEmployeeData() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateLeaveEncashmentScreen();
+			addPermissionEntry();
+			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+			checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
+			permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
+					commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
+					commonFunc.getDataFromTestDataSheet("PermissionReference"));
+			permissionSaveAndForwardDocument();
+			verifyWaitingForApproval();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateLeaveEncashmentScreen();
+			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
+			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(true);
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while Executing 'verifyCheckpermissionEntryWithEmployeeData' method: " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method is used to To Check On-Duty based On Employee Data
+	 * 
+	 * @author Kishore-RMITS
+	 * @return
+	 */
+	public boolean verifyCheckOnDutyEntrWithEmployeeData() {
+		try {
+			if (!VariableHandler.getCheckEmployeeDataPermissionDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
+				commonFunc.navigateLeaveEncashmentScreen();
+				addPermissionEntry();
+				permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+				checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
+				permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
+						commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
+						commonFunc.getDataFromTestDataSheet("PermissionReference"));
+				permissionSaveAndForwardDocument();
+				verifyWaitingForApproval();
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"));
+				approvalFunc.navigateToApprovals();
+				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
+				commonFunc.navigateLeaveEncashmentScreen();
+				PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
+			}
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateLeaveEncashmentScreen();
+			addPermissionEntry();
+			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+			permissionSelctType(commonFunc.getDataFromTestDataSheet("PermissionType"));
+			checkOnDutyBasedonDateWise(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
+			permissionReference(commonFunc.getDataFromTestDataSheet("PermissionReference"));
+			permissionSaveAndForwardDocument();
+			verifyWaitingForApproval();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateLeaveEncashmentScreen();
+			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+					commonFunc.getDataFromTestDataSheet("OnDutyFindType"));
+			return true;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while Executing 'verifyCheckOnDutyEntrWithEmployeeData' method: " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method is used to for search permission find page with all fields and
+	 * Verify the Permission Report
+	 * 
+	 * @param Employee
+	 * @param PermissionFindType
+	 * @author Kishore-RMITS
+	 */
+	public void checkPermissionreportfetchesvaluescorrectly(String EmployeeDurai, String PermissionFindType) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, EmployeeDurai);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+				ElementType.Xpath);
+		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+					PermissionFindType, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Permission Type is" + PermissionFindType);
+				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Permission Document is Clicked");
+						webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Permission Document is Reversed");
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(5000);
+								webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionEntryFindButton,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "On-Duty Entry Add Button Clicked");
+									webDB.clickAnElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton,
+											ElementType.Xpath);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used to select Employee in find page LOV and all datas verify
+	 * reports
+	 * 
+	 * @param Employee
+	 * @param OnDutyFindType
+	 * @author Kishore-RMITS
+	 */
+	public void checkOnDutyreportfetchesvaluescorrectly(String EmployeeDurai, String OnDutyFindType) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, EmployeeDurai);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+				ElementType.Xpath);
+		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+					OnDutyFindType, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Type selected is" + OnDutyFindType);
+				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "On-Duty Document is Clicked");
+						webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "On-Duty Document is Reversed");
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+							commonFunc.hardWait(5000);
+							flag = commonFunc.logoutUser();
+
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used to Check Permission entry document to forward to approval
+	 * user
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean checkPermissionOnDutybasedonFowardtoApprovalReord() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateLeaveEncashmentScreen();
+		addPermissionEntry();
+		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
+		permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
+				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
+				commonFunc.getDataFromTestDataSheet("PermissionReference"));
+		permissionSaveAndForwardDocument();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateLeaveEncashmentScreen();
+			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Return the Permission Document from Approval to
+	 * Request User return process.
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean checkPermissionOnDutyBasedOnReturnToRequestRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateLeaveEncashmentScreen();
+		addPermissionEntry();
+		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
+		permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
+				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
+				commonFunc.getDataFromTestDataSheet("PermissionReference"));
+		permissionSaveAndForwardDocument();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+			verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+						System.getProperty("HRMRequestPassword"));
+				approvalFunc.navigateToApprovals();
+				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+				verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
+				commonFunc.navigateLeaveEncashmentScreen();
+				PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Check Leave Encashment Based On RequestDate
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckLeaveEncashmentbasedonRequestDate() {
+		{
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
+			commonFunc.navigateLeaveEncashmentScreen();
+			EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
+			EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+			EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
+			EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
+					commonFunc.getDataFromTestDataSheet("EncashReasonField"));
+			EncashmentForward();
+			verifyWaitingForApproval();
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"));
+				approvalFunc.navigateToApprovals();
+				filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEncashmentDocNo());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
+				commonFunc.navigateLeaveEncashmentScreen();
+				CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
+				CheckLeaveEncashmentBasedOnEncashInPayroll();
+				CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Forward The Encashment Document to Approval Person
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckLeaveEncashmentBasedOnForwardToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateLeaveEncashmentScreen();
+		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
+		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
+		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
+				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
+		EncashmentForward();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEncashmentDocNo());
+			flag = commonFunc.logoutUser();
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Return The Encashment Document to the Request User
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckLeaveEncashmentBasedOnReturnToRequestRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateLeaveEncashmentScreen();
+		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
+		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
+		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
+				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
+		EncashmentForward();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
+			verifyReturnWithDocNumber(VariableHandler.getEncashmentDocNo());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+						System.getProperty("HRMRequestPassword"));
+				approvalFunc.navigateToApprovals();
+				filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
+				verifyReturnWithDocNumber(VariableHandler.getEncashmentDocNo());
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Comp-Off Entry based on Leave Types
+	 *
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckCompOffEntryBasedOnLeaveTypes() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateLeaveEncashmentScreen();
+		CompOffEntry();
+		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		checkCompOffBasedonDatewise(commonFunc.getDataFromTestDataSheet("PermFromDate2"),
+				commonFunc.getDataFromTestDataSheet("CompOffDays"),
+				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
+		CompOffEntrySaveAndPostDocument();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCompOffDocNo());
+			flag = commonFunc.logoutUser();
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Return The CompOff Document to the Request User Return
+	 * Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckCompOffBasedOnReturnToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateLeaveEncashmentScreen();
+		CompOffEntry();
+		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		checkCompOffBasedonDatewise(commonFunc.getDataFromTestDataSheet("PermFromDate2"),
+				commonFunc.getDataFromTestDataSheet("CompOffDays"),
+				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
+		CompOffEntrySaveAndPostDocument();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"));
+			approvalFunc.navigateToApprovals();
+			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
+			verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
+			flag = commonFunc.logoutUser();
+			if (flag) {
+				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
+						System.getProperty("HRMRequestPassword"));
+				approvalFunc.navigateToApprovals();
+				filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
+				verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
+				CheckCompOffFindPageWithAllLineWiseRecord(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Find the Line Wise Record
+	 * 
+	 * @author Kishore-RMITS
+	 * @param EmployeeDurai
+	 */
+	public boolean CheckCompOffFindPageWithAllLineWiseRecord(String EmployeeDurai) {
+		commonFunc.navigateLeaveEncashmentScreen();
+		flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CompOff Button is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindEmployeeLOV, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.CompOffFindEmployeeLOV,
+							EmployeeDurai);
+					if (flag) {
+						logs.logging("INFO", "CompOff Employee Is Selected");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageSearchButton,
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageSearchButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Search Button is Clicked");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageClearButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageClearButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Clear Button is Clicked");
+										commonFunc.hardWait(2000);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This method is used to Check Leave Encashment Report Fetches Values Correctly
+	 * 
+	 * @param EmployeeDurai
+	 * @author Kishore-RMITS
+	 */
+	public void CheckLeaveEncashmentReportFetchesValuesCorrectly(String EmployeeDurai) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, EmployeeDurai);
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used to Reverse The Permission Document
+	 * 
+	 * @author Kishore-RMITS
+	 * @param EmployeeDurai
+	 * @param PermissionFindType
+	 */
+	public void PermissionForwardApprovalReverse(String EmployeeDurai, String PermissionFindType) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			logs.logging("INFO", "Permission Button Is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
+					EmployeeDurai);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+					ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+						PermissionFindType, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Permission Type is" + PermissionFindType);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+							ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Permission Document Is Clicked");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
+						commonFunc.hardWait(3000);
+						webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Permission Document is Reversed");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
+							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+							if (flag) {
+								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
+								}
+								flag = commonFunc.logoutUser();
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used to Cancel The Permission Document
+	 * 
+	 * @author Kishore-RMITS
+	 * @param PermissionFindType
+	 * @param EmployeeDurai
+	 */
+	public void PermissionDocumentCancel(String EmployeeDurai, String PermissionFindType) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			logs.logging("INFO", "Permission Button Is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
+						EmployeeDurai);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
+						ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.selectDropDownByText(
+							AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField, PermissionFindType,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Permission Type is" + PermissionFindType);
+						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(4000);
+							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+									ElementType.Xpath);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Permission Document is Clicked");
+								webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton, ElementType.Xpath);
+								commonFunc.hardWait(5000);
+								logs.logging("INFO", "Permission Document is Cancelled");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * This method is used to add PermissionEntry
@@ -63,13 +664,41 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
+	 * This method is used to Click
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void PermissionButton() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			webDB.waitForElement(AttendanceLeaveLocators.EmpoloyeeFindPermissionAddButton, ElementType.Xpath);
+			logs.logging("INFO", "Permission Button Is Clicked");
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * This method is used Select permission Employee LOVEntry
 	 * 
 	 * @param Employee
 	 * @author Kishore-RMITS
 	 */
 	public void permissionEmployeeLOVEntry(String Employee) {
+
 		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionEmployeeLOV, Employee);
+	}
+
+	/**
+	 * This method is used Select CompOff Employee LOVEntry
+	 * 
+	 * @param Employee
+	 * @author Kishore-RMITS
+	 */
+	public void compOffEmployeeLOVEntry(String EmployeeDurai) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.CompOffEmployeeLOV, EmployeeDurai);
 	}
 
 	/**
@@ -218,105 +847,44 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
-	 * This method is used to To Check Permission based on Employee Data
+	 * This method is used to Forward the permission Document
 	 * 
 	 * @author Kishore-RMITS
-	 * @return boolean flag
 	 */
-	public boolean verifyCheckpermissionEntryWithEmployeeData() {
-		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			addPermissionEntry();
-			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-			checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-			permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
-					commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
-					commonFunc.getDataFromTestDataSheet("PermissionReference"));
-			permissionSaveAndForwardDocument();
-			verifyWaitingForApproval();
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(true);
-			return true;
-		} catch (Exception e) {
-			logs.logging("INFO",
-					"Exception occur while Executing 'verifyCheckpermissionEntryWithEmployeeData' method: " + e);
-			return false;
+	public void permissionSaveAndForwardDocument() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
+				webDB.waitForElement(AttendanceLeaveLocators.PermissionDocumentNo, ElementType.Xpath);
+				String PermssionDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.PermissionDocumentNo,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				VariableHandler.setPermssionDocNo(PermssionDocNo);
+				logs.logging("info", "Permssion No is:" + VariableHandler.getPermissionDocNo());
+				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
+				logs.logging("INFO", "Permission Entry is Saved");
+				if (flag) {
+					commonFunc.hardWait(3000);
+					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
+					logs.logging("INFO", "Post Button Is Clicked Sucessfully");
+				}
+			}
 		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
-	 * This method is used to To Check On-Duty based On Employee Data
+	 * This method is used to Forward the permission Document
 	 * 
 	 * @author Kishore-RMITS
-	 * @return boolean flag
 	 */
-	public boolean verifyCheckOnDutyEntrWithEmployeeData() {
-		try {
-			if (!VariableHandler.getCheckEmployeeDataPermissionDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
-				commonFunc.navigateLeaveEncashmentScreen();
-				addPermissionEntry();
-				permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-				checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-				permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
-						commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
-						commonFunc.getDataFromTestDataSheet("PermissionReference"));
-				permissionSaveAndForwardDocument();
-				verifyWaitingForApproval();
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
-				commonFunc.navigateLeaveEncashmentScreen();
-				PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			addPermissionEntry();
-			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-			permissionSelctType(commonFunc.getDataFromTestDataSheet("PermissionType"));
-			checkOnDutyBasedonDateWise(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-			permissionReference(commonFunc.getDataFromTestDataSheet("PermissionReference"));
-			permissionSaveAndForwardDocument();
-			verifyWaitingForApproval();
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-					commonFunc.getDataFromTestDataSheet("OnDutyFindType"));
-			return true;
-		} catch (Exception e) {
-			logs.logging("INFO",
-					"Exception occur while Executing 'verifyCheckOnDutyEntrWithEmployeeData' method: " + e);
-			return false;
+	public void permissionReverseDocument() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
 		}
 	}
 
@@ -339,65 +907,6 @@ public class AttendanceLeaveFunctions {
 				webDB.clickAnElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
-			}
-		}
-		webDB.switchToDefaultContent();
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Reverse The Permission Document
-	 * 
-	 * @author Kishore-RMITS
-	 * @param EmployeeDurai
-	 * @param PermissionFindType
-	 */
-	public void PermissionForwardApprovalReverse(String EmployeeDurai, String PermissionFindType) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			logs.logging("INFO", "Permission Button Is Clicked");
-			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
-					EmployeeDurai);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
-					ElementType.Xpath);
-			if (flag) {
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.selectDropDownByText(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
-						PermissionFindType, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Permission Type is" + PermissionFindType);
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-							ElementType.Xpath);
-					if (flag) {
-						commonFunc.hardWait(2000);
-						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Permission Document is Clicked");
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
-							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Permission Document is Reversed");
-								webDB.clickAnElement(AttendanceLeaveLocators.PermissionReverseOk, ElementType.Xpath);
-								flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-								if (flag) {
-									if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
-											ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath);
-									}
-									flag = commonFunc.logoutUser();
-								}
-							}
-						}
-					}
-				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -431,113 +940,6 @@ public class AttendanceLeaveFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Forward the permission Document
-	 * 
-	 * @author Kishore-RMITS
-	 */
-	public void permissionSaveAndForwardDocument() {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionSaveButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-			if (flag) {
-				commonFunc.checkSuccessToastMessageDisappear();
-				webDB.waitForElement(AttendanceLeaveLocators.PermissionDocumentNo, ElementType.Xpath);
-				String PermssionDocNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.PermissionDocumentNo,
-						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-				VariableHandler.setPermssionDocNo(PermssionDocNo);
-				logs.logging("info", "Permssion No is:" + VariableHandler.getPermissionDocNo());
-				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
-				logs.logging("INFO", "Permission Entry is Saved");
-				if (flag) {
-					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionPostButon, ElementType.Xpath);
-					logs.logging("INFO", "Post Button Is Clicked Sucessfully");
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Check Permission entry document to forward to approval
-	 * user
-	 * 
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean checkPermissionOnDutybasedonFowardtoApprovalReord() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateLeaveEncashmentScreen();
-		addPermissionEntry();
-		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-		permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
-				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
-				commonFunc.getDataFromTestDataSheet("PermissionReference"));
-		permissionSaveAndForwardDocument();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-		}
-		return flag;
-	}
-
-	/**
-	 * This method is used to Return the Permission Document from Approval to
-	 * Request User return process.
-	 * 
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean checkPermissionOnDutyBasedOnReturnToRequestRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateLeaveEncashmentScreen();
-		addPermissionEntry();
-		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		checkPermissionBasedonFromDate(commonFunc.getDataFromTestDataSheet("PermFromDate1"));
-		permissionTimeFromEntry(commonFunc.getDataFromTestDataSheet("PermissionTimeFrom"),
-				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
-				commonFunc.getDataFromTestDataSheet("PermissionReference"));
-		permissionSaveAndForwardDocument();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-				verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
-				commonFunc.navigateLeaveEncashmentScreen();
-				PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-		return flag;
 	}
 
 	/**
@@ -580,161 +982,6 @@ public class AttendanceLeaveFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Cancel The Permission Document
-	 * 
-	 * @author Kishore-RMITS
-	 * @param PermissionFindType
-	 * @param EmployeeDurai
-	 */
-	public void PermissionDocumentCancel(String EmployeeDurai, String PermissionFindType) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			webDB.clickAnElement(AttendanceLeaveLocators.EmployeePermissionButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			logs.logging("INFO", "Permission Button Is Clicked");
-			flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.PermissionFindPageEmployeeLOV,
-						EmployeeDurai);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField,
-						ElementType.Xpath);
-				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.selectDropDownByText(
-							AttendanceLeaveLocators.EmployeeFindScreenPermissionTypeSelectField, PermissionFindType,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Permission Type is" + PermissionFindType);
-						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-								ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(3000);
-							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-									ElementType.Xpath);
-							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Permission Document is Clicked");
-								webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton, ElementType.Xpath);
-								commonFunc.hardWait(5000);
-								logs.logging("INFO", "Permission Document is Cancelled");
-							}
-						}
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Check Leave Encashment Based On RequestDate
-	 * 
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean CheckLeaveEncashmentbasedonRequestDate() {
-		{
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
-			EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-			EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
-			EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
-					commonFunc.getDataFromTestDataSheet("EncashReasonField"));
-			EncashmentForward();
-			verifyWaitingForApproval();
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEncashmentDocNo());
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
-				commonFunc.navigateLeaveEncashmentScreen();
-				CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
-				CheckLeaveEncashmentBasedOnEncashInPayroll();
-				CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-		return flag;
-	}
-
-	/**
-	 * This method is used to Forward The Encashment Document to Approval Person
-	 * 
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean CheckLeaveEncashmentBasedOnForwardToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateLeaveEncashmentScreen();
-		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
-		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
-		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
-				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
-		EncashmentForward();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEncashmentDocNo());
-			flag = commonFunc.logoutUser();
-		}
-		return flag;
-	}
-
-	/**
-	 * This method is used to Return The Encashment Document to the Request User
-	 * 
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean CheckLeaveEncashmentBasedOnReturnToRequestRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateLeaveEncashmentScreen();
-		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
-		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		EncashmentLeaveLOVEntry(commonFunc.getDataFromTestDataSheet("EncashmentLeaveLOV"));
-		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
-				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
-		EncashmentForward();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-			verifyReturnWithDocNumber(VariableHandler.getEncashmentDocNo());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-				verifyReturnWithDocNumber(VariableHandler.getEncashmentDocNo());
-				flag = commonFunc.logoutUser();
-			}
-		}
-		return flag;
 	}
 
 	/**
@@ -844,7 +1091,8 @@ public class AttendanceLeaveFunctions {
 					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmount, ElementType.Xpath);
 					logs.logging("INFO", "Encashment Amount is Viewed");
 					commonFunc.hardWait(5000);
-					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmountClose, ElementType.Xpath);
+					webDB.pressEscapeKey();
+//					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentViewAmountClose, ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(AttendanceLeaveLocators.EncashmentPostButton, ElementType.Xpath);
@@ -857,6 +1105,39 @@ public class AttendanceLeaveFunctions {
 							flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV,
 									ElementType.Xpath);
 						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Create Pending Encashment Leave
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void CheckLeaveEncashmentBasedOnPendingEncashment(String Number) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
+			logs.logging("INFO", "Encashment Button is Clicked");
+			flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(3000);
+				webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
+				webDB.switchToFrame(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
+					logs.logging("INFO", "Pending Encashment Doc No Flag Is Checked");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
+						logs.logging("INFO", "Encashment Leave Created");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton,
+								ElementType.Xpath);
 					}
 				}
 			}
@@ -878,17 +1159,6 @@ public class AttendanceLeaveFunctions {
 			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, ElementType.Xpath);
 		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used to Check Leave Encashment Report Fetches Values Correctly
-	 * 
-	 * @param EmployeeDurai
-	 * @author Kishore-RMITS
-	 */
-	public void CheckLeaveEncashmentReportFetchesValuesCorrectly(String EmployeeDurai) {
-		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, EmployeeDurai);
 		Assert.assertTrue(flag);
 	}
 
@@ -928,105 +1198,6 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
-	 * This method is used To Create Pending Encashment Leave
-	 * 
-	 * @author Kishore-RMITS
-	 */
-	public void CheckLeaveEncashmentBasedOnPendingEncashment(String Number) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
-		if (flag) {
-			logs.logging("INFO", "Encashment Button is Clicked");
-			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
-				webDB.switchToFrame(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
-					logs.logging("INFO", "Pending Encashment Doc No Flag Is Checked");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
-						logs.logging("INFO", "Encashment Leave Created");
-					}
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
-
-	/**
-	 * This method is used To Check Comp-Off Entry based on Leave Types
-	 *
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean CheckCompOffEntryBasedOnLeaveTypes() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateLeaveEncashmentScreen();
-		CompOffEntry();
-		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		checkCompOffBasedonDatewise(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
-				commonFunc.getDataFromTestDataSheet("CompOffDays"),
-				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
-		CompOffEntrySaveAndPostDocument();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCompOffDocNo());
-			flag = commonFunc.logoutUser();
-		}
-		return flag;
-	}
-
-	/**
-	 * This method is used to Return The CompOff Document to the Request User Return
-	 * Document
-	 * 
-	 * @author Kishore-RMITS
-	 * @return boolean flag
-	 */
-	public boolean CheckCompOffBasedOnReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateLeaveEncashmentScreen();
-		CompOffEntry();
-		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-		checkCompOffBasedonDatewise(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
-				commonFunc.getDataFromTestDataSheet("CompOffDays"),
-				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
-		CompOffEntrySaveAndPostDocument();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-			verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-				verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
-				CheckCompOffFindPageWithAllLineWiseRecord(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-				flag = commonFunc.logoutUser();
-			}
-		}
-		return flag;
-	}
-
-	/**
 	 * This method is used to Check the CompOff Entry
 	 *
 	 * @author Kishore-RMITS
@@ -1047,16 +1218,6 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
-	 * This method is used Select CompOff Employee LOVEntry
-	 * 
-	 * @param Employee
-	 * @author Kishore-RMITS
-	 */
-	public void compOffEmployeeLOVEntry(String EmployeeDurai) {
-		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.CompOffEmployeeLOV, EmployeeDurai);
-	}
-
-	/**
 	 * This method is used to Check the CompOff Date wise
 	 * 
 	 * @param PermFromDate2
@@ -1064,11 +1225,11 @@ public class AttendanceLeaveFunctions {
 	 * @param CompOffReferenceField
 	 * @author Kishore-RMITS
 	 */
-	public void checkCompOffBasedonDatewise(String PermFromDate1, String CompOffDays, String CompOffReferenceField) {
+	public void checkCompOffBasedonDatewise(String PermFromDate2, String CompOffDays, String CompOffReferenceField) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffDateField, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(AttendanceLeaveLocators.CompOffDateField, ElementType.Xpath);
-			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.CompOffDateField, PermFromDate1,
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.CompOffDateField, PermFromDate2,
 					ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Permission From Date is Entered");
@@ -1125,55 +1286,34 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
-	 * This method is used to Find the Line Wise Record
+	 * This method is used To Check Loan Request based on Required Date
 	 * 
 	 * @author Kishore-RMITS
-	 * @param EmployeeDurai
-	 * @return boolean flag
 	 */
-	public boolean CheckCompOffFindPageWithAllLineWiseRecord(String EmployeeDurai) {
-		commonFunc.navigateLeaveEncashmentScreen();
-		flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
-			webDB.clickAnElement(AttendanceLeaveLocators.CompOffButtonClick, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "CompOff Button is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindEmployeeLOV, ElementType.Xpath);
-				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.CompOffFindEmployeeLOV,
-							EmployeeDurai);
-					if (flag) {
-						logs.logging("INFO", "CompOff Employee Is Selected");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageSearchButton,
-								ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageSearchButton,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Search Button is Clicked");
-								flag = webDB.waitForElement(AttendanceLeaveLocators.CompOffFindpageClearButton,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(AttendanceLeaveLocators.CompOffFindpageClearButton,
-											ElementType.Xpath);
-									if (flag) {
-										logs.logging("INFO", "Clear Button is Clicked");
-										commonFunc.hardWait(2000);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+	public boolean CheckLoanRequestBasedOnRequiredDate() {
+		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+				"HRMRequestUser");
+		commonFunc.navigateToLoanRequestScreen();
+		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
+				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
+				commonFunc.getDataFromTestDataSheet("LoanReference"));
+		LoanRequiredDetails(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
+				commonFunc.getDataFromTestDataSheet("LoanAmount"),
+				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"),
+				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee1"),
+				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee2"));
+		LoanRequestDocumentProcess();
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+				System.getProperty("HRMSelfApprovePassword"));
+		approvalFunc.navigateToApprovals();
+		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
+		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
-	/**
-	 * --------------- "Leave Module Test Scenarios Functions" -----------------
-	 */
+	// --------------- "Leave Module Test Scenarios Functions" -----------------
 
 	/**
 	 * This Method used To Check Leave Entry Based on the Request date, To Check
@@ -1533,7 +1673,7 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Header Saved Successfully in Leave Request");
 				String ReqNo = webDB.getAttributeFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
-						ElementType.Xpath,commonFunc.getDataFromTestDataSheet("Value"));
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 //				logs.logging("INFO", "Before Substring total text Displayed: " + totalText);
 //				int startIndex = totalText.indexOf(": ") + 1;
 //				int endIndex = totalText.indexOf("(", startIndex) - 1;
@@ -3240,7 +3380,7 @@ public class AttendanceLeaveFunctions {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * This method is used to Enter Loan Data with Employee
 	 * 
@@ -3338,8 +3478,6 @@ public class AttendanceLeaveFunctions {
 						commonFunc.hardWait(1000);
 						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LoanRequestNoofInstallmentField,
 								LoanInstallmentAmount, ElementType.Xpath);
-						logs.logging("INFO", "Installment Is Entered");
-						commonFunc.hardWait(1000);
 						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestSuretyEmployee1,
 								ElementType.Xpath);
 						if (flag) {
@@ -3443,34 +3581,6 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
-	 * This method is used To Check Loan Request based on Required Date
-	 * 
-	 * @author Kishore-RMITS
-	 */
-	public boolean CheckLoanRequestBasedOnRequiredDate() {
-		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-				"HRMRequestUser");
-		commonFunc.navigateToLoanRequestScreen();
-		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
-				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
-				commonFunc.getDataFromTestDataSheet("LoanReference"));
-		LoanRequiredDetails(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
-				commonFunc.getDataFromTestDataSheet("LoanAmount"),
-				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"),
-				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee1"),
-				commonFunc.getDataFromTestDataSheet("LoanSuretyEmployee2"));
-		LoanRequestDocumentProcess();
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-				System.getProperty("HRMSelfApprovePassword"));
-		approvalFunc.navigateToApprovals();
-		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
-		flag = commonFunc.logoutUser();
-		return flag;
-	}
-
-	/**
 	 * This method is used To Check Loan Request based on Return to approval record
 	 * 
 	 * @author Kishore-RMITS
@@ -3497,9 +3607,6 @@ public class AttendanceLeaveFunctions {
 		flag = commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 				"HRMRequestUser");
-		approvalFunc.navigateToApprovals();
-		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-		verifyReturnWithDocNumber(VariableHandler.getLoanRequestDocNo());
 		commonFunc.navigateToLoanRequestScreen();
 		CheckLoanRequestFindPageWithAllLineWiseRecord();
 		return flag;

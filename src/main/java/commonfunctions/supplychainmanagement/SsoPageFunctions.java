@@ -1,8 +1,7 @@
 package commonfunctions.supplychainmanagement;
-
 /**
- * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks May 02, 2025
+ * @author Durai
+ * @company Roadmap May 02, 2025
  */
 import static org.testng.Assert.assertTrue;
 import java.util.List;
@@ -48,6 +47,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getItemName());
 		verifyApproveWithDocNumber(VariableHandler.getItemName());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -59,12 +59,13 @@ public class SsoPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateItemPage();
-		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
+		verifySearchOfItemDis(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		waitingForApproval();
 		forwardApprovalScreen();
 		filterDocumentsForPriceListApproval(VariableHandler.getItemName());
 		verifyApproveWithDocNumber(VariableHandler.getItemName());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -96,6 +97,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getOPODocNum());
 		verifyApproveWithDocNumber(VariableHandler.getOPODocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Special_Disc"),
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		openPurchaseOrderHeaderValidation();
-		openPurchaseOrderHeaderSupplierValidation();
+		openPurchaseOrderHeaderImportSupplierValidation();
 		openPurchaseOrderHeaderItemValidation();
 		openPurchaseOrderHeaderCostValidation();
 		openPurchaseOrderHeaderDiscountValidation();
@@ -127,6 +129,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getOPODocNum());
 		verifyApproveWithDocNumber(VariableHandler.getOPODocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -165,6 +168,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
 		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -201,6 +205,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
 		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -221,11 +226,8 @@ public class SsoPageFunctions {
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
 		supplierScheduleHeaderValidation();
-		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		supplierScheduleHeaderSupplierValidation();
-		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"));
+		supplierScheduleHeaderImportSupplierValidation();
 		supplierScheduleHeaderWarehouseValidation();
-		validateWarehouseInSsoHeader(commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
 		verifyLineDetails(commonFunc.getDataFromTestDataSheet("Firm_Qty"),
@@ -239,6 +241,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
 		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -277,6 +280,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
 		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -297,11 +301,8 @@ public class SsoPageFunctions {
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
 		supplierScheduleHeaderValidation();
-		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		supplierScheduleHeaderSupplierValidation();
-		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"));
+		supplierScheduleHeaderImportSupplierValidation();
 		supplierScheduleHeaderWarehouseValidation();
-		validateWarehouseInSsoHeader(commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
 		verifyLineDetails(commonFunc.getDataFromTestDataSheet("Firm_Qty"),
@@ -315,6 +316,7 @@ public class SsoPageFunctions {
 		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
 		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -367,6 +369,7 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoCancelLines();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -401,6 +404,7 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoCancelHeader();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -415,31 +419,54 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoAddBtn, ElementType.Xpath);
 			logs.logging("INFO", "Add Button is clicked");
-
-			flag = webDB.waitForElement(SsoPageLocators.SsoLocLov, ElementType.Xpath);
+			flag = webDB.waitForElement(SsoPageLocators.PendingSso, ElementType.Xpath);
 			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoLocLov, Location);
-				logs.logging("INFO", "Location is Entered:" + Location);
-
-				flag = webDB.waitForElement(SsoPageLocators.SsoSupplierLov, ElementType.Xpath);
+				webDB.clickAnElement(SsoPageLocators.PendingSso, ElementType.Xpath);
+				logs.logging("INFO", "Sso Button is clicked");
+			flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched to Frame");
+				flag = webDB.waitForElement(SsoPageLocators.SsoLocLov, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoSupplierLov, Supplier);
-					logs.logging("INFO", "Supplier is Entered:" + Supplier);
-
-					flag = webDB.waitForElement(SsoPageLocators.SsoDepartmentLov, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoLocLov, Location);
+					logs.logging("INFO", "Location is Entered:" + Location);
+					flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
 					if (flag) {
-						commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDepartmentLov, Dept);
-						logs.logging("INFO", "Department is Entered:" + Dept);
-
-						flag = webDB.waitForElement(SsoPageLocators.SsoShipWHToLov, ElementType.Xpath);
+						webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+						logs.logging("INFO", "Switched to Frame");
+						flag = webDB.waitForElement(SsoPageLocators.SsoSupplierLov, ElementType.Xpath);
 						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoShipWHToLov, WH);
-							logs.logging("INFO", "Wharehouse is Entered:" + WH);
+							commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoSupplierLov, Supplier);
+							logs.logging("INFO", "Supplier is Entered:" + Supplier);
+							flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+							if (flag) {
+								webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+								logs.logging("INFO", "Switched to Frame");
+								flag = webDB.waitForElement(SsoPageLocators.SsoDepartmentLov, ElementType.Xpath);
+								if (flag) {
+									commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDepartmentLov, Dept);
+									logs.logging("INFO", "Department is Entered:" + Dept);
+									flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+									if (flag) {
+										webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+										logs.logging("INFO", "Switched to Frame");
+										flag = webDB.waitForElement(SsoPageLocators.SsoShipWHToLov, ElementType.Xpath);
+										if (flag) {
+											commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoShipWHToLov,
+													WH);
+											logs.logging("INFO", "Wharehouse is Entered:" + WH);
+										}
+									}
+								}
+							}
 						}
 					}
 				}
 			}
 		}
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -449,11 +476,17 @@ public class SsoPageFunctions {
 	 * 
 	 */
 	public void verifyClickingSsoCreate() {
+		flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched to Frame");
 		flag = webDB.waitForElement(SsoPageLocators.SsoCreate, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoCreate, ElementType.Xpath);
 			logs.logging("INFO", "SSO Doc Is Created");
 		}
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -462,6 +495,7 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyGetTextDocNum() {
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SsoPageLocators.SsoDocNum, ElementType.Xpath);
 		if (flag) {
 			String SsoDocNum = webDB.getDomPropertyFromElement(SsoPageLocators.SsoDocNum, ElementType.Xpath,
@@ -469,6 +503,7 @@ public class SsoPageFunctions {
 			VariableHandler.setSsoDocNum(SsoDocNum);
 			logs.logging("INFO", "Document Number is:" + VariableHandler.getSsoDocNum());
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -482,12 +517,14 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.FetchOPOBtn, ElementType.Xpath);
 			logs.logging("INFO", "Fetch PO Button is clicked");
+			commonFunc.hardWait(4000);
 			flag = webDB.waitForElement(SsoPageLocators.FetchOPOFrame, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SsoPageLocators.FetchOPOFrame, ElementType.Xpath);
 				logs.logging("INFO", "Switched to frame");
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -501,12 +538,12 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.FetchPOSelectNUm, ElementType.Xpath);
 			logs.logging("INFO", "Po Num Select Filed is Clicked");
+			commonFunc.hardWait(5000);
 			flag = webDB.waitForElement(SsoPageLocators.FetchPOEneterNum, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SsoPageLocators.FetchPOEneterNum, ElementType.Xpath);
 				webDB.sendTextToAnElement(SsoPageLocators.FetchPOEneterNum, VariableHandler.getOPODocNum(),
 						ElementType.Xpath);
-				webDB.pressTabKey();
 				webDB.pressEnterKey();
 				commonFunc.hardWait(3000);
 				flag = webDB.waitForElement(SsoPageLocators.FetchOPOSelectall, ElementType.Xpath);
@@ -525,6 +562,7 @@ public class SsoPageFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -574,11 +612,6 @@ public class SsoPageFunctions {
 									webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateToInput, FirmDateTo,
 											ElementType.Xpath);
 									commonFunc.hardWait(1000);
-//									webDB.pressTabKey();
-//									flag=webDB.waitForElement(SsoPageLocators.SsoTentType, ElementType.Xpath);
-//									if(flag) {
-//										webDB.clickAnElement(SsoPageLocators.SsoTentType, ElementType.Xpath);
-//										webDB.selectDropDownByValue(SsoPageLocators.SsoTentType, "D", ElementType.Xpath);
 									webDB.pressTabKey();
 									flag = webDB.waitForElement(SsoPageLocators.SSOTentDateFromField(i),
 											ElementType.Xpath);
@@ -616,6 +649,7 @@ public class SsoPageFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -630,6 +664,7 @@ public class SsoPageFunctions {
 			logs.logging("INFO", "Line is Saved");
 			commonFunc.hardWait(5000);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -642,12 +677,9 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoGenSchdl, ElementType.Xpath);
 			logs.logging("INFO", "Schedule is Generated");
-			flag = webDB.waitForElement(SsoPageLocators.SsoSchdlToastMsg, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SsoPageLocators.SsoSchdlToastMsg, ElementType.Xpath);
-				logs.logging("INFO", "Toast Msg is Closed");
-			}
+			commonFunc.hardWait(7000);
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -661,6 +693,7 @@ public class SsoPageFunctions {
 			webDB.clickAnElement(SsoPageLocators.SsoLineCancel, ElementType.Xpath);
 			logs.logging("INFO", "Line is Cancelled");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -692,6 +725,7 @@ public class SsoPageFunctions {
 			}
 
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -707,6 +741,7 @@ public class SsoPageFunctions {
 					ElementType.Xpath);
 			logs.logging("INFO", "Sso Number is entered");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -720,6 +755,7 @@ public class SsoPageFunctions {
 			webDB.clickAnElement(SsoPageLocators.SsoPost, ElementType.Xpath);
 			logs.logging("INFO", "Schedule is Posted");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -819,6 +855,30 @@ public class SsoPageFunctions {
 
 		assertTrue(flag);
 	}
+	/**
+	 * This Methods Is Used To Verify Searching Item in Find Screen
+	 * 
+	 * @author Durai-RMITS
+	 * @param Item1
+	 */
+	public void verifySearchOfItemDis(String Item1) {
+		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		if (flag) {
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
+			logs.logging("INFO", "Search is clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Search Button is clicked ");
+				verifySearchButtonClicking();
+				verifyClickingGeneralTab();
+				verifyGenerateItemSim(commonFunc.getDataFromTestDataSheet("Dis"));
+				verifyItemPost();
+			}
+		}
+
+		assertTrue(flag);
+	}
 
 	/**
 	 * This Methods Is Used To Verify Search Button Clicking
@@ -912,6 +972,7 @@ public class SsoPageFunctions {
 			webDB.clickAnElement(PricelistPageLocators.ItemPost, ElementType.Xpath);
 			logs.logging("INFO", "Item is Posted");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -942,7 +1003,7 @@ public class SsoPageFunctions {
 	public void verifyCreationOfOPO() {
 		flag = webDB.waitForElement(SsoPageLocators.OPORadioBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SsoPageLocators.OPORadioBtn, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(SsoPageLocators.OPORadioBtn, ElementType.Xpath);
 			logs.logging("INFO", "OPO Radio Button is Clicked");
 
 			flag = webDB.waitForElement(SsoPageLocators.OPOAddBtn, ElementType.Xpath);
@@ -951,6 +1012,7 @@ public class SsoPageFunctions {
 				logs.logging("INFO", "Add Button is Clicked");
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -961,18 +1023,29 @@ public class SsoPageFunctions {
 	 * @param OPOSupplier
 	 */
 	public void verifyAddingFillDetailsOfOPO(String OPOLocation, String OPOSupplier) {
-		flag = webDB.waitForElement(SsoPageLocators.OPOLocLov, ElementType.Xpath);
+		flag = webDB.waitForElement(SsoPageLocators.OpoFrame, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOLocLov, OPOLocation);
-			logs.logging("INFO", "LOcation Entered is:" + OPOLocation);
-
-			flag = webDB.waitForElement(SsoPageLocators.OPOSupplierLov, ElementType.Xpath);
+			webDB.switchToFrame(SsoPageLocators.OpoFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched to Frame");
+			flag = webDB.waitForElement(SsoPageLocators.OPOLocLov, ElementType.Xpath);
 			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOSupplierLov, OPOSupplier);
-				logs.logging("INFO", "Supplier Entered is:" + OPOSupplier);
+				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOLocLov, OPOLocation);
+				logs.logging("INFO", "LOcation Entered is:" + OPOLocation);
+				flag = webDB.waitForElement(SsoPageLocators.OpoFrame, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(SsoPageLocators.OpoFrame, ElementType.Xpath);
+					logs.logging("INFO", "Switched to Frame");
 
+					flag = webDB.waitForElement(SsoPageLocators.OPOSupplierLov, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOSupplierLov, OPOSupplier);
+						logs.logging("INFO", "Supplier Entered is:" + OPOSupplier);
+
+					}
+				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -981,11 +1054,17 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingOpoCreate() {
-		flag = webDB.waitForElement(SsoPageLocators.OPOCreateBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(SsoPageLocators.OpoFrame, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SsoPageLocators.OPOCreateBtn, ElementType.Xpath);
-			logs.logging("INFO", "OPO Doc Is Created");
+			webDB.switchToFrame(SsoPageLocators.OpoFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched to Frame");
+			flag = webDB.waitForElement(SsoPageLocators.OPOCreateBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SsoPageLocators.OPOCreateBtn, ElementType.Xpath);
+				logs.logging("INFO", "OPO Doc Is Created");
+			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -998,7 +1077,8 @@ public class SsoPageFunctions {
 	 * @param HSN
 	 */
 	public void verifyCreatingItemForOpo(String Item, String Cost, String Disc, String HSN) {
-
+		commonFunc.hardWait(4000);
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SsoPageLocators.OPODocNum, ElementType.Xpath);
 		if (flag) {
 			String OPODocNum = webDB.getTextFromElement(SsoPageLocators.OPODocNum, ElementType.Xpath);
@@ -1043,6 +1123,7 @@ public class SsoPageFunctions {
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1057,6 +1138,7 @@ public class SsoPageFunctions {
 			webDB.clickAnElement(SsoPageLocators.OPOPost, ElementType.Xpath);
 			logs.logging("INFO", "OPO Doc Is Posted");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1159,11 +1241,11 @@ public class SsoPageFunctions {
 				logs.logging("INFO", "Entered Document Number Is: " + Number);
 				flag = webDB.waitForClickElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(ApprovalPageLocators.SearchTableResult, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Search Go Button Is Clicked");
-					}
+//					webDB.clickAnElement(ApprovalPageLocators.SearchBoxGoBtn, ElementType.Xpath);
+//					flag = webDB.waitForElement(ApprovalPageLocators.SearchTableResult, ElementType.Xpath);
+//					if (flag) {
+//						logs.logging("INFO", "Search Go Button Is Clicked");
+//					}
 				}
 			}
 		}
@@ -1248,14 +1330,25 @@ public class SsoPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	public void supplierScheduleHeaderImportSupplierValidation() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
+						commonFunc.getDataFromTestDataSheet("SSODbSupplierColumnName")),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"));
+		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
+	}
+	/**
+	 * Supplier Schedule Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 */
 	public void supplierScheduleHeaderSupplierValidation() {
 		verifyAssertionBothValues(
 				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
 						commonFunc.getDataFromTestDataSheet("SSODbSupplierColumnName")),
-				commonFunc.getDataFromTestDataSheet("Opo_SupId"));
+				commonFunc.getDataFromTestDataSheet("Opo_SupId_ID"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
-
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1293,6 +1386,20 @@ public class SsoPageFunctions {
 				dbCommonFunctions.OPOdetails(VariableHandler.getOPODocNum(),
 						commonFunc.getDataFromTestDataSheet("OPODbSupplierColumnName")),
 				commonFunc.getDataFromTestDataSheet("Opo_SupId_ID"));
+		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
+	}
+
+	/**
+	 * Open purchase Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 * @param location
+	 */
+	public void openPurchaseOrderHeaderImportSupplierValidation() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.OPOdetails(VariableHandler.getOPODocNum(),
+						commonFunc.getDataFromTestDataSheet("OPODbSupplierColumnName")),
+				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
 

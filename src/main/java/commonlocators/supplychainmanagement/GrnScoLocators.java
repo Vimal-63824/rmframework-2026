@@ -111,5 +111,13 @@ public class GrnScoLocators {
 	public static final String TestNumberInput = "//input[@data-testid='PRCLS_TEST_NO']";
 	/** @locatorType Xpath */
 	public static final String SaveButton = "//button[@data-testid='Save_Lot_ser']";
+	/** @locatorType Xpath */
+	public static final String UP_Type_Field = "(//input[@type='number'])[2]";
+	/** @locatorType Xpath */
+	public static final String UP_Type_Input = "(//input[@type='number'])[2]";
+	/** @locatorType Xpath */
+	public static final String PR_Type_Field = "(//input[@type='number'])[1]";
+	/** @locatorType Xpath */
+	public static final String US_Type_Field = "(//input[@style='text-align:right;width:70px'])[5]";
 
 }

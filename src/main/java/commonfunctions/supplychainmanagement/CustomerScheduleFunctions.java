@@ -1,18 +1,17 @@
 package commonfunctions.supplychainmanagement;
 
 import static org.testng.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.codehaus.groovy.ast.Variable;
 import org.openqa.selenium.By;
@@ -20,7 +19,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
@@ -53,6 +51,7 @@ public class CustomerScheduleFunctions {
 	private static PricelistPageFunctions PriceListFunc = new PricelistPageFunctions();
 	private static CustomerItemsLocators CustomerItemsLocators = new CustomerItemsLocators();
 	private static OpenSalesOrderFunctions openSOFunc = new OpenSalesOrderFunctions();
+	private static MaterialRequestFunctions MatReqFunc = new MaterialRequestFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	String[][] CSMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 	String[][] CSUpload = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -63,9 +62,13 @@ public class CustomerScheduleFunctions {
 	ArrayList<String> MultiOpenSODoc = new ArrayList<String>();
 	ArrayList<String> MultiPriceList = new ArrayList<String>();
 	ArrayList<String> MultiCatalogPriceDoc = new ArrayList<String>();
+	ArrayList<String> CSLineDocNo = new ArrayList<String>();
 	LocalDate date = LocalDate.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String Today = date.format(formatter);
+	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
+	String tomorrowDate = myDateObj.format(myFormatObj);
 
 	/**
 	 * This Method Is Used To Add The Customer Schedule Header Details And Get The
@@ -74,36 +77,39 @@ public class CustomerScheduleFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void addCustomerScheduleHeaderDetails(String Location, String Prefix, String Narration) {
-		flag = webDB.waitForElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
+//		flag = webDB.waitForElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLocationLov, Location);
+		commonFunc.checkRefreshCellsDisappear();
+		MatReqFunc.FrameSwitching(CustomerScheduleLocators.CSFrame);
+		commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSBatchPrefixLov, Prefix);
+		commonFunc.checkRefreshCellsDisappear();
+		MatReqFunc.FrameSwitching(CustomerScheduleLocators.CSFrame);
+		flag = webDB.waitForElement(CustomerScheduleLocators.CSNarrationField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLocationLov, Location);
+			webDB.sendTextToAnElement(CustomerScheduleLocators.CSNarrationField, Narration, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSBatchPrefixLov, Prefix);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(CustomerScheduleLocators.CSNarrationField, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.CSsaveButton, ElementType.Xpath);
 			if (flag) {
-				webDB.sendTextToAnElement(CustomerScheduleLocators.CSNarrationField, Narration, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(CustomerScheduleLocators.CSsaveButton, ElementType.Xpath);
+				logs.logging("INFO", "Narration Entered Sucessfully");
+				webDB.clickAnElement(CustomerScheduleLocators.CSsaveButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(CustomerScheduleLocators.CSPostButton, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Narration Entered Sucessfully");
-					webDB.clickAnElement(CustomerScheduleLocators.CSsaveButton, ElementType.Xpath);
-					flag = webDB.waitForElement(CustomerScheduleLocators.CSPostButton, ElementType.Xpath);
+					logs.logging("INFO", "Customer Schedule Header Details Is Created SucessFully");
+					flag = webDB.waitForElement(CustomerScheduleLocators.CSDocNumberField, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Customer Schedule Header Details Is Created SucessFully");
-						flag = webDB.waitForElement(CustomerScheduleLocators.CSDocNumberField, ElementType.Xpath);
-						if (flag) {
-							String CSDocNumber = webDB.getTextFromElement(CustomerScheduleLocators.CSDocNumberField,
-									ElementType.Xpath);
-							VariableHandler.setCSDocNumber(CSDocNumber);
-							logs.logging("INFO",
-									"Customer Schedule Document Number Is " + VariableHandler.getCSDocNumber());
-						}
+						String CSDocNumber = webDB.getTextFromElement(CustomerScheduleLocators.CSDocNumberField,
+								ElementType.Xpath);
+						VariableHandler.setCSDocNumber(CSDocNumber);
+						logs.logging("INFO",
+								"Customer Schedule Document Number Is " + VariableHandler.getCSDocNumber());
 					}
 				}
 			}
 		}
+//		}
 		commonFunc.checkRefreshCellsDisappear();
 		assertTrue(flag);
 	}
@@ -143,7 +149,7 @@ public class CustomerScheduleFunctions {
 			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseItemField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSLineWiseItemLov, Item);
 			webDB.pressTabKey();
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -159,32 +165,32 @@ public class CustomerScheduleFunctions {
 	 */
 	public void addQtyUnitAndMrpCost(String FirmQty, String UnitCost, String MrpPrice, String Discount, String EndDate,
 			String BucketType) {
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseFirmQtyField,
 				CustomerScheduleLocators.CSLineWiseFirmQtyInputField, FirmQty);
 		webDB.pressTabKey();
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseUnitPriceField,
 				CustomerScheduleLocators.CSLineWiseUnitPriceInputField, UnitCost);
 		webDB.pressTabKey();
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseMRPField,
 				CustomerScheduleLocators.CSLineWiseMRPInputField, MrpPrice);
 		webDB.pressTabKey();
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSLineWiseDiscField,
 				CustomerScheduleLocators.CSLineWiseDiscInputField, Discount);
 		webDB.pressTabKey();
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSLineWiseEndDateField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerScheduleLocators.CSLineWiseEndDateField, ElementType.Xpath);
 			webDB.sendTextToAnElement(CustomerScheduleLocators.CSLineWiseEndDateInputField, EndDate, ElementType.Xpath);
 			webDB.pressTabKey();
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 			webDB.selectDropDownByValue(CustomerScheduleLocators.CSBucketTypeDropDown, BucketType, ElementType.Xpath);
 			webDB.pressTabKey();
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -313,7 +319,7 @@ public class CustomerScheduleFunctions {
 	public boolean verifyDomesticCSGeneralSimilarDisSimilarStockAndCustomerUOM(String SimilarItem, String SheetName,
 			String Location, String Prefix, String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
 		for (int i = 4; i < CSMultipleline.length; i++) {
@@ -325,7 +331,7 @@ public class CustomerScheduleFunctions {
 		VariableHandler.setMultipleItems(ArrayList);
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
+				System.getProperty("AshokUsername"));
 		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
@@ -338,8 +344,11 @@ public class CustomerScheduleFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateCustomerScheduleScreen();
+				System.getProperty("TvsUsername"));
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
+//		clickCustomerScheduleButton();
+//		commonFunc.navigateCustomerScheduleScreen();
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -368,6 +377,7 @@ public class CustomerScheduleFunctions {
 				verifyCustomerScheduleLineWiseDetailsWithDB(SheetName, i);
 			}
 		}
+		VariableHandler.setMultipleCSLineDocs(CSLineDocNo);
 		clickGenerateScheduleButton();
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -393,7 +403,7 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(CustomerScheduleLocators.CSCancelButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerScheduleLocators.CSCancelButton, ElementType.Xpath);
-			flag = webDB.waitForElement(CustomerScheduleLocators.CSAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesOrderLocators.SOSearchButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Cancel Button Is Clicked Sucessfully");
 			}
@@ -404,12 +414,15 @@ public class CustomerScheduleFunctions {
 	/**
 	 * This Method Is Used To Cancel The Customer Schedule Document
 	 * 
+	 * @author Harikrishna - RMITS
+	 * 
 	 * @return boolean flag
 	 */
 	public boolean cancelCustomerScheduleDocument(String Location, String Prefix, String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateCustomerScheduleScreen();
+				System.getProperty("TvsUsername"));
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -591,7 +604,7 @@ public class CustomerScheduleFunctions {
 	public boolean verifyDomesticCSGeneralRateContractSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
 		for (int i = 4; i < CSMultipleline.length; i++) {
@@ -603,7 +616,7 @@ public class CustomerScheduleFunctions {
 		VariableHandler.setMultipleItems(ArrayList);
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
+				System.getProperty("AshokUsername"));
 		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
@@ -613,7 +626,7 @@ public class CustomerScheduleFunctions {
 		}
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -660,18 +673,22 @@ public class CustomerScheduleFunctions {
 			}
 		}
 		VariableHandler.setMultipleOpenSoDocs(MultiOpenSODoc);
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approvalFunc.navigateToApprovals();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"HodUsername");
+//		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= MultiOpenSODoc.size(); i++) {
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleOpenSoDocs().get(i - 1));
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultipleOpenSoDocs().get(i - 1));
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleOpenSoDocs().get(i - 1));
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultipleOpenSoDocs().get(i - 1));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getMultipleOpenSoDocs().get(i - 1), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
 		}
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateCustomerScheduleScreen();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -874,7 +891,7 @@ public class CustomerScheduleFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void saveButtoninCustomerItems() {
-		flag = webDB.moveToElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+		flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (webDB.isElementDisplayed(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath)) {
@@ -958,7 +975,7 @@ public class CustomerScheduleFunctions {
 	public boolean verifyDomesticCSGeneralPriceListSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
 		for (int i = 4; i < CSMultipleline.length; i++) {
@@ -970,7 +987,7 @@ public class CustomerScheduleFunctions {
 		VariableHandler.setMultipleItems(ArrayList);
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
+				System.getProperty("AshokUsername"));
 		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
@@ -980,7 +997,7 @@ public class CustomerScheduleFunctions {
 		}
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1020,27 +1037,31 @@ public class CustomerScheduleFunctions {
 				insertItemField(ITEM_ID);
 				insertSalesPrice(FIRM_PRICE, DISC_PCT);
 				clickSaveButton();
-				insertEffitiveDates(Today, FIRM_TO_DATE);
-				clickSaveButton();
+//				insertEffitiveDates(Today, FIRM_TO_DATE);
+//				clickSaveButton();
 				getPriceListDocumentno(MultiPriceList);
 				clickPostButton1();
 				verifyWaitingForApproval1();
-				commonFunc.checkRefreshCellsDisappear();
+//				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		VariableHandler.setMultiplePriceListDocs(MultiPriceList);
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approvalFunc.navigateToApprovals();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"HodUsername");
+//		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= MultiPriceList.size(); i++) {
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultiplePriceListDocs().get(i - 1));
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultiplePriceListDocs().get(i - 1));
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultiplePriceListDocs().get(i - 1));
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultiplePriceListDocs().get(i - 1));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getMultiplePriceListDocs().get(i - 1), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
 		}
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateCustomerScheduleScreen();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"TvsUsername");
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -1146,7 +1167,7 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(SalesPriceListLocators.PricePfxFiled, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Successfully Inserted Locution " + LOCATION100);
-			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
@@ -1205,7 +1226,6 @@ public class CustomerScheduleFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesPriceListLocators.ItemField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesPriceListLocators.ItemFieldLov, Item);
-
 			if (flag) {
 				logs.logging("INFO", "Successfully Inseted Item" + Item);
 			}
@@ -1241,7 +1261,7 @@ public class CustomerScheduleFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickSaveButton() {
-		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(SalesPriceListLocators.SaveButton, ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(SalesPriceListLocators.SaveButton, ElementType.Xpath);
@@ -1312,7 +1332,7 @@ public class CustomerScheduleFunctions {
 
 		flag = webDB.waitForElement(SalesPriceListLocators.PR_Post_Btn, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(2000);
+//			commonFunc.hardWait(2000);
 			webDB.moveToElement(SalesPriceListLocators.PR_Post_Btn, ElementType.Xpath);
 
 			webDB.clickAnElement(SalesPriceListLocators.PR_Post_Btn, ElementType.Xpath);
@@ -1332,27 +1352,23 @@ public class CustomerScheduleFunctions {
 	 * @return
 	 */
 	private boolean verifyWaitingForApproval1() {
-		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath)) {
-			flag = true;
+//		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
+		if (flag) {
 			VariableHandler.setApprovalFlag(flag);
-			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(OpenSalesOrderLocators.OpsoForwardApproval,
-					commonFunc.getDataFromTestDataSheet("HodValue"));
-//			 commonFunc.hardWait(2000);
-			webDB.switchToFrame(OpenSalesOrderLocators.OpsoWorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn,
+					commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(OpenSalesOrderLocators.OpsoOkButtonForward, ElementType.Xpath);
-				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				webDB.switchToDefaultContent();
+				assertTrue(flag);
+			} else {
+				flag = false;
+				VariableHandler.setApprovalFlag(flag);
 			}
-			assertTrue(flag);
-		} else {
-			flag = false;
-			VariableHandler.setApprovalFlag(flag);
 		}
 		return flag;
 	}
@@ -1400,7 +1416,7 @@ public class CustomerScheduleFunctions {
 	public boolean verifyDomesticCSGeneralStandardPriceSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
 		for (int i = 4; i < CSMultipleline.length; i++) {
@@ -1412,7 +1428,7 @@ public class CustomerScheduleFunctions {
 		VariableHandler.setMultipleItems(ArrayList);
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
+				System.getProperty("AshokUsername"));
 		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
@@ -1422,7 +1438,7 @@ public class CustomerScheduleFunctions {
 		}
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1469,7 +1485,8 @@ public class CustomerScheduleFunctions {
 				clickActiveButton();
 			}
 		}
-		commonFunc.navigateCustomerScheduleScreen();
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -1489,7 +1506,7 @@ public class CustomerScheduleFunctions {
 				addLineWiseCustomer(CUST_ID);
 				addItemsInCS(ITEM_ID);
 				chooseScheduleType(SCH_TYPE);
-				addQtyInCS(FIRM_QTY, FIRM_TO_DATE, BKT_TYPE);
+				addQtyInCS(FIRM_QTY, Today, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
 				commonFunc.hardWait(7000);
@@ -1509,23 +1526,6 @@ public class CustomerScheduleFunctions {
 			}
 		}
 		return flag;
-	}
-
-	public void priceListEntry() {
-		clickAddButton();
-		clickStandardPriceButton();
-		clickSPAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
-//		insertItemIdStandardPrice();
-		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
-//		insertMapPriceStdPrice(Map_Value);
-//		insertLandingCost(Landing_Cost);
-//		insertMaxDisc(Max_Disc_Value);
-		insertPriceClass(commonFunc.getDataFromTestDataSheet("priceClassName"));
-		clickSaveButton();
-		clickActiveButton();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
 	}
 
 	/**
@@ -1758,7 +1758,7 @@ public class CustomerScheduleFunctions {
 	public boolean verifyDomesticCSGeneralCatalogPriceSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
 		for (int i = 4; i < CSMultipleline.length; i++) {
@@ -1770,7 +1770,7 @@ public class CustomerScheduleFunctions {
 		VariableHandler.setMultipleItems(ArrayList);
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
+				System.getProperty("AshokUsername"));
 		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
@@ -1780,7 +1780,7 @@ public class CustomerScheduleFunctions {
 		}
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1803,8 +1803,6 @@ public class CustomerScheduleFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		commonFunc.navigatePriceList_Standard_Catalog_Screen();
-		clickAddButton();
-		clickCataloguePriceButton();
 		for (int i = 4; i < CSMultipleline.length; i++) {
 			String CUST_ID = CSMultipleline[i][1];
 			String ITEM_ID = CSMultipleline[i][4];
@@ -1815,6 +1813,8 @@ public class CustomerScheduleFunctions {
 			String CURCY = CSMultipleline[i][37];
 			String CATALOG_NAME = CSMultipleline[i][38];
 			if (!CUST_ID.equals("")) {
+				clickAddButton();
+				clickCataloguePriceButton();
 				clickAddButtonCatalogueScreen();
 				commonFunc.hardWait(2000);
 				insertItemCataloguePrice(ITEM_ID);
@@ -1824,11 +1824,16 @@ public class CustomerScheduleFunctions {
 				insertEffFromAndEffToDatesCataloguePrice(Today, Today);
 				clickSaveButtonCataloguePrice();
 				getCataloguePriceDocumentno(MultiCatalogPriceDoc);
+				commonFunc.checkRefreshCellsDisappear();
 				clickCPPostButton();
-				commonFunc.checkRefreshCellsDisappear();
-				verifyWaitingForApprovalCP();
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
+//				commonFunc.checkRefreshCellsDisappear();
+				verifyWaitingForApproval1();
+				flag = webDB.waitForElement(CustomerScheduleLocators.CatalogFindButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CustomerScheduleLocators.CatalogFindButton, ElementType.Xpath);
+				}
+//				commonFunc.checkRefreshCellsDisappear();
+//				commonFunc.hardWait(2000);
 			}
 		}
 		VariableHandler.setMultipleCatalogDocs(MultiCatalogPriceDoc);
@@ -1843,7 +1848,8 @@ public class CustomerScheduleFunctions {
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
-		commonFunc.navigateCustomerScheduleScreen();
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -2058,7 +2064,6 @@ public class CustomerScheduleFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void getCataloguePriceDocumentno(ArrayList<String> DocNum) {
-
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(SalesCatalogueLocators.DocumentNoField(1), ElementType.Xpath);
 		if (flag) {
@@ -2069,6 +2074,7 @@ public class CustomerScheduleFunctions {
 			commonFunc.hardWait(2000);
 			DocNum.add(VariableHandler.getCatalogDocno());
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -2077,12 +2083,13 @@ public class CustomerScheduleFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickCPPostButton() {
-		commonFunc.hardWait(2000);
+//		commonFunc.hardWait(2000);
 		flag = webDB.clickAnElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
 		if (flag) {
 			webDB.clickAnElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
-			logs.logging("INFO ", "Successfully Post Button ");
+			logs.logging("INFO ", "Successfully Click The Post Button ");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -2124,6 +2131,7 @@ public class CustomerScheduleFunctions {
 				flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdCustomerId, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(CustomerScheduleLocators.CSAmdCustomerId, Customer);
+					webDB.pressTabKey();
 					flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdHeaderWiseSaveButton, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(CustomerScheduleLocators.CSAmdHeaderWiseSaveButton, ElementType.Xpath);
@@ -2399,6 +2407,7 @@ public class CustomerScheduleFunctions {
 					ElementType.Xpath);
 			webDB.pressTabKey();
 		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -2409,7 +2418,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean cancelCustomerScheduleAmendmentDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2431,7 +2440,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2446,6 +2455,11 @@ public class CustomerScheduleFunctions {
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
+			String LineStatus = dbCommonFunctions.CSLineDetails(VariableHandler.getCSDocNumber(),
+					VariableHandler.getMultipleCSLineDocs().get(0),
+					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
+			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
+					commonFunc.getDataFromTestDataSheet("CloseshortedLineStatus"));
 		}
 		return flag;
 	}
@@ -2462,7 +2476,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2470,7 +2484,7 @@ public class CustomerScheduleFunctions {
 		clickFetchButtonInCSAmd();
 		passDocumentNumberAndClickOKButton(VariableHandler.getCSDocNumber());
 		changeQtyInCSAmd("100");
-		changePriceInCSAmd("2500");
+//		changePriceInCSAmd("2500");
 		clickLineWiseSaveButtonInCSAmd();
 //		changeTypeInCSAmd(commonFunc.getDataFromTestDataSheet("CSAmdType"));
 		clickPostButtonInCSAmd();
@@ -2480,6 +2494,11 @@ public class CustomerScheduleFunctions {
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
+			String LineStatus = dbCommonFunctions.CSLineDetails(VariableHandler.getCSDocNumber(),
+					VariableHandler.getMultipleCSLineDocs().get(0),
+					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
+			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
+					commonFunc.getDataFromTestDataSheet("CSAmendedLineStatus"));
 		}
 		return flag;
 	}
@@ -2504,7 +2523,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();
 		passDocumentNumberAndClickOKButton(commonFunc.getDataFromTestDataSheet("CSAmendmentDoc"));
-		changeQtyInCSAmd("100");
+//		changeQtyInCSAmd("100");
 		changePriceInCSAmd("2500");
 		clickLineWiseSaveButtonInCSAmd();
 //		changeTypeInCSAmd(commonFunc.getDataFromTestDataSheet("CSAmdType"));
@@ -2515,6 +2534,11 @@ public class CustomerScheduleFunctions {
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HodUsername"));
 			commonFunc.logoutUser();
+			String LineStatus = dbCommonFunctions.CSLineDetails(VariableHandler.getCSDocNumber(),
+					VariableHandler.getMultipleCSLineDocs().get(0),
+					commonFunc.getDataFromTestDataSheet("DBCSLineStatusColumnName"));
+			salesOrderFunctions.verifyAssertionBothValues(LineStatus,
+					commonFunc.getDataFromTestDataSheet("CSAmendedLineStatus"));
 		}
 		return flag;
 	}
@@ -2527,21 +2551,23 @@ public class CustomerScheduleFunctions {
 	 * @return boolean flag
 	 */
 	public boolean CustomerScheduleAmendmentScheduleChange() {
-//		verifyDomesticCSGeneralSimilarDisSimilarStockAndCustomerUOM(
-//				commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), webDB.getDataFromProperties("CS"));
+		verifyDomesticCSGeneralSimilarDisSimilarStockAndCustomerUOM(
+				commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), webDB.getDataFromProperties("CS"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
+				commonFunc.getDataFromTestDataSheet("CSNarration"));
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();
-		passDocumentNumberAndClickOKButton("CSI0/00190/25-26");
+		passDocumentNumberAndClickOKButton(VariableHandler.getCSDocNumber());
 		changeScheduleTypeInCSAmd(commonFunc.getDataFromTestDataSheet("CSScheduleType"));
 		changeQtyInCSAmd("100");
 		changeTentaiveQtyInCSAmd("200");
 		changePriceInCSAmd("2500");
-		addEndDateInTentativeField("30-06-2025");
+		addEndDateInTentativeField(tomorrowDate);
 		clickLineWiseSaveButtonInCSAmd();
 		clickPostButtonInCSAmd();
 		flag = salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -2555,11 +2581,10 @@ public class CustomerScheduleFunctions {
 	}
 
 	/**
-	 * This method used to upload csv file in PR and verify uploaded or not and
-	 * Delete file After delete
+	 * This method used to upload csv file in CS
 	 * 
-	 * @author Sakthi-GWL
-	 * @param uploadingFile
+	 * @author Harikrishna - RMITS
+	 * @param UpdatedFile
 	 */
 	private void verifyUploadTemplateInCustomerSchedule(String UpdatedFile) {
 		String File = UpdatedFile;
@@ -2607,13 +2632,13 @@ public class CustomerScheduleFunctions {
 	public boolean customerScheduleTemplateUpload(String SimilarItem, String SheetName, String Location, String Prefix,
 			String Narration) {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(SimilarItem, SheetName);
 		VariableHandler.setMultipleItems(ArrayList);
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				"AshokUsername");
+				System.getProperty("AshokUsername"));
 		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
@@ -2621,8 +2646,9 @@ public class CustomerScheduleFunctions {
 		}
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateCustomerScheduleScreen();
+				System.getProperty("TvsUsername"));
+		commonFunc.navigateSalesOrderPage();
+		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
 		verifyCustomerScheduleDocumentStatusDraftWithDB();
 		verifyCustomerScheduleHeaderDetailsUIValuesWithDBValues();
@@ -2651,7 +2677,7 @@ public class CustomerScheduleFunctions {
 	 * 
 	 * @author Harikrishna - RMITS
 	 * @param TemplateFileName
-	 * @return
+	 * @return String updatedFile
 	 */
 	private String createUpdatedCsvFileWithItemFromAndToDate(String TemplateFileName) {
 		String FileName = VariableHandler.testdataDir + TemplateFileName;
@@ -2828,6 +2854,7 @@ public class CustomerScheduleFunctions {
 			VariableHandler.setCSLineDocNumber(LineDocNo);
 			logs.logging("INFO", "Get Text Customer Schedule Line Wise Document Number Is : "
 					+ VariableHandler.getCSLineDocNumber());
+			CSLineDocNo.add(LineDocNo);
 		}
 		assertTrue(flag);
 	}
@@ -2960,5 +2987,51 @@ public class CustomerScheduleFunctions {
 								+ VariableHandler.getCSLineDocNumber());
 			}
 		}
+	}
+
+	/**
+	 * This Method Is Used to set the Variable Handler To Zero After Finishing One
+	 * Test Scenarios
+	 * 
+	 * @author Harikrishna -RMITS
+	 */
+	public void verifyAfterMethod() {
+		VariableHandler.setSOEXPTotalOrderAmount(BigDecimal.ZERO);
+		VariableHandler.setSOTaxAmount(BigDecimal.ZERO);
+		VariableHandler.setSOTotalDiscountAmount(BigDecimal.ZERO);
+		VariableHandler.setSOTotalGrossAmount(BigDecimal.ZERO);
+		VariableHandler.setSOTotalLineAmount(BigDecimal.ZERO);
+		VariableHandler.setCSDocNumber(null);
+		ArrayList.clear();
+		CSLineDocNo.clear();
+		MultiPriceList.clear();
+		MultiOpenSODoc.clear();
+		MultiCatalogPriceDoc.clear();
+		webDB.navigateToRefresh();
+		webDB.switchToDefaultContent();
+		commonFunc.enterUrl();
+	}
+
+	/**
+	 * This Method Is Used To Click The Customer Schedule Button The Sales Order Add
+	 * Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickCustomerScheduleButton() {
+		flag = webDB.waitForElement(CustomerScheduleLocators.CSButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CustomerScheduleLocators.CSButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CustomerScheduleLocators.CSFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Customer Schedule Button Is clicked Sucessfully");
+				MatReqFunc.FrameSwitching(CustomerScheduleLocators.CSFrame);
+				flag = webDB.waitForElement(CustomerScheduleLocators.CSLocationLov, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Navigated To Customer Schedule Add Screen");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }

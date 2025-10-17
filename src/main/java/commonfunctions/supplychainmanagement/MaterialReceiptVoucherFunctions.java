@@ -12,6 +12,8 @@ import static org.testng.Assert.assertTrue;
  */
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,10 +52,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -75,12 +77,12 @@ public class MaterialReceiptVoucherFunctions {
 								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
@@ -248,9 +250,9 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickPendingInssuanceBtn() {
-		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 		}
 		assertTrue(flag);
@@ -551,11 +553,11 @@ public class MaterialReceiptVoucherFunctions {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.moveToElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance Is Displayed");
-				webDB.moveToElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.moveToElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -576,12 +578,12 @@ public class MaterialReceiptVoucherFunctions {
 								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMRVButton,
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
@@ -612,10 +614,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -894,10 +896,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -981,10 +983,10 @@ public class MaterialReceiptVoucherFunctions {
 		if (flag) {
 			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
-			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Pending Insurance IS Displayed");
-				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingInsurance, ElementType.Xpath);
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
@@ -1080,4 +1082,423 @@ public class MaterialReceiptVoucherFunctions {
 		}
 	}
 
+	/**
+	 * This Method Is USed To Verify Open ALready Created MRV Documents
+	 * 
+	 * @author Deepan-GWL
+	 * @param VoucherNumber
+	 */
+	public void verifyOpenAlreadyCreatedMRVDocumentsWithGRNSCREEN(String MRVNumber) {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocLovBtn, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MrvDocLovBtn, MRVNumber);
+			logs.logging("INFO", "MRV Document Number Is:" + MRVNumber);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocNumberSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberSearchBtn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown, ElementType.Xpath);
+				flag = webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocNumberDrillDown, ElementType.Xpath);
+				verifyToPostWithOrWithoutLocator();
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is To Post MRV Document From Pending Issuance Voucher for With
+	 * And Without Locator
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void verifyPostMaterialReceiptWithAndWithoutLocatorBasedOnDocumentWiseCancel() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
+		verifyToCreateMrvDocumentFromPendingMivWithGrnDocument();
+		getMaterialReceiptVoucherNumberFromToastMessage();
+		verifyToCanceDocumentWise();
+		try {
+			String alertText = VariableHandler.getMRVDocumentNumber();
+			System.out.println("Alert text: " + alertText);
+			String pattern = "MV100/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*MV100/\\d{5}/\\d{2}-\\d{2}";
+			if (alertText.matches(".*" + pattern + ".*")) {
+				System.out.println("Specific receipt document alert found, proceeding with the process.");
+				searchAndSelectLovForMrvDocumentFindPage();
+				commonFunc.logoutUser();
+
+			} else {
+				System.out.println("Other alert detected, no action taken.");
+				commonFunc.logoutUser();
+			}
+		} catch (Exception e) {
+			System.out.println("No alert appeared or other error: " + e.getMessage());
+		}
+
+	}
+
+	/**
+	 * This Methods Is Used To Post With or Without Locator Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void verifyToCanceDocumentWise() {
+		if (webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocwiseCancelbutton, ElementType.Xpath)) {
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocwiseCancelbutton, ElementType.Xpath);
+			logs.logging("INFO", "MRV Document Successfully Cancelled");
+		} else {
+
+		}
+
+	}
+
+	/**
+	 * This Method Is Used To PO Filter All Field Working
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyCreationOfGrnFilterAllFieldWorking() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
+		verifyDateAfterAndBefore();
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
+				2, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"),
+				3, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.MRVNumber,
+				commonFunc.getDataFromTestDataSheet("MRVNumber"), 5,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ProdordNumber,
+				commonFunc.getDataFromTestDataSheet("ProdNumber"), 20,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.SourceVoucherNumber,
+				commonFunc.getDataFromTestDataSheet("GrnSourceVoucherNumber"), 30,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ReceiverWHID,
+				commonFunc.getDataFromTestDataSheet("ReceiverWH"), 7,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ReceiverWHDesc,
+				commonFunc.getDataFromTestDataSheet("ReceiverWHDesc"), 8,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ItemId,
+				commonFunc.getDataFromTestDataSheet("MrvItem"), 11,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.ItemDesc,
+				commonFunc.getDataFromTestDataSheet("MrvItemDesc"), 13,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.MRVStatus,
+				commonFunc.getDataFromTestDataSheet("Issued"), 23,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("SelectType"));
+		commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * This Method Is Used To Verify Filter Search Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 * @param LovButton
+	 * @param Value
+	 * @param i
+	 */
+	@SuppressWarnings("unlikely-arg-type")
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
+		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
+			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SelectType"))) {
+			webDB.selectDropDownByText(LovButton, Value, ElementType.Xpath);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SendTextInput"))) {
+			webDB.sendTextToAnElement(LovButton, Value, ElementType.Xpath);
+		}
+		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
+			clickSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
+		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
+			clickLineSearchButton();
+			commonFunc.hardWait(3000);
+			verifyLineAmendTableValue(i, Value);
+		}
+		clearSearchFilter();
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSearchButton() {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.HeaderCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header CheckBox Is Displayed");
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AmendFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(MaterialReceiptVoucherLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickLineSearchButton() {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LineCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.OpenPoSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.OpenPoSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AmendLineFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(MaterialReceiptVoucherLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Date From And To
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDateAfterAndBefore() {
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVdateFrom, ElementType.Xpath);
+		webDB.sendTextToAnElement(MaterialReceiptVoucherLocators.MRVdateFrom,
+				commonFunc.getDataFromTestDataSheet("EffFrom"), ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueAfterDate(4, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		clearSearchFilter();
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVdateTo, ElementType.Xpath);
+		webDB.sendTextToAnElement(MaterialReceiptVoucherLocators.MRVdateTo,
+				commonFunc.getDataFromTestDataSheet("EffTo"), ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueBeforeDate(4, commonFunc.getDataFromTestDataSheet("EffTo"));
+		clearSearchFilter();
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(MaterialReceiptVoucherLocators.AmendFindTableData(i)));
+		System.out.println(1);
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				System.out.println("flag " + date1 + date2 + flag);
+				if (!flag) {
+					if (date1.equals(date2)) {
+						flag = true;
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Verify GRN Subcontract Material Receipt
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyGRNSubcontractForMaterialReceipt() {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername-Admin");
+		commonFunc.navigateToMaterialReceiptVoucher();
+		verifyGRNSubcontractMRV(VariableHandler.getScoGrnNumber());
+		verifyReceiptLocatorsAndPutAway();
+		clickTickAndPostIcon();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Verify GRN Subcontract Material receipt voucher
+	 * 
+	 * @author Vimal - RMITS
+	 * @param DocNo
+	 */
+	public void verifyGRNSubcontractMRV(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Receipt Voucher Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingReceiptVoucherButton, ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Insurance IS Displayed");
+				webDB.clickAnElement(MaterialReceiptVoucherLocators.PendingIssuance, ElementType.Xpath);
+				flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Mrv Frame Is Displayed");
+					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
+						webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField,
+								VariableHandler.getScoGrnNumber(), ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Go Button Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Mrv CheckBox Is Displayed");
+								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
+										ElementType.Xpath);
+								flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Create Qc Doc Is Displayed");
+									webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
+											ElementType.Xpath);
+									storeMRVDocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Clear Search Filter
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clearSearchFilter() {
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.ClearButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.ClearButton, ElementType.Xpath);
+			logs.logging("INFO", "Clear Button Is Clicked");
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(MaterialReceiptVoucherLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+						flag = true;
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }
