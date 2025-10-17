@@ -618,9 +618,9 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickTickIconCreateRequest() {
-		flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(PurchaseRequestLocators.PurchaseIDHeader, ElementType.Xpath);
 			if (flag) {

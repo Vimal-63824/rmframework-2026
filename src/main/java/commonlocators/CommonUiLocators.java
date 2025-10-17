@@ -33,7 +33,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String LeftSidePendingIcon = "//button[contains(@class,'warning')]";
 	/** @locatorType Xpath */
-	public static final String CreateTickIcon = "//button[@data-testid='Create_PO_Form']";
+	public static final String CreateTickIcon = "//span[contains(@class,'check')]/parent::button[contains(@title,'Create')]";
 	/** @locatorType Xpath */
 	public static final String PostToastMessage = "//*[@class='succ_msg'] | //*[@id='APEX_SUCCESS_MESSAGE']//h2";
 	/** @locatorType Xpath */
@@ -398,4 +398,8 @@ public class CommonUiLocators {
 	public static final String CreatePrButton = "//button[@id='B938864189401882606']";
 	/** @locatorType Xpath */
 	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
+	/** @locatorType Xpath */
+	public static final String CreatePRTickIcon = "//button[@id='B856779552425513900']";
+	/** @locatorType Xpath */
+	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
 }
