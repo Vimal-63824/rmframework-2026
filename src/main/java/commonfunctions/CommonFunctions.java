@@ -235,7 +235,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestTab"), CommonUiLocators.LeftSideAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestTab"), CommonUiLocators.PrCreateButton);
 		Assert.assertTrue(flag);
 	}
 
@@ -348,6 +348,15 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			hardWait(2000);
+			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePoButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.CreatePoButton, ElementType.Xpath);
+			}
+			hardWait(2000);
+			webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+
 			if (flag) {
 				flag = webDB.waitForElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
 				if (flag) {
@@ -546,18 +555,19 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigatePurchaseRequestCloseShortPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickPurchaseTransactionTab();
-		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickPurchaseTransactionTab();
+//		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("PRAmendment"), PurchaseRequestLocators.AddButtonPRCs);
 		Assert.assertTrue(flag);
 	}
 
@@ -783,7 +793,7 @@ public class CommonFunctions {
 //		clickPricelistTransactionTab();
 		navigateToSearchTab(webDB.getDataFromProperties("PRICELISTENTRY"), PricelistPageLocators.AddPriceList);
 		Assert.assertTrue(flag);
-		
+
 	}
 
 	/**
@@ -2950,4 +2960,29 @@ public class CommonFunctions {
 	public void navigateToOpenPriceSCO() {
 		navigateToSearchTab(webDB.getDataFromProperties("OpenscoScreen"), CommonUiLocators.Open_SCO_Find_AddIcon);
 	}
+
+	/**
+	 * This Method used to click PR create icon - left add icon
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickPRCreateIcon() {
+		flag = webDB.waitForElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
+			hardWait(4000);
+			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePrButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
+			}
+			hardWait(3000);
+			webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
 }

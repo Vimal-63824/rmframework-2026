@@ -21,6 +21,7 @@ public class EmployeeQuickEntryLocators {
 	/** @locatorType XPATH */
 	public static final String MailId = "//input[@id='P16_MAIL_ID']";
 	/** @locatorType XPATH */
-	public static final String TickButton = "//button[@id='B466410501286064625']";
-
+	public static final String TickButton = "//button[@title='Create']";
+	/** @locatorType XPATH */
+	public static final String EmpId = "//input[@data-testid='EMP_quk_enry_empid']";
 }

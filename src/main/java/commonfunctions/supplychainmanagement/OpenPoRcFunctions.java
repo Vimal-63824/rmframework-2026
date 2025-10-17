@@ -59,19 +59,27 @@ public class OpenPoRcFunctions {
 		flag = webDB.waitForElement(OpenPoRcLocators.CreateButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(OpenPoRcLocators.CreateButton, ElementType.Xpath);
+			webDB.switchToFrame(OpenPoRcLocators.CreateOpenPoFrame, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.LocationId, Location);
-			webDB.selectDropDownByText(OpenPoRcLocators.PoTypeSelect, OpenPOType, ElementType.Xpath);
-			logs.logging("INFO", "Select Text Po Type Is: " + OpenPOType);
-			commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.SupplierButton, Supplier);
-			logs.logging("INFO", "Supplier Button Is Displayed" + Supplier);
-			flag = webDB.waitForElement(OpenPoRcLocators.TickButton, ElementType.Xpath);
+			webDB.switchToFrame(OpenPoRcLocators.CreateOpenPoFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenPoRcLocators.PoTypeSelect, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(OpenPoRcLocators.TickButton, ElementType.Xpath);
-				flag = webDB.waitForElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
+				webDB.selectDropDownByText(OpenPoRcLocators.PoTypeSelect, OpenPOType, ElementType.Xpath);
+				logs.logging("INFO", "Select Text Po Type Is: " + OpenPOType);
+				commonFunc.searchAndSelectValueInFilters(OpenPoRcLocators.SupplierButton, Supplier);
+				logs.logging("INFO", "Supplier Button Is Displayed" + Supplier);
+				webDB.switchToFrame(OpenPoRcLocators.CreateOpenPoFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenPoRcLocators.TickButton, ElementType.Xpath);
 				if (flag) {
-					String OpenPONumber = webDB.getTextFromElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
-					logs.logging("INFO", "Get Text Open PO Number Is: " + OpenPONumber);
-					VariableHandler.setOpenPoNumber(OpenPONumber);
+					webDB.clickAnElement(OpenPoRcLocators.TickButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
+					if (flag) {
+						String OpenPONumber = webDB.getTextFromElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
+						logs.logging("INFO", "Get Text Open PO Number Is: " + OpenPONumber);
+						VariableHandler.setOpenPoNumber(OpenPONumber);
+
+					}
 				}
 			}
 		}

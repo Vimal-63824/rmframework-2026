@@ -203,13 +203,14 @@ public class SetupPurchaseFunctions {
 	public void verifyCreateAndUpdateBuyerName() {
 		String SeqNo = RandomStringUtils.randomNumeric(5);
 		String EmployeeName = "AUTOMATION " + SeqNo;
+		String EmployeeId = "AUTO" + SeqNo;
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigateToEmployeeQuickEntryTab();
 		String Mobile = commonFunc.getDataFromTestDataSheet("Mobile") + SeqNo;
 		String Mail = commonFunc.getDataFromTestDataSheet("Email") + SeqNo
 				+ commonFunc.getDataFromTestDataSheet("Gmail");
-		emplyeeQuickEntryFunc.verifyCreateNewEmployee(EmployeeName,
+		emplyeeQuickEntryFunc.verifyCreateNewEmployee(EmployeeId, EmployeeName,
 				commonFunc.getDataFromTestDataSheet("PurchaseManager"), commonFunc.getDataFromTestDataSheet("Purchase"),
 				Mobile, Mail);
 		commonFunc.logoutUser();
@@ -233,13 +234,14 @@ public class SetupPurchaseFunctions {
 	public void verifyUpdateBuyer(String EmployeeName) {
 		String SeqNo = RandomStringUtils.randomNumeric(5);
 		String EmployeeName1 = "AUTOMATION " + SeqNo;
+		String EmployeeId = "AUTO" + SeqNo;
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigateToEmployeeQuickEntryTab();
 		String Mobile = commonFunc.getDataFromTestDataSheet("Mobile") + SeqNo;
 		String Mail = commonFunc.getDataFromTestDataSheet("Email") + SeqNo
 				+ commonFunc.getDataFromTestDataSheet("Gmail");
-		emplyeeQuickEntryFunc.verifyCreateNewEmployee(EmployeeName1,
+		emplyeeQuickEntryFunc.verifyCreateNewEmployee(EmployeeId, EmployeeName1,
 				commonFunc.getDataFromTestDataSheet("PurchaseManager"), commonFunc.getDataFromTestDataSheet("Purchase"),
 				Mobile, Mail);
 		commonFunc.logoutUser();

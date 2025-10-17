@@ -10,7 +10,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRLocationButton = "//input[@data-testid='PR_LOC_ID_SELECTION']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PRCPCCodeButton = "//input[@data-testid='PR_CPC_CODE_SELECTION']/following-sibling::button";
+	public static final String PRCPCCodeButton = "//input[@data-testid='PR_CPC_CODE_SELECTION']/following::button[@id='P16151310301_PRH_CC_CODE_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String PRTypeSelect = "//select[@data-testid='PR_TYPE_SELECTION']";
 	/** @locatorType Xpath */
@@ -22,13 +22,17 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String FindPR_PRNoButton = "//input[@data-testid='PR_FIND_PR.NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindSearchButton = "//button[@testid='PR_SEARCH_ICON']";
+	public static final String FindSearchButton = "//button[@data-testid='Find_line']";
+
 	/** @locatorType Xpath */
-	public static final String PRStatusBoldText = "//div[contains(@style,'bold')]";
+	public static final String PRStatusBoldText(String value) {
+		return "(//td/a[text()='" + value + "']/../../td/div[contains(@style,'bold')][last()])[last()]";
+	}
+
 	/** @locatorType Xpath */
 	public static final String AddLineIcon = "//button[@data-testid='PR_ADDLINE']";
 	/** @locatorType Xpath */
-	public static final String SaveLineBtn = "//button[@data-testid='PR_SAVELINE']";
+	public static final String SaveLineBtn = "//button[@data-testid='Save_line']";
 	/** @locatorType Xpath */
 	public static final String SaveHeaderBtn = "//button[@testid='PR_SAVEHEADER']";
 	/** @locatorType Xpath */
@@ -87,7 +91,7 @@ public class PurchaseRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String PR_LineDeleteIconWithData(String Text) {
-		return "(//td[text()='" + Text + "']/..//span[@class='fa fa-trash-o'])[1]";
+		return "(//td[text()='" + Text + "']/..//span[@data-testid='PR_LINE_DELETE_ICON'])[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -103,7 +107,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_FindDocNo = "//button[contains(@id,'DOC_NO')]";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_SearchBtn = "//button[@id='B1764878166242042203']";
+	public static final String PRCloseShort_SearchBtn = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_LocId = "//button[contains(@id,'PCH_PLNT_LOC_ID')]";
 	/** @locatorType Xpath */
@@ -115,9 +119,9 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_LoadPRBtn = "//button[@id='B1758795715993518741']";
+	public static final String PRCloseShort_LoadPRBtn = "//button[@data-testid='Load_PR']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_FetchPRIframe = "//iframe[@title='Fetch PR']";
+	public static final String PRCloseShort_FetchPRIframe = "//iframe[@title='Load PR']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_SelectAllPRItem = "(//span[@class='a-IRR-headerLabel'])[1]";
 	/** @locatorType Xpath */
@@ -125,9 +129,9 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_SaveLinesBtn = "//button[@id='B2727201100997978947']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_SaveHeaderBtn = "//button[@id='B1757901165046819709']";
+	public static final String PRCloseShort_SaveHeaderBtn = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_CloseShortBtn = "//button[@id='B1762277391045906722']";
+	public static final String PRCloseShort_CloseShortBtn = "//button[@data-testid='Closeshort']";
 	/** @locatorType Xpath */
 	public static final String LineAmountDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
 	/** @locatorType Xpath */
@@ -147,7 +151,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String UOMDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[5])[1]";
 	/** @locatorType Xpath */
-	public static final String PR_LastItemDetailIcon = "//table//tbody/tr[contains(@class,'a-GV-row')]/td//span[@class='fa fa-info-circle']";
+	public static final String PR_LastItemDetailIcon = "//table//tbody/tr[contains(@class,'a-GV-row')]/td//span[@style='color:blue']";
 	/** @locatorType Xpath */
 	public static final String PR_LineDetailsIframe = "//iframe[@title='Line Details']";
 	/** @locatorType Xpath */
@@ -181,7 +185,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRFindClearIcon = "//select[@id='Clear']";
 	/** @locatorType Xpath */
-	public static final String PRFindResultSearchBar = "//input[@id='ld_search_field']";
+	public static final String PRFindResultSearchBar = "//input[@id='SSR_search_field']";
 	/** @locatorType Xpath */
 	public static final String PRResultTableStatusText = "//div[@data-testid='PR_STATUS_TABLE_TEXT']";
 	/** @locatorType Xpath */
@@ -210,4 +214,16 @@ public class PurchaseRequestLocators {
 	public static final String RequiredDateInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]//input";
 	/** @locatorType Xpath */
 	public static final String PRAddFrame = "//iframe[@title='Purchase Request']";
+	public static final String HeaderCheckbox = "//label[@for='P161513103_RADIO_GRP_HD_LN_0']";
+	/** @locatorType Xpath */
+	public static final String AddButtonPRCs = "//button[@data-testid='add']";
+	/** @locatorType Xpath */
+	public static final String HeaderCheckBox = "(//input[@data-testid='P1615131122_HEAD_LINE']/following-sibling::label)[1]";
+	/** @locatorType Xpath */
+	public static final String PRHeaderCheckBox = "//input[@data-display='Line(s)']/following-sibling::label";
+	/** @locatorType Xpath */
+	public static final String GlAccNo = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[13]";
+	/** @locatorType Xpath */
+	public static final String GlAccNoLovButton = "//input[@data-testid='PRL_PUR_ACCT']/following-sibling::button";
+
 }
