@@ -21,6 +21,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 	private static EmployeeAdjustmentFunctions empAdjFunc = new EmployeeAdjustmentFunctions();
 	private static ReportLoger logs = new ReportLoger();
+	private static int previousStatus = ITestResult.SUCCESS;
 
 	/**
 	 * To Check the Employee Creation with Particulars details
@@ -267,7 +268,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 21, groups = {
 			"EmployeeMaster" }, description = "22 To Check The Employee Creation With Probation Complete")
-	public void verifyEmployeeCreationProbationComplete() {
+	public void VerifyEmployeeCreationProbationComplete() {
 		flag = empMasterFunc.verifyEmployeeCreationProbationComplete();
 		Assert.assertTrue(flag);
 	}
@@ -317,9 +318,13 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 25, groups = { "Employee Adjustment" }, description = "71 To Check Adjustment based on End option")
 	public void VerifyEmployeeAdjustmentBasedOnEndOption() {
-		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
-		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (VerifyEmployeeAdjustmentBasedOnDifferentElements) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -330,9 +335,13 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	@Test(priority = 26, groups = {
 			"Employee Adjustment" }, description = "72 To Check Adjustment based on Delete option")
 	public void VerifyEmployeeAdjustmentBasedOnDeleteOption() {
-		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
-		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (VerifyEmployeeAdjustmentBasedOnDifferentElements) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -343,9 +352,13 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	@Test(priority = 27, groups = {
 			"Employee Adjustment" }, description = "73 To Check Adjustment based on Hold option")
 	public void VerifyEmployeeAdjustmentBasedOnHoldOption() {
-		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
-		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (VerifyEmployeeAdjustmentBasedOnDifferentElements) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -356,9 +369,13 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	@Test(priority = 28, groups = {
 			"Employee Adjustment" }, description = "74 To Check Employee Adjustment report fetches values correctly")
 	public void VerifyEmployeeAdjustmentReportFetchesValues() {
-		// This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test
-		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements' Test");
-		Assert.assertTrue(flag);
+		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
+		if (previousStatus != ITestResult.SUCCESS) {
+			logs.logging("INFO",
+					"Previous test (VerifyEmployeeAdjustmentBasedOnDifferentElements) failed. So this fails too.");
+			Assert.fail();
+		}
+		Assert.assertTrue(true);
 	}
 
 	/**
@@ -393,7 +410,8 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result) {
-		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
+		previousStatus = result.getStatus();
+		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			VariableHandler.setAddEmployeDefaultExecution(false);
 			commonFunc.verifyAfterMethod();
 		}

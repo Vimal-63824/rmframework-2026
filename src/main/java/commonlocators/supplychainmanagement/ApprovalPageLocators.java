@@ -76,7 +76,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveErrorToast = "//div[contains(text(),'error has occurred')]";
 	/** @locatorType Xpath */
-	public static final String ApprovalTitle = "//h1[contains(text(),'Approval')]";
+	public static final String ApprovalTitle = "//iframe/ancestor::div//h1[normalize-space()='Workflow Approval']";
 	/** @locatorType Xpath */
 	public static final String ReturnRadioBtn = "//label[text()='Return']";
 	/** @locatorType Xpath */

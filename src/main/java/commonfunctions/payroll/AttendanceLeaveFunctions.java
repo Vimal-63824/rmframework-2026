@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 /**
  * @author Sakthi-GWL
@@ -22,6 +23,7 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
+import commonlocators.payroll.EmployeeMasterLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ExcelUtils;
@@ -1325,9 +1327,11 @@ public class AttendanceLeaveFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyLeaveEntryDateTypeBalanceSession() {
-		LocalDate date1 = LocalDate.now();
+		LocalDate date = LocalDate.now();
+		LocalDate date1 = LocalDate.now().plusMonths(1);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String Today = date1.format(formatter);
+		String Today = date.format(formatter);
+		String requestDate = date1.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
@@ -1335,9 +1339,9 @@ public class AttendanceLeaveFunctions {
 			chooseLeaveAndClickAddLeaveIcon();
 			fillRequestDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
 					commonFunc.getDataFromTestDataSheet("CL-Text"));
-			selectStartDateAndSessionWithAppliedDays(Today, commonFunc.getDataFromTestDataSheet("FullSessionText"),
-					"1");
-			selectEndDateAndSessionWithReason(Today, commonFunc.getDataFromTestDataSheet("FullSessionText"),
+			selectStartDateAndSessionWithAppliedDays(requestDate,
+					commonFunc.getDataFromTestDataSheet("FullSessionText"), "1");
+			selectEndDateAndSessionWithReason(requestDate, commonFunc.getDataFromTestDataSheet("FullSessionText"),
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			saveLeaveEntryAndStoreLeaveRequestNo();
 			clickPostButtonInLeaveRequest();
@@ -1346,39 +1350,35 @@ public class AttendanceLeaveFunctions {
 				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveRequestNo(),
 						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 						System.getProperty("HRMSelfApproveUser"));
-//				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-//						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-//				approvalFunc.navigateToApprovals();
-//				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
-//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
-//				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-//						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
 			}
-			commonFunc.navigateLeaveEntryScreen();
-			clickFetchButtonAndSearchLeaveRequestNo(VariableHandler.getLeaveRequestNo());
-			selectLeaveRequestAndClickCreateLeave(VariableHandler.getLeaveRequestNo());
-			clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
-			clickSaveAndPostInLeaveEntry();
-			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveEntryDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HRMSelfApproveUser"));
-//				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-//						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-//				approvalFunc.navigateToApprovals();
-//				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
-//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
-			}
-			flag = commonFunc.logoutUser();
-			if (flag) {
+			commonFunc.navigatePayrollApplicationScreen();
+			verifyAutoPostLeaveEntryInLeaveSetupScreen();
+			if (!VariableHandler.getEmpLeaveEntryAutoPost()) {
+				commonFunc.navigateLeaveEntryScreen();
+				clickFetchButtonAndSearchLeaveRequestNo(VariableHandler.getLeaveRequestNo());
+				selectLeaveRequestAndClickCreateLeave(VariableHandler.getLeaveRequestNo());
+				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
+				clickSaveAndPostInLeaveEntry();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+					commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"),
+							VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("KSRAdminEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HRMSelfApproveUser"));
+
+				}
+				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 				commonFunc.navigateLeaveEntryScreen();
 				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
+				clickReverseAndVerifyStatusInLeveEntry();
+				flag = commonFunc.logoutUser();
+			} else if (VariableHandler.getEmpLeaveEntryAutoPost()) {
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateLeaveEntryScreen();
+				clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 				clickReverseAndVerifyStatusInLeveEntry();
 				flag = commonFunc.logoutUser();
 			}
@@ -1396,11 +1396,12 @@ public class AttendanceLeaveFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyLeaveLOPUploadMigrationWithTemplates() {
-		LocalDate date = LocalDate.now();
+		LocalDate date = LocalDate.now().plusDays(4);
+		LocalDate date1 = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
-		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yy");
-		String Month = date.format(formatter).toUpperCase();
-		String Today = date.format(formatter1);
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+		String Month = date1.format(formatter).toUpperCase();
+		String requestDay = date.format(formatter1);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
@@ -1410,7 +1411,7 @@ public class AttendanceLeaveFunctions {
 			selectCalendarYearPeriodAndRefInLOP(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
 					commonFunc.getDataFromTestDataSheet("Year202526"), Month,
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
-			uploadTemplateInLOPLeaveMigration();
+			uploadTemplateInLOPLeaveMigration(requestDay);
 			checkExceptionAndSaveHeaderInLOPMigration();
 			clickPostLOPLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -1426,11 +1427,9 @@ public class AttendanceLeaveFunctions {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
-			searchEmpIdLeaveTypeAndStoreLeaveEntryDocNo(commonFunc.getDataFromTestDataSheet("LOP-Text"),
-					commonFunc.getDataFromTestDataSheet("Emp_GWP0001"), Today);
 			webDB.navigateToRefresh();
 			commonFunc.hardWait(2000);
-			clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
+			clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickReverseAndVerifyStatusInLeveEntry();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -1447,11 +1446,12 @@ public class AttendanceLeaveFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyLeaveAccrualUploadMigrationWithTemplates() {
-		LocalDate date = LocalDate.now().withDayOfMonth(1);
 		LocalDate date1 = LocalDate.now();
+		LocalDate date2 = LocalDate.now().plusDays(5);
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMMM");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String Month = date.format(formatter);
-		String Today = date1.format(formatter);
+		String Month = date1.format(formatter1).toUpperCase();
+		String requestDate = date2.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
@@ -1461,7 +1461,7 @@ public class AttendanceLeaveFunctions {
 			selectCalendarYearPeriodAndRefInAccrual(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
 					commonFunc.getDataFromTestDataSheet("Year202526"), Month,
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
-			uploadTemplateInAccrualLeaveMigration();
+			uploadTemplateInAccrualLeaveMigration(requestDate);
 			checkExceptionAndSaveHeaderInAccrualMigration();
 			clickPostAccrualLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -1477,11 +1477,9 @@ public class AttendanceLeaveFunctions {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
-			searchEmpIdLeaveTypeAndStoreLeaveEntryDocNo(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"),
-					commonFunc.getDataFromTestDataSheet("Emp_GWP0001"), Today);
 			webDB.navigateToRefresh();
 			commonFunc.hardWait(2000);
-			clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
+			clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickReverseAndVerifyStatusInLeveEntry();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -1500,37 +1498,25 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyCancelLeaveCheckLeaveStatus() {
 		LocalDate date = LocalDate.now();
+		LocalDate date1 = LocalDate.now().plusDays(2);
+		LocalDate date2 = LocalDate.now().plusDays(2).plusDays(3);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
+		String requestDate = date1.format(formatter);
+		String AfterThreeDate = date2.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
-			commonFunc.navigateLeaveEncashmentScreen();
-			chooseLeaveAndClickAddLeaveIcon();
-			fillRequestDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
-					commonFunc.getDataFromTestDataSheet("CL-Text"));
-			selectStartDateAndSessionWithAppliedDays(Today, commonFunc.getDataFromTestDataSheet("FullSessionText"),
-					"1");
-			selectEndDateAndSessionWithReason(Today, commonFunc.getDataFromTestDataSheet("FullSessionText"),
-					commonFunc.getDataFromTestDataSheet("RefText_Test"));
-			saveLeaveEntryAndStoreLeaveRequestNo();
-			clickPostButtonInLeaveRequest();
-			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"),
-						System.getProperty("HRMRequestPassword"), "HRMRequestUser");
-			}
 			commonFunc.navigateLeaveEntryScreen();
-			clickFetchButtonAndSearchLeaveRequestNo(VariableHandler.getLeaveRequestNo());
-			selectLeaveRequestAndClickCreateLeave(VariableHandler.getLeaveRequestNo());
-			clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
+			chooseLeaveAndClickAddLeaveIconInLE();
+			fillEntryDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
+					commonFunc.getDataFromTestDataSheet("CL-Text"));
+			selectStartDateAndSessionWithAppliedDaysInLE(requestDate,
+					commonFunc.getDataFromTestDataSheet("FullSessionText"), "3");
+			selectEndDateAndSessionWithReasonInLE(AfterThreeDate,
+					commonFunc.getDataFromTestDataSheet("FullSessionText"),
+					commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			saveLeaveEntryAndStoreLeaveEntryNo();
 			clickAttachmentInLeaveEntry();
 			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("ApplicationOption"),
 					Today, "0");
@@ -1672,7 +1658,7 @@ public class AttendanceLeaveFunctions {
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Header Saved Successfully in Leave Request");
-				String ReqNo = webDB.getAttributeFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
+				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 //				logs.logging("INFO", "Before Substring total text Displayed: " + totalText);
 //				int startIndex = totalText.indexOf(": ") + 1;
@@ -1798,9 +1784,13 @@ public class AttendanceLeaveFunctions {
 	 * @param LeaveEntryDocNo
 	 */
 	private void clickSearchAndFilterLeaveEntryDocNo(String LeaveEntryDocNo) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, LeaveEntryDocNo);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(AttendanceLeaveLocators.LeaveEntryFindSearchBar, ElementType.Xpath);
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBar, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Entry Search Button Clicked");
@@ -1823,6 +1813,37 @@ public class AttendanceLeaveFunctions {
 							logs.logging("INFO", "Leave Entry Document Number Clicked and Navigated");
 						}
 					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to search and filter using Emp Name and click with First
+	 * document number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param LeaveEntryDocNo
+	 */
+	private void clickSearchAndClickFirstLeaveEntryWithEmpName(String EmpName) {
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, EmpName);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntrySearchFirstEmpName(EmpName),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Leave Entry Document Number Displayed");
+				webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntrySearchFirstEmpName(EmpName), ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay, ElementType.Xpath);
+				if (flag) {
+					String DocNo = webDB.getTextFromElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay,
+							ElementType.Xpath);
+					VariableHandler.setLeaveEntryDocNo(DocNo);
+					logs.logging("INFO", "Leave Entry Document Number Clicked and Navigated");
 				}
 			}
 		}
@@ -1952,7 +1973,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void uploadTemplateInAccrualLeaveMigration() {
+	private void uploadTemplateInAccrualLeaveMigration(String date) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LRMigrationAccrualUploadIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LRMigrationAccrualUploadIcon, ElementType.Xpath);
@@ -1961,6 +1982,9 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
 				String file1 = webDB.getDataFromProperties("AccrualLeaveMigrationFileName");
+				String Path = VariableHandler.testdataDir + file1;
+				ExcelUtils excel = new ExcelUtils();
+				excel.writeDataInExcel(Path, "Sheet1", 1, 3, date);
 				File file = new File(VariableHandler.testdataDir + file1);
 				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LRMigrationAccrualUploadInput,
 						file.getAbsolutePath(), ElementType.Xpath);
@@ -2137,7 +2161,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void uploadTemplateInLOPLeaveMigration() {
+	private void uploadTemplateInLOPLeaveMigration(String date) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LRMigrationLOPUploadIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LRMigrationLOPUploadIcon, ElementType.Xpath);
@@ -2145,11 +2169,12 @@ public class AttendanceLeaveFunctions {
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LRMigrationLOPUploadInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
-
 				String file1 = webDB.getDataFromProperties("LOPLeaveMigrationFileName");
-//				String SheetName = "LeaveTemplate";
-//				modifyDateInLOPMigrationTemplate(VariableHandler.testdataDir + file1, SheetName);
-				File file = new File(VariableHandler.testdataDir + file1);
+				String Path = VariableHandler.testdataDir + file1;
+				ExcelUtils excel = new ExcelUtils();
+				excel.writeDataInExcel(Path, "Sheet1", 1, 3, date);
+				excel.writeDataInExcel(Path, "Sheet1", 1, 4, date);
+				File file = new File(Path);
 				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LRMigrationLOPUploadInput,
 						file.getAbsolutePath(), ElementType.Xpath);
 				if (flag) {
@@ -2241,20 +2266,31 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryHeaderSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryHeaderSaveIcon, ElementType.Xpath);
-			flag = webDB.waitForClickElement(AttendanceLeaveLocators.LeaveEntryCancelBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Header Save Icon Clicked");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
-				webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryCancelBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				commonFunc.hardWait(1500);
+				commonFunc.checkSuccessToastMessageDisappear();
+				flag = webDB.waitForClickElement(AttendanceLeaveLocators.LeaveEntryCancelBtn, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Cancel Button Icon Clicked");
-					String DisplayText = webDB.getTextFromElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay,
-							ElementType.Xpath);
-					logs.logging("INFO", "Displayed Leave Entry Number And Status: " + DisplayText);
-					flag = DisplayText.contains("Cancelled");
+					logs.logging("INFO", "Header Save Icon Clicked");
+					commonFunc.checkSuccessToastMessageDisappear();
+					webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryCancelBtn, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryCancelBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.AdjustmentReverseOkBtn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(AttendanceLeaveLocators.AdjustmentReverseOkBtn, ElementType.Xpath);
+						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Cancel Button Icon Clicked");
+							String DisplayText = webDB.getTextFromElement(
+									AttendanceLeaveLocators.LeaveEntryDisplayDocNoAndStatus, ElementType.Xpath);
+							logs.logging("INFO", "Displayed Leave Entry Number And Status: " + DisplayText);
+							flag = DisplayText.contains("Cancelled");
+						}
+					}
 				}
 			}
 		}
@@ -2341,33 +2377,31 @@ public class AttendanceLeaveFunctions {
 	 * @param Leave
 	 * @param EmpId
 	 */
-	private void searchEmpIdLeaveTypeAndStoreLeaveEntryDocNo(String Leave, String EmpId, String Today) {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindLeaveCategorySelect, ElementType.Xpath);
-		{
-			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.LeaveEntryFindLeaveCategorySelect, Leave,
-					ElementType.Xpath);
+	private void searchEmpIdLeaveTypeAndStoreLeaveEntryDocNo(String Leave, String EmpId, String requestDay) {
+//		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindLeaveCategorySelect, ElementType.Xpath);
+//		if (flag) {
+//			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.LeaveEntryFindLeaveCategorySelect, Leave,
+//					ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Leave Type Selected: " + Leave);
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, EmpId);
+		logs.logging("INFO", "Emp Id Selected: " + EmpId);
+		commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LeaveEntryFindDateFromInput,
+				AttendanceLeaveLocators.LeaveEntryFindDateFromInput, requestDay);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryDocNoWithPostedStatus, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Leave Type Selected: " + Leave);
-				commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryFindEmpIdLovBtn, EmpId);
-				logs.logging("INFO", "Emp Id Selected: " + EmpId);
-				commonPayrollFunctions.addDetailInTableWithoutLovButton(
-						AttendanceLeaveLocators.LeaveEntryFindDateFromInput,
-						AttendanceLeaveLocators.LeaveEntryFindDateFromInput, Today);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryFindSearchBtn, ElementType.Xpath);
-					flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryDocNoWithPostedStatus,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Search Button Clicked and Post Status Doc No Displayed");
-						String DisplayedDocNo = webDB.getTextFromElement(
-								AttendanceLeaveLocators.LeaveEntryDocNoWithPostedStatus, ElementType.Xpath);
-						VariableHandler.setLeaveEntryDocNo(DisplayedDocNo);
-						logs.logging("INFO", "Leave Entry Displayed Doc No:" + DisplayedDocNo);
-					}
-				}
+				logs.logging("INFO", "Search Button Clicked and Post Status Doc No Displayed");
+				String DisplayedDocNo = webDB
+						.getTextFromElement(AttendanceLeaveLocators.LeaveEntryDocNoWithPostedStatus, ElementType.Xpath);
+				VariableHandler.setLeaveEntryDocNo(DisplayedDocNo);
+				logs.logging("INFO", "Leave Entry Displayed Doc No:" + DisplayedDocNo);
 			}
 		}
+//			}
+//		}
 		Assert.assertTrue(flag);
 	}
 
@@ -2540,7 +2574,7 @@ public class AttendanceLeaveFunctions {
 			clickSaveAndStoreDocNoInAdjustment();
 			clickPostButtonInAdjustmentVerifyStatus();
 			clickAttachmentInLeaveEntry();
-			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("AttachmentDocTypeOption"),
+			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("ApplicationOption"),
 					Today, "0");
 			fillFromToDateAndFileUploadInLeaveEntryAttachment(Today, Today,
 					VariableHandler.testdataDir + webDB.getDataFromProperties("RoadMapImage"));
@@ -2636,8 +2670,10 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyAccrualLeaveBalanceMigrationWithTemplates() {
 		LocalDate date1 = LocalDate.now();
-		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM");
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 		String month = date1.format(formatter1);
+		String date = date1.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
@@ -2650,7 +2686,7 @@ public class AttendanceLeaveFunctions {
 					commonFunc.getDataFromTestDataSheet("AdditionText"),
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			clickSaveIconInAdjustmentMigration();
-			uploadTemplateInAdjustmentMigration();
+			uploadTemplateInAdjustmentMigration(date);
 			clickPostInAdjustmentMigration();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -2904,11 +2940,15 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Adjustment Migration Year Selected: " + Year);
-				flag = webDB.selectDropDownByIndex(AttendanceLeaveLocators.AdjmntMigrationPeriodSelect,
-						Integer.parseInt(Period), ElementType.Xpath);
+				webDB.waitForElement(AttendanceLeaveLocators.AdjmntMigrationPeriodSelectOptions(Period),
+						ElementType.Xpath);
+				String fullTextToSelect = webDB.getTextFromElement(
+						AttendanceLeaveLocators.AdjmntMigrationPeriodSelectOptions(Period), ElementType.Xpath);
+				flag = webDB.selectDropDownByText(AttendanceLeaveLocators.AdjmntMigrationPeriodSelect, fullTextToSelect,
+						ElementType.Xpath);
 				if (flag) {
 					commonFunc.checkRefreshCellsDisappear();
-					logs.logging("INFO", "Adjustment Migration Period Selected: " + Period);
+					logs.logging("INFO", "Adjustment Migration Period Selected: " + fullTextToSelect);
 					flag = webDB.selectDropDownByText(AttendanceLeaveLocators.AdjmntMigrationModeSelect, Mode,
 							ElementType.Xpath);
 					if (flag) {
@@ -2967,7 +3007,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void uploadTemplateInAdjustmentMigration() {
+	private void uploadTemplateInAdjustmentMigration(String date) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.AdjmntMigrationUploadIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.AdjmntMigrationUploadIcon, ElementType.Xpath);
@@ -2977,7 +3017,11 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Upload Icon Clicked and Input Box Displayed");
 				String file1 = webDB.getDataFromProperties("AdjustmentMigrationFileName");
-				File file = new File(VariableHandler.testdataDir + file1);
+				String Path = VariableHandler.testdataDir + file1;
+				ExcelUtils excel = new ExcelUtils();
+				excel.writeDataInExcel(Path, "Sheet1", 1, 3, date);
+				excel.writeDataInExcel(Path, "Sheet1", 1, 4, date);
+				File file = new File(Path);
 				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.AdjmntMigrationUploadInput,
 						file.getAbsolutePath(), ElementType.Xpath);
 				if (flag) {
@@ -3007,6 +3051,10 @@ public class AttendanceLeaveFunctions {
 	private void clickPostInAdjustmentMigration() {
 		flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn, ElementType.Xpath);
 		if (flag) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.AdjmntMigrationCheckExceptionBtn, ElementType.Xpath);
 			flag = webDB.waitForClickElement(AttendanceLeaveLocators.AdjmntMigrationPostBtn, ElementType.Xpath);
@@ -3610,5 +3658,167 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateToLoanRequestScreen();
 		CheckLoanRequestFindPageWithAllLineWiseRecord();
 		return flag;
+	}
+
+	/**
+	 * This method used to check enable auto post leave entry in Setup Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyAutoPostLeaveEntryInLeaveSetupScreen() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.SetupLeaveLabel, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.SetupLeaveLabel, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.SetupLeaveLabel, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.SetupCreateLeaveEntryLabel, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Leave Setup Payroll Clicked");
+				flag = webDB.isElementSelected(AttendanceLeaveLocators.SetupCreateLeaveEntryInputCheckBox,
+						ElementType.Xpath);
+				logs.logging("INFO", "Setup Payroll Checkbox value: " + flag);
+				if (flag) {
+					VariableHandler.setEmpLeaveEntryAutoPost(true);
+					logs.logging("INFO",
+							"Leave Entry Auto Post while approved Leave Request.. checked in setup screen");
+				} else if (!webDB.isElementEnabled(AttendanceLeaveLocators.SetupCreateLeaveEntryInputCheckBox,
+						ElementType.Xpath)) {
+					VariableHandler.setEmpLeaveEntryAutoPost(false);
+					logs.logging("INFO",
+							"Leave Entry Manual Post while approved Leave Request.. checked in setup screen");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to fill Details in Leave Entry Screen
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Date
+	 * @param EmpId
+	 * @param LeaveType
+	 */
+	private void fillEntryDateEmpIdAndLeaveType(String Date, String EmpId, String LeaveType) {
+		commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LeaveEntryDateInput,
+				AttendanceLeaveLocators.LeaveEntryDateInput, Date);
+		logs.logging("INFO", "Leave Request Date Entered: " + Date);
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryEmpIdLovBtn, EmpId);
+		logs.logging("INFO", "Leave Emp Id Selected: " + EmpId);
+		commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LeaveEntryLeaveTypeLovBtn, LeaveType);
+		logs.logging("INFO", "Leave Type Selected: " + LeaveType);
+		commonFunc.checkRefreshCellsDisappear();
+	}
+
+	/**
+	 * This method used to select start date and session and Applied Days in Leave
+	 * Entry
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Date
+	 * @param Session
+	 * @param AppliedDays
+	 */
+	private void selectStartDateAndSessionWithAppliedDaysInLE(String Date, String Session, String AppliedDays) {
+		commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LeaveEntryStartDateInput,
+				AttendanceLeaveLocators.LeaveEntryStartDateInput, Date);
+		logs.logging("INFO", "Leave Start Date Entered: " + Date);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryStartSessionSelect, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.LeaveEntryStartSessionSelect, Session,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Leave Start Session Selected: " + Session);
+				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LeaveEntryAppliedDaysInput, AppliedDays,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Applied Date Entered: " + AppliedDays);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select leave end date and session and Reason in Leave
+	 * Entry
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Date
+	 * @param Session
+	 * @param Reason
+	 */
+	private void selectEndDateAndSessionWithReasonInLE(String Date, String Session, String Reason) {
+//		commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LeaveEntryEndDateInput,
+//				AttendanceLeaveLocators.LeaveRequestEndDateInput, Date);
+		logs.logging("INFO", "Leave End Date Entered: " + Date);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryEndSessionSelect, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryEndDateInput, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryEndDateInput, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(AttendanceLeaveLocators.LeaveEntryEndDateInput, ElementType.Xpath);
+			flag = webDB.selectDropDownByText(AttendanceLeaveLocators.LeaveEntryEndSessionSelect, Session,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Leave End Session Selected: " + Session);
+				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LeaveEntryLeaveReason, Reason,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Leave Reason Entered: " + Reason);
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to save header and store leave request number in leave entry
+	 * screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void saveLeaveEntryAndStoreLeaveEntryNo() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryHeaderSaveIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryHeaderSaveIcon, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryHeaderSaveIcon, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkSuccessToastMessageDisappear();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Header Saved Successfully in Leave Entry");
+				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Displayed Entry No: " + ReqNo);
+				VariableHandler.setLeaveEntryDocNo(ReqNo);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select leave option and click add leave icon in Leave
+	 * Entry
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void chooseLeaveAndClickAddLeaveIconInLE() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.LeaveRadioBtnLeaveEntry, ElementType.Xpath);
+			logs.logging("INFO", "Leave Button is Clicked in Leave Entry");
+			flag = webDB.waitForClickElement(AttendanceLeaveLocators.LeaveEntryAddButton, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryAddButton, ElementType.Xpath);
+				webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryAddButton, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryEmpIdLovBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Leave Add Button Is Clicked in Leave Entry");
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 }
