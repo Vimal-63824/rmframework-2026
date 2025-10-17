@@ -13168,7 +13168,7 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.switchToFrame(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
 			logs.logging("INFO", "Switch To Purchase Order Frame");
-			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Purchase Order Tick Icon Displayed");
 			}

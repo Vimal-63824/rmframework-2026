@@ -355,7 +355,7 @@ public class CommonFunctions {
 			}
 			hardWait(2000);
 			webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 
 			if (flag) {
 				flag = webDB.waitForElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
@@ -2977,7 +2977,7 @@ public class CommonFunctions {
 			}
 			hardWait(3000);
 			webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 			}
