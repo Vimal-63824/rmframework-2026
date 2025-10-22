@@ -10,7 +10,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderheader = "//h1[@id='ui-id-2']";
 	/** @locatorType Xpath */
-	public static final String LocationIdInput = "(//input[@data-testid='PO_LocationId_Input'])[2]";
+	public static final String LocationIdInput = "//input[contains(@data-testid,'POH_PLNT_LOC_ID')]";
 	/** @locatorType Xpath */
 	public static final String UnitIdInput = "//input[@id='P1615131061_POH_PLANT']";
 	/** @locatorType Xpath */
@@ -20,7 +20,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoDate = "//*[@id='P1615131061_POH_ORDER_DATE_input']";
 	/** @locatorType Xpath */
-	public static final String SupplierName = "//input[@data-testid='PO_SupplierName']";
+	public static final String SupplierName = "//input[contains(@data-testid,'POH_SUPLR_ID')]";
 	/** @locatorType Xpath */
 	public static final String Buyer = "//*[@id='P1615131061_POH_BUYER_ID']";
 	/** @locatorType Xpath */
@@ -43,15 +43,15 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemSelectButton = "//input[@data-testid='DUM_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String InputItemPO = "//input[@id='C3750778132967408970']";
+	public static final String InputItemPO = "//input[@data-testid='DUM_PROD_ID_REV']";
 	/** @locatorType Xpath */
 	public static final String OrderedQuantity = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String OrderedQuantityInput = "//input[@data-testid='PO_Ordered_Quantity_Table']";
+	public static final String OrderedQuantityInput = "//input[@data-testid='POL_ORDERED_QTY']";
 	/** @locatorType Xpath */
 	public static final String UnitCost = "(//*[@id='ig_po_lineitems_ig_grid_vc']/div/div/table[1])[2]/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String UnitCostInput = "//input[@data-testid='PO_UnitCost_Table']";
+	public static final String UnitCostInput = "//input[@data-testid='POL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String TickIconPO = "//button[@data-testid='PO_Item_Tick_Icon']";
 	/** @locatorType Xpath */
@@ -315,7 +315,7 @@ public class PurchaseOrderPageLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String TickButtonLineOne = "//button[@id='B1467193366803536440']";
+	public static final String TickButtonLineOne = "//button[@data-testid='POL_DET_SAVE']";
 
 	/** @locatorType Xpath */
 	public static final String ServiceLineDetailButton(int i) {

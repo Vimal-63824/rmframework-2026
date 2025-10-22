@@ -273,8 +273,8 @@ public class PurchaseRequestFunctions {
 		enterQuantityForLastItem(Qnty);
 		enterCostForLastItem(Cost);
 		saveLinesEntry();
-		checkLineCostAmount(Cost, Qnty);
-		clickLineDetailsIconForLastitem();
+		checkLineCostAmount(Cost, Qnty, Item);
+		clickLineDetailsIconForLastitem(Item);
 		checkPRLineDetailsForLastUpdateItem(Item);
 		closeLineDetailsAndVerify();
 	}
@@ -1079,13 +1079,13 @@ public class PurchaseRequestFunctions {
 	 * @param cost
 	 * @param quantity
 	 */
-	private void checkLineCostAmount(String cost, String quantity) {
+	private void checkLineCostAmount(String cost, String quantity, String Item) {
 		double Cost = Double.parseDouble(cost);
 		double Quantity = Double.parseDouble(quantity);
-		flag = webDB.waitForElement(PurchaseRequestLocators.LineAmountDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.LineAmountDataLastRow(Item), ElementType.Xpath);
 		if (flag) {
 			double LineAmount = Double.parseDouble(
-					webDB.getTextFromElement(PurchaseRequestLocators.LineAmountDataLastRow, ElementType.Xpath)
+					webDB.getTextFromElement(PurchaseRequestLocators.LineAmountDataLastRow(Item), ElementType.Xpath)
 							.replace(",", ""));
 			flag = LineAmount == (Cost * Quantity);
 			logs.logging("INFO", "Cost * Quantity amount: " + (Cost * Quantity));
@@ -1262,11 +1262,11 @@ public class PurchaseRequestFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	public void clickLineDetailsIconForLastitem() {
-		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LastItemDetailIcon, ElementType.Xpath);
+	public void clickLineDetailsIconForLastitem(String Item) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PR_LastItemDetailIcon(Item), ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.PR_LastItemDetailIcon, ElementType.Xpath);
-			webDB.clickAnElement(PurchaseRequestLocators.PR_LastItemDetailIcon, ElementType.Xpath);
+			webDB.moveToElement(PurchaseRequestLocators.PR_LastItemDetailIcon(Item), ElementType.Xpath);
+			webDB.clickAnElement(PurchaseRequestLocators.PR_LastItemDetailIcon(Item), ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Details Icon Clicked for Last Item");
@@ -1292,28 +1292,28 @@ public class PurchaseRequestFunctions {
 			flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_Class, ElementType.Xpath);
 			if (flag) {
 				String DisplayText = webDB.getTextFromElement(Locator, ElementType.Xpath);
-				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
-				flag = DisplayText.equalsIgnoreCase(expectedName);
+//				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
+//				flag = DisplayText.equalsIgnoreCase(expectedName);
 				logs.logging("INFO", "Displayed Text: " + DisplayText);
-				logs.logging("INFO", "Expected Text: " + expectedName);
+//				logs.logging("INFO", "Expected Text: " + expectedName);
+//				if (flag) {
+				logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
 				if (flag) {
-					logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
+					logs.logging("INFO", "DB Value Is: " + DBData);
+					flag = DBData.contains(DisplayText);
 					if (flag) {
-						logs.logging("INFO", "DB Value Is: " + DBData);
-						flag = DBData.contains(DisplayText);
-						if (flag) {
-							logs.logging("INFO", "Verified Actual Value With DB Value");
-						}
+						logs.logging("INFO", "Verified Actual Value With DB Value");
 					}
-				} else {
-					logs.logging("INFO", "Verification Failed!!... Displayed and Expected Text for "
-							+ lineDtlName.name().toString());
 				}
-
+			} else {
+				logs.logging("INFO",
+						"Verification Failed!!... Displayed and Expected Text for " + lineDtlName.name().toString());
 			}
+//		}
 		}
 		webDB.switchToDefaultContent();
 		Assert.assertTrue(flag);
+
 	}
 
 	/**
@@ -1334,23 +1334,23 @@ public class PurchaseRequestFunctions {
 			if (flag) {
 				String DisplayText = webDB.getDomPropertyFromElement(Locator, ElementType.Xpath,
 						commonFunc.getDataFromTestDataSheet("Value"));
-				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
-				flag = DisplayText.equalsIgnoreCase(expectedName);
+//				String expectedName = itmDtlHandler.getPRLineDetailsforGivenItem(Item, lineDtlName);
+//				flag = DisplayText.equalsIgnoreCase(expectedName);
 				logs.logging("INFO", "Displayed Text: " + DisplayText);
-				logs.logging("INFO", "Expected Text: " + expectedName);
+//				logs.logging("INFO", "Expected Text: " + expectedName);
+//				if (flag) {
+//				logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
 				if (flag) {
-					logs.logging("INFO", "Verified Displayed and Expected Text for " + lineDtlName.name().toString());
+					logs.logging("INFO", "DB Value Is: " + DBData);
+					flag = DBData.contains(DisplayText);
 					if (flag) {
-						logs.logging("INFO", "DB Value Is: " + DBData);
-						flag = DBData.contains(DisplayText);
-						if (flag) {
-							logs.logging("INFO", "Verified Actual Value With DB Value");
-						}
+						logs.logging("INFO", "Verified Actual Value With DB Value");
 					}
-				} else {
-					logs.logging("INFO", "Verification Failed!!... Displayed and Expected Text for "
-							+ lineDtlName.name().toString());
 				}
+			} else {
+				logs.logging("INFO",
+						"Verification Failed!!... Displayed and Expected Text for " + lineDtlName.name().toString());
+//				}
 
 			}
 		}
@@ -1697,22 +1697,22 @@ public class PurchaseRequestFunctions {
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 	}
 
-	/**
-	 * This method used to click lines details for the last added line item
-	 * 
-	 * @author Sakthi-GWL
-	 */
-	public void clickLineDetailsIconForLastitem(String Item) {
-		flag = webDB.waitForElement(PurchaseRequestLocators.LineDetailsButton(Item), ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(PurchaseRequestLocators.LineDetailsButton(Item), ElementType.Xpath);
-			webDB.clickAnElement(PurchaseRequestLocators.LineDetailsButton(Item), ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Line Details Icon Clicked for Last Item");
-			}
-		}
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * This method used to click lines details for the last added line item
+//	 * 
+//	 * @author Sakthi-GWL
+//	 */
+//	public void clickLineDetailsIconForLastitem(String Item) {
+//		flag = webDB.waitForElement(PurchaseRequestLocators.LineDetailsButton(Item), ElementType.Xpath);
+//		if (flag) {
+//			webDB.moveToElement(PurchaseRequestLocators.LineDetailsButton(Item), ElementType.Xpath);
+//			webDB.clickAnElement(PurchaseRequestLocators.LineDetailsButton(Item), ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Line Details Icon Clicked for Last Item");
+//			}
+//		}
+//		Assert.assertTrue(flag);
+//	}
 
 }

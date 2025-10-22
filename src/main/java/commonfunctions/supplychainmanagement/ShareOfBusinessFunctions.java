@@ -184,6 +184,7 @@ public class ShareOfBusinessFunctions {
 		flag = webDB.waitForElement(ShareOfBusinessLocators.SOBTickButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ShareOfBusinessLocators.SOBTickButton, ElementType.Xpath);
+			commonFunc.hardWait(2000);
 			if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 				logs.logging("INFO", "Toast Close Icon Is Clicked");
@@ -306,13 +307,10 @@ public class ShareOfBusinessFunctions {
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getSOBNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getSOBNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOBNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 		}
-		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSearchTab(webDB.getDataFromProperties("ShareOfBusinessTab"),

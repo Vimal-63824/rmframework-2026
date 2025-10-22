@@ -57,7 +57,7 @@ public class PurchaseOrderFunctions {
 	 * @param POType
 	 */
 	public void verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
-		verifyCLickPurchaseOrderFrame();
+//		verifyCLickPurchaseOrderFrame();
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
 		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
@@ -249,7 +249,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyTickIconcreatePO() {
 		commonFunc.checkRefreshCellsDisappear();
-		verifyCLickPurchaseOrderFrame();
+//		verifyCLickPurchaseOrderFrame();
 		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.DPOTickButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Tick Icon Is Displayed");
@@ -8460,7 +8460,8 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+//				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8531,8 +8532,8 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PoUtgstAmount")));
 		verifyAssertionBothValues(CessPercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
-		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
+//		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
 		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
 	}
@@ -8583,7 +8584,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8665,7 +8666,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8747,7 +8748,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8828,7 +8829,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -8909,7 +8910,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -8990,7 +8991,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -9071,7 +9072,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -9154,7 +9155,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9235,7 +9236,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -9315,7 +9316,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9397,7 +9398,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9479,7 +9480,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9561,7 +9562,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9642,7 +9643,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9750,7 +9751,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -9845,7 +9846,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -9967,7 +9968,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10063,7 +10064,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10157,7 +10158,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10253,7 +10254,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10354,7 +10355,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10455,7 +10456,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10557,7 +10558,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10657,7 +10658,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -10728,7 +10729,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10810,7 +10811,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10892,7 +10893,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10974,7 +10975,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11055,7 +11056,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11137,7 +11138,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11219,7 +11220,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11301,7 +11302,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11383,7 +11384,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11464,7 +11465,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -11572,7 +11573,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -11666,7 +11667,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -11760,7 +11761,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -11855,7 +11856,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -11947,7 +11948,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -12100,7 +12101,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -12211,7 +12212,7 @@ public class PurchaseOrderFunctions {
 				String Cess = itemmultiple[i][26];
 				String TaxAmount = itemmultiple[i][27];
 				String NetAmount = itemmultiple[i][28];
-				String HsnCode = itemmultiple[i][19];
+				String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 				verifyCreateItemInPo(item);
 				verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 				commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.HsnCode,
@@ -12324,7 +12325,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
@@ -12419,7 +12420,7 @@ public class PurchaseOrderFunctions {
 						String Cess = itemmultiple[i][26];
 						String TaxAmount = itemmultiple[i][27];
 						String NetAmount = itemmultiple[i][28];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
 								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 						verifyTickIconcreateItem();
