@@ -104,6 +104,8 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String CompOffEmployeeLOV = "//Button[@data-testid='COM_EMP_ID_lov']";
 	/** @locatorType Xpath */
+	public static final String CompOffDateFieldToday = "//button[@class='a-Button a-DatePicker--today']";
+	/** @locatorType Xpath */
 	public static final String CompOffDateField = "//Input[@data-testid='COM_OFF_DATE']";
 	/** @locatorType Xpath */
 	public static final String CompOffDaysField = "//Input[@data-testid='COM_OFF_DAYS']";

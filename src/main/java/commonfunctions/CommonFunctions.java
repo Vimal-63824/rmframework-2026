@@ -2819,10 +2819,11 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigateCustomerItemsPage() {
-		clickLeftNavigationBar();
-		clickSetupTab();
-		clickSetupExpandAllButton();
-		clickCustomerItemsScreen();
+//		clickLeftNavigationBar();
+//		clickSetupTab();
+//		clickSetupExpandAllButton();
+//		clickCustomerItemsScreen();
+		navigateToSearchTab(webDB.getDataFromProperties("CustomerItems"), CustomerItemsLocators.AddPLusButton);
 	}
 
 	/**
