@@ -399,7 +399,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String CreatePRTickIcon = "//button[@id='B856779552425513900']";
+	public static final String CreatePRTickIcon = "//button[@id='B856779552425513804']";
 	/** @locatorType Xpath */
 	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
 }

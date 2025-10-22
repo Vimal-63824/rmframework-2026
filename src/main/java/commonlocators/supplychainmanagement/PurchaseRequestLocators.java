@@ -132,8 +132,13 @@ public class PurchaseRequestLocators {
 	public static final String PRCloseShort_SaveHeaderBtn = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_CloseShortBtn = "//button[@data-testid='Closeshort']";
+
 	/** @locatorType Xpath */
-	public static final String LineAmountDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
+	public static final String LineAmountDataLastRow(String Value) {
+		return "//td[text()='" + Value + "']/../td[8]";
+
+	}
+
 	/** @locatorType Xpath */
 	public static final String PRHeader_Location = "//span[@id='P161513103001_PRH_PLNT_LOC_ID_DISPLAY']";
 	/** @locatorType Xpath */
@@ -150,8 +155,13 @@ public class PurchaseRequestLocators {
 	public static final String PRHeader_CPCCode = "//input[@id='P161513103001_PRH_CC_CODE']";
 	/** @locatorType Xpath */
 	public static final String UOMDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[5])[1]";
+
 	/** @locatorType Xpath */
-	public static final String PR_LastItemDetailIcon = "//table//tbody/tr[contains(@class,'a-GV-row')]/td//span[@style='color:blue']";
+	public static final String PR_LastItemDetailIcon(String Value) {
+		return "//td[text()='" + Value + "']/../td//span[@style='color:blue']";
+
+	}
+
 	/** @locatorType Xpath */
 	public static final String PR_LineDetailsIframe = "//iframe[@title='Line Details']";
 	/** @locatorType Xpath */
