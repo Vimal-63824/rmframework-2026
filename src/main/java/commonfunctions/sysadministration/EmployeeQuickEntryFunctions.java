@@ -27,8 +27,8 @@ public class EmployeeQuickEntryFunctions {
 	 * @param MobileNumber
 	 * @param Email
 	 */
-	public void verifyCreateNewEmployee(String EmployeeName, String Designation, String Department, String MobileNumber,
-			String Email) {
+	public void verifyCreateNewEmployee(String EmpId, String EmployeeName, String Designation, String Department,
+			String MobileNumber, String Email) {
 		flag = webDB.waitForElement(CommonUiLocators.AddEmployeeButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.AddEmployeeButton, ElementType.Xpath);
@@ -38,6 +38,7 @@ public class EmployeeQuickEntryFunctions {
 				webDB.switchToFrame(EmployeeQuickEntryLocators.EmployeeQuickEntryIframe, ElementType.Xpath);
 				flag = webDB.waitForElement(EmployeeQuickEntryLocators.EmpName, ElementType.Xpath);
 				if (flag) {
+					webDB.sendTextToAnElement(EmployeeQuickEntryLocators.EmpId, EmpId, ElementType.Xpath);
 					webDB.sendTextToAnElement(EmployeeQuickEntryLocators.EmpName, EmployeeName, ElementType.Xpath);
 					logs.logging("INFO", "Send Text Employee Name Is: " + EmployeeName);
 					commonFunc.searchAndSelectValueInFilters(EmployeeQuickEntryLocators.Designation, Designation);

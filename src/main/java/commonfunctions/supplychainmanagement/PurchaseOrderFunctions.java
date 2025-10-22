@@ -62,7 +62,7 @@ public class PurchaseOrderFunctions {
 		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);		
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
 		}
 		assertTrue(flag);
 	}
@@ -294,20 +294,24 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyValidatePoStatus(String POno, String ExpectedStatus) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PONumberSelect, POno);
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineLabel, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
-			logs.logging("INFO", "Search Button Is Clicked");
-			commonFunc.hardWait(1000);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.POStatusTableText(POno), ElementType.Xpath);
+			webDB.clickAnElement(PurchaseOrderPageLocators.LineLabel, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
-				String Status = webDB.getTextFromElement(PurchaseOrderPageLocators.POStatusTableText(POno),
-						ElementType.Xpath);
-				flag = Status.contains(ExpectedStatus);
+				webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.POStatusTableText(POno), ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Expected Status: " + ExpectedStatus);
-					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
+					String Status = webDB.getTextFromElement(PurchaseOrderPageLocators.POStatusTableText(POno),
+							ElementType.Xpath);
+					flag = Status.contains(ExpectedStatus);
+					if (flag) {
+						logs.logging("INFO", "Expected Status: " + ExpectedStatus);
+						logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
+					}
 				}
 			}
 		}
@@ -2039,6 +2043,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyCreateDirectPO() {
+		webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 		String PoType = null;
 		String location = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.LocationIdInput, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
@@ -5429,10 +5434,15 @@ public class PurchaseOrderFunctions {
 		return flag;
 	}
 
-	public void verifyLineAmountCalculationValidation(String GrossValue, String Item) {
+	public void verifyLineAmountCalculationValidation(String GrossValue, String Item, String... Entity) {
 		commonFunc.hardWait(5000);
-		verifyAssertionBothValues(GrossValue, dbCommonFunc.PRLineDetailsQuery(VariableHandler.getPRNumber(), Item,
-				commonFunc.getDataFromTestDataSheet("Line_Amount")));
+		if (Entity.length > 0) {
+			verifyAssertionBothValues(GrossValue, dbCommonFunc.PRLineDetailsQueryKare(VariableHandler.getPRNumber(),
+					Item, commonFunc.getDataFromTestDataSheet("Line_Amount")));
+		} else {
+			verifyAssertionBothValues(GrossValue, dbCommonFunc.PRLineDetailsQuery(VariableHandler.getPRNumber(), Item,
+					commonFunc.getDataFromTestDataSheet("Line_Amount")));
+		}
 	}
 
 	/**
@@ -5814,7 +5824,7 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("AshokPassword"));
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 			approvalFunc.navigateToApprovals();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
@@ -12437,7 +12447,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
@@ -12501,6 +12511,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer UserDefined
 	 * Same Stock and Supplier UOM With And WithoutInspection
@@ -12561,7 +12572,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * 
 	 * This Method Is Used To Verify Direct PO Domestic General with Multiple Item
@@ -12622,6 +12633,7 @@ public class PurchaseOrderFunctions {
 		assertTrue(flag);
 
 	}
+
 	/**
 	 * 
 	 * This Method Is Used To Verify Direct PO Domestic Supplier for material Type
@@ -12689,6 +12701,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Direct PO with Service Item for Similar UOM
 	 * 
@@ -12752,7 +12765,7 @@ public class PurchaseOrderFunctions {
 		assertTrue(flag);
 
 	}
-	
+
 	/**
 	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
 	 * UOM(General)
@@ -12817,7 +12830,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Methods Method to handle Create the PO Document for Rate
 	 * ContractItem(Material)
@@ -12882,7 +12895,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method Is Used To Verify Direct PO with Price list Item for Similar UOM
 	 * With And Without Inspection Plan(General Type)
@@ -12946,7 +12959,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Methods Is Used To Verify Direct PO Domestic Price List Item Similar UOM
 	 * Multiple Service Type
@@ -13012,6 +13025,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Direct PO with Price list Item for Similar UOM
 	 * With And Without Inspection Plan(General Type) Without Quality Enabled
@@ -13140,6 +13154,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * Verify Create Direct PO Adding Parameter
 	 * 
@@ -13153,12 +13168,12 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.switchToFrame(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe, ElementType.Xpath);
 			logs.logging("INFO", "Switch To Purchase Order Frame");
-			flag = webDB.waitForElement(CommonUiLocators.CreateTickIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Purchase Order Tick Icon Displayed");
 			}
 		}
 		assertTrue(flag);
 	}
-	
+
 }

@@ -7,7 +7,10 @@ import static org.testng.Assert.assertTrue;
  * @company Galaxy Weblinks February 5, 2025
  */
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -23,7 +26,6 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.EmployeeMasterLocators;
-import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -335,26 +337,6 @@ public class EmployeeMasterFunctions {
 				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 				clickSaveIconAndStoreEmpID();
-//				clickQualificationSkillSideNavBar();
-//				addNewContactDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
-//						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
-//						commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
-//						commonFunc.getDataFromTestDataSheet("Emp_City"), true);
-//				addNewQualificationDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Qualification"),
-//						commonFunc.getDataFromTestDataSheet("Emp_BranchofStudy"),
-//						commonFunc.getDataFromTestDataSheet("EmpInstitute"), String.valueOf(random.nextInt(4)),
-//						commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
-//						RandomStringUtils.randomNumeric(2), true);
-//				addNewSkillDetailsInQualificationTab(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
-//						commonFunc.getDataFromTestDataSheet("Emp_Level"), true);
-//				clickDependentDetailsSideNavBar();
-//				clickAddIconInDependentDetails();
-//				fillRequiredDetailsInDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
-//						commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
-//						commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"),
-//						RandomStringUtils.randomNumeric(12), commonFunc.randomEmailIdGenerator(),
-//						commonFunc.randomMobileNumberGenerator(), RandomStringUtils.randomNumeric(5));
-//				clickSaveIconInDependentDetails();
 				clickSalarySideNavBar();
 				addDesignationDepartmentAndGradeInSalaryDetails(
 						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
@@ -520,37 +502,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyUpdateEmployeeParticularDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			clickAddIconAddEmployee();
-			clickEmployeeMasterSideNavBar();
-			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
-			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
-			clickSalarySideNavBar();
-			addDesignationDepartmentAndGradeInSalaryDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-			clickAfterEmpCreationSaveIcon();
-			clickLoadAllowanceButtonInSalaryDetails();
-			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-			enablePFAdjustmentFlagsInSalaryDetails();
-			enableESIAdjustmentFlagsInSalaryDetails();
-			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
+			if (!VariableHandler.getAddEmployeDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				clickAddIconAddEmployee();
+				clickEmployeeMasterSideNavBar();
+				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+						commonFunc.getDataFromTestDataSheet("Emp_FName"),
+						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
+				commonFunc.logoutUser();
+				VariableHandler.setAddEmployeDefaultExecution(true);
+			}
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -571,16 +557,14 @@ public class EmployeeMasterFunctions {
 			clickSaveIconAndPostInEmployeeParticular();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
+			commonFunc.logoutUser();
 			return flag;
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyUpdateEmployeeParticularDetails': " + e);
 			return false;
 		}
@@ -595,37 +579,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationUpdateAddressDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			clickAddIconAddEmployee();
-			clickEmployeeMasterSideNavBar();
-			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
-			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
-			clickSalarySideNavBar();
-			addDesignationDepartmentAndGradeInSalaryDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-			clickAfterEmpCreationSaveIcon();
-			clickLoadAllowanceButtonInSalaryDetails();
-			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-			enablePFAdjustmentFlagsInSalaryDetails();
-			enableESIAdjustmentFlagsInSalaryDetails();
-			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
+			if (!VariableHandler.getAddEmployeDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				clickAddIconAddEmployee();
+				clickEmployeeMasterSideNavBar();
+				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+						commonFunc.getDataFromTestDataSheet("Emp_FName"),
+						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
+				commonFunc.logoutUser();
+				VariableHandler.setAddEmployeDefaultExecution(true);
+			}
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -640,14 +628,10 @@ public class EmployeeMasterFunctions {
 			clickSaveIconAndPostInAddress();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
+			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateAddressDetails': " + e);
@@ -663,37 +647,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationUpdateDependentDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			clickAddIconAddEmployee();
-			clickEmployeeMasterSideNavBar();
-			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
-			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
-			clickSalarySideNavBar();
-			addDesignationDepartmentAndGradeInSalaryDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-			clickAfterEmpCreationSaveIcon();
-			clickLoadAllowanceButtonInSalaryDetails();
-			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-			enablePFAdjustmentFlagsInSalaryDetails();
-			enableESIAdjustmentFlagsInSalaryDetails();
-			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
+			if (!VariableHandler.getAddEmployeDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				clickAddIconAddEmployee();
+				clickEmployeeMasterSideNavBar();
+				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+						commonFunc.getDataFromTestDataSheet("Emp_FName"),
+						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
+				commonFunc.logoutUser();
+				VariableHandler.setAddEmployeDefaultExecution(true);
+			}
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -710,14 +698,10 @@ public class EmployeeMasterFunctions {
 			clickSaveAndPostInUpdateDependentDetails();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
+			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -734,37 +718,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationUpdateContactDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			clickAddIconAddEmployee();
-			clickEmployeeMasterSideNavBar();
-			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
-			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
-			clickSalarySideNavBar();
-			addDesignationDepartmentAndGradeInSalaryDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-			clickAfterEmpCreationSaveIcon();
-			clickLoadAllowanceButtonInSalaryDetails();
-			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-			enablePFAdjustmentFlagsInSalaryDetails();
-			enableESIAdjustmentFlagsInSalaryDetails();
-			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
+			if (!VariableHandler.getAddEmployeDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				clickAddIconAddEmployee();
+				clickEmployeeMasterSideNavBar();
+				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+						commonFunc.getDataFromTestDataSheet("Emp_FName"),
+						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
+				commonFunc.logoutUser();
+				VariableHandler.setAddEmployeDefaultExecution(true);
+			}
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -780,14 +768,10 @@ public class EmployeeMasterFunctions {
 			clickSaveAndPostInUpdateContactDetails();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
+			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO", "Exception occur while executing 'verifyEmployeeCreationUpdateContactDetails': " + e);
@@ -803,37 +787,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationUpdateQualificationDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			clickAddIconAddEmployee();
-			clickEmployeeMasterSideNavBar();
-			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
-			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
-			clickSalarySideNavBar();
-			addDesignationDepartmentAndGradeInSalaryDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-			clickAfterEmpCreationSaveIcon();
-			clickLoadAllowanceButtonInSalaryDetails();
-			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-			enablePFAdjustmentFlagsInSalaryDetails();
-			enableESIAdjustmentFlagsInSalaryDetails();
-			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
+			if (!VariableHandler.getAddEmployeDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				clickAddIconAddEmployee();
+				clickEmployeeMasterSideNavBar();
+				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+						commonFunc.getDataFromTestDataSheet("Emp_FName"),
+						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
+				commonFunc.logoutUser();
+				VariableHandler.setAddEmployeDefaultExecution(true);
+			}
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -850,14 +838,10 @@ public class EmployeeMasterFunctions {
 			clickSaveAndPostInUpdateQualificationDetails();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
+			commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
@@ -874,37 +858,41 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationUpdateSkillsDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateEmployeeMasterScreenInPayroll();
-			clickAddIconAddEmployee();
-			clickEmployeeMasterSideNavBar();
-			selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
-					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
-			selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
-					commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
-			selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
-					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
-			selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
-			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
-					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
-			clickSalarySideNavBar();
-			addDesignationDepartmentAndGradeInSalaryDetails(
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
-					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
-			clickAfterEmpCreationSaveIcon();
-			clickLoadAllowanceButtonInSalaryDetails();
-			fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
-					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
-							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
-			enablePFAdjustmentFlagsInSalaryDetails();
-			enableESIAdjustmentFlagsInSalaryDetails();
-			clickPostButtonAndVerifyEmployeePosted();
-			commonFunc.logoutUser();
+			if (!VariableHandler.getAddEmployeDefaultExecution()) {
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				clickAddIconAddEmployee();
+				clickEmployeeMasterSideNavBar();
+				selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+						commonFunc.getDataFromTestDataSheet("Emp_FName"),
+						commonFunc.getDataFromTestDataSheet("Emp_LName"));
+				selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+						commonFunc.getDataFromTestDataSheet("Emp_DOB"), commonFunc.getDataFromTestDataSheet("Emp_DOJ"));
+				selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+						commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+						commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+				selectCompanyAndAccountCatecory(commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+				selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+						commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+				clickSaveIconAndStoreEmpID();
+				clickSalarySideNavBar();
+				addDesignationDepartmentAndGradeInSalaryDetails(
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+						commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+				clickAfterEmpCreationSaveIcon();
+				clickLoadAllowanceButtonInSalaryDetails();
+				fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+						new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+								RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+				enablePFAdjustmentFlagsInSalaryDetails();
+				enableESIAdjustmentFlagsInSalaryDetails();
+				clickPostButtonAndVerifyEmployeePosted();
+				commonFunc.logoutUser();
+				VariableHandler.setAddEmployeDefaultExecution(true);
+			}
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
@@ -918,12 +906,8 @@ public class EmployeeMasterFunctions {
 			clickSaveAndPostInUpdateSkillDetails();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
 			}
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -971,11 +955,6 @@ public class EmployeeMasterFunctions {
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
-//			commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-//					"HRMRequestUser");
-//			commonFunc.navigateEmployeeMasterScreenInPayroll();
-//			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickEmployeeHistoryAndCheckNotNull();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -1023,11 +1002,6 @@ public class EmployeeMasterFunctions {
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
-//			commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-//					"HRMRequestUser");
-//			commonFunc.navigateEmployeeMasterScreenInPayroll();
-//			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickViewProfileAndStoreProfileAndBatchNo();
 			clickEmployeeProfileNoAndReverse();
 			flag = commonFunc.logoutUser();
@@ -1136,12 +1110,14 @@ public class EmployeeMasterFunctions {
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
 				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-//						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-//				approvalFunc.navigateToApprovals();
-//				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-//				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+//				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1197,8 +1173,11 @@ public class EmployeeMasterFunctions {
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
-						System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
+						webDB.getDataFromProperties("ThilAdminUserName"));
+//				commonFunc.returnDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"),
+//						webDB.getDataFromProperties("ThilAdminEmpId"));
+				flag = commonFunc.logoutUser();
 			}
 			return true;
 		} catch (Exception e) {
@@ -1231,7 +1210,8 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
 			selectPayrollGroupAndEnterNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
-			clickSaveIconAndStoreEmpID();
+			enterProbationDetailsAndSaveHeader(commonFunc.getDataFromTestDataSheet("Emp_ProbationDuration"),
+					commonFunc.getDataFromTestDataSheet("Emp_ProbationType"));
 			clickSalarySideNavBar();
 			addDesignationDepartmentAndGradeInSalaryDetails(
 					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
@@ -1245,8 +1225,6 @@ public class EmployeeMasterFunctions {
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
-			clickEmployeeMasterSideNavBar();
-			enterProbationDetailsAndSaveHeader("Duration", "type");
 			clickProbationCompleteAndCheckProbationStatus();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -1287,14 +1265,12 @@ public class EmployeeMasterFunctions {
 		}
 	}
 
-	// --------------------- Private Methods ---------------------
-
 	/**
 	 * This Method used To click Add Icon in Employee Master
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconAddEmployee() {
+	public void clickAddIconAddEmployee() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeMasterAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmployeeMasterAddIcon, ElementType.Xpath);
@@ -1314,7 +1290,7 @@ public class EmployeeMasterFunctions {
 	 * @param FName
 	 * @param LName
 	 */
-	private void selectSalutionEnterFirstAndLastName(String SalutionValue, String FName, String LName) {
+	public void selectSalutionEnterFirstAndLastName(String SalutionValue, String FName, String LName) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SelectSalution, ElementType.Xpath);
 		if (flag) {
 			webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_SelectSalution, SalutionValue, ElementType.Xpath);
@@ -1346,7 +1322,7 @@ public class EmployeeMasterFunctions {
 	 * @param DOB
 	 * @param DOJ
 	 */
-	private void selectGenderEnterDOBAndDOJ(String Gender, String DOB, String DOJ) {
+	public void selectGenderEnterDOBAndDOJ(String Gender, String DOB, String DOJ) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SelectGender, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
@@ -1385,7 +1361,7 @@ public class EmployeeMasterFunctions {
 	 * @param CalenderValue
 	 * @param Zone
 	 */
-	private void selectShiftEnterCalerdarAndZone(String Shift, String CalenderValue, String Zone) {
+	public void selectShiftEnterCalerdarAndZone(String Shift, String CalenderValue, String Zone) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SelectShift, ElementType.Xpath);
 		if (flag) {
 			webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_SelectShift, Shift, ElementType.Xpath);
@@ -1412,7 +1388,7 @@ public class EmployeeMasterFunctions {
 	 * @param CompanyCategory
 	 * @param AccountCategory
 	 */
-	private void selectCompanyAndAccountCatecory(String CompanyCategory, String AccountCategory) {
+	public void selectCompanyAndAccountCatecory(String CompanyCategory, String AccountCategory) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_CompanyCategry, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_CompanyCategry, CompanyCategory);
@@ -1433,7 +1409,7 @@ public class EmployeeMasterFunctions {
 	 * @param PayrollGrp
 	 * @param NoticePeriod
 	 */
-	private void selectPayrollGroupAndEnterNoticePeriod(String PayrollGrp, String NoticePeriod) {
+	public void selectPayrollGroupAndEnterNoticePeriod(String PayrollGrp, String NoticePeriod) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_PayrollGroupCategry, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_PayrollGroupCategry, PayrollGrp);
@@ -1457,7 +1433,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconAndStoreEmpID() {
+	public void clickSaveIconAndStoreEmpID() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SaveButton, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_SaveButton, ElementType.Xpath);
@@ -1484,7 +1460,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAfterEmpCreationSaveIcon() {
+	public void clickAfterEmpCreationSaveIcon() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
@@ -1505,7 +1481,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickEmployeeMasterSideNavBar() {
+	public void clickEmployeeMasterSideNavBar() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_EmpployeeMasterSideNav, ElementType.Xpath);
 		if (flag) {
@@ -1524,7 +1500,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickQualificationSkillSideNavBar() {
+	public void clickQualificationSkillSideNavBar() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_QualificationSkillsSideNav, ElementType.Xpath);
 		if (flag) {
@@ -1542,7 +1518,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSalarySideNavBar() {
+	public void clickSalarySideNavBar() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalarySideNav, ElementType.Xpath);
 		if (flag) {
@@ -1585,7 +1561,7 @@ public class EmployeeMasterFunctions {
 	 * @param City
 	 * @param addlineflag
 	 */
-	private void addNewContactDetailsInQualificationTab(String ContactName, String Relationship, String MobileNo,
+	public void addNewContactDetailsInQualificationTab(String ContactName, String Relationship, String MobileNo,
 			String Address, String City, boolean... addlineflag) {
 		if (addlineflag != null && addlineflag[0] != false) {
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ContactAddLinesIcon, ElementType.Xpath);
@@ -1640,7 +1616,7 @@ public class EmployeeMasterFunctions {
 	 * @param Agg
 	 * @param addlineflag
 	 */
-	private void addNewQualificationDetailsInQualificationTab(String Qualification, String branchOfStudy,
+	public void addNewQualificationDetailsInQualificationTab(String Qualification, String branchOfStudy,
 			String Institute, String Totalyears, String YearofPassing, String GradeClass, String Agg,
 			boolean... addlineflag) {
 		if (addlineflag != null && addlineflag[0] != false) {
@@ -1702,7 +1678,7 @@ public class EmployeeMasterFunctions {
 	 * @param Level
 	 * @param addlineflag
 	 */
-	private void addNewSkillDetailsInQualificationTab(String Skill, String Level, boolean... addlineflag) {
+	public void addNewSkillDetailsInQualificationTab(String Skill, String Level, boolean... addlineflag) {
 		if (addlineflag != null && addlineflag[0] != false) {
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SkillAddLinesIcon, ElementType.Xpath);
 			if (flag) {
@@ -1748,7 +1724,7 @@ public class EmployeeMasterFunctions {
 	 * @param department
 	 * @param grade
 	 */
-	private void addDesignationDepartmentAndGradeInSalaryDetails(String designation, String department, String grade) {
+	public void addDesignationDepartmentAndGradeInSalaryDetails(String designation, String department, String grade) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DesignationLovBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_DesignationLovBtn, designation);
@@ -1772,7 +1748,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickLoadAllowanceButtonInSalaryDetails() {
+	public void clickLoadAllowanceButtonInSalaryDetails() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LoadAllowanceBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LoadAllowanceBtn, ElementType.Xpath);
@@ -1791,7 +1767,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param amounts
 	 */
-	private void fillAllowanceAmountsAndVerifyTotalInSalaryDetails(String[] amounts) {
+	public void fillAllowanceAmountsAndVerifyTotalInSalaryDetails(String[] amounts) {
 		int totalAllowanceAmounts = 0;
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AllowanceTableAmountData, ElementType.Xpath);
 		if (flag) {
@@ -1836,7 +1812,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void saveAllowanceTableInSalary() {
+	public void saveAllowanceTableInSalary() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SaveAllowanceTableBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_SaveAllowanceTableBtn, ElementType.Xpath);
@@ -1855,7 +1831,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddButtonInAdjustmentSalaryDetails() {
+	public void clickAddButtonInAdjustmentSalaryDetails() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentAddIcon, ElementType.Xpath);
@@ -1873,7 +1849,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void enableESIAdjustmentFlagsInSalaryDetails() {
+	public void enableESIAdjustmentFlagsInSalaryDetails() {
 //		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ESI_ElegibleInputBox, ElementType.Xpath);
 //		if (flag) {
 //			flag = webDB.IsElementSelected(EmployeeMasterLocators.AddEmp_ESI_ElegibleInputBox, ElementType.Xpath);
@@ -1917,7 +1893,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void enablePFAdjustmentFlagsInSalaryDetails() {
+	public void enablePFAdjustmentFlagsInSalaryDetails() {
 //		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_PF_ElegibleInputBox, ElementType.Xpath);
 //		if (flag) {
 //			flag = webDB.IsElementSelected(EmployeeMasterLocators.AddEmp_PF_ElegibleInputBox, ElementType.Xpath);
@@ -1964,7 +1940,7 @@ public class EmployeeMasterFunctions {
 	 * @param StartYear
 	 * @param Period
 	 */
-	private void selectAdjustmentSalaryElementStartYearAndPeriodDetails(String Element, String StartYear,
+	public void selectAdjustmentSalaryElementStartYearAndPeriodDetails(String Element, String StartYear,
 			String Period) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentElementLovBtn, ElementType.Xpath);
 		if (flag) {
@@ -2010,7 +1986,7 @@ public class EmployeeMasterFunctions {
 	 * @param TotalPeriod
 	 * @param PeriodAmount
 	 */
-	private void fillAdjustmentSalaryTotalPeriodAndPeriodAmount(String TotalPeriod, String PeriodAmount) {
+	public void fillAdjustmentSalaryTotalPeriodAndPeriodAmount(String TotalPeriod, String PeriodAmount) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData,
 				EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodDataInput, TotalPeriod);
 		VariableHandler.setEmpSalaryAdjmntTotalPeriod(TotalPeriod);
@@ -2025,7 +2001,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickActivateIconInLastAddedAdjustment() {
+	public void clickActivateIconInLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentsMaximizeIcon, ElementType.Xpath);
@@ -2039,12 +2015,13 @@ public class EmployeeMasterFunctions {
 				if (flag) {
 					flag = webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AdjustmentOkBtn, ElementType.Xpath);
 //					flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
-//					if (flag) {
+					if (flag) {
 //						logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked and Toast Message Displayed");
-//						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-//							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-//						}
-//					}
+						logs.logging("INFO", "Salary Tab Adjustment Activate Icon Clicked");
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+					}
 				}
 			}
 		}
@@ -2057,7 +2034,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickDeleteIconInLastAddedAdjustment() {
+	public void clickDeleteIconInLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AdjustmentTableFirstTrashIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdjustmentTotalPeriodData, ElementType.Xpath);
@@ -2098,7 +2075,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconInSalaryAdjustment() {
+	public void clickSaveIconInSalaryAdjustment() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentSaveBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SalaryAdjustmentSaveBtn, ElementType.Xpath);
@@ -2116,7 +2093,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconLeaveEligibilityInLeaveDetails() {
+	public void clickAddIconLeaveEligibilityInLeaveDetails() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaximizeIcon, ElementType.Xpath);
@@ -2144,7 +2121,7 @@ public class EmployeeMasterFunctions {
 	 * @param Leave
 	 * @param Days
 	 */
-	private void fillLeaveAndDaysInLeaveEligibility(String Leave, String Days) {
+	public void fillLeaveAndDaysInLeaveEligibility(String Leave, String Days) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveLovBtn, Leave);
@@ -2166,7 +2143,7 @@ public class EmployeeMasterFunctions {
 	 * @param Every
 	 * @param EligibleDays
 	 */
-	private void fillEveryAndEligibleDaysInLeaveEligibility(String Every, String EligibleDays) {
+	public void fillEveryAndEligibleDaysInLeaveEligibility(String Every, String EligibleDays) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEveryData, ElementType.Xpath);
@@ -2195,7 +2172,7 @@ public class EmployeeMasterFunctions {
 	 * @param RoundOff
 	 * @param MaxCarryFreq
 	 */
-	private void fillRoundOffDaysAndMaxCarryFrequencyInLeaveEligibility(String RoundOff, String MaxCarryFreq) {
+	public void fillRoundOffDaysAndMaxCarryFrequencyInLeaveEligibility(String RoundOff, String MaxCarryFreq) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffData, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityRoundOffData, ElementType.Xpath);
@@ -2232,11 +2209,12 @@ public class EmployeeMasterFunctions {
 	 * @param MaxCarryDay
 	 * @param EffYear
 	 */
-	private void fillMaxCarryDayAndEffectiveYearInLeaveEligibility(String MaxCarryDay, String EffYear) {
+	public void fillMaxCarryDayAndEffectiveYearInLeaveEligibility(String MaxCarryDay, String EffYear) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryDayData,
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxCarryDayInput, MaxCarryDay);
 		VariableHandler.setEmpLeaveElgblMaxCarryDay(MaxCarryDay);
+		logs.logging("INFO", "" + "Max Carry Days Entered in Leave Eligibility: " + MaxCarryDay);
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityEffYearData, ElementType.Xpath);
@@ -2260,15 +2238,18 @@ public class EmployeeMasterFunctions {
 	 * @param MaxDay
 	 * @param MinDay
 	 */
-	private void fillMaxDaysAndMinDaysInLeaveEligibility(String MaxDay, String MinDay, String MinEncashDay) {
+	public void fillMaxDaysAndMinDaysInLeaveEligibility(String MaxDay, String MinDay, String MinEncashDay) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysData,
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMaxDaysInput, MaxDay);
 		VariableHandler.setEmpLeaveElgblMaxDay(MaxDay);
+		logs.logging("INFO", "" + "Max Days Entered in Leave Eligibility: " + MaxDay);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysData,
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinDaysInput, MinDay);
 		VariableHandler.setEmpLeaveElgblMinDay(MinDay);
+		logs.logging("INFO", "" + "Min Days Entered in Leave Eligibility: " + MinDay);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashData,
 				EmployeeMasterLocators.AddEmp_LeaveEligibilityMinEncashInput, MinEncashDay);
+		logs.logging("INFO", "" + "Min Encash Days Entered in Leave Eligibility: " + MinEncashDay);
 	}
 
 	/**
@@ -2277,7 +2258,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconInLeaveEligibility() {
+	public void clickSaveIconInLeaveEligibility() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilitySaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_LeaveEligibilitySaveIcon, ElementType.Xpath);
@@ -2299,7 +2280,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickPostButtonAndVerifyEmployeePosted() {
+	public void clickPostButtonAndVerifyEmployeePosted() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
@@ -2332,7 +2313,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void validateUpdatedLeaveDetailsWithSetupScreenEntitlement() {
+	public void validateUpdatedLeaveDetailsWithSetupScreenEntitlement() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityLeaveData, ElementType.Xpath);
 		if (flag) {
 			int a = 0;
@@ -2373,7 +2354,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param ImageName
 	 */
-	private void uploadSignImageInAddEmployeeDetails(String ImageName) {
+	public void uploadSignImageInAddEmployeeDetails(String ImageName) {
 		String ImageDir = VariableHandler.testdataDir + ImageName;
 		File file = new File(ImageDir);
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_SignUploadbtn, ElementType.Xpath);
@@ -2416,7 +2397,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @return boolean
 	 */
-	private boolean checkSignImageUploadedWithClearButton() {
+	public boolean checkSignImageUploadedWithClearButton() {
 		webDB.switchToDefaultContent();
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_SignUploadbtn, ElementType.Xpath);
@@ -2447,7 +2428,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param ImageName
 	 */
-	private void uploadProfileImageInAddEmployeeDetails(String ImageName) {
+	public void uploadProfileImageInAddEmployeeDetails(String ImageName) {
 		String ImageDir = VariableHandler.testdataDir + ImageName;
 		File file = new File(ImageDir);
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_ProfileImg, ElementType.Xpath);
@@ -2489,7 +2470,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @return boolean
 	 */
-	private boolean checkProfileImageUploadedWithClearButton() {
+	public boolean checkProfileImageUploadedWithClearButton() {
 		webDB.switchToDefaultContent();
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_ProfileImg, ElementType.Xpath);
@@ -2518,7 +2499,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAdditionalInfoButton() {
+	public void clickAdditionalInfoButton() {
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_AdditionalInfoBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_AdditionalInfoBtn, ElementType.Xpath);
@@ -2536,7 +2517,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void addInfoIframeSwitch() {
+	public void addInfoIframeSwitch() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(EmployeeMasterLocators.AddEmp_AddInfoIframe, ElementType.Xpath);
@@ -2553,7 +2534,7 @@ public class EmployeeMasterFunctions {
 	 * @param Year
 	 * @param Month
 	 */
-	private void submitHomeTypeAndPreviousExperienceInAdditionalInfo(String HouseType, String Year, String Month) {
+	public void submitHomeTypeAndPreviousExperienceInAdditionalInfo(String HouseType, String Year, String Month) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoPrevExpYear, ElementType.Xpath);
 		if (flag) {
@@ -2585,7 +2566,7 @@ public class EmployeeMasterFunctions {
 	 * @param VehicleFlag
 	 * @param VehicleNo
 	 */
-	private void submitStayTypeAndVehicleDetailsInAdditionalInfo(String StayType, String VehicleFlag,
+	public void submitStayTypeAndVehicleDetailsInAdditionalInfo(String StayType, String VehicleFlag,
 			String... VehicleNo) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoStayType, ElementType.Xpath);
@@ -2623,7 +2604,7 @@ public class EmployeeMasterFunctions {
 	 * @param IDCardNo
 	 * @param PrevEmpID
 	 */
-	private void submitOfficeDetailsInAdditionalInfo(String ApplNo, String IDCardNo, String PrevEmpID) {
+	public void submitOfficeDetailsInAdditionalInfo(String ApplNo, String IDCardNo, String PrevEmpID) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoOfcApplID, ElementType.Xpath);
 		if (flag) {
@@ -2657,7 +2638,7 @@ public class EmployeeMasterFunctions {
 	 * @param EmailOfc
 	 * @param EmailPer
 	 */
-	private void submitMobileEmailOfcAndPersonalInAdditionalInfo(String MobileOfc, String EmailOfc, String EmailPer) {
+	public void submitMobileEmailOfcAndPersonalInAdditionalInfo(String MobileOfc, String EmailOfc, String EmailPer) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoWorkLocationMobileOfc, ElementType.Xpath);
 		if (flag) {
@@ -2693,7 +2674,7 @@ public class EmployeeMasterFunctions {
 	 * @param SectionNo
 	 * @param SimCardNo
 	 */
-	private void submitBuildingSectionAndRoomInAdditionalInfo(String BuildingNo, String SectionNo, String SimCardNo) {
+	public void submitBuildingSectionAndRoomInAdditionalInfo(String BuildingNo, String SectionNo, String SimCardNo) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoWorkLocationBuildingNo, ElementType.Xpath);
 		if (flag) {
@@ -2729,7 +2710,7 @@ public class EmployeeMasterFunctions {
 	 * @param AlterNo
 	 * @param SimCardNo
 	 */
-	private void submitPersonalAlterMobileSimNoInAdditionalInfo(String MobilePersonal, String AlterNo,
+	public void submitPersonalAlterMobileSimNoInAdditionalInfo(String MobilePersonal, String AlterNo,
 			String SimCardNo) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoWorkLocationMobilePersonalNo,
@@ -2767,7 +2748,7 @@ public class EmployeeMasterFunctions {
 	 * @param ExtensionNo
 	 * @param FaxNo
 	 */
-	private void submitPhoneExtensionAndFaxNoInAdditionalInfo(String PhoneNo, String ExtensionNo, String FaxNo) {
+	public void submitPhoneExtensionAndFaxNoInAdditionalInfo(String PhoneNo, String ExtensionNo, String FaxNo) {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoWorkLocationPhoneNo, ElementType.Xpath);
 		if (flag) {
@@ -2799,7 +2780,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickTickIconInAdditionalInfo() {
+	public void clickTickIconInAdditionalInfo() {
 		addInfoIframeSwitch();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_AddInfoSaveButton, ElementType.Xpath);
 		if (flag) {
@@ -2820,7 +2801,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickDependentDetailsSideNavBar() {
+	public void clickDependentDetailsSideNavBar() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentSideNav, ElementType.Xpath);
 		if (flag) {
@@ -2838,7 +2819,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconInDependentDetails() {
+	public void clickAddIconInDependentDetails() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentAddIcon, ElementType.Xpath);
 		if (flag) {
@@ -2865,7 +2846,7 @@ public class EmployeeMasterFunctions {
 	 * @param ContactNo
 	 * @param MonthlyEarning
 	 */
-	private void fillRequiredDetailsInDependentDetails(String DependentName, String RelationShip, String DOB,
+	public void fillRequiredDetailsInDependentDetails(String DependentName, String RelationShip, String DOB,
 			String AadharNo, String EmailId, String ContactNo, String MonthlyEarning) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_DependentNameData,
 				EmployeeMasterLocators.AddEmp_DependentNameInput, DependentName);
@@ -2899,7 +2880,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconInDependentDetails() {
+	public void clickSaveIconInDependentDetails() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_DependentSaveIcon, ElementType.Xpath);
 		if (flag) {
@@ -2921,7 +2902,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickUpdateButtonInAddEmployee() {
+	public void clickUpdateButtonInAddEmployee() {
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateButton, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateButton, ElementType.Xpath);
@@ -2939,7 +2920,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void switchToUpdateIframe() {
+	public void switchToUpdateIframe() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(EmployeeMasterLocators.AddEmp_UpdateIframe, ElementType.Xpath);
@@ -2953,7 +2934,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickEmployeeParticularTabInUpdateEmployee() {
+	public void clickEmployeeParticularTabInUpdateEmployee() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateParticularsTab, ElementType.Xpath);
 		if (flag) {
@@ -2974,23 +2955,29 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconAndPostInEmployeeParticular() {
+	public void clickSaveIconAndPostInEmployeeParticular() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateEmpParticularSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateEmpParticularSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateEmpParticularSaveIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
 			if (flag) {
-				logs.logging("INFO", "Employee Particular Tab Clicked in Update Employee");
+				String Value = webDB.getTextFromElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				String Values[] = Value.split("Doc. No. =", Value.length());
+				VariableHandler.setEmpUpdateDocNo(Values[1].trim());
+				logs.logging("INFO", "Employee Update Document No: " + Values[1]);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_EmpParticularPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (flag) {
+						logs.logging("INFO", "Employee Particular Update Post Button Clicked");
+					}
 				}
 			}
 		}
@@ -3006,7 +2993,7 @@ public class EmployeeMasterFunctions {
 	 * @param FName
 	 * @param LName
 	 */
-	private void updateEmployeeGenderFirstAndLastNameInParticularTab(String Gender, String FName, String LName) {
+	public void updateEmployeeGenderFirstAndLastNameInParticularTab(String Gender, String FName, String LName) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateGender, ElementType.Xpath);
 		if (flag) {
@@ -3042,7 +3029,7 @@ public class EmployeeMasterFunctions {
 	 * @param DOB
 	 * @param Calender
 	 */
-	private void updateEmployeeDOBAndCalenderInParticularTab(String DOB, String Calender) {
+	public void updateEmployeeDOBAndCalenderInParticularTab(String DOB, String Calender) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateDOB, ElementType.Xpath);
 		if (flag) {
@@ -3068,7 +3055,7 @@ public class EmployeeMasterFunctions {
 	 * @param Zone
 	 * @param MaritalStatus
 	 */
-	private void updateEmployeeShiftMaritalStatusAndZone(String Shift, String MaritalStatus, String Zone) {
+	public void updateEmployeeShiftMaritalStatusAndZone(String Shift, String MaritalStatus, String Zone) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateShift, ElementType.Xpath);
 		if (flag) {
@@ -3101,7 +3088,7 @@ public class EmployeeMasterFunctions {
 	 * @param Category
 	 * @param AccountCategory
 	 */
-	private void updateEmployeeCategoryAndAccountCategory(String Category, String AccountCategory) {
+	public void updateEmployeeCategoryAndAccountCategory(String Category, String AccountCategory) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateCategoryLovbtn, ElementType.Xpath);
 		if (flag) {
@@ -3126,7 +3113,7 @@ public class EmployeeMasterFunctions {
 	 * @param PayrollGrp
 	 * @param NoticePeriod
 	 */
-	private void updateEmployeePayrollGrpAndNoticePeriod(String PayrollGrp, String NoticePeriod) {
+	public void updateEmployeePayrollGrpAndNoticePeriod(String PayrollGrp, String NoticePeriod) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdatePayrollGroupLovbtn, ElementType.Xpath);
 		if (flag) {
@@ -3154,7 +3141,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddressTabInUpdateEmployee() {
+	public void clickAddressTabInUpdateEmployee() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateAddressTab, ElementType.Xpath);
 		if (flag) {
@@ -3177,7 +3164,7 @@ public class EmployeeMasterFunctions {
 	 * @param Address2
 	 * @param Address3
 	 */
-	private void updateEmployeeAllAddressInAddressTab(String Address1, String Address2, String Address3) {
+	public void updateEmployeeAllAddressInAddressTab(String Address1, String Address2, String Address3) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateAddress1, ElementType.Xpath);
 		if (flag) {
@@ -3213,7 +3200,7 @@ public class EmployeeMasterFunctions {
 	 * @param ZipCode
 	 * @param Telephone
 	 */
-	private void updateEmpCityZipCodeAndTelephoneInAddressTab(String City, String ZipCode, String Telephone) {
+	public void updateEmpCityZipCodeAndTelephoneInAddressTab(String City, String ZipCode, String Telephone) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_UpdateAddressCityLovBtn, ElementType.Xpath);
 		if (flag) {
@@ -3245,23 +3232,29 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveIconAndPostInAddress() {
+	public void clickSaveIconAndPostInAddress() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateEmpAddressSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_UpdateEmpAddressSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UpdateEmpAddressSaveIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
 			if (flag) {
-				logs.logging("INFO", "Address Tab Save Icon Clicked in Update Employee");
+				String Value = webDB.getTextFromElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				String Values[] = Value.split("Doc. No. =", Value.length());
+				VariableHandler.setEmpUpdateDocNo(Values[1].trim());
+				logs.logging("INFO", "Employee Update Document No: " + Values[1]);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
 					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_AddressPostBtn, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (flag) {
+						logs.logging("INFO", "Employee Address Update Post Button Clicked");
+					}
 				}
 			}
 		}
@@ -3293,7 +3286,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param LeaveType
 	 */
-	private void clickActiveIconForLeaveType(String LeaveType) {
+	public void clickActiveIconForLeaveType(String LeaveType) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveEligibilityActiveIcon(LeaveType),
 				ElementType.Xpath);
 		if (flag) {
@@ -3329,7 +3322,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickDependentTabInUpdateEmployee() {
+	public void clickDependentTabInUpdateEmployee() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateDependentTab, ElementType.Xpath);
 		if (flag) {
@@ -3351,7 +3344,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Type
 	 */
-	private void selectDependentTypeToUpdate(String Type) {
+	public void selectDependentTypeToUpdate(String Type) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentAddLabel, ElementType.Xpath);
 		if (flag) {
@@ -3378,7 +3371,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconInUpdateDependentDetails() {
+	public void clickAddIconInUpdateDependentDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentAddIcon, ElementType.Xpath);
 		if (flag) {
@@ -3398,22 +3391,30 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveAndPostInUpdateDependentDetails() {
+	public void clickSaveAndPostInUpdateDependentDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentSaveIcon, ElementType.Xpath);
-			commonFunc.hardWait(5000);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			logs.logging("INFO", "Add Icon Clicked in Update Dependent Details");
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
-				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
-				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				String Value = webDB.getTextFromElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				String Values[] = Value.split("Doc. No. =", Value.length());
+				VariableHandler.setEmpUpdateDocNo(Values[1].trim());
+				logs.logging("INFO", "Employee Update Document No: " + Values[1]);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_DependentPostBtn, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (flag) {
+						logs.logging("INFO", "Employee Dependent Update Post Button Clicked");
+					}
+				}
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -3433,7 +3434,7 @@ public class EmployeeMasterFunctions {
 	 * @param Contact
 	 * @param MonthEarn
 	 */
-	private void fillDetailsInUpdateDependentDetails(String DependentName, String Relation, String DOB, String Aadhar,
+	public void fillDetailsInUpdateDependentDetails(String DependentName, String Relation, String DOB, String Aadhar,
 			String Email, String Contact, String MonthEarn) {
 		switchToUpdateIframe();
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentNameData,
@@ -3476,7 +3477,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickContactTabInUpdateEmployee() {
+	public void clickContactTabInUpdateEmployee() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateContactTab, ElementType.Xpath);
 		if (flag) {
@@ -3497,7 +3498,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Type
 	 */
-	private void selectContactTypeToUpdate(String Type) {
+	public void selectContactTypeToUpdate(String Type) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactAddLabel, ElementType.Xpath);
 		if (flag) {
@@ -3524,7 +3525,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconInUpdateContactDetails() {
+	public void clickAddIconInUpdateContactDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactAddIcon, ElementType.Xpath);
 		if (flag) {
@@ -3544,22 +3545,30 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveAndPostInUpdateContactDetails() {
+	public void clickSaveAndPostInUpdateContactDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactSaveIcon, ElementType.Xpath);
-			commonFunc.hardWait(5000);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			logs.logging("INFO", "Add Icon Clicked in Update Contact Details");
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
-				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
-				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				String Value = webDB.getTextFromElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				String Values[] = Value.split("Doc. No. =", Value.length());
+				VariableHandler.setEmpUpdateDocNo(Values[1].trim());
+				logs.logging("INFO", "Employee Update Document No: " + Values[1]);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_ContactPostBtn, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (flag) {
+						logs.logging("INFO", "Employee Contacts Update Post Button Clicked");
+					}
+				}
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -3576,7 +3585,7 @@ public class EmployeeMasterFunctions {
 	 * @param Address
 	 * @param City
 	 */
-	private void fillDetailsInUpdateContactDetails(String ContactName, String Relation, String MblNo, String Address,
+	public void fillDetailsInUpdateContactDetails(String ContactName, String Relation, String MblNo, String Address,
 			String City) {
 		switchToUpdateIframe();
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_ContactNameData,
@@ -3606,7 +3615,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickQualificationTabInUpdateEmployee() {
+	public void clickQualificationTabInUpdateEmployee() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateQualificationTab, ElementType.Xpath);
 		if (flag) {
@@ -3628,7 +3637,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Type
 	 */
-	private void selectQualificationTypeToUpdate(String Type) {
+	public void selectQualificationTypeToUpdate(String Type) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationAddLabel, ElementType.Xpath);
 		if (flag) {
@@ -3657,7 +3666,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconInUpdateQualificationDetails() {
+	public void clickAddIconInUpdateQualificationDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationAddIcon, ElementType.Xpath);
 		if (flag) {
@@ -3677,22 +3686,30 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveAndPostInUpdateQualificationDetails() {
+	public void clickSaveAndPostInUpdateQualificationDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationSaveIcon, ElementType.Xpath);
-			commonFunc.hardWait(5000);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			logs.logging("INFO", "Add Icon Clicked in Update Qualification Details");
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
-				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
-				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				String Value = webDB.getTextFromElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				String Values[] = Value.split("Doc. No. =", Value.length());
+				VariableHandler.setEmpUpdateDocNo(Values[1].trim());
+				logs.logging("INFO", "Employee Update Document No: " + Values[1]);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_QualificationPostBtn, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (flag) {
+						logs.logging("INFO", "Employee Qualification Update Post Button Clicked");
+					}
+				}
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -3711,7 +3728,7 @@ public class EmployeeMasterFunctions {
 	 * @param Grade
 	 * @param Aggregate
 	 */
-	private void fillDetailsInUpdateQualificationDetails(String Qualification, String BranchOfStudy, String Institute,
+	public void fillDetailsInUpdateQualificationDetails(String Qualification, String BranchOfStudy, String Institute,
 			String TotalYear, String YearOfPass, String Grade, String Aggregate) {
 		switchToUpdateIframe();
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_QualInstituteData,
@@ -3753,7 +3770,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSkillTabInUpdateEmployee() {
+	public void clickSkillTabInUpdateEmployee() {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_UpdateSkillTab, ElementType.Xpath);
 		if (flag) {
@@ -3774,7 +3791,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Type
 	 */
-	private void selectSkillTypeToUpdate(String Type) {
+	public void selectSkillTypeToUpdate(String Type) {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillAddLabel, ElementType.Xpath);
 		if (flag) {
@@ -3801,7 +3818,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAddIconInUpdateSkillDetails() {
+	public void clickAddIconInUpdateSkillDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillAddIcon, ElementType.Xpath);
 		if (flag) {
@@ -3821,22 +3838,30 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSaveAndPostInUpdateSkillDetails() {
+	public void clickSaveAndPostInUpdateSkillDetails() {
 		switchToUpdateIframe();
 		flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillSaveIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillSaveIcon, ElementType.Xpath);
-			commonFunc.hardWait(5000);
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			logs.logging("INFO", "Add Icon Clicked in Update Skill Details");
-			flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
-				webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
-				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+				String Value = webDB.getTextFromElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				String Values[] = Value.split("Doc. No. =", Value.length());
+				VariableHandler.setEmpUpdateDocNo(Values[1].trim());
+				logs.logging("INFO", "Employee Update Document No: " + Values[1]);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.UpdateEmp_SkillPostBtn, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if (flag) {
+						logs.logging("INFO", "Employee Skills Update Post Button Clicked");
+					}
+				}
 			}
 		}
 		webDB.switchToDefaultContent();
@@ -3850,7 +3875,7 @@ public class EmployeeMasterFunctions {
 	 * @param Skill
 	 * @param Level
 	 */
-	private void fillDetailsInUpdateSkillDetails(String Skill, String Level) {
+	public void fillDetailsInUpdateSkillDetails(String Skill, String Level) {
 		switchToUpdateIframe();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.UpdateEmp_SkillTableData, ElementType.Xpath);
 		if (flag) {
@@ -3911,7 +3936,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickEmployeeHistoryAndCheckNotNull() {
+	public void clickEmployeeHistoryAndCheckNotNull() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
@@ -3942,7 +3967,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickViewProfileAndStoreProfileAndBatchNo() {
+	public void clickViewProfileAndStoreProfileAndBatchNo() {
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.ViewProfileBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.ViewProfileBtn, ElementType.Xpath);
@@ -3966,7 +3991,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickEmployeeProfileNoAndReverse() {
+	public void clickEmployeeProfileNoAndReverse() {
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.ViewProf_ProfileNo, ElementType.Xpath);
@@ -3996,7 +4021,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAndNavigateEmployeeMigration() {
+	public void clickAndNavigateEmployeeMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
@@ -4027,23 +4052,36 @@ public class EmployeeMasterFunctions {
 	 * @param PaymentType
 	 * @param Ref
 	 */
-	private void clickAddAndFillDetailsInEmployeeMigration(String Calendar, String Payment, String PaymentType,
+	public void clickAddAndFillDetailsInEmployeeMigration(String Calendar, String Payment, String PaymentType,
 			String Ref) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationAddButton, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.EmpMigrationCalendarLov, Calendar);
+			logs.logging("INFO", "Employee Migration Calendar Selected: " + Calendar);
 			flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPaymentSelect, ElementType.Xpath);
 			if (flag) {
-				webDB.selectDropDownByText(EmployeeMasterLocators.EmpMigrationPaymentSelect, Payment,
+				flag = webDB.selectDropDownByText(EmployeeMasterLocators.EmpMigrationPaymentSelect, Payment,
 						ElementType.Xpath);
-				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPaymentTypeSelect, ElementType.Xpath);
+				webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPaymentTypeSelect, ElementType.Xpath);
 				if (flag) {
+					logs.logging("INFO", "Employee Migration Payment Selected: " + Payment);
 					flag = webDB.selectDropDownByText(EmployeeMasterLocators.EmpMigrationPaymentTypeSelect, PaymentType,
 							ElementType.Xpath);
 					if (flag) {
+						logs.logging("INFO", "Employee Migration Payment Type Selected: " + PaymentType);
 						flag = webDB.sendTextToAnElement(EmployeeMasterLocators.EmpMigrationReferenceInput, Ref,
 								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Employee Migration Reference Entered: " + Ref);
+							webDB.moveToElement(EmployeeMasterLocators.EmpMigrationCreateSaveIcon, ElementType.Xpath);
+							webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationCreateSaveIcon, ElementType.Xpath);
+							flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadTemplateBtn,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Employee Migration Create Save Icon Clicked");
+							}
+						}
 					}
 				}
 			}
@@ -4056,7 +4094,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void uploadEmployeeMigrationTemplate() {
+	public void uploadEmployeeMigrationTemplate() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationUploadTemplateBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationUploadTemplateBtn, ElementType.Xpath);
@@ -4084,21 +4122,21 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void checkExceptionAndSaveHeaderInEmpMigration() {
+	public void checkExceptionAndSaveHeaderInEmpMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationCheckExceptionBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(EmployeeMasterLocators.EmpMigrationCheckExceptionBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationCheckExceptionBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
+				commonFunc.checkSuccessToastMessageDisappear();
 				logs.logging("INFO", "No Exception Found for Employee Migration");
-				flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationHeaderSaveIcon, ElementType.Xpath);
-				if (flag) {
+				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.EmpMigrationHeaderSaveIcon,
+						ElementType.Xpath)) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationHeaderSaveIcon, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Header Saved Succesfully for Employee Migration");
-					}
 				}
+				logs.logging("INFO", "Header Saved Succesfully for Employee Migration");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4109,12 +4147,16 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void postUploadedTemplateInEmployeeMigration() {
+	public void postUploadedTemplateInEmployeeMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				logs.logging("INFO", "Employee Migration uploaded template Posted");
 			}
 		}
@@ -4126,7 +4168,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickAndNavigateEmployeeDetailsMigration() {
+	public void clickAndNavigateEmployeeDetailsMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.MigrationBtn, ElementType.Xpath);
@@ -4155,7 +4197,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Ref
 	 */
-	private void createAndFillDetailsInEmpDetailsMigration(String Ref) {
+	public void createAndFillDetailsInEmpDetailsMigration(String Ref) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCreateAddIcon, ElementType.Xpath);
@@ -4167,7 +4209,8 @@ public class EmployeeMasterFunctions {
 						ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCreateSaveButton, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+					flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIcon,
+							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Employee Details Migration Reference entered and Save Button Clicked");
 					}
@@ -4183,7 +4226,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickSelectFieldOptionsInEmpDetailsMigration() {
+	public void clickSelectFieldOptionsInEmpDetailsMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldLabel, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldLabel, ElementType.Xpath);
@@ -4204,7 +4247,7 @@ public class EmployeeMasterFunctions {
 	 * @param Option
 	 * @param Seq
 	 */
-	private void clickAddSelectFieldAndSelectSequence(String Option, String Seq) {
+	public void clickAddSelectFieldAndSelectSequence(String Option, String Seq) {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldAddIcon, ElementType.Xpath);
@@ -4219,10 +4262,10 @@ public class EmployeeMasterFunctions {
 					flag = webDB.selectDropDownByText(EmployeeMasterLocators.EmpDetailsSelectFieldDataTypeSelect,
 							Option, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Select Field Add Icon Clicked Successfully");
+						logs.logging("INFO", "Selected Value in dropdown: " + Option);
 						commonPayrollFunc.addDetailInTableWithoutLovButton(
 								EmployeeMasterLocators.EmpDetailsSelectFieldSequenceTableData,
-								EmployeeMasterLocators.EmpDetailsSelectFieldSequenceTableData, Seq);
+								EmployeeMasterLocators.EmpDetailsSelectFieldSequenceInput, Seq);
 						flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldSaveIcon,
 								ElementType.Xpath);
 						if (flag) {
@@ -4230,7 +4273,12 @@ public class EmployeeMasterFunctions {
 									ElementType.Xpath);
 							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Select Field Line Added and Saved Successfully");
+								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
+								}
+								logs.logging("INFO", "Select Field Saved Successfully");
 							}
 						}
 					}
@@ -4245,9 +4293,11 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void uploadEmployeeDetailsMigrationTemplate() {
+	public void uploadEmployeeDetailsMigrationTemplate() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.moveToElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIcon, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIcon, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationUploadIframe, ElementType.Xpath);
 			if (flag) {
@@ -4266,6 +4316,10 @@ public class EmployeeMasterFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 						if (flag) {
+							if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
 							logs.logging("INFO", "File Uploaded Succesfully for Employee Migration");
 						}
 					}
@@ -4281,21 +4335,24 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void checkExceptionAndSaveHeaderInEmpDetailsMigration() {
+	public void checkExceptionAndSaveHeaderInEmpDetailsMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "No Exception Found for Employee Details Migration");
-				flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon,
-						ElementType.Xpath);
-				if (flag) {
+				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon,
+						ElementType.Xpath)) {
 					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Header Saved Succesfully for Employee Details Migration");
+				}
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 					}
+					logs.logging("INFO", "Header Saved Succesfully for Employee Details Migration");
 				}
 			}
 		}
@@ -4307,13 +4364,58 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void postUploadedTemplateInEmployeeDetailsMigration() {
-		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
+	public void postUploadedTemplateInEmployeeDetailsMigration() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
+			webDB.moveToElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
+			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Employee Migration uploaded template Posted");
+				logs.logging("INFO", "Employee Details Migration uploaded template Posted");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to enter probation start and end date
+	 * 
+	 * @author Sakthi-GWL
+	 * @param duration
+	 */
+	public void enterProbationFromAndToDateWithDayDuration(String duration) {
+		String fromDate = VariableHandler.getEmpDOJ();
+		String toDate = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = null;
+		try {
+			date = sdf.parse(fromDate);
+
+		} catch (Exception e) {
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DATE, Integer.parseInt(duration));
+		toDate = sdf.format(cal.getTime());
+		logs.logging("INFO", "Employee Joined date: " + fromDate);
+		logs.logging("INFO", "for Probation Duration: " + duration + ", End date calculated: " + toDate);
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationDateFrom, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationDateFrom, ElementType.Xpath);
+			flag = webDB.sendTextToAnElement(EmployeeMasterLocators.AddEmp_ProbationDateFrom, fromDate,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Probation Start Date Entered: " + fromDate);
+				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProbationDurationInput, ElementType.Xpath);
+				webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationDateTo, ElementType.Xpath);
+				webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationDateTo, ElementType.Xpath);
+				String ValueDisplayed = webDB.getAttributeFromElement(EmployeeMasterLocators.AddEmp_ProbationDateTo,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Displayed toDate in Probation: " + ValueDisplayed);
+				flag = toDate.equalsIgnoreCase(ValueDisplayed);
+				if (flag) {
+					logs.logging("INFO", "Probation End Date Verified");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4326,7 +4428,7 @@ public class EmployeeMasterFunctions {
 	 * @param duration
 	 * @param type
 	 */
-	private void enterProbationDetailsAndSaveHeader(String duration, String type) {
+	public void enterProbationDetailsAndSaveHeader(String duration, String type) {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.AddEmp_ProbationDurationInput,
 				EmployeeMasterLocators.AddEmp_ProbationDurationInput, duration);
 		logs.logging("INFO", "Duration entered in Probation: " + duration);
@@ -4335,11 +4437,34 @@ public class EmployeeMasterFunctions {
 			flag = webDB.selectDropDownByText(EmployeeMasterLocators.AddEmp_ProbationSelect, type, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Probation Type Selected: " + type);
-				webDB.moveToElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
-				webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+				enterProbationFromAndToDateWithDayDuration(duration);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon2,
+						ElementType.Xpath)) {
+					webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon2, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon2, ElementType.Xpath);
+				} else if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon,
+						ElementType.Xpath)) {
+					webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_AfterCreationSaveIcon, ElementType.Xpath);
+				} else if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.AddEmp_SaveButton,
+						ElementType.Xpath)) {
+					webDB.scrollToAnElement(EmployeeMasterLocators.AddEmp_SaveButton, ElementType.Xpath);
+					webDB.clickAnElement(EmployeeMasterLocators.AddEmp_SaveButton, ElementType.Xpath);
+				}
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 					logs.logging("INFO", "Save Icon Clicked after Probation entered");
+					commonFunc.checkRefreshCellsDisappear();
+					String text = webDB.getTextFromElement(EmployeeMasterLocators.AddEmp_DisplayEmpID,
+							ElementType.Xpath);
+					text = text.replace("Employee : ", " ").trim();
+					VariableHandler.setEmpID(text);
+					logs.logging("INFO", "Auto Generated Emp ID: " + VariableHandler.getEmpID());
 				}
 			}
 		}
@@ -4352,12 +4477,12 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickProbationCompleteAndCheckProbationStatus() {
+	public void clickProbationCompleteAndCheckProbationStatus() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
-			commonFunc.hardWait(7000);
+			commonFunc.hardWait(3000);
 			logs.logging("INFO", "Probation Completed Button Clicked");
 			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
 			if (flag) {
@@ -4444,7 +4569,7 @@ public class EmployeeMasterFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	private void clickFindSearchButton() {
+	public void clickFindSearchButton() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.FindSearchBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(EmployeeMasterLocators.FindSearchBtn, ElementType.Xpath);
@@ -4463,13 +4588,14 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Zone
 	 */
-	private void findWithZone(String Zone) {
+	public void findWithZone(String Zone) {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindZoneLovBtn, Zone);
 		clickFindSearchButton();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindZoneResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Zone)) {
+			if (webElement.getText().contains(Zone)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -4486,13 +4612,14 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Category
 	 */
-	private void findWithCategory(String Category) {
+	public void findWithCategory(String Category) {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindCategoryLovBtn, Category);
 		clickFindSearchButton();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindCategoryResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Category)) {
+			if (webElement.getText().contains(Category)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -4509,13 +4636,14 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Designation
 	 */
-	private void findWithDesignation(String Designation) {
+	public void findWithDesignation(String Designation) {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindDesignationLovBtn, Designation);
 		clickFindSearchButton();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDesignationResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Designation)) {
+			if (webElement.getText().contains(Designation)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -4532,13 +4660,14 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Department
 	 */
-	private void findWithDepartment(String Department) {
+	public void findWithDepartment(String Department) {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindDepartmentLovBtn, Department);
 		clickFindSearchButton();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindDepartmentResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Department)) {
+			if (webElement.getText().contains(Department)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -4555,13 +4684,14 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 * @param Unit
 	 */
-	private void findWithUnit(String Unit) {
+	public void findWithUnit(String Unit) {
 		commonFunc.searchAndSelectValueInFilters(EmployeeMasterLocators.FindUnitLovBtn, Unit);
 		clickFindSearchButton();
+		commonFunc.checkRefreshCellsDisappear();
 		List<WebElement> elements = webDB.getListOfElements(EmployeeMasterLocators.FindUnitResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Unit)) {
+			if (webElement.getText().contains(Unit)) {
 				flag = true;
 			} else {
 				flag = false;

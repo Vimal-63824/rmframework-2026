@@ -994,6 +994,21 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNSourceNumber"), GRNNumber, DetailsValue);
 		return value;
 	}
+	
+	/**
+	 * PR Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PRLineDetailsQueryKare(String PrNo, String ItemId, String HeaderValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PRLineDetailsQueryKARE"),
+				commonFunc.getDataFromTestDataSheet("PRNO"), PrNo, commonFunc.getDataFromTestDataSheet("ItemId"),
+				ItemId, HeaderValue);
+		return value;
+	}
 
 	/**
 	 * SOM Control

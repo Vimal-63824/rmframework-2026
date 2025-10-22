@@ -31,4 +31,7 @@ public class ApprovedSupplierPOLocators {
 	public static final String ApprovedStatus(String DocNo) {
 		return "//td[text()='" + DocNo + "']/../td[last()]/div[contains(@style,color)]";
 	}
+
+	/** @locatorType XPATH */
+	public static final String LeadTimeInput = "//input[@data-testid='P367018501_SUPRPROD_LEAD_TIME']";
 }

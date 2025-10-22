@@ -213,7 +213,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Navigated To Purchase Order page Successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.LeftSideAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseOrderTab"), CommonUiLocators.PurchaseAddIcon);
 		Assert.assertTrue(flag);
 	}
 
@@ -235,7 +235,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestTab"), CommonUiLocators.LeftSideAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestTab"), CommonUiLocators.PrCreateButton);
 		Assert.assertTrue(flag);
 	}
 
@@ -299,14 +299,17 @@ public class CommonFunctions {
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
 					try {
-						if (webElement.isDisplayed() && webElement.getText().equalsIgnoreCase(Value)) {
+						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
 									webElement);
+//							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();", webElement);
 							webElement.click();
 							flag = true;
+						} else {
 						}
 					} catch (Exception e) {
 						flag = false;
+//						logs.loggingconsole("INFO", e.toString());
 					}
 				}
 			}
@@ -345,6 +348,15 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.LeftSideAddIcon, ElementType.Xpath);
 			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			hardWait(2000);
+			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePoButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.CreatePoButton, ElementType.Xpath);
+			}
+			hardWait(2000);
+			webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
+
 			if (flag) {
 				flag = webDB.waitForElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
 				if (flag) {
@@ -543,18 +555,19 @@ public class CommonFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void navigatePurchaseRequestCloseShortPage() {
-		clickLeftNavigationBar();
-		clickSupplyChainTab();
-		clickPurchaseTab();
-		clickPurchaseTransactionTab();
-		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
-			}
-		}
+//		clickLeftNavigationBar();
+//		clickSupplyChainTab();
+//		clickPurchaseTab();
+//		clickPurchaseTransactionTab();
+//		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(CommonUiLocators.PurchaseRequestCloseShortTab, ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseRequestLocators.PRCloseShort_AddNewBtn, ElementType.Xpath);
+//			if (flag) {
+//				logs.logging("INFO", "Navigated To Purchase Request Close Short page Successfully");
+//			}
+//		}
+		navigateToSearchTab(webDB.getDataFromProperties("PRAmendment"), PurchaseRequestLocators.AddButtonPRCs);
 		Assert.assertTrue(flag);
 	}
 
@@ -780,7 +793,7 @@ public class CommonFunctions {
 //		clickPricelistTransactionTab();
 		navigateToSearchTab(webDB.getDataFromProperties("PRICELISTENTRY"), PricelistPageLocators.AddPriceList);
 		Assert.assertTrue(flag);
-		
+
 	}
 
 	/**
@@ -1677,13 +1690,17 @@ public class CommonFunctions {
 	 * @return boolean
 	 */
 	public boolean checkAutoApprovalOrForwardedWhilePost() {
-		if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
+		webDB.switchToDefaultContent();
+		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
+			VariableHandler.setApprovalFlag(true);
+			return true;
+		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
 			logs.logging("INFO", "Workflow forwarder iframe Displayed");
 			return true;
 		} else {
-			VariableHandler.setApprovalFlag(true);
-			return true;
+			logs.logging("INFO", "Toast Message or Workflow Iframe both not displayed");
+			return false;
 		}
 	}
 
@@ -2036,6 +2053,16 @@ public class CommonFunctions {
 	 */
 	public void navigateSalesOrderAmendmentPage() {
 		navigateToSearchTab(webDB.getDataFromProperties("SOAmd"), SalesOrderLocators.SOAmendmentPendingButton);
+	}
+
+	/**
+	 * This method is used to Navigate Setup Payroll Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigatePayrollApplicationScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("PayrollApplicaionCrtlScreen"),
+				AttendanceLeaveLocators.SetupLeaveLabel);
 	}
 
 	/**
@@ -2496,7 +2523,7 @@ public class CommonFunctions {
 //			}
 //		}
 		navigateToSearchTab(webDB.getDataFromProperties("EmployeeAdjustmentScreen"),
-				EmployeeAdjustmentLocators.FindEmployeeAdjustmentHeader);
+				EmployeeAdjustmentLocators.EA_MigrationBtn);
 	}
 
 	/**
@@ -2580,6 +2607,43 @@ public class CommonFunctions {
 			flag = restApi.response.getStatusCode() == 200;
 			if (flag) {
 				logs.logging("INFO", "Verified Approval Response Status Code");
+			}
+		}
+		assertTrue(flag);
+		RestUtils.resetRestAssured();
+	}
+
+	/**
+	 * This method used to return documents using API
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BU
+	 * @param DocNo
+	 * @param EmpId
+	 * @param Unit
+	 * @param User
+	 * @param ReturnUserEmpId
+	 */
+	public void returnDocuments(String BU, String DocNo, String EmpId, String Unit, String User,
+			String ReturnUserEmpId) {
+		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
+		restApi.setQueryParam("p_bu", BU);
+		restApi.setQueryParam("p_doc_no", DocNo);
+		restApi.setQueryParam("p_from_empid", EmpId);
+		restApi.setQueryParam("p_plnt", Unit);
+		restApi.setQueryParam("p_user", User);
+		restApi.setQueryParam("p_wfdc_act", "R");
+		restApi.setQueryParam("p_nxt_fwd_person", ReturnUserEmpId);
+		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
+		String Value = restApi.response.getHeader("p_out_msg");
+		logs.logging("INFO", "Displayed Returned Response Header: " + Value);
+		logs.logging("INFO", "Displayed Returned Response Status Code: " + restApi.response.getStatusCode());
+		flag = Value.contains("Returned");
+		if (flag) {
+			logs.logging("INFO", "Verified Returned Response Header");
+			flag = restApi.response.getStatusCode() == 200;
+			if (flag) {
+				logs.logging("INFO", "Verified Returned Response Status Code");
 			}
 		}
 		assertTrue(flag);
@@ -2896,4 +2960,29 @@ public class CommonFunctions {
 	public void navigateToOpenPriceSCO() {
 		navigateToSearchTab(webDB.getDataFromProperties("OpenscoScreen"), CommonUiLocators.Open_SCO_Find_AddIcon);
 	}
+
+	/**
+	 * This Method used to click PR create icon - left add icon
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickPRCreateIcon() {
+		flag = webDB.waitForElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
+			hardWait(4000);
+			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePrButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
+			}
+			hardWait(3000);
+			webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
 }
