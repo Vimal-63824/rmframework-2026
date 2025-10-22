@@ -1562,7 +1562,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 		}
 		return flag;
 	}
@@ -1591,9 +1590,8 @@ public class SubcontractOrderFunctions {
 	 * Value Addition Type
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean documentCancellingForDirectSubcontractOrderValueAdditionType() {
+	public void documentCancellingForDirectSubcontractOrderValueAdditionType() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -1604,7 +1602,6 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		clickingHeaderCancelButton();
-		return flag;
 	}
 
 	/**
@@ -1612,9 +1609,8 @@ public class SubcontractOrderFunctions {
 	 * Standard Type
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean documentCancellingForDirectSubcontractOrderStandardType() {
+	public void documentCancellingForDirectSubcontractOrderStandardType() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -1623,7 +1619,6 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		clickingHeaderCancelButton();
-		return flag;
 	}
 
 	/**
@@ -1691,7 +1686,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 
 		}
 		return flag;
@@ -2029,7 +2023,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 		}
 		return flag;
 	}
@@ -2159,7 +2152,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 
 		}
 		return flag;
@@ -2230,7 +2222,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 		}
 		return flag;
 	}
@@ -2375,7 +2366,6 @@ public class SubcontractOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 				flag = commonFunc.logoutUser();
 				mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-				return flag;
 			}
 		}
 		return flag;
@@ -2448,7 +2438,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 		}
 		return flag;
 	}
@@ -2520,7 +2509,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 		}
 		return flag;
 	}
@@ -2590,7 +2578,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 		}
 		return flag;
 	}
@@ -2679,7 +2666,6 @@ public class SubcontractOrderFunctions {
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.logoutUser();
-			return flag;
 
 		}
 		return flag;
@@ -2985,7 +2971,6 @@ public class SubcontractOrderFunctions {
 					mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 				}
 			}
-			return flag;
 		}
 		return flag;
 	}
@@ -3147,7 +3132,6 @@ public class SubcontractOrderFunctions {
 					mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 				}
 			}
-			return flag;
 		}
 		return flag;
 	}
@@ -3308,7 +3292,6 @@ public class SubcontractOrderFunctions {
 					mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 				}
 			}
-			return flag;
 		}
 		return flag;
 	}

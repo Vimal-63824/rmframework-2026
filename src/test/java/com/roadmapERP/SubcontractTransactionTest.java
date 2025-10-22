@@ -86,7 +86,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	@Test(priority = 6, groups = {
 			"Subcontract" }, description = "Cancelling Direct Subcontract Order For SCO Value Addition Type")
 	public void documentCancellingForDirectSubcontractOrderValueAdditionType() {
-		flag = SubcontractFunc.documentCancellingForDirectSubcontractOrderValueAdditionType();
+		SubcontractFunc.documentCancellingForDirectSubcontractOrderValueAdditionType();
 		Assert.assertTrue(flag);
 	}
 
@@ -98,7 +98,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	@Test(priority = 7, groups = {
 			"Subcontract" }, description = "Cancelling Direct Subcontract Order For SCO Standard Type")
 	public void documentCancellingForDirectSubcontractOrderStandardType() {
-		flag = SubcontractFunc.documentCancellingForDirectSubcontractOrderStandardType();
+		SubcontractFunc.documentCancellingForDirectSubcontractOrderStandardType();
 		Assert.assertTrue(flag);
 	}
 

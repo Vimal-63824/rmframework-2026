@@ -14,7 +14,7 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
-	static ProductionAndShopFloorSetupFunctions PPShopFloorSetupFunc = new ProductionAndShopFloorSetupFunctions();
+	static ProductionAndShopFloorSetupFunctions ppShopFloorSetupFunc = new ProductionAndShopFloorSetupFunctions();
 
 //	/**
 //	 * How to define Workcenters
@@ -22,9 +22,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //	 * @author Vimal - RMITS
 //	 */
 //	@Test(priority = 1, groups = {
-//			"PP&ShopFloor" }, description = "      1 - How to define Process master and Workcenters")
+//			"PP&ShopFloor" }, description = "1 - How to define Process master and Workcenters")
 //	public void HowtodefineWorkcenters() {
-//		flag = PPShopFloorSetupFunc.howtodefineWorkcenters();
+//		flag = ppShopFloorSetupFunc.howtodefineWorkcenters();
 //		Assert.assertTrue(flag);
 //	}
 //
@@ -34,9 +34,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //	 * @author Vimal - RMITS
 //	 */
 //	@Test(priority = 2, groups = {
-//			"PP&ShopFloor" }, description = "      2 - How to define Process master in Inside Type")
+//			"PP&ShopFloor" }, description = "2 - How to define Process master in Inside Type")
 //	public void HowtodefineInsideTypeProcessAndAssociatedTheProcess() {
-//		flag = PPShopFloorSetupFunc.howtodefineInsideTypeProcessAndAssociatedTheProcess();
+//		flag = ppShopFloorSetupFunc.howtodefineInsideTypeProcessAndAssociatedTheProcess();
 //		Assert.assertTrue(flag);
 //	}
 
@@ -46,10 +46,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 * @throws IOException
 	 */
-	@Test(priority = 3, groups = {
-			"PP&ShopFloor" }, description = "      3 - How to define Process master in OutSide Type")
+	@Test(priority = 3, groups = { "PP&ShopFloor" }, description = "3 - How to define Process master in OutSide Type")
 	public void HowtodefineOutsideTypeProcessAndAssociatedTheProcess() throws IOException {
-		flag = PPShopFloorSetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
+		ppShopFloorSetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		Assert.assertTrue(flag);
 	}
 
@@ -58,10 +57,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	@Test(priority = 4, groups = {
-			"PP&ShopFloor" }, description = "      4 - How to define Process master in Both Type")
+	@Test(priority = 4, groups = { "PP&ShopFloor" }, description = "4 - How to define Process master in Both Type")
 	public void HowtodefineBothTypeProcessAndAssociatedTheProcess() {
-		flag = PPShopFloorSetupFunc.howtodefineBothTypeProcessAndAssociatedTheProcess();
+		ppShopFloorSetupFunc.howtodefineBothTypeProcessAndAssociatedTheProcess();
 		Assert.assertTrue(flag);
 //	}
 //	/**
@@ -70,9 +68,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //	 * @author Vimal - RMITS
 //	 */
 //	@Test(priority = 5, groups = {
-//			"PP&ShopFloor" }, description = "      5 - How to Create Resource Group and Resources for Machine")
+//			"PP&ShopFloor" }, description = "5 - How to Create Resource Group and Resources for Machine")
 //	public void HowtoCreateResourceGroupandResourcesforMachine() {
-//		flag = PPShopFloorSetupFunc.howtoCreateResourceGroupandResourcesforMachine();
+//		flag = ppShopFloorSetupFunc.howtoCreateResourceGroupandResourcesforMachine();
 //		Assert.assertTrue(flag);
 //	}
 //	/**
@@ -81,9 +79,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //	 * @author Vimal - RMITS
 //	 */
 //	@Test(priority = 6, groups = {
-//			"PP&ShopFloor" }, description = "      6 - How to Create Resource Group and Resources for manpower")
+//			"PP&ShopFloor" }, description = "6 - How to Create Resource Group and Resources for manpower")
 //	public void HowtoCreateResourceGroupandResourcesformanpower() {
-//		flag = PPShopFloorSetupFunc.howtoCreateResourceGroupandResourcesformanpower();
+//		flag = ppShopFloorSetupFunc.howtoCreateResourceGroupandResourcesformanpower();
 //		Assert.assertTrue(flag);
 //	}
 //	/**
@@ -92,9 +90,9 @@ public class ProductionAndShopFloorSetupTest extends RoadMapERPTest {
 //	 * @author Vimal - RMITS
 //	 */
 //	@Test(priority = 7, groups = {
-//			"PP&ShopFloor" }, description = "      7 - How to Create Resource Group and Resources for Tool")
+//			"PP&ShopFloor" }, description = "7 - How to Create Resource Group and Resources for Tool")
 //	public void HowtoCreateResourceGroupandResourcesforTool() {
-//		flag = PPShopFloorSetupFunc.howtoCreateResourceGroupandResourcesforTool();
+//		flag = ppShopFloorSetupFunc.howtoCreateResourceGroupandResourcesforTool();
 //		Assert.assertTrue(flag);
 //	}
 	}

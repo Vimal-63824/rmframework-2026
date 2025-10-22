@@ -819,9 +819,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Item_Process() throws IOException {
+	public boolean creatingOpenSCOpriceForSupplier_Item_Process()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -851,9 +851,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForItem_Process() throws IOException {
+	public boolean creatingOpenSCOpriceForItem_Process()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -883,9 +883,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Process() throws IOException {
+	public boolean creatingOpenSCOpriceForSupplier_Process()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -915,9 +915,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForProcess() throws IOException {
+	public boolean creatingOpenSCOpriceForProcess()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1134,9 +1134,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean ReversingTheProcessTypeDocument() throws IOException {
+	public boolean ReversingTheProcessTypeDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1181,9 +1181,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean reveringItem_ProcessTypeDocument() throws IOException {
+	public boolean reveringItem_ProcessTypeDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1228,9 +1228,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean reveringSupplier_Item_ProcessTypeDocument() throws IOException {
+	public boolean reveringSupplier_Item_ProcessTypeDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1275,9 +1275,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean reveringSupplier_Process_TypeDocument() throws IOException {
+	public boolean reveringSupplier_Process_TypeDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1323,9 +1323,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() throws IOException {
+	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1349,9 +1349,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() throws IOException {
+	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1375,9 +1375,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() throws IOException {
+	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1400,9 +1400,9 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
-	 * @throws IOException
+	 * @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() throws IOException {
+	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument()  {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();

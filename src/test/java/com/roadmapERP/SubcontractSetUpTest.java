@@ -20,12 +20,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier
 	 * +Item + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 1, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier +Item + Process")
-	public void creatingOpenSCOpriceForSupplier_Item_Process() throws IOException {
+	public void creatingOpenSCOpriceForSupplier_Item_Process() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForSupplier_Item_Process();
 		Assert.assertTrue(flag);
 	}
@@ -34,12 +33,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * Create Open Subcontract Order (Rate Contract) for an Item with Type Item +
 	 * Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 2, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Item + Process")
-	public void creatingOpenSCOpriceForItem_Process() throws IOException {
+	public void creatingOpenSCOpriceForItem_Process() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForItem_Process();
 		Assert.assertTrue(flag);
 	}
@@ -48,12 +46,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier
 	 * + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 3, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier + Process")
-	public void creatingOpenSCOpriceForSupplier_Process() throws IOException {
+	public void creatingOpenSCOpriceForSupplier_Process() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForSupplier_Process();
 		Assert.assertTrue(flag);
 	}
@@ -61,12 +58,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Create Open Subcontract Order (Rate Contract) for an Item with Type Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 4, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Process")
-	public void creatingOpenSCOpriceForProcess() throws IOException {
+	public void creatingOpenSCOpriceForProcess() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForProcess();
 		Assert.assertTrue(flag);
 	}
@@ -74,12 +70,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Revise The (Rate Contract) for an Item with Type Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 5, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Process")
-	public void reversingTheProcessTypeDocument() throws IOException {
+	public void reversingTheProcessTypeDocument() {
 		flag = SubcontractSetupFunc.ReversingTheProcessTypeDocument();
 		Assert.assertTrue(flag);
 	}
@@ -87,12 +82,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Revise The (Rate Contract) for an Item with Type Item + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 6, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Item + Process")
-	public void reveringItem_ProcessTypeDocument() throws IOException {
+	public void reveringItem_ProcessTypeDocument() {
 		flag = SubcontractSetupFunc.reveringItem_ProcessTypeDocument();
 		Assert.assertTrue(flag);
 	}
@@ -100,12 +94,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Revise The (Rate Contract) for an Item with Type Supplier +Item + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 7, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Supplier +Item + Process")
-	public void reveringSupplier_Item_ProcessTypeDocument() throws IOException {
+	public void reveringSupplier_Item_ProcessTypeDocument() {
 		flag = SubcontractSetupFunc.reveringSupplier_Item_ProcessTypeDocument();
 		Assert.assertTrue(flag);
 	}
@@ -113,12 +106,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Revise The (Rate Contract) for an Item with Type Supplier + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 8, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Supplier + Process")
-	public void reveringSupplier_Process_TypeDocument() throws IOException {
+	public void reveringSupplier_Process_TypeDocument() {
 		flag = SubcontractSetupFunc.reveringSupplier_Process_TypeDocument();
 		Assert.assertTrue(flag);
 	}
@@ -126,12 +118,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Cancelled The (Rate Contract) for an Item with Type Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 9, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Process")
-	public void creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() throws IOException {
+	public void creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument();
 		Assert.assertTrue(flag);
 	}
@@ -139,12 +130,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Cancelled The (Rate Contract) for an Item with Type Supplier +Item + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 10, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Supplier +Item + Process")
-	public void creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() throws IOException {
+	public void creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument();
 		Assert.assertTrue(flag);
 	}
@@ -152,12 +142,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Cancelled The (Rate Contract) for an Item with Type Item + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 11, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Item + Process")
-	public void creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() throws IOException {
+	public void creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument();
 		Assert.assertTrue(flag);
 	}
@@ -165,12 +154,11 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	/**
 	 * Cancelled The (Rate Contract) for an Item with Type Supplier + Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
 	@Test(priority = 12, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Supplier + Process")
-	public void creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() throws IOException {
+	public void creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument();
 		Assert.assertTrue(flag);
 	}

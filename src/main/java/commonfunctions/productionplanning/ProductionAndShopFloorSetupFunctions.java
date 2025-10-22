@@ -39,7 +39,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingWorkCenterTab() {
+	public void clickingWorkCenterTab() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.WorkCenter_Tab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.WorkCenter_Tab, ElementType.Xpath);
@@ -59,7 +59,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param WorkCenterInput
 	 * @param DepartmentInput
 	 */
-	public void AddingWorkCenter(String WorkCenterInput, String DepartmentInput) {
+	public void addingWorkCenter(String WorkCenterInput, String DepartmentInput) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.WorkCenter_AddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.WorkCenter_AddIcon, ElementType.Xpath);
@@ -102,8 +102,8 @@ public class ProductionAndShopFloorSetupFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSetupPlanningandManufacturing();
-		ClickingWorkCenterTab();
-		AddingWorkCenter(commonFunc.getDataFromTestDataSheet("WorkCenterInput"),
+		clickingWorkCenterTab();
+		addingWorkCenter(commonFunc.getDataFromTestDataSheet("WorkCenterInput"),
 				commonFunc.getDataFromTestDataSheet("DepartmentInput"));
 		return flag;
 	}
@@ -210,11 +210,10 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_UOM
 	 * @param Proc_Outside_Type
 	 * @param Proc_Suffix_input
-	 * @param Proc_Charge_Item
-	 * @throws IOException
+	 * @param Proc_Charge_Item @
 	 */
 	public void AddingProcessOutSideType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
-			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) throws IOException {
+			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
@@ -280,6 +279,7 @@ public class ProductionAndShopFloorSetupFunctions {
 		webDB.navigateToRefresh();
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used For Adding Process With Outside Type
 	 * 
@@ -289,11 +289,10 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_UOM
 	 * @param Proc_Outside_Type
 	 * @param Proc_Suffix_input
-	 * @param Proc_Charge_Item
-	 * @throws IOException
+	 * @param Proc_Charge_Item @
 	 */
 	public void AddingProcessOutSideTypeForRevise(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
-			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) throws IOException {
+			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
@@ -359,12 +358,13 @@ public class ProductionAndShopFloorSetupFunctions {
 		webDB.navigateToRefresh();
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Used To Get ProcessID and Write In Excel Sheet
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void GetProcessIDandWriteInExcelSheet(String SheetName) throws IOException {
+	public void GetProcessIDandWriteInExcelSheet(String SheetName) {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -374,19 +374,19 @@ public class ProductionAndShopFloorSetupFunctions {
 		for (int i = 4; i < ItemMultiple.length; i++) {
 			String Process = ItemMultiple[i][1];
 			if (!Process.equals("")) {
-				logs.logging("INFO", "Before Process ID " + Process + "Is : "
-						+ VariableHandler.getProcessIDAsso());
+				logs.logging("INFO", "Before Process ID " + Process + "Is : " + VariableHandler.getProcessIDAsso());
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 1, VariableHandler.getProcessIDAsso());
 			}
 		}
 
 	}
+
 	/**
 	 * This Methods Used To Get ProcessID and Write In Excel Sheet
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void GetProcessIDForReverseandWriteInExcelSheet(String SheetName) throws IOException {
+	public void GetProcessIDForReverseandWriteInExcelSheet(String SheetName) {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -396,8 +396,7 @@ public class ProductionAndShopFloorSetupFunctions {
 		for (int i = 4; i < ItemMultiple.length; i++) {
 			String Process = ItemMultiple[i][1];
 			if (!Process.equals("")) {
-				logs.logging("INFO", "Before Process ID " + Process + "Is : "
-						+ VariableHandler.getProcessIDAsso());
+				logs.logging("INFO", "Before Process ID " + Process + "Is : " + VariableHandler.getProcessIDAsso());
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 1, VariableHandler.getProcessIDAsso());
 			}
 		}
@@ -489,9 +488,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean howtodefineInsideTypeProcessAndAssociatedTheProcess() {
+	public void howtodefineInsideTypeProcessAndAssociatedTheProcess() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSetupPlanningandManufacturing();
@@ -507,18 +505,15 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("ProcAsso_WorkCenter"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_ConsWH"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_RecpWH"));
-		return flag;
 	}
 
 	/**
 	 * This method Used For how to define Outside Type Process And Associated The
 	 * Process
 	 * 
-	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @throws IOException
+	 * @author Vimal - RMITS @
 	 */
-	public boolean howtodefineOutsideTypeProcessAndAssociatedTheProcess() throws IOException {
+	public void howtodefineOutsideTypeProcessAndAssociatedTheProcess() {
 		commonFunc.navigateToSetupPlanningandManufacturing();
 		ClickingProcessTab();
 		AddingProcessOutSideType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
@@ -533,17 +528,15 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("ProcAsso_WorkCenter"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_ConsWH"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_RecpWH"));
-		return flag;
 	}
+
 	/**
 	 * This method Used For how to define Outside Type Process And Associated The
 	 * Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @throws IOException
 	 */
-	public boolean howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing() throws IOException {
+	public void howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing() {
 		commonFunc.navigateToSetupPlanningandManufacturing();
 		ClickingProcessTab();
 		AddingProcessOutSideTypeForRevise(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
@@ -558,7 +551,6 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("ProcAsso_WorkCenter"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_ConsWH"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_RecpWH"));
-		return flag;
 	}
 
 	/**
@@ -566,9 +558,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean howtodefineBothTypeProcessAndAssociatedTheProcess() {
+	public void howtodefineBothTypeProcessAndAssociatedTheProcess() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSetupPlanningandManufacturing();
@@ -584,7 +575,6 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("ProcAsso_WorkCenter"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_ConsWH"),
 				commonFunc.getDataFromTestDataSheet("Proc_Asso_RecpWH"));
-		return flag;
 	}
 
 	/**
@@ -857,9 +847,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean howtoCreateResourceGroupandResourcesforMachine() {
+	public void howtoCreateResourceGroupandResourcesforMachine() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToMachineScreen();
@@ -879,7 +868,6 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("MachineNameInput"), VariableHandler.getResourceGrp(),
 				commonFunc.getDataFromTestDataSheet("Machine_Location"),
 				commonFunc.getDataFromTestDataSheet("MachineEfficiency"));
-		return flag;
 	}
 
 	/**
@@ -1254,9 +1242,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * This method Used For How to Create Resource Group and Resources for Manpower
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean howtoCreateResourceGroupandResourcesformanpower() {
+	public void howtoCreateResourceGroupandResourcesformanpower() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToManPowerScreen();
@@ -1271,7 +1258,6 @@ public class ProductionAndShopFloorSetupFunctions {
 		ClickingManpowerAddicon();
 		InsertingManpowerParameter(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("ManpowerResource"), VariableHandler.getManpowerResourceGrp());
-		return flag;
 
 	}
 
@@ -1279,9 +1265,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * This method Used For How to Create Resource Group and Resources for Tool
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean howtoCreateResourceGroupandResourcesforTool() {
+	public void howtoCreateResourceGroupandResourcesforTool() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToManPowerScreen();
@@ -1298,6 +1283,6 @@ public class ProductionAndShopFloorSetupFunctions {
 		InsertingManpowerParameterTool(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("ToolInput"), VariableHandler.getManpowerResourceGrp(),
 				commonFunc.getDataFromTestDataSheet("MachineUnitRate"));
-		return flag;
+
 	}
 }
