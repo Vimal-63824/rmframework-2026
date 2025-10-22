@@ -1339,8 +1339,8 @@ public class AttendanceLeaveFunctions {
 		String Today = date.format(formatter);
 		String requestDate = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
 			commonFunc.navigateLeaveEncashmentScreen();
 			chooseLeaveAndClickAddLeaveIcon();
 			fillRequestDateEmpIdAndLeaveType(Today, commonFunc.getDataFromTestDataSheet("Emp_GWP0001"),
@@ -1352,7 +1352,7 @@ public class AttendanceLeaveFunctions {
 			saveLeaveEntryAndStoreLeaveRequestNo();
 			clickPostButtonInLeaveRequest();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveRequestNo(),
 						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 						System.getProperty("HRMSelfApproveUser"));
@@ -1409,8 +1409,8 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter).toUpperCase();
 		String requestDay = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectLOPLeave();
 			clickAddNewLOPLeaveButton();
@@ -1421,17 +1421,17 @@ public class AttendanceLeaveFunctions {
 			checkExceptionAndSaveHeaderInLOPMigration();
 			clickPostLOPLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-						System.getProperty("HodPassword"), "HodUsername");
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveEntryDocNo());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveEntryDocNo());
 			}
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
 			commonFunc.hardWait(2000);
@@ -1459,8 +1459,8 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter1).toUpperCase();
 		String requestDate = date2.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
+					"HRMRequestUser");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectAccrualLeave();
 			clickAddNewAccrualLeaveButton();
@@ -1471,17 +1471,17 @@ public class AttendanceLeaveFunctions {
 			checkExceptionAndSaveHeaderInAccrualMigration();
 			clickPostAccrualLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-						System.getProperty("HodPassword"), "HodUsername");
+				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveEntryDocNo());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveEntryDocNo());
 			}
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
 			commonFunc.hardWait(2000);
@@ -1522,24 +1522,7 @@ public class AttendanceLeaveFunctions {
 			selectEndDateAndSessionWithReasonInLE(AfterThreeDate,
 					commonFunc.getDataFromTestDataSheet("FullSessionText"),
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
-			saveLeaveEntryAndStoreLeaveRequestNo();
-			clickPostButtonInLeaveRequest();
-			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-						System.getProperty("HodPassword"), "HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveRequestNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveRequestNo());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-						System.getProperty("TvsPassword"), "TvsUsername");
-			}
-			commonFunc.navigateLeaveEntryScreen();
-			clickFetchButtonAndSearchLeaveRequestNo(VariableHandler.getLeaveRequestNo());
-			selectLeaveRequestAndClickCreateLeave(VariableHandler.getLeaveRequestNo());
-			clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
+			saveLeaveEntryAndStoreLeaveEntryNo();
 			clickAttachmentInLeaveEntry();
 			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("ApplicationOption"),
 					Today, "0");
@@ -2585,8 +2568,8 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			clickAddNewIconInLeaveAdjustment();
@@ -2625,8 +2608,8 @@ public class AttendanceLeaveFunctions {
 		String Today = date1.format(formatter);
 		String Leave = RandomStringUtils.randomNumeric(1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			empMasterFunc.clickLeaveDetailsSideNavBar();
@@ -2665,8 +2648,8 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			clickAddNewIconInLeaveAdjustment();
@@ -2698,8 +2681,8 @@ public class AttendanceLeaveFunctions {
 		String month = date1.format(formatter1);
 		String date = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
 			clickMigrationButtonInAdjustment();
@@ -3402,8 +3385,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveAdjustmentFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			findWithLeaveInAdjustment(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
 			webDB.navigateToRefresh();
@@ -3431,8 +3414,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveEntryFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-					System.getProperty("HodPassword"), "HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
+					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			findWithLeaveInLeave(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
 			webDB.navigateToRefresh();
