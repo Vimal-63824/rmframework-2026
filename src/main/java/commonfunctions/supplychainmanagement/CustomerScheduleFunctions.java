@@ -2319,6 +2319,7 @@ public class CustomerScheduleFunctions {
 			if (!GetText.equalsIgnoreCase(Value)) {
 				webDB.doubleClickAnElement(CustomerScheduleLocators.CSAmdSchTypeField, ElementType.Xpath);
 				webDB.selectDropDownByText(CustomerScheduleLocators.CSAmdSchTypeDropDown, Value, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				webDB.pressTabKey();
 				logs.logging("INFO", " Schedule Type Is Changed Sucessfully To " + Value);
 			}
@@ -3002,8 +3003,8 @@ public class CustomerScheduleFunctions {
 		VariableHandler.setSOTotalGrossAmount(BigDecimal.ZERO);
 		VariableHandler.setSOTotalLineAmount(BigDecimal.ZERO);
 		VariableHandler.setCSDocNumber(null);
-		ArrayList.clear();
 		CSLineDocNo.clear();
+		ArrayList.clear();
 		MultiPriceList.clear();
 		MultiOpenSODoc.clear();
 		MultiCatalogPriceDoc.clear();

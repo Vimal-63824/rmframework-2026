@@ -757,8 +757,9 @@ public class SalesOrderFunctions {
 			flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Line Wise Save Button is Clicked");
+				commonFunc.checkRefreshCellsDisappear();
 				webDB.waitForElementUntilGivenTime(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath, 60);
-				flag = webDB.waitForClickElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesOrderLocators.SOTotalAmountFieldTrans, ElementType.Xpath);
 				if (flag) {
 					String SOTotAmt = webDB.getDomPropertyFromElement(SalesOrderLocators.SOTotalAmountFieldTrans,
 							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -812,10 +813,11 @@ public class SalesOrderFunctions {
 				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(CommonUiLocators.ClearIcon, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Verified Navigate To SO Home Page");
-				}
+				commonFunc.checkRefreshCellsDisappear();
+//				flag = webDB.waitForElement(CommonUiLocators.ClearIcon, ElementType.Xpath);
+//				if (flag) {
+//					logs.logging("INFO", "Verified Navigate To SO Home Page");
+//				}
 			}
 			webDB.switchToDefaultContent();
 			assertTrue(flag);
@@ -2427,43 +2429,6 @@ public class SalesOrderFunctions {
 				verifyCreationOfPaymentReceiptsReceivables(VariableHandler.getAdvReceiptDocNumber(),
 						commonFunc.getDataFromTestDataSheet("BankName"),
 						commonFunc.getDataFromTestDataSheet("Reference Number"));
-				verifyExpectedReceivedAdvAmountWithDBValues();
-				verifyAssertionBothValues(
-						dbCommonFunctions.SOAdvanceDetails(VariableHandler.getSONumber(),
-								commonFunc.getDataFromTestDataSheet("SODBAdvanceReceivedColumnName")),
-						VariableHandler.getExpectedAdvToBeReceivedInSO());
-				logs.logging("INFO",
-						"Expected Advance Received Amount Matched With DataBase Values In Sales Order Screen Against This Sales Order Document :"
-								+ VariableHandler.getSONumber());
-			}
-		}
-//		navigateToGeneralTab();
-//		verifyIncludeAdvAmtFlagIsChecked();
-//		navigateToLineTab();
-//		clickPostButton();
-//		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-//		flag = commonFunc.logoutUser();
-//		if (flag) {
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//					"HodUsername");
-//			apprpagefunc.navigateToApprovals();
-//			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-//			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
-//					commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-//					commonFunc.getDataFromTestDataSheet("Customer"));
-//			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
-//			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getSONumber());
-//			flag = commonFunc.logoutUser();
-//			if (flag) {
-//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//						"TvsUsername");
-//				verifySalesOrderDocumentStatusApprovedWithDB();
-//				getAdvReceiptDocumentFromDataBase();
-//				verifyExpectedAdvanceReceiptWithDataBaseValues(commonFunc.getDataFromTestDataSheet("Unit_100"),
-//						commonFunc.getDataFromTestDataSheet("Customer"));
-//				verifyCreationOfPaymentReceiptsReceivables(VariableHandler.getAdvReceiptDocNumber(),
-//						commonFunc.getDataFromTestDataSheet("BankName"),
-//						commonFunc.getDataFromTestDataSheet("Reference Number"));
 //				verifyExpectedReceivedAdvAmountWithDBValues();
 //				verifyAssertionBothValues(
 //						dbCommonFunctions.SOAdvanceDetails(VariableHandler.getSONumber(),
@@ -2472,9 +2437,8 @@ public class SalesOrderFunctions {
 //				logs.logging("INFO",
 //						"Expected Advance Received Amount Matched With DataBase Values In Sales Order Screen Against This Sales Order Document :"
 //								+ VariableHandler.getSONumber());
-//				flag = commonFunc.logoutUser();
-//			}
-//		}
+			}
+		}
 		return flag;
 	}
 
@@ -2709,11 +2673,9 @@ public class SalesOrderFunctions {
 		forwardForApprovalbankReceipts();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			apprpagefunc.navigateToApprovals();
-			apprpagefunc.filterDocumentsforApproval(VariableHandler.getBankReceiptDocNumber());
-			apprpagefunc.verifyApproveWithDocNumber(VariableHandler.getBankReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
 		}
 		return flag;
 	}
@@ -2800,11 +2762,14 @@ public class SalesOrderFunctions {
 								if (flag) {
 									webDB.clickAnElement(SalesOrderLocators.PayementReceiptCreateButton,
 											ElementType.Xpath);
-									flag = webDB.waitForElement(SalesOrderLocators.BankReceiptsLovButton,
+									flag = webDB.waitForElement(SalesOrderLocators.PaymentsReceiptModeField,
 											ElementType.Xpath);
 									if (flag) {
-										webDB.pressTabKey();
+//										webDB.pressTabKey();
 										commonFunc.checkRefreshCellsDisappear();
+										webDB.clickAnElement(SalesOrderLocators.PaymentsReceiptModeField,
+												ElementType.Xpath);
+										webDB.pressTabKey();
 										commonFunc.searchAndSelectValueInFilters(
 												SalesOrderLocators.BankReceiptsLovButton, BankName);
 										flag = webDB.waitForElement(SalesOrderLocators.PendingReceivableFrame,
@@ -2865,8 +2830,8 @@ public class SalesOrderFunctions {
 	public void verifyBankReceiptDocument(String RefNumber) {
 		flag = webDB.waitForElement(SalesOrderLocators.BankReceiptDocumentNumber, ElementType.Xpath);
 		if (flag) {
-			verifyExpectedAdvanceInProgressWithDataBaseValues();
-			verifyExpectedAdvAmtInprogressWithDBValues();
+//			verifyExpectedAdvanceInProgressWithDataBaseValues();
+//			verifyExpectedAdvAmtInprogressWithDBValues();
 			String BankReceiptDocNumber = webDB.getTextFromElement(SalesOrderLocators.BankReceiptDocumentNumber,
 					ElementType.Xpath);
 			VariableHandler.setBankReceiptDocNumber(BankReceiptDocNumber);

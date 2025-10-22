@@ -572,6 +572,8 @@ public class SalesOrderLocators {
 	public static final String SOFrame = "//IFRAME[@title='Sales Order']";
 	/** @locatorType Xpath */
 	public static final String SOSearchButton = "//button[@data-testid='SO_Srch_Button']";
+	/** @locatorType Xpath */
+	public static final String PaymentsReceiptModeField = "//div[@id='P341310231_BANK_TYPE_CONTAINER']";
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {
