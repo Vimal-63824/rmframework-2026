@@ -402,4 +402,10 @@ public class CommonUiLocators {
 	public static final String CreatePRTickIcon = "//button[@id='B856779552425513804']";
 	/** @locatorType Xpath */
 	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
+	/** @Locator XPATH */
+	public static final String ProductionPlanning = "//label[@for='P3670133_TYPES_0']";
+	/** @Locator XPATH */
+	public static final String MachineAdd_Icon = "//button[@id='B1250846748385910432']";
+	/** @Locator XPATH */
+	public static final String ManpowerGrp_Add_Icon = "//button[@id='B1550518234307758885']";
 }

@@ -63,7 +63,7 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ResourcesProcessTableDataLists = "(//div[@id='resource_ig_grid_vc']//table)[2]/tbody/tr/td[2]";
 	/** @locatorType XPATH */
-	public static final String HeaderSaveIcon = "//button[@data-testid='HeaderSaveIcon']";
+	public static final String HeaderSaveIcon = "(//button[@data-testid='HeaderSaveIcon'])[2]";
 	/** @locatorType XPATH */
 	public static final String ProdOrderPostBtn = "//button[@data-testid='ProdOrderPostBtn']";
 	/** @locatorType XPATH */
@@ -122,9 +122,9 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ShowMore = "//button[@data-testid='ShowMore']";
 	/** @locatorType XPATH */
-	public static final String FirstOprSelect = "//select[@data-testid='FirstOprSelect']";
+	public static final String FirstOprSelect = "//select[@data-testid='FirstOprMREventSelect']";
 	/** @locatorType XPATH */
-	public static final String RestOprSelect = "//select[@data-testid='RestOprSelect']";
+	public static final String RestOprSelect = "//select[@data-testid='RestOprMREventSelect']";
 	/** @locatorType XPATH */
 	public static final String ShowLess = "//button[@data-testid='ShowLess']";
 	/** @locatorType XPATH */
@@ -295,6 +295,6 @@ public class ProductionOrderLocators {
 	/** @Locator XPATH */
 	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator XPATH */
-	public static final String OkButtonForward = "//BUTTON[@ID='B479819303601188310']";//TODO
+	public static final String OkButtonForward = "//BUTTON[@ID='B479819303601188310']";
 
 }

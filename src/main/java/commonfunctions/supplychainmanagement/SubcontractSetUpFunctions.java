@@ -7,12 +7,15 @@ package commonfunctions.supplychainmanagement;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.productionplanning.ProductionAndShopFloorSetupFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.SalesInvoiceLocators;
 import commonlocators.supplychainmanagement.SubcontractOrderLocators;
@@ -28,6 +31,9 @@ public class SubcontractSetUpFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private ApprovalPageFunctions approveFunc = new ApprovalPageFunctions();
+	public ProductionAndShopFloorSetupFunctions prodsetupFunc = new ProductionAndShopFloorSetupFunctions();
+	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
+	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Method Used For Clicking Open SCO Find Screen Add Icon
@@ -55,6 +61,194 @@ public class SubcontractSetUpFunctions {
 	}
 
 	/**
+	 * This Method Used For check Open SCO Price Header Details DataBase Values With
+	 * UIValues SIP
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesSIP() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LocID, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBLOCATIONCOLUMN")));
+		logs.logging("INFO", "Header Detail LocationID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Pfx, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBPFXCOLUMN")));
+		logs.logging("INFO", "Header Detail Prefix Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Type, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBTYPECOLUMN")));
+		logs.logging("INFO", "Header Detail LevelType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Item, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBITEMCOLUMN")));
+		logs.logging("INFO", "Header Detail Item Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_SupplierID, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBSUPPLIERIDCOLUMN")));
+		logs.logging("INFO", "Header Detail SupplierID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Status, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN")));
+		logs.logging("INFO", "Header Detail UnitID Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Open SCO Price Header Details DataBase Values With
+	 * UIValues SP
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesSP() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LocID, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBLOCATIONCOLUMN")));
+		logs.logging("INFO", "Header Detail LocationID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Pfx, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBPFXCOLUMN")));
+		logs.logging("INFO", "Header Detail Prefix Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Type, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBTYPECOLUMN")));
+		logs.logging("INFO", "Header Detail LevelType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_SupplierID, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBSUPPLIERIDCOLUMN")));
+		logs.logging("INFO", "Header Detail SupplierID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Status, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN")));
+		logs.logging("INFO", "Header Detail UnitID Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Open SCO Price Header Details DataBase Values With
+	 * UIValues IP
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesIP() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LocID, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBLOCATIONCOLUMN")));
+		logs.logging("INFO", "Header Detail LocationID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Pfx, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBPFXCOLUMN")));
+		logs.logging("INFO", "Header Detail Prefix Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Type, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBTYPECOLUMN")));
+		logs.logging("INFO", "Header Detail LevelType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Item, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBITEMCOLUMN")));
+		logs.logging("INFO", "Header Detail Item Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Status, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN")));
+		logs.logging("INFO", "Header Detail UnitID Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Open SCO Price Header Details DataBase Values With
+	 * UIValues Process
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesProcess() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LocID, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBLOCATIONCOLUMN")));
+		logs.logging("INFO", "Header Detail LocationID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Pfx, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBPFXCOLUMN")));
+		logs.logging("INFO", "Header Detail Prefix Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Type, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBTYPECOLUMN")));
+		logs.logging("INFO", "Header Detail LevelType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Status, ElementType.Xpath),
+				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN")));
+		logs.logging("INFO", "Header Detail UnitID Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Open SCO Price Line Details DataBase Values With
+	 * UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceLineDetailsDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.OSP_ProcessField, ElementType.Xpath),
+				dbCommonFunctions.OSPLineDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBPROCESSCOLUMN")));
+		logs.logging("INFO", "Line Process Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.OSP_UOMField, ElementType.Xpath),
+				dbCommonFunctions.OSPLineDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBUOMCOLUMN")));
+		logs.logging("INFO", "Line UOM Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.OSP_BatchqtyField, ElementType.Xpath),
+				dbCommonFunctions.OSPLineDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBBATCHQTYCOLUMN")));
+		logs.logging("INFO", "Line Batch Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.OSP_BatchCostField, ElementType.Xpath),
+				dbCommonFunctions.OSPLineDetails(VariableHandler.getoscdocno(),
+						commonFunc.getDataFromTestDataSheet("OSPDBBATCHCOSTCOLUMN")));
+		logs.logging("INFO", "Line Batch Cost Matched With DataBase Values");
+	}
+
+	/**
 	 * Verify Create Sales Invoice Adding Parameter Supplier + Item + Process
 	 * 
 	 * @author Vimal - RMITS
@@ -79,6 +273,7 @@ public class SubcontractSetUpFunctions {
 						ElementType.Xpath);
 				commonFunc.hardWait(1000);
 				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OpenSCO_ItemID_Input, OpenPriceItem);
+				webDB.switchToFrame(SubcontractOrderLocators.OP_Iframe, ElementType.Xpath);
 				commonFunc.hardWait(1000);
 				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OpenSCO_Supl_Input,
 						OpenPriceSupplier);
@@ -113,6 +308,7 @@ public class SubcontractSetUpFunctions {
 						flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Open SCO Price Header Created Sucessfully");
+							checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesSIP();
 						}
 					}
 				}
@@ -179,6 +375,7 @@ public class SubcontractSetUpFunctions {
 						flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Open SCO Price Header Created Sucessfully");
+							checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesIP();
 						}
 					}
 				}
@@ -246,6 +443,7 @@ public class SubcontractSetUpFunctions {
 						flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Open SCO Price Header Created Sucessfully");
+							checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesSP();
 						}
 					}
 				}
@@ -296,6 +494,7 @@ public class SubcontractSetUpFunctions {
 				flag = webDB.waitForElement(SubcontractOrderLocators.OpenScoCreate_TickIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SubcontractOrderLocators.OpenScoCreate_TickIcon, ElementType.Xpath);
+					webDB.switchToDefaultContent();
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(1000);
 					if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
@@ -311,6 +510,7 @@ public class SubcontractSetUpFunctions {
 						flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Open SCO Price Header Created Sucessfully");
+							checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesProcess();
 						}
 					}
 				}
@@ -338,6 +538,50 @@ public class SubcontractSetUpFunctions {
 			String BatchCost = SOMultipleline[i][3];
 			if (!ProcessID.equals("")) {
 				addingProcessLine(ProcessID, BatchQty, BatchCost);
+			}
+		}
+		flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineWise_Save, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.OP_LineWise_Save, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+						ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				checkOpenSCOPriceLineDetailsDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SubcontractOrderLocators.OP_Post_Btn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.OP_Post_Btn, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Post Button Clicked Sucessfully");
+
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For After Revise Adding Process, Batch Qty, Batch Cost Line
+	 * From ExcelSheet
+	 * 
+	 * @author Vimal - RMITS
+	 * @param SheetName
+	 */
+	public void afterReviseaddingProcessLineFromExcelSheet(String SheetName) {
+		String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SOMultipleline.length; i++) {
+			String BatchQty = SOMultipleline[i][2];
+			String BatchCost = SOMultipleline[i][3];
+			if (!BatchQty.equals("")) {
+				afterRevisechangingBatchQtyAndBatchCost(BatchQty, BatchCost, i - 3);
 			}
 		}
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineWise_Save, ElementType.Xpath);
@@ -436,6 +680,56 @@ public class SubcontractSetUpFunctions {
 	}
 
 	/**
+	 * Verify TableSpec InputParameter
+	 * 
+	 * @author Vimal - RMITS
+	 * @param Tablespec
+	 * @param InputParameter
+	 * @param Enteredvalue
+	 */
+	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
+		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.clearTextField(InputParameter, ElementType.Xpath);
+			logs.logging("INFO", "Clear Text Field The Input Value");
+			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
+				String value = webDB.getDomPropertyFromElement(InputParameter, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Attribute Value Is: " + value);
+				flag = value.contains(Enteredvalue);
+				if (flag) {
+					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For After Revise Changing Process, Batch Qty, Batch Cost
+	 * 
+	 * @author Vimal - RMITS
+	 * @param BatchQty
+	 * @param BatchCost
+	 */
+	public void afterRevisechangingBatchQtyAndBatchCost(String BatchQty, String BatchCost, int i) {
+		commonFunc.hardWait(1000);
+		verifyAddTableSpecs(SubcontractOrderLocators.BatchQtyField(i), SubcontractOrderLocators.OP_BatchQty_Input,
+				BatchQty);
+		webDB.pressTabKey();
+		commonFunc.hardWait(2000);
+		verifyAddTableSpecs(SubcontractOrderLocators.BatchCostField(i), SubcontractOrderLocators.OP_BatchCost_Input,
+				BatchCost);
+		commonFunc.hardWait(1000);
+	}
+
+	/**
 	 * Verify forwardForApproval
 	 * 
 	 * @author Vimal - RMITS
@@ -472,15 +766,65 @@ public class SubcontractSetUpFunctions {
 	}
 
 	/**
+	 * This Method Used For Check Open SCO Header Approved Status Details DataBase
+	 * Values WithUIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues() {
+		String OSPDocumentStatus = dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+				commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN"));
+		salesOrderFunctions.verifyAssertionBothValues(OSPDocumentStatus,
+				commonFunc.getDataFromTestDataSheet("OpenSCOApprovedstatus"));
+		logs.logging("INFO", "Verified Open SCO Price Document Status Is " + OSPDocumentStatus
+				+ " Against This Open SCO Price Number " + VariableHandler.getoscdocno());
+		commonFunc.hardWait(1000);
+	}
+
+	/**
+	 * This Method Used For Check Open SCO Header Cancelled Status Details DataBase
+	 * Values WithUIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceCancelledStatusDetailsDataBaseValuesWithUIValues() {
+		String OSPDocumentStatus = dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+				commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN"));
+		salesOrderFunctions.verifyAssertionBothValues(OSPDocumentStatus,
+				commonFunc.getDataFromTestDataSheet("OpenSCOCancelledstatus"));
+		logs.logging("INFO", "Verified Open SCO Price Document Status Is " + OSPDocumentStatus
+				+ " Against This Open SCO Price Number " + VariableHandler.getoscdocno());
+		commonFunc.hardWait(1000);
+	}
+
+	/**
+	 * This Method Used For Check Open SCO Header Revised Status Details DataBase
+	 * Values WithUIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues() {
+		String OSPDocumentStatus = dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
+				commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN"));
+		salesOrderFunctions.verifyAssertionBothValues(OSPDocumentStatus,
+				commonFunc.getDataFromTestDataSheet("OpenSCORevisedstatus"));
+		logs.logging("INFO", "Verified Open SCO Price Document Status Is " + OSPDocumentStatus
+				+ " Against This Open SCO Price Number " + VariableHandler.getoscdocno());
+		commonFunc.hardWait(1000);
+	}
+
+	/**
 	 * This Method Used For Creating Open SCO Price Level Type Supplier + Item +
 	 * Process
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Item_Process() {
+	public boolean creatingOpenSCOpriceForSupplier_Item_Process() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -488,7 +832,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_S+I+P"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -497,6 +841,8 @@ public class SubcontractSetUpFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -505,10 +851,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForItem_Process() {
+	public boolean creatingOpenSCOpriceForItem_Process() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -516,7 +864,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_I+P"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -525,6 +873,8 @@ public class SubcontractSetUpFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -533,10 +883,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Process() {
+	public boolean creatingOpenSCOpriceForSupplier_Process() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -544,7 +896,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_S+P"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -553,6 +905,8 @@ public class SubcontractSetUpFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -561,10 +915,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForProcess() {
+	public boolean creatingOpenSCOpriceForProcess() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -572,7 +928,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_P"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -581,6 +937,8 @@ public class SubcontractSetUpFunctions {
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -592,51 +950,44 @@ public class SubcontractSetUpFunctions {
 	 * @param OpenPriceTodateInput
 	 */
 	public void InFindFilterTheDocumentAndDrillDown(String OpenPriceTodateInput, String oscdocno) {
+		commonFunc.hardWait(2000);
+		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OP_Find_DocNO, oscdocno);
 		commonFunc.hardWait(1000);
-		flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_DocNO, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SubcontractOrderLocators.OP_Find_DocNO, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OP_Find_DocNO, oscdocno);
-			commonFunc.hardWait(1000);
-			flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
+			webDB.clickAnElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
+				webDB.clickAnElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.OP_Reverse_Btn, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_Btn, ElementType.Xpath);
 					commonFunc.hardWait(2000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.OP_Reverse_Btn, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.OP_Reverse_CloseDate_Btn, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_Btn, ElementType.Xpath);
-						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(SubcontractOrderLocators.OP_Reverse_CloseDate_Btn,
-								ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_CloseDate_input, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						webDB.pressTabKey();
+						commonFunc.hardWait(1000);
+						webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_FromDate_input, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						webDB.pressTabKey();
+						commonFunc.hardWait(1000);
+						webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_ToDate_input, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.OP_Reverse_OK_Btn, ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(1000);
-							webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_CloseDate_input,
+							webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_OK_Btn, ElementType.Xpath);
+							flag = webDB.waitForElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert,
 									ElementType.Xpath);
-							commonFunc.hardWait(1000);
-							webDB.pressTabKey();
-							commonFunc.hardWait(1000);
-							webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_FromDate_input, ElementType.Xpath);
-							commonFunc.hardWait(1000);
-							webDB.pressTabKey();
-							commonFunc.hardWait(1000);
-							webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_ToDate_input, ElementType.Xpath);
-							commonFunc.hardWait(1000);
-							flag = webDB.waitForElement(SubcontractOrderLocators.OP_Reverse_OK_Btn, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SubcontractOrderLocators.OP_Reverse_OK_Btn, ElementType.Xpath);
-								flag = webDB.waitForElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert,
-										ElementType.Xpath);
-								if (flag) {
-									logs.logging("INFO", "Document Reversed Successfully");
-									commonFunc.hardWait(1000);
-									getOpenSCOPriceNumberFromToastMessage();
-								}
+								logs.logging("INFO", "Document Reversed Successfully");
+								commonFunc.hardWait(1000);
+								ExtractOpenSCODocNumber();
 							}
 						}
 					}
@@ -661,7 +1012,7 @@ public class SubcontractSetUpFunctions {
 			logs.logging("INFO", "Open SCO Toast Alert:" + oscDocumentNumber);
 			// Updated regex to match MV100 pattern
 			// String regex = "MV100/\\d{5}/\\d{2}-\\d{2}";
-			String regex = "(OOS\\d{2}/\\d{5}/\\d{2}-\\d{2})";
+			String regex = "(OOS\\d+/\\d+/\\d+-\\d+)";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(oscDocumentNumber);
 			ArrayList<String> documentNumbers = new ArrayList<>();
@@ -697,26 +1048,56 @@ public class SubcontractSetUpFunctions {
 		assertTrue(flag);
 	}
 
-	public void afterReviseTheDocumentAndDrillDown(String Revdocno) {
-		commonFunc.hardWait(1000);
-		flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_DocNO, ElementType.Xpath);
+	/**
+	 * This Method Used To Get Extract Open SCO Document Document
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean ExtractOpenSCODocNumber() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert, ElementType.Xpath);
+
 		if (flag) {
-			webDB.clickAnElement(SubcontractOrderLocators.OP_Find_DocNO, ElementType.Xpath);
-			commonFunc.hardWait(1000);
-			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OP_Find_DocNO, Revdocno);
-			commonFunc.hardWait(1000);
-			flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
-				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(2000);
-				}
+			String text = webDB.getTextFromElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert,
+					ElementType.Xpath);
+			logs.logging("INFO", "Get Text From Toast Alert Is: " + text);
+
+			// Pattern to match the Rate Contract Document format
+			String regex = "Rate Contract Document Revised.-(OOS10/\\d{5}/\\d{2}-\\d{2})";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(text);
+
+			if (matcher.find()) {
+				String OSCOdocNumber = matcher.group(1); // e.g., OOS10/00132/25-26
+				logs.logging("INFO", "Extracted Rate Contract Document Number: " + OSCOdocNumber);
+
+				// Optional: store it somewhere if needed
+				VariableHandler.setRevdocno(OSCOdocNumber); // You should define this method
+			} else {
+				logs.logging("INFO", "No match found for Rate Contract Document Number.");
+				flag = false;
 			}
 		}
+
+		return flag;
+	}
+
+	public void afterReviseTheDocumentAndDrillDown(String OSCOdocNumber) {
+		commonFunc.hardWait(1000);
+		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OP_Find_DocNO, OSCOdocNumber);
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.OP_Find_Search_Btn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.OP_DrillDown, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(1000);
+			}
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -748,18 +1129,17 @@ public class SubcontractSetUpFunctions {
 		return flag;
 	}
 
-	// Rate Contract Document Revised.-OOS10/00101/25-26
-	// String regex = "SOST-\\d{4}-\\d{5}";
-
 	/**
 	 * This Method Used For Reversing The Process Type Document
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean ReversingTheProcessTypeDocument() {
+	public boolean ReversingTheProcessTypeDocument() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -767,7 +1147,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OP_P"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
@@ -782,7 +1162,158 @@ public class SubcontractSetUpFunctions {
 		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
+		return flag;
+	}
 
+	/**
+	 * This Method used to Reversing Item + Process Type Document
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 * @throws IOException
+	 */
+	public boolean reveringItem_ProcessTypeDocument() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
+		commonFunc.navigateToOpenPriceSCO();
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SelectTypeIP"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToOpenPriceSCO();
+		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+				VariableHandler.getoscdocno());
+		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
+		return flag;
+	}
+
+	/**
+	 * This Method used to Reversing Supplier + Item + Process Type Document
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 * @throws IOException
+	 */
+	public boolean reveringSupplier_Item_ProcessTypeDocument() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
+		commonFunc.navigateToOpenPriceSCO();
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SelectTypeSIP"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToOpenPriceSCO();
+		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+				VariableHandler.getoscdocno());
+		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
+		return flag;
+	}
+
+	/**
+	 * This Method used to Reversing Supplier + Process Type Document
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 * @throws IOException
+	 */
+	public boolean reveringSupplier_Process_TypeDocument() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
+		commonFunc.navigateToOpenPriceSCO();
+		clickingOpenSCO_FindAddIcon();
+		addingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SelectTypeSP"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
+				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToOpenPriceSCO();
+		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+				VariableHandler.getoscdocno());
+		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		openSCOforwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approveFunc.navigateToApprovals();
+		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
+		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
+		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -792,10 +1323,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() {
+	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForProcess(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -803,8 +1336,10 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OpenSCO"));
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceCancelledStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -814,10 +1349,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() {
+	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCO(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -825,8 +1362,10 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_S+I+P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OpenSCO"));
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceCancelledStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -836,10 +1375,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() {
+	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForItem_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -847,8 +1388,10 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_I+P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OpenSCO"));
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceCancelledStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -857,10 +1400,12 @@ public class SubcontractSetUpFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
+	 * @throws IOException
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() {
+	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() throws IOException {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
+		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
 		addingParametersinOpenSCOForSupplier_Process(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -868,8 +1413,10 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OP_S+P"));
+		addingProcessLineFromExcelSheetAndCancelledTheDocument(webDB.getDataFromProperties("OpenSCO"));
 		flag = commonFunc.logoutUser();
+		commonFunc.checkRefreshCellsDisappear();
+		checkOpenSCOPriceCancelledStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 }

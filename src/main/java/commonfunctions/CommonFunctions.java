@@ -1212,7 +1212,7 @@ public class CommonFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void navigateToMaterialRequestScreen() {
-		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequest"), CommonUiLocators.MaterialReq_AddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequestScreen"), CommonUiLocators.MaterialReq_AddIcon);
 	}
 
 	/**
@@ -2819,10 +2819,11 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigateOpenSOScreen() {
-		clickLeftNavigationBar();
-		clickTransactionTab();
-		clickTransactionExpandAllButton();
-		clickOpenSOScreen();
+//		clickLeftNavigationBar();
+//		clickTransactionTab();
+//		clickTransactionExpandAllButton();
+//		clickOpenSOScreen();
+		navigateToSearchTab(webDB.getDataFromProperties("OpenSOScreen"), OpenSalesOrderLocators.OpenSOAmendRadioBtn);
 	}
 
 	/**
@@ -2936,7 +2937,8 @@ public class CommonFunctions {
 	 * @author Vimal-RMITS
 	 */
 	public void navigateToProductionOrderScreen() {
-		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrder"), CommonUiLocators.CreateProdOrderAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrderScreen"),
+				CommonUiLocators.CreateProdOrderAddIcon);
 
 	}
 
@@ -2973,4 +2975,33 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * Navigate To Production And Shop Floor Setup Tab
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToSetupPlanningandManufacturing() {
+		navigateToSearchTab(webDB.getDataFromProperties("PPShopFloorSetupScreen"), CommonUiLocators.ProductionPlanning);
+
+	}
+
+	/**
+	 * Navigate To Production And Shop Floor Setup Tab
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToMachineScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("MachineScreen"), CommonUiLocators.MachineAdd_Icon);
+
+	}
+
+	/**
+	 * Navigate To Manpower Screen
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToManPowerScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("ManpowerScreen"), CommonUiLocators.ManpowerGrp_Add_Icon);
+
+	}
 }
