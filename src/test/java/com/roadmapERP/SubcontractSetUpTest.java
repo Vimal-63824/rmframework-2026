@@ -75,7 +75,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	@Test(priority = 5, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Process")
 	public void reversingTheProcessTypeDocument() {
-		flag = SubcontractSetupFunc.ReversingTheProcessTypeDocument();
+		flag = SubcontractSetupFunc.reversingTheProcessTypeDocument();
 		Assert.assertTrue(flag);
 	}
 

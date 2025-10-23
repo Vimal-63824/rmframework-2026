@@ -113,7 +113,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingProcessTab() {
+	public void clickingProcessTab() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_Tab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Process_Tab, ElementType.Xpath);
@@ -136,7 +136,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_Inside_Type
 	 * @param Proc_Suffix_input
 	 */
-	public void AddingProcessWithInsideType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
+	public void addingProcessWithInsideType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
 			String Proc_Inside_Type, String Proc_Suffix_input) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
 		if (flag) {
@@ -212,7 +212,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_Suffix_input
 	 * @param Proc_Charge_Item @
 	 */
-	public void AddingProcessOutSideType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
+	public void addingProcessOutSideType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
 			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
 		if (flag) {
@@ -265,7 +265,7 @@ public class ProductionAndShopFloorSetupFunctions {
 						logs.logging("INFO", "Get Process ID Is: " + GetProcID);
 						VariableHandler.setProcessIDAsso(GetProcID);
 						commonFunc.hardWait(1000);
-						GetProcessIDandWriteInExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+						getProcessIDandWriteInExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 						flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_save_Toast_Msg,
 								ElementType.Xpath);
 						if (flag) {
@@ -291,7 +291,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_Suffix_input
 	 * @param Proc_Charge_Item @
 	 */
-	public void AddingProcessOutSideTypeForRevise(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
+	public void addingProcessOutSideTypeForRevise(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
 			String Proc_Outside_Type, String Proc_Suffix_input, String Proc_Charge_Item) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
 		if (flag) {
@@ -344,7 +344,7 @@ public class ProductionAndShopFloorSetupFunctions {
 						logs.logging("INFO", "Get Process ID Is: " + GetProcID);
 						VariableHandler.setProcessIDAsso(GetProcID);
 						commonFunc.hardWait(1000);
-						GetProcessIDForReverseandWriteInExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+						getProcessIDForReverseandWriteInExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 						flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_save_Toast_Msg,
 								ElementType.Xpath);
 						if (flag) {
@@ -364,7 +364,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void GetProcessIDandWriteInExcelSheet(String SheetName) {
+	public void getProcessIDandWriteInExcelSheet(String SheetName) {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -386,7 +386,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void GetProcessIDForReverseandWriteInExcelSheet(String SheetName) {
+	public void getProcessIDForReverseandWriteInExcelSheet(String SheetName) {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -414,7 +414,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Proc_Suffix_input
 	 * @param Proc_Charge_Item
 	 */
-	public void AddingProcessBothType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
+	public void addingProcessBothType(String ProcessIDinput, String ProcessNameInput, String Proc_UOM,
 			String Proc_Both_Type, String Proc_Suffix_input, String Proc_Charge_Item) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Process_AddIcon, ElementType.Xpath);
 		if (flag) {
@@ -493,8 +493,8 @@ public class ProductionAndShopFloorSetupFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSetupPlanningandManufacturing();
-		ClickingProcessTab();
-		AddingProcessWithInsideType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
+		clickingProcessTab();
+		addingProcessWithInsideType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
 				commonFunc.getDataFromTestDataSheet("ProcessNameInput"),
 				commonFunc.getDataFromTestDataSheet("Proc_UOM"),
 				commonFunc.getDataFromTestDataSheet("Proc_Inside_Type"),
@@ -515,8 +515,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 */
 	public void howtodefineOutsideTypeProcessAndAssociatedTheProcess() {
 		commonFunc.navigateToSetupPlanningandManufacturing();
-		ClickingProcessTab();
-		AddingProcessOutSideType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
+		clickingProcessTab();
+		addingProcessOutSideType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
 				commonFunc.getDataFromTestDataSheet("ProcessNameInput"),
 				commonFunc.getDataFromTestDataSheet("Proc_UOM"),
 				commonFunc.getDataFromTestDataSheet("Proc_Outside_Type"),
@@ -538,8 +538,8 @@ public class ProductionAndShopFloorSetupFunctions {
 	 */
 	public void howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing() {
 		commonFunc.navigateToSetupPlanningandManufacturing();
-		ClickingProcessTab();
-		AddingProcessOutSideTypeForRevise(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
+		clickingProcessTab();
+		addingProcessOutSideTypeForRevise(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
 				commonFunc.getDataFromTestDataSheet("ProcessNameInput"),
 				commonFunc.getDataFromTestDataSheet("Proc_UOM"),
 				commonFunc.getDataFromTestDataSheet("Proc_Outside_Type"),
@@ -563,8 +563,8 @@ public class ProductionAndShopFloorSetupFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSetupPlanningandManufacturing();
-		ClickingProcessTab();
-		AddingProcessBothType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
+		clickingProcessTab();
+		addingProcessBothType(commonFunc.getDataFromTestDataSheet("ProcessIDinput"),
 				commonFunc.getDataFromTestDataSheet("ProcessNameInput"),
 				commonFunc.getDataFromTestDataSheet("Proc_UOM"), commonFunc.getDataFromTestDataSheet("Proc_Both_Type"),
 				commonFunc.getDataFromTestDataSheet("Proc_Suffix_input"),
@@ -657,7 +657,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingMachineGroupAddIcon() {
+	public void clickingMachineGroupAddIcon() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.MachineGrpAdd_Icon, ElementType.Xpath);
 		if (flag) {
 			webDB.javaScriptClickAnElement(ProductionAndShopFloorSetupLocator.MachineGrpAdd_Icon, ElementType.Xpath);
@@ -684,7 +684,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param MachineAccount
 	 * @param MachineCPC
 	 */
-	public void InsertingMachinesParameters(String MachineLoc, String ResourceInput, String MachineUnitRate,
+	public void insertingMachinesParameters(String MachineLoc, String ResourceInput, String MachineUnitRate,
 			String MachineUOM, String MachineNo_of_Units, String MachineUtilization, String MachineEfficiency,
 			String MachineAccount, String MachineCPC) {
 		commonFunc.searchAndSelectValueInFilters(ProductionAndShopFloorSetupLocator.Machine_Loc_Lov_btn, MachineLoc);
@@ -765,7 +765,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void NaviagateMachineTab() {
+	public void naviagateMachineTab() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Machine_Tab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Machine_Tab, ElementType.Xpath);
@@ -789,7 +789,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param Machine_Location
 	 * @param MachineEfficiency
 	 */
-	public void ClickingMachineAddIcon(String MachineLoc, String MachineIDInput, String MachineNameInput,
+	public void clickingMachineAddIcon(String MachineLoc, String MachineIDInput, String MachineNameInput,
 			String GetResourceID, String Machine_Location, String MachineEfficiency) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Machine_Add_Icon, ElementType.Xpath);
 		if (flag) {
@@ -852,8 +852,8 @@ public class ProductionAndShopFloorSetupFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToMachineScreen();
-		ClickingMachineGroupAddIcon();
-		InsertingMachinesParameters(commonFunc.getDataFromTestDataSheet("MachineLoc"),
+		clickingMachineGroupAddIcon();
+		insertingMachinesParameters(commonFunc.getDataFromTestDataSheet("MachineLoc"),
 				commonFunc.getDataFromTestDataSheet("ResourceInput"),
 				commonFunc.getDataFromTestDataSheet("MachineUnitRate"),
 				commonFunc.getDataFromTestDataSheet("MachineUOM"),
@@ -862,8 +862,8 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("MachineEfficiency"),
 				commonFunc.getDataFromTestDataSheet("MachineAccount"),
 				commonFunc.getDataFromTestDataSheet("MachineCPC"));
-		NaviagateMachineTab();
-		ClickingMachineAddIcon(commonFunc.getDataFromTestDataSheet("MachineLoc"),
+		naviagateMachineTab();
+		clickingMachineAddIcon(commonFunc.getDataFromTestDataSheet("MachineLoc"),
 				commonFunc.getDataFromTestDataSheet("MachineIDInput"),
 				commonFunc.getDataFromTestDataSheet("MachineNameInput"), VariableHandler.getResourceGrp(),
 				commonFunc.getDataFromTestDataSheet("Machine_Location"),
@@ -875,7 +875,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingManpowerGroupAddIcon() {
+	public void clickingManpowerGroupAddIcon() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.ManpowerGrp_Add_Icon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.ManpowerGrp_Add_Icon, ElementType.Xpath);
@@ -898,7 +898,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param MachineUOM
 	 * @param MachineEfficiency
 	 */
-	public void InsertingManpowerGroupParameter(String LOCATION100, String Manpower_ResourceGrp, String MachineUnitRate,
+	public void insertingManpowerGroupParameter(String LOCATION100, String Manpower_ResourceGrp, String MachineUnitRate,
 			String MachineUOM, String MachineNo_of_Units, String MachineUtilization, String MachineEfficiency) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.MG_LocID, ElementType.Xpath);
 		if (flag) {
@@ -991,7 +991,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param MachineUOM
 	 * @param MachineEfficiency
 	 */
-	public void InsertingManpowerGroupParameterForTool(String LOCATION100, String Manpower_ResourceGrp,
+	public void insertingManpowerGroupParameterForTool(String LOCATION100, String Manpower_ResourceGrp,
 			String ResourceType, String MachineUnitRate, String MachineUOM, String MachineNo_of_Units,
 			String MachineUtilization, String MachineEfficiency) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.MG_LocID, ElementType.Xpath);
@@ -1092,7 +1092,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingManpowerAddicon() {
+	public void clickingManpowerAddicon() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Manpower_Tab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Manpower_Tab, ElementType.Xpath);
@@ -1114,7 +1114,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * 
 	 * @author Vimal - RMITS
 	 */
-	public void ClickingManpowerToolAddicon() {
+	public void clickingManpowerToolAddicon() {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Manpower_Tab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Manpower_Tab, ElementType.Xpath);
@@ -1140,7 +1140,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param ManpowerResource
 	 * @param GetManpowerResourceID
 	 */
-	public void InsertingManpowerParameter(String LOCATION100, String ManpowerResource, String GetManpowerResourceID) {
+	public void insertingManpowerParameter(String LOCATION100, String ManpowerResource, String GetManpowerResourceID) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Manpower_Loc_Lov, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(ProductionAndShopFloorSetupLocator.Manpower_Loc_Lov, ElementType.Xpath);
@@ -1185,7 +1185,7 @@ public class ProductionAndShopFloorSetupFunctions {
 	 * @param ManpowerResource
 	 * @param GetManpowerResourceID
 	 */
-	public void InsertingManpowerParameterTool(String LOCATION100, String ToolInput, String GetManpowerResourceID,
+	public void insertingManpowerParameterTool(String LOCATION100, String ToolInput, String GetManpowerResourceID,
 			String MachineUnitRate) {
 		flag = webDB.waitForElement(ProductionAndShopFloorSetupLocator.Tool_Other_AddIcon, ElementType.Xpath);
 		if (flag) {
@@ -1247,16 +1247,16 @@ public class ProductionAndShopFloorSetupFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToManPowerScreen();
-		ClickingManpowerGroupAddIcon();
-		InsertingManpowerGroupParameter(commonFunc.getDataFromTestDataSheet("LOCATION100"),
+		clickingMachineGroupAddIcon();
+		insertingManpowerGroupParameter(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("Manpower_ResourceGrp"),
 				commonFunc.getDataFromTestDataSheet("MachineUnitRate"),
 				commonFunc.getDataFromTestDataSheet("MachineUOM"),
 				commonFunc.getDataFromTestDataSheet("MachineNo_of_Units"),
 				commonFunc.getDataFromTestDataSheet("MachineUtilization"),
 				commonFunc.getDataFromTestDataSheet("MachineEfficiency"));
-		ClickingManpowerAddicon();
-		InsertingManpowerParameter(commonFunc.getDataFromTestDataSheet("LOCATION100"),
+		clickingManpowerAddicon();
+		insertingManpowerParameter(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("ManpowerResource"), VariableHandler.getManpowerResourceGrp());
 
 	}
@@ -1270,8 +1270,8 @@ public class ProductionAndShopFloorSetupFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToManPowerScreen();
-		ClickingManpowerGroupAddIcon();
-		InsertingManpowerGroupParameterForTool(commonFunc.getDataFromTestDataSheet("LOCATION100"),
+		clickingMachineGroupAddIcon();
+		insertingManpowerGroupParameterForTool(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("Manpower_ResourceGrp"),
 				commonFunc.getDataFromTestDataSheet("ResourceType"),
 				commonFunc.getDataFromTestDataSheet("MachineUnitRate"),
@@ -1279,8 +1279,8 @@ public class ProductionAndShopFloorSetupFunctions {
 				commonFunc.getDataFromTestDataSheet("MachineNo_of_Units"),
 				commonFunc.getDataFromTestDataSheet("MachineUtilization"),
 				commonFunc.getDataFromTestDataSheet("MachineEfficiency"));
-		ClickingManpowerToolAddicon();
-		InsertingManpowerParameterTool(commonFunc.getDataFromTestDataSheet("LOCATION100"),
+		clickingManpowerToolAddicon();
+		insertingManpowerParameterTool(commonFunc.getDataFromTestDataSheet("LOCATION100"),
 				commonFunc.getDataFromTestDataSheet("ToolInput"), VariableHandler.getManpowerResourceGrp(),
 				commonFunc.getDataFromTestDataSheet("MachineUnitRate"));
 

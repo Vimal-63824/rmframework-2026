@@ -818,10 +818,9 @@ public class SubcontractSetUpFunctions {
 	 * Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Item_Process()  {
+	public boolean creatingOpenSCOpriceForSupplier_Item_Process() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -850,10 +849,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method Used For Creating Open SCO Price Level Type Item + Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForItem_Process()  {
+	public boolean creatingOpenSCOpriceForItem_Process() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -882,10 +880,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method Used For Creating Open SCO Price Level Type Supplier + Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Process()  {
+	public boolean creatingOpenSCOpriceForSupplier_Process() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -914,10 +911,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method Used For Creating Open SCO Price Level Type Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForProcess()  {
+	public boolean creatingOpenSCOpriceForProcess() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -949,7 +945,7 @@ public class SubcontractSetUpFunctions {
 	 * @author Vimal - RMITS
 	 * @param OpenPriceTodateInput
 	 */
-	public void InFindFilterTheDocumentAndDrillDown(String OpenPriceTodateInput, String oscdocno) {
+	public void inFindFilterTheDocumentAndDrillDown(String OpenPriceTodateInput, String oscdocno) {
 		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OP_Find_DocNO, oscdocno);
 		commonFunc.hardWait(1000);
@@ -987,7 +983,7 @@ public class SubcontractSetUpFunctions {
 							if (flag) {
 								logs.logging("INFO", "Document Reversed Successfully");
 								commonFunc.hardWait(1000);
-								ExtractOpenSCODocNumber();
+								extractOpenSCODocNumber();
 							}
 						}
 					}
@@ -1054,7 +1050,7 @@ public class SubcontractSetUpFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean ExtractOpenSCODocNumber() {
+	public boolean extractOpenSCODocNumber() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert, ElementType.Xpath);
 
 		if (flag) {
@@ -1082,6 +1078,12 @@ public class SubcontractSetUpFunctions {
 		return flag;
 	}
 
+	/**
+	 * This Method Used For After Revise The Document And Drill Down
+	 * 
+	 * @author Vimal - RMITS
+	 * @param OSCOdocNumber
+	 */
 	public void afterReviseTheDocumentAndDrillDown(String OSCOdocNumber) {
 		commonFunc.hardWait(1000);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.OP_Find_DocNO, OSCOdocNumber);
@@ -1133,10 +1135,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method Used For Reversing The Process Type Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean ReversingTheProcessTypeDocument()  {
+	public boolean reversingTheProcessTypeDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1159,7 +1160,7 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
@@ -1180,10 +1181,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method used to Reversing Item + Process Type Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean reveringItem_ProcessTypeDocument()  {
+	public boolean reveringItem_ProcessTypeDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1206,7 +1206,7 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
@@ -1227,10 +1227,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method used to Reversing Supplier + Item + Process Type Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean reveringSupplier_Item_ProcessTypeDocument()  {
+	public boolean reveringSupplier_Item_ProcessTypeDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1253,7 +1252,7 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
@@ -1274,10 +1273,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method used to Reversing Supplier + Process Type Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean reveringSupplier_Process_TypeDocument()  {
+	public boolean reveringSupplier_Process_TypeDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
@@ -1300,7 +1298,7 @@ public class SubcontractSetUpFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToOpenPriceSCO();
-		InFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
+		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
@@ -1322,10 +1320,9 @@ public class SubcontractSetUpFunctions {
 	 * Cancelled The Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument()  {
+	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1348,10 +1345,9 @@ public class SubcontractSetUpFunctions {
 	 * Process And Cancelled The Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument()  {
+	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1374,10 +1370,9 @@ public class SubcontractSetUpFunctions {
 	 * Cancelled The Document
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument()  {
+	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
@@ -1399,10 +1394,9 @@ public class SubcontractSetUpFunctions {
 	 * This Method Used For Creating Open SCO Price Level Type Supplier + Process
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
-	 * @
+	 * @return boolean @
 	 */
-	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument()  {
+	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
