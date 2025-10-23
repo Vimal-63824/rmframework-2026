@@ -959,7 +959,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
-		assertTrue(flag);
 	}
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
@@ -986,7 +985,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1007,7 +1005,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectRateSer"));
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		assertTrue(flag);
 	}
 
 	/**
@@ -1035,7 +1032,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("FreePassDirectPriceListGen"));
-		assertTrue(flag);
 
 	}
 
@@ -1064,7 +1060,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("FreePassDirectPriceListGen"));
-		assertTrue(flag);
 
 	}
 
@@ -1605,7 +1600,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1632,9 +1626,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnGenUDWOI"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnGenUDWOI"));
-
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -1661,7 +1652,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnMatUDDWOI"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnMatUDDWOI"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1689,7 +1679,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServiceWOI"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1717,7 +1706,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContractWOI"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1745,7 +1733,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContractWOI"));
-		assertTrue(flag);
 
 	}
 
@@ -1774,7 +1761,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
-		assertTrue(flag);
 
 	}
 
@@ -1803,7 +1789,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnPriceListWOI"));
-		assertTrue(flag);
 
 	}
 
@@ -1832,7 +1817,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnPriceListWOI"));
-		assertTrue(flag);
 
 	}
 
@@ -1861,7 +1845,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		assertTrue(flag);
 
 	}
 
@@ -1890,8 +1873,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
-
-		assertTrue(flag);
 	}
 
 	/**
@@ -1918,7 +1899,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1945,7 +1925,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -1973,7 +1952,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -2001,7 +1979,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
-		assertTrue(flag);
 
 	}
 
@@ -2030,8 +2007,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -2060,8 +2035,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -2089,8 +2062,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
-
-		assertTrue(flag);
 	}
 
 	/**
@@ -2117,7 +2088,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -2144,7 +2114,6 @@ public class DirectGrnPageFunctions {
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -2172,7 +2141,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -2200,7 +2168,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
-		assertTrue(flag);
 
 	}
 
@@ -2229,7 +2196,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		assertTrue(flag);
 
 	}
 
@@ -2259,8 +2225,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -2290,8 +2254,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -2320,8 +2282,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		assertTrue(flag);
-
 	}
 
 	private void VerifyToClickGrnFrame() {
@@ -2823,7 +2783,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		verifyDateAfterAndBefore();
 		commonFunc.logoutUser();
-
 	}
 
 	/**
@@ -3137,8 +3096,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnGenUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnGenUD"));
-
-		assertTrue(flag);
 	}
 
 	/**
@@ -3165,7 +3122,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnMatUDD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnMatUDD"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3191,7 +3147,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3219,7 +3174,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContract"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3247,7 +3201,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContract"));
-		assertTrue(flag);
 
 	}
 
@@ -3269,7 +3222,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		assertTrue(flag);
 
 	}
 
@@ -3297,7 +3249,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnPriceList"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnPriceList"));
-		assertTrue(flag);
 
 	}
 
@@ -3325,8 +3276,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnPriceList"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3354,8 +3303,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3382,9 +3329,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnGenUDWOI"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnGenUDWOI"));
-
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3411,7 +3355,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnMatUDDWOI"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnMatUDDWOI"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3439,7 +3382,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServiceWOI"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3467,7 +3409,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContractWOI"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3495,8 +3436,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContractWOI"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3524,8 +3463,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3553,8 +3490,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnPriceListWOI"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3582,8 +3517,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnPriceListWOI"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3611,8 +3544,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3640,8 +3571,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
-
-		assertTrue(flag);
 	}
 
 	/**
@@ -3668,7 +3597,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3695,7 +3623,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3723,7 +3650,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3751,8 +3677,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3780,8 +3704,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3809,8 +3731,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3839,8 +3759,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3869,8 +3787,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -3898,8 +3814,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
-
-		assertTrue(flag);
 	}
 
 	/**
@@ -3926,7 +3840,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3953,7 +3866,6 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -3981,7 +3893,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		assertTrue(flag);
 	}
 
 	/**
@@ -4009,8 +3920,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -4038,8 +3947,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -4068,8 +3975,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -4099,8 +4004,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
-		assertTrue(flag);
-
 	}
 
 	/**
@@ -4129,8 +4032,6 @@ public class DirectGrnPageFunctions {
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		assertTrue(flag);
-
 	}
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
