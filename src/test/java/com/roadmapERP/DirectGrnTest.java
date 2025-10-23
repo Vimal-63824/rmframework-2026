@@ -264,6 +264,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	public void FindMRVwithallpossiblesearchparameters() throws IOException {
 		MrvFunc.verifyCreationOfGrnFilterAllFieldWorking();
 	}
+
 	/**
 	 * Create Request For Quotation from approved purchase request lines
 	 * 
@@ -272,23 +273,8 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 */
 	@Test(priority = 20, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection() throws IOException { 
-		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection();
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 21, groups = {
-			"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionWOQc() {
-		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection");
-		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
-		// Method
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD() throws IOException { 
+		Grnfunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -297,12 +283,27 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 22, groups = {
+			"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionWOQcD() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD");
+		// TODO Covered
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
+		// Method
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 23, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -311,25 +312,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 23,groups = {
+	@Test(priority = 24,groups = {
 	"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plans")
-	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnSameUomMaterialTypeWithInspection();
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 24, groups = {
-			"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionWOQc() {
-		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomMaterialTypeWithInspection");
-		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
-		// Method
+	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -338,12 +324,12 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 25, groups = {
-			"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithoutInspection() {
+			"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
+	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomMaterialTypeWithInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomMaterialTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -352,10 +338,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 26,groups = {
-	"GRN" }, description = "Direct GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnSameUomServiceTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnSameUomServiceTypeWithoutInspection();
+	@Test(priority = 26, groups = {
+			"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithoutInspectionD() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionD");
+		// TODO Covered
+		// verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionD()
+		// Method
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -364,9 +354,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 27,groups = {
+	"GRN" }, description = "Direct GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnSameUomServiceTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnSameUomServiceTypeWithoutInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 28,groups = {
 	"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspection();
+	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -374,13 +375,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 28, groups = {
+	@Test(priority = 29, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspectionWOQc() {
+	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -389,10 +390,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 29,groups = {
+	@Test(priority = 30,groups = {
 	"GRN" }, description = "Direct GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspection();
+	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -400,25 +401,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 30, groups = {
+	@Test(priority = 31, groups = {
 			"GRN" }, description = "Direct GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspectionWOQc() {
+	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 31,groups = {
-	"GRN" }, description = "Direct GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithInspection();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -427,9 +417,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 32,groups = {
+	"GRN" }, description = "Direct GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 33,groups = {
 	"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspection();
+	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -437,13 +438,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 33, groups = {
+	@Test(priority = 34, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspectionWOQC() {
+	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspectionWOQCD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -452,10 +453,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 34,groups = {
+	@Test(priority = 35,groups = {
 	"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspection();
+	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -463,25 +464,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 35, groups = {
+	@Test(priority = 36, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspectionWOQc() {
+	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 36,groups = {
-	"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithInspection();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -490,6 +480,17 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 37,groups = {
+	"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 38,groups = {
 	"GRN" }, description = "Find GRN with all possible search parameters")
 	public void verifyCreationOfGrnFilterAllFieldWorking(){
 		Grnfunc.verifyCreationOfGrnFilterAllFieldWorking();
@@ -502,21 +503,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 38,groups = {
-	"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnUserDefinedSameUomGeneralTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnUserDefinedSameUomGeneralTypeWithoutInspection();
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
 	@Test(priority = 39,groups = {
-	"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnUserDefinedSameUomMaterialTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnUserDefinedSameUomMaterialTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnUserDefinedSameUomGeneralTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnUserDefinedSameUomGeneralTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -525,9 +515,9 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 40,groups = {
-	"GRN" }, description = "Direct GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnUserDefinedSameUomServiceTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnUserDefinedSameUomServiceTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnUserDefinedSameUomMaterialTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnUserDefinedSameUomMaterialTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -536,9 +526,9 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 41,groups = {
-	"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnUserDefinedSameUomServiceTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnUserDefinedSameUomServiceTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -547,9 +537,9 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 42,groups = {
-	"GRN" }, description = "Direct GRN-Material-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -558,9 +548,9 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 43,groups = {
-	"GRN" }, description = "Direct GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-Material-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -569,9 +559,9 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 44,groups = {
-	"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -580,9 +570,9 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 45,groups = {
-	"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithoutInspection();
+	"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomGeneralTypeWithoutInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -591,9 +581,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 46,groups = {
+	"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomMaterialTypeWithoutInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 47,groups = {
 	"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspection();
+	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspectionD();
 	}
 	/**
 	 * Create Request For Quotation from approved purchase request lines
@@ -601,24 +602,24 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Test(priority = 47, groups = {
-			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspection();
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
 	@Test(priority = 48, groups = {
+			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
+	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 49, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -627,10 +628,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 49,groups = {
+	@Test(priority = 50,groups = {
 	"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plans")
-	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspection();
+	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -638,25 +639,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 50, groups = {
+	@Test(priority = 51, groups = {
 			"GRN" }, description = "Direct GRN-Material-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 51,groups = {
-	"GRN" }, description = "Direct GRN-Service-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspection();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -665,9 +655,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 52,groups = {
+	"GRN" }, description = "Direct GRN-Service-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 53,groups = {
 	"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspection();
+	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -675,13 +676,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 53, groups = {
+	@Test(priority = 54, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -690,10 +691,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 54,groups = {
+	@Test(priority = 55,groups = {
 	"GRN" }, description = "Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspection();
+	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -701,25 +702,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 55, groups = {
+	@Test(priority = 56, groups = {
 			"GRN" }, description = "Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 56,groups = {
-	"GRN" }, description = "Direct GRN-Service-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspection();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -728,9 +718,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 57,groups = {
+	"GRN" }, description = "Direct GRN-Service-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 58,groups = {
 	"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspection();
+	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -738,13 +739,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 58, groups = {
+	@Test(priority = 59, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -753,10 +754,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 59,groups = {
+	@Test(priority = 60,groups = {
 	"GRN" }, description = "Direct GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspection();
+	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspectionD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -764,13 +765,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 60, groups = {
+	@Test(priority = 61, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspection() {
+	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspectionD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspection");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspectionD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -779,10 +780,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 61,groups = {
+	@Test(priority = 62,groups = {
 	"GRN" }, description = "Direct GRN-Service-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspection() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspection();
+	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionD();
 	}
 	/**
 	 * Create Request For Quotation from approved purchase request lines
@@ -790,24 +791,24 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Test(priority = 62, groups = {
-			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspectionWOQc();
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
 	@Test(priority = 63, groups = {
+			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
+	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnDifferentUomGeneralTypeWithInspectionWOQcD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 64, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspectionWOQc() {
+	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspectionWOQc");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomGeneralTypeWithoutInspectionWOQcD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -816,10 +817,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 64,groups = {
+	@Test(priority = 65,groups = {
 	"GRN" }, description = "Direct GRN-Material-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspectionWOQc();
+	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnDifferentUomMaterialTypeWithInspectionWOQcD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -827,25 +828,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 65, groups = {
+	@Test(priority = 66, groups = {
 			"GRN" }, description = "Direct GRN-Material-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspectionWOQc() {
+	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspectionWOQc");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnDifferentUomMaterialTypeWithoutInspectionWOQcD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 66,groups = {
-	"GRN" }, description = "Direct GRN-Service-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionWOQc();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -854,9 +844,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 67,groups = {
+	"GRN" }, description = "Direct GRN-Service-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionWOQcD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 68,groups = {
 	"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspectionWOQc();
+	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithInspectionWOQcD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -864,13 +865,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 68, groups = {
+	@Test(priority = 69, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspectionWOQc() {
+	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspectionWOQc");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeWithoutInspectionWOQcD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -879,10 +880,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 69,groups = {
+	@Test(priority = 70,groups = {
 	"GRN" }, description = "Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspectionWOQc();
+	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithInspectionWOQcD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -890,25 +891,14 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 70, groups = {
+	@Test(priority = 71, groups = {
 			"GRN" }, description = "Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspectionWOQc() {
+	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspectionWOQc");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeWithoutInspectionWOQcD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
-	}
-	/**
-	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-	 * Transfer Rate Contract Type
-	 * 
-	 * @author Durai-RMITS
-	 */
-	@Test(priority = 71,groups = {
-	"GRN" }, description = "Direct GRN-Service-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionWOQc();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -917,9 +907,20 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Test(priority = 72,groups = {
+	"GRN" }, description = "Direct GRN-Service-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionWOQcD();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 73,groups = {
 	"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspectionWOQc();
+	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithInspectionWOQcD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -927,13 +928,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 73, groups = {
+	@Test(priority = 74, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspectionWOQc() {
+	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspectionWOQc");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeWithoutInspectionWOQcD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -942,10 +943,10 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 74,groups = {
+	@Test(priority = 75,groups = {
 	"GRN" }, description = "Direct GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspectionWOQc();
+	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithInspectionWOQcD();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
@@ -953,13 +954,13 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 75, groups = {
+	@Test(priority = 76, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspectionWOQc() {
+	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspectionWOQcD() {
 		logs.logging("INFO",
-				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspectionWOQc");
+				"This Test Scenarios Is Covered Under verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeWithoutInspectionWOQcD");
 		// TODO Covered
-		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspection()
+		// verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionD()
 		// Method
 	}
 	/**
@@ -968,20 +969,12 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 76,groups = {
+	@Test(priority = 77,groups = {
 	"GRN" }, description = "Direct GRN-Service-Price List-Different Stock and Supplier UOM - WO Inspection Plan")
-	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQc() throws IOException {
-		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQc();
+	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQcD() throws IOException {
+		Grnfunc.verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQcD();
 	}
-	/**
-	 * This Method Is Used To Logout After Method
-	 * 
-	 * @author Deepan-GWL
-	 * @param result
-	 */
-	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
-		commonFunc.verifyAfterMethod();
-	}
+	
+
 
 }

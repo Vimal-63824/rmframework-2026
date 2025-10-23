@@ -29,7 +29,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PageHeaderText = "//div[@class='t-Header-logo']//span";
 	/** @locatorType Xpath */
-	public static final String LeftSideAddIcon = "//button[contains(@title,'Add')]";
+	public static final String LeftSideAddIcon = "//button[contains(@title,'Create PR/SSR')]";
 	/** @locatorType Xpath */
 	public static final String LeftSidePendingIcon = "//button[contains(@class,'warning')]";
 	/** @locatorType Xpath */
@@ -408,4 +408,6 @@ public class CommonUiLocators {
 	public static final String MachineAdd_Icon = "//button[@id='B1250846748385910432']";
 	/** @Locator XPATH */
 	public static final String ManpowerGrp_Add_Icon = "//button[@id='B1550518234307758885']";
+	/** @locatorType Xpath */
+	public static final String LeftSideAddIconPo = "//button[@data-testid=\"Add\"]";
 }

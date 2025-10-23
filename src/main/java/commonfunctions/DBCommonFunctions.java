@@ -1114,5 +1114,19 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("OSPNO"), OSPNo, DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * StockQuery
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String GateQuery1(String GATENumber, String SubSeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GateQuery1"),
+				commonFunc.getDataFromTestDataSheet("GATENO"), GATENumber, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SubSeqNO, DBHeaderColumnValue);
+		return value;
+	}
 
 }

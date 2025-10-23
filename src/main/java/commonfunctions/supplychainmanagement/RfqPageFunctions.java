@@ -1979,7 +1979,7 @@ public class RfqPageFunctions {
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(RfqLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), 11,
+				commonFunc.getDataFromTestDataSheet("ARAVIND AGENCY"), 11,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(RfqLocators.ItemId, commonFunc.getDataFromTestDataSheet("Rfqitem"), 15,

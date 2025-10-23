@@ -22,13 +22,13 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PriceField = "//input[@data-testid='P1615131025212_PSPL_UNIT_COST']";
 	/** @locatorType Xpath */
-	public static final String EffFrom = "//input[@id='P1615131025212_PSPL_EFF_DATE_FROM_input']";
+	public static final String EffFrom = "//input[@id='P1615131025214_PSPL_EFF_DATE_FROM_input']";
 	/** @locatorType Xpath */
-	public static final String EffTo = "//input[@id='P1615131025212_PSPL_EFF_DATE_TO_input']";
+	public static final String EffTo = "//input[@id='P1615131025214_PSPL_EFF_DATE_TO_input']";
 	/** @locatorType Xpath */
-	public static final String FindCreateButton = "//button[@data-testid='Create']";
+	public static final String FindCreateButton = "//button[@data-testid='Create20']";
 	/** @locatorType Xpath */
-	public static final String DiscountField = "//div[@id='price_ig_grid_vc']/*[3]/*[3]/table/tbody/tr/td[14]";
+	public static final String DiscountField = "//*[@id='price_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[14]";
 	/** @locatorType Xpath */
 	public static final String Discountinput = "//input[@data-testid='PSPL_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -38,9 +38,9 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PriceListWorkflowFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String PricelistForwardlov = "//input[@data-testid='PO_ForwardTo_Button']/following-sibling::button";
+	public static final String PricelistForwardlov = "//input[@data-testid='P236131090_FWD_PERSON']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PricelistworkflowOK = "//button[@data-testid='PO_Ok_Button']";
+	public static final String PricelistworkflowOK = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
 	public static final String Pricelist_HeaderLoc = "//td[@class='a-GV-cell u-tS is-readonly']";
 	/** @locatorType Xpath */
@@ -48,7 +48,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Pricelist_HeaderItem = "//td[@class='a-GV-cell u-tS'][4]";
 	/** @locatorType Xpath */
-	public static final String PricelistDocNum = "//div[@id='price_ig_grid_vc']/*[3]/*[3]/table/tbody/tr/td[4]";
+	public static final String PricelistDocNum = "//*[@id='price_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
 	public static final String Successmsg = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6";
 	/** @locatorType Xpath */
@@ -64,7 +64,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Refindsearchok = "//*[@id=\"PLE_search_button\"]/span";
 	/** @locatorType Xpath */
-	public static final String CancellStatus = "//*[@id=\"1457343167982292320_orig\"]/tbody/tr[2]/td[15]/div";
+	public static final String CancellStatus = "//*[@id='1457343167982292320_orig']/tbody/tr[2]/td[22]/div";
 	/** @locatorType Xpath */
 	public static final String FindLocLov = "//input[@data-testid='P1615131025212_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -162,7 +162,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Unit = "//input[@data-testid='P1615131025212_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PRLNO = "//input[@data-testid='P1615131025212_DOCP_NO']/following-sibling::button";
+	public static final String PRLNO = "//input[@data-testid=\"P1615131025212_DOCP_NO\"]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SupplierNameLovButton = "//input[@data-testid='P1615131025212_SUPPLIER']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -185,4 +185,6 @@ public class PricelistPageLocators {
 	public static final String PRLFindTableData(int i) {
 		return "//table[@id='1457343167982292320_orig']/tbody/tr/td["+ i +"]";
 	}
+	/** @locatorType Xpath */
+	public static final String PricelistAddFrame = "//iframe[@title='Price List Entry ']";
 }

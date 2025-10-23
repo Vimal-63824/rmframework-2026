@@ -460,4 +460,12 @@ public class PurchaseOrderPageLocators {
 	public static final String PurchaseOrderAddButtonframe = "//iframe[@title='Purchase Order']";
 	/** @locatorType Xpath */
 	public static final String LineLabel = "//input[@data-display='Line(s)']/following-sibling::label";
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderItemLov = "//input[@data-testid='DUM_PROD_ID_REV']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderHsnLov = "//button[@id='C3138043587156640997_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderHsnInput = "//input[@data-testid='POL_HSN_CODE']";
+	/** @locatorType Xpath */
+	public static final String PurchaseOrderHsnField = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
 }

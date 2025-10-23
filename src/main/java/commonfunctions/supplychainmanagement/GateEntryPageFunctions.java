@@ -6,13 +6,20 @@ package commonfunctions.supplychainmanagement;
  */
 import static org.testng.Assert.assertTrue;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GateEntryPageLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
 import commonlocators.supplychainmanagement.RfqLocators;
@@ -38,7 +45,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry();
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry("DirectGrnGenUD");
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingPo();
@@ -57,8 +64,8 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromMultiplePo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry();
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry();
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry("DirectGrnGenUD");
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry("DirectGrnGenUD");
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingMultiPo();
@@ -151,6 +158,7 @@ public class GateEntryPageFunctions {
 							flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll,
 									ElementType.Xpath);
 							logs.logging("INFO", "Create Gate Entry Button shown");
+							commonFunc.hardWait(2000);
 							webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
@@ -396,7 +404,7 @@ public class GateEntryPageFunctions {
 		logs.logging("INFO", "Gate EntryNumber Is :" + VariableHandler.getGateEntryNumber());
 		flag = webDB.waitForElement(GateEntryPageLocators.GateKeeperSso, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "ABIMANYU");
+			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
 			flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
 			if (flag) {
 				webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
@@ -919,7 +927,7 @@ public class GateEntryPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.GATEdetails(VariableHandler.getGATEDocNum(),
 						commonFunc.getDataFromTestDataSheet("GATEDbSupplierColumnName")),
-				commonFunc.getDataFromTestDataSheet("POSupplier"));
+				commonFunc.getDataFromTestDataSheet("POGateSupplier"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
 
@@ -932,29 +940,343 @@ public class GateEntryPageFunctions {
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "ItemDetails.xlsx";
+				+ "DirectGrnDetails.xlsx";
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
-				webDB.getDataFromProperties("POMultipleItemDetailsSheetName"));
+				webDB.getDataFromProperties("DirectGrnGenUD"));
 		System.out.println(itemmultiple.length);
-		for (int i = 1; i < itemmultiple.length; i++) {
-			String ITEM_NAME = itemmultiple[i][0];
-			String QUANTITY = itemmultiple[i][1];
-			String UNIT_COST = itemmultiple[i][2];
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String UNIT_COST = itemmultiple[i][6];
 			if (!ITEM_NAME.equals("")) {
-				String SeqNumber = Integer.toString(i);
+				String SeqNumber = Integer.toString(i-21);
 				System.out.println("SeqNumber:" + SeqNumber);
-				verifyAssertionBothValues(dbCommonFunctions.StockQuery2(VariableHandler.getGATEDocNum(), SeqNumber,
+				verifyAssertionBothValues(dbCommonFunctions.GateQuery1(VariableHandler.getGATEDocNum(), SeqNumber,
 						commonFunc.getDataFromTestDataSheet("GATEDbItemColumnName")), ITEM_NAME);
 				logs.logging("INFO", "Header Items Details Matched With DataBase Values");
 
-				verifyAssertionBothValues(dbCommonFunctions.StockQuery2(VariableHandler.getGATEDocNum(), SeqNumber,
+				verifyAssertionBothValues(dbCommonFunctions.GateQuery1(VariableHandler.getGATEDocNum(), SeqNumber,
 						commonFunc.getDataFromTestDataSheet("GATEDbItemQtyColumnName")), QUANTITY);
 				logs.logging("INFO", "Header Quantity Details Matched With DataBase Values");
 
-				verifyAssertionBothValues(dbCommonFunctions.StockQuery2(VariableHandler.getGATEDocNum(), SeqNumber,
+				verifyAssertionBothValues(dbCommonFunctions.GateQuery1(VariableHandler.getGATEDocNum(), SeqNumber,
 						commonFunc.getDataFromTestDataSheet("GATEDbItemCostColumnName")), UNIT_COST);
 				logs.logging("INFO", "Header Unit Cost Details Matched With DataBase Values");
 			}
 		}
+	}
+	/**
+	 * This Method Is Used To PO Filter All Field Working
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyCreationOfGENFilterAllFieldWorking() {
+		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+				"SelvaUsername");
+		commonFunc.navigateToGateEntryDocument();
+//		verifyDateAfterAndBefore();
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 2,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 3,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"), 4,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.SupplierNameLovButton,
+				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), 26,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GateKeeperLovButton,
+				commonFunc.getDataFromTestDataSheet("GateKeeperName"), 8,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId,
+				commonFunc.getDataFromTestDataSheet("GENItem"), 31,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("LovButton"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc,
+				commonFunc.getDataFromTestDataSheet("GENItem"), 33,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GRN_Status,
+				commonFunc.getDataFromTestDataSheet("GENStatus"), 13,
+				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("SelectType"));
+		commonFunc.logoutUser();
+
+	}
+	/**
+	 * This Method Is Used To Verify Filter Search Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 * @param LovButton
+	 * @param Value
+	 * @param i
+	 */
+	@SuppressWarnings("unlikely-arg-type")
+	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
+		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
+		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
+			commonFunc.searchAndSelectValueInFilters(LovButton, Value);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SelectType"))) {
+			webDB.selectDropDownByText(LovButton, Value, ElementType.Xpath);
+		} else if (selectflag.equals(commonFunc.getDataFromTestDataSheet("SendTextInput"))) {
+			webDB.sendTextToAnElement(LovButton, Value, ElementType.Xpath);
+		}
+		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
+			clickSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
+		} else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
+			clickLineSearchButton();
+			commonFunc.hardWait(3000);
+			verifyLineAmendTableValue(i, Value);
+		}
+		clearSearchFilter();
+	}
+	/**
+	 * Verify Date From And To
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDateAfterAndBefore() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtFrom, ElementType.Xpath);
+		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtFrom, commonFunc.getDataFromTestDataSheet("EffFrom"),
+				ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueAfterDate(5, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		clearSearchFilter();
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtTo, ElementType.Xpath);
+		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+				ElementType.Xpath);
+		clickSearchButton();
+		commonFunc.hardWait(3000);
+		verifyAmendTableValueBeforeDate(5, commonFunc.getDataFromTestDataSheet("EffTo"));
+		clearSearchFilter();
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
+//		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
+//				commonFunc.getDataFromTestDataSheet("EffFrom"), ElementType.Xpath);
+//		clickLineSearchButton();
+//		commonFunc.hardWait(3000);
+//		verifyLineAmendTableValueAfterDate(23, commonFunc.getDataFromTestDataSheet("EffFrom"));
+//		clearSearchFilter();
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtTo, ElementType.Xpath);
+//		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+//				ElementType.Xpath);
+//		clickLineSearchButton();
+//		commonFunc.hardWait(3000);
+//		verifyLineAmendTableValueBeforeDate(23, commonFunc.getDataFromTestDataSheet("EffTo"));
+//		clearSearchFilter();
+	}
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSearchButton() {
+		flag = webDB.waitForElement(GateEntryPageLocators.HeaderCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Header CheckBox Is Displayed");
+			webDB.clickAnElement(GateEntryPageLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.GENSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GateEntryPageLocators.GENSearchBtn, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GateEntryPageLocators.AmendFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Click Search Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickLineSearchButton() {
+		flag = webDB.waitForElement(GateEntryPageLocators.LineCheckBox, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line CheckBox Is Displayed");
+			webDB.clickAnElement(GateEntryPageLocators.LineCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.GENSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GateEntryPageLocators.GENSearchBtn, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GateEntryPageLocators.AmendLineFindTable, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(DirectGrnPageLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValue(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(DirectGrnPageLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				flag = element.getText().contains(Value);
+				if (!flag) {
+					break;
+			
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Clear Search Filter
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clearSearchFilter() {
+		commonFunc.hardWait(1000);
+		System.out.println("Test2");
+		flag = webDB.waitForElement(DirectGrnPageLocators.ClearButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.ClearButton, ElementType.Xpath);
+			logs.logging("INFO", "Clear Button Is Clicked");
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(DirectGrnPageLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(DirectGrnPageLocators.AmendFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValueAfterDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(DirectGrnPageLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isAfter(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Table Value
+	 * 
+	 * @author Deepan-GWL
+	 * @param i
+	 * @param Value
+	 */
+	public void verifyLineAmendTableValueBeforeDate(int i, String Value) {
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(DirectGrnPageLocators.AmendLineFindTableData(i)));
+		for (WebElement element : elements) {
+			if (element.isDisplayed()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date1 = LocalDate.parse(element.getText(), formatter);
+				LocalDate date2 = LocalDate.parse(Value, formatter);
+				flag = date1.isBefore(date2);
+				if (!flag) {
+					if (date1.equals(date2)) {
+
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

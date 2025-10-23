@@ -235,7 +235,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestTab"), CommonUiLocators.PrCreateButton);
+		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
 		Assert.assertTrue(flag);
 	}
 
@@ -1808,8 +1808,8 @@ public class CommonFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void navigateToMaterialReceiptVoucherAdminUser() {
-		clickLeftNavigationBar();
-		navigateToInventoryTabForAdminUser();
+		navigateToSearchTab(webDB.getDataFromProperties("MATERIALRECEIPTVOUCHER"),
+				CommonUiLocators.PendingReceiptVoucherButton);
 	}
 
 	/**
@@ -2142,30 +2142,17 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * This method used to Navigate Gate Entry Transaction Tab
-	 * 
-	 * @author Durai-RMITS
-	 */
-	public void navigateToGateEntryDocument() {
-		clickLeftNavigationBar();
-		clickGateEntryTab();
-		flag = webDB.waitForElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
-			logs.logging("INFO", "navigated To GateEntry Transaction screen successfully");
-			flag = webDB.waitForElement(CommonUiLocators.GateEntryInward, ElementType.Xpath);
-			if (flag) {
-				flag = webDB.clickAnElement(CommonUiLocators.GateEntryInward, ElementType.Xpath);
-				logs.logging("INFO", "navigated To GateEntry Inward screen successfully");
-				flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Pending Button Shown");
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
+	
+		/**
+		 * This method used to Navigate Gate Entry Transaction Tab
+		 * 
+		 * @author Durai-RMITS
+		 */
+		public void navigateToGateEntryDocument() {
+//			clickLeftNavigationBar();
+//			clickGateEntryTab();
+			navigateToSearchTab(webDB.getDataFromProperties("GATEENTRY"), GateEntryPageLocators.GENPendBtn);
+					}
 
 	/**
 	 * This method used to Navigate Navigate Gate Entry Tab
