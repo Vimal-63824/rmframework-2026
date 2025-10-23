@@ -994,7 +994,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNSourceNumber"), GRNNumber, DetailsValue);
 		return value;
 	}
-	
+
 	/**
 	 * PR Line Details
 	 * 
@@ -1070,6 +1070,7 @@ public class DBCommonFunctions {
 				ItemID, commonFunc.getDataFromTestDataSheet("SRNO"), SerialNo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate po Details
 	 * 
@@ -1083,6 +1084,34 @@ public class DBCommonFunctions {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNQuery1"),
 				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("GRNID"),
 				Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Open SCO Price Header Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param OSPNo
+	 * @param Header Value
+	 * @return String Value
+	 */
+	public String OSPHeaderDetails(String OSPNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("OSPHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("OSPNO"), OSPNo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Open SCO Price Header Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param OSPNo
+	 * @param Line  Value
+	 * @return String Value
+	 */
+	public String OSPLineDetails(String OSPNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("OSPLineQuery"),
+				commonFunc.getDataFromTestDataSheet("OSPNO"), OSPNo, DBHeaderColumnValue);
 		return value;
 	}
 

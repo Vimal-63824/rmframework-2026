@@ -221,6 +221,9 @@ public class VariableHandler {
 	private static ThreadLocal<String> SCOdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpUpdateDocNo = new ThreadLocal<>();
 	private static ThreadLocal<Boolean> EmpLeaveEntryAutoPost = ThreadLocal.withInitial(() -> false);
+	private static ThreadLocal<String> ProcessIDAsso = new ThreadLocal<>();
+	private static ThreadLocal<String> ResourceGrp = new ThreadLocal<>();
+	private static ThreadLocal<String> ManpowerResourceGrp = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1890,5 +1893,28 @@ public class VariableHandler {
 
 	public static boolean getEmpLeaveEntryAutoPost() {
 		return EmpLeaveEntryAutoPost.get();
+	}
+	public static String getProcessIDAsso() {
+		return ProcessIDAsso.get();
+	}
+
+	public static void setProcessIDAsso(String Data) {
+		ProcessIDAsso.set(Data);
+	}
+
+	public static String getResourceGrp() {
+		return ResourceGrp.get();
+	}
+
+	public static void setResourceGrp(String Data) {
+		ResourceGrp.set(Data);
+	}
+
+	public static String getManpowerResourceGrp() {
+		return ManpowerResourceGrp.get();
+	}
+
+	public static void setManpowerResourceGrp(String Data) {
+		ManpowerResourceGrp.set(Data);
 	}
 }
