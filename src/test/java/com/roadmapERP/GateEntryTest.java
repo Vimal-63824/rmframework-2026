@@ -10,7 +10,7 @@ import commonfunctions.supplychainmanagement.GateEntryPageFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class GateEntryTest {
+public class GateEntryTest extends RoadMapERPTest{
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
@@ -58,6 +58,17 @@ public class GateEntryTest {
 			"Gate Entry" }, description = " create Gate document for Inwarding materials without PO")
 	public void VerifyToCreateDirectGateEntry() {
 		Gatefunc.verifyToCreateDirectGateEntry();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Test(priority = 1,groups = {
+	"GRN" }, description = "Find Gate Entry inward with all possible search parameters")
+	public void verifyCreationOfGrnFilterAllFieldWorking(){
+		Gatefunc.verifyCreationOfGENFilterAllFieldWorking();
 	}
 
 }

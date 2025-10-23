@@ -7,43 +7,43 @@ package commonlocators.supplychainmanagement;
 public class GateEntryPageLocators {
 
 	/** @locatorType Xpath */
-	public static String ClickPendingButton = "//button[@id='B1166918765449991606']";
+	public static String ClickPendingButton = "//button[@data-testid='Create_GE']";
 	/** @locatorType Xpath */
-	public static String ClickPendingPoButton = "//button[@id='B1811406114734648826']";
+	public static String ClickPendingPoButton = "//button[@data-testid='Pending_PO']";
 	/** @locatorType Xpath */
 	public static String ClickPendingPoButtonLov = "//button[@id='P16151311001_PO_NO_lov_btn']";
 	/** @locatorType Xpath */
 	public static String SearchAndSelectValue = "//*[@id=\"PopupLov_16151311001_P16151311001_PO_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static String PendingPOGIframe = "//*[@id=\"apex_dialog_1\"]/iframe";
+	public static String PendingPOGIframe = "//iframe[@title='Pending PO']";
 	/** @locatorType Xpath */
-	public static String GateEntryPoSearchButton = "//button[@id='B2766393190567522562']";
+	public static String GateEntryPoSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
 	public static String GateEntryPendingPoSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */
-	public static String CreateGeFromPO = "//button[@class='t-Button t-Button--hot t-Button--small t-Button--primary t-Button--link']";
+	public static String CreateGeFromPO = "//button[@data-testid='Create_GE']";
 	/** @locatorType Xpath */
-	public static String SelectGateKeeper = "//*[@id=\"P16151311001_GACDT_GATE_KEEPER\"]";
+	public static String SelectGateKeeper = "//select[@data-testid='P16151311001_GACDT_GATE_KEEPER']";
 	/** @locatorType Xpath */
-	public static String DcNumberField = "//input[@id=\"P16151311001_GACDT_DC_NO\"]";
+	public static String DcNumberField = "//input[@data-testid='P16151311001_GACDT_DC_NO']";
 	/** @locatorType Xpath */
-	public static String SupplierBillNumber = "//input[@id=\"P16151311001_GACDT_INV_NO\"]";
+	public static String SupplierBillNumber = "//input[@data-testid='P16151311001_GACDT_INV_NO']";
 	/** @locatorType Xpath */
-	public static String VehicleNumber = "//input[@id=\"P16151311001_GACDT_VEHICLE_NO\"]";
+	public static String VehicleNumber = "//input[@data-testid='P16151311001_GACDT_VEHICLE_NO']";
 	/** @locatorType Xpath */
-	public static String DriverName = "//input[@id=\"P16151311001_GACDT_DRIVER_NAME\"]";
+	public static String DriverName = "//input[@data-testid='P16151311001_GACDT_DRIVER_NAME']";
 	/** @locatorType Xpath */
-	public static String ReferenceField = "//input[@id=\"P16151311001_GACDT_REF\"]";
+	public static String ReferenceField = "//input[@data-testid='P16151311001_GACDT_REF']";
 	/** @locatorType Xpath */
-	public static String OkButton = "//button[@id=\"customFunction\"]";
+	public static String OkButton = "//button[@data-testid='OK_ge']";
 	/** @locatorType Xpath */
-	public static String EwayBillNumber = "//input[@id='P751310201_GEHD_EWB_BILL_NO']";
+	public static String EwayBillNumber = "//input[@data-testid='P751310201_GEHD_EWB_BILL_NO']";
 	/** @locatorType Xpath */
-	public static String PostButton = "//button[@id='B4689659760922199213']";
+	public static String PostButton = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
-	public static String OverAllSaveButton = "//button[@id='B4689658598549199211']";
+	public static String OverAllSaveButton = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
-	public static String DocNumber = "//*[@id=\"P751310201_GEHD_DOC_NO_DISPLAY\"]";
+	public static String DocNumber = "//span[@data-testid='P751310201_GEHD_DOC_NO']";
 	/** @locatorType Xpath */
 	public static String PendDateInput = "//input[@id='P16151311001_PO_DATE_input']";
 	/** @locatorType Xpath */
@@ -139,4 +139,51 @@ public class GateEntryPageLocators {
 	public static final String CostField(int i) {
 		return "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[12]";
 	}
+	
+	/** @locatorType Xpath */
+	public static final String LocId = "//input[@data-testid='P75131020_LOC_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String Unit = "//input[@data-testid='P75131020_PLNT_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String GENNo = "//input[@data-testid='P75131020_DOC_NO_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String SupplierNameLovButton = "//input[@data-testid='P75131020_PARTY_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String GateKeeperLovButton = "//input[@data-testid='P75131020_GATE_KEEPER_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String ItemId = "//input[@data-testid='P75131020_PROD_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String ItemDesc = "//input[@data-testid='P75131020_ITEM_DESC']";
+	/** @locatorType Xpath */
+	public static final String GRN_Status = "//select[@data-testid='P75131020_SRCH_STATUS']";
+	/** @locatorType Xpath */
+	public static final String HeaderCheckBox = "(//input[@data-testid='P75131020_RADIO_GRP']/following-sibling::label)[1]";
+	/** @locatorType Xpath */
+	public static final String LineCheckBox = "(//input[@data-testid='P75131020_RADIO_GRP']/following-sibling::label)[2]";
+	/** @locatorType Xpath */
+	public static final String GENSearchBtn = "//button[@data-testid='Find_header']";
+	/** @locatorType Xpath */
+	public static final String AmendFindTable = "//*[@id=\"22335393014035837389_orig\"]/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String AmendLineFindTable = "//*[@id=\"1119004294775107902_orig\"]/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
+	
+	
+	/** @locatorType Xpath */
+	public static final String GENLineFindTableData(int i) {
+		return "//table[@id='1119004294775107902_orig']/tbody/tr/td["+ i +"]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String GENFindTableData(int i) {
+		return "//table[@id='22335393014035837389_orig']/tbody/tr/td["+ i +"]";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

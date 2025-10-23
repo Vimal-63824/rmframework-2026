@@ -1147,6 +1147,7 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 
 	public void verifyToCanceDocumentWise() {
+		commonFunc.checkRefreshCellsDisappear();
 		if (webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocwiseCancelbutton, ElementType.Xpath)) {
 			webDB.clickAnElement(MaterialReceiptVoucherLocators.MrvDocwiseCancelbutton, ElementType.Xpath);
 			logs.logging("INFO", "MRV Document Successfully Cancelled");
