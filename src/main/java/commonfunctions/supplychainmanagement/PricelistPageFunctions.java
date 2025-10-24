@@ -1632,8 +1632,10 @@ public class PricelistPageFunctions {
 					logs.logging("INFO", "Switched To WorkFlow Frame");
 					flag = webDB.waitForElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
 					if (flag) {
-					webDB.clickAnElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
-					webDB.switchToDefaultContent();
+						webDB.clickAnElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						webDB.switchToDefaultContent();
+
 //					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 					commonFunc.logoutUser();
 					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),

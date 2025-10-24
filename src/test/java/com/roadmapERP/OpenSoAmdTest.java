@@ -170,6 +170,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 *
 	 * @author Kowshik
 	 */
+	
 	@Test(priority = 14, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order -Price Change - Domestic Customer - UTGST")
 	public void verifyOpenSoAmdUTGSTpriceChange() {
