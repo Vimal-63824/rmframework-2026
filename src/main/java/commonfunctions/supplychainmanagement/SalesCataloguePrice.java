@@ -316,6 +316,7 @@ public class SalesCataloguePrice {
 		commonFunc.hardWait(2000);
 		clickSearchButton();
 		takenCatalogPriceRecordInFindPage();
+		commonFunc.logoutUser();
 	}
 
 	/**

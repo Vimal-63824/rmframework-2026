@@ -478,7 +478,7 @@ public class SalesStandardPriceFunctions {
 
 		flag = webDB.waitForElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
 		if (flag) {
-			//webDB.clickAnElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
+			webDB.clickAnElement(SalesStandardPriceLocators.CurcyField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesStandardPriceLocators.CurcyLov, CatalogueCurcy);
 			webDB.pressTabKey();
 			webDB.waitForElement(SalesStandardPriceLocators.MapPriceField, ElementType.Xpath);

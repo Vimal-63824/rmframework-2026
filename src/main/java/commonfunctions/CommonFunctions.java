@@ -2447,7 +2447,7 @@ public class CommonFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void navigateItemPage1() {
-		navigateToSearchTab(webDB.getDataFromProperties("ItemsScreen"), CommonUiLocators.FindScreenItemField);
+		navigateToSearchTab(webDB.getDataFromProperties("Items"), CommonUiLocators.FindScreenItemField);
 	}
 
 	/***
@@ -2474,7 +2474,7 @@ public class CommonFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void navigatePriceList_StdPrice_CataloguePrice() {
-		navigateToSearchTab(webDB.getDataFromProperties("PricingScreen"), CommonUiLocators.AddButton);
+		navigateToSearchTab(webDB.getDataFromProperties("PCS"), CommonUiLocators.AddButton);
 	}
 
 	/**
