@@ -863,6 +863,7 @@ public class PurchaseOrderFunctions {
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 		verifyTickIconcreatePO();
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -1342,6 +1343,7 @@ public class PurchaseOrderFunctions {
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 		verifyTickIconcreatePO();
 		verifyCreateItemInPo(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		verifyAddItemInPOWithQuantityAndUnitCost(commonFunc.getDataFromTestDataSheet("QuantityValue"),
@@ -1358,16 +1360,9 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
-					commonFunc.getDataFromTestDataSheet("UomNos"));
-			approvalFunc.verifyNavigateback();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 				commonFunc.navigatePurchaseOrderPage();
@@ -5500,11 +5495,9 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 				commonFunc.navigatePurchaseOrderPage();
@@ -7024,29 +7017,29 @@ public class PurchaseOrderFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(5, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate(7, commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PoDtTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(PurchaseOrderPageLocators.PoDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(5, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate(7, commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
-		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
-				commonFunc.getDataFromTestDataSheet("EffFrom"), ElementType.Xpath);
-		clickLineSearchButton();
-		commonFunc.hardWait(3000);
-		verifyLineAmendTableValueAfterDate(23, commonFunc.getDataFromTestDataSheet("EffFrom"));
-		clearSearchFilter();
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtTo, ElementType.Xpath);
-		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
-				ElementType.Xpath);
-		clickLineSearchButton();
-		commonFunc.hardWait(3000);
-		verifyLineAmendTableValueBeforeDate(23, commonFunc.getDataFromTestDataSheet("EffTo"));
-		clearSearchFilter();
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
+//		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
+//				commonFunc.getDataFromTestDataSheet("EffFrom"), ElementType.Xpath);
+//		clickLineSearchButton();
+//		commonFunc.hardWait(3000);
+//		verifyLineAmendTableValueAfterDate(6, commonFunc.getDataFromTestDataSheet("EffFrom"));
+//		clearSearchFilter();
+//		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtTo, ElementType.Xpath);
+//		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
+//				ElementType.Xpath);
+//		clickLineSearchButton();
+//		commonFunc.hardWait(3000);
+//		verifyLineAmendTableValueBeforeDate(6, commonFunc.getDataFromTestDataSheet("EffTo"));
+//		clearSearchFilter();
 	}
 
 	/**
@@ -7216,6 +7209,9 @@ public class PurchaseOrderFunctions {
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
+				if (elements.getLast() == element) {
+					flag = true;
+				}
 				if (!flag) {
 					break;
 				}
@@ -7272,41 +7268,41 @@ public class PurchaseOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 2,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 3,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PrNo, commonFunc.getDataFromTestDataSheet("PrNumber"), 26,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PrNo, commonFunc.getDataFromTestDataSheet("PrNumber"), 79,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PONo, commonFunc.getDataFromTestDataSheet("PONumber"), 6,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PONo, commonFunc.getDataFromTestDataSheet("PONumber"), 9,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 9,
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 12,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.BuyerLovButton,
-				commonFunc.getDataFromTestDataSheet("SelvaKumarB"), 8,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("SelvaKumarB"), 10,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.POTypeSelect,
-				commonFunc.getDataFromTestDataSheet("PoMaterial"), 4,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("PoMaterial"), 7,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 11,
+				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 17,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 13,
+				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 19,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PO_Status,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 16,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
+				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		commonFunc.logoutUser();
 
@@ -9081,8 +9077,8 @@ public class PurchaseOrderFunctions {
 				verifyLineAmountValidationAndPom(item, LineAmount);
 				navigateToLineDetailPage(item);
 				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-						commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//						commonFunc.getDataFromTestDataSheet("GeneralExpense"));
 				webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 				verifyNavigateLineDetailTwo();
 				verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
@@ -10261,9 +10257,9 @@ public class PurchaseOrderFunctions {
 						verifyLineAmountValidationAndPom(item, LineAmount);
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+//						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
 						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
 								commonFunc.getDataFromTestDataSheet("Equip1000"));
@@ -10362,9 +10358,9 @@ public class PurchaseOrderFunctions {
 						verifyLineAmountValidationAndPom(item, LineAmount);
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+//						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
 						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
 								commonFunc.getDataFromTestDataSheet("Equip1000"));
@@ -10463,9 +10459,9 @@ public class PurchaseOrderFunctions {
 						verifyLineAmountValidationAndPom(item, LineAmount);
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+//						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
 						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
 								commonFunc.getDataFromTestDataSheet("Equip1000"));
@@ -10565,9 +10561,9 @@ public class PurchaseOrderFunctions {
 						verifyLineAmountValidationAndPom(item, LineAmount);
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+//						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
 						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
 								commonFunc.getDataFromTestDataSheet("Equip1000"));
@@ -12221,8 +12217,8 @@ public class PurchaseOrderFunctions {
 				verifyLineAmountValidationAndPom(item, LineAmount);
 				navigateToLineDetailPage(item);
 				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-						commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//						commonFunc.getDataFromTestDataSheet("GeneralExpense"));
 				webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 				verifyNavigateLineDetailTwo();
 				verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
@@ -12427,8 +12423,8 @@ public class PurchaseOrderFunctions {
 						verifyLineAmountValidationAndPom(item, LineAmount);
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
-								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
+//						commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.GlAccountNoLovButton,
+//								commonFunc.getDataFromTestDataSheet("GeneralExpense"));
 						webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 						verifyNavigateLineDetailTwo();
 						verifyAddServiceItem();

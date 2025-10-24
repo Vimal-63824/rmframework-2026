@@ -1435,7 +1435,7 @@ public class PurchaseRequestFunctions {
 		flag = commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("SelvaUsername"));
+				System.getProperty("HodUsername"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.navigatePurchaseRequestPage();
@@ -1609,7 +1609,7 @@ public class PurchaseRequestFunctions {
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRLineDetails_CloseIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.GlAccountNoLovButton, GlAccNumber);
+//			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.GlAccountNoLovButton, GlAccNumber);
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.LineDetailSaveButton, ElementType.Xpath);
 			if (flag) {
