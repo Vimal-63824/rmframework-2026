@@ -3094,7 +3094,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnGenUD"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnGenUD"));
 	}
 
@@ -3120,7 +3120,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnMatUDD"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnMatUDD"));
 	}
 
@@ -3171,7 +3171,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContract"));
 	}
@@ -3198,7 +3198,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContract"));
 
@@ -3247,7 +3247,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnPriceList"));
 
 	}
@@ -3274,7 +3274,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnPriceList"));
 	}
 
@@ -3327,7 +3327,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnGenUDWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnGenUDWOI"));
 	}
 
@@ -3353,7 +3353,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnMatUDDWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnMatUDDWOI"));
 	}
 
@@ -3406,7 +3406,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnRateContractWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContractWOI"));
 	}
@@ -3433,7 +3433,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnRateContractWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnRateContractWOI"));
 	}
@@ -3487,7 +3487,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnPriceListWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnPriceListWOI"));
 	}
@@ -3514,7 +3514,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnPriceListWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnPriceListWOI"));
 	}
@@ -3568,7 +3568,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
 	}
@@ -3595,7 +3595,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
 	}
 
@@ -3647,7 +3647,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
 	}
@@ -3674,7 +3674,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
 	}
@@ -3728,7 +3728,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
 	}
@@ -3756,7 +3756,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
 	}
@@ -3811,7 +3811,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIfUOMDirectGrnGenUD"));
 	}
@@ -3838,7 +3838,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DIfUOMDirectMatUD"));
 	}
 
@@ -3890,7 +3890,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
 	}
@@ -3917,7 +3917,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatRateContract"));
 	}
@@ -3972,7 +3972,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
 	}
@@ -4001,7 +4001,7 @@ public class DirectGrnPageFunctions {
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));
 	}
