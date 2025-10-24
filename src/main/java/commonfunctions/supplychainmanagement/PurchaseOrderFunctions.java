@@ -13176,5 +13176,115 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**
+	 * This Method Is Used To Verify Direct PO with Price list Item for Similar UOM
+	 * With And Without Inspection Plan(Material Type)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 *
+	 */
+	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+			String SheetName) {
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
+				commonFunc.getDataFromTestDataSheet("POSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetails.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String UNIT_COST = itemmultiple[i][6];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				verifyDirectPoQtyEntered(QUANTITY);
+				verifyDirectPoUnitCostEntered(UNIT_COST);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				discountFromPrToGrnDocument(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+			}
+		}
+		commonFunc.hardWait(3000);
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+//			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
+//					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
+//					commonFunc.getDataFromTestDataSheet("NOS"));
+//			approvalFunc.verifyNavigateback();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Select the item For Excel Sheet
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 *
+	 */
 
+	public void verifyDirectPoHsnSelectedFromLov(String HSN) {
+		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
+			logs.logging("INFO", "Hsn Field Is Clicked");
+
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderHsnLov, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PurchaseOrderHsnLov, HSN);
+				logs.logging("INFO", "Entered HSN is:" + HSN);
+			}
+			assertTrue(flag);
+		}
+	}
+	/**
+	 * This Method used to click create icon - left add icon
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCreateIcon() {
+		flag = webDB.waitForElement(CommonUiLocators.LeftSideAddIconPo, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.LeftSideAddIconPo, ElementType.Xpath);
+			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+			if (flag) {
+				flag = webDB.waitForElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CommonUiLocators.CreatePORadioButton, ElementType.Xpath);
+					logs.logging("INFO", "Create PO Button is Displayed and Clicked");
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderAddButtonframe,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Purchase order Frame is Enabled");
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }

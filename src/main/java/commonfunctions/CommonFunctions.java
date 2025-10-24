@@ -235,7 +235,7 @@ public class CommonFunctions {
 //				logs.logging("INFO", "Purchase Request Clicked and navigated successfully");
 //			}
 //		}
-		navigateToSearchTab(webDB.getDataFromProperties("PurchaseRequestTab"), CommonUiLocators.PrCreateButton);
+		navigateToSearchTab(webDB.getDataFromProperties("PR/SSR"), CommonUiLocators.LeftSideAddIcon);
 		Assert.assertTrue(flag);
 	}
 
@@ -1212,7 +1212,7 @@ public class CommonFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void navigateToMaterialRequestScreen() {
-		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequest"), CommonUiLocators.MaterialReq_AddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialRequestScreen"), CommonUiLocators.MaterialReq_AddIcon);
 	}
 
 	/**
@@ -1808,8 +1808,8 @@ public class CommonFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void navigateToMaterialReceiptVoucherAdminUser() {
-		clickLeftNavigationBar();
-		navigateToInventoryTabForAdminUser();
+		navigateToSearchTab(webDB.getDataFromProperties("MATERIALRECEIPTVOUCHER"),
+				CommonUiLocators.PendingReceiptVoucherButton);
 	}
 
 	/**
@@ -2142,30 +2142,17 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * This method used to Navigate Gate Entry Transaction Tab
-	 * 
-	 * @author Durai-RMITS
-	 */
-	public void navigateToGateEntryDocument() {
-		clickLeftNavigationBar();
-		clickGateEntryTab();
-		flag = webDB.waitForElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.GateEntryTransaction, ElementType.Xpath);
-			logs.logging("INFO", "navigated To GateEntry Transaction screen successfully");
-			flag = webDB.waitForElement(CommonUiLocators.GateEntryInward, ElementType.Xpath);
-			if (flag) {
-				flag = webDB.clickAnElement(CommonUiLocators.GateEntryInward, ElementType.Xpath);
-				logs.logging("INFO", "navigated To GateEntry Inward screen successfully");
-				flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Pending Button Shown");
-				}
-			}
-		}
-		Assert.assertTrue(flag);
-	}
+	
+		/**
+		 * This method used to Navigate Gate Entry Transaction Tab
+		 * 
+		 * @author Durai-RMITS
+		 */
+		public void navigateToGateEntryDocument() {
+//			clickLeftNavigationBar();
+//			clickGateEntryTab();
+			navigateToSearchTab(webDB.getDataFromProperties("GATEENTRY"), GateEntryPageLocators.GENPendBtn);
+					}
 
 	/**
 	 * This method used to Navigate Navigate Gate Entry Tab
@@ -2460,7 +2447,7 @@ public class CommonFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void navigateItemPage1() {
-		navigateToSearchTab(webDB.getDataFromProperties("ItemsScreen"), CommonUiLocators.FindScreenItemField);
+		navigateToSearchTab(webDB.getDataFromProperties("Items"), CommonUiLocators.FindScreenItemField);
 	}
 
 	/***
@@ -2487,7 +2474,7 @@ public class CommonFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void navigatePriceList_StdPrice_CataloguePrice() {
-		navigateToSearchTab(webDB.getDataFromProperties("PricingScreen"), CommonUiLocators.AddButton);
+		navigateToSearchTab(webDB.getDataFromProperties("PCS"), CommonUiLocators.AddButton);
 	}
 
 	/**
@@ -2819,10 +2806,11 @@ public class CommonFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void navigateOpenSOScreen() {
-		clickLeftNavigationBar();
-		clickTransactionTab();
-		clickTransactionExpandAllButton();
-		clickOpenSOScreen();
+//		clickLeftNavigationBar();
+//		clickTransactionTab();
+//		clickTransactionExpandAllButton();
+//		clickOpenSOScreen();
+		navigateToSearchTab(webDB.getDataFromProperties("OpenSOScreen"), OpenSalesOrderLocators.OpenSOAmendRadioBtn);
 	}
 
 	/**
@@ -2877,6 +2865,16 @@ public class CommonFunctions {
 	public void navigateToLoanRequestScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("EmpLoanRequestScreen"),
 				AttendanceLeaveLocators.LoanRequestAddButton);
+	}
+
+	/**
+	 * This Method Is Used To Employee Loan Payment Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToLoanPaymentScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("EmployeeLoanPayment"),
+				AttendanceLeaveLocators.LoanPaymentFindSearch);
 	}
 
 	/**
@@ -2936,7 +2934,8 @@ public class CommonFunctions {
 	 * @author Vimal-RMITS
 	 */
 	public void navigateToProductionOrderScreen() {
-		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrder"), CommonUiLocators.CreateProdOrderAddIcon);
+		navigateToSearchTab(webDB.getDataFromProperties("ProductionOrderScreen"),
+				CommonUiLocators.CreateProdOrderAddIcon);
 
 	}
 
@@ -2973,4 +2972,33 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
+	/**
+	 * Navigate To Production And Shop Floor Setup Tab
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToSetupPlanningandManufacturing() {
+		navigateToSearchTab(webDB.getDataFromProperties("PPShopFloorSetupScreen"), CommonUiLocators.ProductionPlanning);
+
+	}
+
+	/**
+	 * Navigate To Production And Shop Floor Setup Tab
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToMachineScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("MachineScreen"), CommonUiLocators.MachineAdd_Icon);
+
+	}
+
+	/**
+	 * Navigate To Manpower Screen
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void navigateToManPowerScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("ManpowerScreen"), CommonUiLocators.ManpowerGrp_Add_Icon);
+
+	}
 }

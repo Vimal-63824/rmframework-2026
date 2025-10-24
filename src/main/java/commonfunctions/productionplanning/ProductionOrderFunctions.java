@@ -921,25 +921,17 @@ public class ProductionOrderFunctions {
 			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
-				flag = webDB.selectDropDownByText(ProductionOrderLocators.ProcessMoveType, MoveType, ElementType.Xpath);
+				webDB.selectDropDownByText(ProductionOrderLocators.ProcessMoveType, MoveType, ElementType.Xpath);
+				logs.logging("INFO", "Move Type Is Selected: " + MoveType);
+				webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect, RestOpr, ElementType.Xpath);
+				logs.logging("INFO", "First Opr Select Is: " + FirstOpr);
+				webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect, RestOpr, ElementType.Xpath);
+				logs.logging("INFO", "Rest Opr Select Is: " + RestOpr);
+				flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Move Type Is Selected: " + MoveType);
-					flag = webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect, FirstOpr,
-							ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "First Opr Select Is: " + FirstOpr);
-						flag = webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect, RestOpr,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Rest Opr Select Is: " + RestOpr);
-							flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Show Less Button Is Displayed");
-								webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-								flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
-							}
-						}
-					}
+					logs.logging("INFO", "Show Less Button Is Displayed");
+					webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+					flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 				}
 			}
 		}
@@ -5450,6 +5442,7 @@ public class ProductionOrderFunctions {
 			return false;
 		}
 	}
+
 	/**
 	 * Verify forwardForApproval for Production
 	 * 

@@ -89,7 +89,7 @@ public class MaterialRequestLocators {
 	/** @locatorType Xpath */
 	public static final String CloseLineDetail = "//h1[text()='Other Details']/../button";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIcon = "//button[@data-testid='HeaderTickIcon']";
+	public static final String HeaderTickIcon = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
 	public static final String HeaderPostIcon = "//button[@data-testid='HeaderPostIcon']";
 	/** @locatorType Xpath */

@@ -29,7 +29,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PageHeaderText = "//div[@class='t-Header-logo']//span";
 	/** @locatorType Xpath */
-	public static final String LeftSideAddIcon = "//button[contains(@title,'Add')]";
+	public static final String LeftSideAddIcon = "//button[contains(@title,'Create PR/SSR')]";
 	/** @locatorType Xpath */
 	public static final String LeftSidePendingIcon = "//button[contains(@class,'warning')]";
 	/** @locatorType Xpath */
@@ -310,15 +310,15 @@ public class CommonUiLocators {
 	/** @Locator XPATH */
 	public static final String AddPLusButton = "//span[@class='t-Icon fa  fa-plus']";
 	/** @Locator XPATH */
-	public static final String AddButton = "//button[@id='B1249682071652311227']";
+	public static final String AddButton = "//button[@id='B1251583417198821711']";
 	/** @locatorType Xpath */
 	public static final String unitLov = "//*[@id='P367194_UNIT_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String ItemLovA = "//*[@id='P367194_ITEM_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//*[@id='B1810147153696003981']";
+	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//*[@id=\"11779181059649578874_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String SearchedItemDrillDown = "//*[@id='11782236209960405417_orig']/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */
@@ -402,4 +402,12 @@ public class CommonUiLocators {
 	public static final String CreatePRTickIcon = "//button[@id='B856779552425513804']";
 	/** @locatorType Xpath */
 	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
+	/** @Locator XPATH */
+	public static final String ProductionPlanning = "//label[@for='P3670133_TYPES_0']";
+	/** @Locator XPATH */
+	public static final String MachineAdd_Icon = "//button[@id='B1250846748385910432']";
+	/** @Locator XPATH */
+	public static final String ManpowerGrp_Add_Icon = "//button[@id='B1550518234307758885']";
+	/** @locatorType Xpath */
+	public static final String LeftSideAddIconPo = "//button[@data-testid=\"Add\"]";
 }

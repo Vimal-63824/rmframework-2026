@@ -474,4 +474,19 @@ public class AttendanceLeaveLocators {
 	public static final String LeaveRadioBtnLeaveEntry = "(//input[@id='P8185107006_TAB_0']/following-sibling::label)[1]";
 	/** @locatorType Xpath */
 	public static final String LeaveEntryAddButton = "//*[@data-testid='Add_EL_Button']";
+	
+	/** @locatorType Xpath */
+	public static final String LoanPaymentFindSearch = "//button[@data-testid='ELN_SEARCH_Button']";
+	/** @locatorType Xpath */
+	public static final String LoanPaymentDocNoClick = "//*[@id='4522001890243159417_orig']/tbody/tr[2]/td[1]/a";
+	/** @locatorType Xpath */
+	public static final String LoanPaymentCreateLoanButton = "//button[@data-testid='ELP_CRE_LOAN_Button']";
+	/** @locatorType Xpath */
+	public static final String LoanCreateLoanPaymentFrame = "//iframe[@title='Create Loan Payment']";
+	/** @locatorType Xpath */
+	public static final String LoanCreateLoanPaymentpayrollOption = "//*[@id='P8181210302_PAY_MODE']/div/div/div[1]/label";
+	/** @locatorType Xpath */
+	public static final String LoanCreateLoanPaymentSaveOption = "//*[@id='B3265219208604470444']";
+	/** @locatorType Xpath */
+	public static final String LoanPaymentReverseButton = "//button[@data-testid='ELP_REVERSE_Button']";
 }

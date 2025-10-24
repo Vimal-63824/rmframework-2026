@@ -414,7 +414,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
-			logs.logging("Info","Search Button Is Clicked");
+			logs.logging("INFO","Successfully Fillter a Item In Find Page");
 		}
 		assertTrue(flag);
 	}
@@ -427,7 +427,8 @@ public class CustomerItemsFunctions {
 	public void searchedItem() {
 		flag = webDB.waitForElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
+			webDB.moveToElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.SalesTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Clicked a Drilldown Item");
@@ -451,7 +452,6 @@ public class CustomerItemsFunctions {
 				flag = webDB.waitForElement(CommonUiLocators.CustomerAssoFlag, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(CommonUiLocators.CustomerAssoFlag, ElementType.Xpath);
-					flag = webDB.waitForElement(CommonUiLocators.LeftNavigationBar, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Successfully Checked a Customer Assioate Flag");
 					}
@@ -591,7 +591,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
@@ -599,12 +601,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("priceBasisPriceListValue"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 	/**Creates Open So Item - Domestic Customer
@@ -613,7 +612,7 @@ public class CustomerItemsFunctions {
 	 */
 	public void createOpenSoItemOpenSoForDomesticCustomer() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+				System.getProperty("TvsUsername"));
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -892,7 +891,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
@@ -900,12 +901,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("priceBasisPriceListValue"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(1000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -927,7 +925,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
@@ -935,13 +935,11 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("priceBasisPriceListValue"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
+
 	}
 
 	/**
@@ -962,7 +960,8 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
@@ -971,12 +970,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("priceBasisPriceListValue"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -999,24 +995,23 @@ public class CustomerItemsFunctions {
 		searchedItem();
 		customerAssoFlag();
 		commonFunc.hardWait(2000);
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		commonFunc.hardWait(2000);
 		clickSaveButton();
 		commonFunc.hardWait(1000);
-		// clickedActiveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
-//		priceClassSelect();
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisCatalogue"));
 		catalogSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("catalogName"));
-		saveButtoninCustomerItems();
 		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag1();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1039,8 +1034,9 @@ public class CustomerItemsFunctions {
 		searchedItem();
 		customerAssoFlag();
 		commonFunc.hardWait(2000);
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
 		clickSaveButton();
-		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -1049,12 +1045,9 @@ public class CustomerItemsFunctions {
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisCatalogue"));
 		catalogSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("catalogName"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag1();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1077,9 +1070,10 @@ public class CustomerItemsFunctions {
 		searchedItem();
 		customerAssoFlag();
 		commonFunc.hardWait(4000);
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
 		clickSaveButton();
 		commonFunc.hardWait(1000);
-		// clickedActiveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogExportCustomer"));
@@ -1088,12 +1082,9 @@ public class CustomerItemsFunctions {
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisCatalogue"));
 		catalogSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("catalogName"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag1();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1116,9 +1107,10 @@ public class CustomerItemsFunctions {
 		searchedItem();
 		customerAssoFlag();
 		commonFunc.hardWait(2000);
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
 		clickSaveButton();
 		commonFunc.hardWait(1000);
-		// clickedActiveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogExportCustomer"));
@@ -1127,12 +1119,9 @@ public class CustomerItemsFunctions {
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisCatalogue"));
 		catalogSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("catalogName"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag1();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1154,7 +1143,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -1162,12 +1153,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1190,7 +1178,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -1198,12 +1188,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1225,7 +1212,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogExportCustomer"));
@@ -1233,12 +1222,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 
@@ -1260,7 +1246,9 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogExportCustomer"));
@@ -1268,12 +1256,9 @@ public class CustomerItemsFunctions {
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
 		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
-		saveButtoninCustomerItems();
-		commonFunc.hardWait(3000);
-		filltersaItemCustomerItems();
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
 }

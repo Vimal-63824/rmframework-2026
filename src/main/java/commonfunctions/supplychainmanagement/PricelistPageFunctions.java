@@ -570,24 +570,23 @@ public class PricelistPageFunctions {
 
 	public void clickAddIconFillDetailsOfPriceList(String Location, String Supplier, String Item, String Discount) {
 		commonFunc.clickAddIconPricelist();
+		VerifyAddFrame();
 		flag = webDB.waitForElement(PricelistPageLocators.LocationLov, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.LocationLov, Location);
 			logs.logging("INFO", "Location is Entered");
 			commonFunc.checkRefreshCellsDisappear();
+			VerifyAddFrame();
 			flag = webDB.waitForElement(PricelistPageLocators.SuppliernameLov, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.SuppliernameLov, Supplier);
 				logs.logging("INFO", "Supplier is Entered");
+				VerifyAddFrame();
 				flag = webDB.waitForElement(PricelistPageLocators.ItemLov, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLov, Item);
 					logs.logging("INFO", "Item is Entered");
-					flag = webDB.waitForElement(PricelistPageLocators.PriceField, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Price Field is clicked");
-					}
 				}
 			}
 		}
@@ -601,6 +600,7 @@ public class PricelistPageFunctions {
 	 * @param Cost
 	 */
 	public void verifyEnterPrice(String Cost) {
+		VerifyAddFrame();
 		flag = webDB.waitForElement(PricelistPageLocators.PriceField, ElementType.Xpath);
 		if (flag) {
 			webDB.clearText(PricelistPageLocators.PriceField, ElementType.Xpath);
@@ -686,6 +686,7 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.FindCreateButton, ElementType.Xpath);
 			logs.logging("INFO", "Find Create Button is Clicked");
+			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
 			if (flag) {
 				String PRLISTNum = webDB.getTextFromElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
@@ -1625,26 +1626,28 @@ public class PricelistPageFunctions {
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To Workflow Frame");
 					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PRLForwardLov,
-							commonFunc.getDataFromTestDataSheet("HodValue"));
+							commonFunc.getDataFromTestDataSheet("AshokValue"));
 					commonFunc.hardWait(2000);
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To WorkFlow Frame");
 					flag = webDB.waitForElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
+						commonFunc.hardWait(2000);
 						webDB.switchToDefaultContent();
+
 //					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-								System.getProperty("HodPassword"));
-						approvalFunc.navigateToApprovals();
-						approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
-						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
-						commonFunc.logoutUser();
+					commonFunc.logoutUser();
+					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
+							System.getProperty("AshokPassword"), "AshokUsername");
+					approvalFunc.navigateToApprovals();
+					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
+					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
+					commonFunc.logoutUser();
 //					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 //							"TvsUsername");
 //					commonFunc.navigateItemPage();
-					}
+				}
 				}
 			}
 		}
@@ -1811,7 +1814,6 @@ public class PricelistPageFunctions {
 
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Method Is Used To PO Filter All Field Working
 	 * 
@@ -1828,11 +1830,13 @@ public class PricelistPageFunctions {
 		verifyAmendFilterSearchSOB(PricelistPageLocators.PRLNO, commonFunc.getDataFromTestDataSheet("PRLNumber"), 6,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(PricelistPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("ARAVIND AGENCY"), 8,
+				commonFunc.getDataFromTestDataSheet("PriceListSupplier"), 8,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PRLItem"), 9,
+		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemId,
+				commonFunc.getDataFromTestDataSheet("PRLItem"), 9,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PRLItem"), 11,
+		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemDesc,
+				commonFunc.getDataFromTestDataSheet("PRLItem"), 11,
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(PricelistPageLocators.PRL_Status,
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
@@ -1840,7 +1844,6 @@ public class PricelistPageFunctions {
 		verifyDateAfterAndBefore();
 		commonFunc.logoutUser();
 	}
-
 	/**
 	 * This Method Is Used To PO Filter All Field Working
 	 * 
@@ -1857,11 +1860,13 @@ public class PricelistPageFunctions {
 		verifyAmendFilterSearchSOB(PricelistPageLocators.PRLNO, commonFunc.getDataFromTestDataSheet("PRLNumber"), 6,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(PricelistPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("ARAVIND AGENCY"), 8,
+				commonFunc.getDataFromTestDataSheet("PriceListSupplier"), 8,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PRLItem"), 9,
+		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemId,
+				commonFunc.getDataFromTestDataSheet("PRLItem"), 9,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PRLItem"), 11,
+		verifyAmendFilterSearchSOB(PricelistPageLocators.ItemDesc,
+				commonFunc.getDataFromTestDataSheet("PRLItem"), 11,
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(PricelistPageLocators.PRL_Status,
 				commonFunc.getDataFromTestDataSheet("AmendedStatus"), 15,
@@ -1869,7 +1874,6 @@ public class PricelistPageFunctions {
 		verifyDateAfterAndBefore();
 		commonFunc.logoutUser();
 	}
-
 	/**
 	 * This Method Is Used To Verify Filter Search Purchase Order
 	 * 
@@ -1889,9 +1893,9 @@ public class PricelistPageFunctions {
 			webDB.sendTextToAnElement(LovButton, Value, ElementType.Xpath);
 		}
 //		if (Type.equals(commonFunc.getDataFromTestDataSheet("HeaderSearchType"))) {
-		clickSearchButton();
-		commonFunc.hardWait(3000);
-		verifyAmendTableValue(i, Value);
+			clickSearchButton();
+			commonFunc.hardWait(3000);
+			verifyAmendTableValue(i, Value);
 //		} 
 //		
 //		else if (Type.equals(commonFunc.getDataFromTestDataSheet("LineSearchType"))) {
@@ -1901,7 +1905,6 @@ public class PricelistPageFunctions {
 //		}
 		clearSearchFilter();
 	}
-
 	/**
 	 * Verify Date From And To
 	 * 
@@ -1911,7 +1914,6 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForElement(PricelistPageLocators.PRLDtFrom, ElementType.Xpath);
 		webDB.sendTextToAnElement(PricelistPageLocators.PRLDtFrom, commonFunc.getDataFromTestDataSheet("EffFrom"),
 				ElementType.Xpath);
-		System.out.println("TEST1");
 		clickSearchButton();
 		commonFunc.hardWait(3000);
 		verifyAmendTableValueAfterDate(5, commonFunc.getDataFromTestDataSheet("EffFrom"));
@@ -1919,33 +1921,30 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForElement(PricelistPageLocators.PRLDtTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(PricelistPageLocators.PRLDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
-		System.out.println("TEST2");
 		webDB.clickAnElement(PricelistPageLocators.ItemDesc, ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
 		verifyAmendTableValueBeforeDate(5, commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 	}
-
 	/**
 	 * This Method Is Used To Click Search Button
 	 * 
 	 * @author Deepan-GWL
 	 */
 	public void clickSearchButton() {
-		flag = webDB.waitForElement(PricelistPageLocators.PRLSearchButton, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(PricelistPageLocators.PRLSearchButton, ElementType.Xpath);
-			logs.logging("INFO", "Search Button Is Clicked");
+			flag = webDB.waitForElement(PricelistPageLocators.PRLSearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PricelistPageLocators.PRLSearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
 
-			commonFunc.hardWait(1000);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PricelistPageLocators.PRLFindTable, ElementType.Xpath);
-		}
-
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PricelistPageLocators.PRLFindTable, ElementType.Xpath);
+			}
+		
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1966,7 +1965,6 @@ public class PricelistPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Method Is Used To Verify Clear Search Filter
 	 * 
@@ -1983,7 +1981,6 @@ public class PricelistPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1992,7 +1989,8 @@ public class PricelistPageFunctions {
 	 * @param Value
 	 */
 	public void verifyAmendTableValueAfterDate(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(PricelistPageLocators.PRLFindTableData(i)));
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PricelistPageLocators.PRLFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -2009,7 +2007,6 @@ public class PricelistPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -2018,7 +2015,8 @@ public class PricelistPageFunctions {
 	 * @param Value
 	 */
 	public void verifyAmendTableValueBeforeDate(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(PricelistPageLocators.PRLFindTableData(i)));
+		List<WebElement> elements = webDB.getDriver()
+				.findElements(By.xpath(PricelistPageLocators.PRLFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -2036,5 +2034,11 @@ public class PricelistPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
+	private void VerifyAddFrame() {
+		flag = webDB.waitForElement(PricelistPageLocators.PricelistAddFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PricelistPageLocators.PricelistAddFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched to Frame");
+		}
+	}
 }

@@ -120,7 +120,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OpenSCO_ItemID_Input = "//input[@data-testid='P193151010_SPRCHD_PROD_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String OpenSCO_Supl_Input = "//input[@data-testid='P193151010_SPRCHD_SUPLR_ID']/following-sibling::button";
+	public static final String OpenSCO_Supl_Input = "//input[@id='P193151011_SPRCHD_SUPLR_ID']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String Open_SCO_FROMDATE_Field = "//*[@id=\"P193151011_SPRCHD_EFF_FROM_input\"]";
 	/** @locatorType XPATH */
@@ -226,5 +226,60 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator XPATH */
-	public static final String OkButtonForward = "//BUTTON[@ID='B479819303601188310']";//TODO
+	public static final String OkButtonForward = "//BUTTON[@ID='B479819303601188310']";
+
+	/** @Locator XPATH */
+	public static final String BatchQtyField(int i) {
+		return "//*[@id='PROC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[4]";
+	}
+
+	/** @Locator XPATH */
+	public static final String BatchCostField(int i) {
+		return "//*[@id='PROC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[5]";
+	}
+
+	/** @Locator XPATH */
+	public static final String SCO_Vou_Type_lov = "//input[@data-testid='P16171310651_POH_TYPE']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String ValueAdditionPfx = "//input[@data-testid='P16171310651_POH_ORDER_PFX_1']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String ProcessGLacct_lov = "//input[@data-testid='SCOP_PUR_ACCT']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String GLacctField = "//*[@id=\"ig_line4_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[20]";
+	/** @Locator XPATH */
+	public static final String SCO_Cancel_Btn = "//button[@data-testid='Cancel']";
+	/** @Locator XPATH */
+	public static final String SCO_LineDetail_Btn = "//span[@class='fa fa-list']";
+	/** @Locator XPATH */
+	public static final String SCO_SO_Ref_Lov = "//input[@data-testid='P161713106504_POL_SO_SCHLD_DESC']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String SCO_LineDet_Save_Icon = "//button[@data-testid='Save']";
+	/** @Locator XPATH */
+	public static final String SCO_LocID = "//span[@data-testid='P1931510101_SPRCHD_PLNT_LOC_ID']";
+	/** @Locator XPATH */
+	public static final String SCO_Unit = "//span[@data-testid='P1931510101_SPRCHD_PLNT']";
+	/** @Locator XPATH */
+	public static final String SCO_DocNO = "//span[@data-testid='P1931510101_SPRCHD_PO_NO']";
+	/** @Locator XPATH */
+	public static final String SCO_Pfx = "//input[@data-testid='P1931510101_SPRCHD_PO_PFX']";
+	/** @Locator XPATH */
+	public static final String SCO_Type = "//span[@data-testid='P1931510101_SPRCHD_LVL_TYPE']";
+	/** @Locator XPATH */
+	public static final String SCO_Item = "//span[@data-testid='P1931510101_SPRCHD_PROD_ID']";
+	/** @Locator XPATH */
+	public static final String SCO_SupplierID = "//span[@data-testid='P1931510101_SPRCHD_SUPLR_ID']";
+	/** @Locator XPATH */
+	public static final String SCO_Status = "//span[@data-testid='P1931510101_SPRCHD_STATUS']";
+	/** @Locator XPATH */
+	public static final String OSP_ProcessField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @Locator XPATH */
+	public static final String OSP_UOMField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[3]";
+	/** @Locator XPATH */
+	public static final String OSP_BatchqtyField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[4]";
+	/** @Locator XPATH */
+	public static final String OSP_BatchCostField = "//*[@id=\'PROC_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr/td[5]";
+	/** @Locator XPATH */
+	public static final String OSP_UOM = "//select[@data-testid='SPRCLN_UOM']";
+	/** @locatorType XPATH */
+	public static final String OpenSCO_Proc_Field = "//input[@data-testid='SPRCLN_PROC_ID']/following-sibling::button";
 }

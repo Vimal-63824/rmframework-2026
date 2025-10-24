@@ -18,7 +18,7 @@ import utils.Mailer;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 
-public class RfqTest {
+public class RfqTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
