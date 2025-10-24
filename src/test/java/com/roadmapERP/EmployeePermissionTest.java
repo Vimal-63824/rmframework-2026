@@ -368,6 +368,41 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To Check Loan Request based on Return to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 30, groups = {
+			"Employee Loan Payment" }, description = "108.To CheckLoan Payment based on Create loan payment part")
+	public void checkLoanPaymentbasedonCreateLoanPaymentPart() {
+		flag = attendanceLeave.CheckLoanPaymentEntry();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * To Check Loan Request based on Return to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 31, groups = {
+			"Employee Loan Payment" }, description = "110.To CheckLoan Payment with reverse part option")
+	public void checkLoanPaymentWithReversePartOption() {
+		flag = attendanceLeave.CheckLoanPaymentWithReversePartOption();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * To CheckLoan Payment Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Test(priority = 32, groups = {
+			"Employee Loan Payment" }, description = "106.To CheckLoan Payment Find page with all line wise record")
+	public void CheckLoanPaymentFindPageWithAllLineWiseRecord() {
+		// TODO Covered in CheckLoanPaymentWithReversePartOption() Method
+		Assert.assertTrue(flag);
+	}
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL

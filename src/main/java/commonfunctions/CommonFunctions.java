@@ -2868,6 +2868,16 @@ public class CommonFunctions {
 	}
 
 	/**
+	 * This Method Is Used To Employee Loan Payment Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToLoanPaymentScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("EmployeeLoanPayment"),
+				AttendanceLeaveLocators.LoanPaymentFindSearch);
+	}
+
+	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 
 	 * @author Sakthi-GWL
