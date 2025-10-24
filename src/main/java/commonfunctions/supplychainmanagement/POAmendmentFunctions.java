@@ -77,11 +77,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -138,11 +136,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -200,11 +196,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -262,11 +256,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -654,7 +646,7 @@ public class POAmendmentFunctions {
 				webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
 			}
 			commonFunc.searchAndSelectValueInFilters(POAmendmentLocators.HSNCode,
-					commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
+					commonFunc.getDataFromTestDataSheet("HsnCode75052200"));
 		}
 		while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
 			webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
@@ -1291,11 +1283,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1351,11 +1341,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1412,11 +1400,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1473,11 +1459,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1533,11 +1517,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1590,11 +1572,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1648,11 +1628,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1706,11 +1684,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1764,11 +1740,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1822,11 +1796,9 @@ public class POAmendmentFunctions {
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1885,11 +1857,9 @@ public class POAmendmentFunctions {
 			verifyWaitingForApproval();
 			commonFunc.logoutUser();
 		}
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -1998,11 +1968,9 @@ public class POAmendmentFunctions {
 			verifyWaitingForApproval();
 			commonFunc.logoutUser();
 		}
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2101,11 +2069,9 @@ public class POAmendmentFunctions {
 			verifyWaitingForApproval();
 			commonFunc.logoutUser();
 		}
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2176,11 +2142,9 @@ public class POAmendmentFunctions {
 			verifyWaitingForApproval();
 			commonFunc.logoutUser();
 		}
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2250,11 +2214,9 @@ public class POAmendmentFunctions {
 			verifyWaitingForApproval();
 			commonFunc.logoutUser();
 		}
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2334,11 +2296,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2514,11 +2474,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2594,11 +2552,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2676,11 +2632,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2758,11 +2712,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2840,11 +2792,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -2922,11 +2872,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3004,11 +2952,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3085,11 +3031,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3166,11 +3110,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3248,11 +3190,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3330,11 +3270,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3412,11 +3350,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3494,11 +3430,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3580,11 +3514,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3691,11 +3623,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3777,11 +3707,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3863,11 +3791,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -3949,11 +3875,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4036,11 +3960,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4123,11 +4045,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4209,11 +4129,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4295,11 +4213,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4382,11 +4298,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4468,11 +4382,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4554,11 +4466,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4678,11 +4588,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4752,17 +4660,10 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
-			commonFunc.navigatePoAmendmentPage();
-			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
-					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
-			flag = commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
@@ -4826,11 +4727,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4900,11 +4799,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -4974,11 +4871,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5049,11 +4944,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5124,11 +5017,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5199,11 +5090,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5273,11 +5162,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5347,11 +5234,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5421,11 +5306,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5495,11 +5378,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5570,11 +5451,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5791,11 +5670,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -5878,11 +5755,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -6845,11 +6720,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -6930,7 +6803,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7017,7 +6890,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7105,7 +6978,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7193,7 +7066,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7281,7 +7154,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7368,7 +7241,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7456,7 +7329,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7544,7 +7417,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7631,7 +7504,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7719,7 +7592,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7807,7 +7680,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7895,7 +7768,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -7983,7 +7856,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8071,7 +7944,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8159,7 +8032,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8247,7 +8120,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8333,7 +8206,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8420,7 +8293,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8507,7 +8380,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8595,7 +8468,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8681,7 +8554,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8767,7 +8640,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8852,7 +8725,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -8937,7 +8810,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9023,7 +8896,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9112,7 +8985,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9200,7 +9073,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9289,7 +9162,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9378,7 +9251,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9466,7 +9339,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9555,7 +9428,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9643,7 +9516,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9732,7 +9605,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9821,7 +9694,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9909,7 +9782,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -9997,7 +9870,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10085,7 +9958,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10174,7 +10047,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10263,7 +10136,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10351,7 +10224,7 @@ public class POAmendmentFunctions {
 					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
 						String Quantity = itemmultiple[i][5];
 						String UnitCost = itemmultiple[i][6];
-						String HsnCode = itemmultiple[i][19];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
 
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
@@ -10459,11 +10332,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -10550,11 +10421,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -10642,11 +10511,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -10734,11 +10601,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -10826,11 +10691,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -10918,11 +10781,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11010,11 +10871,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11102,11 +10961,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11194,11 +11051,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11286,11 +11141,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11378,11 +11231,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11469,11 +11320,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11561,11 +11410,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11653,11 +11500,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11745,11 +11590,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11837,11 +11680,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -11928,11 +11769,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12020,11 +11859,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12112,11 +11949,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12204,11 +12039,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12296,11 +12129,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12388,11 +12219,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12480,11 +12309,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12572,11 +12399,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12664,11 +12489,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12757,11 +12580,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();
@@ -12841,11 +12662,9 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getPOANumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPOANumber());
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 		if (flag) {
 			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
 			commonFunc.navigatePoAmendmentPage();

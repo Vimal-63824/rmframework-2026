@@ -73,7 +73,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PONumberSelect = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String CancelButton = "//button[@id='B3159242843298273062']";
+	public static final String CancelButton = "//button[@data-testid='Cancel']";
 
 	/** @locatorType Xpath */
 	public static final String DeleteLineItemPO(String ItemName) {
@@ -82,19 +82,19 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String POStatusTableText(String POno) {
-		return "(//a[text()='" + POno + "']/../../td/div[contains(@style,'green')])[1]";
+		return "(//a[text()='" + POno + "']/../../td/div[contains(@style,'color')])[1]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String PendingRFQBtn = "//button[@id='B1022828162906840804']";
 	/** @locatorType Xpath */
-	public static final String PendingPRBtn = "//button[@id='B2145315718133643750']";
+	public static final String PendingPRBtn = "(//button[@data-testid='Pend_PR'])[1]";
 	/** @locatorType Xpath */
 	public static final String PendingPRiframe = "//iframe[@title='Pending PR']";
 	/** @locatorType Xpath */
 	public static final String PendingPR_FindPRNo = "//button[contains(@id,'PR_NO')]";
 	/** @locatorType Xpath */
-	public static final String PendingPR_SearchBtn = "//button[@id='B2403556419484961039']";
+	public static final String PendingPR_SearchBtn = "//button[@data-testid='Search']";
 	/** @locatorType Xpath */
 	public static final String PendingPR_SelectAllCheckBox = "(//input[@id='check_all'])";
 	/** @locatorType Xpath */
@@ -104,7 +104,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPR_CurrencySelectBtn = "//button[@id='P16151310407_CURRENCY_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PendingPR_OkBtn = "//button[@id='B2327883803940919344']";
+	public static final String PendingPR_OkBtn = "//button[@data-testid='OK']";
 
 	/** @locatorType Xpath */
 	public static final String LineAmount(String text) {
@@ -131,21 +131,21 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemChargesTab = "//label[@for='P161513106041_TAB_LINE_1']";
 	/** @locatorType Xpath */
-	public static final String AddItemCharges = "//button[@id='B1474679171989649967']";
+	public static final String AddItemCharges = "//button[@id='B1477689169249448085']";
 	/** @locatorType Xpath */
 	public static final String ChargeItemTable = "//tbody/tr[@data-id='t1000']/td[3]";
 	/** @locatorType Xpath */
-	public static final String ChargeItemInput = "//input[@id='C5323519417424678619']";
+	public static final String ChargeItemInput = "//tbody/tr[@data-id='t1000']/td[3]//input[@data-testid='CHARGE_ITEM']";
 	/** @locatorType Xpath */
 	public static final String ChargePercentage = "//tbody/tr[@data-id='t1000']/td[7]";
 	/** @locatorType Xpath */
-	public static final String ChargePercentageInput = "//input[@id='C2717147067612688516']";
+	public static final String ChargePercentageInput = "//tbody/tr[@data-id='t1000']/td[7]//input";
 	/** @locatorType Xpath */
-	public static final String ChargeItemButton = "//button[@id='C5323519417424678619_lov_btn']";
+	public static final String ChargeItemButton = "//tbody/tr[@data-id='t1000']/td[3]//button";
 	/** @locatorType Xpath */
-	public static final String ChargesTickIcon = "//button[@id='B1474679446874649975']";
+	public static final String ChargesTickIcon = "//button[@id='B1477689444134448093']";
 	/** @locatorType Xpath */
-	public static final String IncludeCharges = "//button[@id='B1822917544074308705']";
+	public static final String IncludeCharges = "//button[@data-testid='Include_Charge']";
 	/** @locatorType Xpath */
 	public static final String LineTab = "//label[@for='P161513106041_TAB_LINE_0']";
 	/** @locatorType Xpath */
@@ -153,7 +153,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String GLAccDesc = "//tbody/tr[@data-id='t1000']/td[11]";
 	/** @locatorType Xpath */
-	public static final String GlAccDescButton = "//*[@id='C5323521734029678642_lov_btn']";
+	public static final String GlAccDescButton = "//tbody/tr[@data-id='t1000']/td[11]//button";
 
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
@@ -365,50 +365,50 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String ContractPriceOkButton = "//button[text()='OK']";
 	/** @locatorType Xpath */
-	public static final String LocId = "//button[@id='P1615131061_LOCATION_lov_btn']";
+	public static final String LocId = "//input[@data-testid='P1615132060_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String Unit = "//button[@id='P1615131061_UNIT_lov_btn']";
+	public static final String Unit = "//input[@data-testid='P1615132060_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PrNo = "//button[@id='P1615131061_PR_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PONo = "//button[@id='P1615131061_DOC_NO_lov_btn']";
+	public static final String PONo = "//input[@data-testid='P1615132060_PO_SSO_NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ClassLovButton = "//button[@id='P1615131061_CLASS_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String POTypeSelect = "//select[@id='P1615131061_DOC_TYPE']";
 	/** @locatorType Xpath */
-	public static final String SupplierNameLovButton = "//button[@id='P1615131061_SUPPLIER_lov_btn']";
+	public static final String SupplierNameLovButton = "//input[@data-testid='P1615132060_SUPLR_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SubClassLovButton = "//button[@id='P1615131061_SUB_CLASS_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PoDtFrom = "//input[@id='P1615131061_DATE_FROM_input']";
+	public static final String PoDtFrom = "//input[@id='P1615131061_DATE_FRM_input']";
 	/** @locatorType Xpath */
-	public static final String PoDtTo = "//input[@id='P1615131061_DATE_TO_input']";
+	public static final String PoDtTo = "//input[@id='P1615131061_DATE_TO_1_input']";
 	/** @locatorType Xpath */
 	public static final String BuyerLovButton = "//button[@id='P1615131061_BUYER_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String ItemId = "//button[@id='P1615131061_PROD_ID_lov_btn']";
+	public static final String ItemId = "//input[@data-testid='P1615132060_ITEM_1']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ItemDesc = "//input[@id='P1615131061_PROD_DESC']";
+	public static final String ItemDesc = "//input[@data-testid='P1615132060_ITEM_DESC']";
 	/** @locatorType Xpath */
 	public static final String RequestDtFrom = "//input[@id='P1615131061_REQ_DATE_FM_input']";
 	/** @locatorType Xpath */
 	public static final String RequestDtTo = "//input[@id='P1615131061_REQ_DATE_TO_input']";
 	/** @locatorType Xpath */
-	public static final String PO_Status = "//select[@id='P1615131061_STATUS']";
+	public static final String PO_Status = "//select[@data-testid='P1615132060_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='7919620509087124596_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='2426776275689295958_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='2311620220686822224_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='8098271753405592657_orig']/tbody/tr[2]/td[3]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='2311620220686822224_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='8098271753405592657_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='7919620509087124596_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='2426776275689295958_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
