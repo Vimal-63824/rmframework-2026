@@ -176,9 +176,11 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String FindResultSearchBar = "//input[@id='detail_search_field']";
 	/** @locatorType Xpath */
+	public static final String FindHeaderResultSearchBar = "//input[@id='header_search_field']";
+	/** @locatorType Xpath */
 	public static final String FindYearLovBtn = "//*[@data-testid='PRE_YEAR']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindPeriodLovBtn = "//*[@data-testid='PRE_YEAR']/following-sibling::button";
+	public static final String FindPeriodLovBtn = "//*[@data-testid='PRE_PERIOD']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String FindCalenderLovBtn = "//*[@data-testid='PRE_CALANDER']/following-sibling::button";
 	/** @locatorType Xpath */

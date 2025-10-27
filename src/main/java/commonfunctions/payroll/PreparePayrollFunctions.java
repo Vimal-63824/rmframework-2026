@@ -108,6 +108,9 @@ public class PreparePayrollFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElementUntilGivenTime(PreparePayrollLocators.UnloadUnitGroupBtn, ElementType.Xpath, 60);
 			if (flag) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				logs.logging("INFO", "Load Unit Group Clicked in Prepare Payroll Process");
 			}
 		}
@@ -127,6 +130,9 @@ public class PreparePayrollFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElementUntilGivenTime(PreparePayrollLocators.LoadUnitGroupBtn, ElementType.Xpath, 60);
 			if (flag) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				logs.logging("INFO", "Unload Unit Group Clicked in Prepare Payroll Process");
 			}
 		}
@@ -527,14 +533,17 @@ public class PreparePayrollFunctions {
 					ElementType.Xpath);
 			List<WebElement> Amnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAllowanceAmountList,
 					ElementType.Xpath);
-			for (int i = 0; i < Amnt.size(); i++) {
+			for (int i = 1; i <= Amnt.size(); i++) {
 				if (i <= Desc.size()) {
-					logs.logging("INFO", "Displayed Description in Allowances: " + Desc.get(i).getText());
+					logs.logging("INFO", "Displayed Description in Allowances: " + Desc.get(i - 1).getText());
 				}
 				if (i <= ActualAmnt.size()) {
-					logs.logging("INFO", "Displayed Actual Amount in Allowances: " + ActualAmnt.get(i).getText());
+					logs.logging("INFO", "Displayed Actual Amount in Allowances: " + ActualAmnt.get(i - 1).getText());
+				}
+				if (i < Amnt.size()) {
+					logs.logging("INFO", "Displayed Amount in Allowances: " + Amnt.get(i - 1).getText());
 				} else {
-					logs.logging("INFO", "Displayed Amount in Allowances: " + Amnt.get(i).getText());
+					logs.logging("INFO", "Total Amount in Allowances: " + Amnt.get(i - 1).getText());
 				}
 			}
 			logs.logging("INFO", "Allowances Displayed and Verified in Emp id Addition Page");
@@ -554,14 +563,14 @@ public class PreparePayrollFunctions {
 					ElementType.Xpath);
 			List<WebElement> Amnt = webDB.getListOfElements(PreparePayrollLocators.PayrollAdjustmentAmountList,
 					ElementType.Xpath);
-			for (int i = 0; i < Amnt.size(); i++) {
+			for (int i = 1; i <= Amnt.size(); i++) {
 				if (i <= Desc.size()) {
-					logs.logging("INFO", "Displayed Description in Adjustment: " + Desc.get(i).getText());
+					logs.logging("INFO", "Displayed Description in Adjustment: " + Desc.get(i - 1).getText());
 				}
-				if (i <= Desc.size()) {
-					logs.logging("INFO", "Displayed Total Amount in Adjustment: " + Amnt.get(i).getText());
+				if (i == Desc.size()) {
+					logs.logging("INFO", "Displayed Total Amount in Adjustment: " + Amnt.get(i - 1).getText());
 				} else {
-					logs.logging("INFO", "Displayed Amount in Adjustment: " + Amnt.get(i).getText());
+					logs.logging("INFO", "Displayed Amount in Adjustment: " + Amnt.get(i - 1).getText());
 				}
 			}
 			logs.logging("INFO", "Adjustment Displayed and Verified in Emp id Addition Page");
@@ -650,7 +659,7 @@ public class PreparePayrollFunctions {
 	 */
 	public boolean verifyPayrollProcessFromLoadUnitToProcessPayroll() {
 		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
@@ -736,12 +745,13 @@ public class PreparePayrollFunctions {
 	 */
 	public boolean verifyPreparePayrollFindWithLineWiseRecord() {
 		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String Month = date.format(formatter).toUpperCase();
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateToEmployeeAdjustmentTab();
+			commonFunc.navigateToPrepareProcessPayrollTab();
+			clickLinesRadioButtonInFind();
 			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
 			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202425"));
@@ -770,7 +780,9 @@ public class PreparePayrollFunctions {
 		if (flag) {
 			webDB.clickAnElement(PreparePayrollLocators.PayrollFindSearchBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PreparePayrollLocators.FindResultSearchBar, ElementType.Xpath);
+			flag = webDB.verifyIsElementDisplayed(PreparePayrollLocators.FindResultSearchBar, ElementType.Xpath)
+					|| webDB.verifyIsElementDisplayed(PreparePayrollLocators.FindHeaderResultSearchBar,
+							ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Search Icon Clicked in Prepare Payroll");
 			}
@@ -907,7 +919,8 @@ public class PreparePayrollFunctions {
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-			commonFunc.navigateToEmployeeAdjustmentTab();
+			commonFunc.navigateToPrepareProcessPayrollTab();
+			clickHeaderRadioButtonInFind();
 			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202425"));
 			webDB.navigateToRefresh();
 			findWithPeriodInHeaderWise(Month);
@@ -992,4 +1005,41 @@ public class PreparePayrollFunctions {
 		logs.logging("INFO", "Verified Find Search Functions with Period in Payroll Headerwise: " + Period);
 	}
 
+	/**
+	 * This Method used to click header in find page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickHeaderRadioButtonInFind() {
+		flag = webDB.waitForElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
+			webDB.clickAnElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PreparePayrollLocators.FindYearLovBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Header Radio Button Clicked in Find Page");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to click lines in find page
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void clickLinesRadioButtonInFind() {
+		flag = webDB.waitForElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);
+			webDB.clickAnElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PreparePayrollLocators.FindYearLovBtn, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Lines Radio Button Clicked in Find Page");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
 }
