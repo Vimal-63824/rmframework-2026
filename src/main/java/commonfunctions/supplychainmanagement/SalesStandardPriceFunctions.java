@@ -180,7 +180,7 @@ public class SalesStandardPriceFunctions {
 		}
 		String Landing_Cost = RandomStringUtils.randomNumeric(1);
 		if (Landing_Cost.equals("0")) {
-			Landing_Cost = "10";
+			Landing_Cost = "0";
 		}
 
 		String Min_Disc_Value = RandomStringUtils.randomNumeric(1);

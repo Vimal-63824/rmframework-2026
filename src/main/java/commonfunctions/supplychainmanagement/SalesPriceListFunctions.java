@@ -861,17 +861,20 @@ public class SalesPriceListFunctions {
 	public void searchRecordFindPage() {
 		flag = webDB.waitForElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.javaScriptClickAnElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesPriceListLocators.SearchBoxFind, ElementType.Xpath);
 			if (flag) {
-				webDB.sendTextToAnElement(SalesPriceListLocators.SearchBoxFind, VariableHandler.getPriceListDocno(),
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.javaScriptSendTextToAnElement(SalesPriceListLocators.SearchBoxFind, VariableHandler.getPriceListDocno(),
 						ElementType.Xpath);
 				flag = webDB.waitForElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Successfully Passed a Price List Document Number");
 					flag = webDB.waitForElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.javaScriptClickAnElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 						logs.logging("INFO", "Successfully Populated a Cancelled Stage Document ");
 					}
 				}

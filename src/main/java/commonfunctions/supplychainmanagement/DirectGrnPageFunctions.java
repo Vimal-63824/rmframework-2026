@@ -1179,7 +1179,7 @@ public class DirectGrnPageFunctions {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DBDETAILS.xlsx";
+				+ "DirectGrnDetails.xlsx";
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Unit Cost For This Item");
 		for (int i = i1; i <= i1; i++) {
@@ -3287,7 +3287,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("PriceListSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnServicePriceList"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3502,6 +3501,8 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspectionD() throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnServicePriceList"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3514,6 +3515,10 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnServicePriceList"));
 	}
 
 	/**
@@ -4005,7 +4010,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
-					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, SheetName);
+					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, SheetName);
 				}
 			}
@@ -4227,7 +4232,7 @@ public class DirectGrnPageFunctions {
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
-					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, SheetName);
+					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, SheetName);
 				}
 			}
@@ -4721,5 +4726,36 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+	/**
+	 * This Method Is Used To Verify Unit Cost and Discount Percentage Write In
+	 * Excel UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 */
+
+	public void verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(int i1, String SheetName)
+			throws IOException {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DirectGrnDetails.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Unit Cost For This Item");
+		for (int i = i1; i <= i1; i++) {
+			String ITEM_NAME = ItemMultiple[i1][1];
+			if (!ITEM_NAME.equals("")) {
+				String Cost = dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+						commonFunc.getDataFromTestDataSheet("GRNUnitCost"));
+				logs.logging("INFO", "Rate Contract Price For This Item " + ITEM_NAME + "Is : " + Cost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i1, 6, Cost);
+				String TradeDiscountPct = dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+						commonFunc.getDataFromTestDataSheet("GRNDiscPct"));
+				logs.logging("INFO", "Rate Contract Price For This Item " + ITEM_NAME + "Is : " + TradeDiscountPct);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i1, 8, TradeDiscountPct);
+
+			}
+		}
+
+	}
 }

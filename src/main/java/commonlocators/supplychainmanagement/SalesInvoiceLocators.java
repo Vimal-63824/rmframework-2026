@@ -29,7 +29,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Sales_Inv = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[10]";
 	/** @Locator XPATH */
-	public static final String Sales_Inv_Pend_Btn = "//button[contains(@id,'B986356987649170102')]";
+	public static final String Sales_Inv_Pend_Btn = "//button[@data-testid='SALES INVOICE PENDING ICON']";
 	/** @Locator XPATH */
 	public static final String SI_Add_Icon = "//button[@data-testid='SALES INVOICE ADD ICON']";
 	/** @Locator XPATH */
@@ -107,7 +107,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Line_Det_save_Btn = "//button[contains(@id,'B1676844312868176218')]";
 	/** @Locator XPATH */
-	public static final String PendingSORadioBtn = "//button[@id='B992431039033348591']";
+	public static final String PendingSORadioBtn = "//button[@data-testid='Pending_SO']";
 	/** @Locator XPATH */
 	public static final String PendingSOIframe = "//iframe[@title='Pending Invoice']";
 	/** @Locator XPATH */
