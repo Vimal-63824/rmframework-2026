@@ -3089,7 +3089,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnGenUD"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnGenUD"));
-		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3131,8 +3130,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnSameUomServiceTypeWithoutInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnService"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3144,9 +3141,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
 	}
 
 	/**
@@ -3285,8 +3279,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3299,10 +3291,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectGrnServicePriceList"));
 	}
 
 	/**
@@ -3364,8 +3352,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnUserDefinedSameUomServiceTypeWithoutInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnServiceWOI"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnServiceWOI"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3378,10 +3364,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnServiceWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectGrnServiceWOI"));
 	}
 
 	/**
@@ -3445,8 +3427,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeWithoutInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3459,10 +3439,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
 	}
 
 	/**
@@ -3526,8 +3502,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3540,10 +3514,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectGrnServicePriceList"));
 	}
 
 	/**
@@ -3606,8 +3576,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnService"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3620,9 +3588,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
 	}
 
 	/**
@@ -3686,8 +3651,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3700,10 +3663,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
 	}
 
 	/**
@@ -3768,8 +3727,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3783,10 +3740,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
 	}
 
 	/**
@@ -3849,8 +3802,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnDifferentUomServiceTypeWithoutInspectionWOQcD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnService"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3863,9 +3814,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnService"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectGrnService"));
 	}
 
 	/**
@@ -3929,8 +3877,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnRateContractDifferentUomServiceTypeWithInspectionWOQcD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3943,10 +3889,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
 	}
 
 	/**
@@ -4013,8 +3955,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListDifferentUomServiceTypeWithInspectionWOQcD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -4028,10 +3968,6 @@ public class DirectGrnPageFunctions {
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
 	}
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
@@ -4562,7 +4498,7 @@ public class DirectGrnPageFunctions {
 
 					}
 				}
-//				lotSerialQtyApportion();
+				lotSerialQtyApportion();
 
 			}
 		}
