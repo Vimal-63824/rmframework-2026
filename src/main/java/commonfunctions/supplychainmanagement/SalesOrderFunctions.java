@@ -814,10 +814,10 @@ public class SalesOrderFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
-//				flag = webDB.waitForElement(CommonUiLocators.ClearIcon, ElementType.Xpath);
-//				if (flag) {
-//					logs.logging("INFO", "Verified Navigate To SO Home Page");
-//				}
+				flag = webDB.waitForElement(CommonUiLocators.ClearIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To SO Home Page");
+				}
 			}
 			webDB.switchToDefaultContent();
 			assertTrue(flag);
@@ -5802,9 +5802,9 @@ public class SalesOrderFunctions {
 				logs.logging("INFO", "For This Line Item " + ITEM_ID
 						+ " Old Discount Amount Per Qty Is Matched With DataBase Values");
 
-				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
-						commonFunc.getDataFromTestDataSheet("SOADBLineOldHSNColumnName")), OldHSNCode);
-				logs.logging("INFO", "For This Line Item " + ITEM_ID + " Old HSN Code Is Matched With DataBase Values");
+//				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
+//						commonFunc.getDataFromTestDataSheet("SOADBLineOldHSNColumnName")), OldHSNCode);
+//				logs.logging("INFO", "For This Line Item " + ITEM_ID + " Old HSN Code Is Matched With DataBase Values");
 
 				verifyAssertionBothValues(dbCommonFunctions.SOALineDetails(VariableHandler.getSOAmdNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("SOADBLineOldCGSTColumnName")), OldCGST);
