@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -30,6 +31,7 @@ public class PreparePayrollFunctions {
 	private CommonFunctions commonFunc = new CommonFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static CommonPayrollFunctions commonPayrollFunctions = new CommonPayrollFunctions();
+	private static EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 
 	/**
 	 * This method used to click Add icon In Prepare Payroll
@@ -74,10 +76,20 @@ public class PreparePayrollFunctions {
 			if (flag) {
 				logs.logging("INFO", "Tick Icon Clicked in Prepare Payroll Creation");
 				commonFunc.checkRefreshCellsDisappear();
-				String DocNo = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-				DocNo = (DocNo.split("No.:")[1]).trim();
-				VariableHandler.setPayrollDocNo(DocNo);
-				logs.logging("INFO", "Displayed Payroll Document Number: " + DocNo);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(PreparePayrollLocators.PayrollProcessDisplayDocNo, ElementType.Xpath);
+				if (flag) {
+					String DocNo = webDB.getTextFromElement(PreparePayrollLocators.PayrollProcessDisplayDocNo,
+							ElementType.Xpath);
+					int startBracket = DocNo.indexOf('(');
+					int HiphenBracket = DocNo.indexOf('-') + 1;
+					DocNo = DocNo.substring(HiphenBracket, startBracket).trim();
+//					DocNo = (DocNo.split("No.:")[1]).trim();
+					VariableHandler.setPayrollDocNo(DocNo);
+					logs.logging("INFO", "Displayed Payroll Document Number: " + DocNo);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -144,28 +156,35 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 * @param Name
-	 * @Optional_param boolean DeselectOption(if you given in param Deselect unit
-	 *                 and group)
 	 */
-	private void selectUnitAndGroupWithNameInLoadPayroll(String Name, boolean... DeselectOption) {
+	private void unselectUnitAndGroupWithNameInLoadPayroll(String Name) {
 		flag = webDB.waitForElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
 		if (flag) {
-			if (DeselectOption != null) {
-				flag = webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
-				if (flag) {
-					webDB.moveToElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
-					webDB.clickAnElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
-					flag = !webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name),
-							ElementType.Xpath);
-				}
-			} else {
-				flag = !webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
-				if (flag) {
-					webDB.moveToElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
-					webDB.clickAnElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
-				}
-				flag = webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+			if (webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath)) {
+				webDB.moveToElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+				webDB.clickAnElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+				commonFunc.hardWait(2000);
 			}
+			flag = !webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click Unit Group Input Check Box In Prepare Payroll
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Name
+	 */
+	private void selectUnitAndGroupWithNameInLoadPayroll(String Name) {
+		flag = webDB.waitForElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+		if (flag) {
+			if (!webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath)) {
+				webDB.moveToElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+				webDB.clickAnElement(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
+				commonFunc.hardWait(2000);
+			}
+			flag = webDB.isElementSelected(PreparePayrollLocators.UnitGroupCheckBoxInput(Name), ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -234,17 +253,23 @@ public class PreparePayrollFunctions {
 	 * @param EmpId
 	 */
 	private void unSelectedAllAndSearchAndSelectEmployee(String EmpId) {
-		flag = webDB.waitForElement(PreparePayrollLocators.EmployeeSearchBarInput, ElementType.Xpath);
+		flag = webDB.waitForElement(PreparePayrollLocators.AllEmployeeCheckBoxInput, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(PreparePayrollLocators.EmployeeSearchBarInput, EmpId, ElementType.Xpath);
-			logs.logging("INFO", "Search bar EmpId Sent: " + EmpId);
-			flag = webDB.waitForElement(PreparePayrollLocators.EmployeeSearchBarGoBtn, ElementType.Xpath);
+			webDB.moveToElement(PreparePayrollLocators.AllEmployeeCheckBoxInput, ElementType.Xpath);
+			webDB.clickAnElement(PreparePayrollLocators.AllEmployeeCheckBoxInput, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PreparePayrollLocators.EmployeeSearchBarInput, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PreparePayrollLocators.EmployeeSearchBarGoBtn, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(PreparePayrollLocators.EmployeeCheckBoxInput(EmpId), ElementType.Xpath);
+				webDB.sendTextToAnElement(PreparePayrollLocators.EmployeeSearchBarInput, EmpId, ElementType.Xpath);
+				logs.logging("INFO", "Search bar EmpId Sent: " + EmpId);
+				flag = webDB.waitForElement(PreparePayrollLocators.EmployeeSearchBarGoBtn, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Employee Searched Successfully: " + EmpId);
+					webDB.clickAnElement(PreparePayrollLocators.EmployeeSearchBarGoBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(PreparePayrollLocators.EmployeeCheckBoxInput(EmpId), ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Employee Searched Successfully: " + EmpId);
+					}
 				}
 			}
 		}
@@ -256,28 +281,16 @@ public class PreparePayrollFunctions {
 	 * 
 	 * @author Sakthi-GWL
 	 * @param Name
-	 * @Optional_param boolean DeselectOption(if you given in param Deselect unit
-	 *                 and group)
 	 */
-	private void selectEmployeeWithNameInLoadPayroll(String Name, boolean... DeselectOption) {
+	private void selectEmployeeWithNameInLoadPayroll(String Name) {
 		flag = webDB.waitForElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
 		if (flag) {
-			if (DeselectOption != null) {
-				flag = webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
-				if (flag) {
-					webDB.moveToElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
-					webDB.clickAnElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
-					flag = !webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name),
-							ElementType.Xpath);
-				}
-			} else {
-				flag = !webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
-				if (flag) {
-					webDB.moveToElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
-					webDB.clickAnElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
-				}
-				flag = webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
+			if (!webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath)) {
+				webDB.moveToElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
+				webDB.clickAnElement(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
+				commonFunc.hardWait(2000);
 			}
+			flag = webDB.isElementSelected(PreparePayrollLocators.EmployeeCheckBoxInput(Name), ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -327,6 +340,9 @@ public class PreparePayrollFunctions {
 				webDB.clickAnElement(PreparePayrollLocators.AttendanceSaveIcon, ElementType.Xpath);
 				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
 					logs.logging("INFO", "Attendance Paid and Unpaid Leave Updated and Save Successfully");
 				}
 			}
@@ -413,11 +429,15 @@ public class PreparePayrollFunctions {
 	private void clickPreparePayrollButton() {
 		flag = webDB.waitForElement(PreparePayrollLocators.PreparePayrollBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(PreparePayrollLocators.PreparePayrollBtn, ElementType.Xpath);
 			webDB.clickAnElement(PreparePayrollLocators.PreparePayrollBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 60);
 			if (flag) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
 				logs.logging("INFO", "Prepare Payroll Button Clicked");
 			}
 		}
@@ -513,9 +533,6 @@ public class PreparePayrollFunctions {
 				}
 				if (i <= ActualAmnt.size()) {
 					logs.logging("INFO", "Displayed Actual Amount in Allowances: " + ActualAmnt.get(i).getText());
-				}
-				if (i <= ActualAmnt.size()) {
-					logs.logging("INFO", "Displayed Total Amount in Allowances: " + Amnt.get(i).getText());
 				} else {
 					logs.logging("INFO", "Displayed Amount in Allowances: " + Amnt.get(i).getText());
 				}
@@ -588,6 +605,7 @@ public class PreparePayrollFunctions {
 	private void clickReviewCompletedInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.ReviewCompletedBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(PreparePayrollLocators.ReviewCompletedBtn, ElementType.Xpath);
 			webDB.clickAnElement(PreparePayrollLocators.ReviewCompletedBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(PreparePayrollLocators.ProcessPayrollBtn, ElementType.Xpath);
@@ -609,6 +627,7 @@ public class PreparePayrollFunctions {
 	private void clickProcessPayrollButtonInPreparePayroll() {
 		flag = webDB.waitForElement(PreparePayrollLocators.ProcessPayrollBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(PreparePayrollLocators.ProcessPayrollBtn, ElementType.Xpath);
 			webDB.clickAnElement(PreparePayrollLocators.ProcessPayrollBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -632,35 +651,67 @@ public class PreparePayrollFunctions {
 	public boolean verifyPayrollProcessFromLoadUnitToProcessPayroll() {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
-		String Month = date.format(formatter).toUpperCase();
+		String PayrollMonth = date.format(formatter).toUpperCase();
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String JoinedDate = date.format(formatter1);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.navigateEmployeeMasterScreenInPayroll();
+			empMasterFunc.clickAddIconAddEmployee();
+			empMasterFunc.clickEmployeeMasterSideNavBar();
+			empMasterFunc.selectSalutionEnterFirstAndLastName(commonFunc.getDataFromTestDataSheet("Emp_Salution"),
+					commonFunc.getDataFromTestDataSheet("Emp_FName"), commonFunc.getDataFromTestDataSheet("Emp_LName"));
+			empMasterFunc.selectGenderEnterDOBAndDOJ(commonFunc.getDataFromTestDataSheet("Emp_MaleGender"),
+					commonFunc.getDataFromTestDataSheet("Emp_DOB"), JoinedDate);
+			empMasterFunc.selectShiftEnterCalerdarAndZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralShift"),
+					commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
+					commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
+			empMasterFunc.selectCompanyAndAccountCatecory(
+					commonFunc.getDataFromTestDataSheet("Emp_SalesCompanyCategory"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryAcc-AccountCategory"));
+			empMasterFunc.selectPayrollGroupAndEnterNoticePeriod(
+					commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
+					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
+			empMasterFunc.clickSaveIconAndStoreEmpID();
+			empMasterFunc.clickSalarySideNavBar();
+			empMasterFunc.addDesignationDepartmentAndGradeInSalaryDetails(
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryDepartment"),
+					commonFunc.getDataFromTestDataSheet("Emp_SalaryGrade"));
+			empMasterFunc.clickAfterEmpCreationSaveIcon();
+			empMasterFunc.clickLoadAllowanceButtonInSalaryDetails();
+			empMasterFunc.fillAllowanceAmountsAndVerifyTotalInSalaryDetails(
+					new String[] { RandomStringUtils.randomNumeric(5), RandomStringUtils.randomNumeric(4),
+							RandomStringUtils.randomNumeric(4), RandomStringUtils.randomNumeric(4) });
+			empMasterFunc.enablePFAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.enableESIAdjustmentFlagsInSalaryDetails();
+			empMasterFunc.clickPostButtonAndVerifyEmployeePosted();
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickAddIconInPreparePayroll();
 			fillCreationFormInPreparePayroll(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Year202526"), Month,
+					commonFunc.getDataFromTestDataSheet("Year202526"), PayrollMonth,
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			clickLoadUnitGroupInPreparePayroll();
 			clickUnloadUnitGroupInPreparePayroll();
 			clickLoadUnitGroupInPreparePayroll();
 			clickUnitGroupLabelInPreparePayroll();
-			selectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit1"), true);
-			selectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit1"));
+			unselectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit2Text"));
+			selectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit2Text"));
 			clickLoadEmployeeInPreparePayroll();
 			clickUnloadEmployeeInPreparePayroll();
 			clickLoadEmployeeInPreparePayroll();
 			clickEmployeeLabelInPreparePayroll();
-			unSelectedAllAndSearchAndSelectEmployee(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
-			selectEmployeeWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
+			unSelectedAllAndSearchAndSelectEmployee(VariableHandler.getEmpID());
+			selectEmployeeWithNameInLoadPayroll(VariableHandler.getEmpID());
 			clickAttendanceLabelInPreparePayroll();
-			updatePaidAndUnpaidLeaveInAttendancePayroll(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"), "1", "1");
+			updatePaidAndUnpaidLeaveInAttendancePayroll(VariableHandler.getEmpID(), "1", "1");
 			verifyAttendanceDataValuesInPreparePayroll();
-			verifyOTHrsOnDutyAndPermissionHrsInAttendance(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
+			verifyOTHrsOnDutyAndPermissionHrsInAttendance(VariableHandler.getEmpID());
 			clickPreparePayrollButton();
 			clickExceptionLabelAndVerifyNoException();
 			clickPayrollLabelInPreparePayroll();
-			clickEmpIdInPayrollTabAndVerifyNavigated(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
+			clickEmpIdInPayrollTabAndVerifyNavigated(VariableHandler.getEmpID());
 			verifyAllowanceValuesInEmpIdAdditionPage();
 			verifyAdjustmentValuesInEmpIdAdditionPage();
 			verifyTotalAdditionDeductionAndNetSalary();
@@ -940,4 +991,5 @@ public class PreparePayrollFunctions {
 		Assert.assertTrue(flag);
 		logs.logging("INFO", "Verified Find Search Functions with Period in Payroll Headerwise: " + Period);
 	}
+
 }

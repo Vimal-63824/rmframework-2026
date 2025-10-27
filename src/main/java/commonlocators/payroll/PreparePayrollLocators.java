@@ -21,7 +21,7 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePayrollTickIcon = "//button[@data-testid='PAY_SAVE_Button']";
 	/** @locatorType Xpath */
-	public static final String PayrollProcessDisplayDocNo = "//*[@id='a_Collapsible1_R6108407611166170106_heading']/b";
+	public static final String PayrollProcessDisplayDocNo = "//*[contains(@class,'title')]/b";
 	/** @locatorType Xpath */
 	public static final String UnitGroupLabel = "//label[text()='Unit / Group']";
 	/** @locatorType Xpath */
@@ -55,7 +55,7 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String EmployeeSearchBarInput = "//input[@id='TAB2_search_field']";
 	/** @locatorType Xpath */
-	public static final String EmployeeSearchBarGoBtn = "//input[@id='TAB2_search_button']";
+	public static final String EmployeeSearchBarGoBtn = "//button[@id='TAB2_search_button']";
 	/** @locatorType Xpath */
 	public static final String AllEmployeeCheckBoxInput = "//table/tbody//th//input[@id='check_all']";
 
@@ -77,7 +77,7 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String AttendancePaidDaysList = "//div[@id='ATTD_ig_grid_vc']//table/tbody/tr/td[12]";
 	/** @locatorType Xpath */
-	public static final String AttendanceSaveIcon = "//button[@id='B1627237676758904020']";
+	public static final String AttendanceSaveIcon = "//button[@data-testid='HPPH_SAVE_Button']";
 
 	/** @locatorType Xpath */
 	public static final String AttendancePaidLeaveData(String Name) {
@@ -146,19 +146,19 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String PayrollEmpIdDisplay = "//input[@id='P16251310506_EMP_ID']";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceTable = "//table[@id='5845881610404069955']";
+	public static final String PayrollAllowanceTable = "//table[@id='5848732358246794833']";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceDescriptionList = "//table[@id='5845881610404069955']//tr/td[2]/span[last()]";
+	public static final String PayrollAllowanceDescriptionList = "//table[@id='5848732358246794833']//tr/td[2]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceActualAmntList = "//table[@id='5845881610404069955']//tr/td[3]/span[last()]";
+	public static final String PayrollAllowanceActualAmntList = "//table[@id='5848732358246794833']//tr/td[3]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceAmountList = "//table[@id='5845881610404069955']//tr/td[4]/span[last()]";
+	public static final String PayrollAllowanceAmountList = "//table[@id='5848732358246794833']//tr/td[4]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentTable = "//table[@id='5845886181251070911']";
+	public static final String PayrollAdjustmentTable = "//table[@id='5848736929093795789']";
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentDescriptionList = "//table[@id='5845886181251070911']//tr/td[2]/span[last()]";
+	public static final String PayrollAdjustmentDescriptionList = "//table[@id='5848736929093795789']//tr/td[2]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentAmountList = "//table[@id='5845886181251070911']//tr/td[3]/span[last()]";
+	public static final String PayrollAdjustmentAmountList = "//table[@id='5848736929093795789']//tr/td[3]/span[last()]";
 	/** @locatorType Xpath */
 	public static final String PayrollTotalAdditionDisplayText = "//span[@id='P16251310506_TOT_ADD_DISPLAY']";
 	/** @locatorType Xpath */
@@ -188,20 +188,20 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String FindUnitLovBtn = "//*[@data-testid='PRE_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindYearHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[3]";
+	public static final String FindYearHeaderResultTable = "//table[@id='1864282885876525492_orig']//tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String FindPeriodHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[4]";
+	public static final String FindPeriodHeaderResultTable = "//table[@id='1864282885876525492_orig']//tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String FindCalenderHeaderResultTable = "//table[@id='1861432138033800614_orig']//tr/td[2]";
+	public static final String FindCalenderHeaderResultTable = "//table[@id='1864282885876525492_orig']//tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String FindYearLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[2]";
+	public static final String FindYearLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String FindPeriodLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[3]";
+	public static final String FindPeriodLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String FindDesignationLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[7]";
+	public static final String FindDesignationLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String FindDepartmentLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[8]";
+	public static final String FindDepartmentLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[8]";
 	/** @locatorType Xpath */
-	public static final String FindUnitLineResultTable = "//table[@id='2685140271525765143_orig']//tr/td[9]";
+	public static final String FindUnitLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[9]";
 
 }

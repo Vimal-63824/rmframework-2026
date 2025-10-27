@@ -1354,7 +1354,6 @@ public class AttendanceLeaveFunctions {
 					commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"),
 							VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("KSRAdminEmpId"),
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HRMSelfApproveUser"));
-
 				}
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
@@ -1406,16 +1405,10 @@ public class AttendanceLeaveFunctions {
 			clickPostLOPLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveEntryDocNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveEntryDocNo());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveEntryDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
 			commonFunc.hardWait(2000);
@@ -1437,11 +1430,10 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveAccrualUploadMigrationWithTemplates() {
 		LocalDate date1 = LocalDate.now();
-		LocalDate date2 = LocalDate.now().plusDays(5);
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMMM");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String Month = date1.format(formatter1).toUpperCase();
-		String requestDate = date2.format(formatter);
+		String requestDate = date1.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
@@ -1456,16 +1448,10 @@ public class AttendanceLeaveFunctions {
 			clickPostAccrualLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getLeaveEntryDocNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLeaveEntryDocNo());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getLeaveEntryDocNo(),
+						webDB.getDataFromProperties("KSRAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HRMSelfApproveUser"));
 			}
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
 			commonFunc.hardWait(2000);
@@ -2051,7 +2037,8 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LRMigrationAccrualPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LRMigrationAccrualPostBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+//			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Migration - Accrual Leave Posted Successfully");
 			}
@@ -3372,6 +3359,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateLeaveEntryScreen();
+			clickAdjustmentLabelButton();
 			findWithLeaveInAdjustment(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
 			webDB.navigateToRefresh();
 			findWithYearInAdjustment(commonFunc.getDataFromTestDataSheet("Year202526"));

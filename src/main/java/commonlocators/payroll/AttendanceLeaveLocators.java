@@ -368,15 +368,15 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationReportBtn = "//button[@id='B700171373885104208']";
 	/** @locatorType Xpath */
-	public static final String FindLeaveLovBtn = "//*[@data-testid='LEV_ADJ_Input']/following-sibling::button";
+	public static final String FindLeaveLovBtn = "//*[@data-testid='LEV_EL_Input']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindYearLovBtn = "//*[@data-testid='Year_ADJ_Input']/following-sibling::button";
+	public static final String FindYearLovBtn = "//*[@data-testid='Year_EL_Input']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindDesignationLovBtn = "//*[@data-testid='DESG_ADJ_Input']/following-sibling::button";
+	public static final String FindDesignationLovBtn = "//*[@data-testid='Desg_EL_Input']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindDepartmentLovBtn = "//*[@data-testid='DEPT_ADJ_Input']/following-sibling::button";
+	public static final String FindDepartmentLovBtn = "//*[@data-testid='Dept_EL_Input']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindUnitLovBtn = "//*[@data-testid='UNIT_ADJ_Input']/following-sibling::button";
+	public static final String FindUnitLovBtn = "//*[@data-testid='Unit_EL_Input']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String FindLeaveResultTable = "//table[@id='5133368681787184538_orig']//tr/td[6]";
 	/** @locatorType Xpath */
