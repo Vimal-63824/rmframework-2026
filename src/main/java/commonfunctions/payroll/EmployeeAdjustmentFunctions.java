@@ -50,6 +50,10 @@ public class EmployeeAdjustmentFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String Month = date.format(formatter).toUpperCase();
+		String TotalPeriod = RandomStringUtils.randomNumeric(1);
+		if (TotalPeriod.equalsIgnoreCase("0")) {
+			TotalPeriod = TotalPeriod.replace("0", "1");
+		}
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");
@@ -58,15 +62,13 @@ public class EmployeeAdjustmentFunctions {
 			clickAddIconInAdjustmentTable();
 			fillElementStartYearAndPeriodInAdjustment(commonFunc.getDataFromTestDataSheet("BonusText"),
 					commonFunc.getDataFromTestDataSheet("Year202526"), Month);
-			fillTotalPeriodAndPeriodicAmountInAdjustment(RandomStringUtils.randomNumeric(1),
-					RandomStringUtils.randomNumeric(4));
+			fillTotalPeriodAndPeriodicAmountInAdjustment(TotalPeriod, RandomStringUtils.randomNumeric(4));
 			clickSaveIconInAdjustmentTable();
 			clickCancelIconForLastAddedAdjustment();
 			clickAddIconInAdjustmentTable();
 			fillElementStartYearAndPeriodInAdjustment(commonFunc.getDataFromTestDataSheet("BonusText"),
 					commonFunc.getDataFromTestDataSheet("Year202526"), Month);
-			fillTotalPeriodAndPeriodicAmountInAdjustment(RandomStringUtils.randomNumeric(1),
-					RandomStringUtils.randomNumeric(4));
+			fillTotalPeriodAndPeriodicAmountInAdjustment(TotalPeriod, RandomStringUtils.randomNumeric(4));
 			clickSaveIconInAdjustmentTable();
 			clickApproveIconForLastAddedAdjustment();
 			if (!VariableHandler.getApprovalFlag()) {
