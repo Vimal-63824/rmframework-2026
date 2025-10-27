@@ -9,8 +9,8 @@
 		<classes>
 			<class name="com.roadmapERP.EmployeeMasterTest"></class>
 			<class name="com.roadmapERP.AttendanceLeaveTest"></class>
+			<class name="com.roadmapERP.PreparePayrollTest"></class>
 			<class name="com.roadmapERP.EmployeePermissionTest"></class>
-<!--			<class name="com.roadmapERP.PreparePayrollTest" />-->
 		</classes>
 	</test>
 </suite>

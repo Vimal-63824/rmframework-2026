@@ -4269,9 +4269,9 @@ public class EmployeeMasterFunctions {
 						flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldSaveIcon,
 								ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldSaveIcon,
+							flag = webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationSelectFieldSaveIcon,
 									ElementType.Xpath);
-							flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+							webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 							if (flag) {
 								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
 										ElementType.Xpath)) {
