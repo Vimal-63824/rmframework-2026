@@ -634,22 +634,19 @@ public class POAmendmentFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void verifyLineDetailsUpdation() {
-		while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-			webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
-		}
+	public void verifyLineDetailsUpdation(String... hsncode) {
 		webDB.moveToElement(POAmendmentLocators.NewCashAssembleAmount, ElementType.Xpath);
 		webDB.moveToElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
 		flag = webDB.waitForElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
 		if (flag) {
-			while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-				webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
+			if (hsncode.length > 0) {
+				commonFunc.searchAndSelectValueInFilters(POAmendmentLocators.HSNCode,
+						commonFunc.getDataFromTestDataSheet("HsnCode75052200"));
+			} else {
+				commonFunc.searchAndSelectValueInFilters(POAmendmentLocators.HSNCode,
+						commonFunc.getDataFromTestDataSheet("HsnCode75052200"));
 			}
-			commonFunc.searchAndSelectValueInFilters(POAmendmentLocators.HSNCode,
-					commonFunc.getDataFromTestDataSheet("HsnCode75052200"));
-		}
-		while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-			webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
+
 		}
 		assertTrue(flag);
 
@@ -1047,16 +1044,21 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyOpenPONumber(String POno) {
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PONumberSelect, POno);
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
-			logs.logging("INFO", "Search Button Is Clicked");
-			commonFunc.hardWait(1000);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
+			logs.logging("INFO", "Header CheckBox Is Displayed");
+			webDB.clickAnElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
-				flag = webDB.waitForElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
+				}
 			}
 		}
 		assertTrue(flag);
@@ -5822,12 +5824,9 @@ public class POAmendmentFunctions {
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 						commonFunc.hardWait(2500);
-						while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-							webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
-						}
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -5899,12 +5898,9 @@ public class POAmendmentFunctions {
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 						commonFunc.hardWait(2500);
-						while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-							webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
-						}
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -5977,12 +5973,9 @@ public class POAmendmentFunctions {
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 						commonFunc.hardWait(2500);
-						while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-							webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
-						}
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -6054,12 +6047,9 @@ public class POAmendmentFunctions {
 						verifyCreateItemInPoAmendment(item);
 						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, UnitCost);
 						commonFunc.hardWait(2500);
-						while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-							webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
-						}
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -6137,7 +6127,7 @@ public class POAmendmentFunctions {
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -6215,7 +6205,7 @@ public class POAmendmentFunctions {
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -6293,7 +6283,7 @@ public class POAmendmentFunctions {
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -6371,7 +6361,7 @@ public class POAmendmentFunctions {
 						verifyTickIconcreateItem();
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
-						verifyLineDetailsUpdation();
+						verifyLineDetailsUpdation(commonFunc.getDataFromTestDataSheet("(10059030)-15%"));
 						webDB.switchToFrame(POAmendmentLocators.LineDetailsIframe, ElementType.Xpath);
 						navigateToPoaPage();
 					} else {
@@ -6758,9 +6748,6 @@ public class POAmendmentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyLineDetailsUpdation(String HsnCode) {
-		while (webDB.isElementDisplayed(POAmendmentLocators.OKButtonLast, ElementType.Xpath)) {
-			webDB.clickAnElement(POAmendmentLocators.OKButtonLast, ElementType.Xpath);
-		}
 		webDB.moveToElement(POAmendmentLocators.NewCashAssembleAmount, ElementType.Xpath);
 		webDB.moveToElement(POAmendmentLocators.HSNCode, ElementType.Xpath);
 		flag = webDB.waitForElement(POAmendmentLocators.HSNCode, ElementType.Xpath);

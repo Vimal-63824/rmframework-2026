@@ -149,7 +149,7 @@ public class POAmendmentLocators {
 
 	/** @locatorType Xpath */
 	public static final String PONumber(String Number) {
-		return "//a[text()='" + Number + "']";
+		return "(//a[text()='" + Number + "'])[last()]";
 	}
 
 	/** @locatorType Xpath */
