@@ -12,9 +12,13 @@ import java.math.RoundingMode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
 import commonfunctions.productionplanning.ProductionOrderFunctions;
@@ -49,6 +53,8 @@ public class SubcontractOrderFunctions {
 	static MaterialReceiptVoucherFunctions mrvFunc = new MaterialReceiptVoucherFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
+	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
+	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * Verify Pending Subcontract Order
@@ -107,6 +113,81 @@ public class SubcontractOrderFunctions {
 									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 												ElementType.Xpath);
+									}
+								}
+							}
+//							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Pending Subcontract Order and Create The Record
+	 * 
+	 * @author Vimal - RMITS
+	 * @param DocNo
+	 */
+	public void verifyPendingSubcontractOrderandCreateTheRecord(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingSubcontractOrder, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Subcontract Order Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.PendingSubcontractOrder, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Frame Is Displayed");
+				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+//				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+//				if (flag) {
+//					logs.logging("INFO", "Switched To Pending Frame");
+//					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
+				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Go Button Is Displayed");
+					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(12000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Pending_CreateSCO_Button,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(2000);
+							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+							webDB.clickAnElement(SubcontractOrderLocators.Pending_CreateSCO_Button, ElementType.Xpath);
+
+							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(
+										SubcontractOrderLocators.SubcontractorLovButton,
+										commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+								webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
+								flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+//									storeSCODocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+										commonFunc.hardWait(2000);
+										String SCOdocno = webDB.getTextFromElement(
+												SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
+										logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
+										VariableHandler.setSCOdocno(SCOdocno);
+										commonFunc.hardWait(1000);
 									}
 								}
 							}
@@ -706,6 +787,7 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
 				VariableHandler.setSCOdocno(SCOdocno);
 				commonFunc.hardWait(1000);
+				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			}
 		}
 		assertTrue(flag);
@@ -759,8 +841,9 @@ public class SubcontractOrderFunctions {
 			String SCOItemID = SOMultipleline[i][1];
 			String SCOQty = SOMultipleline[i][2];
 			String SCOProcess = SOMultipleline[i][3];
+			String ProcessGLacct = SOMultipleline[i][4];
 			if (!SCOItemID.equals("")) {
-				clickLineWiseAddIcon(SCOItemID, SCOQty, SCOProcess);
+				clickLineWiseAddIcon(SCOItemID, SCOQty, SCOProcess, ProcessGLacct);// TODO
 			}
 		}
 	}
@@ -772,8 +855,9 @@ public class SubcontractOrderFunctions {
 	 * @param SCOItemID
 	 * @param SCOQty
 	 * @param SCOProcess
+	 * @param ProcessGLacct
 	 */
-	public void clickLineWiseAddIcon(String SCOItemID, String SCOQty, String SCOProcess) {
+	public void clickLineWiseAddIcon(String SCOItemID, String SCOQty, String SCOProcess, String ProcessGLacct) {
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractlineAddIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractlineAddIcon, ElementType.Xpath);
@@ -787,7 +871,9 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
-				commonFunc.hardWait(11000);
+				commonFunc.hardWait(14000);
+				checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
 				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
@@ -797,20 +883,30 @@ public class SubcontractOrderFunctions {
 					commonFunc.hardWait(1000);
 					webDB.pressTabKey();
 					commonFunc.hardWait(1000);
-					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessSaveIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.GLacctField, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(SubcontractOrderLocators.SubcontractProcessSaveIcon, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(1000);
-						if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
-								ElementType.Xpath)) {
-							webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+						webDB.clickAnElement(SubcontractOrderLocators.GLacctField, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProcessGLacct_lov,
+								ProcessGLacct);
+						flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessSaveIcon,
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SubcontractOrderLocators.SubcontractProcessSaveIcon,
 									ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
 							commonFunc.hardWait(1000);
-							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
-									ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Process Added Successfuly");
+							if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+									ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+										ElementType.Xpath);
+								commonFunc.hardWait(1000);
+								checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Process Added Successfuly");
+								}
 							}
 						}
 					}
@@ -862,6 +958,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void clickingGenMRPbutton() {
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.SubcontractGenMRPBtn, ElementType.Xpath);
@@ -871,9 +968,10 @@ public class SubcontractOrderFunctions {
 				webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 						ElementType.Xpath);
 				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Gen. MRP Button Clicked Successfuly");
+
 				}
 			}
 		}
@@ -944,10 +1042,22 @@ public class SubcontractOrderFunctions {
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingSCOIncludeCostbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+		}
 		return flag;
-
 	}
 
 	/**
@@ -985,18 +1095,20 @@ public class SubcontractOrderFunctions {
 				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 						ProductionOrderLocators.CreateProdOrd_OrderQntyInput, BomQty);
 				logs.logging("INFO", "Order Quantity Entered in Prod Order: " + BomQty);
+				webDB.switchToDefaultContent();
 			}
 		}
 		assertTrue(flag);
 	}
 
 	/**
-	 * This Method Is Used To Clicking Include Charges And Post Icon
+	 * This Method Is Used To value Addition Type Clicking Include Charges And Post
+	 * Icon
 	 * 
 	 * @author Vimal - RMITS
 	 * 
 	 */
-	public void clickingIncludeChargesAndPostIcon() {
+	public void valueAdditionTypeclickingIncludeChargesAndPostIcon() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Include Charges Is Displayed");
@@ -1005,6 +1117,49 @@ public class SubcontractOrderFunctions {
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			commonFunc.hardWait(1000);
+			valueAdditionTypeclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					logs.logging("INFO", "Save Button Is Clicked");
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Post Button Is Clicked");
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To value Addition Type Clicking Include Charges And Post
+	 * Icon
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void valueAdditionTypeWithSORefclickingIncludeChargesAndPostIcon() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+			commonFunc.hardWait(1500);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(1000);
+			valueAdditionTypeWIthSOrefclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
@@ -1044,7 +1199,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -1059,9 +1214,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1109,13 +1268,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1188,7 +1350,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -1203,9 +1365,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1253,13 +1419,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1333,7 +1502,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -1348,9 +1517,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1399,13 +1572,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1459,6 +1635,7 @@ public class SubcontractOrderFunctions {
 		}
 		return flag;
 	}
+
 	/**
 	 * This Method Used For Inserting Subcontract Parameters
 	 * 
@@ -1492,10 +1669,12 @@ public class SubcontractOrderFunctions {
 				logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
 				VariableHandler.setSCOdocno(SCOdocno);
 				commonFunc.hardWait(1000);
+				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			}
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used For Create Direct Subcontract Order For Value Addition Type
 	 * 
@@ -1512,8 +1691,10 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
 				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1561,7 +1742,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 		}
 		return flag;
 	}
@@ -1636,8 +1816,10 @@ public class SubcontractOrderFunctions {
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1685,8 +1867,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
-
 		}
 		return flag;
 	}
@@ -1725,9 +1905,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1775,13 +1959,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1835,6 +2022,7 @@ public class SubcontractOrderFunctions {
 		}
 		return flag;
 	}
+
 	/**
 	 * This Method Used For Clicking LineWise Add Icon And Adding Sales Order Ref
 	 * 
@@ -1934,6 +2122,7 @@ public class SubcontractOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used For Adding ItemID, Order Qty, Process Line and Sales Order
 	 * Ref From ExcelSheet
@@ -1958,6 +2147,7 @@ public class SubcontractOrderFunctions {
 			}
 		}
 	}
+
 	/**
 	 * This Method Used For Create Direct Subcontract Order With BOM For Standard
 	 * Type In Sales Order Ref
@@ -1973,8 +2163,10 @@ public class SubcontractOrderFunctions {
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSO"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeWithSOrefclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2022,10 +2214,10 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 		}
 		return flag;
 	}
+
 	/**
 	 * This Method used to fill form details in Production Order Creation
 	 * 
@@ -2067,6 +2259,7 @@ public class SubcontractOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used For Create Subcontract Order From Pending With Sales Order
 	 * Ref
@@ -2086,7 +2279,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -2101,9 +2294,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2151,8 +2348,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
-
 		}
 		return flag;
 	}
@@ -2172,8 +2367,10 @@ public class SubcontractOrderFunctions {
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeWithSOrefclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2221,7 +2418,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 		}
 		return flag;
 	}
@@ -2245,7 +2441,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREFANDCONV"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONV"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -2260,9 +2456,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		pendingStandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2310,13 +2510,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2388,8 +2591,10 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
 				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2437,7 +2642,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 		}
 		return flag;
 	}
@@ -2459,8 +2663,10 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
 				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		valueAdditionTypeWithSORefclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2508,7 +2714,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 		}
 		return flag;
 	}
@@ -2528,8 +2733,10 @@ public class SubcontractOrderFunctions {
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithProject"));
+		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
-		clickingIncludeChargesAndPostIcon();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeWithSOrefclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2577,7 +2784,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 		}
 		return flag;
 	}
@@ -2600,7 +2806,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMProject"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -2615,9 +2821,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2665,8 +2875,6 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
-
 		}
 		return flag;
 	}
@@ -2689,7 +2897,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -2704,9 +2912,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2755,13 +2967,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2834,7 +3049,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -2849,9 +3064,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2913,13 +3132,16 @@ public class SubcontractOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
 				flag = commonFunc.logoutUser();
 				mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateToSubcontractOrder();
-				verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-				clickingMRPconsumptionTab();
-				clickingIncludeChargesAndPostIcon();
+				verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+				clickLocationDetailsButtonValidationwithDataBase();
+				checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+				checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+				clickingMRPDetailsTabVerificationWithBOMAgainst();
+				subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 				if (!VariableHandler.getApprovalFlag()) {
 					approvalPageFunc.subcontractwaitingForApprovalWithFordwarder(
 							commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2993,7 +3215,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -3008,9 +3230,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -3058,13 +3284,16 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-			clickingMRPconsumptionTab();
-			clickingIncludeChargesAndPostIcon();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalPageFunc
 						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -3154,7 +3383,7 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
@@ -3169,9 +3398,13 @@ public class SubcontractOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-		clickingMRPconsumptionTab();
-		clickingIncludeChargesAndPostIcon();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -3234,13 +3467,16 @@ public class SubcontractOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
 				flag = commonFunc.logoutUser();
 				mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 						"TvsUsername");
 				commonFunc.navigateToSubcontractOrder();
-				verifyPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
-				clickingMRPconsumptionTab();
-				clickingIncludeChargesAndPostIcon();
+				verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+				clickLocationDetailsButtonValidationwithDataBase();
+				checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+				checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+				clickingMRPDetailsTabVerificationWithBOMAgainst();
+				subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 				if (!VariableHandler.getApprovalFlag()) {
 					approvalPageFunc.subcontractwaitingForApprovalWithFordwarder(
 							commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -3291,6 +3527,1716 @@ public class SubcontractOrderFunctions {
 					flag = commonFunc.logoutUser();
 					mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 				}
+			}
+		}
+		return flag;
+	}
+	// recent Changes
+
+	/**
+	 * This Method Used For check Subcontract Order Header Details DataBase Values
+	 * With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_LocID, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLOCATIONCOLUMN")));
+		logs.logging("INFO", "Header Detail LocationID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_Pfx, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPREFIXCOLUMN")));
+		logs.logging("INFO", "Header Detail Prefix Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_DocNo, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBDOCNOCOLUMN")));
+		logs.logging("INFO", "Header Detail DocNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_Type, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTYPECOLUMN")));
+		logs.logging("INFO", "Header Detail Type Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_SuplID, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSUPPLIERIDCOLUMN")));
+		logs.logging("INFO", "Header Detail SupplierID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_SuplDesc, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSUPPLIERNAMECOLUMN")));
+		logs.logging("INFO", "Header Detail Supplier desc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Header_Curcy, ElementType.Xpath),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCURCYCOLUMN")));
+		logs.logging("INFO", "Header Detail Currency Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Header_ExRate, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBEXRATECOLUMN")));
+		logs.logging("INFO", "Header Detail Exchange Rate Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Header_PurAmount, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail SCO PurAmount Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Header_TaxAmount, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAXAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail SCO TaxAmount Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Header_TotalAmount, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTOTALAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail SCO TotalAmount Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_Header_Status, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSTATUSCOLUMN")));
+		logs.logging("INFO", "Header Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Line Details DataBase Values
+	 * With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderLineDetailsDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Item_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBITEMCOLUMN")));
+		logs.logging("INFO", "Header Detail ItemID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Qty_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")));
+		logs.logging("INFO", "Header Detail Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_UnitCost_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")));
+		logs.logging("INFO", "Header Detail UnitCost Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_HSN_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBHSNCOLUMN")));
+		logs.logging("INFO", "Header Detail HSN Code Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Process Details DataBase Values
+	 * With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessDesc_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPROCESSDESCCOLUMN")));
+		logs.logging("INFO", "Header Detail ProcessDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessUOM_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")));
+		logs.logging("INFO", "Header Detail Procss UOM Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Batchqty_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")));
+		logs.logging("INFO", "Header Detail BatchQty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_Batchcost_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")));
+		logs.logging("INFO", "Header Detail BatchCost Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ConvFactor_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")));
+		logs.logging("INFO", "Header Detail Conv Factor Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_JobItem_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBJOBWORKITEMCOLUMN")));
+		logs.logging("INFO", "Header Detail JobworkItemID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_JobItemDesc_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBJOBWORKITEMDESCCOLUMN")));
+		logs.logging("INFO", "Header Detail JobworkItemDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_SACcode_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")));
+		logs.logging("INFO", "Header Detail SAC Code Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessQty_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")));
+		logs.logging("INFO", "Header Detail ProcessQty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessUnitcost_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPROCUNITCOSTCOLUMN")));
+		logs.logging("INFO", "Header Detail ProcesLine UnitCost Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessTax_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPROCESSTAXCOLUMN")));
+		logs.logging("INFO", "Header Detail Process Tax Pct Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessAsblvalue_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")));
+		logs.logging("INFO", "Header Detail Asbl. Value Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessIGSTamt_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail IGST Amt Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessCGSTamt_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail CGST Amt Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessSGSTamt_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail SGST Amt Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessUTGSTamt_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBUTGSTAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail UTGST Amt Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessCESSTamt_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCESSAMTCOLUMN")));
+		logs.logging("INFO", "Header Detail CESS Amt Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ContrPfx_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCONTRPREFIXCOLUMN")));
+		logs.logging("INFO", "Header Detail Open SCO Pfx Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_ContrDocNO_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCONTRNOCOLUMN")));
+		logs.logging("INFO", "Header Detail Open SCO No Matched With DataBase Values");
+
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Material Details DataBase Values
+	 * With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_MaterialType_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOMaterialDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATTYPECOLUMN")));
+		logs.logging("INFO", "Header Detail MaterialType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_MaterialWHdesc_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOMaterialDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATWHDESCCOLUMN")));
+		logs.logging("INFO", "Header Detail MaterialType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_MaterialItemID_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOMaterialDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATITEMCOLUMN")));
+		logs.logging("INFO", "Header Detail MaterialType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_MaterialReqQty_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOMaterialDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATQTYCOLUMN")));
+		logs.logging("INFO", "Header Detail MaterialType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_MaterialTarNo_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOMaterialDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATTARNOCOLUMN")));
+		logs.logging("INFO", "Header Detail MaterialType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_MaterialTarProc_Field, ElementType.Xpath),
+				dbCommonFunctions.SCOMaterialDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATTARPROCESSCOLUMN")));
+		logs.logging("INFO", "Header Detail MaterialType Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Is Used To Verify MRP Detail Verification
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingMRPDetailsTabVerificationWithBOMAgainst() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "MRP Button Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.MRPButton, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Frame Material Is Displayed");
+				webDB.switchToFrame(SubcontractOrderLocators.FrameMaterial, ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				checkSucontractOrderMaterialDetailsDataBaseValuesWithUIValues();
+				commonFunc.hardWait(2000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseButton, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified MRP Screen Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Value Addition Details DataBase
+	 * Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderValueAdditionLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Value Addition Details DataBase
+	 * Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderValueAdditionWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSALEORDERDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail SalesOrderRef Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Pending First Process Line
+	 * Details DataBase Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderPendingFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_ProdNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPRODNOCOLUMN")));
+		logs.logging("INFO", "Line Detail ProdNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Direct Subcontract Order With SO Ref Line Details
+	 * DataBase Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkDirectSucontractOrderWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSALEORDERDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail SalesOrderRef Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Direct Subcontract Order Pending First Process
+	 * Line Details DataBase Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkDirectSucontractOrderWithoutProdAndSOLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_ProdNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPRODNOCOLUMN")));
+		logs.logging("INFO", "Line Detail ProdNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Direct Subcontract Order Without SO First Process
+	 * Line Details DataBase Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkDirectSucontractOrderWithoutSOFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_ProdNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPRODNOCOLUMN")));
+		logs.logging("INFO", "Line Detail ProdNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Pending After First ProcessLine
+	 * Details DataBase Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderPendingAfterFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_ProdNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPRODNOCOLUMN")));
+		logs.logging("INFO", "Line Detail ProdNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Sou_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSOUOPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.OperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Sou_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSOUOPERDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.OperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Pending After First ProcessLine
+	 * Details DataBase Values With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderPendingAfterFirstProcessWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBINPUTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail InputType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_GSTtype, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_ProdNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPRODNOCOLUMN")));
+		logs.logging("INFO", "Line Detail ProdNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SouSFcode, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail Sou.SFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_TarSFcode, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarSFcode Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERNOCOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperNo Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Tar_OprnProc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBTAROPERDESCCODECOLUMN")));
+		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSALEORDERDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail SalesOrderRef Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_ID, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHIDCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseID Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_WH_Desc, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINEWHDESCCOLUMN")));
+		logs.logging("INFO", "Line Detail WarehouseDesc Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_CS_Qty, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value")),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "Line Detail CS Qty Matched With DataBase Values");
+
+		salesOrderFunctions.verifyAssertionBothValues(
+				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Status, ElementType.Xpath),
+				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBLINESTATUSCOLUMN")));
+		logs.logging("INFO", "Line Detail Status Matched With DataBase Values");
+	}
+
+	/**
+	 * This Method Is Used To value Addition Type click Line Detail Button
+	 * Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void valueAdditionTypeclickLineDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkSucontractOrderValueAdditionLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To value Addition Type With SO Ref click Line Detail
+	 * Button Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void valueAdditionTypeWIthSOrefclickLineDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkSucontractOrderValueAdditionWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To click Location Detail Button Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickLocationDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.SCO_Location_Details, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Location_Details, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Location Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SCO_Location_Details, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Location_Details_Frame, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.SCO_Location_Details_Frame, ElementType.Xpath);
+				checkSucontractOrderLocationDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SCO_Location_Details_SaveIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.SCO_Location_Details_SaveIcon, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					webDB.switchToDefaultContent();
+					commonFunc.hardWait(1000);
+					if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+							ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+								ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Verified Line Details Is Closed");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For check Subcontract Order Location Details DataBase Values
+	 * With UIValues
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void checkSucontractOrderLocationDetailsVerificationDataBaseValuesWithUIValues() {
+		WebElement element = webDB.getDriver()
+				.findElement(By.xpath(SubcontractOrderLocators.SCO_Location_Details_GSTtype));
+		Select select = new Select(element);
+		String text = select.getFirstSelectedOption().getText();
+
+		salesOrderFunctions.verifyAssertionBothValues(text, dbCommonFunctions.SCOLineWiseDetails(
+				VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("SCODBLOCATIONGSTTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail GSTType Matched With DataBase Values");
+
+		WebElement element1 = webDB.getDriver()
+				.findElement(By.xpath(SubcontractOrderLocators.SCO_Location_Details_PurGSTClstype));
+		Select select1 = new Select(element1);
+		String text1 = select1.getFirstSelectedOption().getText();
+
+		salesOrderFunctions.verifyAssertionBothValues(text1, dbCommonFunctions.SCOLineWiseDetails(
+				VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("SCODBLOCATIONGSTCLSFTYPECOLUMN")));
+		logs.logging("INFO", "Line Detail PurchaseGSTClsf Type Matched With DataBase Values");
+		commonFunc.hardWait(1000);
+
+		// flag=webDB.isElementSelected(SubcontractOrderLocators.SCO_Location_Details_GSTtype,
+		// ElementType.Xpath);
+	}
+
+	/**
+	 * This Method Is Used To Subcontract Standard Type Clicking Include Charges And
+	 * Post Icon
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void subcontractStandardTypeclickingIncludeChargesAndPostIcon() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+			commonFunc.hardWait(1500);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(1000);
+			standardTypeclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					logs.logging("INFO", "Save Button Is Clicked");
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Post Button Is Clicked");
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To pending Prod No and SOref Subcontract Standard Type
+	 * Clicking Include Charges And Post Icon
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+			commonFunc.hardWait(1500);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(1000);
+			pendingStandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					logs.logging("INFO", "Save Button Is Clicked");
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Post Button Is Clicked");
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Direct Subcontract Standard Type With SO Ref Clicking
+	 * Include Charges And Post Icon
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void directsubcontractStandardTypeWithSOrefclickingIncludeChargesAndPostIcon() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+			commonFunc.hardWait(1500);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(1000);
+			directstandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					logs.logging("INFO", "Save Button Is Clicked");
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Post Button Is Clicked");
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Direct Subcontract Standard Type Clicking Include
+	 * Charges And Post Icon
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void directsubcontractStandardTypeclickingIncludeChargesAndPostIcon() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+			commonFunc.hardWait(1500);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(1000);
+			directstandardTypeclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					logs.logging("INFO", "Save Button Is Clicked");
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Post Button Is Clicked");
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Subcontract Standard Type Clicking Include Charges And
+	 * Post Icon And After First Process Validation
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractInclCostButton, ElementType.Xpath);
+			commonFunc.hardWait(1500);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.hardWait(1000);
+			standardTypeclickLineDetailsButtonAfterFirstProcessValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					logs.logging("INFO", "Save Button Is Clicked");
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractPostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					logs.logging("INFO", "Post Button Is Clicked");
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Standard Type click Line Detail Button Validation with
+	 * DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void standardTypeclickLineDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkSucontractOrderPendingFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Direct SCO Standard Type With SO Ref click Line Detail
+	 * Button Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void directstandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkDirectSucontractOrderWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Direct SCO Standard Type With SO Ref click Line Detail
+	 * Button Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void pendingStandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkSucontractOrderPendingAfterFirstProcessWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Direct Subcontract Standard Type click Line Detail
+	 * Button Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void directstandardTypeclickLineDetailsButtonValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkDirectSucontractOrderWithoutProdAndSOLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Standard Type click Line Detail Button After First
+	 * Process Validation with DataBase
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void standardTypeclickLineDetailsButtonAfterFirstProcessValidationwithDataBase() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				checkSucontractOrderPendingAfterFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Create Production Order From Pending Subcontract order
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createProductionOrderFromPendingSubcontractorder() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		ProductionordertFunc.forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+		}
+		return flag;
+	}
+
+	/**
+	 * Verify Pending Serial Wise Subcontract Order
+	 * 
+	 * @author Vimal - RMITS
+	 * @param DocNo
+	 */
+	public void verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.Pend_SerialWise_Btn, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Subcontract Order Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.Pend_SerialWise_Btn, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Frame Is Displayed");
+				webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+//				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+//				if (flag) {
+//					logs.logging("INFO", "Switched To Pending Frame");
+//					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.Pend_SerialWise_Prod_lovBtn, DocNo);
+				webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_SearchBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Go Button Is Displayed");
+					webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_SearchBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(12000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.SerialCheckBox(DocNo), ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(2000);
+							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
+							webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCOBtn,
+									ElementType.Xpath);
+
+							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(
+										SubcontractOrderLocators.Pend_SerialWise_CreateSCO_SubconLOV,
+										commonFunc.getDataFromTestDataSheet("SubcontractorName"));
+								webDB.switchToFrame(SubcontractOrderLocators.Pend_Serial_Iframe, ElementType.Xpath);
+								flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(SubcontractOrderLocators.Pend_SerialWise_CreateSCO_OKBtn,
+											ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+										commonFunc.hardWait(2000);
+										String SCOdocno = webDB.getTextFromElement(
+												SubcontractOrderLocators.SubcontractDocNO, ElementType.Xpath);
+										logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
+										VariableHandler.setSCOdocno(SCOdocno);
+										commonFunc.hardWait(1000);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Create Production Order From Pending Serial Item
+	 * Subcontract order
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createProductionOrderFromPendingSerialItemSubcontractorder() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		ProductionordertFunc.forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialRequestScreen();
+			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+			materialRequestFunc.headerSaveAndPost();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialIssuanceVoucher();
+			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.headerTickAndPostIcon();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+			grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+			flag = commonFunc.logoutUser();
+			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToSubcontractOrder();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalPageFunc
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalPageFunc.navigateToApprovals();
+				approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+				verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialRequestScreen();
+				materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+				materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+				materialRequestFunc.headerSaveAndPost();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialIssuanceVoucher();
+				materialIssuanceVoucherFunc
+						.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+				materialIssuanceVoucherFunc.headerTickAndPostIcon();
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+				grnScoPageFunc.verifyGenMatConsAndAllocate();
+//				grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//				grnScoPageFunc.verifyViewLineDetails();
+				grnScoPageFunc.saveHeaderAndPost();
+				approvalFunc
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+				flag = commonFunc.logoutUser();
+				mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			}
 		}
 		return flag;

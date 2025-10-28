@@ -410,4 +410,6 @@ public class CommonUiLocators {
 	public static final String ManpowerGrp_Add_Icon = "//button[@id='B1550518234307758885']";
 	/** @locatorType Xpath */
 	public static final String LeftSideAddIconPo = "//button[@data-testid=\"Add\"]";
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
 }

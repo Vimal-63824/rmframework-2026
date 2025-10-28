@@ -1114,6 +1114,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("OSPNO"), OSPNo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * StockQuery
 	 * 
@@ -1129,4 +1130,73 @@ public class DBCommonFunctions {
 		return value;
 	}
 
+	/**
+	 * SCO Header Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCONo
+	 * @param header Value
+	 * @return String Value
+	 */
+	public String SCOHeaderDetails(String SCONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SCO Line Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCONo
+	 * @param Line  Value
+	 * @return String Value
+	 */
+	public String SCOLineDetails(String SCONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SCO Process Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCONo
+	 * @param Process Value
+	 * @return String Value
+	 */
+	public String SCOProcessDetails(String SCONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOProcessQuery"),
+				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SCO Material Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCONo
+	 * @param Material Value
+	 * @return String Value
+	 */
+	public String SCOMaterialDetails(String SCONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOMaterialQuery"),
+				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SCO Linewise Details
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCONo
+	 * @param Linewise Value
+	 * @return String Value
+	 */
+	public String SCOLineWiseDetails(String SCONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOLineWiseDetQuery"),
+				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
+		return value;
+	}
 }

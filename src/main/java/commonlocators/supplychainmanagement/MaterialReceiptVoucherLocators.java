@@ -41,7 +41,7 @@ public class MaterialReceiptVoucherLocators {
 
 	/** @locatorType Xpath */
 	public static final String MRVCheckBox(String GrnNo) {
-		return "//td[text()='" + GrnNo + "']/../td[11]";
+		return "//td[text()='" + GrnNo + "']/../td[12]";
 	}
 
 	/** @locatorType Xpath */
