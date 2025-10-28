@@ -37,7 +37,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveProcessButton = "//button[@id='B6044863540726153290']";
 	/** @locatorType Xpath */
-	public static final String Backicon = "//button[@id='B995904273613778252']";
+	public static final String Backicon = "//button[@id='B723952769206804347']";
 
 	/** @locatorType Xpath */
 	public static final String PODetailsInfoBtn(String PONumber) {
@@ -76,7 +76,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ApproveErrorToast = "//div[contains(text(),'error has occurred')]";
 	/** @locatorType Xpath */
-	public static final String ApprovalTitle = "//iframe/ancestor::div//h1[normalize-space()='Workflow Approval']";
+	public static final String ApprovalTitle = "//iframe/ancestor::div//h1[contains(normalize-space(), 'Approval')]";
 	/** @locatorType Xpath */
 	public static final String ReturnRadioBtn = "//label[text()='Return']";
 	/** @locatorType Xpath */

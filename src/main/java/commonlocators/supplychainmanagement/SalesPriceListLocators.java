@@ -80,7 +80,7 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String Docno = "//*[@id='C6925606525131363033']";
 	/** @locatorType Xpath */
-	public static final String SearchButtoninFindPage = "//button[@data-testid='Find']";
+	public static final String SearchButtoninFindPage = "//span[text()='Search']";
 	/** @locatorType Xpath */
 	public static final String SearchBoxFind = "//input[@id='PCS_search_field']";
 	/** @locatorType Xpath */

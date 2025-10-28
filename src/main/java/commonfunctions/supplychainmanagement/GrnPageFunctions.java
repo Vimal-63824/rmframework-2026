@@ -2073,9 +2073,9 @@ public class GrnPageFunctions {
 				itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 				for (int i = 22; i < itemmultiple.length; i++) {
 					String ITEM_NAME = itemmultiple[i][1];
-					String LOT_SERIAL = itemmultiple[i][51];
-					String LOT_NUMBER = itemmultiple[i][52];
-					String SERIAL_NUMBER = itemmultiple[i][53];
+					String LOT_SERIAL = itemmultiple[i][54];
+					String LOT_NUMBER = itemmultiple[i][55];
+					String SERIAL_NUMBER = itemmultiple[i][56];
 					if (!ITEM_NAME.equals("")) {
 						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
 							continue;

@@ -29,7 +29,6 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardType();
 		Assert.assertTrue(flag);
 	}
-
 	/**
 	 * Subcontract Order to GRN without Gate Entry for PR type - Free pass Items
 	 * 
@@ -41,7 +40,6 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNTypePR();
 		Assert.assertTrue(flag);
 	}
-
 	/**
 	 * Subcontract Order to GRN without Gate Entry for UP type - Free pass Items
 	 * 
@@ -72,7 +70,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Test(priority = 5, groups = {
-			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Typee")
+			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type")
 	public void createDirectSubcontractOrderForValueAdditionType() {
 		flag = SubcontractFunc.createDirectSubcontractOrderForValueAdditionType();
 		Assert.assertTrue(flag);
@@ -91,12 +89,12 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Cancelling Direct Subcontract Order For SCO Standard Type
+	 * Cancelling Direct Subcontract Order For Standard Type
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Test(priority = 7, groups = {
-			"Subcontract" }, description = "Cancelling Direct Subcontract Order For SCO Standard Type")
+			"Subcontract" }, description = "Cancelling Direct Subcontract Order For Standard Type")
 	public void documentCancellingForDirectSubcontractOrderStandardType() {
 		SubcontractFunc.documentCancellingForDirectSubcontractOrderStandardType();
 		Assert.assertTrue(flag);
@@ -269,6 +267,28 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for US type - QC Enabled Items")
 	public void createProductionOrderFromSubcontractorderToGRNUnprocessStandardTypeWithQC() {
 		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNUnprocessStandardTypeWithQC();
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * Create subcontract orders from pending Production Queue (OS)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 22, groups = {
+			"Subcontract" }, description = "Create subcontract orders from pending Production Queue (OS)")
+	public void createProductionOrderFromPendingSubcontractorder() {
+		flag = SubcontractFunc.createProductionOrderFromPendingSubcontractorder();
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * Create subcontract orders from pending Production Queue (OS)
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Test(priority = 23, groups = {
+			"Subcontract" }, description = "Create serial Item subcontract orders from pending Production Queue (OS)")
+	public void createProductionOrderFromPendingSerialItemSubcontractorder() {
+		flag = SubcontractFunc.createProductionOrderFromPendingSerialItemSubcontractorder();
 		Assert.assertTrue(flag);
 	}
 }
