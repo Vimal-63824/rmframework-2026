@@ -876,6 +876,10 @@ public class SalesPriceListFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						webDB.javaScriptClickAnElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 						logs.logging("INFO", "Successfully Populated a Cancelled Stage Document ");
+						flag = webDB.waitForElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
+						if(flag) {
+							logs.logging("Info", "Sales Price List Cancelled Document Is Verified ");
+						}
 					}
 				}
 			}
