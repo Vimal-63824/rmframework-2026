@@ -282,4 +282,144 @@ public class SubcontractOrderLocators {
 	public static final String OSP_UOM = "//select[@data-testid='SPRCLN_UOM']";
 	/** @locatorType XPATH */
 	public static final String OpenSCO_Proc_Field = "//input[@data-testid='SPRCLN_PROC_ID']/following-sibling::button";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_LocID = "//span[@data-testid='P161713106501_POH_PLNT_LOC_ID']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_Pfx = "//span[@data-testid='P161713106501_POH_ORDER_PFX']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_DocNo = "//span[@data-testid='P161713106501_POH_ORDER_NO']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_Type = "//span[@data-testid='P161713106501_POH_TYPE']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_SuplID = "//span[@data-testid='P161713106501_POH_SUPLR_ID']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_SuplDesc = "//span[@id='P161713106501_POH_SUPLR_NAME_DISPLAY']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_Curcy = "//span[@id='P161713106501_POH_CURRENCY_DISPLAY']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_ExRate = "//input[@id='P161713106501_POH_EXCHANGE_RAT']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_PurAmount = "//input[@id='P161713106501_PUR_AMT']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_TaxAmount = "//input[@id='P161713106501_TAX_AMT_D']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_TotalAmount = "//input[@id='P161713106501_POH_TOT_AMT']";
+	/** @locatorType XPATH */
+	public static final String SCO_Header_Status = "//input[@id='P161713106501_STATUS']";
+	/** @locatorType XPATH */
+	public static final String SCO_Item_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	/** @locatorType XPATH */
+	public static final String SCO_Qty_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String SCO_UnitCost_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType XPATH */
+	public static final String SCO_HSN_Field = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessDesc_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessUOM_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	/** @locatorType XPATH */
+	public static final String SCO_Batchqty_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
+	/** @locatorType XPATH */
+	public static final String SCO_Batchcost_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
+	/** @locatorType XPATH */
+	public static final String SCO_ConvFactor_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType XPATH */
+	public static final String SCO_JobItem_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType XPATH */
+	public static final String SCO_JobItemDesc_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
+	/** @locatorType XPATH */
+	public static final String SCO_SACcode_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessQty_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessUnitcost_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[12]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessTax_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessAsblvalue_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[14]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessIGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[15]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessCGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[16]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessSGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[17]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessUTGSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[18]";
+	/** @locatorType XPATH */
+	public static final String SCO_ProcessCESSTamt_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[19]";
+	/** @locatorType XPATH */
+	public static final String SCO_ContrPfx_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[25]";
+	/** @locatorType XPATH */
+	public static final String SCO_ContrDocNO_Field = "//*[@id='ig_line4_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[26]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialType_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialWHdesc_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialItemID_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialReqQty_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[12]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialTarNo_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[13]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialTarProc_Field = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[14]";
+	/** @locatorType XPATH */
+	public static final String SCO_MaterialTab = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]/a";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_Inputtype = "//span[@data-testid='P161713106504_POL_GST_INPUT_TYPE']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_GSTtype = "//span[@data-testid='P161713106504_POL_GST_EXEMPT_FLAG']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_ProdNo = "//span[@data-testid='P161713106504_POL_PROD_ORD_NO']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_SouSFcode = "//input[@data-testid='P161713106504_POL_SF_CODE']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_TarSFcode = "//span[@data-testid='P161713106504_POL_TARG_SF_CODE']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_Tar_OprnNo = "//span[@data-testid='P161713106504_POL_TAR_OPRN_SEQ']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_Tar_OprnProc = "//span[@data-testid='P161713106504_POL_TAR_PROC_DESC']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_Sou_OprnNo = "//span[@data-testid='P161713106504_POL_SOU_OPRN_SEQ']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_Sou_OprnProc = "//span[@data-testid='P161713106504_POL_SOU_PROC_DESC']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_SaleOrderRefNo = "//span[@data-testid='P161713106504_POL_SO_SCHLD_DESC']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_WH_ID = "//span[@data-testid='P161713106504_POL_STORE_ID']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_WH_Desc = "//span[@data-testid='P161713106504_POL_STORE_NAME']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_CS_Qty = "//input[@data-testid='P161713106504_POL_CLS_QTY']";
+	/** @locatorType XPATH */
+	public static final String SCO_LineDetails_Status = "//span[@data-testid='P161713106504_POL_STATUS']";
+	/** @locatorType XPATH */
+	public static final String SCO_Location_Details = "//button[@data-testid='Edit_Location']";
+	/** @locatorType XPATH */
+	public static final String SCO_Location_Details_Frame = "//iframe[@title='Location']";
+	/** @locatorType XPATH */
+	public static final String SCO_Location_Details_GSTtype = "//Select[@data-testid='P1615131060412_POH_GST_TYPE_1']";
+	/** @locatorType XPATH */
+	public static final String SCO_Location_Details_PurGSTClstype = "//Select[@data-testid='P1615131060412_POH_GST_CLF_TYPE_1']";
+	/** @locatorType XPATH */
+	public static final String SCO_Location_Details_SaveIcon = "//*[@id=\"B1270930321800469137\"]/span";
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
+	/** @locatorType XPATH */
+	public static final String Pend_Serial_Iframe = "//iframe[@title='Serialwise Pending Outside Process']";
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_Prod_lovBtn = "//input[@data-testid='P19631108_SOSD_ORD_NO']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_SearchBtn = "//button[@data-testid='Find']";
+	/** @locatorType XPATH */
+	public static final String SerialCheckBox(String SCONumber) {
+		return "//a[text()='" + SCONumber + "']/../../td[17]";
+	}
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_CreateSCOBtn = "//button[@data-testid='Create_SCO']";
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_CreateSCO_SubconLOV = "//input[@data-testid='P19631108_SUPLR_ID']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String Pend_SerialWise_CreateSCO_OKBtn = "//button[@data-testid='OK']";
 }
