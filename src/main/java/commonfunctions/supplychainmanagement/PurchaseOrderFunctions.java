@@ -8252,7 +8252,7 @@ public class PurchaseOrderFunctions {
 		clickPendingPRAndSearchPRNo();
 		selectAllPendingPRAndClickCreatePO();
 		selectSupplierAndCurrencyPendingPRAndClickTickIcon(Supplier,
-				commonFunc.getDataFromTestDataSheet("ServicePOPrefix"));
+				commonFunc.getDataFromTestDataSheet("MaterialPrefix"));
 		for (int j = 3; j < itemmultiple.length; j++) {
 			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
 				for (int i = j + 3; i < itemmultiple.length; i++) {
@@ -13173,6 +13173,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Direct PO with Price list Item for Similar UOM
 	 * With And Without Inspection Plan(Material Type)
@@ -13237,6 +13238,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Select the item For Excel Sheet
 	 * 
@@ -13259,6 +13261,7 @@ public class PurchaseOrderFunctions {
 			assertTrue(flag);
 		}
 	}
+
 	/**
 	 * This Method used to click create icon - left add icon
 	 * 
