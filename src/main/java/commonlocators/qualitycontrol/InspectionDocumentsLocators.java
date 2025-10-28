@@ -11,7 +11,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String GoButton = "//button[@id='PEND_search_button']";
 	/** @locatorType Xpath */
-	public static final String CreateQCDoc = "//button[@data-testid='Create_Receipt_PI']";
+	public static final String CreateQCDoc = "//button[@data-testid='Create_QC_Doc']";
 	/** @locatorType Xpath */
 	public static final String OKButton = "//button[@data-testid='QC_OK']";
 	/** @locatorType Xpath */

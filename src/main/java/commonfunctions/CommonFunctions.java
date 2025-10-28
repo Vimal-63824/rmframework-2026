@@ -2516,7 +2516,7 @@ public class CommonFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void navigateSetup_Sales() {
-		navigateToSearchTab(webDB.getDataFromProperties("SetupSalesScreen"), CommonUiLocators.salesRegion);
+		navigateToSearchTab(webDB.getDataFromProperties("Sales"), CommonUiLocators.salesRegion);
 	}
 
 	/**
