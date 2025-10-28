@@ -6,6 +6,7 @@ package commonfunctions.supplychainmanagement;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -431,7 +432,8 @@ public class ApprovalPageFunctions {
 		a: do {
 			clickCheckBoxForDocument(DocNumber);
 			clickReturnRadioBtn(DocNumber);
-			commonFunc.searchAndSelectValueInFilters(ApprovalPageLocators.ReturnPersonLovBtn, ReturnPerson);
+			verifyReturnLOVSelect(ReturnPerson);
+//			commonFunc.searchAndSelectValueInFilters(ApprovalPageLocators.ReturnPersonLovBtn, ReturnPerson);
 			logs.logging("INFO", "For Return Employee Name Entered: " + ReturnPerson);
 			flag = webDB.waitForClickElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
 			if (flag) {
@@ -450,6 +452,48 @@ public class ApprovalPageFunctions {
 				}
 			}
 		} while ((i <= 3));
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to select return person in return lov
+	 * 
+	 * @author Sakthi-GWL
+	 * @param user
+	 */
+	public void verifyReturnLOVSelect(String user) {
+		flag = webDB.waitForClickElement(ApprovalPageLocators.ReturnPersonLovBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(ApprovalPageLocators.ReturnPersonLovBtn, ElementType.Xpath);
+			List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
+			a: for (int i = 0; i < searchBar.size(); i++) {
+				WebElement element = searchBar.get(i);
+				try {
+					if (element.isDisplayed()) {
+						element.clear();
+						flag = commonFunc.fluentWaitClickElement(element);
+						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
+							element.sendKeys(user);
+							break a;
+						} else {
+							flag = false;
+						}
+					}
+				} catch (Exception e) {
+					logs.logging("INFO", "failed to enter search bar in return lov Exception is: " + e);
+					flag = false;
+				}
+			}
+			if (flag) {
+				webDB.pressEnterKey();
+				flag = webDB.waitForElement(CommonUiLocators.searchHighlightText(user), ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(CommonUiLocators.searchHighlightText(user), ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+		}
 		assertTrue(flag);
 	}
 
@@ -578,6 +622,7 @@ public class ApprovalPageFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This Method used to select forwarder in WorkApproval and click Ok button
 	 * 
