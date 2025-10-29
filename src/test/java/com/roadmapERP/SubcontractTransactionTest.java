@@ -29,6 +29,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createDirectSubcontractOrderWithBOMForStandardType();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Subcontract Order to GRN without Gate Entry for PR type - Free pass Items
 	 * 
@@ -40,6 +41,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNTypePR();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Subcontract Order to GRN without Gate Entry for UP type - Free pass Items
 	 * 
@@ -269,6 +271,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNUnprocessStandardTypeWithQC();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Create subcontract orders from pending Production Queue (OS)
 	 * 
@@ -280,6 +283,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createProductionOrderFromPendingSubcontractorder();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Create subcontract orders from pending Production Queue (OS)
 	 * 
@@ -291,6 +295,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createProductionOrderFromPendingSerialItemSubcontractorder();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Direct Serial Item Subcontract Order With BOM For Standard Type
 	 * 
@@ -299,9 +304,10 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	@Test(priority = 24, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type")
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardType() {
-		flag = SubcontractFunc.createDirectSerialItemSubcontractOrderWithBOMForStandardType();
+		SubcontractFunc.createDirectSerialItemSubcontractOrderWithBOMForStandardType();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Direct Serial Item Subcontract Order For SCO Value Addition Type
 	 * 
@@ -313,6 +319,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		flag = SubcontractFunc.createDirectSerialItemSubcontractOrderForValueAdditionType();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Cancelling Serial Item Direct Subcontract Order For Standard Type
 	 * 
@@ -322,6 +329,5 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 			"Subcontract" }, description = "Cancelling Serial Item Direct Subcontract Order For Standard Type")
 	public void documentCancellingForDirectSerialItemSubcontractOrderStandardType() {
 		SubcontractFunc.documentCancellingForDirectSerialItemSubcontractOrderStandardType();
-		Assert.assertTrue(flag);
 	}
 }

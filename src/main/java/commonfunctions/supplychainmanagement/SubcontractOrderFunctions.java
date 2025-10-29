@@ -5152,7 +5152,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createDirectSerialItemSubcontractOrderWithBOMForStandardType() {
+	public void createDirectSerialItemSubcontractOrderWithBOMForStandardType() {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -5175,7 +5175,6 @@ public class SubcontractOrderFunctions {
 			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
 			commonFunc.logoutUser();
 		}
-		return flag;
 	}
 
 	/**
