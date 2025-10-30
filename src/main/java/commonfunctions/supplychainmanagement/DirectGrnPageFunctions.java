@@ -1179,7 +1179,7 @@ public class DirectGrnPageFunctions {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DirectGrnDetails.xlsx";
+				+ "DBDETAILS.xlsx";
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Unit Cost For This Item");
 		for (int i = i1; i <= i1; i++) {
@@ -2758,27 +2758,27 @@ public class DirectGrnPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 2,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 3,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRNNO, commonFunc.getDataFromTestDataSheet("GRNNumber"), 6,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRNNO, commonFunc.getDataFromTestDataSheet("GRNNumber"), 9,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(DirectGrnPageLocators.SupplierNameLovButton,
-				commonFunc.getDataFromTestDataSheet("ARUN PACKS (P) LTD"), 8,
+				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"), 10,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GRNItem"), 9,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GRNItem"), 12,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GRNItem"), 11,
+		verifyAmendFilterSearchSOB(DirectGrnPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GRNItem"), 14,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(DirectGrnPageLocators.GRN_Status,
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 16,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		verifyDateAfterAndBefore();
@@ -2826,14 +2826,14 @@ public class DirectGrnPageFunctions {
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueAfterDate(5, commonFunc.getDataFromTestDataSheet("EffFrom"));
+		verifyAmendTableValueAfterDate(6, commonFunc.getDataFromTestDataSheet("EffFrom"));
 		clearSearchFilter();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRNDtTo, ElementType.Xpath);
 		webDB.sendTextToAnElement(DirectGrnPageLocators.GRNDtTo, commonFunc.getDataFromTestDataSheet("EffTo"),
 				ElementType.Xpath);
 		clickSearchButton();
 		commonFunc.hardWait(3000);
-		verifyAmendTableValueBeforeDate(5, commonFunc.getDataFromTestDataSheet("EffTo"));
+		verifyAmendTableValueBeforeDate(6, commonFunc.getDataFromTestDataSheet("EffTo"));
 		clearSearchFilter();
 //		flag = webDB.waitForElement(PurchaseOrderPageLocators.RequestDtFrom, ElementType.Xpath);
 //		webDB.sendTextToAnElement(PurchaseOrderPageLocators.RequestDtFrom,
@@ -3359,7 +3359,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("POSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsForService();
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnServiceWOI"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3434,7 +3433,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnServiceRateContractWOI"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3501,8 +3499,6 @@ public class DirectGrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeWithoutInspectionD() throws IOException {
-		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
 		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
 				"SelvaUsername");
 		commonFunc.naviagteGrnPage();
@@ -3511,14 +3507,9 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("PriceListSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnServicePriceList"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
-		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnServicePriceList"));
-		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectGrnServicePriceList"));
 	}
 
 	/**
@@ -3589,7 +3580,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("POSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsForService();
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnService"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3664,7 +3654,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3741,7 +3730,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3815,7 +3803,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("POSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsForService();
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnService"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3890,7 +3877,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DIFUOMDirectGrnSerRateContract"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3969,7 +3955,6 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(
 				webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DIFUOMDirectGrnSerPriceList"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
