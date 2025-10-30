@@ -123,7 +123,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String LocId = "//button[@id='P1615131103_UNIT_LOCATION_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String Unit = "//button[@id='P1615131061_UNIT_lov_btn']";
+	public static final String Unit = "//button[@id='P1615131103_UNIT_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String GRNNO = "//button[@id='P1615131103_GRN_NO_lov_btn']";
 	/** @locatorType Xpath */

@@ -1100,6 +1100,7 @@ public class GrnPageFunctions {
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
 					String SalesInvoiceNumber = webDB
 							.getTextFromElement(SalesInvoiceLocators.SalesInvoiceNumberTextField, ElementType.Xpath);
 					VariableHandler.setSalesInvoiceNumber(SalesInvoiceNumber);

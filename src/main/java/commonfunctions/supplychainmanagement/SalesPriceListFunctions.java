@@ -852,7 +852,6 @@ public class SalesPriceListFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * Search Record Find Page Document
 	 * 
