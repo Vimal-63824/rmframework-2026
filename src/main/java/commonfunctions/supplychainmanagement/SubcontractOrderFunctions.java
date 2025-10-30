@@ -871,7 +871,7 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
-				commonFunc.hardWait(14000);
+				commonFunc.hardWait(16000);
 				checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
 				commonFunc.hardWait(1000);
 				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
@@ -4913,7 +4913,7 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
-				checkDirectSucontractOrderWithoutProdAndSOLineWiseDetailsVerificationDataBaseValuesWithUIValues();
+				checkSucontractOrderValueAdditionLineWiseDetailsVerificationDataBaseValuesWithUIValues();
 				commonFunc.hardWait(1000);
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
@@ -5141,6 +5141,73 @@ public class SubcontractOrderFunctions {
 			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
 			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
 			commonFunc.logoutUser();
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Create Direct Serial Item Subcontract Order With BOM For
+	 * Standard Type
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public void createDirectSerialItemSubcontractOrderWithBOMForStandardType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * This Method Used For Create Direct Serial Item Subcontract Order For Value
+	 * Addition Type
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createDirectSerialItemSubcontractOrderForValueAdditionType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
+				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
 			commonFunc.navigateToMaterialRequestScreen();
@@ -5165,7 +5232,7 @@ public class SubcontractOrderFunctions {
 			commonFunc.navigateToGrnSco();
 			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
 //			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-			grnScoPageFunc.verifyGenMatConsAndAllocate();
+			grnScoPageFunc.clickingGenMatConsAndAllocate();
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 			grnScoPageFunc.saveHeaderAndPost();
@@ -5178,67 +5245,24 @@ public class SubcontractOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
 			flag = commonFunc.logoutUser();
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
-			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
-			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
-			clickLocationDetailsButtonValidationwithDataBase();
-			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
-			clickingMRPDetailsTabVerificationWithBOMAgainst();
-			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
-			if (!VariableHandler.getApprovalFlag()) {
-				approvalPageFunc
-						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalPageFunc.navigateToApprovals();
-				approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
-				verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
-				commonFunc.navigateToMaterialRequestScreen();
-				materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
-				materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
-				materialRequestFunc.headerSaveAndPost();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername-Admin");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
-				commonFunc.navigateToMaterialIssuanceVoucher();
-				materialIssuanceVoucherFunc
-						.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
-				materialIssuanceVoucherFunc.headerTickAndPostIcon();
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
-				commonFunc.navigateToGrnSco();
-				grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
-//				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-				grnScoPageFunc.verifyGenMatConsAndAllocate();
-//				grnScoPageFunc.checkConsumptionAfterGenerationMat();
-//				grnScoPageFunc.verifyViewLineDetails();
-				grnScoPageFunc.saveHeaderAndPost();
-				approvalFunc
-						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername-Admin");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
-				flag = commonFunc.logoutUser();
-				mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			}
 		}
 		return flag;
+	}
+
+	/**
+	 * This Method Used For Document Cancelling For Direct Serial Item Subcontract
+	 * Order For Standard Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void documentCancellingForDirectSerialItemSubcontractOrderStandardType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
+		clickingHeaderCancelButton();
 	}
 }

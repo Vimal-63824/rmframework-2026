@@ -309,7 +309,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String PendingSalesOrderSearchBtn = "//button[@data-testid='Find']";
 	/** @Locator XPATH */
-	public static final String SalesInvoiceOverAllSaveBtn = "//*[@id='B5998922505015564483']/span";
+	public static final String SalesInvoiceOverAllSaveBtn = "//button[@id='Save']";
 	/** @Locator XPATH */
 	public static final String SalesInvoiceNumberTextField = "//*[@id='P191513109001_SIHD_EXC_INV_NO_DISPLAY']";
 
