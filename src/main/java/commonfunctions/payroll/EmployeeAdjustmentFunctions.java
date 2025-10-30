@@ -29,7 +29,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class EmployeeAdjustmentFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private CommonFunctions commonFunc = new CommonFunctions();
@@ -851,8 +851,11 @@ public class EmployeeAdjustmentFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickPostEmployeeAdjustmentButton() {
-		flag = webDB.waitForClickElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
+			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);

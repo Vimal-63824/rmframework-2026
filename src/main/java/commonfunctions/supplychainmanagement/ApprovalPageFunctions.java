@@ -237,8 +237,7 @@ public class ApprovalPageFunctions {
 				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
-				flag = !webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-				if (flag) {
+				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath)) {
 					logs.logging("INFO", "Workflow Approval Ok Button Clicked");
 				}
 				webDB.switchToDefaultContent();

@@ -14,7 +14,7 @@ import commonfunctions.payroll.PreparePayrollFunctions;
 import utils.ReportLoger;
 
 public class PreparePayrollTest extends RoadMapERPTest {
-	private static boolean flag = false;
+	private boolean flag = false;
 	private static ReportLoger logs = new ReportLoger();
 	private static int previousStatus = ITestResult.SUCCESS;
 	private static CommonFunctions commonFunc = new CommonFunctions();

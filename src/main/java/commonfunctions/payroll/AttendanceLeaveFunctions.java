@@ -32,7 +32,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class AttendanceLeaveFunctions {
-	private static boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private CommonFunctions commonFunc = new CommonFunctions();
@@ -1385,12 +1385,11 @@ public class AttendanceLeaveFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyLeaveLOPUploadMigrationWithTemplates() {
-		LocalDate date = LocalDate.now().plusDays(4);
 		LocalDate date1 = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 		String Month = date1.format(formatter).toUpperCase();
-		String requestDay = date.format(formatter1);
+		String requestDay = date1.format(formatter1);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
 					"HRMRequestUser");

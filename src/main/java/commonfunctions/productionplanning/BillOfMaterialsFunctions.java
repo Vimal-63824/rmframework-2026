@@ -24,7 +24,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class BillOfMaterialsFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -169,8 +169,8 @@ public class BillOfMaterialsFunctions {
 		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
-			webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			flag = webDB.clickAnElement(BillOfMaterialsLocators.BOMSaveHeaderIcon, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Save Header Clicked and Toast Message Displayed");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -1010,6 +1010,7 @@ public class BillOfMaterialsFunctions {
 	 * @param Status
 	 */
 	public void checkDisplayStatusInsideBOM(String Status) {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(BillOfMaterialsLocators.BOMDisplayStatus, ElementType.Xpath);
 		if (flag) {
 			String DisplayStatus = webDB.getTextFromElement(BillOfMaterialsLocators.BOMDisplayStatus,
@@ -1137,6 +1138,7 @@ public class BillOfMaterialsFunctions {
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 						}
+						commonFunc.checkRefreshCellsDisappear();
 					}
 				}
 			}
@@ -1176,6 +1178,15 @@ public class BillOfMaterialsFunctions {
 						logs.logging("INFO", "Cre. Revision Processed Successfully");
 						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+						flag = webDB.waitForClickElement(BillOfMaterialsLocators.DisplayBOMNumber, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Tick Icon Clicked and BOM Created");
+							commonFunc.hardWait(2000);
+							String BOMNo = webDB.getTextFromElement(BillOfMaterialsLocators.DisplayBOMNumber,
+									ElementType.Xpath);
+							VariableHandler.setBOMNumber(BOMNo);
+							logs.logging("INFO", "Displayed BOM Number after created: " + BOMNo);
 						}
 					}
 				}
@@ -1315,15 +1326,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1349,8 +1354,7 @@ public class BillOfMaterialsFunctions {
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
 		String RMItem1 = commonFunc.getDataFromTestDataSheet("FG-10002-Item");
-		String RMItem2 = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
-		String RMItem3 = commonFunc.getDataFromTestDataSheet("GwlBomItem1001");
+		String RMItem2 = commonFunc.getDataFromTestDataSheet("GwlBomItem1001");
 		try {
 			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 					"TvsUsername");
@@ -1381,11 +1385,6 @@ public class BillOfMaterialsFunctions {
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
-			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
-			clickSaveLineIconInMaterialTab();
-			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem3,
-					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FG-WH-KD"));
 			clickSaveLineIconInMaterialTab();
 			navigateToBORSubTab();
@@ -1401,15 +1400,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1475,15 +1468,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName2,
@@ -1517,16 +1504,11 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
+			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
 			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
@@ -1581,15 +1563,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1601,15 +1577,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1665,15 +1635,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1685,15 +1649,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1750,15 +1708,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1770,15 +1722,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1833,15 +1779,9 @@ public class BillOfMaterialsFunctions {
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getBOMNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getBOMNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1849,7 +1789,7 @@ public class BillOfMaterialsFunctions {
 			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
 			navigateToOtherDetailsSubTab();
 			clickAndVerifyInactivateBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"));
-			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Inactive"));
+			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("InactiveStatus"));
 			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
