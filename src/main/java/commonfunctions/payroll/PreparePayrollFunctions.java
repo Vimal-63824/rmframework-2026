@@ -25,7 +25,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class PreparePayrollFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private CommonFunctions commonFunc = new CommonFunctions();
@@ -746,7 +746,7 @@ public class PreparePayrollFunctions {
 	public boolean verifyPreparePayrollFindWithLineWiseRecord() {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
-		String Month = date.format(formatter).toUpperCase();
+		String Month = date.format(formatter);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
@@ -754,12 +754,14 @@ public class PreparePayrollFunctions {
 			clickLinesRadioButtonInFind();
 			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
 			webDB.navigateToRefresh();
-			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202425"));
+			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202526"));
 			webDB.navigateToRefresh();
 			findWithDesignationInLineWise(commonFunc.getDataFromTestDataSheet("ChairmanText"));
 			webDB.navigateToRefresh();
 			findWithDepartmentInLineWise(commonFunc.getDataFromTestDataSheet("QualityText"));
 			webDB.navigateToRefresh();
+			commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn,
+					commonFunc.getDataFromTestDataSheet("Year202526"));
 			findWithPeriodInLineWise(Month);
 			webDB.navigateToRefresh();
 			flag = commonFunc.logoutUser();
@@ -914,17 +916,23 @@ public class PreparePayrollFunctions {
 	 */
 	public boolean verifyPreparePayrollFindWithHeaderWiseRecord() {
 		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
-		String Month = date.format(formatter).toUpperCase();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM");
+		String SearchMonth = date.format(formatter);
+		String verifyMonth = date.format(formatter1);
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
 					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickHeaderRadioButtonInFind();
-			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202425"));
+			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202526"));
 			webDB.navigateToRefresh();
-			findWithPeriodInHeaderWise(Month);
+			clickHeaderRadioButtonInFind();
+			commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn,
+					commonFunc.getDataFromTestDataSheet("Year202526"));
+			findWithPeriodInHeaderWise(SearchMonth, verifyMonth);
 			webDB.navigateToRefresh();
+			clickHeaderRadioButtonInFind();
 			findWithCalenderInHeaderWise(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"));
 			webDB.navigateToRefresh();
 			flag = commonFunc.logoutUser();
@@ -988,13 +996,14 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 * @param Period
 	 */
-	private void findWithPeriodInHeaderWise(String Period) {
-		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, Period);
+	private void findWithPeriodInHeaderWise(String searchvalue, String verifyValue) {
+		commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindPeriodLovBtn, searchvalue);
 		clickSearchButtonInPreparePayroll();
 		List<WebElement> elements = webDB.getListOfElements(PreparePayrollLocators.FindPeriodHeaderResultTable,
 				ElementType.Xpath);
 		a: for (WebElement webElement : elements) {
-			if (webElement.getText().equalsIgnoreCase(Period)) {
+			if (webElement.getText().equalsIgnoreCase(verifyValue)
+					|| webElement.getText().equalsIgnoreCase(searchvalue)) {
 				flag = true;
 			} else {
 				flag = false;
@@ -1002,7 +1011,7 @@ public class PreparePayrollFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
-		logs.logging("INFO", "Verified Find Search Functions with Period in Payroll Headerwise: " + Period);
+		logs.logging("INFO", "Verified Find Search Functions with Period in Payroll Headerwise: " + searchvalue);
 	}
 
 	/**
@@ -1016,7 +1025,8 @@ public class PreparePayrollFunctions {
 			webDB.moveToElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
 			webDB.clickAnElement(PreparePayrollLocators.FindHeaderRadioBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PreparePayrollLocators.FindYearLovBtn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.isElementSelected(PreparePayrollLocators.FindHeaderRadioInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Header Radio Button Clicked in Find Page");
 			}
@@ -1035,7 +1045,8 @@ public class PreparePayrollFunctions {
 			webDB.moveToElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);
 			webDB.clickAnElement(PreparePayrollLocators.FindLinesRadioBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(PreparePayrollLocators.FindYearLovBtn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.isElementSelected(PreparePayrollLocators.FindLinesRadioInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Lines Radio Button Clicked in Find Page");
 			}

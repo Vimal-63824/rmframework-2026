@@ -45,7 +45,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CoreProcessPageFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -553,7 +553,7 @@ public class CoreProcessPageFunctions {
 						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
@@ -1202,7 +1202,7 @@ public class CoreProcessPageFunctions {
 				completionProductionOrderFunc
 						.validateItemAndProcessInPendingProdOrderTable(VariableHandler.getItemName(), ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);

@@ -43,7 +43,7 @@ import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.Row;
 
 public class SalesOrderFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
@@ -481,10 +481,14 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.AddButtonSalesOrder, ElementType.Xpath);
-//			flag = webDB.waitForElement(SalesOrderLocators.SalesOrderHeader, ElementType.Xpath);
-//			if (flag) {
-//				logs.logging("INFO", "Add button is Clicked");
-//			}
+			flag = webDB.waitForElement(SalesOrderLocators.SOButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesOrderLocators.SOButton, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesOrderLocators.SOFrame, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Add button is Clicked");
+				}
+			}
 		}
 		assertTrue(flag);
 	}
@@ -780,7 +784,7 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.PostButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.PostButton, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked Sucessfully");
 			}

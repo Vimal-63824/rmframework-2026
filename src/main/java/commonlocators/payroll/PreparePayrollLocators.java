@@ -172,6 +172,10 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String FindHeaderRadioBtn = "//label[text()='Header']";
 	/** @locatorType Xpath */
+	public static final String FindHeaderRadioInput = "//label[text()='Header']/preceding-sibling::input";
+	/** @locatorType Xpath */
+	public static final String FindLinesRadioInput = "//label[text()='Line(s)']/preceding-sibling::input";
+	/** @locatorType Xpath */
 	public static final String FindLinesRadioBtn = "//label[text()='Line(s)']";
 	/** @locatorType Xpath */
 	public static final String FindResultSearchBar = "//input[@id='detail_search_field']";
