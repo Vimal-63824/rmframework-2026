@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks April 21, 2025
@@ -8,6 +10,8 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.payroll.AttendanceLeaveFunctions;
 import utils.ReportLoger;
@@ -24,6 +28,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 1, groups = { "Leave" }, description = "25 To Check Leave Entry Based on the Request date")
 	public void VerifyLeaveEntryBasedRequestDate() {
 		flag = attendanceLeaveFunc.verifyLeaveEntryDateTypeBalanceSession();
@@ -35,6 +40,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 2, groups = {
 			"Leave" }, description = "26 To Check Leave Entry Based on Leave types in Leave Master")
 	public void VerifyLeaveEntryBasedLeaveTypesLeaveMaster() {
@@ -51,6 +57,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 3, groups = { "Leave" }, description = "27 To check Leave Entry Based on the Leave Balances")
 	public void VerifyLeaveEntryBasedLeaveBalances() {
 		logs.logging("INFO", "This test covered in 'VerifyLeaveEntryBasedRequestDate'  Test");
@@ -66,6 +73,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 4, groups = {
 			"Leave" }, description = "28 To Check Leave Entry Based on different Start session and End session")
 	public void VerifyLeaveEntryBasedDifferentStartEndSession() {
@@ -82,6 +90,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 5, groups = { "Leave" }, description = "31 Cancel the leave data and checking the Leave status")
 	public void VerifyCancelLeaveDataCheckLeaveStatus() {
 		flag = attendanceLeaveFunc.verifyCancelLeaveCheckLeaveStatus();
@@ -93,6 +102,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 6, groups = { "Leave" }, description = "32 To Check the Leave Entry with the attachment field")
 	public void VerifyLeaveEntryWithAttachmentField() {
 		logs.logging("INFO", "This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus'  Test");
@@ -108,6 +118,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 7, groups = { "Leave" }, description = "33 To Check Leave report fetches values correctly")
 	public void VerifyLeaveEntryReportFetchesValues() {
 		logs.logging("INFO", "This test covered in 'VerifyCancelLeaveDataCheckLeaveStatus'  Test");
@@ -123,6 +134,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 8, groups = { "Leave" }, description = "29 To Check Leave Lop Upload Migration with Templates")
 	public void VerifyLeaveLopUploadMigrationWithTemplates() {
 		flag = attendanceLeaveFunc.verifyLeaveLOPUploadMigrationWithTemplates();
@@ -134,6 +146,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 9, groups = { "Leave" }, description = "30 To Check Leave Accrual Upload Migration with Templates")
 	public void VerifyLeaveAccrualUploadMigrationWithTemplates() {
 		flag = attendanceLeaveFunc.verifyLeaveAccrualUploadMigrationWithTemplates();
@@ -147,6 +160,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 10, groups = {
 			"Leave Adjustment" }, description = "60 To Check Leave Adjustment Based on Leave types in Leave Master")
 	public void VerifyLeaveAdjustmentBasedLeaveTypes() {
@@ -159,6 +173,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 11, groups = {
 			"Leave Adjustment" }, description = "61 To Check Leave Adjustment based on the Addition and Deduction Prefix")
 	public void VerifyLeaveAdjustmentBasedAdditionDeductionPrefix() {
@@ -175,6 +190,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 12, groups = {
 			"Leave Adjustment" }, description = "62 To Check Leave Adjustment Based on the Request date")
 	public void VerifyLeaveAdjustmentBasedRequestDate() {
@@ -191,6 +207,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 13, groups = {
 			"Leave Adjustment" }, description = "64 To Check the Leave Adjustment with the attachment field")
 	public void VerifyLeaveAdjustmentWithAttachmentField() {
@@ -207,6 +224,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 14, groups = {
 			"Leave Adjustment" }, description = "66 To Check Leave Adjustment report fetches values correctly")
 	public void VerifyLeaveAdjustmentReportFetchesValuesCorrectly() {
@@ -223,6 +241,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 15, groups = {
 			"Leave Adjustment" }, description = "68 To Check Leave Balances Reflecting in Employee Master")
 	public void VerifyLeaveAdjustmentBalancesReflectingInEmployeeMaster() {
@@ -235,6 +254,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 16, groups = {
 			"Leave Adjustment" }, description = "63 Cancel the leave Adjustment and checking the status of Leave Adjustment")
 	public void VerifyCancelCheckStatusLeaveAdjustment() {
@@ -247,6 +267,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 17, groups = {
 			"Leave Adjustment" }, description = "65 To Check Accrual Leave Balance Migration With Templates")
 	public void VerifyAccrualLeaveBalanceMigrationWithTemplates() {
@@ -259,6 +280,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 18, groups = {
 			"Leave" }, description = "24 To Check Leave Entry Find page with all line wise record")
 	public void VerifyLeaveEntryFindWithLineWiseRecord() {
@@ -271,6 +293,7 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 19, groups = {
 			"Leave Adjustment" }, description = "59 To Check Leave Adjustment Find page with all line wise record")
 	public void VerifyLeaveAdjustmentFindWithLineWiseRecord() {
@@ -285,10 +308,12 @@ public class AttendanceLeaveTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		previousStatus = result.getStatus();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			commonFunc.verifyAfterMethod();
 		}
 	}
+	
 }

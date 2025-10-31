@@ -1,20 +1,21 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Harikrishna - RMITS
  * @Company RoadMap It Solutions October 07, 2025
  */
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
-import commonfunctions.supplychainmanagement.CustomerItemsFunctions;
 import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
-import commonfunctions.supplychainmanagement.SalesCataloguePrice;
 import commonfunctions.supplychainmanagement.SalesOrderFunctions;
-import commonfunctions.supplychainmanagement.SalesPriceListFunctions;
-import commonfunctions.supplychainmanagement.SetupSalesFunctions;
 import utils.Mailer;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -35,9 +36,21 @@ public class MaterialRequestTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 1, groups = { "Material Request" }, description = "Material Request Customer Type")
 	public void verifyMRFindScreen() {
 		flag = materialReqFunc.createMRCustomerType();
 		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

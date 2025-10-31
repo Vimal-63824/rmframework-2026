@@ -1,18 +1,19 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
-import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.CustomerItemsFunctions;
 import commonfunctions.supplychainmanagement.SalesCataloguePrice;
 import utils.Mailer;
 import utils.WebDriverBase;
 
 public class SalesCataloguePriceTest extends RoadMapERPTest {
-
 
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
@@ -26,6 +27,7 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 1, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with Similar Stock and Customer UOM - Dom. Customer")
 	public void veriftyCreateCatalogPricewithSimilarStockandCustomerUOMDomCustomer() {
@@ -37,6 +39,7 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 2, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with DisSimilar Stock and Customer UOM - Dom. Customer")
 	public void veriftyCreateCatalogPricewithDisSimilarStockandCustomerUOMDomCustomer() {
@@ -48,6 +51,7 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 3, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with Similar Stock and Customer UOM - Export Customer")
 	public void veriftyCreateCatalogPricewithSimilarStockandCustomerUOMExportCustomer() {
@@ -59,6 +63,7 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 4, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with DisSimilar Stock and Customer UOM - Export Customer")
 	public void veriftyCreateCatalogPricewithDisSimilarStockandCustomerUOMExportCustomer() {
@@ -70,6 +75,7 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 5, groups = { "Sales Catalogue Price" }, description = "Cancel Catalog price")
 	public void veriftyCreateCatalogPricewithCancelCatalogPrice() {
 		Scp.createsCancelCatalogPrice();
@@ -80,16 +86,21 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 6, groups = { "Sales Catalogue Price" }, description = "Multiples Lines Creates")
 	public void veriftyCreatesMultiplesCataloguePrice() {
 		Scp.createsMultiplesCataloguePrice();
 	}
-	
+
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
-		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
-			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(false);
-			commonFunc.verifyAfterMethod();
-		}
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

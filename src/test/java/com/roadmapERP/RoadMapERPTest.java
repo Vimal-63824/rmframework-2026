@@ -26,7 +26,6 @@ public class RoadMapERPTest {
 	@BeforeClass(alwaysRun = true)
 	public void BrowserSetup() {
 		commonFunc.browserOpen();
-		commonFunc.enterUrl();
 	}
 
 	/**

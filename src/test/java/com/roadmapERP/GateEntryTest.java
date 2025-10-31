@@ -1,16 +1,22 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks May 02, 2025
  */
 import org.testng.annotations.Test;
+
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.GateEntryPageFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class GateEntryTest extends RoadMapERPTest{
+public class GateEntryTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
@@ -22,6 +28,7 @@ public class GateEntryTest extends RoadMapERPTest{
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 1, groups = { "Gate Entry" }, description = "Create gate entry document for purchase Order")
 	public void VerifyToCreateGateEntryFromPendingPo() {
 		Gatefunc.verifyToCreateGateEntryFromPo();
@@ -32,6 +39,7 @@ public class GateEntryTest extends RoadMapERPTest{
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 2, groups = {
 			"Gate Entry" }, description = "Create single gate entry document for Multiple Purchase Orders ")
 	public void VerifyToCreateGateEntryFromPendingMultiplePo() {
@@ -43,6 +51,7 @@ public class GateEntryTest extends RoadMapERPTest{
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 3, groups = {
 			"Gate Entry" }, description = "Create single gate entry document for Multiple Supplier Schedule Orders")
 	public void VerifyToCreateGateEntryFromMultipleSso() {
@@ -54,21 +63,34 @@ public class GateEntryTest extends RoadMapERPTest{
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 4, groups = {
 			"Gate Entry" }, description = " create Gate document for Inwarding materials without PO")
 	public void VerifyToCreateDirectGateEntry() {
 		Gatefunc.verifyToCreateDirectGateEntry();
 	}
+
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
 	 * Transfer Rate Contract Type
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 1,groups = {
-	"GRN" }, description = "Find Gate Entry inward with all possible search parameters")
-	public void verifyCreationOfGrnFilterAllFieldWorking(){
+	@Author("Durai-RMITS")
+	@Test(priority = 1, groups = { "GRN" }, description = "Find Gate Entry inward with all possible search parameters")
+	public void verifyCreationOfGrnFilterAllFieldWorking() {
 		Gatefunc.verifyCreationOfGENFilterAllFieldWorking();
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }

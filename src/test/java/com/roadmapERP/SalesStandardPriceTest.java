@@ -1,11 +1,16 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks May 20, 2025
  */
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.CustomerItemsFunctions;
 import commonfunctions.supplychainmanagement.SalesCataloguePrice;
@@ -29,6 +34,7 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * @author Kowshik-RMITS
 	 */
 
+	@Author("Kowshik-RMITS")
 	@Test(priority = 1, groups = {
 			"Sales Standard Price" }, description = "Create Standard Price with Similar Stock and Customer UOM - Dom. Customer")
 	public void veriftyCreateStandardPricewithSimilarStockandCustomerUOMDomesticCustomer() {
@@ -42,6 +48,7 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * @author Kowshik-RMITS
 	 */
 
+	@Author("Kowshik-RMITS")
 	@Test(priority = 2, groups = {
 			"Sales Standard Price" }, description = "Create Standard Price with Different Similar Stock and Customer UOM - Dom. Customer")
 	public void veriftyCreateStandardPricewithDisSimilarStockandCustomerUOMDomesticCustomer() {
@@ -53,6 +60,7 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 3, groups = {
 			"Sales Standard Price" }, description = "Create Standard Price with Different Similar Stock and Customer UOM - Export Customer")
 	public void veriftyCreateStandardPricewithSimilarStockandCustomerUOMExportCustomer() {
@@ -65,6 +73,7 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 4, groups = {
 			"Sales Standard Price" }, description = "Create Standard Price with Different Similar Stock and Customer UOM - Export Customer")
 	public void veriftyCreateStandardPricewithDifferSimilarStockandCustomerUOMExportCustomer() {
@@ -76,6 +85,7 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 5, groups = { "Sales Standard Price" }, description = "Creates Cancel Record ")
 	public void veriftyCreateDocumnetCancelStages() {
 		Std.CancelStandardPrice();
@@ -86,6 +96,7 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 6, groups = { "Sales Standard Price" }, description = "Creates Multiples Item Same Price Class ")
 	public void veriftyCreateItemMultipleStdPrice() {
 		Std.createsMultiplesItemsStdPrice();
@@ -96,10 +107,22 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 7, groups = {
 			"Sales Standard Price" }, description = "Creates Multiples Item Same Price Class With Different PriceClass")
 	public void veriftyCreatesItemsMultiplesStdPriceDifferentPriceClass() {
 		Std.createsMultiplesItemStdPriceDifferentPriceClass();
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }

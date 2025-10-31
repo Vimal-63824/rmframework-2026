@@ -1,10 +1,13 @@
 package com.roadmapERP;
 
-import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.SubcontractSetUpFunctions;
 import utils.WebDriverBase;
@@ -22,6 +25,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 1, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier +Item + Process")
 	public void creatingOpenSCOpriceForSupplier_Item_Process() {
@@ -35,6 +39,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 2, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Item + Process")
 	public void creatingOpenSCOpriceForItem_Process() {
@@ -48,6 +53,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 3, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Supplier + Process")
 	public void creatingOpenSCOpriceForSupplier_Process() {
@@ -60,6 +66,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 4, groups = {
 			"Open SCO" }, description = "Create Open Subcontract Order (Rate Contract) for an Item with Type Process")
 	public void creatingOpenSCOpriceForProcess() {
@@ -72,6 +79,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 5, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Process")
 	public void reversingTheProcessTypeDocument() {
@@ -84,6 +92,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 6, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Item + Process")
 	public void reveringItem_ProcessTypeDocument() {
@@ -96,6 +105,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 7, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Supplier +Item + Process")
 	public void reveringSupplier_Item_ProcessTypeDocument() {
@@ -108,6 +118,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 8, groups = {
 			"Open SCO" }, description = "Revise The (Rate Contract) for an Item with Type Supplier + Process")
 	public void reveringSupplier_Process_TypeDocument() {
@@ -120,6 +131,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 9, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Process")
 	public void creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() {
@@ -132,6 +144,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 10, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Supplier +Item + Process")
 	public void creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() {
@@ -144,6 +157,7 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 11, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Item + Process")
 	public void creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() {
@@ -156,11 +170,23 @@ public class SubcontractSetUpTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS @
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 12, groups = {
 			"Open SCO" }, description = "Cancelled The (Rate Contract) for an Item with Type Supplier + Process")
 	public void creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() {
 		flag = SubcontractSetupFunc.creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument();
 		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }
