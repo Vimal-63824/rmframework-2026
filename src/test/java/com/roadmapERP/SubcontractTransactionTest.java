@@ -1,12 +1,17 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Vimal - RMITS
  * @company RoadMap IT Solutions Oct 16, 2025
  */
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import utils.WebDriverBase;
@@ -23,6 +28,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 1, groups = {
 			"Subcontract" }, description = "Create Direct Subcontract Order with BOM For Standard Type")
 	public void CreateDirectSubcontractOrderWithBOMForStandardType() {
@@ -35,6 +41,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 2, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for PR type - Free pass Items")
 	public void CreateProductionOrderFromSubcontractorderToGRNTypePR() {
@@ -47,6 +54,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 3, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for UP type - Free pass Items")
 	public void createProductionOrderFromSubcontractorderToGRNUnprocessType() {
@@ -59,6 +67,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 4, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for US type - Free pass Items")
 	public void CreateProductionOrderFromSubcontractorderToGRNUnprocessStandardType() {
@@ -71,6 +80,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 5, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type")
 	public void createDirectSubcontractOrderForValueAdditionType() {
@@ -83,6 +93,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 6, groups = {
 			"Subcontract" }, description = "Cancelling Direct Subcontract Order For SCO Value Addition Type")
 	public void documentCancellingForDirectSubcontractOrderValueAdditionType() {
@@ -95,6 +106,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 7, groups = {
 			"Subcontract" }, description = "Cancelling Direct Subcontract Order For Standard Type")
 	public void documentCancellingForDirectSubcontractOrderStandardType() {
@@ -108,6 +120,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 8, groups = {
 			"Subcontract" }, description = "Create Direct Subcontract Order For Standard Type In Conversion Factor")
 	public void createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactor() {
@@ -120,6 +133,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 9, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Conversion Factor in GRN PR Type")
 	public void createSubcontractOrderFromPendingWithConversionFactorinGRN_PRType() {
@@ -132,6 +146,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 10, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref")
 	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRef() {
@@ -144,6 +159,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 11, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref")
 	public void createSubcontractOrderFromPendingWithSalesOrderRef() {
@@ -157,6 +173,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 12, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type In Sales Order Ref and Conv Factor")
 	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactor() {
@@ -169,6 +186,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 13, groups = {
 			"Subcontract" }, description = "Create Subcontract Order From Pending With Sales Order Ref and Conv Factor")
 	public void createSubcontractOrderFromPendingWithSalesOrderRefandConvFactor() {
@@ -181,6 +199,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 14, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor")
 	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactor() {
@@ -194,6 +213,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 15, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order For SCO Value Addition Type with Conv Factor and Sales Order Ref")
 	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOref() {
@@ -206,6 +226,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 16, groups = {
 			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type with Project")
 	public void directSubcontractOrderWithBOMForStandardTypeWithProject() {
@@ -218,6 +239,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 17, groups = { "Subcontract" }, description = "Create Subcontract Order From Pending With Project")
 	public void createSubcontractOrderFromPendingWithProject() {
 		flag = SubcontractFunc.createSubcontractOrderFromPendingWithProject();
@@ -229,6 +251,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 18, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for CS type - Free pass Items")
 	public void createProductionOrderFromSubcontractorderToGRNCutSampleType() {
@@ -241,6 +264,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 19, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for PR type - QC Enabled Items")
 	public void createProductionOrderFromSubcontractorderToGRNTypePRWithQC() {
@@ -253,6 +277,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 20, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for UP type - QC Enabled Items")
 	public void createProductionOrderFromSubcontractorderToGRNUnprocessTypeWithQC() {
@@ -265,6 +290,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 21, groups = {
 			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for US type - QC Enabled Items")
 	public void createProductionOrderFromSubcontractorderToGRNUnprocessStandardTypeWithQC() {
@@ -277,6 +303,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 22, groups = {
 			"Subcontract" }, description = "Create subcontract orders from pending Production Queue (OS)")
 	public void createProductionOrderFromPendingSubcontractorder() {
@@ -289,6 +316,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 23, groups = {
 			"Subcontract" }, description = "Create serial Item subcontract orders from pending Production Queue (OS)")
 	public void createProductionOrderFromPendingSerialItemSubcontractorder() {
@@ -301,6 +329,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 24, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type")
 	public void createDirectSerialItemSubcontractOrderWithBOMForStandardType() {
@@ -313,6 +342,7 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 25, groups = {
 			"Subcontract" }, description = "Direct Serial Item Subcontract Order For SCO Value Addition Type")
 	public void createDirectSerialItemSubcontractOrderForValueAdditionType() {
@@ -325,9 +355,21 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 26, groups = {
 			"Subcontract" }, description = "Cancelling Serial Item Direct Subcontract Order For Standard Type")
 	public void documentCancellingForDirectSerialItemSubcontractOrderStandardType() {
 		SubcontractFunc.documentCancellingForDirectSerialItemSubcontractOrderStandardType();
+	}
+
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

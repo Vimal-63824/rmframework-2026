@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks April 30, 2025
@@ -9,6 +11,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.payroll.PreparePayrollFunctions;
 import utils.ReportLoger;
@@ -25,6 +28,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 1, groups = {
 			"Prepare/Process payroll" }, description = "37 To CheckPrepare/Process payroll based on Unit/Group Loading")
 	public void VerifyPrepareProcessPayrollBasedOnUnitGroupLoading() {
@@ -37,6 +41,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 2, groups = {
 			"Prepare/Process payroll" }, description = "38 To CheckPrepare/Process payroll based on Load Employee")
 	public void VerifyPrepareProcessPayrollBasedOnLoadEmployee() {
@@ -53,6 +58,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 3, groups = {
 			"Prepare/Process payroll" }, description = "39 To CheckPrepare/Process payroll based on Unit/Group Select Flag")
 	public void VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag() {
@@ -69,6 +75,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 4, groups = {
 			"Prepare/Process payroll" }, description = "40 To CheckPrepare/Process payroll based on Employee Select Flag")
 	public void VerifyPrepareProcessPayrollBasedOnEmployeeSelectFlag() {
@@ -85,6 +92,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 5, groups = {
 			"Prepare/Process payroll" }, description = "41 To CheckPrepare/Process payroll based on Allowance Data")
 	public void VerifyPrepareProcessPayrollBasedOnAllowanceData() {
@@ -101,6 +109,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 6, groups = {
 			"Prepare/Process payroll" }, description = "42 To CheckPrepare/Process payroll based on Adjustment Data")
 	public void VerifyPrepareProcessPayrollBasedOnAdjustmentData() {
@@ -117,6 +126,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 7, groups = {
 			"Prepare/Process payroll" }, description = "43 To CheckPrepare/Process payroll based on Overtime Data")
 	public void VerifyPrepareProcessPayrollBasedOnOvertimeData() {
@@ -133,6 +143,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 8, groups = {
 			"Prepare/Process payroll" }, description = "44 To CheckPrepare/Process payroll based on Permission / On Duty Data")
 	public void VerifyPrepareProcessPayrollBasedOnPermissionOnDutyData() {
@@ -149,6 +160,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 9, groups = {
 			"Prepare/Process payroll" }, description = "48 To CheckPrepare/Process payroll based on Paid Leave And Unpaid Leave Data")
 	public void VerifyPrepareProcessPayrollBasedOnPaidAndUnpaidLeaveData() {
@@ -165,6 +177,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 10, groups = {
 			"Prepare/Process payroll" }, description = "49 To CheckPrepare/Process payroll based on Exception Data")
 	public void VerifyPrepareProcessPayrollBasedOnExceptionData() {
@@ -181,6 +194,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 11, groups = {
 			"Prepare/Process payroll" }, description = "50 To CheckPrepare/Process payroll based on Attendance Data")
 	public void VerifyPrepareProcessPayrollBasedOnAttendanceData() {
@@ -198,6 +212,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 12, groups = {
 			"Prepare/Process payroll" }, description = "52 To CheckPrepare/Process payroll based on Unit/Group select Flag(Unload and load)")
 	public void VerifyPrepareProcessPayrollBasedOnUnitGroupUnload() {
@@ -215,6 +230,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 13, groups = {
 			"Prepare/Process payroll" }, description = "53 To CheckPrepare/Process payroll based on Load Employee select Flag(Unload and load)")
 	public void VerifyPrepareProcessPayrollBasedOnLoadEmployeeUnload() {
@@ -231,6 +247,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 14, groups = {
 			"Prepare/Process payroll" }, description = "54 To CheckPrepare/Process payroll based on Review Completed")
 	public void VerifyPrepareProcessPayrollBasedOnReviewCompleted() {
@@ -247,6 +264,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 15, groups = {
 			"Prepare/Process payroll" }, description = "54 To CheckPrepare/Process payroll based on Process Payroll")
 	public void VerifyPrepareProcessPayrollBasedOnProcessPayroll() {
@@ -263,6 +281,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 16, groups = {
 			"Prepare/Process payroll" }, description = "35 To Check Prepare/Process payroll Find page with all Line wise record")
 	public void VerifyPreparePayrollFindWithLineWiseRecord() {
@@ -275,6 +294,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 17, groups = {
 			"Prepare/Process payroll" }, description = "36 To Check Prepare/Process payroll Find page with all Header wise record")
 	public void VerifyPreparePayrollFindWithHeaderWiseRecord() {
@@ -289,8 +309,9 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result,Method method) {
 		previousStatus = result.getStatus();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			commonFunc.verifyAfterMethod();
 		}

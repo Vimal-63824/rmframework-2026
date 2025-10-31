@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Sakthi-GWL
  * @company Galaxy Weblinks February 5, 2025
@@ -9,6 +11,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.EmployeeAdjustmentFunctions;
@@ -28,6 +31,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 1, groups = {
 			"EmployeeMaster" }, description = "2 To Check the Employee Creation with Particulars details")
 	public void VerifyEmployeeCreationParticularsDetails() {
@@ -40,6 +44,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 2, groups = {
 			"EmployeeMaster" }, description = "3 To Check the Employee Creation with Qualification / Skills details")
 	public void VerifyEmployeeCreationQualificationSkillDetails() {
@@ -52,6 +57,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 3, groups = {
 			"EmployeeMaster" }, description = "7 To check Employee Creation with Dependent details")
 	public void VerifyCheckEmployeeCreationWithDependentDetails() {
@@ -64,6 +70,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 4, groups = {
 			"EmployeeMaster" }, description = "4 To Check the Employee creation with salary details With Allowance Values")
 	public void VerifyEmployeeCreationSalaryDetailsAllowanceValues() {
@@ -76,6 +83,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 5, groups = {
 			"EmployeeMaster" }, description = "5 To check Employee creation with salary details With Adjustment Values")
 	public void VerifyEmployeeCreationSalaryDetailsAdjustmentValues() {
@@ -88,6 +96,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 6, groups = { "EmployeeMaster" }, description = "6 To Check Employee Creation with Leave Details")
 	public void VerifyEmployeeCreationLeaveDetails() {
 		flag = empMasterFunc.verifyEmployeeCreationLeaveDetails();
@@ -99,6 +108,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 7, groups = {
 			"EmployeeMaster" }, description = "8 To check profile image and sign upload image and attachment")
 	public void VerifyProfileImageAndSignUploadWithAttachments() {
@@ -111,6 +121,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 8, groups = {
 			"EmployeeMaster" }, description = "9 To check Employee Creation with Additional info details")
 	public void VerifyEmployeeCreationWithAdditionalInfoDetails() {
@@ -123,6 +134,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 9, groups = {
 			"EmployeeMaster" }, description = "11 To check Employee Creation With Update Employee Particular Details")
 	public void VerifyUpdateEmployeeParticularDetails() {
@@ -135,6 +147,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 10, groups = {
 			"EmployeeMaster" }, description = "12 To check Employee Creation With Update Address Details")
 	public void VerifyEmployeeCreationUpdateAddressDetails() {
@@ -147,6 +160,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 11, groups = {
 			"EmployeeMaster" }, description = "13 To check Employee Creation With Update Dependent Details")
 	public void VerifyEmployeeCreationUpdateDependentDetails() {
@@ -159,6 +173,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 12, groups = {
 			"EmployeeMaster" }, description = "14 To check Employee Creation With Update Contact Details")
 	public void VerifyEmployeeCreationUpdateContactDetails() {
@@ -171,6 +186,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 13, groups = {
 			"EmployeeMaster" }, description = "15 To check Employee Creation With Update Qualification Details")
 	public void VerifyEmployeeCreationUpdateQualificationDetails() {
@@ -183,6 +199,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 14, groups = {
 			"EmployeeMaster" }, description = "16 To check Employee Creation With Update Skills Details")
 	public void VerifyEmployeeCreationUpdateSkillsDetails() {
@@ -195,6 +212,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 15, groups = {
 			"EmployeeMaster" }, description = "10 To check the Employee Creation with Employee History data")
 	public void VerifyEmployeeCreationEmployeeHistory() {
@@ -207,6 +225,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 16, groups = {
 			"EmployeeMaster" }, description = "17 To Check Employee profile Reverse before the Payroll Process")
 	public void VerifyEmployeeCreationEmployeeProfileReverse() {
@@ -219,6 +238,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 17, groups = { "EmployeeMaster" }, description = "18 To Check Employee Migration With Templates")
 	public void VerifyEmployeeMigrationWithTemplates() {
 		flag = empMasterFunc.verifyEmployeeMigrationWithTemplates();
@@ -230,6 +250,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 18, groups = {
 			"EmployeeMaster" }, description = "19 To Check Employee Details Migration With Templates")
 	public void VerifyEmployeeDetailsMigrationWithTemplates() {
@@ -242,6 +263,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 19, groups = {
 			"EmployeeMaster" }, description = "20 To Check Employee Creation based on Return to approval record")
 	public void VerifyEmployeeCreationForwardApproval() {
@@ -254,6 +276,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 20, groups = {
 			"EmployeeMaster" }, description = "21 To Check Employee Creation based on Return to approval record")
 	public void VerifyEmployeeCreationReturnApproval() {
@@ -266,6 +289,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 21, groups = {
 			"EmployeeMaster" }, description = "22 To Check The Employee Creation With Probation Complete")
 	public void VerifyEmployeeCreationProbationComplete() {
@@ -278,6 +302,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 22, groups = {
 			"EmployeeMaster" }, description = "22 To Check the Employee Creation Find page with all line wise record")
 	public void VerifyEmployeeCreationFindWithLineWiseRecord() {
@@ -292,6 +317,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 23, groups = {
 			"Employee Adjustment" }, description = "69 To CheckEmployee Adjustment Find page with all line wise record")
 	public void VerifyEmployeeAdjustmentFindWithLineWiseRecord() {
@@ -304,6 +330,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 24, groups = {
 			"Employee Adjustment" }, description = "70 To Check Adjustment based on different elements")
 	public void VerifyEmployeeAdjustmentBasedOnDifferentElements() {
@@ -316,6 +343,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 25, groups = { "Employee Adjustment" }, description = "71 To Check Adjustment based on End option")
 	public void VerifyEmployeeAdjustmentBasedOnEndOption() {
 		logs.logging("INFO", "This test covered in 'VerifyEmployeeAdjustmentBasedOnDifferentElements'  Test");
@@ -332,6 +360,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 26, groups = {
 			"Employee Adjustment" }, description = "72 To Check Adjustment based on Delete option")
 	public void VerifyEmployeeAdjustmentBasedOnDeleteOption() {
@@ -349,6 +378,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 27, groups = {
 			"Employee Adjustment" }, description = "73 To Check Adjustment based on Hold option")
 	public void VerifyEmployeeAdjustmentBasedOnHoldOption() {
@@ -366,6 +396,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 28, groups = {
 			"Employee Adjustment" }, description = "74 To Check Employee Adjustment report fetches values correctly")
 	public void VerifyEmployeeAdjustmentReportFetchesValues() {
@@ -383,6 +414,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 29, groups = {
 			"Employee Adjustment" }, description = "75 To Check Employee Adjustment Migration With Templates")
 	public void VerifyEmployeeAdjustmentMigrationWithTemplates() {
@@ -395,6 +427,7 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 30, groups = {
 			"Employee Adjustment" }, description = "76 To Check Employee Allowance Migration With Templates")
 	public void VerifyEmployeeAllowanceMigrationWithTemplates() {
@@ -409,8 +442,9 @@ public class EmployeeMasterTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result,Method method) {
 		previousStatus = result.getStatus();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {
 			VariableHandler.setAddEmployeDefaultExecution(false);
 			commonFunc.verifyAfterMethod();

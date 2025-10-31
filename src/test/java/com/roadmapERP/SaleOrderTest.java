@@ -1,6 +1,7 @@
 package com.roadmapERP;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * @author Sakthi-GWL, Deepan-GWL
@@ -11,15 +12,16 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks Feburary 05, 2025
  */
 import commonfunctions.CommonFunctions;
+import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import utils.Mailer;
 import utils.ReportLoger;
 import utils.WebDriverBase;
-import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 
 public class SaleOrderTest extends RoadMapERPTest {
 	boolean flag = false;
@@ -33,6 +35,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is user
 	 *         defined- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 1, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is user defined- Similar Stock and Customer UOM")
 	public void VerifyDomesticSOGeneralSimilarStockAndCustomerUOM() {
@@ -44,6 +47,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is user
 	 *         defined- Dissimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 2, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is user defined- Dissimilar Stock and Customer UOM")
 	public void VerifyDomesticSOGeneralDisSimilarStockAndCustomerUOM() {
@@ -57,6 +61,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is user defined-
 	 *         Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 3, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is user defined- Similar Stock and Customer UOM")
 	public void VerifyExportSOGeneralSimilarStockAndCustomerUOM() {
@@ -68,6 +73,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is user defined-
 	 *         Dissimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 4, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is user defined- Dissimilar Stock and Customer UOM")
 	public void VerifyExportSOGeneralDisSimilarStockAndCustomerUOM() {
@@ -81,6 +87,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Rate
 	 *         contract- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 5, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Rate contract- Similar Stock and Customer UOM")
 	public void VerifyDomesticSOGeneralRateContractSimilarStockAndCustomerUOM() {
@@ -92,6 +99,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is Rate
 	 *         contract- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 6, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Rate contract- Similar Stock and Customer UOM")
 	public void VerifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() {
@@ -103,6 +111,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Rate
 	 *         contract- Dissimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 7, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
 	public void verifyDomesticSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
@@ -117,6 +126,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is Rate
 	 *         contract- Dissimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 8, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Rate contract- Dissimilar Stock and Customer UOM")
 	public void verifyExportSOGeneralRateContractDisSimilarStockAndCustomerUOM() {
@@ -131,6 +141,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Standard
 	 *         Price- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 9, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
 	public void verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
@@ -142,6 +153,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is Standard
 	 *         Price- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 10, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- Similar Stock and Customer UOM")
 	public void verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
@@ -153,6 +165,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Standard
 	 *         Price- DisSimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 11, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
 	public void verifyDomesticSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
@@ -167,6 +180,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is Standard
 	 *         Price- DisSimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 12, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Standard Price- DisSimilar Stock and Customer UOM")
 	public void verifyExportSOGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
@@ -181,6 +195,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Catalog
 	 *         Price- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 13, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
 	public void verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
@@ -192,6 +207,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is Catalog
 	 *         Price- DisSimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 14, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
 	public void verifyDomesticSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
@@ -206,6 +222,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is Catalog
 	 *         Price- Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 15, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- Similar Stock and Customer UOM")
 	public void verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
@@ -217,6 +234,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Export Sales Order - price basis is Catalog
 	 *         Price- DisSimilar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 16, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is Catalog Price- DisSimilar Stock and Customer UOM")
 	public void verifyExportSOGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
@@ -230,6 +248,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	/**
 	 * @author Harikrishna - RMITS Cancel Sales Order Header Document
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 17, groups = { "SalesOrder" }, description = "Cancel Sales Order Header Document")
 	public void verifyCancelSalesOrder() {
 		flag = SalesOrdFunc.verifyCancelSalesOrder();
@@ -240,6 +259,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS Domestic Sales Order - price basis is PriceList-
 	 *         Similar Stock and Customer UOM
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 18, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
 	public void verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
@@ -252,6 +272,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 19, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- Similar Stock and Customer UOM")
 	public void verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
@@ -263,6 +284,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 20, groups = {
 			"SalesOrder" }, description = "Domestic Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
@@ -277,6 +299,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 21, groups = {
 			"SalesOrder" }, description = "Export Sales Order - price basis is PriceList- DisSimilar Stock and Customer UOM")
 	public void VerifyExportSOGeneralPriceListDisSimilarStockAndCustomerUOM() {
@@ -291,6 +314,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 22, groups = { "SalesOrder" }, description = "Create SO with Advance Process(PaymentTerm Change)")
 	public void verifyAdvanceSalesOrderWithAdvancePaymentTerm() throws IOException {
 		flag = SalesOrdFunc.verifyAdvanceSalesOrderWithAdvancePaymentTerm();
@@ -302,6 +326,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 23, groups = { "SalesOrder" }, description = "Cancel SO Lines")
 	public void verifySalesOrderLineWiseCancel() {
 		flag = SalesOrdFunc.verifyCancelSalesOrderLines();
@@ -313,6 +338,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 24, groups = { "SalesOrder" }, description = "Create SO - Domestic - Interstate Customer")
 	public void SoGeneral() throws IOException {
 		flag = SalesOrdFunc.SoGeneral();
@@ -324,6 +350,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 25, groups = { "SalesOrder" }, description = " create Free Sample type of Sales Order")
 	public void SoFreeSample() throws IOException {
 		flag = SalesOrdFunc.SoFreeSample();
@@ -335,6 +362,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 26, groups = { "SalesOrder" }, description = " create Free Replacement type of Sales Order")
 	public void SoFreeReplacement() throws IOException {
 		flag = SalesOrdFunc.SoFreeReplacement();
@@ -346,6 +374,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 27, groups = { "SalesOrder" }, description = " create Scrap type of Sales Order")
 	public void SoScrap() throws IOException {
 		flag = SalesOrdFunc.SoScrap();
@@ -357,6 +386,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 28, groups = { "SalesOrder" }, description = " create Service type of Sales Order")
 	public void SoService() throws IOException {
 		flag = SalesOrdFunc.SoService();
@@ -368,6 +398,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 29, groups = { "SalesOrder" }, description = "Create SO with Promotional Items")
 	public void SoPromotional() throws IOException {
 		flag = SalesOrdFunc.SoPromotional();
@@ -379,6 +410,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 30, groups = { "SalesOrder" }, description = "Create SO - Domestic - Local Customer")
 	public void SoGeneralLocalCustomer() throws IOException {
 		flag = SalesOrdFunc.SoGeneralLocalCustomer();
@@ -390,6 +422,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 31, groups = { "SalesOrder" }, description = "Create SO - Domestic - SEZ  Customer")
 	public void SoGeneralSEZCustomer() throws IOException {
 		flag = SalesOrdFunc.SoGeneralSEZCustomer();
@@ -401,6 +434,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 32, groups = { "SalesOrder" }, description = " create Demo Exhibition type of Sales Order")
 	public void SoDemoExhibition() throws IOException {
 		flag = SalesOrdFunc.SoDemoExhibition();
@@ -412,6 +446,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 33, groups = { "SalesOrder" }, description = "Create SO - Domestic - CESS  Customer")
 	public void SoCESS() throws IOException {
 		flag = SalesOrdFunc.SoCESS();
@@ -423,6 +458,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 34, groups = { "SalesOrder" }, description = "Create SO - Domestic - With Charges")
 	public void SoCharges() throws IOException {
 		flag = SalesOrdFunc.SoCharges();
@@ -434,6 +470,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 35, groups = { "SalesOrder" }, description = "Create SO with Multiple Items - Same Price class")
 	public void SoMultipleWithSamePriceClass() throws IOException {
 		// TODO Covered in SoGeneral()
@@ -447,6 +484,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 36, groups = {
 			"SalesOrder" }, description = "Create SO with Multiple Items - Different Price class")
 	public void SOMultipleWithDifferentPriceClass() {
@@ -459,6 +497,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 37, groups = { "SalesOrder" }, description = "Create SO with Shipset Items")
 	public void SOShipSet() {
 		flag = SalesOrdFunc.SOShipSet();
@@ -470,6 +509,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 38, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - Interstate")
 	public void SalesOrderAmendmentQtyChangeInterstateCustomer() throws IOException {
@@ -486,6 +526,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 39, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - Interstate")
 	public void SalesOrderAmendmentPriceChangeInterstateCustomer() throws IOException {
@@ -502,6 +543,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 40, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - Interstate")
 	public void SalesOrderAmendmentDiscountChangeInterstateCustomer() throws IOException {
@@ -519,6 +561,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 41, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - Interstate")
 	public void SalesOrderAmendmentAdditionOfLinesInterstateCustomer() throws IOException {
@@ -536,6 +579,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 42, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - Local")
 	public void SalesOrderAmendmentQtyChangeLocalCustomer() throws IOException {
@@ -553,6 +597,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 43, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - Local")
 	public void SalesOrderAmendmentPriceChangeLocalCustomer() throws IOException {
@@ -570,6 +615,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 44, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - Local")
 	public void SalesOrderAmendmentDiscountChangeLocalCustomer() throws IOException {
@@ -587,6 +633,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 45, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - Local")
 	public void SalesOrderAmendmentAdditionOfLinesLocalCustomer() throws IOException {
@@ -604,6 +651,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 46, groups = { "SalesOrderAmendment" }, description = "Closeshort Single sales Order")
 	public void SalesOrderAmendmentSingleCloseshort() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentSingleCloseshort();
@@ -615,6 +663,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 47, groups = { "SalesOrderAmendment" }, description = "Amend SO with Charges")
 	public void SalesOrderAmendmentWithCharges() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentWithCharges();
@@ -626,6 +675,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 48, groups = { "SalesOrderAmendment" }, description = "Amend SO with diff. price class")
 	public void SalesOrderAmendmentWithDifferentPriceClass() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentWithDifferentPriceClass();
@@ -637,6 +687,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 49, groups = { "SalesOrder" }, description = "Create SO - Domestic - UTGST Customer")
 	public void SOUTGST() {
 		flag = SalesOrdFunc.SOUTGST();
@@ -648,6 +699,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 50, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentQtyChangeUTGSTCustomer() throws IOException {
@@ -664,6 +716,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 51, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentPriceChangeUTGSTCustomer() throws IOException {
@@ -680,6 +733,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 52, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentDiscountChangeUTGSTCustomer() throws IOException {
@@ -696,6 +750,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 53, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - UTGST")
 	public void SalesOrderAmendmentAdditionOfLinesUTGSTCustomer() throws IOException {
@@ -712,6 +767,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 54, groups = { "SalesOrderAmendment" }, description = "Closeshort Multiple sales Orders")
 	public void closeShortMultipleSalesOrder() throws IOException {
 		flag = SalesOrdFunc.closeshortMultipleSalesOrder(commonFunc.getDataFromTestDataSheet("Customer"),
@@ -720,12 +776,14 @@ public class SaleOrderTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * @author Harikrishna -RMITS Is Used to set the Variable Handler To Zero After
-	 *         Finishing One Test Scenarios
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		SalesOrdFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

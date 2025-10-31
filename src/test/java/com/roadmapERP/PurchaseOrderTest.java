@@ -1,5 +1,7 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks January 22, 2025
@@ -8,6 +10,8 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import utils.Mailer;
@@ -26,6 +30,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 1, groups = {
 			"PurchaseOrder" }, description = "91 Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticStockTransferSimilarStockAndSupplierUOM() {
@@ -38,6 +43,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 2, groups = {
 			"PurchaseOrder" }, description = "109 How to create PO with Charges and how PO amount is calculated?")
 	public void VerifyDirectPOWithItemChargesCalculations() {
@@ -51,6 +57,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 * 
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 3, groups = { "PurchaseOrder" }, description = "110 How to cancel Purchase Order Document?")
 	public void VerifyCancelPurchaseOrderDocument() {
 		flag = purchaseOrderFunc.VerifyCancelPurchaseOrderDocument();
@@ -63,6 +70,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 * 
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 4, groups = { "PurchaseOrder" }, description = "111 How to cancel the Purchase Order Lines?")
 	public void VerifyCancelPurchaseOrderCancelLines() {
 		// Covered in Previous Method
@@ -76,6 +84,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 * 
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 5, groups = {
 			"PurchaseOrder" }, description = "Find the Purchase Orders with all possible search parameters")
 	public void VerifyPoFilterFieldVerification() {
@@ -88,6 +97,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 6, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyDomesticMaterialSimilarUOMFromPRtoPO() {
@@ -100,6 +110,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 7, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyImportMaterialSimilarUOMFromPRtoPO() {
@@ -112,6 +123,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 8, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDomesticMaterialDissimilarUOMFromPRtoPO() {
@@ -124,6 +136,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 9, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyImportMaterialDissimilarUOMFromPRtoPO() {
@@ -139,6 +152,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 1, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local Registration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPOGeneralStockAndSupplierSimilarDomesticWithLocalReg() {
@@ -152,6 +166,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 2, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate Registration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPOGeneralStockAndSupplierSimilarDomesticWithInterstateReg() {
@@ -166,6 +181,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 3, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local UnRegistration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierSimilarWithLocalUnReg() {
@@ -180,6 +196,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 4, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate Registration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierSimilarWithInterstateUnReg() {
@@ -195,6 +212,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 5, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Import Supplier - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPOGeneralStockAndSupplierSimilarWithImport() {
@@ -208,6 +226,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 6, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local Registration - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierSimilarWithLocalReg() {
@@ -221,6 +240,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 7, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Intertstate Registration - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierSimilarWithInterstateReg() {
@@ -235,6 +255,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 8, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local UnRegistration - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierSimilarWithLocalUnReg() {
@@ -249,6 +270,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 9, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistration - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierSimilarWithInterstateUnReg() {
@@ -263,6 +285,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 10, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Material Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPOMaterialStockAndSupplierSimilarWithImport() {
@@ -276,6 +299,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 11, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local Registration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticServiceStockAndSupplierSimilarWithLocalReg() {
@@ -289,6 +313,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 12, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate Registration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticServiceStockAndSupplierSimilarWithInterstateReg() {
@@ -302,6 +327,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 13, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPOServiceStockAndSupplierSimilarWithImport() {
@@ -315,6 +341,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 14, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local Un Registration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticServiceStockAndSupplierSimilarWithLocalUnReg() {
@@ -328,6 +355,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 15, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate Un Registration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticServiceStockAndSupplierSimilarWithInterstateUnReg() {
@@ -342,6 +370,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 16, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local Registration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralSimilarUOMFromPRtoPOWithLocalReg() {
@@ -355,6 +384,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 17, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate Registration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralSimilarUOMFromPRtoPOWithInterstateReg() {
@@ -369,6 +399,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 18, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local UnRegistration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralSimilarUOMFromPRtoPOWithLocalUnReg() {
@@ -382,6 +413,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 19, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate UnRegistration - General Items with Similar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralSimilarUOMFromPRtoPOWithInterstateUnReg() {
@@ -396,6 +428,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 20, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - General Items with Similar Stock and Supplier UOM")
 	public void VerifyGeneralSimilarUOMFromPRtoPOWithImport() {
@@ -409,6 +442,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 21, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local Registration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyServiceSimilarUOMFromPRtoPOWithLocalReg() {
@@ -422,6 +456,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 22, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate Registration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyServiceSimilarUOMFromPRtoPOWithinterstateReg() {
@@ -435,6 +470,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 23, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local UnRegistration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyServiceSimilarUOMFromPRtoPOWithLocalUnReg() {
@@ -448,6 +484,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 24, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate UnRegistration - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyServiceSimilarUOMFromPRtoPOWithInterstateUnReg() {
@@ -461,6 +498,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 25, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Similar Stock and Supplier UOM")
 	public void VerifyServiceSimilarUOMFromPRtoPOWithImport() {
@@ -474,6 +512,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 26, groups = {
 			"PurchaseOrder" }, description = " Direct PO - Domestic Supplier With Local Registration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierDissimilarWithLocalReg() {
@@ -488,6 +527,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 27, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate Registration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierDissimilarWithInterstateReg() {
@@ -502,6 +542,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 28, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local UnRegistration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierDissimilarWithLocalUnReg() {
@@ -516,6 +557,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 29, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticGeneralStockAndSupplierDissimilarWithInterstateUnReg() {
@@ -530,6 +572,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 30, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPOGeneralStockAndSupplierDissimilarWithImport() {
@@ -543,6 +586,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 31, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local Registration - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierDissimilarWithLocalReg() {
@@ -557,6 +601,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 32, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate Registration - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierDissimilarWithInterstateReg() {
@@ -571,6 +616,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 33, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Local UnRegistration - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierDissimilarWithLocalUnReg() {
@@ -585,6 +631,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 34, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Domestic Supplier With Interstate UnRegistration - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPODomesticMaterialStockAndSupplierDissimilarWithInterstateUnReg() {
@@ -599,6 +646,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 35, groups = {
 			"PurchaseOrder" }, description = "Direct PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDirectPOMaterialStockAndSupplierDissimilarWithImport() {
@@ -612,6 +660,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 36, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local Registration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralDissimilarUOMFromPRtoPOWithLocalReg() {
@@ -625,6 +674,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 37, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Intertstate Registration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralDissimilarUOMFromPRtoPOWithInterstateReg() {
@@ -639,6 +689,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 38, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local UnRegistration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralDissimilarUOMFromPRtoPOWithLocalUnReg() {
@@ -653,6 +704,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 39, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate UnRegistration - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyDomesticGeneralDissimilarUOMFromPRtoPOWithInterstateUnReg() {
@@ -667,6 +719,7 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 40, groups = {
 			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyGeneralDissimilarUOMFromPRtoPOWithImport() {
@@ -675,14 +728,15 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Logout The Portal If Testcases Failed
+	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		commonFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }

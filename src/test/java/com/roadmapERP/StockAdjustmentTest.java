@@ -1,17 +1,14 @@
 package com.roadmapERP;
 
-/**
- * @author Harikrishna - RMITS
- * @company RoadMap IT Solutions Oct 08, 2025
- */
-import static org.testng.Assert.assertTrue;
+import java.lang.reflect.Method;
+
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
-import commonfunctions.supplychainmanagement.ShareOfBusinessFunctions;
 import commonfunctions.supplychainmanagement.StockAdjustmentFunctions;
-import utils.Mailer;
 import utils.WebDriverBase;
 
 public class StockAdjustmentTest extends RoadMapERPTest {
@@ -25,9 +22,21 @@ public class StockAdjustmentTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 1, groups = { "StockAdjustment" }, description = " Create Stock Adjustment")
 	public void CreateStockAdjustmentOB() {
 		flag = stockAdjFunc.createStockAdjustmentOB();
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }
