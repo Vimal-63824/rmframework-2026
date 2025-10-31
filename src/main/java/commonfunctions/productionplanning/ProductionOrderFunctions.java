@@ -41,7 +41,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class ProductionOrderFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -1085,7 +1085,7 @@ public class ProductionOrderFunctions {
 				completionProductionOrderFunc
 						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), true);
 				if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType"))
 						|| (currentProcess.equals(commonFunc.getDataFromTestDataSheet("BothType")))) {
 					if (RestOpr.equals(commonFunc.getDataFromTestDataSheet("ComQty"))) {
@@ -2385,7 +2385,7 @@ public class ProductionOrderFunctions {
 				completionProductionOrderFunc.verifyProductionOrderPendingQueueInside(
 						VariableHandler.getProductionProcessType().get(currentProcess));
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), true);
 				commonFunc.logoutUser();
 				if (currentProcess.equals(commonFunc.getDataFromTestDataSheet("InsideType"))
 						&& (RestOpr.equals(commonFunc.getDataFromTestDataSheet("ComQty")))) {
@@ -2868,15 +2868,9 @@ public class ProductionOrderFunctions {
 			clickHeaderSaveAndPostProdOrder();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-						"HodUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
 			}
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
@@ -2888,33 +2882,19 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			materialRequestFunc.storeMRNoAndCheckStatusApproveWithProdNo(VariableHandler.getProductionOrderNumber());
 			commonFunc.navigateToMaterialIssuanceVoucherTab();
-			commonFunc.clickPendingIcon();
-			materialIssuanceVoucherFunc.searchParticularDocumentWithMRNo(VariableHandler.getMaterialRequestNo());
-			materialIssuanceVoucherFunc.validateItemWHProdNoFGItemWithMRNo(VariableHandler.getMaterialRequestNo(),
-					RMItem, commonFunc.getDataFromTestDataSheet("RMU100_WH"),
-					VariableHandler.getProductionOrderNumber(), FGItem);
-			materialIssuanceVoucherFunc.clickCheckBoxWithMRNoAndCreateMI(VariableHandler.getMaterialRequestNo());
+			materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMaterialRequestNo());
 			materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
 			commonFunc.navigateToMaterialIssuanceVoucherTab();
 			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
 					commonFunc.getDataFromTestDataSheet("PostedStatus"));
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername-Admin");
 			commonFunc.navigateSetupInventoryPage();
 			flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
 			commonFunc.navigateToMaterialReceiptVoucher();
 			if (flag) {
 				materialReceiptFunctions
 						.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
 			} else {
-				commonFunc.clickPendingIcon();
-				materialReceiptFunctions.clickPendingInssuanceBtn();
-				materialReceiptFunctions.searchWithVoucherNumber(VariableHandler.getMIVNumber());
-				materialReceiptFunctions.selectVoucherNoAndClickCreateReceipt(VariableHandler.getMIVNumber());
+				materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
 			}
 			materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 			materialReceiptFunctions.clickTickAndPostIcon();
@@ -2934,11 +2914,10 @@ public class ProductionOrderFunctions {
 						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
-
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -3126,7 +3105,7 @@ public class ProductionOrderFunctions {
 						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
@@ -3340,7 +3319,7 @@ public class ProductionOrderFunctions {
 						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
-						VariableHandler.getProductionOrderNumber());
+						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);

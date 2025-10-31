@@ -23,7 +23,7 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String Find_Status_TableData(String Text) {
-		return "//*[contains(text(),'" + Text + "')]/../td[29]/div";
+		return "//*[contains(text(),'" + Text + "')]/../td/div";
 	}
 
 	/** @locatorType Xpath */
@@ -33,22 +33,22 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String Find_RequestQnty_TableData(String Text) {
-		return "//*[contains(text(),'" + Text + "')]/../td[14]";
+		return "//*[contains(text(),'" + Text + "')]/../td[18]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_RequesterName_TableData(String Text) {
-		return "//*[contains(text(),'" + Text + "')]/../td[7]";
+		return "//*[contains(text(),'" + Text + "')]/../td[9]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_Warehouse_TableData(String Text) {
-		return "//*[contains(text(),'" + Text + "')]/../td[8]";
+		return "//*[contains(text(),'" + Text + "')]/../td[12]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_Item_TableData(String Text) {
-		return "//*[contains(text(),'" + Text + "')]/../td[9]";
+		return "//*[contains(text(),'" + Text + "')]/../td[13]";
 	}
 
 	public static final String HeaderLocationId = "//span[@id='P9313101001_IMRHD_PLNT_LOC_ID_DISPLAY']";

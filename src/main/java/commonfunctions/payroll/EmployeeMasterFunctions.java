@@ -31,7 +31,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class EmployeeMasterFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -2283,6 +2283,10 @@ public class EmployeeMasterFunctions {
 	public void clickPostButtonAndVerifyEmployeePosted() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 		if (flag) {
+			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
@@ -4150,6 +4154,10 @@ public class EmployeeMasterFunctions {
 	public void postUploadedTemplateInEmployeeMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
+			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -4338,6 +4346,7 @@ public class EmployeeMasterFunctions {
 	public void checkExceptionAndSaveHeaderInEmpDetailsMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationCheckExceptionBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -4367,6 +4376,10 @@ public class EmployeeMasterFunctions {
 	public void postUploadedTemplateInEmployeeDetailsMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
+			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);

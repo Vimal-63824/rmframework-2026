@@ -12,12 +12,12 @@ public class BillOfMaterialsLocators {
 
 	/** @locatorType Xpath */
 	public static final String Find_BOMStatusTableData(String BOMNo) {
-		return "//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + BOMNo + "']/../../td/div[contains(@style,'color')]";
+		return "//table/tbody/tr/td/a[text()='" + BOMNo + "']/../../td/div[contains(@style,'color')]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String BOMNoTableData(String BOMNo) {
-		return "(//div[@id='detail_data_panel']//table/tbody/tr/td/a[text()='" + BOMNo + "'])[1]";
+		return "(//table/tbody/tr/td/a[text()='" + BOMNo + "'])[1]";
 	}
 
 	/** @locatorType Xpath */
@@ -37,7 +37,7 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String CreateBOM_EffToInput = "//*[@data-testid='CreateBOM_EffToInput']/input";
 	/** @locatorType Xpath */
-	public static final String BOMSaveHeaderIcon = "//button[@data-testid='BOMSaveHeaderIcon']";
+	public static final String BOMSaveHeaderIcon = "//button[@data-testid='BOMSaveHeaderIcon'][2]";
 	/** @locatorType Xpath */
 	public static final String BOMPostBtn = "//button[@data-testid='BOMPostBtn']";
 	/** @locatorType Xpath */

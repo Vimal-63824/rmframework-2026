@@ -36,7 +36,7 @@ public class DirectGrnPageFunctions {
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 	private static ReportLoger logs = new ReportLoger();
 	private static GrnPageFunctions GRNFunc = new GrnPageFunctions();
-	private static boolean flag = false;
+	private boolean flag = false;
 	static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
 	static MaterialReceiptVoucherFunctions mrvFunc = new MaterialReceiptVoucherFunctions();
 	private static InspectionDocumentFunctions InsDocFunc = new InspectionDocumentFunctions();

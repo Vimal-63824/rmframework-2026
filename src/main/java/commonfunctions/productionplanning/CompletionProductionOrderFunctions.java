@@ -25,7 +25,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class CompletionProductionOrderFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -71,8 +71,6 @@ public class CompletionProductionOrderFunctions {
 					logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
 					String DisplayProdNo = webDB.getTextFromElement(
 							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
-					System.out.println(DisplayProdNo);
-					System.out.println(ProdNo);
 					flag = DisplayProdNo.contains(ProdNo);
 					if (flag) {
 						logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
@@ -80,11 +78,7 @@ public class CompletionProductionOrderFunctions {
 				}
 			}
 		}
-		if (flag) {
-			webDB.switchToDefaultContent();
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframeCloseIcon,
-					ElementType.Xpath);
-		}
+		webDB.switchToDefaultContent();
 		assertTrue(flag);
 	}
 
@@ -120,11 +114,7 @@ public class CompletionProductionOrderFunctions {
 				}
 			}
 		}
-		if (flag) {
-			webDB.switchToDefaultContent();
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframeCloseIcon,
-					ElementType.Xpath);
-		}
+		webDB.switchToDefaultContent();
 		assertTrue(flag);
 	}
 
@@ -135,7 +125,7 @@ public class CompletionProductionOrderFunctions {
 	 * @author Sakthi-GWL
 	 * @param ProdNo
 	 */
-	public void selectPendingProdOrderAndClickCreateCompletionProcess(String ProdNo) {
+	public void selectPendingProdOrderAndClickCreateCompletionProcess(String ProdNo, boolean allProcess) {
 		switchToPendingProdOrderIframe();
 		webDB.moveToElement(CompletionProductionOrderLocators.PendingProdOrder_SelectCheckboxTableData(ProdNo),
 				ElementType.Xpath);
@@ -157,6 +147,21 @@ public class CompletionProductionOrderFunctions {
 				webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn, ElementType.Xpath);
 				webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn, ElementType.Xpath);
 				webDB.switchToDefaultContent();
+				if (allProcess) {
+					if (webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.MultipleProceedRestOprYesBtn,
+							ElementType.Xpath)) {
+						flag = webDB.clickAnElement(CompletionProductionOrderLocators.MultipleProceedRestOprYesBtn,
+								ElementType.Xpath);
+					}
+				} else if (!allProcess) {
+					if (webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
+							ElementType.Xpath)) {
+						flag = webDB.clickAnElement(CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
+								ElementType.Xpath);
+						logs.logging("INFO", "Create Completion Process clicked with all process No");
+					}
+				}
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
 						ElementType.Xpath);
 				if (flag) {

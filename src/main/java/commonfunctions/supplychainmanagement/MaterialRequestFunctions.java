@@ -24,7 +24,7 @@ import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
 
 public class MaterialRequestFunctions {
-	boolean flag = false;
+	private boolean flag = false;
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
@@ -776,7 +776,7 @@ public class MaterialRequestFunctions {
 				logs.logging("INFO", "Material Number: '" + VariableHandler.getMaterialRequestNo() + "'");
 				flag = webDB.waitForElement(MaterialRequestLocators.Find_Status_TableData(ProdNo), ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Search Button clicked and MRP No: " + ProdNo + " Displayed");
+					logs.logging("INFO", "Search Button clicked and MR No: " + ProdNo + " Displayed");
 					String Status = webDB.getTextFromElement(MaterialRequestLocators.Find_Status_TableData(ProdNo),
 							ElementType.Xpath);
 					logs.logging("INFO",
