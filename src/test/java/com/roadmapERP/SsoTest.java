@@ -1,11 +1,17 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 /**
  /**
  * @author Durai
  * @company Roadmap May 02, 2025
  */
 import org.testng.annotations.Test;
+
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.SsoPageFunctions;
 import utils.Mailer;
@@ -23,6 +29,7 @@ public class SsoTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 1, groups = {
 			"Request For Quotation" }, description = "Domestic Supplier - General Items with Similar Stock and Supplier UOM")
 	public void verifyCreationOfSsoDomesticSupplierSimilarUom() {
@@ -34,10 +41,11 @@ public class SsoTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 2, groups = {
 			"Request For Quotation" }, description = "Import Supplier - General Items with Similar Stock and Supplier UOM")
 	public void verifyCreationOfSsoImportSupplierSimilarUom() {
-		Ssofunc.verifyCreationOfSsoImportSupplierSimilarUom();                                 
+		Ssofunc.verifyCreationOfSsoImportSupplierSimilarUom();
 	}
 
 	/**
@@ -45,6 +53,7 @@ public class SsoTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 3, groups = {
 			"Request For Quotation" }, description = "Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM")
 	public void verifyCreationOfSsoDomesticSupplierDisSimilarUom() {
@@ -56,6 +65,7 @@ public class SsoTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 4, groups = {
 			"Request For Quotation" }, description = "Import Supplier - General Items with Dissimilar Stock and Supplier UOM")
 	public void verifyCreationOfSsoImportSupplierDisSimilarUom() {
@@ -67,6 +77,7 @@ public class SsoTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 5, groups = { "Request For Quotation" }, description = " cancel Supplier Schedule Order Lines")
 	public void CancelSupplierScheduleOrderLines() {
 		Ssofunc.cancelSupplierScheduleOrderLines();
@@ -77,8 +88,20 @@ public class SsoTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 6, groups = { "Request For Quotation" }, description = " cancel Supplier Schedule Order Document")
 	public void CancelSupplierScheduleOrderDocument() {
 		Ssofunc.cancelSupplierScheduleOrderDocument();
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

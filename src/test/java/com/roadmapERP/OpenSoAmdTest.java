@@ -1,5 +1,8 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
+import org.testng.ITestResult;
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks March 04, 2025
@@ -7,6 +10,7 @@ package com.roadmapERP;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.OpenSalesOrderFunctions;
 import commonfunctions.supplychainmanagement.OpenSoAmdFunctions;
@@ -26,6 +30,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 1, groups = {
 			"Open Sales Order Amdenment" }, description = "Amend Sales Order -Price Change - Domestic Customer - Local")
 	public void verifyOpenSoAmdinLocalCustomer() {
@@ -37,11 +42,12 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 2, groups = {
 			"Open Sales Amdenment" }, description = "Amend Sales Order -Price Class Change - Domestic Customer - Local")
 	public void verifyOpenSoAmdinLocalCustomerPriceClass() {
 		OSOA.verifyDomesticCustomerLocalGstTypePriceClassChange();
-		
+
 	}
 
 	/**
@@ -49,6 +55,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 3, groups = {
 			"Open Sales Amdenment" }, description = "Amend Sales Order - Addition of Item - Domestic Customer - Local")
 	public void verifyOpenSoAmdinLocalCustomerAdditionOfItem() {
@@ -60,6 +67,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 4, groups = {
 			"Open Sales Amdenment" }, description = "Amend Sales Order - Deletion of Item - Domestic Customer - Local")
 	public void verifyOpenSoAmdinLocalCustomerDeleitionOfItem() {
@@ -71,6 +79,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 5, groups = { "Open Sales Order Amedenment" }, description = "Cancel Open SO Amendment")
 	public void verifyCancelStageScanrios() {
 		OSOA.verifyaCancelStagesRecord();
@@ -82,6 +91,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 6, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order -Price Change - Domestic Customer - Interstate")
 	public void verifyOpenSoAmdPriceChangeInterStateCustomer() {
@@ -93,6 +103,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 7, groups = {
 			"Open Sales Order" }, description = "Amend Sales Order -Price Change - Domestic Customer - Interstate")
 	public void verifyOpenSoAmdPriceClassChangeInterstateCustomer() {
@@ -104,6 +115,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 8, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Addition of Item - Domestic Customer - Interstate")
 	public void verifyOpenSoAmdAdditionOfItemInterStateCustomer() {
@@ -115,6 +127,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 9, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Deletion of Item - Domestic Customer - Interstate")
 	public void verifyOpenSoAmdDeletationOfItemInterstateCustomer() {
@@ -126,6 +139,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 10, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order -Price Change - Export Customer")
 	public void verifyOpenSoPriceChangeOfItemExportCustomer() {
@@ -137,6 +151,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 11, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order -Price Class Change - Export Customer")
 	public void verifyOpenSoPriceClassChangesExportCustomer() {
@@ -148,6 +163,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 12, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Addition of Item - Export Customer ")
 	public void verifyOpenSoAdditionOfItemsExportCustomer() {
@@ -159,6 +175,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 13, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Deletion of Item - Export Customer")
 	public void verifyOpenSoDeletationOfItemsExportCustomer() {
@@ -170,7 +187,8 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 *
 	 * @author Kowshik
 	 */
-	
+
+	@Author("Kowshik-RMITS")
 	@Test(priority = 14, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order -Price Change - Domestic Customer - UTGST")
 	public void verifyOpenSoAmdUTGSTpriceChange() {
@@ -182,6 +200,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 *
 	 * @author Kowshik
 	 */
+	@Author("Kowshik-RMITS")
 	@Test(priority = 15, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order -Price Class Change - Domestic Customer - UTGST")
 	public void verifyOpenSoAmdUTGSTCustomerPriceClassChanges() {
@@ -194,6 +213,7 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * @author Kowshik
 	 */
 
+	@Author("Kowshik-RMITS")
 	@Test(priority = 16, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Addition of Item - Domestic Customer - UTGST")
 	public void veriftyOpenSoAmdUTGSTCustomerAdditionOfItem() {
@@ -206,28 +226,34 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 * @author Kowshik
 	 */
 
+	@Author("Kowshik-RMITS")
 	@Test(priority = 17, groups = {
 			"Open Sales Order " }, description = "Amend Sales Order - Deletion of Item - Domestic Customer - UTGST")
 	public void verifyOpenSoAmdUTGSTCustomerDeletationOfitem() {
 		OSOA.verifyUTGSTDeletationOfItem();
 	}
 
-
-	@Test(priority = 18 , groups = {
-	"Open Sales Order " }, description = "verifyOpenSoamdMultiplesLines"	)
+	/**
+	 * Amend Sales Order - Deletion of Item - Domestic Customer - UTGST
+	 *
+	 * @author Kowshik
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 18, groups = { "Open Sales Order " }, description = "verifyOpenSoamdMultiplesLines")
 	public void verifyOpenSoamdMultiplesLines() {
 		OSOA.verifyMutiplesAddTypes();
 	}
 
 	/**
-	 * Logout The Portal If Testcases Failed
+	 * Verify After Method
 	 * 
-	 * @author Kowshik
+	 * @author Deepan-GWL
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod() {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		commonFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }

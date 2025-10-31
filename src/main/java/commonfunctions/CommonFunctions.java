@@ -7,6 +7,7 @@ import static org.testng.Assert.assertTrue;
  * @company Galaxy Weblinks January 15, 2025
  */
 import java.io.File;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
@@ -52,6 +53,7 @@ import commonlocators.supplychainmanagement.SsoPageLocators;
 import commonlocators.supplychainmanagement.StockAdjustmentLocators;
 import io.restassured.http.ContentType;
 import utils.ExcelUtils;
+import utils.Listener;
 import utils.ReportLoger;
 import utils.RestUtils;
 import utils.RestUtils.methodType;
@@ -150,6 +152,7 @@ public class CommonFunctions {
 	 * @throws InterruptedException
 	 */
 	public void validCommonLogin(String Username, String Password, String... Name) {
+		enterUrl();
 		flag = webDB.waitForElement(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
@@ -2142,13 +2145,12 @@ public class CommonFunctions {
 		Assert.assertTrue(flag);
 	}
 
-	
-		/**
-		 * This method used to Navigate Gate Entry Transaction Tab
-		 * 
-		 * @author Durai-RMITS
-		 */
-		public void navigateToGateEntryDocument() {
+	/**
+	 * This method used to Navigate Gate Entry Transaction Tab
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void navigateToGateEntryDocument() {
 //			clickLeftNavigationBar();
 //			clickGateEntryTab();
 			navigateToSearchTab(webDB.getDataFromProperties("GATEENTRY"), GateEntryPageLocators.GENPendBtn);
@@ -3000,5 +3002,17 @@ public class CommonFunctions {
 	public void navigateToManPowerScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("ManpowerScreen"), CommonUiLocators.ManpowerGrp_Add_Icon);
 
+	}
+
+	/**
+	 * This method used to add author names in extent report
+	 * 
+	 * @param method
+	 */
+	public void enterAuthorNamesInExtentReport(Method method) {
+		Author author = method.getAnnotation(Author.class);
+		if (author != null) {
+			Listener.test.get().assignAuthor(author.value());
+		}
 	}
 }

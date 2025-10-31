@@ -5,6 +5,8 @@ package com.roadmapERP;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.lang.reflect.Method;
+
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks May 02, 2025
@@ -12,6 +14,8 @@ import static org.testng.Assert.assertTrue;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.RfqPageFunctions;
 import utils.Mailer;
@@ -31,7 +35,7 @@ public class RfqTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 1, groups = {
+	@Author("Durai-RMITS")@Test(priority = 1, groups = {
 			"Request For Quotation" }, description = "Create Purchase Request Lines For Multiple Line")
 	public void VerifyCreationOfPRGeneralRfq() {
 		Rfqfunc.verifyCreationOfPRGeneralRfq();
@@ -42,7 +46,7 @@ public class RfqTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 2, groups = {
+	@Author("Durai-RMITS")@Test(priority = 2, groups = {
 			"Request For Quotation" }, description = "Create Purchase Order from approved RFQ for multiple suppliers (Only Domestic)")
 	public void VerifyCreationOfPendingRfqDomestic() {
 		Rfqfunc.verifyCreationOfPendingRfqDomestic();
@@ -54,7 +58,7 @@ public class RfqTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 3, groups = {
+	@Author("Durai-RMITS")@Test(priority = 3, groups = {
 			"Request For Quotation" }, description = "Create Purchase Order from approved RFQ for multiple suppliers (Both Domestic & Import)")
 	public void VerifyCreationOfPendingRfqDomesticAndImport() {
 		Rfqfunc.verifyCreationOfPendingRfqDomesticAndImport();
@@ -65,7 +69,7 @@ public class RfqTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 4, groups = { "Request For Quotation" }, description = "Create Purchase Order From Pending RfQ")
+	@Author("Durai-RMITS")@Test(priority = 4, groups = { "Request For Quotation" }, description = "Create Purchase Order From Pending RfQ")
 	public void VerifyCreationOfPendingPOFromRfq() {
 		flag =Rfqfunc.verifyCreationOfPendingPOFromRfq();
 		assertTrue(flag);
@@ -76,7 +80,7 @@ public class RfqTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	@Test(priority = 5, groups = { "GRN" }, description = " Check RFQ by fixing SOB Qty for the RFQ Lines")
+	@Author("Durai-RMITS")@Test(priority = 5, groups = { "GRN" }, description = " Check RFQ by fixing SOB Qty for the RFQ Lines")
 	public void VerifyCreationOfSobForRfqLines() {
 		logs.logging("INFO", "This Test Scenarios Is Covered Under VerifyCreationOfPendingRfqDomestic");
 		// TODO Covered
@@ -89,6 +93,7 @@ public class RfqTest extends RoadMapERPTest {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 6,groups = {
 	"GRN" }, description = "Find the RFQ with all possible search parameters")
 	public void verifyCreationOfRfqFilterAllFieldWorking(){
@@ -96,13 +101,14 @@ public class RfqTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * Logout The Portal If Testcases Failed
+	 * Verify After Method
 	 * 
-	 * @author Durai-RMITS
+	 * @author Deepan-GWL
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		commonFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

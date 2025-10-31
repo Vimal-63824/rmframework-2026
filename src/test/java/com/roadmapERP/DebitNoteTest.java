@@ -1,11 +1,15 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.DebitNoteFunctions;
-import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
 import utils.WebDriverBase;
 
 public class DebitNoteTest extends RoadMapERPTest {
@@ -16,43 +20,61 @@ public class DebitNoteTest extends RoadMapERPTest {
 	static DebitNoteFunctions DebitNoteFunc = new DebitNoteFunctions();
 
 	/**
-	 * Create Debit Memo With  GRN (General)
+	 * Create Debit Memo With GRN (General)
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 1, groups = { "DebitNote" }, description = "      381 - Create Debit Memo With  GRN (General)")
 	public void CreateDebitMemoWithGRNGeneral() {
 		flag = DebitNoteFunc.createDebitMemoWithGRNGeneral();
 		Assert.assertTrue(flag);
 	}
+
 	/**
-	 * Create Debit Memo With  GRN (General)
+	 * Create Debit Memo With GRN (General)
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 2, groups = { "DebitNote" }, description = "      384 - Create Debit Memo without GRN reference")
 	public void CreateDebitMemoWithoutGRNreference() {
 		flag = DebitNoteFunc.createDebitMemoWithoutGRNreference();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Create Debit Memo With GRN (General)
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 3, groups = { "DebitNote" }, description = "      386 - Cancel Debit Memo document")
 	public void CancelDebitMemodocument() {
 		flag = DebitNoteFunc.cancelDebitMemodocument();
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * Create Debit Memo With GRN (General)
 	 * 
 	 * @author Vimal - RMITS
 	 */
+	@Author("Vimal-RMITS")
 	@Test(priority = 4, groups = { "DebitNote" }, description = "      385 - Cancel Debit Memo Line")
 	public void CancelDebitMemoLine() {
 		flag = DebitNoteFunc.cancelDebitMemoLine();
 		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * Verify After Method
+	 * 
+	 * @author Deepan-GWL
+	 * @param result
+	 */
+	@AfterMethod
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }

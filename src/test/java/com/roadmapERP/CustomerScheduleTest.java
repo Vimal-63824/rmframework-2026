@@ -1,10 +1,13 @@
 package com.roadmapERP;
 
+import java.lang.reflect.Method;
+
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.CustomerScheduleFunctions;
 import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
@@ -29,6 +32,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 1, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is user defined- Similar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralSimilarStockAndCustomerUOM() {
@@ -45,6 +49,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 2, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is user defined- Similar Stock and Customer UOM")
 	public void VerifyExportCSGeneralSimilarStockAndCustomerUOM() {
@@ -60,6 +65,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 3, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is user defined- DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralDisSimilarStockAndCustomerUOM() {
@@ -76,6 +82,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 4, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is user defined- DisSimilar Stock and Customer UOM")
 	public void VerifyExportCSGeneralDisSimilarStockAndCustomerUOM() {
@@ -92,6 +99,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 5, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Rate Contract - Similar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralRateContractSimilarStockAndCustomerUOM() {
@@ -109,6 +117,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 6, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is rate Contract - Similar Stock and Customer UOM")
 	public void VerifyExportCSGeneralRateContractSimilarStockAndCustomerUOM() {
@@ -125,6 +134,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 7, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Rate Contract - DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralRateContractDisSimilarStockAndCustomerUOM() {
@@ -142,6 +152,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 8, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is rate Contract - DisSimilar Stock and Customer UOM")
 	public void VerifyExportCSGeneralRateContractDisSimilarStockAndCustomerUOM() {
@@ -158,6 +169,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 9, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is PriceList - Similar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralPriceListSimilarStockAndCustomerUOM() {
@@ -174,6 +186,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 10, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is PriceList - Similar Stock and Customer UOM")
 	public void VerifyExportCSGeneralPriceListSimilarStockAndCustomerUOM() {
@@ -190,6 +203,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 11, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is PriceList - DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralPriceListDisSimilarStockAndCustomerUOM() {
@@ -207,6 +221,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 12, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is PriceList - DisSimilar Stock and Customer UOM")
 	public void VerifyExportCSGeneralPriceListDisSimilarStockAndCustomerUOM() {
@@ -223,6 +238,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 13, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Standard Price - Similar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralStandardPriceSimilarStockAndCustomerUOM() {
@@ -240,6 +256,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 14, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Standard Price - Similar Stock and Customer UOM")
 	public void VerifyExportCSGeneralStandardPriceSimilarStockAndCustomerUOM() {
@@ -256,6 +273,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 15, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Standard Price - DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralStandardPricetDisSimilarStockAndCustomerUOM() {
@@ -273,6 +291,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 16, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Standard Price - DisSimilar Stock and Customer UOM")
 	public void VerifyExportCSGeneralStandardPriceDisSimilarStockAndCustomerUOM() {
@@ -289,6 +308,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 17, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Catalog Price - Similar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralCatalogPriceSimilarStockAndCustomerUOM() {
@@ -306,6 +326,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 18, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Catalog Price - Similar Stock and Customer UOM")
 	public void VerifyExportCSGeneralCatalogPriceSimilarStockAndCustomerUOM() {
@@ -322,6 +343,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 19, groups = {
 			"CustomerSchedule" }, description = "Domestic Customer Schedule - price basis is Catalog Price - DisSimilar Stock and Customer UOM")
 	public void VerifyDomesticCSGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
@@ -339,6 +361,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 20, groups = {
 			"CustomerSchedule" }, description = "Export Customer Schedule - price basis is Catalog Price - DisSimilar Stock and Customer UOM")
 	public void VerifyExportCSGeneralCatalogPriceDisSimilarStockAndCustomerUOM() {
@@ -354,6 +377,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 21, groups = { "CustomerSchedule" }, description = "Cancel Customer Schedule")
 	public void CancelCustomerSchedule() {
 		flag = customerScheduleFunctions.cancelCustomerScheduleDocument(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -367,6 +391,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 22, groups = { "CustomerSchedule" }, description = "Cancel Customer Schedule Amendment")
 	public void CancelCustomerScheduleAmendment() {
 		flag = customerScheduleFunctions.cancelCustomerScheduleAmendmentDocument();
@@ -378,6 +403,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 23, groups = { "CustomerSchedule" }, description = "Closeshort Customer Schedule")
 	public void CloseshortCustomerSchedule() {
 		flag = customerScheduleFunctions.CustomerScheduleAmendmentCloseShort();
@@ -389,6 +415,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 24, groups = { "CustomerSchedule" }, description = "CS Amend  - Qty Change")
 	public void CustomerScheduleAmendmentQtyChange() {
 		flag = customerScheduleFunctions.CustomerScheduleAmendmentQtyChange();
@@ -400,6 +427,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 25, groups = { "CustomerSchedule" }, description = "CS Amend  - Price Change")
 	public void CustomerScheduleAmendmentPriceChange() {
 		flag = customerScheduleFunctions.CustomerScheduleAmendmentPriceChange();
@@ -411,6 +439,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 26, groups = { "CustomerSchedule" }, description = "CS Amend  - Schedule Change")
 	public void CustomerScheduleAmendmentScheduleChange() {
 		flag = customerScheduleFunctions.CustomerScheduleAmendmentScheduleChange();
@@ -422,6 +451,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * 
 	 * @author Harikrishna - RMITS
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 27, groups = { "CustomerSchedule" }, description = "CS - Upload Template")
 	public void customerScheduleTemplateUpload() {
 		flag = customerScheduleFunctions.customerScheduleTemplateUpload(
@@ -439,7 +469,8 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result,Method method) {
 		customerScheduleFunctions.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 }
