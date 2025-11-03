@@ -192,7 +192,7 @@ public class OpenSalesOrderFunctions {
 						flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 						if (flag) {
 							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-							webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 							
 						}
@@ -234,7 +234,7 @@ public class OpenSalesOrderFunctions {
 						flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 						if (flag) {
 							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-							webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 
 						}
@@ -281,7 +281,7 @@ public class OpenSalesOrderFunctions {
 							flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							if (flag) {
 								webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-								webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+								flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 								commonFunc.checkRefreshCellsDisappear();
 
 							}
@@ -387,7 +387,7 @@ public class OpenSalesOrderFunctions {
 				if (flag) {
 					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
-					webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+					flag = webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 				}
 			}
