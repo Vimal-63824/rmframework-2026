@@ -737,6 +737,41 @@ public class CustomerItemsFunctions {
 		saveButtoninCustomerItems();
 
 	}
+	
+	/**Creates Open So Item - Interstate Customer -Deletation of Item
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenItemForInterStateForDeletaionOfProcess() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Export"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		commonFunc.logoutUser();
+	
+	}
 	/**Creates a Open So
 	 * 
 	 * @author Kowshik-RMITS
@@ -760,6 +795,75 @@ public class CustomerItemsFunctions {
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
 		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Export"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**Creates a Open So For Local customer for Deletation of item 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenSoForLocalCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Local"));
+		addPlusInCustomerItem();
+		insertIteminCustomerItemsAfterCustomerAssoFlag();
+		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisOpenSo"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		clickDefaltFlag2();
+		saveButtoninCustomerItems();
+		commonFunc.logoutUser();
+
+	}
+	/**Creates a Open So For UTGST Customer Deletation Process
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void createOpenForUTGSTCustomer() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateItemPage1();
+		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"HodUsername");
+		commonFunc.navigateItemAssoScreen();
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+		searchItemInFindPage();
+		clickSearchButton();
+		searchedItem();
+		customerAssoFlag();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateCustomerItemScreen();
+		addPLusButton();
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("UTGST_cus"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));

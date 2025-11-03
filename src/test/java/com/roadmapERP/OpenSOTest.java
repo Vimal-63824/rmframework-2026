@@ -30,7 +30,7 @@ public class OpenSOTest extends RoadMapERPTest {
 	 * @author Kowshik-RMITS
 	 * 
 	 */
-	@Author("Kowshik-RMITS")
+
 	@Test(priority = 1, groups = {
 			"Open Sales Order" }, description = "Open SO (Rate Contract) - Domestic Customer , Open SO (Rate Contract) ")
 	public void VerifyOpenSoForDomesticCustomer() {
@@ -43,9 +43,11 @@ public class OpenSOTest extends RoadMapERPTest {
 	 * @author Kowshik-RMITS
 	 * 
 	 */
-	@Author("Kowshik-RMITS")
+
+
 	@Test(priority = 2, groups = {
 			"Open Sales Order" }, description = "Open SO (Rate Contract) -  Customer , Open SO (Rate Contract) - Export Customer")
+
 	public void VerifyOpenSoForExportCustomer() {
 		OpenSOFunc.verifyOpenSoForExportCustomer();
 	}
@@ -55,7 +57,7 @@ public class OpenSOTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	@Author("Kowshik-RMITS")
+
 	@Test(priority = 3, groups = { "Cancel Open SO" }, description = "Cancelled Open SO")
 	public void VerifyCancelStatement() {
 		OpenSOFunc.verifyCancelStatement();

@@ -78,7 +78,7 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void takenOpenSoDocumentFromCurrentRateContract(String oso_Docnum) {
-		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(OpenSoAmdLocators.CurrentRateContractSearch, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(OpenSoAmdLocators.CurrentRateContractSearch, oso_Docnum, ElementType.Xpath);
@@ -1005,7 +1005,8 @@ public class OpenSoAmdFunctions {
 	 * @author Kowshik-RMITS
 	 * @return boolean flag
 	 */
-	public boolean verifyLocalCustomerDomesticDeletationofItem() {				
+	public boolean verifyLocalCustomerDomesticDeletationofItem() {	
+		cusItems.createOpenSoForLocalCustomer();
 		createOpenSoDocLocalCustomer();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1254,6 +1255,7 @@ public class OpenSoAmdFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyInterStateCustomerDomesticDeletationofItem() {
+		cusItems.createOpenItemForInterStateForDeletaionOfProcess();
 		createOpenSoDocInterstateCustomer();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1700,7 +1702,7 @@ public class OpenSoAmdFunctions {
 	 */
 
 	public boolean verifyUTGSTDeletationOfItem() {
-
+		cusItems.createOpenForUTGSTCustomer();
 		createOpenSoForUTGSTCustomerForDeletationProcess();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1796,6 +1798,7 @@ public class OpenSoAmdFunctions {
 		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
 		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+		String Item = VariableHandler.getItemName();
 
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1803,7 +1806,7 @@ public class OpenSoAmdFunctions {
 		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
 				OpenSOPrefix1);
 		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		openso.clickFetchCustomerAndSelectItemInOpenSO(commonFunc.getDataFromTestDataSheet("ItemDelete"));
+		openso.clickFetchCustomerAndSelectItemInOpenSO(Item);
 		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
 		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		openso.enterEffectiveFromAndToDate(Today, Today, Today);
@@ -1839,14 +1842,15 @@ public class OpenSoAmdFunctions {
 		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
 		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
-
+		String Item = VariableHandler.getItemName();
+		
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		fetchingOpenSoDoc();
 		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
 				OpenSOPrefix1);
 		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		openso.clickFetchCustomerAndSelectItemInOpenSO(commonFunc.getDataFromTestDataSheet("ItemDelete"));
+		openso.clickFetchCustomerAndSelectItemInOpenSO(Item);
 		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
 		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		openso.enterEffectiveFromAndToDate(Today, Today, Today);
@@ -1882,7 +1886,10 @@ public class OpenSoAmdFunctions {
 			Cost1 = "10";
 		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
 		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_OP100");
+		//1
+		String Item = VariableHandler.getItemName();
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+		
 
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1890,7 +1897,8 @@ public class OpenSoAmdFunctions {
 		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("Loc_100"), CustomerID,
 				OpenSOPrefix1);
 		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		openso.clickFetchCustomerAndSelectItemInOpenSO(VariableHandler.getItemName());
+		//2
+		openso.clickFetchCustomerAndSelectItemInOpenSO(Item);
 		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
 		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		openso.enterEffectiveFromAndToDate(Today, Today, Today);
@@ -1919,8 +1927,9 @@ public class OpenSoAmdFunctions {
 		if (Cost1.equals("00"))
 			Cost1 = "10";
 		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
-		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("UTGSTOSOPrefix");
+		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_07");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
+		String Item = VariableHandler.getItemName();
 
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
@@ -1928,7 +1937,7 @@ public class OpenSoAmdFunctions {
 		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("UTGSTLocation"), CustomerID,
 				OpenSOPrefix1);
 		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		openso.clickFetchCustomerAndSelectItemInOpenSO(commonFunc.getDataFromTestDataSheet("ItemDelete"));
+		openso.clickFetchCustomerAndSelectItemInOpenSO(Item);
 		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
 		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		openso.enterEffectiveFromAndToDate(Today, Today, Today);
