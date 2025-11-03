@@ -19,6 +19,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.financials.PurchaseBillsLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -186,19 +187,24 @@ public class OpenSalesOrderFunctions {
 					flag = webDB.waitForElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
-						logs.logging("INFO", "ITEM CHECK BOX IS CHECKED");
+						logs.logging("INFO", "Item Check Box Is Checked");
 						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 						if (flag) {
 							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
+							
 						}
 					}
 				}
 			}
 		}
 		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(OpenSalesOrderLocators.HeaderStatus,ElementType.Xpath);
+		if(flag) {
+			logs.logging("INFO", "Item Added Against To The Customer");
+		}
 		assertTrue(flag);
 	}
 	
