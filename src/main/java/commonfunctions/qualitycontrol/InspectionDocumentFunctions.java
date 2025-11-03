@@ -21,6 +21,7 @@ import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
+import commonlocators.supplychainmanagement.MaterialReceiptVoucherLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -722,10 +723,10 @@ public class InspectionDocumentFunctions {
 							logs.logging("INFO", "Inspection CheckBox Is Displayed");
 							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
 									ElementType.Xpath);
-							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 							if (flag) {
 								commonFunc.hardWait(3000);
-								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Ok Button Is Displayed");
@@ -881,10 +882,10 @@ public class InspectionDocumentFunctions {
 							logs.logging("INFO", "Inspection CheckBox Is Displayed");
 							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
 									ElementType.Xpath);
-							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 							if (flag) {
 								commonFunc.hardWait(3000);
-								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Ok Button Is Displayed");
