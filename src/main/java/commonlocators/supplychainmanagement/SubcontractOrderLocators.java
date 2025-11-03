@@ -385,7 +385,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_LineDetails_Sou_OprnProc = "//span[@data-testid='P161713106504_POL_SOU_PROC_DESC']";
 	/** @locatorType XPATH */
-	public static final String SCO_LineDetails_SaleOrderRefNo = "//span[@data-testid='P161713106504_POL_SO_SCHLD_DESC']";
+	public static final String SCO_LineDetails_SaleOrderRefNo = "//input[@data-testid='P161713106504_POL_SO_SCHLD_DESC']";
 	/** @locatorType XPATH */
 	public static final String SCO_LineDetails_WH_ID = "//span[@data-testid='P161713106504_POL_STORE_ID']";
 	/** @locatorType XPATH */

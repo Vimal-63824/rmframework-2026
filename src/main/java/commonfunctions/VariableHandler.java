@@ -224,6 +224,11 @@ public class VariableHandler {
 	private static ThreadLocal<String> ProcessIDAsso = new ThreadLocal<>();
 	private static ThreadLocal<String> ResourceGrp = new ThreadLocal<>();
 	private static ThreadLocal<String> ManpowerResourceGrp = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOBatchQty = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOBatchCost = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOOrderQty = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOConvFact = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOProcUOM = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1916,5 +1921,41 @@ public class VariableHandler {
 
 	public static void setManpowerResourceGrp(String Data) {
 		ManpowerResourceGrp.set(Data);
+	}
+	public static String getSCOBatchQty() {
+		return SCOBatchQty.get();
+	}
+
+	public static void setSCOBatchQty(String Data) {
+		SCOBatchQty.set(Data);
+	}
+
+	public static String getSCOBatchCost() {
+		return SCOBatchCost.get();
+	}
+
+	public static void setSCOBatchCost(String Data) {
+		SCOBatchCost.set(Data);
+	}
+	public static String getSCOOrderQty() {
+		return SCOOrderQty.get();
+	}
+
+	public static void setSCOOrderQty(String Data) {
+		SCOOrderQty.set(Data);
+	}
+	public static String getSCOConvFact() {
+		return SCOConvFact.get();
+	}
+
+	public static void setSCOConvFact(String Data) {
+		SCOConvFact.set(Data);
+	}
+	public static String getSCOProcUOM() {
+		return SCOProcUOM.get();
+	}
+
+	public static void setSCOProcUOM(String Data) {
+		SCOProcUOM.set(Data);
 	}
 }

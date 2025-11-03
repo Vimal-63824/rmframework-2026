@@ -361,7 +361,81 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	public void documentCancellingForDirectSerialItemSubcontractOrderStandardType() {
 		SubcontractFunc.documentCancellingForDirectSerialItemSubcontractOrderStandardType();
 	}
+	/**
+	 * Cancelling Serial Item Direct Subcontract Order For SCO Value Addition Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 27, groups = {
+			"Subcontract" }, description = "Cancelling Serial Item Direct Subcontract Order For SCO Value Addition Type")
+	public void documentCancellingForDirectSerialItemSubcontractOrderValueAdditionType() {
+		SubcontractFunc.documentCancellingForDirectSerialItemSubcontractOrderValueAdditionType();
+	}
 
+	/**
+	 * Create Serial Item Subcontract Order From Pending With Sales Order Ref
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 28, groups = {
+			"Subcontract" }, description = "Create Serial Item Subcontract Order From Pending With Sales Order Ref")
+	public void createSerialItemSubcontractOrderFromPendingWithSalesOrderRef() {
+		flag = SubcontractFunc.createSerialItemSubcontractOrderFromPendingWithSalesOrderRef();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order With BOM For Standard Type In Sales
+	 * Order Ref
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 29, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type In Sales Order Ref")
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRef() {
+		flag = SubcontractFunc.directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRef();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order For SCO Value Addition Type with Sales
+	 * Order Ref
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 30, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order For SCO Value Addition Type with Sales Order Ref")
+	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeWithSOref() {
+		flag = SubcontractFunc.createDirectSerialItemSubcontractOrderForValueAdditionTypeWithSOref();
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * Direct Serial Item Subcontract Order With BOM For Standard Type with Project
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 31, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order With BOM For Standard Type with Project")
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProject() {
+		flag = SubcontractFunc.directSerialItemSubcontractOrderWithBOMForStandardTypeWithProject();
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * Create Serial Item Subcontract Order From Pending With Project
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 32, groups = { "Subcontract" }, description = "Create Serial Item Subcontract Order From Pending With Project")
+	public void createSerialitemSubcontractOrderFromPendingWithProject() {
+		flag = SubcontractFunc.createSerialitemSubcontractOrderFromPendingWithProject();
+		Assert.assertTrue(flag);
+	}
 	/**
 	 * Verify After Method
 	 * 
