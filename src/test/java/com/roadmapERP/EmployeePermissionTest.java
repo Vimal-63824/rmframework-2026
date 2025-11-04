@@ -445,7 +445,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result,Method method) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
 			VariableHandler.setCheckEmployeeDataPermissionDefaultExecution(false);

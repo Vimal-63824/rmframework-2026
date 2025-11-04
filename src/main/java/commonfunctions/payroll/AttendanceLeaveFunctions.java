@@ -59,14 +59,19 @@ public class AttendanceLeaveFunctions {
 					commonFunc.getDataFromTestDataSheet("PermissionReference"));
 			permissionSaveAndForwardDocument();
 			verifyWaitingForApproval();
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//			approvalFunc.navigateToApprovals();
+//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//					"TvsUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
@@ -99,14 +104,19 @@ public class AttendanceLeaveFunctions {
 						commonFunc.getDataFromTestDataSheet("PermissionReference"));
 				permissionSaveAndForwardDocument();
 				verifyWaitingForApproval();
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getPermissionDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+//				flag = commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//				approvalFunc.navigateToApprovals();
+//				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+//				flag = commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//						"TvsUsername");
 				commonFunc.navigateLeaveEncashmentScreen();
 				PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
@@ -121,14 +131,19 @@ public class AttendanceLeaveFunctions {
 			permissionReference(commonFunc.getDataFromTestDataSheet("PermissionReference"));
 			permissionSaveAndForwardDocument();
 			verifyWaitingForApproval();
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//			approvalFunc.navigateToApprovals();
+//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//					"TvsUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 					commonFunc.getDataFromTestDataSheet("OnDutyFindType"));
@@ -250,19 +265,23 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("PermissionReference"));
 		permissionSaveAndForwardDocument();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
-			commonFunc.navigateLeaveEncashmentScreen();
-			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-		}
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
+//		flag = commonFunc.logoutUser();
+//		if (flag) {
+//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//			approvalFunc.navigateToApprovals();
+//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
+//			flag = commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//					"TvsUsername");
+		commonFunc.navigateLeaveEncashmentScreen();
+		PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
 		return flag;
 	}
 
@@ -284,24 +303,30 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("PermissionReference"));
 		permissionSaveAndForwardDocument();
 		verifyWaitingForApproval();
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.returnDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"), webDB.getDataFromProperties("TvsProdUserEmpId"));
+		commonFunc.returnDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+				webDB.getDataFromProperties("TvsProdUserEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("TvsUsername"), webDB.getDataFromProperties("TvsProdUserEmpId"));
+//		flag = commonFunc.logoutUser();
+//		if (flag) {
+//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//			approvalFunc.navigateToApprovals();
+//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+//			verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
+//			flag = commonFunc.logoutUser();
+//			if (flag) {
+//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
+//				approvalFunc.navigateToApprovals();
+//				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
+//				verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
+		commonFunc.navigateLeaveEncashmentScreen();
+		PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-			verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-				verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
-				commonFunc.navigateLeaveEncashmentScreen();
-				PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 		return flag;
 	}
 
@@ -3778,9 +3803,9 @@ public class AttendanceLeaveFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	// --------------- "Loan Payment Test Scenarios Functions" -----------------
-	
+
 	/**
 	 * This method is used To Check Loan Payment Entry
 	 * 
