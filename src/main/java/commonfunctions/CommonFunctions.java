@@ -7,12 +7,15 @@ import static org.testng.Assert.assertTrue;
  * @company Galaxy Weblinks January 15, 2025
  */
 import java.io.File;
+import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -34,6 +37,7 @@ import commonlocators.payroll.PreparePayrollLocators;
 import commonlocators.productionplanning.BillOfMaterialsLocators;
 import commonlocators.productionplanning.MRPLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
+import commonlocators.qualitycontrol.InspectionPlanLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.CustomerItemsLocators;
@@ -44,7 +48,6 @@ import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
-import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
 import commonlocators.supplychainmanagement.RfqLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
@@ -502,17 +505,28 @@ public class CommonFunctions {
 	 */
 	public String getDataFromTestDataSheet(String Key) {
 		String value = null;
-		if (VariableHandler.getTestData() == null) {
-			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-					+ "TestDatas.xlsx";
-			VariableHandler.setTestData(
-					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("TestDataSheetName")));
-		} else {
-		}
-		for (int i = 0; i < VariableHandler.getTestData().length; i++) {
-			if (VariableHandler.getTestData()[i][0].equals(Key)) {
-				value = VariableHandler.getTestData()[i][1];
-			}
+//		if (VariableHandler.getTestData() == null) {
+//			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+//					+ "TestDatas.xlsx";
+//			VariableHandler.setTestData(
+//					excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("TestDataSheetName")));
+//		} else {
+//		}
+//		for (int i = 0; i < VariableHandler.getTestData().length; i++) {
+//			if (VariableHandler.getTestData()[i][0].equals(Key)) {
+//				value = VariableHandler.getTestData()[i][1];
+//			}
+//		}
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QC-data.json";
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObject = null;
+		try (FileReader reader = new FileReader(Filepath)) {
+			Object obj = parser.parse(reader);
+			jsonObject = (JSONObject) obj;
+			value = jsonObject.get(Key).toString();
+		} catch (Exception e) {
+			logs.logging("INFO", "Please check JSON file that the given key value is present or not: " + Key);
 		}
 		return value;
 	}
@@ -2153,8 +2167,8 @@ public class CommonFunctions {
 	public void navigateToGateEntryDocument() {
 //			clickLeftNavigationBar();
 //			clickGateEntryTab();
-			navigateToSearchTab(webDB.getDataFromProperties("GATEENTRY"), GateEntryPageLocators.GENPendBtn);
-					}
+		navigateToSearchTab(webDB.getDataFromProperties("GATEENTRY"), GateEntryPageLocators.GENPendBtn);
+	}
 
 	/**
 	 * This method used to Navigate Navigate Gate Entry Tab
@@ -2569,6 +2583,40 @@ public class CommonFunctions {
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
 		restApi.setQueryParam("p_doc_no", DocNo);
+		restApi.setQueryParam("p_from_empid", EmpId);
+		restApi.setQueryParam("p_plnt", Unit);
+		restApi.setQueryParam("p_user", User);
+		restApi.setQueryParam("p_wfdc_act", "A");
+		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
+		String Value = restApi.response.getHeader("p_out_msg");
+		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
+		logs.logging("INFO", "Displayed Approval Response Status Code: " + restApi.response.getStatusCode());
+		flag = Value.contains("Approved");
+		if (flag) {
+			logs.logging("INFO", "Verified Approval Response Header");
+			flag = restApi.response.getStatusCode() == 200;
+			if (flag) {
+				logs.logging("INFO", "Verified Approval Response Status Code");
+			}
+		}
+		assertTrue(flag);
+		RestUtils.resetRestAssured();
+	}
+	
+	/**
+	 * This method used to approve Item Documents documents using API
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BU
+	 * @param ItemId
+	 * @param EmpId
+	 * @param Unit
+	 * @param User
+	 */
+	public void approveItemIdDocuments(String BU, String ItemId, String EmpId, String Unit, String User) {
+		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
+		restApi.setQueryParam("p_bu", BU);
+		restApi.setQueryParam("p_item_id", ItemId);
 		restApi.setQueryParam("p_from_empid", EmpId);
 		restApi.setQueryParam("p_plnt", Unit);
 		restApi.setQueryParam("p_user", User);
@@ -3014,5 +3062,15 @@ public class CommonFunctions {
 		if (author != null) {
 			Listener.test.get().assignAuthor(author.value());
 		}
+	}
+
+	/**
+	 * This method used to Navigate Quality Control Inspection Plan
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateInspectionPlan() {
+		navigateToSearchTab(webDB.getDataFromProperties("InspectionPlanScreen"),
+				InspectionPlanLocators.AddIconInFindPage);
 	}
 }

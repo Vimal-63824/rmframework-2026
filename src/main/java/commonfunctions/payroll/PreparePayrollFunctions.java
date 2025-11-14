@@ -664,8 +664,8 @@ public class PreparePayrollFunctions {
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
@@ -748,8 +748,8 @@ public class PreparePayrollFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String Month = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickLinesRadioButtonInFind();
 			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
@@ -921,8 +921,8 @@ public class PreparePayrollFunctions {
 		String SearchMonth = date.format(formatter);
 		String verifyMonth = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickHeaderRadioButtonInFind();
 			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202526"));

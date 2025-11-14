@@ -778,8 +778,8 @@ public class MRPFunctions {
 			Cost = "10";
 		}
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateSalesOrderPage();
 			saleOrderFunc.verifyClickAddButtonInSo();
 			saleOrderFunc.FrameSwitchingInSOCreation();
@@ -807,7 +807,7 @@ public class MRPFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateSalesOrderPage();
 			saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
@@ -837,7 +837,7 @@ public class MRPFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToMRPScreenInProdPlanning();
 			checkStatusOfMRP(VariableHandler.getMRPNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
