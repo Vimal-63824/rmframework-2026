@@ -19,6 +19,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.CommonUiLocators;
+import commonlocators.financials.PurchaseBillsLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -178,21 +179,74 @@ public class OpenSalesOrderFunctions {
 						ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Iframe Displayed and switched successfully");
+					commonFunc.checkRefreshCellsDisappear();
 					webDB.moveToElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
-					webDB.clickAnElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item), ElementType.Xpath);
+					webDB.javaScriptClickAnElement(OpenSalesOrderLocators.fetchCustomerItemCheckedBox(Item),
+							ElementType.Xpath);
 					commonFunc.hardWait(2000);
-					flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
 					if (flag) {
-						webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-						webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-						commonFunc.checkRefreshCellsDisappear();
+						webDB.clickAnElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
+						logs.logging("INFO", "Item Check Box Is Checked");
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							
+						}
 					}
 				}
 			}
 		}
 		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(OpenSalesOrderLocators.HeaderStatus,ElementType.Xpath);
+		if(flag) {
+			logs.logging("INFO", "Item Added Against To The Customer");
+		}
 		assertTrue(flag);
 	}
+	
+	public void clickFetchCustomerAndSelectItemForDeleteProcess(String ItemDelete_1) {
+		flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+			webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerItemBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Fetch Customer Item Button Clicked");
+				webDB.switchToFrame(OpenSalesOrderLocators.FetchCustomerIframe, ElementType.Xpath);
+				flag = webDB.waitForElement(OpenSalesOrderLocators.SearchInputField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Iframe Displayed and switched successfully");
+//					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(OpenSalesOrderLocators.SearchInputField, ElementType.Xpath);
+					webDB.javaScriptSendTextToAnElement(OpenSalesOrderLocators.SearchInputField, ItemDelete_1, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.javaScriptClickAnElement(OpenSalesOrderLocators.Gobutton, ElementType.Xpath);
+					flag = webDB.waitForElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
+					if (flag) {
+						webDB.moveToElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
+						webDB.javaScriptClickAnElement(OpenSalesOrderLocators.SelecCheckBox, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+
+						}
+					}
+
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+
+	}	
 
 	/**
 	 * This Method used to click Fetch Customer and Select Item checkbox and click
@@ -227,7 +281,7 @@ public class OpenSalesOrderFunctions {
 							flag = webDB.isElementEnabled(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 							if (flag) {
 								webDB.moveToElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
-								webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
+								flag = webDB.clickAnElement(OpenSalesOrderLocators.FetchCustomerOkBtn, ElementType.Xpath);
 								commonFunc.checkRefreshCellsDisappear();
 
 							}
@@ -333,7 +387,7 @@ public class OpenSalesOrderFunctions {
 				if (flag) {
 					commonFunc.checkSuccessToastMessageDisappear();
 					webDB.moveToElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
-					webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
+					flag = webDB.clickAnElement(OpenSalesOrderLocators.OpenSOPostBTN, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 				}
 			}

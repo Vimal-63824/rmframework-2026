@@ -7210,9 +7210,9 @@ public class PurchaseOrderFunctions {
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
-				if (elements.getLast() == element) {
-					flag = true;
-				}
+//				if (elements.getLast() == element) {
+//					flag = true;
+//				}
 				if (!flag) {
 					break;
 				}

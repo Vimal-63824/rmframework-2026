@@ -900,8 +900,9 @@ public class SubcontractOrderFunctions {
 								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 										ElementType.Xpath);
 								commonFunc.hardWait(1000);
-								checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
-								commonFunc.hardWait(1000);
+								storeBatchQtyAndBtachCost();
+								getBatchQtyBatchCostandWriteInExcelSheetInterstateUnRegistered();
+								processCalculationCompareExcelSheetWithDataBaseInterstateUnRegistered();
 								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
 										ElementType.Xpath);
 								if (flag) {
@@ -1120,6 +1121,8 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(1000);
 			valueAdditionTypeclickLineDetailsButtonValidationwithDataBase();
 			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered();
+			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
@@ -1159,6 +1162,8 @@ public class SubcontractOrderFunctions {
 			}
 			commonFunc.hardWait(1000);
 			valueAdditionTypeWIthSOrefclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered();
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
@@ -1218,7 +1223,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1275,7 +1282,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -1369,7 +1378,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1426,7 +1437,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -1521,7 +1534,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1579,7 +1594,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -1909,7 +1926,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1966,7 +1985,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -2046,7 +2067,7 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.SubcontractLineSaveIcon, ElementType.Xpath);
-				commonFunc.hardWait(11000);
+				commonFunc.hardWait(16000);
 				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SubcontractOrderLocators.SubcontractProcessAddIcon, ElementType.Xpath);
@@ -2072,6 +2093,10 @@ public class SubcontractOrderFunctions {
 									ElementType.Xpath)) {
 								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 										ElementType.Xpath);
+								commonFunc.hardWait(1000);
+								storeBatchQtyAndBtachCost();
+								getBatchQtyBatchCostandWriteInExcelSheetInterstateUnRegistered();
+								processCalculationCompareExcelSheetWithDataBaseInterstateUnRegistered();
 								commonFunc.hardWait(1000);
 								flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractGenMRPBtn,
 										ElementType.Xpath);
@@ -2141,7 +2166,7 @@ public class SubcontractOrderFunctions {
 			String SCOQty = SOMultipleline[i][2];
 			String SCOProcess = SOMultipleline[i][3];
 			String ProcessGLacct = SOMultipleline[i][4];
-			String SORef = SOMultipleline[i][5];
+			String SORef = SOMultipleline[i][15];
 			if (!SCOItemID.equals("")) {
 				clickLineWiseAddIconAndAddingSO(SCOItemID, SCOQty, SCOProcess, ProcessGLacct, SORef);
 			}
@@ -2298,7 +2323,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -2460,9 +2487,11 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		pendingStandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
+		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalPageFunc
 					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -2517,7 +2546,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -2825,7 +2856,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -2916,7 +2949,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -2974,7 +3009,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -3068,7 +3105,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -3139,7 +3178,9 @@ public class SubcontractOrderFunctions {
 				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 				clickLocationDetailsButtonValidationwithDataBase();
 				checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-				checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+				storeBatchQtyAndBtachCost();
+				getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+				processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 				clickingMRPDetailsTabVerificationWithBOMAgainst();
 				subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 				if (!VariableHandler.getApprovalFlag()) {
@@ -3234,7 +3275,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -3291,7 +3334,9 @@ public class SubcontractOrderFunctions {
 			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 			clickLocationDetailsButtonValidationwithDataBase();
 			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 			clickingMRPDetailsTabVerificationWithBOMAgainst();
 			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -3402,7 +3447,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -3474,7 +3521,9 @@ public class SubcontractOrderFunctions {
 				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 				clickLocationDetailsButtonValidationwithDataBase();
 				checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-				checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+				storeBatchQtyAndBtachCost();
+				getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+				processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 				clickingMRPDetailsTabVerificationWithBOMAgainst();
 				subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 				if (!VariableHandler.getApprovalFlag()) {
@@ -4438,7 +4487,8 @@ public class SubcontractOrderFunctions {
 		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
 
 		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo, ElementType.Xpath),
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value")),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
 						commonFunc.getDataFromTestDataSheet("SCODBSALEORDERDESCCOLUMN")));
 		logs.logging("INFO", "Line Detail SalesOrderRef Matched With DataBase Values");
@@ -4621,6 +4671,8 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(1000);
 			standardTypeclickLineDetailsButtonValidationwithDataBase();
 			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered();
+			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
@@ -4660,6 +4712,8 @@ public class SubcontractOrderFunctions {
 			}
 			commonFunc.hardWait(1000);
 			pendingStandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered();
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
@@ -4701,6 +4755,8 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(1000);
 			directstandardTypeWithSOrefclickLineDetailsButtonValidationwithDataBase();
 			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered();
+			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
@@ -4741,6 +4797,8 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(1000);
 			directstandardTypeclickLineDetailsButtonValidationwithDataBase();
 			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseInterstateUnRegistered();
+			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
@@ -4780,6 +4838,8 @@ public class SubcontractOrderFunctions {
 			}
 			commonFunc.hardWait(1000);
 			standardTypeclickLineDetailsButtonAfterFirstProcessValidationwithDataBase();
+			commonFunc.hardWait(1000);
+			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered();
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
@@ -4998,7 +5058,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -5128,7 +5190,9 @@ public class SubcontractOrderFunctions {
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		checkSucontractOrderProcessDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -5264,5 +5328,875 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		clickingHeaderCancelButton();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Used For Document Cancelling For Direct Serial Item Subcontract
+	 * Order For Value Addition Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void documentCancellingForDirectSerialItemSubcontractOrderValueAdditionType() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
+				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
+		clickingHeaderCancelButton();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * This Method Used For Create Serial Item Subcontract Order From Pending With
+	 * Sales Order Ref
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createSerialItemSubcontractOrderFromPendingWithSalesOrderRef() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
+				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BomSerialSOref"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		ProductionordertFunc.forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialRequestScreen();
+			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+			materialRequestFunc.headerSaveAndPost();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialIssuanceVoucher();
+			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.headerTickAndPostIcon();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+			grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+			flag = commonFunc.logoutUser();
+			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToSubcontractOrder();
+			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+			clickLocationDetailsButtonValidationwithDataBase();
+			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+			storeBatchQtyAndBtachCost();
+			getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+			processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
+			clickingMRPDetailsTabVerificationWithBOMAgainst();
+			pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalPageFunc
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername");
+				approvalPageFunc.navigateToApprovals();
+				approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+				verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialRequestScreen();
+				materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+				materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+				materialRequestFunc.headerSaveAndPost();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToMaterialIssuanceVoucher();
+				materialIssuanceVoucherFunc
+						.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+				materialIssuanceVoucherFunc.headerTickAndPostIcon();
+				flag = commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+						"TvsUsername");
+				commonFunc.navigateToGrnSco();
+				grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+				grnScoPageFunc.verifyGenMatConsAndAllocate();
+//				grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//				grnScoPageFunc.verifyViewLineDetails();
+				grnScoPageFunc.saveHeaderAndPost();
+				approvalFunc
+						.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+						"HodUsername-Admin");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+				flag = commonFunc.logoutUser();
+				mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Direct Serial Item Subcontract Order With BOM For
+	 * Standard Type In Sales Order Ref
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRef() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSO"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeWithSOrefclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialRequestScreen();
+			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+			materialRequestFunc.headerSaveAndPost();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialIssuanceVoucher();
+			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.headerTickAndPostIcon();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+			grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+			flag = commonFunc.logoutUser();
+			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Direct Serial Item Subcontract Order For SCO Value
+	 * Addition Type with Sales Order Ref
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createDirectSerialItemSubcontractOrderForValueAdditionTypeWithSOref() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
+				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSO"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		valueAdditionTypeWithSORefclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialRequestScreen();
+			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+			materialRequestFunc.headerSaveAndPost();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialIssuanceVoucher();
+			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.headerTickAndPostIcon();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+			grnScoPageFunc.clickingGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+			flag = commonFunc.logoutUser();
+			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Create Direct Serial Item Subcontract Order With BOM For
+	 * Standard Type With Project
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeWithProject() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithPrj"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		directsubcontractStandardTypeWithSOrefclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialRequestScreen();
+			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+			materialRequestFunc.headerSaveAndPost();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialIssuanceVoucher();
+			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.headerTickAndPostIcon();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+			grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+			flag = commonFunc.logoutUser();
+			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Create Serial Item Subcontract Order From Pending With
+	 * Project
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createSerialitemSubcontractOrderFromPendingWithProject() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"),
+				commonFunc.getDataFromTestDataSheet("BOMProject"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		ProductionordertFunc.forwardForApproval();
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+				"HodUsername");
+		approvalFunc.navigateToApprovals();
+		approvalFunc.filterDocumentsforApproval(VariableHandler.getProductionOrderNumber());
+		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getProductionOrderNumber());
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber());
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered();
+		processCalculationCompareExcelSheetWithDataBaseLocalRegistered();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		pendingProdNoandSOrefsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalPageFunc
+					.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername");
+			approvalPageFunc.navigateToApprovals();
+			approvalPageFunc.filterDocumentsforApproval(VariableHandler.getSCOdocno());
+			verifyApproveWithDocNumber(VariableHandler.getSCOdocno());
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialRequestScreen();
+			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+			materialRequestFunc.headerSaveAndPost();
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getMRNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMRNumber());
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToMaterialIssuanceVoucher();
+			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.headerTickAndPostIcon();
+			flag = commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+					"TvsUsername");
+			commonFunc.navigateToGrnSco();
+			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+			grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+			grnScoPageFunc.saveHeaderAndPost();
+			approvalFunc.subcontractwaitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.logoutUser();
+			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+					"HodUsername-Admin");
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getScoGrnNumber());
+			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getScoGrnNumber());
+			flag = commonFunc.logoutUser();
+			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		}
+		return flag;
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Durai-RMITS
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value : " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Process Calculation Compare Excel Sheet With DataBase
+	 * Local Registered
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void processCalculationCompareExcelSheetWithDataBaseLocalRegistered() {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String Batchqty = itemmultiple[i][5];
+			String BatchCost = itemmultiple[i][6];
+			String UOM = itemmultiple[i][11];
+			String ConvFact = itemmultiple[i][7];
+			String SACcode = itemmultiple[i][12];
+			String ProcQty = itemmultiple[i][8];
+			String LineOrdQty = itemmultiple[i][2];
+			String LineUnitCost = itemmultiple[i][9];
+			String AsblVal = itemmultiple[i][10];
+			String IGSTamt = itemmultiple[i][16];
+			String CGSTamt = itemmultiple[i][14];
+			String SGSTamt = itemmultiple[i][15];
+			if (!Batchqty.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
+				logs.logging("INFO", "Process BatchQty Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
+				logs.logging("INFO", "Process BatchCost Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
+				logs.logging("INFO", "Process UOM Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
+				logs.logging("INFO", "Process ConvFactor Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
+				logs.logging("INFO", "Process SAC Code Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
+				logs.logging("INFO", "Process ProcQty Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
+				logs.logging("INFO", "Process Asbl.Value Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
+				logs.logging("INFO", "Process IGSTAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
+				logs.logging("INFO", "Process CGSTAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
+				logs.logging("INFO", "Process SGSTAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
+				logs.logging("INFO", "Process LineOrderQty Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
+				logs.logging("INFO", "Process LineUnitCost Details Matched With DataBase Values");
+
+			}
+		}
+	}
+
+	/**
+	 * This Method Used For Process Calculation Compare Excel Sheet With DataBase
+	 * Interstate UnRegistered
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void processCalculationCompareExcelSheetWithDataBaseInterstateUnRegistered() {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String Batchqty = itemmultiple[i][5];
+			String BatchCost = itemmultiple[i][6];
+			String UOM = itemmultiple[i][11];
+			String ConvFact = itemmultiple[i][7];
+			String SACcode = itemmultiple[i][12];
+			String ProcQty = itemmultiple[i][8];
+			String LineOrdQty = itemmultiple[i][2];
+			String LineUnitCost = itemmultiple[i][9];
+			String AsblVal = itemmultiple[i][10];
+			String IGSTamt = itemmultiple[i][16];
+			String CGSTamt = itemmultiple[i][14];
+			String SGSTamt = itemmultiple[i][15];
+			if (!Batchqty.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")), Batchqty);
+				logs.logging("INFO", "Process BatchQty Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")), BatchCost);
+				logs.logging("INFO", "Process BatchCost Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCESSUOMCOLUMN")), UOM);
+				logs.logging("INFO", "Process UOM Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")), ConvFact);
+				logs.logging("INFO", "Process ConvFactor Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")), SACcode);
+				logs.logging("INFO", "Process SAC Code Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")), ProcQty);
+				logs.logging("INFO", "Process ProcQty Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")), AsblVal);
+				logs.logging("INFO", "Process Asbl.Value Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBIGSTAMTCOLUMN")), IGSTamt);
+				logs.logging("INFO", "Process IGSTAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBCGSTAMTCOLUMN")), CGSTamt);
+				logs.logging("INFO", "Process CGSTAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOProcessDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSGSTAMTCOLUMN")), SGSTamt);
+				logs.logging("INFO", "Process SGSTAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBQTYCOLUMN")), LineOrdQty);
+				logs.logging("INFO", "Process LineOrderQty Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBUNITCOLUMN")), LineUnitCost);
+				logs.logging("INFO", "Process LineUnitCost Details Matched With DataBase Values");
+
+			}
+		}
+	}
+
+	/**
+	 * This Methods Used To Store BatchQty And Batch Cost
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void storeBatchQtyAndBtachCost() {
+		commonFunc.hardWait(1000);
+		String SCOBatchQty = webDB.getTextFromElement(SubcontractOrderLocators.SCO_Batchqty_Field, ElementType.Xpath);
+		logs.logging("INFO", "Get SCO BatchQty Is: " + SCOBatchQty);
+		VariableHandler.setSCOBatchQty(SCOBatchQty);
+		commonFunc.hardWait(1000);
+		String SCOBatchCost = webDB.getTextFromElement(SubcontractOrderLocators.SCO_Batchcost_Field, ElementType.Xpath);
+		logs.logging("INFO", "Get SCO BatchCost Is: " + SCOBatchCost);
+		VariableHandler.setSCOBatchCost(SCOBatchCost);
+		commonFunc.hardWait(1000);
+		String SCOOrderQty = webDB.getTextFromElement(SubcontractOrderLocators.SCO_Qty_Field, ElementType.Xpath);
+		logs.logging("INFO", "Get SCO OrderQty Is: " + SCOOrderQty);
+		VariableHandler.setSCOOrderQty(SCOOrderQty);
+		commonFunc.hardWait(1000);
+		String SCOConvFact = webDB.getTextFromElement(SubcontractOrderLocators.SCO_ConvFactor_Field, ElementType.Xpath);
+		logs.logging("INFO", "Get SCO ConvFact Is: " + SCOConvFact);
+		VariableHandler.setSCOConvFact(SCOConvFact);
+		commonFunc.hardWait(1000);
+		String SCOProcUOM = webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessUOM_Field, ElementType.Xpath);
+		logs.logging("INFO", "Get SCO ProcUOM Is: " + SCOProcUOM);
+		VariableHandler.setSCOProcUOM(SCOProcUOM);
+	}
+
+	/**
+	 * This Methods Used To Get BatchQty, BatchCost and Write In Excel Sheet Local
+	 * Registered
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void getBatchQtyBatchCostandWriteInExcelSheetLocalRegistered() {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		logs.logging("INFO", "Before Process Id ");
+		for (int i = 4; i < ItemMultiple.length; i++) {
+			String BatchQty = ItemMultiple[i][5];
+			String BatchCost = ItemMultiple[i][6];
+			String OrderQty = ItemMultiple[i][2];
+			String ConvFact = ItemMultiple[i][7];
+			String ProcUOM = ItemMultiple[i][11];
+			if (!BatchQty.equals("")) {
+				logs.logging("INFO", "Before BatchQty  " + BatchQty + "Is : " + VariableHandler.getSCOBatchQty());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"), i, 5,
+						VariableHandler.getSCOBatchQty());
+				logs.logging("INFO", "Before BatchCost  " + BatchCost + "Is : " + VariableHandler.getSCOBatchCost());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"), i, 6,
+						VariableHandler.getSCOBatchCost());
+				logs.logging("INFO", "Before OrderQty  " + OrderQty + "Is : " + VariableHandler.getSCOOrderQty());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"), i, 2,
+						VariableHandler.getSCOOrderQty());
+				logs.logging("INFO", "Before ConvFact  " + ConvFact + "Is : " + VariableHandler.getSCOConvFact());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"), i, 7,
+						VariableHandler.getSCOConvFact());
+				logs.logging("INFO", "Before ProcUOM  " + ProcUOM + "Is : " + VariableHandler.getSCOProcUOM());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationLocalReg"), i, 11,
+						VariableHandler.getSCOProcUOM());
+
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Used To Get BatchQty, BatchCost and Write In Excel Sheet
+	 * Interstate UnRegistered
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void getBatchQtyBatchCostandWriteInExcelSheetInterstateUnRegistered() {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		logs.logging("INFO", "Before Process Id ");
+		for (int i = 4; i < ItemMultiple.length; i++) {
+			String BatchQty = ItemMultiple[i][5];
+			String BatchCost = ItemMultiple[i][6];
+			String OrderQty = ItemMultiple[i][2];
+			String ConvFact = ItemMultiple[i][7];
+			String ProcUOM = ItemMultiple[i][11];
+			if (!BatchQty.equals("")) {
+				logs.logging("INFO", "Before BatchQty  " + BatchQty + "Is : " + VariableHandler.getSCOBatchQty());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationInterstateUnreg"), i,
+						5, VariableHandler.getSCOBatchQty());
+				logs.logging("INFO", "Before BatchCost  " + BatchCost + "Is : " + VariableHandler.getSCOBatchCost());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationInterstateUnreg"), i,
+						6, VariableHandler.getSCOBatchCost());
+				logs.logging("INFO", "Before OrderQty  " + OrderQty + "Is : " + VariableHandler.getSCOOrderQty());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationInterstateUnreg"), i,
+						2, VariableHandler.getSCOOrderQty());
+				logs.logging("INFO", "Before ConvFact  " + ConvFact + "Is : " + VariableHandler.getSCOConvFact());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationInterstateUnreg"), i,
+						7, VariableHandler.getSCOConvFact());
+				logs.logging("INFO", "Before ProcUOM  " + ProcUOM + "Is : " + VariableHandler.getSCOProcUOM());
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("ProcCalculationInterstateUnreg"), i,
+						11, VariableHandler.getSCOProcUOM());
+
+			}
+		}
+
+	}
+
+	/**
+	 * This Method Used For header TaxAmt And TotalAmt Compare Excel Sheet With
+	 * DataBase Interstate UnRegistered
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseInterstateUnRegistered() {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String SCOamt = itemmultiple[i][10];
+			String TaxAmt = itemmultiple[i][17];
+			String SCONetAmt = itemmultiple[i][18];
+			if (!SCOamt.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBMATAMTCOLUMN")), SCOamt);
+				logs.logging("INFO", "Process SCO Amount Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTAXAMTCOLUMN")), TaxAmt);
+				logs.logging("INFO", "Process Tax Amount Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTOTALAMTCOLUMN")), SCONetAmt);
+				logs.logging("INFO", "Process SCO NetAmount Details Matched With DataBase Values");
+			}
+		}
+	}
+	/**
+	 * This Method Used For header TaxAmt And TotalAmt Compare Excel Sheet With
+	 * DataBase Local Registered
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBaseLocalRegistered() {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
+				webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String SCOamt = itemmultiple[i][10];
+			String TaxAmt = itemmultiple[i][17];
+			String SCONetAmt = itemmultiple[i][18];
+			if (!SCOamt.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBMATAMTCOLUMN")), SCOamt);
+				logs.logging("INFO", "Process SCO Amount Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTAXAMTCOLUMN")), TaxAmt);
+				logs.logging("INFO", "Process Tax Amount Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTOTALAMTCOLUMN")), SCONetAmt);
+				logs.logging("INFO", "Process SCO NetAmount Details Matched With DataBase Values");
+			}
+		}
 	}
 }
