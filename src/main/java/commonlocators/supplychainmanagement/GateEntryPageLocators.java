@@ -21,7 +21,7 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static String GateEntryPendingPoSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */
-	public static String CreateGeFromPO = "//button[@data-testid='Create_GE']";
+	public static String CreateGeFromPO = "//button[@data-testid='Create_GE' and not(@title)]";
 	/** @locatorType Xpath */
 	public static String SelectGateKeeper = "//select[@data-testid='P16151311001_GACDT_GATE_KEEPER']";
 	/** @locatorType Xpath */
@@ -139,7 +139,7 @@ public class GateEntryPageLocators {
 	public static final String CostField(int i) {
 		return "//*[@id=\"ge_dtl_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[12]";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String LocId = "//input[@data-testid='P75131020_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -168,22 +168,26 @@ public class GateEntryPageLocators {
 	public static final String AmendLineFindTable = "//*[@id=\"1119004294775107902_orig\"]/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String GENLineFindTableData(int i) {
-		return "//table[@id='1119004294775107902_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='1119004294775107902_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String GENFindTableData(int i) {
-		return "//table[@id='22335393014035837389_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='22335393014035837389_orig']/tbody/tr/td[" + i + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	/** @locatorType Xpath */
+	public static final String FindGateEntryNoLovBtn = "//input[@data-testid='P75131020_DOC_NO_1']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String SearchButton = "//button[@data-testid='Find_header']";
+	/** @locatorType Xpath */
+	public static final String HeaderLabelButton = "(//input[@data-testid='P75131020_RADIO_GRP']/following-sibling::label)[1]";
+
+	/** @locatorType Xpath */
+	public static final String FindGateEntryNumber(String value) {
+		return "(//a[text()='" + value + "']/../../td/div[contains(@style,'color')])[last()]";
+	}
 }

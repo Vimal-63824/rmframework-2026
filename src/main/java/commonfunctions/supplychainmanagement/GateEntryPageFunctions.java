@@ -18,6 +18,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
+import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GateEntryPageLocators;
@@ -45,7 +46,8 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry("DirectGrnGenUD");
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+				"DirectGrnGenUD");
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingPo();
@@ -64,8 +66,10 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromMultiplePo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry("DirectGrnGenUD");
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry("DirectGrnGenUD");
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+				"DirectGrnGenUD");
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+				"DirectGrnGenUD");
 		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingMultiPo();
@@ -129,6 +133,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPendingPo() {
+		VariableHandler.setPONumber("POGL3/00045/25-26");
 		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
 		if (flag)
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
@@ -202,6 +207,8 @@ public class GateEntryPageFunctions {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPendingPoSelectAll,
 								ElementType.Xpath);
 						logs.logging("INFO", "Create Gate Entry Button shown");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
 						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
@@ -421,7 +428,7 @@ public class GateEntryPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 						logs.logging("INFO", "Gate Entry Document Posted Successfully");
-						flag = commonFunc.logoutUser();
+						commonFunc.logoutUser();
 					}
 				}
 			}
@@ -941,15 +948,14 @@ public class GateEntryPageFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "DirectGrnDetails.xlsx";
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
-				webDB.getDataFromProperties("DirectGrnGenUD"));
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("DirectGrnGenUD"));
 		System.out.println(itemmultiple.length);
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
 			String UNIT_COST = itemmultiple[i][6];
 			if (!ITEM_NAME.equals("")) {
-				String SeqNumber = Integer.toString(i-21);
+				String SeqNumber = Integer.toString(i - 21);
 				System.out.println("SeqNumber:" + SeqNumber);
 				verifyAssertionBothValues(dbCommonFunctions.GateQuery1(VariableHandler.getGATEDocNum(), SeqNumber,
 						commonFunc.getDataFromTestDataSheet("GATEDbItemColumnName")), ITEM_NAME);
@@ -965,6 +971,7 @@ public class GateEntryPageFunctions {
 			}
 		}
 	}
+
 	/**
 	 * This Method Is Used To PO Filter All Field Working
 	 * 
@@ -992,21 +999,19 @@ public class GateEntryPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GateKeeperName"), 8,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId,
-				commonFunc.getDataFromTestDataSheet("GENItem"), 31,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("GENItem"), 31,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc,
-				commonFunc.getDataFromTestDataSheet("GENItem"), 33,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("GENItem"), 33,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.GRN_Status,
-				commonFunc.getDataFromTestDataSheet("GENStatus"), 13,
-				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.GRN_Status, commonFunc.getDataFromTestDataSheet("GENStatus"),
+				13, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
 		commonFunc.logoutUser();
 
 	}
+
 	/**
 	 * This Method Is Used To Verify Filter Search Purchase Order
 	 * 
@@ -1036,6 +1041,7 @@ public class GateEntryPageFunctions {
 		}
 		clearSearchFilter();
 	}
+
 	/**
 	 * Verify Date From And To
 	 * 
@@ -1071,6 +1077,7 @@ public class GateEntryPageFunctions {
 //		verifyLineAmendTableValueBeforeDate(23, commonFunc.getDataFromTestDataSheet("EffTo"));
 //		clearSearchFilter();
 	}
+
 	/**
 	 * This Method Is Used To Click Search Button
 	 * 
@@ -1093,6 +1100,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Click Search Button
 	 * 
@@ -1114,6 +1122,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1134,6 +1143,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1149,12 +1159,13 @@ public class GateEntryPageFunctions {
 				flag = element.getText().contains(Value);
 				if (!flag) {
 					break;
-			
+
 				}
 			}
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Clear Search Filter
 	 * 
@@ -1172,6 +1183,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1198,6 +1210,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1225,6 +1238,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Table Value
 	 * 
@@ -1279,4 +1293,115 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Methods Is Used To verify Create Gate Entry From Pending Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyToCreateGateEntryFromPendingPoNumber() {
+//		VariableHandler.setPONumber("POGL3/00045/25-26");
+		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag)
+			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
+			logs.logging("INFO", "PendingPOButtonLov Shown");
+			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
+				logs.logging("INFO", "PendingPOButtonLov Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GateEntryPageLocators.SearchAndSelectValue, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SearchAndSelectValue,
+							VariableHandler.getPONumber());
+					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+					logs.logging("INFO", "PO Number Shown");
+					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+					if (flag) {
+						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+						logs.logging("INFO", "Document Search And Selected Successfully");
+						verifyClickSelectAllButton();
+						logs.logging("INFO", "Create Gate Entry Button shown");
+						commonFunc.hardWait(2000);
+						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is USed To Select All Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickSelectAllButton() {
+		commonFunc.hardWait(5000);
+		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		if (flag) {
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						if (!element.isSelected()) {
+							element.click();
+							flag = true;
+							break;
+						} else {
+							element.click();
+							Thread.sleep(10000);
+							verifyClickSelectAllButton();
+							flag = true;
+							break;
+						}
+					}
+				} catch (Exception e) {
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used to verify Status of Gate Entry Number
+	 * 
+	 * @author Deepan-GWL
+	 * @param MRPNo
+	 * @param ExpectedStatus
+	 */
+	public void searchAndVerifyStatusOfGENo(String GEONo, String ExpectedStatus) {
+		commonFunc.clearFiltersInFindPage();
+		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.FindGateEntryNoLovBtn, GEONo);
+		flag = webDB.waitForElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GateEntryPageLocators.FindGateEntryNumber(GEONo), ElementType.Xpath);
+				if (flag) {
+					String DisplayedStatus = webDB.getTextFromElement(GateEntryPageLocators.FindGateEntryNumber(GEONo),
+							ElementType.Xpath);
+					logs.logging("INFO", "Displayed Status: " + DisplayedStatus);
+					flag = DisplayedStatus.equalsIgnoreCase(ExpectedStatus);
+					if (flag) {
+						logs.logging("INFO", "Production Order Status Verified");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
 }
