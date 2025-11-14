@@ -188,7 +188,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
-	public static final String ItemMasterAdd = "//button[@id='B1287636716616788407']";
+	public static final String ItemMasterAdd = "//button[@id='B1956605231110148678']";
 	/** @locatorType Xpath */
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */
@@ -395,11 +395,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PrCreateFrame = "//iframe[@title='Purchase Request']";
 	/** @locatorType Xpath */
-	public static final String CreatePrButton = "//button[@id='B938864189401882606']";
+	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
 	/** @locatorType Xpath */
 	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String CreatePRTickIcon = "//button[@id='B856779552425513804']";
+	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
 	/** @locatorType Xpath */
 	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
 	/** @Locator XPATH */

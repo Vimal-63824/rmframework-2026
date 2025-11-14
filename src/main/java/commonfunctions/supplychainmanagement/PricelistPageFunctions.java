@@ -1398,7 +1398,8 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLovButton, Item1);
+//			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
 			logs.logging("INFO", "Search is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			if (flag) {
@@ -1626,7 +1627,7 @@ public class PricelistPageFunctions {
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To Workflow Frame");
 					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PRLForwardLov,
-							commonFunc.getDataFromTestDataSheet("AshokValue"));
+							commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
 					commonFunc.hardWait(2000);
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To WorkFlow Frame");
@@ -1638,8 +1639,9 @@ public class PricelistPageFunctions {
 
 //					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-								System.getProperty("AshokPassword"), "AshokUsername");
+
+						commonFunc.validCommonLogin(System.getProperty("HariUsername"),
+								System.getProperty("loginPassword"), "HariUsername");
 						approvalFunc.navigateToApprovals();
 						approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
 						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
@@ -1699,9 +1701,9 @@ public class PricelistPageFunctions {
 	 */
 	public void verifySearchOfItem2(String Item2) {
 		commonFunc.hardWait(2000);
-		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
+		flag = webDB.waitForElement(PricelistPageLocators.ItemLovButton, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item2, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLovButton, Item2);
 			logs.logging("INFO", "Search is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			if (flag) {
