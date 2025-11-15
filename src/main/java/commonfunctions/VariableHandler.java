@@ -229,6 +229,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SCOOrderQty = new ThreadLocal<>();
 	private static ThreadLocal<String> SCOConvFact = new ThreadLocal<>();
 	private static ThreadLocal<String> SCOProcUOM = new ThreadLocal<>();
+	private static ThreadLocal<String> InspectionPlanDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1899,6 +1900,7 @@ public class VariableHandler {
 	public static boolean getEmpLeaveEntryAutoPost() {
 		return EmpLeaveEntryAutoPost.get();
 	}
+
 	public static String getProcessIDAsso() {
 		return ProcessIDAsso.get();
 	}
@@ -1922,6 +1924,7 @@ public class VariableHandler {
 	public static void setManpowerResourceGrp(String Data) {
 		ManpowerResourceGrp.set(Data);
 	}
+
 	public static String getSCOBatchQty() {
 		return SCOBatchQty.get();
 	}
@@ -1937,6 +1940,7 @@ public class VariableHandler {
 	public static void setSCOBatchCost(String Data) {
 		SCOBatchCost.set(Data);
 	}
+
 	public static String getSCOOrderQty() {
 		return SCOOrderQty.get();
 	}
@@ -1944,6 +1948,7 @@ public class VariableHandler {
 	public static void setSCOOrderQty(String Data) {
 		SCOOrderQty.set(Data);
 	}
+
 	public static String getSCOConvFact() {
 		return SCOConvFact.get();
 	}
@@ -1951,11 +1956,20 @@ public class VariableHandler {
 	public static void setSCOConvFact(String Data) {
 		SCOConvFact.set(Data);
 	}
+
 	public static String getSCOProcUOM() {
 		return SCOProcUOM.get();
 	}
 
 	public static void setSCOProcUOM(String Data) {
 		SCOProcUOM.set(Data);
+	}
+
+	public static String getInspectionPlanDocNo() {
+		return InspectionPlanDocNo.get();
+	}
+
+	public static void setInspectionPlanDocNo(String Data) {
+		InspectionPlanDocNo.set(Data);
 	}
 }

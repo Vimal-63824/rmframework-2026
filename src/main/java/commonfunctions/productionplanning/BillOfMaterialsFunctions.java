@@ -266,6 +266,29 @@ public class BillOfMaterialsFunctions {
 	}
 
 	/**
+	 * This Method used to click Inspection Required in Line details in routing tab
+	 * in BOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickIRFlagInRoutingTabForProcess(String process) {
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.isElementSelected(BillOfMaterialsLocators.RoutingIRInputBox(process), ElementType.Xpath);
+		if (!flag) {
+			webDB.moveToElement(BillOfMaterialsLocators.RoutingSaveLineBtn, ElementType.Xpath);
+			webDB.clickAnElement(BillOfMaterialsLocators.RoutingSaveLineBtn, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.isElementSelected(BillOfMaterialsLocators.RoutingIRInputBox(process), ElementType.Xpath);
+		}
+		if (flag) {
+			logs.logging("INFO", "Inspection Required Checkbox Selected");
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * This Method used to fill ProcSeqNo, Oprn No and Process Id in Routing tab Add
 	 * Line Details in BOM
 	 * 
@@ -1256,8 +1279,8 @@ public class BillOfMaterialsFunctions {
 	 */
 	public boolean verifyBOMMigration() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBOMMigrationTab();
 			clickAddIconInBOMMigration();
 			fillDetailsInBOMMigrationCreation(commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -1287,13 +1310,13 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1328,7 +1351,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1356,13 +1379,13 @@ public class BillOfMaterialsFunctions {
 		String RMItem1 = commonFunc.getDataFromTestDataSheet("FG-10002-Item");
 		String RMItem2 = commonFunc.getDataFromTestDataSheet("GwlBomItem1001");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1402,7 +1425,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1429,13 +1452,13 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1470,7 +1493,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName2,
@@ -1506,7 +1529,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1534,13 +1557,13 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1565,7 +1588,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1579,7 +1602,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1606,13 +1629,13 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1637,7 +1660,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1651,7 +1674,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1679,13 +1702,13 @@ public class BillOfMaterialsFunctions {
 		String Tomorrow = date1.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1710,7 +1733,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1724,7 +1747,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
@@ -1750,13 +1773,13 @@ public class BillOfMaterialsFunctions {
 		String Today = date.format(formatter);
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
@@ -1781,7 +1804,7 @@ public class BillOfMaterialsFunctions {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getBOMNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HodUsername"));
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToBillOfMaterialsPage();
 			searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),

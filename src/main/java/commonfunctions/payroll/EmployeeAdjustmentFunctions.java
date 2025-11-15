@@ -55,8 +55,8 @@ public class EmployeeAdjustmentFunctions {
 			TotalPeriod = TotalPeriod.replace("0", "1");
 		}
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
 			clickAddIconInAdjustmentTable();
@@ -72,10 +72,10 @@ public class EmployeeAdjustmentFunctions {
 			clickSaveIconInAdjustmentTable();
 			clickApproveIconForLastAddedAdjustment();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"),
-						VariableHandler.getEmpAdjustmentVouNo(), webDB.getDataFromProperties("KSRAdminEmpId"), null,
-						System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getEmpAdjustmentVouNo(), webDB.getDataFromProperties("ROAUAdminEmpId"), null,
+						System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
@@ -105,8 +105,8 @@ public class EmployeeAdjustmentFunctions {
 	 */
 	public boolean verifyEmployeeAdjustmentFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			findWithElementInAdjustment(commonFunc.getDataFromTestDataSheet("BonusText"));
 			webDB.navigateToRefresh();
@@ -610,8 +610,8 @@ public class EmployeeAdjustmentFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MMM-dd");
 		String Today = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			clickMigrationAndSelectEmpAdjustment();
 			clickAddNewInEmployeeAdjustmentMigration();
@@ -645,8 +645,8 @@ public class EmployeeAdjustmentFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
@@ -853,7 +853,7 @@ public class EmployeeAdjustmentFunctions {
 	private void clickPostEmployeeAdjustmentButton() {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.EmpAdjMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
-			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();

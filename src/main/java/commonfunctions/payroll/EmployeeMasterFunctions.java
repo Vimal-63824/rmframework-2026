@@ -47,8 +47,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationParticularsDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -82,8 +82,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationQualificationSkillDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -132,8 +132,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAllowanceValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -180,8 +180,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAdjustmentValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -231,8 +231,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationLeaveDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -319,8 +319,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyProfileImageAndSignUploadWithAttachments() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -371,8 +371,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationAdditionalInfoDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -458,8 +458,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyCheckEmployeeCreationDependentDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -503,8 +503,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyUpdateEmployeeParticularDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -537,8 +537,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -556,9 +556,9 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndPostInEmployeeParticular();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
 			commonFunc.logoutUser();
 			return flag;
@@ -580,8 +580,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateAddressDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -614,8 +614,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -627,9 +627,9 @@ public class EmployeeMasterFunctions {
 					RandomStringUtils.randomNumeric(6), commonFunc.randomMobileNumberGenerator());
 			clickSaveIconAndPostInAddress();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
 			commonFunc.logoutUser();
 			return flag;
@@ -648,8 +648,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateDependentDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -682,8 +682,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -697,9 +697,9 @@ public class EmployeeMasterFunctions {
 					RandomStringUtils.randomNumeric(5));
 			clickSaveAndPostInUpdateDependentDetails();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
 			commonFunc.logoutUser();
 			return flag;
@@ -719,8 +719,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateContactDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -753,8 +753,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -767,9 +767,9 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_City"));
 			clickSaveAndPostInUpdateContactDetails();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
 			commonFunc.logoutUser();
 			return flag;
@@ -788,8 +788,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateQualificationDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -822,8 +822,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -837,9 +837,9 @@ public class EmployeeMasterFunctions {
 					RandomStringUtils.randomNumeric(2));
 			clickSaveAndPostInUpdateQualificationDetails();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
 			commonFunc.logoutUser();
 			return flag;
@@ -859,8 +859,8 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateSkillsDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
 				clickEmployeeMasterSideNavBar();
@@ -893,8 +893,8 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			clickUpdateButtonInAddEmployee();
@@ -905,9 +905,9 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_Level"));
 			clickSaveAndPostInUpdateSkillDetails();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpUpdateDocNo(),
-						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 			}
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -925,8 +925,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeHistory() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -972,8 +972,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeProfileReverse() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -1021,8 +1021,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeMigrationWithTemplates() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeMigration();
 			clickAddAndFillDetailsInEmployeeMigration(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
@@ -1048,8 +1048,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeDetailsMigrationWithTemplates() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeDetailsMigration();
 			createAndFillDetailsInEmpDetailsMigration(commonFunc.getDataFromTestDataSheet("RefText_Test"));
@@ -1077,8 +1077,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationForwardApproval() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -1108,15 +1108,15 @@ public class EmployeeMasterFunctions {
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-//				commonFunc.approveDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"));
+//				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
 			}
 			return true;
@@ -1135,8 +1135,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationReturnApproval() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMRequestUser"), System.getProperty("HRMRequestPassword"),
-					"HRMRequestUser");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -1166,17 +1166,17 @@ public class EmployeeMasterFunctions {
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HRMSelfApproveUser"));
+				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-						System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+						"HariUsername");
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
-						webDB.getDataFromProperties("ThilAdminUserName"));
-//				commonFunc.returnDocuments(webDB.getDataFromProperties("KSR-BU"), VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("KSRAdminEmpId"), null, System.getProperty("HRMSelfApproveUser"),
-//						webDB.getDataFromProperties("ThilAdminEmpId"));
+						webDB.getDataFromProperties("KishoreUserName"));
+//				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
+//						webDB.getDataFromProperties("KishoreEmpId"));
 				flag = commonFunc.logoutUser();
 			}
 			return true;
@@ -1194,8 +1194,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationProbationComplete() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
 			clickEmployeeMasterSideNavBar();
@@ -1243,8 +1243,8 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HRMSelfApproveUser"),
-					System.getProperty("HRMSelfApprovePassword"), "HRMSelfApproveUser");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			findWithZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
 			webDB.navigateToRefresh();
@@ -2283,7 +2283,7 @@ public class EmployeeMasterFunctions {
 	public void clickPostButtonAndVerifyEmployeePosted() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 		if (flag) {
-			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -4154,7 +4154,7 @@ public class EmployeeMasterFunctions {
 	public void postUploadedTemplateInEmployeeMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
-			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -4376,7 +4376,7 @@ public class EmployeeMasterFunctions {
 	public void postUploadedTemplateInEmployeeDetailsMigration() {
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
-			if(webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();

@@ -353,6 +353,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -378,6 +379,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -402,6 +404,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -424,6 +427,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -444,6 +448,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -526,6 +531,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Get Inspection Document Number from Toast Message
 	 * 
@@ -610,7 +616,7 @@ public class InspectionDocumentFunctions {
 							enterObservationValue();
 						}
 						clickTickAndPostIconForGrnDocument();
-						waitingForApproval();
+						waitingForApprovalWithEDPManager();
 						commonFunc.hardWait(2000);
 						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
 								System.getProperty("TvsPassword"), "TvsUsername");
@@ -852,6 +858,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * Verify Pending Inspection Documents For Subcontract GRN
 	 * 
@@ -922,5 +929,241 @@ public class InspectionDocumentFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Pending Inspection Documents with Production Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocNo
+	 */
+	public void verifyCreatePendingInspectionDocumentWithProdNumber(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Inspection Pending Icon IS Clicked");
+					webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField,
+							VariableHandler.getScoGrnNumber(), ElementType.Xpath);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Go Button IS Displayed");
+						webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							logs.logging("INFO", "Inspection CheckBox Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+									ElementType.Xpath);
+							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId,
+											ElementType.Xpath);
+									if (flag) {
+										String AcceptedValue = webDB.getDomPropertyFromElement(
+												InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
+												commonFunc.getDataFromTestDataSheet("Value"));
+										if (AcceptedValue.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"))) {
+											logs.logging("INFO",
+													"Inspection Documents Is Not Created Properly Retry Again....");
+											flag = webDB.waitForElement(InspectionDocumentsLocators.BackButton,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
+														ElementType.Xpath);
+												verifyPendingInspectionDocuments(VariableHandler.getScoGrnNumber());
+											}
+										}
+									}
+									storeInspectionDocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Document Number To
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApprovalWithEDPManager() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(GrnLocators.DocAprovalIfrmae, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
+					commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(3000);
+					commonFunc.logoutUser();
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+							System.getProperty("HodUsername"));
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void InspectionDocumentWithInspectionPlanWithEDPManager() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument();
+		getInspectionDocumentNumberFromToastMessage();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		} else {
+			enterObservationValue();
+		}
+		clickTickAndPostIconForGrnDocument();
+		waitingForApprovalWithEDPManager();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		try {
+			String alertText = VariableHandler.getIDAlertMessage();
+			logs.logging("INFO", "Alert text: " + alertText);
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*ID\\d{3}/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*ID\\d{3}/\\d{5}/\\d{2}-\\d{2}";
+			if (alertText.matches(".*" + pattern + ".*")) {
+				documentSearchAndSelectLovForFindPage();
+				commonFunc.logoutUser();
+				logs.logging("INFO", "Specific alert found, proceeding with the process.");
+			} else {
+				commonFunc.logoutUser();
+				logs.logging("INFO", "Other alert detected, no action taken.");
+			}
+		} catch (Exception e) {
+			logs.logging("INFO", "No alert appeared or other error: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Get Inspection Document Number from Toast Message
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void getInspectionDocumentNumberFromToastMessageForDifferntLoc() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
+		if (flag) {
+			String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+					ElementType.Xpath);
+			VariableHandler.setIDAlertMessage(IDAlertMessage);
+			;
+			logs.logging("INFO", "Get Text From Note Alert Is(ID Alert Message:" + IDAlertMessage);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
+			String InspectionDocumentNumber = webDB
+					.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
+			String regex = "ID49-\\d{4}-\\d{5}";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(InspectionDocumentNumber);
+			ArrayList<String> documentNumbers = new ArrayList<>();
+			while (matcher.find()) {
+				documentNumbers.add(matcher.group());
+			}
+			if (documentNumbers.size() == 2) {
+				String fromDocument = documentNumbers.get(0);
+				String toDocument = documentNumbers.get(1);
+				logs.logging("INFO", "From Document: " + fromDocument);
+				logs.logging("INFO", "To Document: " + toDocument);
+				String fromNum = fromDocument.split("-")[2];
+				String toNum = toDocument.split("-")[2];
+				int startNum = Integer.parseInt(fromNum);
+				int endNum = Integer.parseInt(toNum);
+				ArrayList<String> allDocumentNumbers = new ArrayList<>();
+				for (int i = startNum; i <= endNum; i++) {
+					String generatedDocumentNumber = "ID49-" + "2526-" + String.format("%05d", i);
+					allDocumentNumbers.add(generatedDocumentNumber);
+				}
+				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
+				logs.logging("INFO", "Generated Document Numbers:");
+				for (String documentNumber : allDocumentNumbers) {
+					System.out.println(documentNumber);
+					allDocumentNumbers.size();
+				}
+			} else {
+				logs.logging("INFO", "Invalid format, unable to extract From and To document numbers.");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void InspectionDocumentWithInspectionPlanWithEDPManagerForDifferentLoc() {
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument();
+		getInspectionDocumentNumberFromToastMessageForDifferntLoc();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		} else {
+			enterObservationValue();
+		}
+		clickTickAndPostIconForGrnDocument();
+		waitingForApprovalWithEDPManager();
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		try {
+			String alertText = VariableHandler.getIDAlertMessage();
+			logs.logging("INFO", "Alert text: " + alertText);
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*ID\\d{2}-\\d{4}-\\d{5}\\s*to\\s*ID\\d{2}-\\d{4}-\\d{5}";
+			if (alertText.matches(".*" + pattern + ".*")) {
+				documentSearchAndSelectLovForFindPage();
+				commonFunc.logoutUser();
+				logs.logging("INFO", "Specific alert found, proceeding with the process.");
+			} else {
+				commonFunc.logoutUser();
+				logs.logging("INFO", "Other alert detected, no action taken.");
+			}
+		} catch (Exception e) {
+			logs.logging("INFO", "No alert appeared or other error: " + e.getMessage());
+		}
 	}
 }
