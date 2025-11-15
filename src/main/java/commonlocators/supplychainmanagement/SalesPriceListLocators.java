@@ -11,19 +11,19 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String PlusButton = "//button[@data-testid='add']";
 	/** @locatorType Xpath */
-	public static final String LocationLovButton = "//button[@id='C6927543945996873562_lov_btn']";
+	public static final String LocationLovButton = "//INPUT[@data-testid='CPL_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PriceListPfx = "//button[@id='C925489020389137917_lov_btn']";
+	public static final String PriceListPfx = "//INPUT[@data-testid='CPL_DOC_PFX']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PricePfxFiled = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[2]";
 	/** @locatorType Xpath */
 	public static final String CustomerIdField = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[4]";
 	/** @locatorType Xpath */
-	public static final String CustomerFieldLov = "//button[@id='C6927509919195873520_lov_btn']";
+	public static final String CustomerFieldLov = "//INPUT[@data-testid='CPL_CUST_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ItemField = "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String ItemFieldLov = "//button[@id='C6951393780705646997_lov_btn']";
+	public static final String ItemFieldLov = "//INPUT[@data-testid='PROD_DUM']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SalesPrice = "//input[@data-testid='CPL_SALES_PRICE']";
 	/** @locatorType Xpath */
@@ -56,7 +56,7 @@ public class SalesPriceListLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String SaveButton = "//button[@id='B1136656890090427901']";
+	public static final String SaveButton = "//button[@title='Save']";
 	/** @locatorType Xpath */
 
 	/** @locatorType Xpath */

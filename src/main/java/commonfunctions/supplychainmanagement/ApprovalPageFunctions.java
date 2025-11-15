@@ -226,17 +226,21 @@ public class ApprovalPageFunctions {
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
-			logs.logging("INFO", "Document Forwarder Person: " + user);
-			webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			String GetText = webDB.getDomPropertyFromElement(CommonUiLocators.WorkFlow_Frwd_To_Emp, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetText.equals(user)) {
+				commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
+				logs.logging("INFO", "Document Forwarder Person: " + user);
+				webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+			}
 			flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				flag = webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
 				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(3000);
+				commonFunc.hardWait(200);
 				if (!webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath)) {
 					logs.logging("INFO", "Workflow Approval Ok Button Clicked");
 				}

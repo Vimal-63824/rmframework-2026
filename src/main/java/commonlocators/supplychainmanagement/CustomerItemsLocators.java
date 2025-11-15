@@ -11,18 +11,18 @@ public class CustomerItemsLocators {
 	/** Locator Xpath */
 	public static final String CustomerPlusIcon = "//button[contains(@id,'B2146629522453507346')]";
 	/** Locator Xpath */
-	public static final String CustomerLovButton = "//button[contains(@id,'P36702113_SUPLR_SUPLR_ID_lov_btn')]";
+	public static final String CustomerLovButton = "//input[@data-testid='P36702113_SUPLR_SUPLR_ID']/following-sibling::button";
 	/** Locator Xpath */
 	public static final String AddButton = "//button[contains(@id,'B6072453502774090220')]";
 	/** Locator Xpath */
 	public static final String ItemFieldClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** Locator Xpath */
-	public static final String ItemLovButton = "//button[@id='C903814840346873296_lov_btn']";
+	public static final String ItemLovButton = "//input[@data-testid='ITEM_ID_REV']/following-sibling::button";
 	/** Locator Xpath */
 	public static final String Pricecls = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[11]";
 
 	/** Locator Xpath */
-	public static final String PriceClassSelectDropdown = "//select[contains(@id,'C6074344993356576307')]";
+	public static final String PriceClassSelectDropdown = "//select[@data-testid='CUSTP_CLASS_ID']";
 
 	/** Locator Xpath */
 	public static final String PriceBasisCL = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[12]";
@@ -33,20 +33,20 @@ public class CustomerItemsLocators {
 	}
 
 	/** Locator Xpath */
-	public static final String PriceBasisSelectDropdown = " //select[@id='C6074344139927576298']";
+	public static final String PriceBasisSelectDropdown = " //select[@data-testid='CUSTP_PRICE_BASIS']";
 	/** Locator Xpath */
-	public static final String CatalogSelectDropdown = "//select[contains(@id,'C6074344188841576299')]";
+	public static final String CatalogSelectDropdown = "//select[@data-testid='CUSTP_CTLG_ID']";
 	/** Locator Xpath */
-	public static final String SaveButtonCustomer = "//button[@id='B6074354939381600705']/span";
+	public static final String SaveButtonCustomer = "//button[@data-testid='Save']";
 	/** Locator Xpath */
 	public static final String DefaultFlagChecked = "//table[@class='a-GV-table']//tr[1]/td[14]";
 	/** Locator Xpath */
 	public static final String ToastAlertMessageCustomerItems = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
 	// todo
 	/** Locator Xpath */
-	public static final String AddPLusButton = "//span[@class='t-Icon fa  fa-plus']";
+	public static final String AddPLusButton = "//button[@data-testid='Add_CI']";
 	/** Locator Xpath */
-	public static final String AddPlusButtonItems = "//button[@id='B6074354848320600704']";
+	public static final String AddPlusButtonItems = "//button[@data-testid='Add']";
 
 	/** Locator Xpath */
 	public static final String DefaultFlag(int i) {

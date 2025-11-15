@@ -9,7 +9,7 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String Transactions = "//span[contains(text(),'Transaction')]";
 	/** @locatorType Xpath */
-	public static final String PendingIssuance = "//button[@id='B1651871508770355571']";
+	public static final String PendingIssuance = "//button[@data-testid='PendingInsurance']";
 	/** @locatorType Xpath */
 	public static final String VoucherNumberLovButton = "//button[@id='P9313117703_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
@@ -33,9 +33,9 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String CloseIcon = "//*[@id=\"t_PageBody\"]/div[18]/div[1]/button";
 	/** @locatorType Xpath */
-	public static final String HeaderTickIcon = "//button[@id='B4586494541549467581']";
+	public static final String HeaderTickIcon = "//button[@data-testid='Save']";
 	/** @locatorType Xpath */
-	public static final String HeaderPostIcon = "//button[@id='B4673153071460748448']";
+	public static final String HeaderPostIcon = "//button[@id='B5342121585954108719']";
 	/** @locatorType Xpath */
 	public static final String AllCheckBox = "//table[@id='1639124680070035577']//input[@id='check_all']";
 
