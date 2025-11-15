@@ -116,7 +116,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
 	/** @locatorType Xpath */
-	public static final String PendingReceiptVoucherButton = "//button[@id='B4728042559427458549']";
+	public static final String PendingReceiptVoucherButton = "//button[@id='B5397011073920818820']";
 	/** @locatorType Xpath */
 	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
 	/** @locatorType Xpath */
@@ -145,6 +145,10 @@ public class CommonUiLocators {
 	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String WorkAppoval_OkBtn = "//*[text()='Ok']/parent::button";
+	/** @locatorType Xpath */
+	public static final String WorkFlow_Frwd_To_Emp = "//input[@id='P236131090_FWD_PERSON']";
+	/** @locatorType Xpath */
+	public static final String WF_Fwd_To_person = "//input[@data-testid='P236131090_FWD_PERSON']";
 
 	/** @locatorType Xpath */
 	public static String convertListOfXPath(String text) {
@@ -188,7 +192,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */
-	public static final String ItemMasterAdd = "//button[@id='B1956605231110148678']";
+	public static final String ItemMasterAdd = "//button[@title='Add Item']";
 	/** @locatorType Xpath */
 	public static final String Invt = "//*[@id=\"t_TreeNav_204\"]/span";
 	/** @locatorType Xpath */

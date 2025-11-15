@@ -9,17 +9,17 @@ public class SalesStandardPriceLocators {
 	/** @locatorType Xpath */
 	public static final String LocutionIdClick = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[1]" ;
 	/** @locatorType Xpath */
-	public static final String LocutionIdLov = "//button[@id='C1065734686233387849_lov_btn']" ;
+	public static final String LocutionIdLov = "//INPUT[@data-testid='LocutionIdClick']/following-sibling::button" ;
 	/** @locatorType Xpath */
 	public static final String UnitDesc = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[2]" ;
 	/** @locatorType Xpath */
-	public static final String ItemIdLov = "//button[@id='C1065992734738598403_lov_btn']" ;
+	public static final String ItemIdLov = "//INPUT[@data-testid='ItemdIdField']/following-sibling::button" ;
 	/** @locatorType Xpath */
 	public static final String ItemdIdField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[3]" ;
 	/** @locatorType Xpath */
 	public static final String CurcyField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[6]" ;
 	/** @locatorType Xpath */
-	public static final String CurcyLov = "//button[@id='C1065719823675387816_lov_btn']" ;
+	public static final String CurcyLov = "//INPUT[@data-testid='CurcyField']/following-sibling::button" ;
 	/** @locatorType Xpath */
 	public static final String MapPriceInput = "//input[@data-testid='SSP_MAP_PRICE']" ;
 	/** @locatorType Xpath */
@@ -33,7 +33,7 @@ public class SalesStandardPriceLocators {
 	/** @locatorType Xpath */
 	public static final String PriceClassClick = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[2]/td[16]" ;
 	/** @locatorType Xpath */
-	public static final String PriceClassLov  = "//button[@id='C1065992004413598396_lov_btn']" ;
+	public static final String PriceClassLov  = "//input[@data-testid='PriceClassClick']/following-sibling::button" ;
 	/** @locatorType Xpath */
 	public static final String SaveButton ="//button[@data-testid='SaveButton']" ;
 	
@@ -62,7 +62,7 @@ public class SalesStandardPriceLocators {
 	/** @locatorType Xpath */
 	public static final String min_DiscInput = "//input[@data-testid='MinPriceField']" ;
 	/** @locatorType Xpath */
-	public static final String ActiveButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr.a-GV-row.is-selected > td:nth-child(17) > a" ;
+	public static final String ActiveButton = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[17]/a" ;
 	/** @locatorType Xpath */
 	public static final String CancelButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(5) > td:nth-child(19) > a" ;
 	/** @locatorType Xpath */
