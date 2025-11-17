@@ -81,7 +81,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpenSOOkButtonForward = "//*[@id='B1612723241586671539']";
 		/** @locatorType Xpath */
-		public static final String OpenSOFindPageSearchBtn = "//button[@id='B846296666121791651']";
+		public static final String OpenSOFindPageSearchBtn = "/button[@data-testid='Find_line']";
 		/** @locatorType Xpath */
 		public static final String FindOpenSOItemLovBtn = "//*[@data-testid='P19151310131_ITEM_1']/following-sibling::button";
 		/** @locatorType Xpath */
@@ -135,7 +135,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String fetchButtonGoButton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */
-		public static final String SelectItem = "//*[@id='6860104052584050195_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelectItem = "//*[@id='7528720435910082596_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String Gobutton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */

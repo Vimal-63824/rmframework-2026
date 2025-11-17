@@ -101,6 +101,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.hardWait(3000);
 		flag = webDB.waitForElement(OpenSoAmdLocators.currentRateDefault, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(OpenSoAmdLocators.currentRateDefault, ElementType.Xpath);
 			webDB.clickAnElement(OpenSoAmdLocators.currentRateDefault, ElementType.Xpath);
 			flag = webDB.waitForElement(OpenSoAmdLocators.soAmdBtn, ElementType.Xpath);
 			if (flag) {
@@ -447,6 +448,12 @@ public class OpenSoAmdFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 			}
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOSOAdocnum(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
+
 			assertTrue(flag);
 		} else {
 			flag = false;
@@ -867,14 +874,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
 
 		return flag;
@@ -927,14 +934,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -987,14 +994,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1028,14 +1035,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -1119,14 +1126,14 @@ public class OpenSoAmdFunctions {
 
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1176,14 +1183,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1213,7 +1220,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.navigatesOpenSoAmdScreen();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("Open_So_Amd_Interstate_Doc"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("oso_Docnum_Add_IS"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1236,14 +1243,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1277,14 +1284,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1337,14 +1344,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1395,14 +1402,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1431,7 +1438,7 @@ public class OpenSoAmdFunctions {
 		commonFunc.navigatesOpenSoAmdScreen();
 		ClickOpenSoAmdendmentButton();
 		clickAddButtoninFindPage();
-		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("Open_So_Amd_Ex_Doc"));
+		takenOpenSoDocumentFromCurrentRateContract(commonFunc.getDataFromTestDataSheet("Open_So_Amd_Ex_Doc_up"));
 		clickSelectFlagInCurrentRateContract();
 		clickSoAmdendmentButtonInCurrentRateContract();
 		clickAdditionfItemOfRadioButton(commonFunc.getDataFromTestDataSheet("OsoamdReason"));
@@ -1454,14 +1461,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(3000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(3000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -1495,14 +1502,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
 		return flag;
 	}
@@ -1555,14 +1562,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(1000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(1000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(1000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(1000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
 
 		return flag;
@@ -1616,14 +1623,14 @@ public class OpenSoAmdFunctions {
 		checkDbValidationTaxAmount();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -1681,14 +1688,14 @@ public class OpenSoAmdFunctions {
 
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(3000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(3000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -1728,14 +1735,14 @@ public class OpenSoAmdFunctions {
 
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
 
 		return flag;
@@ -1769,14 +1776,14 @@ public class OpenSoAmdFunctions {
 		GetDocumentFromScreen();
 		ToClickPostButtonInHeader();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getOSOAdocnum());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getOSOAdocnum());
 		commonFunc.logoutUser();
 
 	}

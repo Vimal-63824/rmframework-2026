@@ -246,6 +246,11 @@ public class ApprovalPageFunctions {
 				}
 				webDB.switchToDefaultContent();
 			}
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 		}
 		assertTrue(flag);
 	}

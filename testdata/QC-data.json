@@ -14,7 +14,7 @@
 	"Value": "value",
 	"QuantityValue": "5",
 	"UnitCostValue": "150",
-	"AshokValue": "ASHOK",
+	"AshokValue": "HARIKRISHNA",
 	"GeneralValue": "POG",
 	"ApproveStatus": "Approved",
 	"MaterialValue": "POM",
@@ -228,7 +228,7 @@
 	"Price_Class": "DOMESTIC",
 	"Price_basis": "Catalog",
 	"Price_Class_OSOA": "INTER STATE",
-	"Item_Add_Type": "TVS-FG-00006",
+	"Item_Add_Type": "ROAU-SIM-148804",
 	"Disc_Perent": "56",
 	"Hsn_Code": "88363222",
 	"Cust_id": "CUSEX01",
@@ -1233,10 +1233,10 @@
 	"Rfqitem": "TVS-RM-KDK-01",
 	"ARAVIND AGENCY": "ARAVIND AGENCY",
 	"UTGST_cus": "A2B HOTEL MANAGEMENT",
-	"Open_So_Amd_Ex_Doc": "OPSO1/00639/25-26",
+	"Open_So_Amd_Ex_Doc": "OSOD-2526-00030",
 	"Open_So_Amd_Utgst_Doc": "OSO7-2526-00003",
 	"Open_So_Amd_Interstate_Doc": "OPSO1/00665/25-26",
-	"Open_So_Amd_Dom_Cus": "OPSO1/00696/25-26",
+	"Open_So_Amd_Dom_Cus": "OSOA-2526-000007",
 	"Openso_Price": "DOMESTIC",
 	"HsnCode75052200": "75052200",
 	"Unit2Text": "UNIT 2",
@@ -1313,4 +1313,14 @@
 	"VisualQC_CharText": "VISUAL QC",
 	"UTGSTCustomer": "V10001",
 	"UTGSTCustomerDesc": ""
+	"Loc_100":"L0001"
+	"Prefix":"PL",
+	"Open_So_Amd_Ex_Doc_up":"OSOD-2526-00031",
+	"oso_Docnum_Add_IS":"OSOD-2526-00027",
+	"Open_So_Amd_Utgst_Doc":"OSOD-2526-00037",
+	"Open_So_Amd_Dom_Cus":"OSOD-2526-00036",
+	"UTGST_cus":"A2B HOTEL MANAGEMENT",
+	"UTGSTLocation":"L0002",
+	"UTGSTUnit","UNIT2"
+
 }

@@ -596,7 +596,7 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
@@ -887,7 +887,7 @@ public class CustomerItemsFunctions {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"HodUsername");
 		commonFunc.navigateItemAssoScreen();
-		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
 		clickSearchButton();
 		searchedItem();
@@ -1000,7 +1000,7 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
@@ -1034,7 +1034,7 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
@@ -1069,7 +1069,7 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));

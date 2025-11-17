@@ -570,12 +570,12 @@ public class OpenSalesOrderFunctions {
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"HodUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
@@ -626,11 +626,11 @@ public class OpenSalesOrderFunctions {
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"HodUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 				"TvsUsername");
