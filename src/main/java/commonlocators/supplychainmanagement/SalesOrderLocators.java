@@ -7,9 +7,9 @@ package commonlocators.supplychainmanagement;
 public class SalesOrderLocators {
 
 	/** @Locator Xpath */
-	public static final String SOButton = "//button[@id='B928452581571148507']";
+	public static final String SOButton = "//button[@id='B1597068964897180908']";
 	/** @Locator Xpath */
-	public static final String AddButtonSalesOrder = "//BUTTON[@ID='B928452305017148505']";
+	public static final String AddButtonSalesOrder = "//BUTTON[@TITLE='Create SO/CS']";
 	/** @Locator Xpath */
 	public static final String SalesOrderHeader = "//h1[@id='ui-id-1']";
 	/** @Locator Xpath */
@@ -47,7 +47,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String ItemField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator Xpath */
-	public static final String ItemLov = "//button[@id='C9414537342012146836_lov_btn']/span";
+	public static final String ItemLov = "//input[@data-testid='SO_LN_PROD_ID']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String ItemLovSearchField = "//input[contains(@class,'a-PopupLOV-search')]";
 	/** @Locator Xpath */
@@ -63,7 +63,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String HSNCodeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @Locator Xpath */
-	public static final String HSNCodeLOV = "//button[@id='C11990275358524342024_lov_btn']/span";
+	public static final String HSNCodeLOV = "//input[@data-testid='HSNCodeLOV']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String HSNCodeInputField = "//input[@data-testid='HSNCodeLOV']";
 	/** @Locator Xpath */
@@ -77,7 +77,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String CPForwardLOV = "//BUTTON[@ID='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator Xpath */
-	public static final String OkButtonForward = "//BUTTON[@ID='B1614624587133182023']";
+	public static final String OkButtonForward = "//button[@data-testid='Entry']";
 	/** @Locator Xpath */
 	public static final String FindSONumberLOV = "//button[@id='P1915131339_SO_NO_lov_btn']";
 	/** @Locator Xpath */
@@ -237,7 +237,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String ChargeItemField = "//*[@id='HC_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
-	public static final String ChargeItemLov = "//BUTTON[@ID='C8553533651494120643_lov_btn']";
+	public static final String ChargeItemLov = "//INPUT[@data-testid='SOTC_PROD_ID']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String ChargeItemInputField = "//input[@data-testid='SOTC_PROD_ID']";
 	/** @Locator Xpath */
@@ -381,7 +381,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String HeaderSONumberField = "//span[@data-testid='P191513134001_SOH_ORDER_NO']";
 	/** @Locator Xpath */
-	public static final String HeaderExchangeRateField = "//input[@id='P191513134001_SOH_EXRATE']";
+	public static final String HeaderExchangeRateField = "//span[@data-testid='P191513134001_SOH_EXRATE']";
 	/** @Locator Xpath */
 	public static final String HeaderCPCcodeIDField = "//input[@data-testid='P191513134001_SOH_CC_ID']";
 	/** @Locator Xpath */
@@ -429,7 +429,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String MultiCloseShortAddButton = "//button[@data-testid='MultiCloseShortAddButton']";
 	/** @Locator Xpath */
-	public static final String SoAmdHeaderWiseSavebutton = "//BUTTON[@id='B7541550253528188121']/span";
+	public static final String SoAmdHeaderWiseSavebutton = "//BUTTON[@DATA-TESTID='CREATE']";
 	/** @Locator Xpath */
 	public static final String SoAmdFetchButton = "//BUTTON[@data-testid='SO AMD HEADER WISE FETCH BUTTON']";
 	/** @Locator Xpath */
@@ -483,7 +483,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdLineWiseAddButton = "//button[@data-testid='SO AMD SINGLE LINE WIS EADD BUTTON']/span";
 	/** @Locator Xpath */
-	public static final String SoAmdItemIDLovField = "//BUTTON[@ID='C11333658107979551235_lov_btn']";
+	public static final String SoAmdItemIDLovField = "//input[@data-testid='PRODID_REV']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String SoAmdItemField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @Locator Xpath */
@@ -491,7 +491,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdAddCharges = "//BUTTON[@data-testid='SO AMD SINGLE CHARGES TAB ADD BUTTON']/span";
 	/** @Locator Xpath */
-	public static final String SoAmdChargeItemLov = "//button[@id='C8537401039788802449_lov_btn']";
+	public static final String SoAmdChargeItemLov = "//input[@data-testid='SoAmdChargeItemLov']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String SoAmdChargeItemField = "//*[@id='Crg_itm_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
@@ -515,19 +515,19 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SOAmdTypeField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
-	public static final String ForwardPersonField = "//input[@id='P236131090_FWD_PERSON']";
+	public static final String ForwardPersonField = "//input[@data-testid='P236131090_FWD_PERSON']";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortLocationLov = "//button[@id='P1915131078_SAMH_PLNT_LOC_ID_lov_btn']";
+	public static final String MultiCloseShortLocationLov = "//input[@data-testid='P1915131078_SAMH_PLNT_LOC_ID']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortCustomerLov = "//button[@id='P1915131078_SAMH_CUST_ID_lov_btn']";
+	public static final String MultiCloseShortCustomerLov = "//input[@data-testid='P1915131078_SAMH_CUST_ID']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortDocPrefix = "//button[@id='P1915131078_SAMH_DOC_PFX_lov_btn']";
+	public static final String MultiCloseShortDocPrefix = "//input[@data-testid='P1915131078_SAMH_DOC_PFX']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortHeaderWiseSaveButton = "//BUTTON[@ID='B160256709041057125']";
+	public static final String MultiCloseShortHeaderWiseSaveButton = "//BUTTON[@ID='B828873092367089526']";
 	/** @Locator Xpath */
 	public static final String MultiCloseShortPendingSoButton = "//button[@data-testid='MultiCloseShortPendingSoButton']";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortDocPrefixField = "//input[@data-testid='MultiCloseShortDocPrefix']";
+	public static final String MultiCloseShortDocPrefixField = "//input[@data-testid='P1915131078_SAMH_DOC_PFX']";
 	/** @locatorType Xpath */
 	public static final String SearchBoxContainer = "//div[@class='a-IRR-searchFieldContainer']";
 	/** @locatorType Xpath */

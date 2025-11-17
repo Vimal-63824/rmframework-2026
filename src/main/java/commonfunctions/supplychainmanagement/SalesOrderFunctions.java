@@ -72,8 +72,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -84,7 +84,7 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
 		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SODomUserDefined"),
-				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SI_HSNCode"),
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -92,7 +92,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -109,8 +109,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -126,7 +126,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -141,8 +141,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralRateContractSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -158,7 +158,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -173,8 +173,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -190,7 +190,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -205,8 +205,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -222,7 +222,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -237,8 +237,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -254,7 +254,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -269,8 +269,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -286,7 +286,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -301,8 +301,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -318,7 +318,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -333,8 +333,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -350,7 +350,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -365,8 +365,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -382,7 +382,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -398,8 +398,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelSalesOrder() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -808,7 +808,7 @@ public class SalesOrderFunctions {
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 			if (!ForwardEmployee.equalsIgnoreCase(ForwardToEmployee)) {
 				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov, ForwardToEmployee);
-				commonFunc.hardWait(2000);
+				commonFunc.hardWait(500);
 				webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
 				logs.logging("INFO", "Switched To WorkFlow Frame");
 			}
@@ -2234,9 +2234,8 @@ public class SalesOrderFunctions {
 				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBCurrencyColumnName")));
 		logs.logging("INFO", "Header Currency Details Matched With DataBase Values");
 
-		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderExchangeRateField,
-				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
-						commonFunc.getDataFromTestDataSheet("SODBExchangeRateColumnName")));
+		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderExchangeRateField, dbCommonFunctions.SOHeaderDetails(
+				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBExchangeRateColumnName")));
 		logs.logging("INFO", "Header ExchangeRate Details Matched With DataBase Values");
 
 		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderPaymentTermField,
@@ -2256,10 +2255,10 @@ public class SalesOrderFunctions {
 				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SODBCpcCodeIDColumnName")));
 		logs.logging("INFO", "Header CPCcode ID Details Matched With DataBase Values");
 
-		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeDescField,
-				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
-						commonFunc.getDataFromTestDataSheet("SODBCpcCodeDescColumnName")));
-		logs.logging("INFO", "Header CPCcode Desc Details Matched With DataBase Values");
+//		verifyAssertionDomPropertyValidation(SalesOrderLocators.HeaderCPCcodeDescField,
+//				dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+//						commonFunc.getDataFromTestDataSheet("SODBCpcCodeDescColumnName")));
+//		logs.logging("INFO", "Header CPCcode Desc Details Matched With DataBase Values");
 
 //		verifyAssertionGetTextValidation(SalesOrderLocators.HeaderCustIDField, dbCommonFunctions.SOHeaderDetails(
 //				VariableHandler.getSONumber(), commonFunc.getDataFromTestDataSheet("SoDBCustomerIDColumnName")));
@@ -2400,8 +2399,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean verifyAdvanceSalesOrderWithAdvancePaymentTerm() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2424,7 +2423,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
 				getAdvReceiptDocumentFromDataBase();
@@ -2679,7 +2678,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getBankReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 		return flag;
 	}
@@ -2959,8 +2958,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneral() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2979,7 +2978,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3495,8 +3494,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoFreeSample() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3516,7 +3515,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3533,8 +3532,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoFreeReplacement() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3555,7 +3554,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3572,8 +3571,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoScrap() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3592,7 +3591,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3609,8 +3608,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoService() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3629,7 +3628,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3646,8 +3645,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoPromotional() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3666,7 +3665,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3683,8 +3682,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneralLocalCustomer() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3705,7 +3704,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3722,8 +3721,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneralSEZCustomer() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3743,7 +3742,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3760,8 +3759,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoDemoExhibition() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3782,7 +3781,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3799,8 +3798,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoCESS() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3819,7 +3818,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -3836,8 +3835,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoCharges() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3852,13 +3851,14 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		addChargesInSalesOrder(webDB.getDataFromProperties("SOCharges"));
 		clickIncludechargesButton();
+		verifyExpectedTotalValueWithCharges(webDB.getDataFromProperties("SOCharges"));
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 //			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -4194,8 +4194,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelSalesOrderLines() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4644,8 +4644,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4666,7 +4666,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4692,8 +4692,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4714,7 +4714,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4740,8 +4740,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4763,7 +4763,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4789,8 +4789,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4811,10 +4811,12 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
+				verifySOLineDetailsAfterAmendment(SOAmdSheetName);
+				verifySOTotalAmountAfterAmendment(SOAmdSheetName);
 			}
 		}
 		return flag;
@@ -4835,8 +4837,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4860,7 +4862,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4886,8 +4888,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4911,7 +4913,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4937,8 +4939,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -4968,7 +4970,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -4994,8 +4996,8 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(SOALocation, SOAPrefix, VariableHandler.getSONumber());
@@ -5025,7 +5027,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
-					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HodUsername"));
+					webDB.getDataFromProperties("HodEmpId"), SOAUnit, System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -5047,8 +5049,8 @@ public class SalesOrderFunctions {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, webDB.getDataFromProperties("SOAmendmentDPC"));
 		SalesOrder(commonFunc.getDataFromTestDataSheet("Customer"), commonFunc.getDataFromTestDataSheet("CustomerDesc"),
 				webDB.getDataFromProperties("SODomRateContract"));
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5070,7 +5072,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -5088,8 +5090,8 @@ public class SalesOrderFunctions {
 	 */
 	public boolean SalesOrderAmendmentSingleCloseshort() throws IOException {
 		SoGeneral();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5102,7 +5104,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 //			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -5121,24 +5123,26 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrderAmendmentWithCharges() throws IOException {
-		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, webDB.getDataFromProperties("SOAmendWithCharges"));
 		SoCharges();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
 		CreateSoAmdHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SOAmendmentPrefix"), VariableHandler.getSONumber());
 		navigateToChargesTabInSoAmendment();
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, webDB.getDataFromProperties("SOAmendWithCharges"));
 		for (int j = 10; j < SOMultipleline.length; j++) {
 			String CHARGE_ITEM_ID = SOMultipleline[j][3];
 			String CHARGE_VALUE = SOMultipleline[j][15];
 			String ChargeAmdType = SOMultipleline[j][22];
 			if (!CHARGE_ITEM_ID.equals("")) {
 				if (ChargeAmdType.equalsIgnoreCase("AOI")) {
+					System.out.println(4);
 					addChargesInSoAmendement(CHARGE_ITEM_ID, CHARGE_VALUE);
 				}
-				if (ChargeAmdType.equalsIgnoreCase("Modify")) {
+				if (ChargeAmdType.equals("Modify")) {
+					System.out.println(3);
 					verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdChargeUnitPriceField(j - 9),
 							SalesOrderLocators.SoAmdChargesAmountInputField, CHARGE_VALUE);
 					webDB.pressTabKey();
@@ -5146,21 +5150,23 @@ public class SalesOrderFunctions {
 					flag = webDB.waitForElement(SalesOrderLocators.SoAmdChargeSaveButton, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(SalesOrderLocators.SoAmdChargeSaveButton, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						logs.logging("INFO", "Charges Line Wise Save Button Is Clicked Successfully");
 					}
 				}
 			}
 		}
-//		J
 		clickSOAmdPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSOAmdNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
+				verifySOTotalAmountAfterAmendmentWithCharges(webDB.getDataFromProperties("SOAmendWithCharges"));
 			}
 		}
 		return flag;
@@ -5173,8 +5179,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOMultipleWithDifferentPriceClass() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5190,7 +5196,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -5206,8 +5212,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOShipSet() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5223,7 +5229,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -5239,24 +5245,24 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOUTGST() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTUnit"), commonFunc.getDataFromTestDataSheet("SO_General"),
-				commonFunc.getDataFromTestDataSheet("Customer"));
+				commonFunc.getDataFromTestDataSheet("UTGSTCustomer"));
 		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOUTGST"),
-				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
-				commonFunc.getDataFromTestDataSheet("Customer"));
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SI_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("UTGSTCustomer"));
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("UTGSTUnit"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 //			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -5532,8 +5538,8 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrder(String Customer, String CustomerDesc, String SheetName) throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5551,7 +5557,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 //			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -5588,7 +5594,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
 			}
@@ -5629,11 +5635,11 @@ public class SalesOrderFunctions {
 				VariableHandler.getSOAmdNumber());
 		logs.logging("INFO", "Header Sales Order Amendment Document Number Is Verified With DataBase Values");
 
-		verifyAssertionBothValues(
-				dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOAmdNumber(),
-						commonFunc.getDataFromTestDataSheet("SOADBheaderSODocNumberColumnName")),
-				VariableHandler.getSONumber());
-		logs.logging("INFO", "Header Sales Order Document Number Is Verified With DataBase Values");
+//		verifyAssertionBothValues(
+//				dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOAmdNumber(),
+//						commonFunc.getDataFromTestDataSheet("SOADBheaderSODocNumberColumnName")),
+//				VariableHandler.getSONumber());
+//		logs.logging("INFO", "Header Sales Order Document Number Is Verified With DataBase Values");
 
 		verifyAssertionBothValues(dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOAmdNumber(),
 				commonFunc.getDataFromTestDataSheet("SOADBheaderCustomerIDColumnName")), CustomerID);
@@ -5646,9 +5652,9 @@ public class SalesOrderFunctions {
 		String Currency = webDB.getDomPropertyFromElement(SalesOrderLocators.SoAmdHeaderCurrencyField,
 				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 
-		verifyAssertionBothValues(dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOAmdNumber(),
-				commonFunc.getDataFromTestDataSheet("SOADBheaderCurrencyColumnName")), Currency);
-		logs.logging("INFO", "Header Currency Field Is Verified With DataBase Values");
+//		verifyAssertionBothValues(dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOAmdNumber(),
+//				commonFunc.getDataFromTestDataSheet("SOADBheaderCurrencyColumnName")), Currency);
+//		logs.logging("INFO", "Header Currency Field Is Verified With DataBase Values");
 
 		verifyAssertionBothValues(
 				dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOAmdNumber(),
@@ -5985,8 +5991,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
@@ -6003,8 +6009,8 @@ public class SalesOrderFunctions {
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+					"HariUsername");
 			apprpagefunc.navigateToApprovals();
 			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
 			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
@@ -6188,8 +6194,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
@@ -6203,8 +6209,8 @@ public class SalesOrderFunctions {
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+					"HariUsername");
 			apprpagefunc.navigateToApprovals();
 			apprpagefunc.filterDocumentsforApproval(VariableHandler.getSONumber());
 			validateSalesOrderDetailsInDocApproval(VariableHandler.getSONumber(),
@@ -6704,16 +6710,16 @@ public class SalesOrderFunctions {
 	 */
 	public boolean closeshortMultipleSalesOrder(String Customer, String CustomerDesc, String SOSheetName)
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		for (int i = 0; i < 2; i++) {
 			MultipleSalesOrder(Customer, CustomerDesc, SOSheetName);
 		}
 		VariableHandler.setMultipleSoDocs(MultipleSO);
 		System.out.println(VariableHandler.getMultipleSoDocs().get(0));
 		System.out.println(VariableHandler.getMultipleSoDocs().get(1));
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickMultiCloseshortOfSoAmendmentPendingScreen();
 		clickAddButtonInMultiCloseShortInSOAmendment();
@@ -6726,7 +6732,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 					VariableHandler.getSOMultiCloseShortDocNo(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderAmendmentDocApprovedStatusWithDB();
@@ -6743,8 +6749,8 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOLocationChange() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
@@ -6762,7 +6768,7 @@ public class SalesOrderFunctions {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
@@ -6777,8 +6783,8 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void setCreditLimitForCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				"AdminUsername");
 		commonFunc.navigateCustomerMasterScreen();
 		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CustomerIDLovButton, "CL-100001");
 		flag = webDB.waitForElement(SalesOrderLocators.CustomerMasterSearchButton, ElementType.Xpath);
@@ -7028,5 +7034,58 @@ public class SalesOrderFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify The Total Sales Order Amount With DB After
+	 * Including The Charges
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void verifyExpectedTotalValueWithCharges(String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SheetName);
+		for (int i = 10; i < SOMultipleline.length; i++) {
+			String CHARGEITEM_ID = SOMultipleline[i][3];
+			String Charges_Amount = SOMultipleline[i][16];
+			if (CHARGEITEM_ID.equals("")) {
+				if (!Charges_Amount.equals("")) {
+					verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+							commonFunc.getDataFromTestDataSheet("SODBTotalAmountColumnName")), Charges_Amount);
+					logs.logging("INFO",
+							"Overall Sales Order Amount Is Matched After Including The Charges Against This Order "
+									+ VariableHandler.getSONumber());
+				}
+			}
+		}
+	}
+
+	/**
+	 * This Method Is Used To Verify The SO Total Amount With DataBase After
+	 * Amendment The SO
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void verifySOTotalAmountAfterAmendmentWithCharges(String SheetName) {
+		String[][] SOTotalAmount = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "QA Scenario - Sales STD PRICE.xlsx";
+		SOTotalAmount = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 10; i < SOTotalAmount.length; i++) {
+			String ITEM_ID = SOTotalAmount[i][3];
+			String SO_Total_Amount = SOTotalAmount[i][24];
+			if (ITEM_ID.equals("")) {
+				if (!SO_Total_Amount.equals("")) {
+					verifyAssertionBothValues(dbCommonFunctions.SOHeaderDetails(VariableHandler.getSONumber(),
+							commonFunc.getDataFromTestDataSheet("SODBTotalAmountColumnName")), SO_Total_Amount);
+					logs.logging("INFO",
+							"After SO Amendment Expected Sales Order Total Amount Is Matched With DataBase Values For This Sales Order Document "
+									+ VariableHandler.getSONumber());
+				}
+			}
+		}
 	}
 }

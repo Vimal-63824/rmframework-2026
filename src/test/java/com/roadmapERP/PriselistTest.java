@@ -38,7 +38,6 @@ public class PriselistTest extends RoadMapERPTest {
 	public void VerifyCreationOfPriceListDomesticSimilarUOM() {
 		PriceListfunc.verifyCreationOfPriceListDomesticSimilarUom();
 	}
-
 	/**
 	 * Create pricelist for domestic supplier with Disssimilar UOM directly to the
 	 * system through excel upload

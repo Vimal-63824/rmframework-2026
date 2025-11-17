@@ -64,7 +64,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Refindsearchok = "//*[@id=\"PLE_search_button\"]/span";
 	/** @locatorType Xpath */
-	public static final String CancellStatus = "//*[@id='1457343167982292320_orig']/tbody/tr[2]/td[22]/div";
+	public static final String CancellStatus = "//*[@id=\"2126264260268616424_orig\"]/tbody/tr[2]/td[22]/div";
 	/** @locatorType Xpath */
 	public static final String FindLocLov = "//input[@data-testid='P1615131025212_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -88,7 +88,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumsearchField = "//*[@id=\"PopupLov_1615131025212_P1615131025212_DOCP_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static final String FindDocNumDrilldown = "//*[@id=\"1457343167982292320_orig\"]/tbody/tr[2]/td[6]/a";
+	public static final String FindDocNumDrilldown = "#\\32 126264260268616424_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
 	/** @locatorType Xpath */
 	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
 	/** @locatorType Xpath */
@@ -102,7 +102,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PriceListAmndFrame = "//iframe[@title='Amendment']";
 	/** @locatorType Xpath */
-	public static final String PriceListAmndOk = "//*[@id=\"B3695157531895467006\"]/span";
+	public static final String PriceListAmndOk = "//button[@id='B4364078624181791110']";
 	/** @locatorType Xpath */
 	public static final String SucessMsg = "//h6[@class='succ_msg']";
 	/** @locatorType Xpath */
@@ -117,17 +117,14 @@ public class PricelistPageLocators {
 	public static final String Pricelistfind = "//button[@data-testid='Search']";
 	/** @locatorType Xpath */
 	public static final String PricelistNumField = "//*[@id=\"P1615131025212_DOCP_NO\"]";
-
 	/** @locatorType Xpath */
 	public static final String PRLISTDetailsInfoBtn(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[3]/*";
 	}
-
 	/** @locatorType Xpath */
 	public static final String PRLISTSelectCheckBox(String PRLISTNum) {
 		return "//td[contains(text(),'" + PRLISTNum + "')]/../td[1]/*";
 	}
-
 	/** @locatorType Xpath */
 	public static final String ItemMasterAdd = "//*[@id=\"B1287636716616788407\"]/span";
 	/** @locatorType Xpath */
@@ -135,7 +132,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemSearchBtn = "//button[@id='B1956605616894148687']";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "//*[@id=\"16358674989224040257_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String ItemDrillDownBtn = "#\\31 6358674989224040257_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String ItemGeneral = "//*[@id=\"P367020004_TAB\"]/div/div/div[3]/label";
 	/** @locatorType Xpath */
@@ -177,21 +174,17 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String PRLFindTable = "//*[@id=\"1457343167982292320_orig\"]/tbody/tr[2]/td[1]";
+	public static final String PRLFindTable = "//*[@id='2126264260268616424_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String ClearButton = "//button[@data-testid='Clear']";
 	/** @locatorType Xpath */
 	public static final String PRLDtFrom = "//input[@id='P1615131025212_DATE_FROM_input']";
 	/** @locatorType Xpath */
 	public static final String PRLDtTo = "//input[@id='P1615131025212_DATE_TO_input']";
-
 	/** @locatorType Xpath */
 	public static final String PRLFindTableData(int i) {
-		return "//table[@id='1457343167982292320_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='1457343167982292320_orig']/tbody/tr/td["+ i +"]";
 	}
-
 	/** @locatorType Xpath */
 	public static final String PricelistAddFrame = "//iframe[@title='Price List Entry ']";
-	/** @locatorType Xpath */
-	public static final String ItemLovButton = "//input[@id='P3670200_ITEM_1']/following-sibling::button";
 }

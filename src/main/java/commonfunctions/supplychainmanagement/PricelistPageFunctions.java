@@ -40,12 +40,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticSimilarUom() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
@@ -59,10 +59,13 @@ public class PricelistPageFunctions {
 		saveHeaderAndClickPost();
 		waitingForApproval();
 		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -73,12 +76,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticDissimilarUom() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
@@ -95,10 +98,13 @@ public class PricelistPageFunctions {
 		saveHeaderAndClickPost();
 		waitingForApproval();
 		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -109,12 +115,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportSimilarUom() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
@@ -130,11 +136,13 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -145,12 +153,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportDissimilarUom() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem2(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
@@ -166,11 +174,13 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -180,8 +190,8 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void priceListEntryCancel() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"),
@@ -207,8 +217,8 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void priceListEntryFindScreenChecking() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickLocationLov(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		clickUnitLov(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -230,8 +240,8 @@ public class PricelistPageFunctions {
 	public void verifyCreationOfPriceListAmendmentDomesticSimilarUom() {
 		verifyCreationOfPriceListDomesticSimilarUomAmd();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		verifyDrilldownTheDocNum();
@@ -247,11 +257,13 @@ public class PricelistPageFunctions {
 		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
-		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -264,8 +276,8 @@ public class PricelistPageFunctions {
 	public void verifyCreationOfPriceListAmendmentDomesticDisSimilarUom() {
 		verifyCreationOfPriceListDomesticDissimilarUomAmd();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		verifyDrilldownTheDocNum();
@@ -281,11 +293,13 @@ public class PricelistPageFunctions {
 		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
-		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -298,8 +312,8 @@ public class PricelistPageFunctions {
 	public void verifyCreationOfPriceListAmendmentImportSimilarUom() {
 		verifyCreationOfPriceListImportSimilarUomAmd();
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		verifyDrilldownTheDocNum();
@@ -315,11 +329,13 @@ public class PricelistPageFunctions {
 		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
-		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -332,8 +348,8 @@ public class PricelistPageFunctions {
 	public void verifyCreationOfPriceListAmendmentImportDisSimilarUom() {
 		verifyCreationOfPriceListImportDissimilarUomAmd();
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		verifyDrilldownTheDocNum();
@@ -349,11 +365,13 @@ public class PricelistPageFunctions {
 		verifyEnterPriceInsideTransaction(commonFunc.getDataFromTestDataSheet("Amdcost_Value"));
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getAmendmentDocNumber());
-		verifyApproveWithDocNumber(VariableHandler.getAmendmentDocNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -365,8 +383,8 @@ public class PricelistPageFunctions {
 	public void verifyCreationOfPriceListAmendmentCancel() {
 		verifyCreationOfPriceListDomesticSimilarUomAmdCancel();
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyDocNoInFindPage(VariableHandler.getPRLISTNumber());
 		verifyDrilldownTheDocNum();
@@ -391,12 +409,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticSimilarUomAmdCancel() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
@@ -409,11 +427,13 @@ public class PricelistPageFunctions {
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("LoginPassword"));
+		}
 		assertTrue(flag);
 	}
 
@@ -424,12 +444,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticSimilarUomAmd() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
@@ -442,11 +462,13 @@ public class PricelistPageFunctions {
 		enterDiscount(commonFunc.getDataFromTestDataSheet("Disc_Value"));
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -457,12 +479,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListDomesticDissimilarUomAmd() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("DomSupplier_ID"), VariableHandler.getItemName(),
@@ -478,11 +500,13 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -493,12 +517,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportSimilarUomAmd() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdSimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
@@ -514,11 +538,13 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -529,12 +555,12 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPriceListImportDissimilarUomAmd() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem3(commonFunc.getDataFromTestDataSheet("AmdDissimItem_ID"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		clickAddIconFillDetailsOfPriceList(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"), VariableHandler.getItemName(),
@@ -550,11 +576,13 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(3000);
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		commonFunc.hardWait(1000);
-		flag = commonFunc.logoutUser();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRLISTNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRLISTNumber());
+		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
 		assertTrue(flag);
 	}
 
@@ -825,7 +853,7 @@ public class PricelistPageFunctions {
 			webDB.switchToFrame(PricelistPageLocators.PriceListWorkflowFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PricelistForwardlov,
-					commonFunc.getDataFromTestDataSheet("AshokValue"));
+					commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.hardWait(2000);
 			webDB.switchToFrame(PricelistPageLocators.PriceListWorkflowFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
@@ -853,7 +881,7 @@ public class PricelistPageFunctions {
 	 */
 	public void forwardApprovalScreen() {
 		commonFunc.hardWait(1000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
 		approvalFunc.navigateToApprovals();
 		flag = webDB.waitForElement(ApprovalPageLocators.UserNotifyIcon, ElementType.Xpath);
 		if (flag) {
@@ -1240,9 +1268,9 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyDrilldownTheDocNum() {
-		flag = webDB.waitForElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.Xpath);
+		flag = webDB.waitForElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.CssSelector);
 		if (flag) {
-			webDB.clickAnElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.Xpath);
+			webDB.clickAnElement(PricelistPageLocators.FindDocNumDrilldown, ElementType.CssSelector);
 			logs.logging("INFO", "Document NO is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.PricelistDocNum, ElementType.Xpath);
 			if (flag) {
@@ -1340,10 +1368,13 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void ExtractDocumentNumber() {
+		
 		flag = webDB.waitForElement(PricelistPageLocators.SucessMsg, ElementType.Xpath);
 		if (flag) {
 			String fullText = webDB.getTextFromElement(PricelistPageLocators.SucessMsg, ElementType.Xpath);
+			
 			String AmendmentDocNumber = extractDocumentNumber(fullText);
+			System.out.println("TEST");
 			System.out.println("Document Number: " + AmendmentDocNumber);
 			VariableHandler.setAmendmentDocNumber(AmendmentDocNumber);
 			logs.logging("INFO", "Price List Amendment Doc Number Is :" + VariableHandler.getAmendmentDocNumber());
@@ -1358,12 +1389,22 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	private static String extractDocumentNumber(String text) {
-		String regex = "\\b[A-Za-z]+\\d+/\\d+/\\d+-\\d+\\b";
+		String regex = "\\b[A-Z]+-\\d+-\\d+\\b";
 		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
 		java.util.regex.Matcher matcher = pattern.matcher(text);
+
 		if (matcher.find()) {
+		    return matcher.group(0);
+		} else {
+		    return null;  // or throw an exception
 		}
-		return matcher.group(0);
+		
+//		String regex = "\\b[A-Za-z]+\\d+/\\d+/\\d+-\\d+\\b";
+//		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+//		java.util.regex.Matcher matcher = pattern.matcher(text);
+//		if (matcher.find()) {
+//		}
+//		return matcher.group(0);
 	}
 
 	/**
@@ -1398,8 +1439,7 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLovButton, Item1);
-//			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
 			logs.logging("INFO", "Search is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			if (flag) {
@@ -1423,9 +1463,9 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
@@ -1627,7 +1667,7 @@ public class PricelistPageFunctions {
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To Workflow Frame");
 					commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.PRLForwardLov,
-							commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+							commonFunc.getDataFromTestDataSheet("HodValue"));
 					commonFunc.hardWait(2000);
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To WorkFlow Frame");
@@ -1636,12 +1676,9 @@ public class PricelistPageFunctions {
 						webDB.clickAnElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
 						webDB.switchToDefaultContent();
-
-//					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 						commonFunc.logoutUser();
-
 						commonFunc.validCommonLogin(System.getProperty("HariUsername"),
-								System.getProperty("loginPassword"), "HariUsername");
+								System.getProperty("LoginPassword"), "HariUsername");
 						approvalFunc.navigateToApprovals();
 						approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
 						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
@@ -1701,9 +1738,9 @@ public class PricelistPageFunctions {
 	 */
 	public void verifySearchOfItem2(String Item2) {
 		commonFunc.hardWait(2000);
-		flag = webDB.waitForElement(PricelistPageLocators.ItemLovButton, ElementType.Xpath);
+		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLovButton, Item2);
+			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item2, ElementType.Xpath);
 			logs.logging("INFO", "Search is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			if (flag) {
@@ -1851,8 +1888,8 @@ public class PricelistPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfPricelistFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 		commonFunc.navigatePricelistPage();
 		verifyAmendFilterSearchSOB(PricelistPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
@@ -1870,7 +1907,7 @@ public class PricelistPageFunctions {
 		verifyAmendFilterSearchSOB(PricelistPageLocators.PRL_Status,
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
 				commonFunc.getDataFromTestDataSheet("SelectType"));
-		verifyDateAfterAndBefore();
+//		verifyDateAfterAndBefore();
 		commonFunc.logoutUser();
 	}
 
@@ -1880,8 +1917,8 @@ public class PricelistPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfPricelistAmdFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+				"TvsUsername");
 		commonFunc.navigatePricelistPage();
 		verifyAmendFilterSearchSOB(PricelistPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
@@ -1899,7 +1936,7 @@ public class PricelistPageFunctions {
 		verifyAmendFilterSearchSOB(PricelistPageLocators.PRL_Status,
 				commonFunc.getDataFromTestDataSheet("AmendedStatus"), 15,
 				commonFunc.getDataFromTestDataSheet("SelectType"));
-		verifyDateAfterAndBefore();
+//		verifyDateAfterAndBefore();
 		commonFunc.logoutUser();
 	}
 

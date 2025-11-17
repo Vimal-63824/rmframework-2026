@@ -13,7 +13,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSFrame = "//iframe[@title='Customer Schedule']";
 	/** @Locator Xpath */
-	public static final String CSButton = "//button[@id='B928452610454148508']";
+	public static final String CSButton = "//button[@id='B1597068993780180909']";
 	/** @Locator Xpath */
 	public static final String CSAddButton = "//BUTTON[@data-testid='CS_AddButton']";
 	/** @Locator Xpath */
@@ -37,13 +37,13 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSLineWiseAddButton = "//BUTTON[@data-testid='CS_LINE_WISE_ADD_BUTTON']";
 	/** @Locator Xpath */
-	public static final String CSLineWiseCustLov = "//button[@id='C5959480069656878894_lov_btn']";
+	public static final String CSLineWiseCustLov = "//input[@data-testid='COLN_CUST_ID']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String CSLineWiseCustField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @Locator Xpath */
 	public static final String CSLineWiseItemField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[5]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseItemLov = "//button[@id='C6603157930773868488_lov_btn']";
+	public static final String CSLineWiseItemLov = "//input[@data-testid='CSLineWiseItemField']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String CSLineWiseFirmQtyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @Locator Xpath */
@@ -67,7 +67,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSLineWiseEndDateField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseEndDateInputField = "//input[@id='C5959481773515878911_input']";
+	public static final String CSLineWiseEndDateInputField = "//input[@id='C6628098156841911312_input']";
 	/** @Locator Xpath */
 	public static final String CSLineWiseGenerateButton1 = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @Locator CSS Selector */
@@ -93,13 +93,13 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdAddButton = "//button[@data-testid='CSAmdAddButton']";
 	/** @Locator Xpath */
-	public static final String CSAmdLocationLov = "//button[@id='P191513102023_CAMH_PLNT_LOC_ID_lov_btn']";
+	public static final String CSAmdLocationLov = "//INPUT[@data-testid='P191513102023_CAMH_PLNT_LOC_ID']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String CSAmdDocPfx = "//button[@id='P191513102023_CAMH_DOC_PFX_lov_btn']";
+	public static final String CSAmdDocPfx = "//INPUT[@data-testid='P191513102023_CAMH_DOC_PFX']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String CSAmdCustomerId = "//button[@id='P191513102023_CAMH_CUST_ID_lov_btn']";
+	public static final String CSAmdCustomerId = "//INPUT[@data-testid='P191513102023_CAMH_CUST_ID']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String CSAmdHeaderWiseSaveButton = "//button[@id='B353049989948163903']/span";
+	public static final String CSAmdHeaderWiseSaveButton = "//button[@title='Create']";
 	/** @Locator Xpath */
 	public static final String CSAmdFetchButton = "//button[@data-testid='CSAmdFetchButton']";
 	/** @Locator Xpath */
@@ -109,7 +109,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdCancelButton = "//button[@data-testid='CSAmdCancelButton']";
 	/** @Locator Xpath */
-	public static final String CSAmdFetchOkButton = "//button[@id='B1']";
+	public static final String CSAmdFetchOkButton = "//button[@data-testid='Ok']";
 	/** @Locator Xpath */
 	public static final String CSAmdFetchGOButton = "//button[@id='CSA_search_button']";
 	/** @Locator Xpath */
@@ -178,6 +178,8 @@ public class CustomerScheduleLocators {
 	public static final String CSFindScreenHeaderradioButton = "//label[@for='P191513102011_HD_LN_0']";
 	/** @Locator Xpath */
 	public static final String CSAddFrameName = "//h1[@id='ui-id-1']";
+	
+	public static final String CSLocationField = "//input[@data-testid='CSLocationLov']";
 
 	/** @Locator Xpath */
 	public static final String CSStatusHeaderTableText(String CSno) {

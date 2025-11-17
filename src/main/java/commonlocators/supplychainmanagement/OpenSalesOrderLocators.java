@@ -7,9 +7,9 @@ package commonlocators.supplychainmanagement;
 public class OpenSalesOrderLocators {
 	
 		/** @locatorType Xpath */
-		public static final String OpenSORadioBtn = "//label[@for='P191513101322_TYPE_0']";
+		public static final String OpenSORadioBtn = "//input[@data-display='Open SO']/following-sibling::label";
 		/** @locatorType Xpath */
-		public static final String OpenSOAmendRadioBtn = "//label[@for='P191513101322_TYPE_1']";
+		public static final String OpenSOAmendRadioBtn = "//input[@data-display='Open SO Amendment']/following-sibling::label";
 		/** @locatorType Xpath */
 		public static final String FindHeadingText = "//h2[@class='t-Region-title']/b";
 		/** @locatorType Xpath */
@@ -27,7 +27,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpenSO_PODateInput = "//input[@id='P191513101301_SRCHD_PO_DATE_input']";
 		/** @locatorType Xpath */
-		public static final String OpenSO_FormTickIcon = "//button[@id='B2098611267006247133']";
+		public static final String OpenSO_FormTickIcon = "//button[@data-testid='SAVE']";
 		/** @locatorType Xpath */
 		public static final String FetchCustomerItemBtn = "//button[@data-testid='Open_So_Fetch_Button']";
 
@@ -49,19 +49,19 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String PriceLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]";
 		/** @locatorType Xpath */
-		public static final String PriceLastLineInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[6])[1]//input";
+		public static final String PriceLastLineInput = "//input[@data-testid='SRCLN_PRICE']";
 		/** @locatorType Xpath */
 		public static final String MRPLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]";
 		/** @locatorType Xpath */
-		public static final String MRPLastLineInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]//input";
+		public static final String MRPLastLineInput = "//input[@data-testid='SRCLN_MRP_PRICE']";
 		/** @locatorType Xpath */
 		public static final String DiscountLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]";
 		/** @locatorType Xpath */
-		public static final String DiscountLastLineInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[8])[1]//input";
+		public static final String DiscountLastLineInput = "//input[@data-testid='SRCLN_DISC_PCT']";
 		/** @locatorType Xpath */
 		public static final String HSNCodeLastLineData = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]";
 		/** @locatorType Xpath */
-		public static final String HSNCodeLastLineLovBtn = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]//button";
+		public static final String HSNCodeLastLineLovBtn = "//input[@data-testid='SRCLN_HSN_CODE']/following-sibling::button";
 		/** @locatorType Xpath */
 		public static final String OpenSOLinesSaveBtn = "//button[@data-testid='Open_So_Save_Button_Lines']";
 		/** @locatorType Xpath */
@@ -141,7 +141,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String SearchInputField = "//input[@id='QC_search_field']";
 		/** @locatorType Xpath */
-		public static final String SelecCheckBox = "//*[@id='6860104052584050195_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelecCheckBox = "//*[@id='7528720435910082596_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String HeaderStatus = "//span[@data-testid='P191513101301_SRCHD_STATUS']" ;
 		

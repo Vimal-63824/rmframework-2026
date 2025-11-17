@@ -703,8 +703,8 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 50, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Qty Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentQtyChangeUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentQtyChangeUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
-				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTQtyChange"),
+		flag = SalesOrdFunc.SalesOrderAmendmentQtyChangeUTGST(commonFunc.getDataFromTestDataSheet("UTGSTCustomer"),
+				commonFunc.getDataFromTestDataSheet("UTGST_cus"), webDB.getDataFromProperties("UTGSTQtyChange"),
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
 				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
@@ -720,8 +720,8 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 51, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Price Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentPriceChangeUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentPriceChangeUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
-				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTPriceChange"),
+		flag = SalesOrdFunc.SalesOrderAmendmentPriceChangeUTGST(commonFunc.getDataFromTestDataSheet("UTGSTCustomer"),
+				commonFunc.getDataFromTestDataSheet("UTGST_cus"), webDB.getDataFromProperties("UTGSTPriceChange"),
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
 				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
@@ -737,8 +737,8 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 52, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO -Disc Change - Domestic Customer - UTGST")
 	public void SalesOrderAmendmentDiscountChangeUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChangeUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
-				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTDiscChange"),
+		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChangeUTGST(commonFunc.getDataFromTestDataSheet("UTGSTCustomer"),
+				commonFunc.getDataFromTestDataSheet("UTGST_cus"), webDB.getDataFromProperties("UTGSTDiscChange"),
 				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
 				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
@@ -754,9 +754,10 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Test(priority = 53, groups = {
 			"SalesOrderAmendment" }, description = "Amend SO - Addition of Item -Domestic Customer - UTGST")
 	public void SalesOrderAmendmentAdditionOfLinesUTGSTCustomer() throws IOException {
-		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLinesUTGST(commonFunc.getDataFromTestDataSheet("Customer"),
-				commonFunc.getDataFromTestDataSheet("CustomerDesc"), webDB.getDataFromProperties("UTGSTAddOfItem"),
-				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLinesUTGST(
+				commonFunc.getDataFromTestDataSheet("UTGSTCustomer"), commonFunc.getDataFromTestDataSheet("UTGST_cus"),
+				webDB.getDataFromProperties("UTGSTAddOfItem"), webDB.getDataFromProperties("SOUTGST"),
+				commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
 				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
 		Assert.assertTrue(flag);
