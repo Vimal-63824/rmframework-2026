@@ -570,6 +570,11 @@ public class OpenSalesOrderFunctions {
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 //		commonFunc.logoutUser();
 //		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 //				"HodUsername");
@@ -625,7 +630,11 @@ public class OpenSalesOrderFunctions {
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.logoutUser();
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HodUsername"));
 //		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
 //				"HodUsername");
 //		approvalFunc.navigateToApprovals();
