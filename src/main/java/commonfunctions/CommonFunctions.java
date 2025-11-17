@@ -155,7 +155,11 @@ public class CommonFunctions {
 	 * @throws InterruptedException
 	 */
 	public void validCommonLogin(String Username, String Password, String... Name) {
-		enterUrl();
+		if (Username.equals(System.getProperty("ErpAdmin")) || Username.equals(System.getProperty("DevaUserName"))) {
+			enterOldUrl();
+		} else {
+			enterUrl();
+		}
 		flag = webDB.waitForElement(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
@@ -2605,7 +2609,7 @@ public class CommonFunctions {
 		assertTrue(flag);
 		RestUtils.resetRestAssured();
 	}
-	
+
 	/**
 	 * This method used to approve Item Documents documents using API
 	 * 
@@ -3076,5 +3080,17 @@ public class CommonFunctions {
 	public void navigateInspectionPlan() {
 		navigateToSearchTab(webDB.getDataFromProperties("InspectionPlanScreen"),
 				InspectionPlanLocators.AddIconInFindPage);
+	}
+
+	/**
+	 * This method used to navigate url that was set in Maven Goal
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean
+	 */
+	public boolean enterOldUrl() {
+		webDB.enterURL(System.getProperty("OldJUrl"));
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		return flag;
 	}
 }

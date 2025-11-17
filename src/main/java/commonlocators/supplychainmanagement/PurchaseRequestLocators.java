@@ -115,7 +115,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_Reference = "//input[contains(@id,'PCH_REF')]";
 	/** @locatorType Xpath */
-	public static final String PRCloseShort_TickIcon = "//button[@id='B1768055892948809636']";
+	public static final String PRCloseShort_TickIcon = "//button[@data-testid='Create']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_DocNoText = "//input[contains(@id,'PCH_DOC_NO')]";
 	/** @locatorType Xpath */
