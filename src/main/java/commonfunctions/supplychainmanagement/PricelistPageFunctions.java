@@ -62,9 +62,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -101,9 +101,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -139,9 +139,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -177,9 +177,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -260,9 +260,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getAmendmentDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -296,9 +296,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getAmendmentDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -332,9 +332,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getAmendmentDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -368,9 +368,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getAmendmentDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getAmendmentDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -430,9 +430,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("LoginPassword"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("LoginPassword"));
 		}
 		assertTrue(flag);
 	}
@@ -465,9 +465,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -503,9 +503,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -541,9 +541,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -579,9 +579,9 @@ public class PricelistPageFunctions {
 		flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getPRLISTNumber(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}
@@ -1368,11 +1368,11 @@ public class PricelistPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void ExtractDocumentNumber() {
-		
+
 		flag = webDB.waitForElement(PricelistPageLocators.SucessMsg, ElementType.Xpath);
 		if (flag) {
 			String fullText = webDB.getTextFromElement(PricelistPageLocators.SucessMsg, ElementType.Xpath);
-			
+
 			String AmendmentDocNumber = extractDocumentNumber(fullText);
 			System.out.println("TEST");
 			System.out.println("Document Number: " + AmendmentDocNumber);
@@ -1394,11 +1394,11 @@ public class PricelistPageFunctions {
 		java.util.regex.Matcher matcher = pattern.matcher(text);
 
 		if (matcher.find()) {
-		    return matcher.group(0);
+			return matcher.group(0);
 		} else {
-		    return null;  // or throw an exception
+			return null; // or throw an exception
 		}
-		
+
 //		String regex = "\\b[A-Za-z]+\\d+/\\d+/\\d+-\\d+\\b";
 //		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
 //		java.util.regex.Matcher matcher = pattern.matcher(text);
@@ -1838,14 +1838,18 @@ public class PricelistPageFunctions {
 				verifyGenerateItemSim(CopyItemName);
 				clickPostInItemAndCheckAutoApproveflag();
 				if (!VariableHandler.getApprovalFlag()) {
-					approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
-					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-							"HodUsername");
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
-					commonFunc.logoutUser();
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("ROAU-BU"),
+							VariableHandler.getItemName(), webDB.getDataFromProperties("HariEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+//					approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
+//					commonFunc.logoutUser();
+//					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//							"HodUsername");
+//					approvalFunc.navigateToApprovals();
+//					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
+//					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
+//					commonFunc.logoutUser();
 				}
 			}
 		}

@@ -146,19 +146,19 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String PayrollEmpIdDisplay = "//input[@id='P16251310506_EMP_ID']";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceTable = "//table[@id='5848732358246794833']";
+	public static final String PayrollAllowanceTable = "//table[@id='6517484043286038189']";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceDescriptionList = "//table[@id='5848732358246794833']//tr/td[2]/span[last()]";
+	public static final String PayrollAllowanceDescriptionList = "//table[@id='6517484043286038189']//tr/td[2]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceActualAmntList = "//table[@id='5848732358246794833']//tr/td[3]/span[last()]";
+	public static final String PayrollAllowanceActualAmntList = "//table[@id='6517484043286038189']//tr/td[3]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAllowanceAmountList = "//table[@id='5848732358246794833']//tr/td[4]/span[last()]";
+	public static final String PayrollAllowanceAmountList = "//table[@id='6517484043286038189']//tr/td[4]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentTable = "//table[@id='5848736929093795789']";
+	public static final String PayrollAdjustmentTable = "//table[@id='6517488614133039145']";
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentDescriptionList = "//table[@id='5848736929093795789']//tr/td[2]/span[last()]";
+	public static final String PayrollAdjustmentDescriptionList = "//table[@id='6517488614133039145']//tr/td[2]/span[last()]";
 	/** @locatorType Xpath */
-	public static final String PayrollAdjustmentAmountList = "//table[@id='5848736929093795789']//tr/td[3]/span[last()]";
+	public static final String PayrollAdjustmentAmountList = "//table[@id='6517488614133039145']//tr/td[3]/span[last()]";
 	/** @locatorType Xpath */
 	public static final String PayrollTotalAdditionDisplayText = "//span[@id='P16251310506_TOT_ADD_DISPLAY']";
 	/** @locatorType Xpath */
@@ -194,20 +194,20 @@ public class PreparePayrollLocators {
 	/** @locatorType Xpath */
 	public static final String FindUnitLovBtn = "//*[@data-testid='PRE_UNIT']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindYearHeaderResultTable = "//table[@id='1864282885876525492_orig']//tr/td[3]";
+	public static final String FindYearHeaderResultTable = "//table[@id='2533034570915768848_orig']//tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String FindPeriodHeaderResultTable = "//table[@id='1864282885876525492_orig']//tr/td[4]";
+	public static final String FindPeriodHeaderResultTable = "//table[@id='2533034570915768848_orig']//tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String FindCalenderHeaderResultTable = "//table[@id='1864282885876525492_orig']//tr/td[2]";
+	public static final String FindCalenderHeaderResultTable = "//table[@id='2533034570915768848_orig']//tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String FindYearLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[2]";
+	public static final String FindYearLineResultTable = "//table[@id='3356742704407733377_orig']//tr/td[2]";
 	/** @locatorType Xpath */
-	public static final String FindPeriodLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[3]";
+	public static final String FindPeriodLineResultTable = "//table[@id='3356742704407733377_orig']//tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String FindDesignationLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[7]";
+	public static final String FindDesignationLineResultTable = "//table[@id='3356742704407733377_orig']//tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String FindDepartmentLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[8]";
+	public static final String FindDepartmentLineResultTable = "//table[@id='3356742704407733377_orig']//tr/td[8]";
 	/** @locatorType Xpath */
-	public static final String FindUnitLineResultTable = "//table[@id='2687991019368490021_orig']//tr/td[9]";
+	public static final String FindUnitLineResultTable = "//table[@id='3356742704407733377_orig']//tr/td[9]";
 
 }

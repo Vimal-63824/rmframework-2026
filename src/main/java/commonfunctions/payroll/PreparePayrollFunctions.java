@@ -123,6 +123,7 @@ public class PreparePayrollFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void clickUnloadUnitGroupInPreparePayroll() {
+		commonFunc.checkSuccessToastMessageDisappear();
 		flag = webDB.waitForElement(PreparePayrollLocators.UnloadUnitGroupBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PreparePayrollLocators.UnloadUnitGroupBtn, ElementType.Xpath);
@@ -664,8 +665,8 @@ public class PreparePayrollFunctions {
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String JoinedDate = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
-					"HariUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();
 			empMasterFunc.clickEmployeeMasterSideNavBar();
@@ -705,8 +706,8 @@ public class PreparePayrollFunctions {
 			clickUnloadUnitGroupInPreparePayroll();
 			clickLoadUnitGroupInPreparePayroll();
 			clickUnitGroupLabelInPreparePayroll();
-			unselectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit2Text"));
-			selectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit2Text"));
+			unselectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit1Text"));
+			selectUnitAndGroupWithNameInLoadPayroll(commonFunc.getDataFromTestDataSheet("Unit1Text"));
 			clickLoadEmployeeInPreparePayroll();
 			clickUnloadEmployeeInPreparePayroll();
 			clickLoadEmployeeInPreparePayroll();
@@ -748,7 +749,7 @@ public class PreparePayrollFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String Month = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickLinesRadioButtonInFind();
@@ -921,7 +922,7 @@ public class PreparePayrollFunctions {
 		String SearchMonth = date.format(formatter);
 		String verifyMonth = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickHeaderRadioButtonInFind();

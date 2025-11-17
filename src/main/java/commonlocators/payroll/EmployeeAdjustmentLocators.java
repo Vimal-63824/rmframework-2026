@@ -27,7 +27,7 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String EA_MigrationBtn = "//button[@data-testid='Migration_btn']";
 	/** @locatorType Xpath */
-	public static final String TableResultFirstEmpId = "(//table[@id='9253157392152197822_orig']//tr/td[2])[1]";
+	public static final String TableResultFirstEmpId = "(//table[@id='9921909077191441178_orig']//tr/td[2])[1]";
 	/** @locatorType Xpath */
 	public static final String AdjustmentDisplayEmpId = "//span[@data-testid='EMPAI_EMP_ID_Input']";
 	/** @locatorType Xpath */
@@ -79,25 +79,25 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String EndNarrationInputBox = "//input[@id='P1901_NARRATION']";
 	/** @locatorType Xpath */
-	public static final String EndNarrationTickIcon = "//button[@id='B187568963852331159']";
+	public static final String EndNarrationTickIcon = "//button[@id='B856320648891574515']";
 	/** @locatorType Xpath */
 	public static final String AdjustmentReportBtn = "//button[@data-testid='Print_btn']";
 	/** @locatorType Xpath */
-	public static final String FindDesignationResultTable = "//table[@id='9253157392152197822_orig']//tr/td[4]";
+	public static final String FindDesignationResultTable = "//table[@id='9921909077191441178_orig']//tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String FindDepartmentResultTable = "//table[@id='9253157392152197822_orig']//tr/td[5]";
+	public static final String FindDepartmentResultTable = "//table[@id='9921909077191441178_orig']//tr/td[5]";
 	/** @locatorType Xpath */
-	public static final String FindUnitResultTable = "//table[@id='9253157392152197822_orig']//tr/td[6]";
+	public static final String FindUnitResultTable = "//table[@id='9921909077191441178_orig']//tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String FindElementResultTable = "//table[@id='9253157392152197822_orig']//tr/td[7]";
+	public static final String FindElementResultTable = "//table[@id='9921909077191441178_orig']//tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String FindYearResultTable = "//table[@id='9253157392152197822_orig']//tr/td[12]";
+	public static final String FindYearResultTable = "//table[@id='9921909077191441178_orig']//tr/td[12]";
 	/** @locatorType Xpath */
 	public static final String EmpAdjMigrationIframe = "//iframe[@title='Migration Type']";
 	/** @locatorType Xpath */
 	public static final String EmpAdjustmentMigrationRadioBtn = "//input[contains(@aria-label,'Adjustment')]/following-sibling::label";
 	/** @locatorType Xpath */
-	public static final String EmpAdjMigrationAddNewBtn = "//button[@id='B1590457124717551698']";
+	public static final String EmpAdjMigrationAddNewBtn = "//button[@id='B2259208809756795054']";
 	/** @locatorType Xpath */
 	public static final String EmpAdjMigrationRefInput = "//input[@data-testid='EAJMHD_REF_Input']";
 	/** @locatorType Xpath */
@@ -119,7 +119,7 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationRadioBtn = "//input[contains(@aria-label,'Allowance')]/following-sibling::label";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationAddNewBtn = "//button[@id='B1590297647059462921']";
+	public static final String EmpAllowanceMigrationAddNewBtn = "//button[@id='B2259049332098706277']";
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationDateFrom = "//input[@id='P36701362101_EAMHD_EFF_FROM_input']";
 	/** @locatorType Xpath */
@@ -127,17 +127,17 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationRefInput = "//input[@id='P36701362101_EAMHD_REF']";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationCreateSaveIcon = "//button[@id='B3444923503944994366']";
+	public static final String EmpAllowanceMigrationCreateSaveIcon = "//button[@id='B4113675188984237722']";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationUploadIcon = "//button[@id='B3445680597616487326']";
+	public static final String EmpAllowanceMigrationUploadIcon = "//button[@id='B4114432282655730682']";
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationUploadInput = "//input[@id='P36701362101_LOAD_input']";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationUploadBtn = "//button[@id='B3445681674318487337']";
+	public static final String EmpAllowanceMigrationUploadBtn = "//button[@id='B4114433359357730693']";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationCheckExcptionBtn = "//button[@id='B3445680666418487327']";
+	public static final String EmpAllowanceMigrationCheckExcptionBtn = "//button[@id='B4114432351457730683']";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationHeaderSaveIcon = "//button[@id='B3444923076058994364']";
+	public static final String EmpAllowanceMigrationHeaderSaveIcon = "//button[@id='B4113674761098237720']";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationPostBtn = "//button[@id='B3445680819922487329']";
+	public static final String EmpAllowanceMigrationPostBtn = "//button[@id='B4114432504961730685']";
 }
