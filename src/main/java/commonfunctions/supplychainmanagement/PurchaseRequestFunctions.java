@@ -58,8 +58,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreationOfPRGeneral() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -82,8 +82,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreationOfPRService() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -107,8 +107,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelPRAndDeleteLine() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -132,8 +132,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreatePRByUploadExcel() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -156,8 +156,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyPRCloseShort() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -170,7 +170,7 @@ public class PurchaseRequestFunctions {
 		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"HodUsername");
 		commonFunc.navigatePurchaseRequestCloseShortPage();
 		clickAddIconPurchaseRequestCloseShort();
@@ -303,7 +303,7 @@ public class PurchaseRequestFunctions {
 				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				if (!VariableHandler.getApprovalFlag()) {
 					approvalPageFunc
-							.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+							.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
 					verifyApprovePRUsingAshokUser();
 				}
 			}
@@ -1433,11 +1433,11 @@ public class PurchaseRequestFunctions {
 	 */
 	public void verifyApprovePRUsingAshokUser() {
 		flag = commonFunc.logoutUser();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPRNumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 	}
 
@@ -1480,8 +1480,8 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPRForGeneralItemWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -1519,8 +1519,8 @@ public class PurchaseRequestFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPRForServiceItemWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -1580,8 +1580,8 @@ public class PurchaseRequestFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyFindPRWithPossibleSearchParameters() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		findWithItemId(commonFunc.getDataFromTestDataSheet("GwlItem_Serial"));
 		webDB.navigateToRefresh();
