@@ -842,7 +842,7 @@ public class DBCommonFunctions {
 	 * @return
 	 */
 	public String SalesPriceListdetails(String SalesPriceList, String DetailsValue) {
-		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PricelistQuery"),
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SalesPricelistQuery"),
 				commonFunc.getDataFromTestDataSheet("PlDocNo"), SalesPriceList, DetailsValue);
 		return value;
 

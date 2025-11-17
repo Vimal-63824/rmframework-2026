@@ -1676,13 +1676,16 @@ public class PricelistPageFunctions {
 						webDB.clickAnElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
 						webDB.switchToDefaultContent();
-						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("HariUsername"),
-								System.getProperty("LoginPassword"), "HariUsername");
-						approvalFunc.navigateToApprovals();
-						approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
-						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
-						commonFunc.logoutUser();
+//						commonFunc.logoutUser();
+//						commonFunc.validCommonLogin(System.getProperty("HariUsername"),
+//								System.getProperty("LoginPassword"), "HariUsername");
+//						approvalFunc.navigateToApprovals();
+//						approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
+//						approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
+//						commonFunc.logoutUser();
+						commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"),
+								VariableHandler.getItemName(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 //					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
 //							"TvsUsername");
 //					commonFunc.navigateItemPage();

@@ -322,7 +322,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//*[@id='11782236209960405417_orig']/tbody/tr[2]/td[2]/a";
+	public static final String SearchedItemDrillDown = "//*[@id='12451204724453765688_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */
@@ -360,7 +360,7 @@ public class CommonUiLocators {
 	/** Locator Xpath */
 	public static final String SalesOrderAmendment = "//h3[text()='SO CS/Amendment']/ancestor::li/a";
 	/** @locatorType Xpath */
-	public static final String SaveButton = "//button[@id='B150556062898604660']";
+	public static final String SaveButton = "//button[@data-testid='Save_1']";
 	/** @locatorType Xpath */
 	public static final String ClearFindFilterIcon = "//button[contains(@aria-label,'Clear') or contains(@aria-label,'clear')]";
 	/** @locatorType Xpath */
