@@ -1697,6 +1697,9 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			return true;
 		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
@@ -2616,11 +2619,12 @@ public class CommonFunctions {
 	public void approveItemIdDocuments(String BU, String ItemId, String EmpId, String Unit, String User) {
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
-		restApi.setQueryParam("p_item_id", ItemId);
+		restApi.setQueryParam("p_doc_no", "");
 		restApi.setQueryParam("p_from_empid", EmpId);
 		restApi.setQueryParam("p_plnt", Unit);
 		restApi.setQueryParam("p_user", User);
 		restApi.setQueryParam("p_wfdc_act", "A");
+		restApi.setQueryParam("p_item_id", ItemId);
 		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
 		String Value = restApi.response.getHeader("p_out_msg");
 		logs.logging("INFO", "Displayed Approval Response Header: " + Value);

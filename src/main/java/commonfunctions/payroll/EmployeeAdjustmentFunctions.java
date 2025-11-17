@@ -55,7 +55,7 @@ public class EmployeeAdjustmentFunctions {
 			TotalPeriod = TotalPeriod.replace("0", "1");
 		}
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			searchAndClickEmpIdUsingEmpNameLovBtn(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
@@ -105,7 +105,7 @@ public class EmployeeAdjustmentFunctions {
 	 */
 	public boolean verifyEmployeeAdjustmentFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			findWithElementInAdjustment(commonFunc.getDataFromTestDataSheet("BonusText"));
@@ -610,7 +610,7 @@ public class EmployeeAdjustmentFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MMM-dd");
 		String Today = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateToEmployeeAdjustmentTab();
 			clickMigrationAndSelectEmpAdjustment();
@@ -645,7 +645,7 @@ public class EmployeeAdjustmentFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.clickAddIconAddEmployee();

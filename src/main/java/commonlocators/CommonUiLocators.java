@@ -140,7 +140,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String OpenSOTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String WorkApprovalFrame = "//iframe[contains(@title,'Approval')]";
+	public static final String WorkApprovalFrame = "//iframe[contains(@title,'Approval') or @title='Update Employee Details']";
 	/** @locatorType Xpath */
 	public static final String WorkAppoval_ForwardLovBtn = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */

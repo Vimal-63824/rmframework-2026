@@ -426,7 +426,7 @@ public class InspectionPlanFunctions {
 		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
@@ -601,7 +601,7 @@ public class InspectionPlanFunctions {
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 						"AdminUsername");
 				commonFunc.navigateToMaterialReceiptVoucher();
 				commonFunc.clickPendingIcon();
@@ -639,7 +639,7 @@ public class InspectionPlanFunctions {
 		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
@@ -814,7 +814,7 @@ public class InspectionPlanFunctions {
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 						"AdminUsername");
 				commonFunc.navigateToMaterialReceiptVoucher();
 				commonFunc.clickPendingIcon();
@@ -852,7 +852,7 @@ public class InspectionPlanFunctions {
 		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
@@ -1027,7 +1027,7 @@ public class InspectionPlanFunctions {
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 						"AdminUsername");
 				commonFunc.navigateToMaterialReceiptVoucher();
 				commonFunc.clickPendingIcon();

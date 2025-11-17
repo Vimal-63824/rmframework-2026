@@ -1348,7 +1348,7 @@ public class AttendanceLeaveFunctions {
 		String Today = date.format(formatter);
 		String requestDate = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			chooseLeaveAndClickAddLeaveIcon();
@@ -1381,7 +1381,7 @@ public class AttendanceLeaveFunctions {
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				}
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateLeaveEntryScreen();
 				clickSearchAndFilterLeaveEntryDocNo(VariableHandler.getLeaveEntryDocNo());
@@ -1389,7 +1389,7 @@ public class AttendanceLeaveFunctions {
 				flag = commonFunc.logoutUser();
 			} else if (VariableHandler.getEmpLeaveEntryAutoPost()) {
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateLeaveEntryScreen();
 				clickSearchAndClickFirstLeaveEntryWithEmpName(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
@@ -1416,7 +1416,7 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter).toUpperCase();
 		String requestDay = date1.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectLOPLeave();
@@ -1459,7 +1459,7 @@ public class AttendanceLeaveFunctions {
 		String Month = date1.format(formatter1).toUpperCase();
 		String requestDate = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			clickMigrationAndSelectAccrualLeave();
@@ -1505,7 +1505,7 @@ public class AttendanceLeaveFunctions {
 		String requestDate = date1.format(formatter);
 		String AfterThreeDate = date2.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			chooseLeaveAndClickAddLeaveIconInLE();
@@ -2563,7 +2563,7 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
@@ -2603,7 +2603,7 @@ public class AttendanceLeaveFunctions {
 		String Today = date1.format(formatter);
 		String Leave = RandomStringUtils.randomNumeric(1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			empMasterFunc.searchAndClickEmpIdInFindEmployeePage(commonFunc.getDataFromTestDataSheet("Emp_GWP0001"));
@@ -2643,7 +2643,7 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
@@ -2676,7 +2676,7 @@ public class AttendanceLeaveFunctions {
 		String month = date1.format(formatter1);
 		String date = date1.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
@@ -3381,7 +3381,7 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveAdjustmentFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			clickAdjustmentLabelButton();
@@ -3411,7 +3411,7 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyLeaveEntryFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateLeaveEntryScreen();
 			findWithLeaveInLeave(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
@@ -3656,10 +3656,10 @@ public class AttendanceLeaveFunctions {
 			flag = webDB.waitForElement(AttendanceLeaveLocators.SetupCreateLeaveEntryLabel, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Setup Payroll Clicked");
-				flag = webDB.isElementSelected(AttendanceLeaveLocators.SetupCreateLeaveEntryInputCheckBox,
+				boolean checkedflag = webDB.isElementSelected(AttendanceLeaveLocators.SetupCreateLeaveEntryInputCheckBox,
 						ElementType.Xpath);
 				logs.logging("INFO", "Setup Payroll Checkbox value: " + flag);
-				if (flag) {
+				if (checkedflag) {
 					VariableHandler.setEmpLeaveEntryAutoPost(true);
 					logs.logging("INFO",
 							"Leave Entry Auto Post while approved Leave Request.. checked in setup screen");
