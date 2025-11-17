@@ -211,8 +211,8 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void InspectionDocumentWithInspectionPlan() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessage();
@@ -223,24 +223,18 @@ public class InspectionDocumentFunctions {
 		}
 		clickTickAndPostIconForGrnDocument();
 		waitingForApproval();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateInspectionDocumentsPage();
-		try {
-			String alertText = VariableHandler.getIDAlertMessage();
-			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*ID\\d{3}/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*ID\\d{3}/\\d{5}/\\d{2}-\\d{2}";
-			if (alertText.matches(".*" + pattern + ".*")) {
-				documentSearchAndSelectLovForFindPage();
-				commonFunc.logoutUser();
-				logs.logging("INFO", "Specific alert found, proceeding with the process.");
-			} else {
-				commonFunc.logoutUser();
-				logs.logging("INFO", "Other alert detected, no action taken.");
-			}
-		} catch (Exception e) {
-			logs.logging("INFO", "No alert appeared or other error: " + e.getMessage());
+		String alertText = VariableHandler.getIDAlertMessage();
+		logs.logging("INFO", "Alert text: " + alertText);
+		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+		if (alertText.matches(".*" + pattern + ".*")) {
+			documentSearchAndSelectLovForFindPage();
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Specific alert found, proceeding with the process.");
+		} else {
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Other alert detected, no action taken.");
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -538,49 +532,56 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void getInspectionDocumentNumberFromToastMessage() {
-		webDB.switchToDefaultContent();
-		flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
-		if (flag) {
-			String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
-					ElementType.Xpath);
-			VariableHandler.setIDAlertMessage(IDAlertMessage);
-			;
-			logs.logging("INFO", "Get Text From Note Alert Is(ID Alert Message:" + IDAlertMessage);
-			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
-			String InspectionDocumentNumber = webDB
-					.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
-			String regex = "ID100/\\d{5}/\\d{2}-\\d{2}";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(InspectionDocumentNumber);
-			ArrayList<String> documentNumbers = new ArrayList<>();
-			while (matcher.find()) {
-				documentNumbers.add(matcher.group());
-			}
-			if (documentNumbers.size() == 2) {
-				String fromDocument = documentNumbers.get(0);
-				String toDocument = documentNumbers.get(1);
-				logs.logging("INFO", "From Document: " + fromDocument);
-				logs.logging("INFO", "To Document: " + toDocument);
-				String fromNum = fromDocument.split("/")[1];
-				String toNum = toDocument.split("/")[1];
-				int startNum = Integer.parseInt(fromNum);
-				int endNum = Integer.parseInt(toNum);
-				ArrayList<String> allDocumentNumbers = new ArrayList<>();
-				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "ID100/" + String.format("%05d", i) + "/25-26";
-					allDocumentNumbers.add(generatedDocumentNumber);
-				}
-				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
-				logs.logging("INFO", "Generated Document Numbers:");
-				for (String documentNumber : allDocumentNumbers) {
-					System.out.println(documentNumber);
-					allDocumentNumbers.size();
-				}
-			} else {
-				logs.logging("INFO", "Invalid format, unable to extract From and To document numbers.");
-			}
+		String alertText = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+				ElementType.Xpath);
+		String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+				ElementType.Xpath);
+		VariableHandler.setIDAlertMessage(IDAlertMessage);
+		// Regex: capture patterns like ID100/12345/25-26 or IDC/00020/25-26
+		String regex = "([A-Za-z0-9]+)/([0-9]{5})/([0-9]{2}-[0-9]{2})";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(alertText);
+
+		ArrayList<String> matchedDocs = new ArrayList<>();
+
+		while (matcher.find()) {
+			matchedDocs.add(matcher.group()); // Full document string
 		}
-		assertTrue(flag);
+
+		if (matchedDocs.size() == 2) {
+
+			String fromDoc = matchedDocs.get(0);
+			String toDoc = matchedDocs.get(1);
+
+			logs.logging("INFO", "From Document: " + fromDoc);
+			logs.logging("INFO", "To Document: " + toDoc);
+
+			// Extract the numeric portion only
+			String fromNum = fromDoc.split("/")[1];
+			String toNum = toDoc.split("/")[1];
+
+			int startNum = Integer.parseInt(fromNum);
+			int endNum = Integer.parseInt(toNum);
+
+			ArrayList<String> generatedList = new ArrayList<>();
+			String prefix = fromDoc.split("/")[0];
+			String session = fromDoc.split("/")[2];
+
+			// Generate complete range
+			for (int i = startNum; i <= endNum; i++) {
+				generatedList.add(prefix + "/" + String.format("%05d", i) + "/" + session);
+			}
+
+			VariableHandler.setAllDocumentNumber(generatedList);
+
+			logs.logging("INFO", "Generated Document Numbers:");
+			for (String num : generatedList) {
+				System.out.println(num);
+			}
+
+		} else {
+			logs.logging("INFO", "Unable to extract valid From-to format from alert text.");
+		}
 	}
 
 	/**
@@ -645,23 +646,17 @@ public class InspectionDocumentFunctions {
 			commonFunc.hardWait(2000);
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
+				webDB.clickAnElement(InspectionDocumentsLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 				if (flag) {
 					commonFunc.hardWait(3000);
-					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"));
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-					commonFunc.hardWait(3000);
-					logs.logging("INFO", "PASSED");
-					flag = commonFunc.logoutUser();
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+							System.getProperty("HariUsername"));
 				}
 			}
 		}
@@ -1020,9 +1015,9 @@ public class InspectionDocumentFunctions {
 			commonFunc.hardWait(2000);
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
+				webDB.clickAnElement(InspectionDocumentsLocators.OkButtonFwdForQcDocument, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);

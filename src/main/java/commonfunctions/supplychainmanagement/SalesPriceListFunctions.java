@@ -89,7 +89,7 @@ public class SalesPriceListFunctions {
 		clickPlusButton();
 		insertLocationLov(commonFunc.getDataFromTestDataSheet("LOCATION100"));
 		insertPricelistPrefix(commonFunc.getDataFromTestDataSheet("Prefix"));
-		insertCustomerField(commonFunc.getDataFromTestDataSheet("CUSTOMER_ID"));
+		insertCustomerField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
@@ -100,14 +100,14 @@ public class SalesPriceListFunctions {
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -143,7 +143,7 @@ public class SalesPriceListFunctions {
 		clickPlusButton();
 		insertLocationLov(commonFunc.getDataFromTestDataSheet("LOCATION100"));
 		insertPricelistPrefix(commonFunc.getDataFromTestDataSheet("Prefix"));
-		insertCustomerField(commonFunc.getDataFromTestDataSheet("CUSTOMER_ID"));
+		insertCustomerField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
@@ -154,14 +154,14 @@ public class SalesPriceListFunctions {
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -196,7 +196,7 @@ public class SalesPriceListFunctions {
 		clickPlusButton();
 		insertLocationLov(commonFunc.getDataFromTestDataSheet("LOCATION100"));
 		insertPricelistPrefix(commonFunc.getDataFromTestDataSheet("Prefix"));
-		insertCustomerField(commonFunc.getDataFromTestDataSheet("CUSTOMER_ID"));
+		insertCustomerField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
@@ -207,14 +207,14 @@ public class SalesPriceListFunctions {
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -253,7 +253,7 @@ public class SalesPriceListFunctions {
 		clickPlusButton();
 		insertLocationLov(commonFunc.getDataFromTestDataSheet("LOCATION100"));
 		insertPricelistPrefix(commonFunc.getDataFromTestDataSheet("Prefix"));
-		insertCustomerField(commonFunc.getDataFromTestDataSheet("CUSTOMER_ID"));
+		insertCustomerField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
@@ -264,14 +264,14 @@ public class SalesPriceListFunctions {
 		PriceListDataBaseValidation();
 		clickPostButton();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
 		flag = commonFunc.logoutUser();
 
 		// amd the record
@@ -292,14 +292,14 @@ public class SalesPriceListFunctions {
 		getPriceListDocumentno();
 		clickPostButton();
 		verifyWaitingForApproval1();
-		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+//				"AshokUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
 		flag = commonFunc.logoutUser();
 
 		return flag;
@@ -334,7 +334,7 @@ public class SalesPriceListFunctions {
 		clickPlusButton();
 		insertLocationLov(commonFunc.getDataFromTestDataSheet("LOCATION100"));
 		insertPricelistPrefix(commonFunc.getDataFromTestDataSheet("Prefix"));
-		insertCustomerField(commonFunc.getDataFromTestDataSheet("CUSTOMER_ID"));
+		insertCustomerField(commonFunc.getDataFromTestDataSheet("CustomerName"));
 		insertItemField();
 		insertSalesPrice(Sales_Value, Disc_Value);
 		clickSaveButton();
@@ -376,6 +376,11 @@ public class SalesPriceListFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 			}
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPriceListDocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HodUsername"));
 			assertTrue(flag);
 		} else {
 			flag = false;

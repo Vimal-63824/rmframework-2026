@@ -174,6 +174,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 		Grnfunc.verifyCreationOfDirectGRNMaterialRateContractDifferentStockAndSupplierUOM();
 
 	}
+	
 
 	/**
 	 * Create Request For Quotation from approved purchase request lines

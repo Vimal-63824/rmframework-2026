@@ -473,9 +473,9 @@ public class CustomerScheduleFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
@@ -1786,19 +1786,22 @@ public class CustomerScheduleFunctions {
 			}
 		}
 		VariableHandler.setMultipleItems(ArrayList);
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
-				System.getProperty("AshokUsername"));
-		approvalFunc.navigateToApprovals();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"),
+//				System.getProperty("AshokUsername"));
+//		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= ArrayList.size(); i++) {
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultipleItems().get(i - 1));
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleItems().get(i - 1));
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultipleItems().get(i - 1));
+			commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getMultipleItems().get(i - 1), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			excelUtils.writeDataInExcel(CSFilepath, SheetName, i + 3, 4, VariableHandler.getMultipleItems().get(i - 1));
 			excelUtils.writeDataInExcel(CSFilepath, SheetName, i + 3, 6, VariableHandler.getMultipleItems().get(i - 1));
 		}
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
-				System.getProperty("AdminUsername"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1834,7 +1837,7 @@ public class CustomerScheduleFunctions {
 				clickAddButton();
 				clickCataloguePriceButton();
 				clickAddButtonCatalogueScreen();
-				commonFunc.hardWait(2000);
+				commonFunc.hardWait(1000);
 				insertItemCataloguePrice(ITEM_ID);
 				insertCatalogueAgainstToItem(CATALOG_NAME);
 				insertCurcyAgainstToItem(CURCY);
@@ -1844,8 +1847,9 @@ public class CustomerScheduleFunctions {
 				getCataloguePriceDocumentno(MultiCatalogPriceDoc);
 				commonFunc.checkRefreshCellsDisappear();
 				clickCPPostButton();
-//				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkRefreshCellsDisappear();
 				verifyWaitingForApproval1(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(CustomerScheduleLocators.CatalogFindButton, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(CustomerScheduleLocators.CatalogFindButton, ElementType.Xpath);
@@ -1855,17 +1859,20 @@ public class CustomerScheduleFunctions {
 			}
 		}
 		VariableHandler.setMultipleCatalogDocs(MultiCatalogPriceDoc);
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
-				"HariUsername");
-		approvalFunc.navigateToApprovals();
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
 		for (int i = 1; i <= MultiCatalogPriceDoc.size(); i++) {
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleCatalogDocs().get(i - 1));
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultipleCatalogDocs().get(i - 1));
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getMultipleCatalogDocs().get(i - 1));
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getMultipleCatalogDocs().get(i - 1));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getMultipleCatalogDocs().get(i - 1), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
-				"AdminUsername");
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
 		addCustomerScheduleHeaderDetails(Location, Prefix, Narration);
@@ -1887,10 +1894,10 @@ public class CustomerScheduleFunctions {
 				addLineWiseCustomer(CUST_ID);
 				addItemsInCS(ITEM_ID);
 				chooseScheduleType(SCH_TYPE);
-				addQtyInCS(FIRM_QTY, FIRM_TO_DATE, BKT_TYPE);
+				addQtyInCS(FIRM_QTY, Today, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
-				commonFunc.hardWait(7000);
+//				commonFunc.hardWait(7000);
 			}
 		}
 		clickGenerateScheduleButton();
@@ -2053,6 +2060,7 @@ public class CustomerScheduleFunctions {
 		flag = webDB.waitForElement(SalesCatalogueLocators.Savebutton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesCatalogueLocators.Savebutton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
 			if (flag) {
 				logs.logging("INFO", "Successfully Clicked a SaveButton");
@@ -2082,14 +2090,14 @@ public class CustomerScheduleFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void getCataloguePriceDocumentno(ArrayList<String> DocNum) {
-		commonFunc.hardWait(2000);
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(SalesCatalogueLocators.DocumentNoField(1), ElementType.Xpath);
 		if (flag) {
 			String CatalogDocNo = webDB.getTextFromElement(SalesCatalogueLocators.DocumentNoField(1),
 					ElementType.Xpath);
 			VariableHandler.setCatalogDocno(CatalogDocNo);
 			logs.logging("info", "Get Price List Document no " + VariableHandler.getCatalogDocno());
-			commonFunc.hardWait(2000);
+			commonFunc.hardWait(1000);
 			DocNum.add(VariableHandler.getCatalogDocno());
 		}
 		assertTrue(flag);
@@ -2102,9 +2110,9 @@ public class CustomerScheduleFunctions {
 	 */
 	public void clickCPPostButton() {
 //		commonFunc.hardWait(2000);
-		flag = webDB.clickAnElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
+		flag = webDB.waitForElement(SalesCatalogueLocators.PostButtonField(1), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
+			webDB.clickAnElement(SalesCatalogueLocators.PostButtonField(1), ElementType.Xpath);
 			logs.logging("INFO ", "Successfully Click The Post Button ");
 		}
 		assertTrue(flag);
