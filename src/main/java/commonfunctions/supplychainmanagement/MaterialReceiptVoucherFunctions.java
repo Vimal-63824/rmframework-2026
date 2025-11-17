@@ -673,8 +673,11 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 
 	public void verifyToPostWithOrWithoutLocator() {
-		if (webDB.waitForElement(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath)) {
-			webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+//		if (webDB.waitForElementUntilGivenTime(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath,
+//				5)) {
+		if (webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath)) {
+//			webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.ReceiptLocatorfield, ElementType.Xpath);
 			verifyReceiptLocatorsAndPutAway();
 		} else {
 			System.out.println("Non Locator Item");

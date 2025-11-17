@@ -626,7 +626,7 @@ public class GrnPageFunctions {
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-					commonFunc.getDataFromTestDataSheet("AshokValue"));
+					commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.hardWait(2000);
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
@@ -638,14 +638,9 @@ public class GrnPageFunctions {
 				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 				if (flag) {
 					commonFunc.hardWait(3000);
-					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"));
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getGrnDocNumber());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getGrnDocNumber());
-					commonFunc.hardWait(3000);
-					flag = commonFunc.logoutUser();
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+							VariableHandler.getGrnDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				}
 
 			}
@@ -821,8 +816,8 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyReturnToGrnPageHeaderStatus() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		flag = webDB.waitForElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
 		if (flag) {
@@ -2647,8 +2642,8 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("ControlBU"),
 				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
 		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToMaterialReceiptVoucher();
 		if (!ApplicationcontrolCreationMrv.equals(commonFunc.getDataFromTestDataSheet("NotCheck"))
 				&& ApplicationControlPostMrv.equals(commonFunc.getDataFromTestDataSheet("NotCheck"))) {
