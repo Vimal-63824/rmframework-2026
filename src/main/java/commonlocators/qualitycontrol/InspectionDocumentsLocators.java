@@ -65,7 +65,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String InspectionDocumentNumberLov = "//*[@id='P2017131020_QC_NO_1_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String InspectionDocumentNumberDrillDown = "//*[@id=\"11575179625135231735_orig\"]/tbody/tr[2]/td[7]";
+	public static final String InspectionDocumentNumberDrillDown = "//*[@id=\"12244181022684612374_orig\"]/tbody/tr[2]/td[7]/a";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
 	/** @locatorType Xpath */
@@ -85,4 +85,6 @@ public class InspectionDocumentsLocators {
 	
 	/** @locatorType Xpath */
 	public static final String RejtQty = "//input[@id=\"P20171310201_TQHD_REJ_QTY\"]";
+	/** @locatorType Xpath */
+	public static final String OkButtonFwdForQcDocument = "//button[@id='B2324734232804544393']";
 }
