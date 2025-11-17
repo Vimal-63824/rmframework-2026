@@ -75,7 +75,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSHsnCodeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[27]";
 	/** @Locator Xpath */
-	public static final String CSHsnCodeLov = "//button[@id='C5959793597601090024_lov_btn']";
+	public static final String CSHsnCodeLov = "//input[@data-testid='COLN_HSN_CODE']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String CSHsnCodeInputField = "//input[@data-testid='COLN_HSN_CODE']";
 	/** @Locator Xpath */

@@ -7,7 +7,7 @@ public class SalesCatalogueLocators {
 	/** @locatorType Xpath */
 	public static final String AddButtonCatalogue = "//span[@class='t-Icon fa fa-plus']";
 	/** @locatorType Xpath */
-	public static final String CatalogueItemLov = "//BUTTON[@id='C1129614657095049809_lov_btn']";
+	public static final String CatalogueItemLov = "//input[@data-testid='SCTLN_PROD_ID']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String CatalogueItemField(int i) {
@@ -20,11 +20,11 @@ public class SalesCatalogueLocators {
 	/** @locatorType Xpath */
 	public static final String CatalogueField = "//*[@id='sales_price_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[6]";
 	/** @locatorType Xpath */
-	public static final String CatalogueFieldLov = "//button[@id='C1129623687949049827_lov_btn']";
+	public static final String CatalogueFieldLov = "//input[@data-testid='Catalog_Field']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String CurcyField = "//*[@id='sales_price_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String CurcyFieldLov = "//button[@id='C1129621731141049824_lov_btn']";
+	public static final String CurcyFieldLov = "//input[@data-testid='SCTLN_CURCY_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PriceField = "//input[@data-testid='SCTLN_PRICE']";
 
@@ -63,7 +63,7 @@ public class SalesCatalogueLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String EffFromDateClick = "//input[@id='C1129619691772049818_input']";
+	public static final String EffFromDateClick = "//input[@id='C1798236075098082219_input']";
 
 	/** @locatorType Xpath */
 	public static final String EffToDateField(int i) {
@@ -71,15 +71,20 @@ public class SalesCatalogueLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String EffToDateClick = "//input[@id='C1129620739968049819_input']";
+	public static final String EffToDateClick = "//input[@id='C1798237123294082220_input']";
 	/** @locatorType Xpath */
-	public static final String Savebutton = "//button[@id='B1253631565513396533']";
+	public static final String Savebutton = "//button[@data-testid='save']";
 	/** @locatorType Xpath */
 	public static final String PostButton = "#sales_price_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr.a-GV-row.is-selected > td:nth-child(15) > a";
 
 	/** @locatorType Xpath */
 	public static final String DocumentNoField(int i) {
 		return "//*[@id='sales_price_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[1] ";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PostButtonField(int i) {
+		return "//*[@id='sales_price_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[15]/a ";
 	}
 
 	/** @locatorType Xpath */
