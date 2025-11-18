@@ -1472,8 +1472,8 @@ public class GrnPageFunctions {
 	 */
 	public void verifyGrnPODomesticServiceSimilarUOMfromPo() {
 		POfunc.verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("DirectPOSerUD"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -1481,7 +1481,11 @@ public class GrnPageFunctions {
 		supplierBillNumberAndDcNumber();
 		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOSerUD"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyReturnToGrnPageHeaderStatus();
 		assertTrue(flag);
 	}
@@ -1499,18 +1503,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(
 				webDB.getDataFromProperties("DirectPORateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPORateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPORateGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPORateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
@@ -1529,18 +1536,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial(
 				webDB.getDataFromProperties("DirectPORateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPORateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPORateGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPORateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPORateGen"));
@@ -1561,18 +1571,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
 		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				webDB.getDataFromProperties("DirectPOMatUD"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOMatUD"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOMatUD"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOMatUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
@@ -1590,18 +1603,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOMatUD"));
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
 		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem(webDB.getDataFromProperties("DirectPOMatUD"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOMatUD"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOMatUD"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOMatUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("DirectPOMatUD"));
@@ -1618,15 +1634,19 @@ public class GrnPageFunctions {
 	public void poToGrnServiceRateContractSameStockAndSupplierUOMWoInspectionPlan() throws IOException {
 		POfunc.verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceTypeWithIgstSupplier(
 				webDB.getDataFromProperties("FreePassUdRateSer"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
 		overAllSaveAndPost(webDB.getDataFromProperties("FreePassUdRateSer"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyReturnToGrnPageHeaderStatus();
 	}
 
@@ -1642,18 +1662,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPoPriceListGen"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlan(
 				webDB.getDataFromProperties("DirectPoPriceListGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPoPriceListGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPoPriceListGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1672,18 +1695,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
 		POfunc.verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItem(
 				webDB.getDataFromProperties("DirectPODifUOMGENUD"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1704,18 +1730,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
 		POfunc.verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				webDB.getDataFromProperties("DirectPODifUOMGENUD"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPODifUOMGENUD"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1736,8 +1765,8 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
 				webDB.getDataFromProperties("DifferentUOMRateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -1747,7 +1776,11 @@ public class GrnPageFunctions {
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUOMRateGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1767,19 +1800,20 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialForDifferentUom(
 				webDB.getDataFromProperties("DifferentUOMRateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUOMRateGen"));
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2141,8 +2175,8 @@ public class GrnPageFunctions {
 	public void poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan() throws IOException {
 		POfunc.verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceType(
 				webDB.getDataFromProperties("DirectPoPriceListSer"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -2150,7 +2184,11 @@ public class GrnPageFunctions {
 		supplierBillNumberAndDcNumber();
 		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListSer"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyReturnToGrnPageHeaderStatus();
 	}
 
@@ -2162,26 +2200,29 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithoutInspectionPlan() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPoPriceListMat"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPoPriceListGen"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
-				webDB.getDataFromProperties("DirectPoPriceListMat"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+				webDB.getDataFromProperties("DirectPoPriceListGen"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPoPriceListGen"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListMat"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPoPriceListMat"));
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListGen"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPoPriceListGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectPoPriceListMat"));
+				webDB.getDataFromProperties("DirectPoPriceListGen"));
 	}
 
 	/**
@@ -2196,18 +2237,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUompriceListGen"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForDifferentUom(
 				webDB.getDataFromProperties("DifferentUompriceListGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUompriceListGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUompriceListGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUompriceListGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2226,18 +2270,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DifferentUompriceListGen"));
 		POfunc.verifyDirectPODomesticDifferentUomPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
 				webDB.getDataFromProperties("DifferentUompriceListGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUompriceListGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUompriceListGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DifferentUompriceListGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2258,18 +2305,21 @@ public class GrnPageFunctions {
 		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemWithoutQualityEnabled(
 				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2292,18 +2342,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithOutQuality(
 				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2324,8 +2377,8 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithoutQualityRateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled(
 				webDB.getDataFromProperties("POwithoutQualityRateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -2335,7 +2388,11 @@ public class GrnPageFunctions {
 		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithoutQualityRateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("POwithoutQualityRateGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithoutQualityRateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2356,18 +2413,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithoutQualityRateGen"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialWithoutQualityEnabled(
 				webDB.getDataFromProperties("POwithoutQualityRateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithoutQualityRateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("POwithoutQualityRateGen"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithoutQualityRateGen"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2388,18 +2448,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanWithoutQualityEnabled(
 				webDB.getDataFromProperties("PriceListGenWOQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PriceListGenWOQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PriceListGenWOQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
@@ -2418,18 +2481,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialTypeWithoutQualityEnabled(
 				webDB.getDataFromProperties("PriceListGenWOQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PriceListGenWOQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PriceListGenWOQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
@@ -2448,18 +2514,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
 		POfunc.verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemWithoutQualityEnabled(
 				webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2481,18 +2550,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
 		POfunc.verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnDifferentUomGenWOQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2513,19 +2585,22 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
 				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		commonFunc.hardWait(4000);
+		commonFunc.hardWait(1000);
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2546,19 +2621,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialForDifferentUom(
 				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2579,18 +2656,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForDifferentUom(
 				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2610,18 +2690,21 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		POfunc.verifyDirectPODomesticDifferentUomPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
 				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		multipleLotAndSerialItem(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListMatWQE"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2758,25 +2841,29 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomFreePassItemInterstate() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("FreePassUdGen"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("FreePassUdGen"));
-		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemWithInterstateSupplier(
-				webDB.getDataFromProperties("FreePassUdGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemWithoutQualityEnabled(
+				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Location14"));
-		multipleLotAndSerialItem(webDB.getDataFromProperties("FreePassUdGen"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassUdGen"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassUdGen"));
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("FreePassUdGen"));
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		assertTrue(flag);
 	}
 
@@ -2790,24 +2877,29 @@ public class GrnPageFunctions {
 	 */
 
 	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomFreepassItemIgst() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("FreePassUdGen"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("FreePassUdGen"));
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithFreePassItemIgstSupplier(
-				webDB.getDataFromProperties("FreePassUdGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithOutQuality(
+				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		multipleLotAndSerialItem(webDB.getDataFromProperties("FreePassUdGen"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassUdGen"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassUdGen"));
+		overAllSaveAndPost(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("FreePassUdGen"));
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("POwithGrnWithoutQualityEnabled"));
 		assertTrue(flag);
 	}
 
@@ -2818,17 +2910,20 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyGrnPODomesticServiceSimilarUOMfromPoWithIgstSupplier() {
-		POfunc.verifyDirectPODomesticServiceSimilarUOMWithIgstSupplier(
-				webDB.getDataFromProperties("FreePassUdService"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		POfunc.verifyDirectPODomesticServiceSimilarUOMMultiple(webDB.getDataFromProperties("DirectPOSerUD"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassUdService"));
-		waitingForApproval();
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOSerUD"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyReturnToGrnPageHeaderStatus();
 		assertTrue(flag);
 	}
@@ -2843,10 +2938,10 @@ public class GrnPageFunctions {
 	public void poToGrnGeneralRateContractSameStockAndSupplierUOMGeneralTypeFreePass() throws Exception {
 		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("FreePassUDRatContract"));
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("FreePassUDRatContract"));
-		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutGeneralTypeFreePass(
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(
 				webDB.getDataFromProperties("FreePassUDRatContract"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -2855,7 +2950,11 @@ public class GrnPageFunctions {
 		multipleLotAndSerialItem(webDB.getDataFromProperties("FreePassUDRatContract"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("FreePassUDRatContract"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassUDRatContract"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2873,10 +2972,10 @@ public class GrnPageFunctions {
 	public void poToGrnlRateContractSameStockAndSupplierUOMWithFreePassIgstSupplier() throws Exception {
 		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("FreePassUDRatContract"));
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("FreePassUDRatContract"));
-		POfunc.verifyDirectPoWithRateContractItemWithAndWithFreePassIgstSupplier(
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialWithoutQualityEnabled(
 				webDB.getDataFromProperties("FreePassUDRatContract"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -2885,7 +2984,11 @@ public class GrnPageFunctions {
 		multipleLotAndSerialItem(webDB.getDataFromProperties("FreePassUDRatContract"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("FreePassUDRatContract"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassUDRatContract"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -2901,25 +3004,28 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void poToGrnGeneralPriceListSameStockAndSupplierUOMWithandWithFreePassIgstSupplier() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("FreePassGenPrice"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("FreePassGenPrice"));
-		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithFreePassIgstSupplier(
-				webDB.getDataFromProperties("FreePassGenPrice"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PriceListGenWOQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanWithoutQualityEnabled(
+				webDB.getDataFromProperties("PriceListGenWOQE"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		multipleLotAndSerialItem(webDB.getDataFromProperties("FreePassGenPrice"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PriceListGenWOQE"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassGenPrice"));
-		waitingForApproval();
-		verifyReturnToGrnPageHeaderStatus();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassGenPrice"));
+		overAllSaveAndPost(webDB.getDataFromProperties("PriceListGenWOQE"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("FreePassGenPrice"));
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 	}
 
 	/**
@@ -2930,24 +3036,28 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void poToGrnMaterialPriceListSameStockAndSupplierUOMWithandWithFreePassIgstSupplier() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("FreePassMatPrice"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("FreePassMatPrice"));
-		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
-				webDB.getDataFromProperties("FreePassMatPrice"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PriceListGenWOQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
+		POfunc.verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialTypeWithoutQualityEnabled(
+				webDB.getDataFromProperties("PriceListGenWOQE"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		multipleLotAndSerialItem(webDB.getDataFromProperties("FreePassMatPrice"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PriceListGenWOQE"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassMatPrice"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassMatPrice"));
+		overAllSaveAndPost(webDB.getDataFromProperties("PriceListGenWOQE"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
-		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("FreePassMatPrice"));
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PriceListGenWOQE"));
 	}
 
 	/**
@@ -2958,17 +3068,21 @@ public class GrnPageFunctions {
 	 * @throws IOException
 	 */
 	public void poToGRNServicePriceListSameStockAndSupplierUOMWOWithFreePassAndIgstSupplier() throws IOException {
-		POfunc.verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceTypeForFreePassAndIgstSupplier(
-				webDB.getDataFromProperties("FreePassSerPrice"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		POfunc.verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceType(
+				webDB.getDataFromProperties("DirectPoPriceListSer"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
 		overAllSaveAndPost(webDB.getDataFromProperties("FreePassSerPrice"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyReturnToGrnPageHeaderStatus();
 	}
 
@@ -2982,27 +3096,30 @@ public class GrnPageFunctions {
 	 */
 	public void poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralForFreePassItem()
 			throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
-				webDB.getDataFromProperties("DirectPOWithFreePassItem"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		commonFunc.hardWait(4000);
-		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+		commonFunc.hardWait(1000);
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		assertTrue(flag);
 	}
 
@@ -3016,12 +3133,12 @@ public class GrnPageFunctions {
 	 */
 	public void poToGrnMaterialRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralForFreePassItem()
 			throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialForDifferentUom(
-				webDB.getDataFromProperties("DirectPOWithFreePassItem"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
@@ -3029,14 +3146,18 @@ public class GrnPageFunctions {
 		supplierBillNumberAndDcNumber();
 		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		commonFunc.hardWait(4000);
-		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectPOWithFreePassItem"));
+				webDB.getDataFromProperties("PoToGrnRateContractGenWQE"));
 	}
 
 	/**
@@ -3047,26 +3168,29 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void poToGrnGeneralPriceListDifferentStockAndSupplierUOMForFreePassItem() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		POfunc.verifyDirectPODomesticPricelistItemWithItemGeneralTypeForFreePassItem(
-				webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+		overAllSaveAndPost(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 	}
 
 	/**
@@ -3077,26 +3201,29 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void poToGrnMaterialPriceListDifferentStockAndSupplierUOMForFreePassItem() throws Exception {
-		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
-		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		POfunc.verifyDirectPODomesticPricelistItemWithMaterialTypeForFreePassItem(
-				webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+		multipleLotAndSerialItem(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		lotSerialQtyApportion();
-		overAllSaveAndPost(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
-		waitingForApproval();
-		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+		overAllSaveAndPost(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 		afterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("DirectPOPriceListFreePassGRN"));
+				webDB.getDataFromProperties("PotoGRNDiffUOMPriceListGenWQE"));
 	}
 
 	/**
@@ -3373,20 +3500,23 @@ public class GrnPageFunctions {
 	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQty()
 			throws Exception {
 		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(
-				webDB.getDataFromProperties("DirectPORateGen"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+				webDB.getDataFromProperties("ToleranceQty"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNoAndItemWise();
 		verifyToEnteredToleranceQty();
 		clickSelectAllButtonForExcessQty();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPORateGen"));
-		lotSerialQtyApportion();
-		overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectPORateGen"));
-		waitingForApproval();
+//		multipleLotAndSerialItem(webDB.getDataFromProperties("DirectPORateGen"));
+//		lotSerialQtyApportion();
+		overAllSaveAndPostForExcess(webDB.getDataFromProperties("ToleranceQty"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		assertTrue(flag);
 	}
@@ -3590,14 +3720,13 @@ public class GrnPageFunctions {
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLinewiseCancelled()
 			throws IOException {
 		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem(webDB.getDataFromProperties("ToleranceQty"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		grnDocumentNumber();
 		verifyToClickLinewiseCancelled();
 		verifyToCheckLinewiseStatus();
@@ -3697,14 +3826,13 @@ public class GrnPageFunctions {
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithDocumentwiseCancelled()
 			throws IOException {
 		POfunc.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem(webDB.getDataFromProperties("ToleranceQty"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		clickPendingPoAndSearchPoNo();
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		grnDocumentNumber();
 		verifyToClickDocumentwiseCancelled();
 		verifyToCheckDocumentwiseStatus();
@@ -3876,23 +4004,27 @@ public class GrnPageFunctions {
 	 */
 	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost()
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("POSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		DirectGrnFunc.verifyGrnAddLineDetails(webDB.getDataFromProperties("ToleranceQty"));
-		DirectGrnFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ToleranceQty"));
-		lotSerialQtyApportion();
+		// DirectGrnFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ToleranceQty"));
+		// lotSerialQtyApportion();
 		verifyToAddChargeItem();
 		clickChargeButtonClosed();
 		verifyToClickLandedCostField();
 		clickChargeButtonClosed();
 		clickIncludeCharge();
 		overAllSaveAndPostForExcess(webDB.getDataFromProperties("ToleranceQty"));
-		waitingForApproval();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		assertTrue(flag);
 	}
@@ -5359,6 +5491,40 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Methods Is Used for Approve the Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApproval(String FrwdPerson) {
+		commonFunc.hardWait(500);
+		commonFunc.checkRefreshCellsDisappear();
+		if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.DocAprovalIfrmae, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval, FrwdPerson);
+			commonFunc.hardWait(500);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(500);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.logoutUser();
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 
 }

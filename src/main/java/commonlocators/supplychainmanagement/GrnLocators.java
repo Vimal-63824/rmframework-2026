@@ -299,7 +299,7 @@ public class GrnLocators {
 	public static final String GrnLineWiseDeleteButton = "//span[@title='Delete']";
 	// span[@title="Delete"]
 	/** @locatorType Xpath */
-	public static final String GrnLineWiseStatus = "//*[@id=\"6849051547812470028_orig\"]/tbody/tr[2]/td[92]/div";
+	public static final String GrnLineWiseStatus= "//*[@id=\"7517972640098794132_orig\"]/tbody/tr[2]/td[92]/div";
 	/** @locatorType Xpath */
 	public static final String GrnDocumentwiseCancelButton = "//button[@data-testid='Cancel_GRN']";
 	/** @locatorType Xpath */
