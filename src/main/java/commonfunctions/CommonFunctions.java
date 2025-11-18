@@ -155,7 +155,11 @@ public class CommonFunctions {
 	 * @throws InterruptedException
 	 */
 	public void validCommonLogin(String Username, String Password, String... Name) {
-		enterUrl();
+		if (Username.equals(System.getProperty("ErpAdmin")) || Username.equals(System.getProperty("DevaUserName"))) {
+			enterOldUrl();
+		} else {
+			enterUrl();
+		}
 		flag = webDB.waitForElement(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
@@ -1697,6 +1701,9 @@ public class CommonFunctions {
 		webDB.switchToDefaultContent();
 		if (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)) {
 			VariableHandler.setApprovalFlag(true);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			return true;
 		} else if (webDB.waitForElement(ApprovalPageLocators.ApprovalTitle, ElementType.Xpath)) {
 			VariableHandler.setApprovalFlag(false);
@@ -2602,7 +2609,7 @@ public class CommonFunctions {
 		assertTrue(flag);
 		RestUtils.resetRestAssured();
 	}
-	
+
 	/**
 	 * This method used to approve Item Documents documents using API
 	 * 
@@ -2616,11 +2623,12 @@ public class CommonFunctions {
 	public void approveItemIdDocuments(String BU, String ItemId, String EmpId, String Unit, String User) {
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
-		restApi.setQueryParam("p_item_id", ItemId);
+		restApi.setQueryParam("p_doc_no", "");
 		restApi.setQueryParam("p_from_empid", EmpId);
 		restApi.setQueryParam("p_plnt", Unit);
 		restApi.setQueryParam("p_user", User);
 		restApi.setQueryParam("p_wfdc_act", "A");
+		restApi.setQueryParam("p_item_id", ItemId);
 		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
 		String Value = restApi.response.getHeader("p_out_msg");
 		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
@@ -3072,5 +3080,17 @@ public class CommonFunctions {
 	public void navigateInspectionPlan() {
 		navigateToSearchTab(webDB.getDataFromProperties("InspectionPlanScreen"),
 				InspectionPlanLocators.AddIconInFindPage);
+	}
+
+	/**
+	 * This method used to navigate url that was set in Maven Goal
+	 * 
+	 * @author Deepan-GWL
+	 * @return boolean
+	 */
+	public boolean enterOldUrl() {
+		webDB.enterURL(System.getProperty("OldJUrl"));
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
+		return flag;
 	}
 }

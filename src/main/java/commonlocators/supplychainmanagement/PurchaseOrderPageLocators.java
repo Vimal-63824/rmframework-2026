@@ -131,7 +131,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemChargesTab = "//label[@for='P161513106041_TAB_LINE_1']";
 	/** @locatorType Xpath */
-	public static final String AddItemCharges = "//button[@id='B1477689169249448085']";
+	public static final String AddItemCharges = "//button[@id='B2146610261535772189']";
 	/** @locatorType Xpath */
 	public static final String ChargeItemTable = "//tbody/tr[@data-id='t1000']/td[3]";
 	/** @locatorType Xpath */
@@ -143,7 +143,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String ChargeItemButton = "//tbody/tr[@data-id='t1000']/td[3]//button";
 	/** @locatorType Xpath */
-	public static final String ChargesTickIcon = "//button[@id='B1477689444134448093']";
+	public static final String ChargesTickIcon = "//button[@id='B2146610536420772197']";
 	/** @locatorType Xpath */
 	public static final String IncludeCharges = "//button[@data-testid='Include_Charge']";
 	/** @locatorType Xpath */

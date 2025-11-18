@@ -778,7 +778,7 @@ public class MRPFunctions {
 			Cost = "10";
 		}
 		try {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
 			commonFunc.navigateSalesOrderPage();
 			saleOrderFunc.verifyClickAddButtonInSo();

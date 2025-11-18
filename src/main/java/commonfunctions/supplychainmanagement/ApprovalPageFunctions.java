@@ -221,7 +221,8 @@ public class ApprovalPageFunctions {
 	 * @param user
 	 */
 	public void waitingForApprovalWithFordwarder(String user) {
-		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
+		webDB.waitUntilElementToNotBeStale(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 15);
 		if (flag) {
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);

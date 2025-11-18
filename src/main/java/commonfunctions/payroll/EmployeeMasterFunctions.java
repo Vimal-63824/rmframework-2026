@@ -47,7 +47,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationParticularsDetails() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
@@ -82,7 +82,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationQualificationSkillDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -132,7 +132,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAllowanceValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -180,7 +180,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationSalaryDetailsAdjustmentValues() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -231,7 +231,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationLeaveDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -319,7 +319,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyProfileImageAndSignUploadWithAttachments() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -371,7 +371,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationAdditionalInfoDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -458,7 +458,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyCheckEmployeeCreationDependentDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -503,7 +503,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyUpdateEmployeeParticularDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -537,7 +537,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
@@ -580,7 +580,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateAddressDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -614,7 +614,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
@@ -648,7 +648,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateDependentDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -682,7 +682,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
@@ -719,7 +719,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateContactDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -753,7 +753,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
@@ -788,7 +788,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateQualificationDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -822,7 +822,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
@@ -859,7 +859,7 @@ public class EmployeeMasterFunctions {
 	public boolean verifyEmployeeCreationUpdateSkillsDetails() {
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				commonFunc.navigateEmployeeMasterScreenInPayroll();
 				clickAddIconAddEmployee();
@@ -893,7 +893,7 @@ public class EmployeeMasterFunctions {
 				commonFunc.logoutUser();
 				VariableHandler.setAddEmployeDefaultExecution(true);
 			}
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
@@ -925,7 +925,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeHistory() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
@@ -972,7 +972,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationEmployeeProfileReverse() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
@@ -1021,7 +1021,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeMigrationWithTemplates() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeMigration();
@@ -1048,7 +1048,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeDetailsMigrationWithTemplates() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAndNavigateEmployeeDetailsMigration();
@@ -1077,7 +1077,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationForwardApproval() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
@@ -1110,7 +1110,7 @@ public class EmployeeMasterFunctions {
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
@@ -1135,7 +1135,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationReturnApproval() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
@@ -1168,7 +1168,7 @@ public class EmployeeMasterFunctions {
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 						"HariUsername");
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
@@ -1194,7 +1194,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationProbationComplete() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			clickAddIconAddEmployee();
@@ -1243,7 +1243,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public boolean verifyEmployeeCreationFindWithLineWiseRecord() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("loginPassword"),
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
 					"HariUsername");
 			commonFunc.navigateEmployeeMasterScreenInPayroll();
 			findWithZone(commonFunc.getDataFromTestDataSheet("Emp_GeneralZone"));
@@ -2404,6 +2404,7 @@ public class EmployeeMasterFunctions {
 	public boolean checkSignImageUploadedWithClearButton() {
 		webDB.switchToDefaultContent();
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkSuccessToastMessageDisappear();
 		flag = webDB.waitForClickElement(EmployeeMasterLocators.AddEmp_SignUploadbtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_SignUploadbtn, ElementType.Xpath);
@@ -3447,12 +3448,12 @@ public class EmployeeMasterFunctions {
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentDOBData,
 				EmployeeMasterLocators.UpdateEmp_DependentDOBInput, DOB);
 		logs.logging("INFo", "DOB Entered: " + DOB);
-		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentAadharData,
-				EmployeeMasterLocators.UpdateEmp_DependentAadharInput, Aadhar);
-		logs.logging("INFo", "Aadhar No Entered: " + Aadhar);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentEmailData,
 				EmployeeMasterLocators.UpdateEmp_DependentEmailInput, Email);
 		logs.logging("INFo", "Email Entered: " + Email);
+		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentAadharData,
+				EmployeeMasterLocators.UpdateEmp_DependentAadharInput, Aadhar);
+		logs.logging("INFo", "Aadhar No Entered: " + Aadhar);
 		commonPayrollFunc.addDetailInTableWithoutLovButton(EmployeeMasterLocators.UpdateEmp_DependentContactData,
 				EmployeeMasterLocators.UpdateEmp_DependentContactInput, Contact);
 		logs.logging("INFo", "Contact Entered: " + Contact);

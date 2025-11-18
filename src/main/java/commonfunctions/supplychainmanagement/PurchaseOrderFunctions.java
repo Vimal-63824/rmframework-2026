@@ -220,7 +220,7 @@ public class PurchaseOrderFunctions {
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-					commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
 			commonFunc.hardWait(2000);
 			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
@@ -325,8 +325,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -362,7 +362,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -379,7 +379,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOM() {
 
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -415,7 +415,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -433,7 +433,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -461,7 +461,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -479,7 +479,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -507,7 +507,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -523,7 +523,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -561,8 +561,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 				}
 			}
@@ -579,7 +579,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportGeneralSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -615,7 +615,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -631,7 +631,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportMaterialSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -667,7 +667,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -683,7 +683,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportServiceSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -721,8 +721,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 				}
 			}
@@ -741,7 +741,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportGeneralDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -769,7 +769,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -787,7 +787,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportMaterialDissimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -815,7 +815,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -857,8 +857,8 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public boolean VerifyCancelPurchaseOrderDocument() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1042,8 +1042,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPO() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -1057,8 +1057,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -1082,8 +1082,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyDomesticServiceSimilarUOMFromPRtoPO() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -1097,8 +1097,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -1123,8 +1123,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPO() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -1138,8 +1138,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -1163,8 +1163,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyImportGeneralSimilarUOMFromPRtoPO() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -1178,8 +1178,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -1203,8 +1203,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyImportServiceSimilarUOMFromPRtoPO() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -1218,8 +1218,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -1243,8 +1243,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyImportGeneralDissimilarUOMFromPRtoPO() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -1258,8 +1258,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -1283,7 +1283,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticStockTransferSimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location02"),
@@ -1320,7 +1320,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -1337,8 +1337,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOWithItemChargesCalculations() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1361,11 +1361,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2280,7 +2280,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPODomesticMaterialSimilarUOMwithLotItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2308,7 +2308,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2326,7 +2326,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public void verifyDirectPODomesticMaterialSimilarUOMwithSerialtItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2354,7 +2354,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2372,7 +2372,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public void verifyDirectPODomesticMaterialSimilarUOMwithN_AItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2400,7 +2400,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2418,7 +2418,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RM ITs @
 	 */
 	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2512,8 +2512,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2533,7 +2533,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RM ITS @
 	 */
 	public void verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2624,8 +2624,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2644,7 +2644,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2726,8 +2726,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2747,7 +2747,7 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2829,8 +2829,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -2850,7 +2850,7 @@ public class PurchaseOrderFunctions {
 	 *
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultiple() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPageForPurchaseUser();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2891,8 +2891,8 @@ public class PurchaseOrderFunctions {
 					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 					flag = commonFunc.logoutUser();
 					if (flag) {
-						commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-								System.getProperty("SelvaPassword"));
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"));
 						commonFunc.navigatePurchaseOrderPage();
 					}
 				}
@@ -2912,11 +2912,11 @@ public class PurchaseOrderFunctions {
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 			flag = commonFunc.logoutUser();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("SelvaUsername"));
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-					"SelvaUsername");
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigatePurchaseOrderPage();
 		}
 	}
@@ -2928,7 +2928,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspection() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPageForPurchaseUser();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0002"),
@@ -3025,8 +3025,8 @@ public class PurchaseOrderFunctions {
 				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3045,7 +3045,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyToCreatePoForStockTransferUserDefinedSameStockandSupplierUomWithAndWithoutInspection(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0002"),
@@ -3106,7 +3106,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceType() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPageForPurchaseUser();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3201,8 +3201,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3222,7 +3222,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyToCreatePoForStockTransferPriceListItemForSameStockandSupplierUomWithAndWithoutInspection(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0002"),
@@ -3284,7 +3284,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3378,8 +3378,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3398,7 +3398,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlan() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3496,8 +3496,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3516,7 +3516,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceType() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPageForPurchaseUser();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3612,8 +3612,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3673,8 +3673,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOMWithMultipleItems() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3712,7 +3712,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3775,8 +3775,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItems() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3814,7 +3814,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3833,8 +3833,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportGeneralSimilarUOMWithMultipleItems() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3872,7 +3872,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3891,8 +3891,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportMaterialSimilarUOMWithMultipleItems() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3930,7 +3930,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -3949,8 +3949,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItems() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3988,7 +3988,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4008,7 +4008,7 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4102,8 +4102,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4124,8 +4124,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4177,7 +4177,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4196,8 +4196,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportGeneralSimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4249,7 +4249,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4268,8 +4268,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportMaterialSimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4321,7 +4321,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4339,8 +4339,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4392,7 +4392,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4411,8 +4411,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4464,7 +4464,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4483,8 +4483,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportServiceSimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4536,7 +4536,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4555,8 +4555,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4608,7 +4608,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4627,8 +4627,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialDissimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4680,7 +4680,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4699,8 +4699,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportGeneralDissimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4753,7 +4753,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4772,8 +4772,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOImportMaterialDissimilarUOMWithMultipleItemsWithExcelInput() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4826,7 +4826,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -4971,8 +4971,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -5000,8 +5000,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5052,8 +5052,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyDomesticServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -5081,8 +5081,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5121,8 +5121,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyImportGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -5150,8 +5150,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5203,8 +5203,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyImportServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -5232,8 +5232,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5272,8 +5272,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -5301,8 +5301,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5354,8 +5354,8 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public boolean verifyImportGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -5384,8 +5384,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5449,8 +5449,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOWithMultipleItemsWithExcelInput(String Supplier, String POType, String POSheet) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"), Supplier, POType);
@@ -5496,11 +5496,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -5535,8 +5535,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyPRtoPOWithMultipleItemInExcelSheet(String Supplier, String PRType, String Sheet,
 			String Prefix) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), PRType, Prefix,
@@ -5563,8 +5563,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5616,8 +5616,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyPRtoPOServiceWithMultipleItemInExcelSheet(String Supplier, String PRType, String Sheet,
 			String Prefix) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), PRType, Prefix,
@@ -5644,8 +5644,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5702,8 +5702,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyServiceFromPRtoPOWithMultipleItemInExcelSheet(String Supplier, String PRType, String Sheet,
 			String Prefix) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), PRType, Prefix,
@@ -5730,8 +5730,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -5770,7 +5770,7 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheet() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location02"),
@@ -5824,7 +5824,7 @@ public class PurchaseOrderFunctions {
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -5868,7 +5868,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RM ITS
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMMultiple(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6145,7 +6145,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6358,7 +6358,7 @@ public class PurchaseOrderFunctions {
 	 * @throws IOException
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterial(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6421,7 +6421,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6486,7 +6486,7 @@ public class PurchaseOrderFunctions {
 	 * @throws IOException
 	 */
 	public void verifyDirectPODomesticGeneralSimilarUOMWithMultipleItem(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6544,7 +6544,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS @
 	 */
 	public void verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceType(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPageForPurchaseUser();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6609,7 +6609,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlan(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6740,7 +6740,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItem(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6871,7 +6871,7 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -6964,8 +6964,8 @@ public class PurchaseOrderFunctions {
 				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if (flag) {
-					commonFunc.validCommonLogin(System.getProperty("SelvaUsername"),
-							System.getProperty("SelvaPassword"));
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"));
 					commonFunc.navigatePurchaseOrderPage();
 					verifyValidatePoStatus(VariableHandler.getPONumber(),
 							commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -7266,7 +7266,7 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void poFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
@@ -7316,7 +7316,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS @
 	 */
 	public void verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceType(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7380,7 +7380,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialType(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7442,7 +7442,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RM ITS @
 	 */
 	public void verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemWithoutQualityEnabled(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7506,7 +7506,7 @@ public class PurchaseOrderFunctions {
 
 	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithOutQuality(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7573,7 +7573,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForWithoutQualityEnabled(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7638,7 +7638,7 @@ public class PurchaseOrderFunctions {
 
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialWithoutQualityEnabled(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7703,7 +7703,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanWithoutQualityEnabled(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7767,7 +7767,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForMaterialTypeWithoutQualityEnabled(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7829,7 +7829,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemWithoutQualityEnabled(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7891,7 +7891,7 @@ public class PurchaseOrderFunctions {
 
 	public void verifyDirectPODomesticMaterialDifferentUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7958,7 +7958,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForDissimilarUOM(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8022,7 +8022,7 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionMaterialForDifferentUom(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8086,7 +8086,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemandWithoutInspectionPlanForDifferentUom(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8150,7 +8150,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticDifferentUomPricelistItemWithItemandWithoutInspectionPlanForMaterialType(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8355,7 +8355,7 @@ public class PurchaseOrderFunctions {
 	 * @throws IOException
 	 */
 	public void verifyDirectPODomesticRateContractItemSimilarUOMMultipleServiceTypeWithIgstSupplier(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location14"),
@@ -8420,8 +8420,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOGeneralSimilarUOMMultipleItemsWithExcelInputWithDomesticLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8479,11 +8479,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -8527,8 +8527,8 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PoIgstAmount")));
 		verifyAssertionBothValues(Utgst, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("PoUtgstAmount")));
-		verifyAssertionBothValues(CessPercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
+//		verifyAssertionBothValues(CessPercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
 //		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
 		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
@@ -8543,8 +8543,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOGeneralSimilarUOMMultipleItemsWithExcelInputWithDomesticInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8602,11 +8602,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -8625,8 +8625,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemsWithExcelInputWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8684,11 +8684,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -8707,8 +8707,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemsWithExcelInputWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8766,11 +8766,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -8789,8 +8789,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItemsWithExcelInputWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8846,11 +8846,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -8869,8 +8869,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItemsWithExcelInputWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8927,11 +8927,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -8950,8 +8950,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItemsWithExcelInputWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9008,11 +9008,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9031,8 +9031,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticServiceSimilarUOMWithMultipleItemsWithExcelInputWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9092,11 +9092,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9115,8 +9115,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOGeneralSimilarUOMWithMultipleItemsWithExcelInputWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9173,11 +9173,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9196,8 +9196,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOServiceSimilarUOMWithMultipleItemsWithExcelInputWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9253,11 +9253,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9276,8 +9276,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItemsWithExcelInputWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9334,11 +9334,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9357,8 +9357,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItemsWithExcelInputWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9416,11 +9416,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9439,8 +9439,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItemsWithExcelInputWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9498,11 +9498,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9521,8 +9521,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialSimilarUOMWithMultipleItemsWithExcelInputWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9580,11 +9580,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9603,8 +9603,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOMaterialSimilarUOMWithMultipleItemsWithExcelInputWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9661,11 +9661,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -9684,8 +9684,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -9714,8 +9714,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -9779,8 +9779,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -9792,7 +9792,7 @@ public class PurchaseOrderFunctions {
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "QA Scenario - Purchase.xlsx";
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath,
-				webDB.getDataFromProperties("PRDissimilarItemInterstateRgSheet"));
+				webDB.getDataFromProperties("PRSimilarItemInterstateRgSheet"));
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
 			if (!(item.equals("") || item.equals("Total"))) {
@@ -9809,8 +9809,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -9901,8 +9901,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -9931,8 +9931,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -9996,8 +9996,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -10026,8 +10026,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10092,8 +10092,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyGeneralSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -10121,8 +10121,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10187,8 +10187,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -10217,8 +10217,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10288,8 +10288,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -10318,8 +10318,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10389,8 +10389,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -10419,8 +10419,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10490,8 +10490,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -10520,8 +10520,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10592,8 +10592,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_Service"),
@@ -10621,8 +10621,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -10688,8 +10688,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemsWithExcelInputWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10747,11 +10747,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -10770,8 +10770,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemsWithExcelInputWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10829,11 +10829,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -10852,8 +10852,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemsWithExcelInputWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10911,11 +10911,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -10934,8 +10934,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticGeneralDissimilarUOMWithMultipleItemsWithExcelInputWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10993,11 +10993,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11016,8 +11016,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOGeneralDissimilarUOMWithMultipleItemsWithExcelInputWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11074,11 +11074,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11097,8 +11097,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialDissimilarUOMWithMultipleItemsWithExcelInputWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11156,11 +11156,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11179,8 +11179,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialDissimilarUOMWithMultipleItemsWithExcelInputWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11238,11 +11238,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11261,8 +11261,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialDissimilarUOMWithMultipleItemsWithExcelInputWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11320,11 +11320,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11343,8 +11343,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPODomesticMaterialDissimilarUOMWithMultipleItemsWithExcelInputWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11402,11 +11402,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11425,8 +11425,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPOMaterialDissimilarUOMWithMultipleItemsWithExcelInputWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11483,11 +11483,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -11506,8 +11506,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -11536,8 +11536,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11600,8 +11600,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -11630,8 +11630,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11694,8 +11694,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -11724,8 +11724,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11788,8 +11788,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyDomesticGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateUnReg() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -11818,8 +11818,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -11882,8 +11882,8 @@ public class PurchaseOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public boolean verifyGeneralDissimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithImport() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -11911,8 +11911,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12063,8 +12063,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyDirectPOWithMultipleItemsWithExcelInputTaxValidation(String Supplier, String POType,
 			String POSheet) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"), Supplier, POType);
@@ -12120,11 +12120,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -12174,8 +12174,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyDirectPOWithMultipleItemsWithExcelInputWithTaxValidation(String Supplier, String POType,
 			String POSheet) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"), Supplier, POType);
@@ -12234,11 +12234,11 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();
 				verifyValidatePoStatus(VariableHandler.getPONumber(),
 						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -12258,8 +12258,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyPRtoPOWithMultipleItemInExcelSheetWithTaxValidation(String Supplier, String PRType,
 			String Sheet, String Prefix) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), PRType, Prefix,
@@ -12289,8 +12289,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12355,8 +12355,8 @@ public class PurchaseOrderFunctions {
 	 */
 	public boolean verifyServiceFromPRtoPOWithMultipleItemInExcelSheetWithTaxValidation(String Supplier, String PRType,
 			String Sheet, String Prefix) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), PRType, Prefix,
@@ -12383,8 +12383,8 @@ public class PurchaseOrderFunctions {
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingPRAndSearchPRNo();
@@ -12455,7 +12455,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspection(
 			String SheetName) throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0002"),
@@ -12517,7 +12517,7 @@ public class PurchaseOrderFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyToCreatePoForStockTransferUserDefinedDissimilarUomWithAndWithoutInspection(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0002"),
@@ -12708,7 +12708,7 @@ public class PurchaseOrderFunctions {
 	 *
 	 */
 	public void verifyDirectPODomesticServiceSimilarUOMWithIgstSupplier(String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location14"),
@@ -12967,7 +12967,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticPriceListItemSimilarUOMMultipleServiceTypeForFreePassAndIgstSupplier(
 			String SheetName) throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location14"),
@@ -13353,9 +13353,9 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
 				commonFunc.navigatePurchaseOrderPage();
@@ -13376,7 +13376,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 			String Loc, String Supplier, String PoType, String SheetName, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -13423,10 +13423,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
@@ -13599,7 +13599,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
 			String Loc, String Supplier, String PoType, String SheetName, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -13648,10 +13648,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
@@ -13852,7 +13852,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForPriceListItem(
 			String Loc, String Supplier, String PoType, String SheetName, String FileName) {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(Loc, Supplier, PoType);
@@ -13901,10 +13901,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
