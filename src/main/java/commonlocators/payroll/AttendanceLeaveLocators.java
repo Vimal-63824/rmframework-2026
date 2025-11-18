@@ -52,7 +52,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String PermissionFindEmployeeColumn = "//*[@id='C1249623153083282334']/a";
 	/** @locatorType Xpath */
-	public static final String PermissionFindDocumentNoClick = "//*[@id=\"1252473452143007208_orig\"]/tbody/tr[2]/td[2]";
+	public static final String PermissionFindDocumentNoClick = "//*[@id=\"1921225137182250564_orig\"]/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String PermissionReverse = "//button[@data-testid='PER_REVER']";
 	/** @locatorType Xpath */
@@ -82,9 +82,13 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String EncashmentDocNumber = "//Input[@data-testid='P41_LR_REQ_NO']";
 	/** @locatorType Xpath */
+	public static final String EncashmentFindDocSelect = "//*[@id=\"1925381684399899474_orig\"]/tbody/tr[2]/td[2]/a";
+	/** @locatorType Xpath */
 	public static final String EncashmentPostButton = "//button[@data-testid='ENCAH_POST_BTN']";
 	/** @locatorType Xpath */
 	public static final String EncashmentFindIcon = "//*[@id='B171495937485719290']";
+	/** @locatorType Xpath */
+	public static final String EncashmentFindSearchButon = "//button[@data-testid='ENC_SER_BTN']";
 	/** @locatorType Xpath */
 	public static final String EncashmentFindPageEmployeeLOV = "//Button[@data-testid='EMP_ENC_find_EMP_lov']";
 	/** @locatorType Xpath */
@@ -97,6 +101,8 @@ public class AttendanceLeaveLocators {
 	public static final String CreateEncashmentLeave = "//Button[@data-testid='CRE_ENC_BTN']";
 	/** @locatorType Xpath */
 	public static final String CreateEncashmentOkButton = "//Button[@data-testid='ENC_PAY_OK_BTN']";
+	/** @locatorType Xpath */
+	public static final String EncashmentCancelButton = "//button[@data-testid='LEV_Cancel_Button']";
 	/** @locatorType Xpath */
 	public static final String CompOffButtonClick = "//*[@id='P818510608_TAB']/div/div/div[4]/label";
 	/** @locatorType Xpath */

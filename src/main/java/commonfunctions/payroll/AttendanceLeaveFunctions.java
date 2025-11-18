@@ -48,8 +48,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean verifyCheckpermissionEntryWithEmployeeData() {
 		try {
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			addPermissionEntry();
 			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -61,17 +61,9 @@ public class AttendanceLeaveFunctions {
 			verifyWaitingForApproval();
 			commonFunc.hardWait(2000);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
-//			flag = commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//			approvalFunc.navigateToApprovals();
-//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-//			flag = commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//					"TvsUsername");
+					System.getProperty("HariUsername"));
 			commonFunc.navigateLeaveEncashmentScreen();
 			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 					commonFunc.getDataFromTestDataSheet("PermissionFindType"));
@@ -93,8 +85,8 @@ public class AttendanceLeaveFunctions {
 	public boolean verifyCheckOnDutyEntrWithEmployeeData() {
 		try {
 			if (!VariableHandler.getCheckEmployeeDataPermissionDefaultExecution()) {
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
+				commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+						"HrRqtUsername");
 				commonFunc.navigateLeaveEncashmentScreen();
 				addPermissionEntry();
 				permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -106,23 +98,15 @@ public class AttendanceLeaveFunctions {
 				verifyWaitingForApproval();
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
 						VariableHandler.getPermissionDocNo(), webDB.getDataFromProperties("HodEmpId"),
-						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
-//				flag = commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//				approvalFunc.navigateToApprovals();
-//				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-//				flag = commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//						"TvsUsername");
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				commonFunc.navigateLeaveEncashmentScreen();
 				PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 						commonFunc.getDataFromTestDataSheet("PermissionFindType"));
 			}
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			addPermissionEntry();
 			permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -133,17 +117,9 @@ public class AttendanceLeaveFunctions {
 			verifyWaitingForApproval();
 			commonFunc.hardWait(2000);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
-//			flag = commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//			approvalFunc.navigateToApprovals();
-//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-//			flag = commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//					"TvsUsername");
+					System.getProperty("HariUsername"));
 			commonFunc.navigateLeaveEncashmentScreen();
 			PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 					commonFunc.getDataFromTestDataSheet("OnDutyFindType"));
@@ -254,8 +230,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkPermissionOnDutybasedonFowardtoApprovalReord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		addPermissionEntry();
 		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -267,18 +243,9 @@ public class AttendanceLeaveFunctions {
 		verifyWaitingForApproval();
 		commonFunc.hardWait(2000);
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
-//		flag = commonFunc.logoutUser();
-//		if (flag) {
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//			approvalFunc.navigateToApprovals();
-//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPermissionDocNo());
-//			flag = commonFunc.logoutUser();
-//			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//					"TvsUsername");
+				System.getProperty("HariUsername"));
 		commonFunc.navigateLeaveEncashmentScreen();
 		PermissionForwardApprovalReverse(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
@@ -292,8 +259,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkPermissionOnDutyBasedOnReturnToRequestRecord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		addPermissionEntry();
 		permissionEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -302,27 +269,15 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("PermissionTimeTo"),
 				commonFunc.getDataFromTestDataSheet("PermissionReference"));
 		permissionSaveAndForwardDocument();
-		verifyWaitingForApproval();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.hardWait(2000);
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.returnDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"), webDB.getDataFromProperties("TvsProdUserEmpId"));
-		commonFunc.returnDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPermissionDocNo(),
-				webDB.getDataFromProperties("TvsProdUserEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("TvsUsername"), webDB.getDataFromProperties("TvsProdUserEmpId"));
-//		flag = commonFunc.logoutUser();
-//		if (flag) {
-//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-//			approvalFunc.navigateToApprovals();
-//			filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-//			verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
-//			flag = commonFunc.logoutUser();
-//			if (flag) {
-//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
-//				approvalFunc.navigateToApprovals();
-//				filterDocumentsforPermissionApproval(VariableHandler.getPermissionDocNo());
-//				verifyReturnWithDocNumber(VariableHandler.getPermissionDocNo());
+				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getPermissionDocNo(),
+				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
 		commonFunc.navigateLeaveEncashmentScreen();
 		PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
@@ -337,8 +292,8 @@ public class AttendanceLeaveFunctions {
 	 */
 	public boolean CheckLeaveEncashmentbasedonRequestDate() {
 		{
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+					"HrRqtUsername");
 			commonFunc.navigateLeaveEncashmentScreen();
 			EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
 			EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -346,22 +301,16 @@ public class AttendanceLeaveFunctions {
 			EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
 					commonFunc.getDataFromTestDataSheet("EncashReasonField"));
 			EncashmentForward();
-			verifyWaitingForApproval();
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.navigateLeaveEncashmentScreen();
+			CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
+			CheckLeaveEncashmentBasedOnEncashInPayroll();
+			CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEncashmentDocNo());
-				flag = commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-						"TvsUsername");
-				commonFunc.navigateLeaveEncashmentScreen();
-				CheckLeaveEncashmentBasedOnPendingEncashment(VariableHandler.getEncashmentDocNo());
-				CheckLeaveEncashmentBasedOnEncashInPayroll();
-				CheckLeaveEncashmentReportFetchesValuesCorrectly(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-				flag = commonFunc.logoutUser();
-			}
 		}
 		return flag;
 	}
@@ -372,8 +321,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLeaveEncashmentBasedOnForwardToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
 		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -381,15 +330,12 @@ public class AttendanceLeaveFunctions {
 		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
 				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
 		EncashmentForward();
-		verifyWaitingForApproval();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEncashmentDocNo());
-			flag = commonFunc.logoutUser();
-		}
 		return flag;
 	}
 
@@ -1429,9 +1375,9 @@ public class AttendanceLeaveFunctions {
 			clickPostLOPLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLeaveEntryDocNo(),
-						webDB.getDataFromProperties("ROAUAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("ROAUAdminEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
@@ -1472,9 +1418,9 @@ public class AttendanceLeaveFunctions {
 			clickPostAccrualLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLeaveEntryDocNo(),
-						webDB.getDataFromProperties("ROAUAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("ROAUAdminEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			}
 			commonFunc.navigateLeaveEntryScreen();
 			webDB.navigateToRefresh();
@@ -3656,8 +3602,8 @@ public class AttendanceLeaveFunctions {
 			flag = webDB.waitForElement(AttendanceLeaveLocators.SetupCreateLeaveEntryLabel, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Setup Payroll Clicked");
-				boolean checkedflag = webDB.isElementSelected(AttendanceLeaveLocators.SetupCreateLeaveEntryInputCheckBox,
-						ElementType.Xpath);
+				boolean checkedflag = webDB.isElementSelected(
+						AttendanceLeaveLocators.SetupCreateLeaveEntryInputCheckBox, ElementType.Xpath);
 				logs.logging("INFO", "Setup Payroll Checkbox value: " + flag);
 				if (checkedflag) {
 					VariableHandler.setEmpLeaveEntryAutoPost(true);
