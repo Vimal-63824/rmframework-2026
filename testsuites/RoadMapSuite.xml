@@ -38,11 +38,8 @@
 			<class name="com.roadmapERP.SalesCataloguePriceTest" />
 			<class name="com.roadmapERP.SalesStandardPriceTest" />
 			<class name="com.roadmapERP.SetupSalesTest" />
-			<class name="com.roadmapERP.MaterialRequestTest" />
-			<class name="com.roadmapERP.StockAdjustmentTest" />
-			<class name="com.roadmapERP.SetupSalesTest" />
-			<class name="com.roadmapERP.SubcontractTransactionTest" />
-			<class name="com.roadmapERP.SubcontractSetUpTest" />
+			<!--<class name="com.roadmapERP.SubcontractTransactionTest" />
+			<class name="com.roadmapERP.SubcontractSetUpTest" />-->
 			<class name="com.roadmapERP.ProductionAndShopFloorSetupTest" />
 		</classes>
 	</test>

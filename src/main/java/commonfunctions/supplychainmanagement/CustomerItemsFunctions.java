@@ -545,12 +545,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik
 	 */
 	public void verifyAssociateItemToCustomeMappingOfCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SK0001"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -579,12 +579,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void itemAssociateWithPriceListItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SK0001"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -611,12 +611,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenSoItemOpenSoForDomesticCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -644,12 +644,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenSoItemForDomesticCustomerForPriceClass() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -676,12 +676,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-Rmits
 	 */
 	public void createOpenSoItemForDomesticCustomerForAdditionOfItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -709,12 +709,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenItemInterstateForAdditionOfItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -743,12 +743,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenItemForInterStateForDeletaionOfProcess() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -777,12 +777,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenSoForExportCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -812,12 +812,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenSoForLocalCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -846,12 +846,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenForUTGSTCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
 		searchItemInFindPage();
@@ -880,12 +880,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenSoForUTGSTCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -914,12 +914,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsOpenSoItemForExportCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -947,12 +947,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createOpenSoItemOpenSoForDomesticCustomerForCancelStage() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -983,12 +983,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void itemAssociatePriceListItemDifferentUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1017,12 +1017,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void itemAssociatePriceListItemDifferentPriceClass() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1052,12 +1052,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCancelPriceListRecord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1086,12 +1086,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceSimilarUOMAndDomesticCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1125,12 +1125,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceDisSimilarUOMAndDomesticCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1161,12 +1161,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceSimilarUOMAndExportCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1198,12 +1198,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createsCataloguePriceDisSimilarUOMAndExportCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1235,12 +1235,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createStandardPricewithSimilarStockandCustomerUOMDomesticCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1270,12 +1270,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createStandardPricewithDiiferentSimilarStockandCustomerUOMDomesticCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1304,12 +1304,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createStandardPricewithSimilarStockandCustomerUOMExportCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();
@@ -1338,12 +1338,12 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void createStandardPricewithDifferentSimilarStockandCustomerUOMExportCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage1();
 		priceListPR.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("Item_Different_UOM"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
 		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
 		searchItemInFindPage();

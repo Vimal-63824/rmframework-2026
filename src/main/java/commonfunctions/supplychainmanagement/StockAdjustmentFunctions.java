@@ -56,8 +56,8 @@ public class StockAdjustmentFunctions {
 	public boolean createStockAdjustmentOB() {
 		getBeforeStockQty(webDB.getDataFromProperties("StockAdjustmentOB"),
 				commonFunc.getDataFromTestDataSheet("RMWarehouse100"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				System.getProperty("TvsUsername"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
 		commonFunc.navigateStockAdjustmentScreen();
 		createStockAdjustmentHeaderDetails(commonFunc.getDataFromTestDataSheet("Loc_100"), todayDate(),
 				commonFunc.getDataFromTestDataSheet("RMWarehouse100"),
@@ -117,7 +117,7 @@ public class StockAdjustmentFunctions {
 				if (flag) {
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 							VariableHandler.getStkAdjDocNumber(), webDB.getDataFromProperties("HodEmpId"),
-							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HodUsername"));
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				}
 			}
 		}

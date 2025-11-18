@@ -646,6 +646,13 @@ public class ApprovalPageFunctions {
 				webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn_SCO, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoPurchaseNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+				assertTrue(flag);
+
 				commonFunc.checkSuccessToastMessageDisappear();
 				commonFunc.hardWait(3000);
 			}

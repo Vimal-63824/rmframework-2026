@@ -323,7 +323,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean verifyDomesticCSGeneralSimilarDisSimilarStockAndCustomerUOM(String SimilarItem, String SheetName,
 			String Location, String Prefix, String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -349,7 +349,7 @@ public class CustomerScheduleFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
@@ -425,7 +425,7 @@ public class CustomerScheduleFunctions {
 	 * @return boolean flag
 	 */
 	public boolean cancelCustomerScheduleDocument(String Location, String Prefix, String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
@@ -557,7 +557,7 @@ public class CustomerScheduleFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			if (flag) {
 				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("HodEmpId"));
-//				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //						"AdminUsername");
 //				commonFunc.navigateItemPage();
 			}
@@ -610,7 +610,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean verifyDomesticCSGeneralRateContractSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -633,7 +633,7 @@ public class CustomerScheduleFunctions {
 			excelUtils.writeDataInExcel(CSFilepath, SheetName, i + 3, 6, VariableHandler.getMultipleItems().get(i - 1));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
@@ -693,7 +693,7 @@ public class CustomerScheduleFunctions {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
@@ -982,7 +982,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean verifyDomesticCSGeneralPriceListSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1007,7 +1007,7 @@ public class CustomerScheduleFunctions {
 			excelUtils.writeDataInExcel(CSFilepath, SheetName, i + 3, 6, VariableHandler.getMultipleItems().get(i - 1));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
@@ -1069,7 +1069,7 @@ public class CustomerScheduleFunctions {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
@@ -1430,7 +1430,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean verifyDomesticCSGeneralStandardPriceSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1455,7 +1455,7 @@ public class CustomerScheduleFunctions {
 			excelUtils.writeDataInExcel(CSFilepath, SheetName, i + 3, 6, VariableHandler.getMultipleItems().get(i - 1));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
@@ -1775,7 +1775,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean verifyDomesticCSGeneralCatalogPriceSimilarDisSimilarStockAndCustomerUOM(String SimilarItem,
 			String SheetName, String Location, String Prefix, String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage();
 		CSMultipleline = excelUtils.readAllDataInExcel(CSFilepath, SheetName);
@@ -1800,7 +1800,7 @@ public class CustomerScheduleFunctions {
 			excelUtils.writeDataInExcel(CSFilepath, SheetName, i + 3, 6, VariableHandler.getMultipleItems().get(i - 1));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerItemsPage();
 		addPLusButton();
@@ -1871,7 +1871,7 @@ public class CustomerScheduleFunctions {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));
@@ -2444,7 +2444,7 @@ public class CustomerScheduleFunctions {
 	 * @return boolean flag
 	 */
 	public boolean cancelCustomerScheduleAmendmentDocument() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
@@ -2466,7 +2466,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), webDB.getDataFromProperties("CS"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
@@ -2502,7 +2502,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), webDB.getDataFromProperties("CS"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
@@ -2542,7 +2542,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), webDB.getDataFromProperties("CS"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
@@ -2582,7 +2582,7 @@ public class CustomerScheduleFunctions {
 				commonFunc.getDataFromTestDataSheet("SO_Similar_Item"), webDB.getDataFromProperties("CS"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("CSBatchPrefix"),
 				commonFunc.getDataFromTestDataSheet("CSNarration"));
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateCustomerScheduleAmendmentScreen();
 		clickAddButtonInCSAmd();
@@ -2658,7 +2658,7 @@ public class CustomerScheduleFunctions {
 	 */
 	public boolean customerScheduleTemplateUpload(String SimilarItem, String SheetName, String Location, String Prefix,
 			String Narration) {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(SimilarItem, SheetName);
@@ -2675,7 +2675,7 @@ public class CustomerScheduleFunctions {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		salesOrderFunctions.checkSOMControl(webDB.getDataFromProperties("Cs"));

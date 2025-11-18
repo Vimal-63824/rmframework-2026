@@ -97,8 +97,8 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
@@ -147,8 +147,8 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
@@ -197,8 +197,8 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
@@ -246,8 +246,8 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
@@ -296,8 +296,8 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
@@ -753,8 +753,8 @@ public class SalesStandardPriceFunctions {
 
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						// item Asoo
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -768,8 +768,8 @@ public class SalesStandardPriceFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 
 						// to Insert Customer Items
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigateCustomerItemScreen();
 						cusItems.addPLusButton();
 						cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -786,8 +786,8 @@ public class SalesStandardPriceFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 
 						// to insert a Std Price
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 						SalesPriceList.clickAddButton();
 						clickStandardPriceButton();
@@ -880,8 +880,8 @@ public class SalesStandardPriceFunctions {
 
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage1();
 
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
@@ -931,8 +931,8 @@ public class SalesStandardPriceFunctions {
 
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage1();
 
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
@@ -1004,8 +1004,8 @@ public class SalesStandardPriceFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						// item Asso
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -1036,8 +1036,8 @@ public class SalesStandardPriceFunctions {
 
 	public void toInsertCustomerItems() {
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateCustomerItemScreen();
 		cusItems.addPLusButton();
 		cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -1091,8 +1091,8 @@ public class SalesStandardPriceFunctions {
 		for (int i = 1; i < itemMultiples.length; i++) {
 			String Item1 = itemMultiples[i][0];
 			// to insert a Std Price
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 			SalesPriceList.clickAddButton();
 			clickStandardPriceButton();
