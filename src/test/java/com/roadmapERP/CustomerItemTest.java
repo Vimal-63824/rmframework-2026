@@ -16,7 +16,7 @@ import commonfunctions.supplychainmanagement.CustomerItemsFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class CustomerItemTest {
+public class CustomerItemTest extends RoadMapERPTest{
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();
