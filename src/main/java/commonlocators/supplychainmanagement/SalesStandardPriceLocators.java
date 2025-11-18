@@ -54,7 +54,7 @@ public class SalesStandardPriceLocators {
 		return "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr["+ i +"]/td[11] " ;
 	}
 	/** @locatorType Xpath */
-	public static final String LandingCostInput = "//input[@id='C1065717753142387812']" ;
+	public static final String LandingCostInput = "//input[@data-testid='Landed Cost']" ;
 	/** @locatorType Xpath */
 	public static final String Min_Disc (int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr["+i+"]/td[13]" ;
@@ -62,7 +62,7 @@ public class SalesStandardPriceLocators {
 	/** @locatorType Xpath */
 	public static final String min_DiscInput = "//input[@data-testid='MinPriceField']" ;
 	/** @locatorType Xpath */
-	public static final String ActiveButton = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[17]/a" ;
+	public static final String ActiveButton = "(//span[@title='Active'])[1]" ;
 	/** @locatorType Xpath */
 	public static final String CancelButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(5) > td:nth-child(19) > a" ;
 	/** @locatorType Xpath */

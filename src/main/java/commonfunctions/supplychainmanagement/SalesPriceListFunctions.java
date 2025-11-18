@@ -81,8 +81,8 @@ public class SalesPriceListFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		clickAddButton();
 		clickPriceListButton();
@@ -103,8 +103,8 @@ public class SalesPriceListFunctions {
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
 //		commonFunc.hardWait(2000);
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"AshokUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approveFunc.navigateToApprovals();
 //		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
 //		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
@@ -135,8 +135,8 @@ public class SalesPriceListFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		clickAddButton();
 		clickPriceListButton();
@@ -157,8 +157,8 @@ public class SalesPriceListFunctions {
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
 //		commonFunc.hardWait(2000);
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"AshokUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approveFunc.navigateToApprovals();
 //		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
 //		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
@@ -188,8 +188,8 @@ public class SalesPriceListFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		clickAddButton();
 		clickPriceListButton();
@@ -210,8 +210,8 @@ public class SalesPriceListFunctions {
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
 //		commonFunc.hardWait(2000);
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"AshokUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approveFunc.navigateToApprovals();
 //		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
 //		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
@@ -245,8 +245,8 @@ public class SalesPriceListFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		clickAddButton();
 		clickPriceListButton();
@@ -267,16 +267,16 @@ public class SalesPriceListFunctions {
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
 //		commonFunc.hardWait(2000);
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"AshokUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approveFunc.navigateToApprovals();
 //		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
 //		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
 		flag = commonFunc.logoutUser();
 
 		// amd the record
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 
 		searchItemINFindPageForAmdendTheRecord(commonFunc.getDataFromTestDataSheet("LOCATION100"),
@@ -295,8 +295,8 @@ public class SalesPriceListFunctions {
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
 //		commonFunc.hardWait(2000);
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"AshokUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approveFunc.navigateToApprovals();
 //		approveFunc.filterDocumentsforApproval(VariableHandler.getPriceListDocno());
 //		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPriceListDocno());
@@ -326,8 +326,8 @@ public class SalesPriceListFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		clickAddButton();
 		clickPriceListButton();
@@ -380,7 +380,7 @@ public class SalesPriceListFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPriceListDocno(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HodUsername"));
+					System.getProperty("HariUsername"));
 			assertTrue(flag);
 		} else {
 			flag = false;

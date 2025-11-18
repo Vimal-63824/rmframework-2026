@@ -111,7 +111,7 @@ public class MaterialReceiptVoucherLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String MrvDocwiseCancelbutton = "//button[@id='B4673153207168748449']";
+	public static final String MrvDocwiseCancelbutton = "//button[@id='B5342121721662108720']";
 
 	/** @locatorType Xpath */
 	public static final String LocId = "//button[@id='P93131177_LOCATION_lov_btn']";

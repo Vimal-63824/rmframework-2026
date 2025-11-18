@@ -88,7 +88,7 @@ public class SalesCatalogueLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String SearchButton = "//button[@id='B1720968400321831118']";
+	public static final String SearchButton = "//button[@data-testid='Search']";
 	/** @locatorType Xpath */
 	public static final String DeleteButton = "#sales_price_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(18) > a";
 	/** @locatorType Xpath */

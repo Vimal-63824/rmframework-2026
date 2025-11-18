@@ -470,4 +470,6 @@ public class PurchaseOrderPageLocators {
 	public static final String PurchaseOrderHsnField = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
 	public static final String PendingGE_SelectAllCheckBox = "(//input[@id='check_allge'])";
+	/** @locatorType Xpath */
+	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
 }

@@ -556,8 +556,8 @@ public class OpenSalesOrderFunctions {
 		cusItems.createOpenSoItemOpenSoForDomesticCustomer();
 
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -574,16 +574,16 @@ public class OpenSalesOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"HodUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approvalFunc.navigateToApprovals();
 //		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
 //		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -616,8 +616,8 @@ public class OpenSalesOrderFunctions {
 		cusItems.createsOpenSoItemForExportCustomer();
 
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -634,15 +634,15 @@ public class OpenSalesOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
-//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//				"HodUsername");
+				System.getProperty("HariUsername"));
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
 //		approvalFunc.navigateToApprovals();
 //		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
 //		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -673,8 +673,8 @@ public class OpenSalesOrderFunctions {
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 		
 		cusItems.createOpenSoItemOpenSoForDomesticCustomerForCancelStage();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -743,8 +743,8 @@ public class OpenSalesOrderFunctions {
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -758,14 +758,14 @@ public class OpenSalesOrderFunctions {
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
 		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -793,8 +793,8 @@ public class OpenSalesOrderFunctions {
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -808,14 +808,14 @@ public class OpenSalesOrderFunctions {
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
 		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 //		commonFunc.navigateOpenSO();
 //		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -844,8 +844,8 @@ public class OpenSalesOrderFunctions {
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -859,14 +859,14 @@ public class OpenSalesOrderFunctions {
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
 		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 //		commonFunc.navigateOpenSO();
 //		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -897,8 +897,8 @@ public class OpenSalesOrderFunctions {
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenSO();
 		selectOpenSOTypeWithRadioButtons("Open SO");
 		clickAddNewOpenSOPlsIcon();
@@ -912,14 +912,14 @@ public class OpenSalesOrderFunctions {
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
 		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 //		commonFunc.logoutUser();
-//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//				"TvsUsername");
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
 //		commonFunc.navigateOpenSO();
 //		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
 //				commonFunc.getDataFromTestDataSheet("ApproveStatus"));

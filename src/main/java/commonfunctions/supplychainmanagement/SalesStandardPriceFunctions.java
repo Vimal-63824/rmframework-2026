@@ -97,13 +97,13 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -147,13 +147,13 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -197,13 +197,13 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -246,13 +246,13 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -296,13 +296,13 @@ public class SalesStandardPriceFunctions {
 
 		commonFunc.logoutUser();
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -644,9 +644,10 @@ public class SalesStandardPriceFunctions {
 		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
 			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
+			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Saved a Record ");
+				commonFunc.hardWait(2000);
 			}
 		}
 		assertTrue(flag);
@@ -658,15 +659,16 @@ public class SalesStandardPriceFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickActiveButton() {
-		flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
+		commonFunc.hardWait(4000);
+		flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
-			if (flag) {
-				logs.logging("INFO", "Succeessfully Active Record");
-			}
+			webDB.clickAnElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
+			logs.logging("INFO", "Succeessfully Active Record");
+			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
+
 
 	/**
 	 * Verify Search Button Clicking
@@ -753,8 +755,8 @@ public class SalesStandardPriceFunctions {
 
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						// item Asoo
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -768,8 +770,8 @@ public class SalesStandardPriceFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 
 						// to Insert Customer Items
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigateCustomerItemScreen();
 						cusItems.addPLusButton();
 						cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -786,13 +788,13 @@ public class SalesStandardPriceFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 
 						// to insert a Std Price
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 						SalesPriceList.clickAddButton();
 						clickStandardPriceButton();
 						clickAddbutton();
-						clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+						clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 						insertItemIdStandardPrice();
 						insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 						insertMapPriceStdPrice(Map_Value);
@@ -880,8 +882,8 @@ public class SalesStandardPriceFunctions {
 
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage1();
 
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
@@ -931,8 +933,8 @@ public class SalesStandardPriceFunctions {
 
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage1();
 
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
@@ -1004,8 +1006,8 @@ public class SalesStandardPriceFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						// item Asso
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -1036,8 +1038,8 @@ public class SalesStandardPriceFunctions {
 
 	public void toInsertCustomerItems() {
 
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateCustomerItemScreen();
 		cusItems.addPLusButton();
 		cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -1091,13 +1093,13 @@ public class SalesStandardPriceFunctions {
 		for (int i = 1; i < itemMultiples.length; i++) {
 			String Item1 = itemMultiples[i][0];
 			// to insert a Std Price
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"HodUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 			SalesPriceList.clickAddButton();
 			clickStandardPriceButton();
 			clickAddbutton();
-			clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+			clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 			insertItemIdStandardPrice();
 			insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 			insertMapPriceStdPrice(Map_Value);

@@ -2587,6 +2587,7 @@ public class CommonFunctions {
 	 * @param User
 	 */
 	public void approveDocuments(String BU, String DocNo, String EmpId, String Unit, String User) {
+		RestUtils.resetRestAssured();
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
 		restApi.setQueryParam("p_doc_no", DocNo);
@@ -2607,7 +2608,6 @@ public class CommonFunctions {
 			}
 		}
 		assertTrue(flag);
-		RestUtils.resetRestAssured();
 	}
 
 	/**
@@ -2658,6 +2658,7 @@ public class CommonFunctions {
 	 */
 	public void returnDocuments(String BU, String DocNo, String EmpId, String Unit, String User,
 			String ReturnUserEmpId) {
+		RestUtils.resetRestAssured();
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
 		restApi.setQueryParam("p_doc_no", DocNo);
@@ -2679,7 +2680,6 @@ public class CommonFunctions {
 			}
 		}
 		assertTrue(flag);
-		RestUtils.resetRestAssured();
 	}
 
 	/**

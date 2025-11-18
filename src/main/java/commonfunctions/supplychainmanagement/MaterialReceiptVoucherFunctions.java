@@ -924,11 +924,11 @@ public class MaterialReceiptVoucherFunctions {
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
 										ElementType.Xpath);
-								flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
 											ElementType.Xpath);
@@ -1011,11 +1011,11 @@ public class MaterialReceiptVoucherFunctions {
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
 										ElementType.Xpath);
-								flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
 											ElementType.Xpath);

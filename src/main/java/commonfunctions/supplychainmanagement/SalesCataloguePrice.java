@@ -83,8 +83,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceSimilarUOMAndDomesticCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -99,21 +99,25 @@ public class SalesCataloguePrice {
 		clickSaveButtonCataloguePrice();
 		getCataloguePriceDocumentno();
 		CataloguePriceDbValidation();
-		clickPostButton();
+		clickCPPostButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
-		// forwardForApproval();
-		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
-		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.verifyWorkFlowDocForCatalog();
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+//		// forwardForApproval();
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+//		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
+//		approvalFunc.verifyWorkFlowDocForCatalog();
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
 	}
 
@@ -137,8 +141,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndDomesticCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -153,20 +157,24 @@ public class SalesCataloguePrice {
 		clickSaveButtonCataloguePrice();
 		getCataloguePriceDocumentno();
 		CataloguePriceDbValidation();
-		clickPostButton();
+		clickCPPostButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
-		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.verifyWorkFlowDocForCatalog();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
+//		approvalFunc.verifyWorkFlowDocForCatalog();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
 	}
 
@@ -190,8 +198,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -206,20 +214,25 @@ public class SalesCataloguePrice {
 		clickSaveButtonCataloguePrice();
 		getCataloguePriceDocumentno();
 		CataloguePriceDbValidation();
-		clickPostButton();
+		clickCPPostButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
-		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.verifyWorkFlowDocForCatalog();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
+//		approvalFunc.verifyWorkFlowDocForCatalog();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
 	}
 
@@ -243,8 +256,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -259,20 +272,24 @@ public class SalesCataloguePrice {
 		clickSaveButtonCataloguePrice();
 		getCataloguePriceDocumentno();
 		CataloguePriceDbValidation();
-		clickPostButton();
+		clickCPPostButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
-		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(2000);
-		commonFunc.logoutUser();
-		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
-		approvalFunc.verifyWorkFlowDocForCatalog();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+//		commonFunc.checkRefreshCellsDisappear();
+//		commonFunc.hardWait(2000);
+//		commonFunc.logoutUser();
+//		commonFunc.hardWait(2000);
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
+//		approvalFunc.verifyWorkFlowDocForCatalog();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCatalogDocno());
 		flag = commonFunc.logoutUser();
 	}
 
@@ -296,8 +313,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -576,14 +593,15 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void clickPostButton() {
-		flag = webDB.clickAnElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
+	public void clickCPPostButton() {
+//		commonFunc.hardWait(2000);
+		flag = webDB.waitForElement(SalesCatalogueLocators.PostButtonField(1), ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesCatalogueLocators.PostButton, ElementType.CssSelector);
-			logs.logging("INFO ", "Successfully Post Button ");
+			webDB.clickAnElement(SalesCatalogueLocators.PostButtonField(1), ElementType.Xpath);
+			logs.logging("INFO ", "Successfully Click The Post Button ");
 		}
+		assertTrue(flag);
 	}
-
 	/**
 	 * Waiting For Approval
 	 * 
@@ -661,8 +679,8 @@ public class SalesCataloguePrice {
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 //		        commonFunc.hardWait(4000);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage1();
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 			if (flag) {
@@ -730,8 +748,8 @@ public class SalesCataloguePrice {
 						verifyItemPost(VariableHandler.getItemName());
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						// item Asso
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -745,8 +763,8 @@ public class SalesCataloguePrice {
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
 						// to Insert Customer Items
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigateCustomerItemScreen();
 						cusItems.addPLusButton();
 						cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -763,8 +781,8 @@ public class SalesCataloguePrice {
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
 						// to insert a Catalogue Price
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 						SalesPriceList.clickAddButton();
 						clickCataloguePriceButton();
@@ -779,15 +797,15 @@ public class SalesCataloguePrice {
 						clickSaveButtonCataloguePrice();
 						getCataloguePriceDocumentno();
 						CataloguePriceDbValidation();
-						clickPostButton();
+						clickCPPostButton();
 						commonFunc.checkRefreshCellsDisappear();
 						verifyWaitingForApproval1();
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
 						commonFunc.hardWait(2000);
-						commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-								System.getProperty("HodPassword"), "AshokUsername");
+						commonFunc.validCommonLogin(System.getProperty("HariUsername"),
+								System.getProperty("LoginPassword"), "HariUsername");
 						approvalFunc.navigateToApprovals();
 						approvalFunc.verifyWorkFlowTypeForCataloguePrice(
 								commonFunc.getDataFromTestDataSheet("WorkFlowType"));
@@ -832,14 +850,14 @@ public class SalesCataloguePrice {
 				if (flag) {
 					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"), "AshokUsername");
+					commonFunc.validCommonLogin(System.getProperty("HariUsername"),
+							System.getProperty("LoginPassword"), "HariUsername");
 					approvalFunc.navigateToApprovals();
 					approvalFunc.filterDocumentsforApproval(item);
 					approvalFunc.verifyApproveWithDocNumber(item);
 					commonFunc.logoutUser();
-//					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//							"TvsUsername");
+//					commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//							"AdminUsername");
 //					commonFunc.navigateItemPage();
 				}
 			}
