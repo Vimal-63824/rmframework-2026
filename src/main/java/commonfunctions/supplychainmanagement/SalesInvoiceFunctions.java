@@ -871,8 +871,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -893,15 +893,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DBSales"));
 		return flag;
@@ -915,8 +911,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceExport() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -939,15 +935,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportSD"));
 		return flag;
@@ -961,8 +953,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceRateContractDomestic() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -984,15 +976,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticRateContSD"));
@@ -1007,8 +995,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceRateContractExport() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1031,15 +1019,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportRateContSD"));
@@ -1054,8 +1038,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceDomesticUserDefinedDisimilarStockUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1076,15 +1060,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DBSales"));
 		return flag;
@@ -1098,8 +1078,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceExportUserDefinedDisimilarStockUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1122,15 +1102,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportS&D"));
 		return flag;
@@ -1144,8 +1120,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceRateContractDomesticWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1167,15 +1143,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticRateContSD"));
@@ -1190,8 +1162,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceRateContractExportWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1214,15 +1186,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportRateContSD"));
@@ -1237,8 +1205,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoicePriceListDomesticWithsimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1260,15 +1228,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticPriceListSD"));
@@ -1283,8 +1247,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoicePriceListExportWithsimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1307,15 +1271,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportPriceListSD"));
@@ -1330,8 +1290,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoicePriceListDomesticWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1353,15 +1313,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticPriceListSD"));
@@ -1376,8 +1332,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoicePriceListExportWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1400,15 +1356,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportPriceListSD"));
@@ -1423,8 +1375,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceStandardPriceDomesticWithsimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1446,15 +1398,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticStandardSD"));
@@ -1469,8 +1417,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceStandardPriceExportWithsimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1493,15 +1441,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportStandardSD"));
@@ -1516,8 +1460,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceStandardPriceDomesticWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1539,15 +1483,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticStandardSD"));
@@ -1562,8 +1502,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceStandardPriceExportWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1586,15 +1526,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportStandardSD"));
@@ -1609,8 +1545,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceCatalogPriceDomesticWithsimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1632,15 +1568,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticCatalogSD"));
@@ -1655,8 +1587,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceCatalogPriceExportWithsimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1679,15 +1611,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportCatalogSD"));
@@ -1702,8 +1630,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceCatalogPriceDomesticWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1725,15 +1653,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DomesticCatalogSD"));
@@ -1748,8 +1672,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceCatalogPriceExportWithDisimilarUOM() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1772,15 +1696,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportCatalogSD"));
@@ -2167,8 +2087,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectProformaInvoiceCreation() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
@@ -2182,14 +2102,11 @@ public class SalesInvoiceFunctions {
 		AddingprofomaInvoiceLineINExcelSheet(webDB.getDataFromProperties("PIDirectType"));
 		commonFunc.hardWait(2000);
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2200,8 +2117,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectAdvanceProformaInvoiceCreation() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
@@ -2215,14 +2132,11 @@ public class SalesInvoiceFunctions {
 		AddingProfomaInvoiceAdvanceLineINExcelSheet(webDB.getDataFromProperties("PIDirectType"));
 		commonFunc.hardWait(2000);
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2233,8 +2147,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDirectPreDispatchProformaInvoiceCreation() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
@@ -2248,14 +2162,11 @@ public class SalesInvoiceFunctions {
 		AddingProfomaInvoiceAdvanceLineINExcelSheet(webDB.getDataFromProperties("PIDirectType"));
 		commonFunc.hardWait(2000);
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2266,8 +2177,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectExportProformaInvoiceCreation() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
@@ -2281,14 +2192,11 @@ public class SalesInvoiceFunctions {
 		AddingprofomaInvoiceLineINExcelSheet(webDB.getDataFromProperties("PIDirectTypeExport"));
 		commonFunc.hardWait(2000);
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2299,8 +2207,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectExportAdvanceProformaInvoiceCreation() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
@@ -2314,14 +2222,11 @@ public class SalesInvoiceFunctions {
 		AddingProfomaInvoiceAdvanceExportLineINExcelSheet(webDB.getDataFromProperties("PIDirectTypeExport"));
 		commonFunc.hardWait(2000);
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2332,8 +2237,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectExportPreDispatchProformaInvoiceCreation() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyFindPageAddButton();
 		VerifyProformaInvoiceParameter(commonFunc.getDataFromTestDataSheet("PI_Loc_Id"),
@@ -2347,14 +2252,11 @@ public class SalesInvoiceFunctions {
 		AddingProfomaInvoiceAdvanceExportLineINExcelSheet(webDB.getDataFromProperties("PIDirectTypeExport"));
 		commonFunc.hardWait(2000);
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2365,8 +2267,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectDomesticProformaInvoiceCreationPendingSO() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyProformaInvoicePendingSO();
 		verifyProformaInvoicePendingSaleOrderNo(commonFunc.getDataFromTestDataSheet("PI_Pend_Domestic_SO_No"));
@@ -2377,14 +2279,11 @@ public class SalesInvoiceFunctions {
 		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
 				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -2395,8 +2294,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectExportProformaInvoiceCreationPendingSO() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateProformaInvoice();
 		verifyProformaInvoicePendingSO();
 		verifyProformaInvoicePendingSaleOrderNo(commonFunc.getDataFromTestDataSheet("PI_Pend_Export_SO_No"));
@@ -2407,14 +2306,11 @@ public class SalesInvoiceFunctions {
 		verifyHeaderProformaInvoicePrefix(commonFunc.getDataFromTestDataSheet("Proforma_Inv_Pfx"),
 				commonFunc.getDataFromTestDataSheet("PI_PaymentTerm"));
 		verifyProformaInvoicePostButton();
-		ProformaInvoiceforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getPI_DocNo());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getPI_DocNo());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPI_DocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -3247,8 +3143,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticLocalCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3270,15 +3166,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("LocalCustomer"));
@@ -3293,8 +3185,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticInterStateCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3316,15 +3208,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("InterStateCustomer"));
@@ -3338,8 +3226,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticUTGSTCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3351,8 +3239,8 @@ public class SalesInvoiceFunctions {
 		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
 		verifyHeaderTickIcon();
 		commonFunc.checkRefreshCellsDisappear();
-		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_InterState_Customer"));
-		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("InterStateCustomer"));
+//		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_UTGST_Customer"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("UTGSTCustomer"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -3361,15 +3249,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("InterStateCustomer"));
@@ -3383,8 +3267,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticSEZCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3407,15 +3291,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SEZCustomer"));
 		return flag;
@@ -3430,8 +3310,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
 		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifySalesInvoicePendingButton();
 		verifySIPendingSOSaleorderNo(VariableHandler.getSONumber());
@@ -3453,15 +3333,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
@@ -3477,8 +3353,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders() {
 		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifySalesInvoicePendingButton();
 		verifySIPendingSOSaleorderNo(VariableHandler.getSONumber());
@@ -3501,14 +3377,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
@@ -3524,8 +3397,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceFromApprovedDomesticCustomerSchedules() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifySalesInvoicePendingCSButton();
 		verifySIPendingSOSaleorderNo(commonFunc.getDataFromTestDataSheet("SI_Pend_Domestic_SO_No"));
@@ -3552,21 +3425,12 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateSalesInvoicePage();
-		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
-				commonFunc.getDataFromTestDataSheet("Exp_Status"));
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
 
@@ -3578,8 +3442,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceFromApprovedExportCustomerSchedules() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifySalesInvoicePendingCSButton();
 		verifySIPendingCSSaleorderNo(commonFunc.getDataFromTestDataSheet("SI_Pend_Export_SO_No"));
@@ -3606,21 +3470,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
-		commonFunc.navigateSalesInvoicePage();
-		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno(),
-				commonFunc.getDataFromTestDataSheet("Exp_Status"));
-		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		return flag;
 	}
 
@@ -3631,8 +3485,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateFreeSampletypeofSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceFreeSampleAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3654,15 +3508,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("FreeSampleType"));
@@ -3676,8 +3526,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateFreeReplacementTypeofSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceFreeReplacementAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3699,15 +3549,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("FreeReplacement"));
@@ -3721,8 +3567,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateScrapTypeofSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceFreeReplacementAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3740,15 +3586,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ScrapType"));
 		return flag;
@@ -3761,8 +3603,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyUnpickTheSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3792,8 +3634,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCancelTheSalesInvoiceDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3811,8 +3653,8 @@ public class SalesInvoiceFunctions {
 		verifyCancelButton(commonFunc.getDataFromTestDataSheet("SI_Cancel_Reason"));
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifySalesInvoiceDocumentCancelStatus(VariableHandler.getSIdocno(),
 				commonFunc.getDataFromTestDataSheet("Exp_Cancel_Status"));
@@ -3826,8 +3668,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCancelSalesInvoiceLines() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4345,8 +4187,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticCESSCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4368,15 +4210,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("CESScustomer"));
 		return flag;
@@ -4612,8 +4450,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateServiceOfSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceServiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4631,15 +4469,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -4778,8 +4612,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceWithShipsetItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4799,15 +4633,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ShipSet"));
 		return flag;
@@ -4820,8 +4650,8 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public boolean verifyCreateSalesInvoiceWithPromotionalItems() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4843,15 +4673,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("PromotionalType"));
@@ -5334,8 +5160,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean reverseTheInvoicedSalesInvoice() {
 		verifyCreateSalesInvoiceDomesticLocalCustomer();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifySalesInvoiceDocumentStatus(VariableHandler.getSIdocno());
 		commonFunc.logoutUser();
@@ -5423,8 +5249,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean createDirectSalesReturnWithOutReferenceDomestic() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		creditNoteAddIcon();
 		creditNoteAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5436,14 +5262,11 @@ public class SalesInvoiceFunctions {
 		AddingCreditNoteLineINExcelSheet("CRNoteDomestic");
 		clickingCreInvoiceNo_UpdNarration_CreJournal();
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -5457,8 +5280,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnwithReferencefromPendingSalesReturnDomestic() {
 		verifyCreateSalesInvoiceDomesticLocalCustomer();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -5466,14 +5289,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
 		salesOrderFunctions.verifyAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
@@ -5490,8 +5310,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnwithGoodsfromPendingSalesReturnExport() {
 		verifyDirectSalesInvoiceForCreditNoteInvoiceExport();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -5499,14 +5319,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
 		salesOrderFunctions
@@ -5522,8 +5339,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyDirectSalesInvoiceForCreditNoteInvoiceExport() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5546,15 +5363,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportCRNote"));
 		return flag;
@@ -5569,8 +5382,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnwithoutGoodsfromPendingSalesReturnExport() {
 		verifyCreditNoteForServiceExport();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -5580,8 +5393,8 @@ public class SalesInvoiceFunctions {
 		CreditNoteclickPostButton();
 		creditnoteforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
@@ -5598,8 +5411,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreditNoteForServiceExport() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5622,15 +5435,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -5642,8 +5451,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean createDirectSalesReturnWithOutReferenceExport() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		creditNoteAddIcon();
 		ExportcreditNoteAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5655,14 +5464,11 @@ public class SalesInvoiceFunctions {
 		AddingCreditNoteLineINExcelSheet("CRNoteExport");
 		clickingCreInvoiceNo_UpdNarration_CreJournal();
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -5718,8 +5524,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnwithReferencefromPendingSalesReturnExport() {
 		verifyDirectSalesInvoiceForCreditNoteInvoiceExport();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -5727,14 +5533,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
 		salesOrderFunctions
 				.verifyAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportCRNote"));
@@ -6100,16 +5903,16 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnthroughgateEntryDomestic() {
 		createSalesInvoiceDomesticForGateEntry();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateTogateEntry();
 		clickingPendingGateEntry();
 		InsertingpPendingInvoiceNoAndCreateTheDocument(VariableHandler.getSIInvNo(),
 				commonFunc.getDataFromTestDataSheet("DriverName"));
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNoteGateEntryPendingIcon();
 		PendingGateEntryInsertingInvoicedNoSelectAndCreate(VariableHandler.getGEdocno());
@@ -6119,8 +5922,8 @@ public class SalesInvoiceFunctions {
 		CreditNoteclickPostButton();
 		creditnoteforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
@@ -6140,8 +5943,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean createSalesInvoiceDomesticForGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Location49"),
@@ -6165,8 +5968,8 @@ public class SalesInvoiceFunctions {
 		clickPostButton();
 		forwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
@@ -6313,8 +6116,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnwithGoodsfromPendingSalesReturnDomestic() {
 		verifyCreateSalesInvoiceDomesticLocalCustomer();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -6322,14 +6125,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
 		salesOrderFunctions.verifyAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
@@ -6346,8 +6146,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnwithoutGoodsfromPendingSalesReturnDomestic() {
 		verifyCreateServiceOfSalesInvoice();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -6355,14 +6155,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -6375,16 +6172,16 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnthroughgateEntryExport() {
 		createSalesInvoiceExportForGateEntry();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateTogateEntry();
 		clickingPendingGateEntry();
 		InsertingpPendingInvoiceNoAndCreateTheDocument(VariableHandler.getSIInvNo(),
 				commonFunc.getDataFromTestDataSheet("DriverName"));
 		flag = commonFunc.logoutUser();
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNoteGateEntryPendingIcon();
 		PendingGateEntryInsertingInvoicedNoSelectAndCreate(VariableHandler.getGEdocno());
@@ -6392,14 +6189,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_GE_Pfx"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
 		salesOrderFunctions.verifyAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
@@ -6415,8 +6209,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean createSalesInvoiceExportForGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Location49"),
@@ -6439,15 +6233,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("CRNoteGateEntryExport"));
@@ -6461,8 +6251,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean createSalesInvoiceWithChargeItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6486,15 +6276,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("Charges"));
 		return flag;
@@ -6657,8 +6443,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean createSalesInvoiceWithPreDispatchDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6683,8 +6469,8 @@ public class SalesInvoiceFunctions {
 		clickPostButton();
 		forwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
@@ -6693,8 +6479,8 @@ public class SalesInvoiceFunctions {
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("LocalCustomer"));
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername-Admin");
 		commonFunc.navigateInspectionDocumentsPage();
 		qcFunc.verifyPendingInspectionDocumentForSalesInvoice(VariableHandler.getSIdocno());
 		qcFunc.clickTickAndPostIcon();
@@ -6737,8 +6523,8 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean multipleLinesInSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
 		verifyClickingAddButton();
 		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6763,8 +6549,8 @@ public class SalesInvoiceFunctions {
 		clickPostButton();
 		forwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
@@ -6993,8 +6779,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createRepairReworkorderforSalesreturnrejection() {
 		verifyCreateSalesInvoiceDomesticLocalCustomer();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -7003,33 +6789,22 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"),
 				commonFunc.getDataFromTestDataSheet("CR_Acpt_Qty"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
 		commonFunc.navigateToReworkOrder();
 		clickingReworkOrderPending();
 		InsertingInvoiceNoandCreateReworksalesRtn(VariableHandler.getCNdocno());
 		ClickingReworkOrderPostButton();
-		ReworkOrderforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRWdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToReworkOrderCompletion();
 		ClickingReworkOrderCompletionPendingIcon();
 		InsertingRWCompletionDocNoandCreateTheRecord(VariableHandler.getRWdocno());
@@ -7037,15 +6812,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("Process"), commonFunc.getDataFromTestDataSheet("Resource"));
 		InsertingLocatorItem(commonFunc.getDataFromTestDataSheet("ReworkLocator"));
 		ClickingReworkOrderCompletionPostButton();
-		ReworkOrderCompletionforwardForApproval();
-		commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRWCdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWCdocno());
-		commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWCdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkReworkCompletionApprovedStatusDetailsDataBaseValuesWithUIValues();
 		commonFunc.checkRefreshCellsDisappear();
 		mrvFunc.verifyReworkCompletionPostMaterialReceipt();
@@ -7540,8 +7311,8 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createScrapReworkorderforSalesreturnrejection() {
 		verifyCreateSalesInvoiceDomesticLocalCustomer();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNotePendingIcon();
 		InsertingInvoicedNoSelectAndCreate(VariableHandler.getSIInvNo());
@@ -7550,33 +7321,22 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"),
 				commonFunc.getDataFromTestDataSheet("CR_Acpt_Qty"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
 		commonFunc.navigateToReworkOrder();
 		clickingReworkOrderPending();
 		InsertingInvoiceNoandCreateReworksalesRtn(VariableHandler.getCNdocno());
 		ClickingReworkOrderPostButton();
-		ReworkOrderforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRWdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToReworkOrderCompletion();
 		ClickingReworkOrderCompletionPendingIcon();
 		InsertingRWCompletionDocNoandScrapCreateTheRecord(VariableHandler.getRWdocno());
@@ -7584,15 +7344,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("Process"), commonFunc.getDataFromTestDataSheet("Resource"));
 		ClickingReworkCompletionCreatejournal();
 		ClickingReworkOrderCompletionPostButton();
-		ReworkOrderCompletionforwardForApproval();
-		commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRWCdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRWCdocno());
-		commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWCdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkReworkCompletionApprovedStatusDetailsDataBaseValuesWithUIValues();
 		commonFunc.checkRefreshCellsDisappear();
 		mrvFunc.verifyReworkCompletionPostMaterialReceipt();

@@ -821,8 +821,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForSupplier_Item_Process() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -834,8 +834,8 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
@@ -852,8 +852,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForItem_Process() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -865,8 +865,8 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
@@ -883,8 +883,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForSupplier_Process() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -896,8 +896,8 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
@@ -914,8 +914,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForProcess() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -927,8 +927,8 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
@@ -1138,8 +1138,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean reversingTheProcessTypeDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1151,14 +1151,14 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
@@ -1166,8 +1166,8 @@ public class SubcontractSetUpFunctions {
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
@@ -1184,8 +1184,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean reveringItem_ProcessTypeDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1197,14 +1197,14 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
@@ -1212,8 +1212,8 @@ public class SubcontractSetUpFunctions {
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
@@ -1230,8 +1230,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean reveringSupplier_Item_ProcessTypeDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1243,14 +1243,14 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
@@ -1258,8 +1258,8 @@ public class SubcontractSetUpFunctions {
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
@@ -1276,8 +1276,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean reveringSupplier_Process_TypeDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcessForOpenscoReversing();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1289,14 +1289,14 @@ public class SubcontractSetUpFunctions {
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
@@ -1304,8 +1304,8 @@ public class SubcontractSetUpFunctions {
 		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		openSCOforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
@@ -1323,8 +1323,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForProcessTypeAndCancelledTheDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1348,8 +1348,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForSupplier_Item_ProcessTypeAndCancelledTheDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1373,8 +1373,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForItem_ProcessTypeAndCancelledTheDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();
@@ -1397,8 +1397,8 @@ public class SubcontractSetUpFunctions {
 	 * @return boolean @
 	 */
 	public boolean creatingOpenSCOpriceForSupplier_ProcessTypeAndCancelledTheDocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		prodsetupFunc.howtodefineOutsideTypeProcessAndAssociatedTheProcess();
 		commonFunc.navigateToOpenPriceSCO();
 		clickingOpenSCO_FindAddIcon();

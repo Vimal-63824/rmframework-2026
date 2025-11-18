@@ -72,7 +72,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -109,7 +109,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -141,7 +141,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralRateContractSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -173,7 +173,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralRateContractSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -205,7 +205,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -237,7 +237,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralStandardPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -269,7 +269,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -301,7 +301,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralCatalogPriceSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -333,7 +333,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralPriceListSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -365,7 +365,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralPriceListSimilarStockAndCustomerUOM() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -398,7 +398,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelSalesOrder() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -2399,7 +2399,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean verifyAdvanceSalesOrderWithAdvancePaymentTerm() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -2958,7 +2958,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneral() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3494,7 +3494,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoFreeSample() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3532,7 +3532,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoFreeReplacement() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3571,7 +3571,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoScrap() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3608,7 +3608,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoService() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3645,7 +3645,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoPromotional() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3682,7 +3682,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneralLocalCustomer() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3721,7 +3721,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoGeneralSEZCustomer() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3759,7 +3759,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoDemoExhibition() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3798,7 +3798,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoCESS() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -3835,7 +3835,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SoCharges() throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -4194,7 +4194,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCancelSalesOrderLines() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -4644,7 +4644,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4692,7 +4692,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4740,7 +4740,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4789,7 +4789,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4837,7 +4837,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4888,7 +4888,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4939,7 +4939,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SalesOrder(Customer, CustomerDesc, SOSheetName);
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -4996,7 +4996,7 @@ public class SalesOrderFunctions {
 			String SOSheetName, String SOALocation, String SOAPrefix, String SOAUnit) throws IOException {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, SOAmdSheetName);
 		SOUTGST();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -5049,7 +5049,7 @@ public class SalesOrderFunctions {
 		SOMultipleline = excelUtils.readAllDataInExcel(Filepath1, webDB.getDataFromProperties("SOAmendmentDPC"));
 		SalesOrder(commonFunc.getDataFromTestDataSheet("Customer"), commonFunc.getDataFromTestDataSheet("CustomerDesc"),
 				webDB.getDataFromProperties("SODomRateContract"));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -5090,7 +5090,7 @@ public class SalesOrderFunctions {
 	 */
 	public boolean SalesOrderAmendmentSingleCloseshort() throws IOException {
 		SoGeneral();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -5124,7 +5124,7 @@ public class SalesOrderFunctions {
 	 */
 	public boolean SalesOrderAmendmentWithCharges() throws IOException {
 		SoCharges();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickPendingButtonOfSoAmendment();
@@ -5179,7 +5179,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOMultipleWithDifferentPriceClass() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -5212,7 +5212,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOShipSet() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -5245,7 +5245,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean SOUTGST() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -5538,7 +5538,7 @@ public class SalesOrderFunctions {
 	 * @throws IOException
 	 */
 	public boolean SalesOrder(String Customer, String CustomerDesc, String SheetName) throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
@@ -5991,7 +5991,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6194,7 +6194,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateSalesOrderPage();
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6710,7 +6710,7 @@ public class SalesOrderFunctions {
 	 */
 	public boolean closeshortMultipleSalesOrder(String Customer, String CustomerDesc, String SOSheetName)
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		for (int i = 0; i < 2; i++) {
 			MultipleSalesOrder(Customer, CustomerDesc, SOSheetName);
@@ -6718,7 +6718,7 @@ public class SalesOrderFunctions {
 		VariableHandler.setMultipleSoDocs(MultipleSO);
 		System.out.println(VariableHandler.getMultipleSoDocs().get(0));
 		System.out.println(VariableHandler.getMultipleSoDocs().get(1));
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 		commonFunc.navigateSalesOrderAmendmentPage();
 		clickMultiCloseshortOfSoAmendmentPendingScreen();
@@ -6749,7 +6749,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyDomesticSOLocationChange() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6783,7 +6783,7 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void setCreditLimitForCustomer() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateCustomerMasterScreen();
 		commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.CustomerIDLovButton, "CL-100001");

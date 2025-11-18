@@ -83,8 +83,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceSimilarUOMAndDomesticCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -107,8 +107,8 @@ public class SalesCataloguePrice {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.filterDocumentsforApproval(VariableHandler.getCatalogDocno());
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
@@ -137,8 +137,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndDomesticCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -160,8 +160,8 @@ public class SalesCataloguePrice {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
 		approvalFunc.verifyWorkFlowDocForCatalog();
@@ -190,8 +190,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -213,8 +213,8 @@ public class SalesCataloguePrice {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
 		approvalFunc.verifyWorkFlowDocForCatalog();
@@ -243,8 +243,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -266,8 +266,8 @@ public class SalesCataloguePrice {
 		commonFunc.hardWait(2000);
 		commonFunc.logoutUser();
 		commonFunc.hardWait(2000);
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"AshokUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approvalFunc.navigateToApprovals();
 		approvalFunc.verifyWorkFlowTypeForCataloguePrice(commonFunc.getDataFromTestDataSheet("WorkFlowType"));
 		approvalFunc.verifyWorkFlowDocForCatalog();
@@ -296,8 +296,8 @@ public class SalesCataloguePrice {
 		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 		SalesPriceList.clickAddButton();
 		clickCataloguePriceButton();
@@ -661,8 +661,8 @@ public class SalesCataloguePrice {
 		for (int attempt = 1; attempt <= maxAttempts; attempt++) {
 //		        commonFunc.hardWait(4000);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-					"TvsUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateItemPage1();
 			flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 			if (flag) {
@@ -730,8 +730,8 @@ public class SalesCataloguePrice {
 						verifyItemPost(VariableHandler.getItemName());
 						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						// item Asso
 						commonFunc.navigateItemAssoScreen();
 						cusItems.searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
@@ -745,8 +745,8 @@ public class SalesCataloguePrice {
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
 						// to Insert Customer Items
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigateCustomerItemScreen();
 						cusItems.addPLusButton();
 						cusItems.insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
@@ -763,8 +763,8 @@ public class SalesCataloguePrice {
 						commonFunc.logoutUser();
 						commonFunc.checkRefreshCellsDisappear();
 						// to insert a Catalogue Price
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "HodUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigatePriceList_StdPrice_CataloguePrice();
 						SalesPriceList.clickAddButton();
 						clickCataloguePriceButton();
@@ -786,8 +786,8 @@ public class SalesCataloguePrice {
 						commonFunc.hardWait(2000);
 						commonFunc.logoutUser();
 						commonFunc.hardWait(2000);
-						commonFunc.validCommonLogin(System.getProperty("HodUsername"),
-								System.getProperty("HodPassword"), "AshokUsername");
+						commonFunc.validCommonLogin(System.getProperty("HariUsername"),
+								System.getProperty("LoginPassword"), "HariUsername");
 						approvalFunc.navigateToApprovals();
 						approvalFunc.verifyWorkFlowTypeForCataloguePrice(
 								commonFunc.getDataFromTestDataSheet("WorkFlowType"));
@@ -832,14 +832,14 @@ public class SalesCataloguePrice {
 				if (flag) {
 					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"), "AshokUsername");
+					commonFunc.validCommonLogin(System.getProperty("HariUsername"),
+							System.getProperty("LoginPassword"), "HariUsername");
 					approvalFunc.navigateToApprovals();
 					approvalFunc.filterDocumentsforApproval(item);
 					approvalFunc.verifyApproveWithDocNumber(item);
 					commonFunc.logoutUser();
-//					commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-//							"TvsUsername");
+//					commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//							"AdminUsername");
 //					commonFunc.navigateItemPage();
 				}
 			}

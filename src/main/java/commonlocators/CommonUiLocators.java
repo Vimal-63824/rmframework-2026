@@ -300,7 +300,7 @@ public class CommonUiLocators {
 	/** @locatorType XPATH */
 	public static final String DebitNote_Add_Icon = "//button[@data-testid='Add_Debit_Note']";
 	/** @locatorType XPATH */
-	public static final String Proforma_FindPage_Add_Btn = "//button[contains(@id,'B2133960405315551418')]";
+	public static final String Proforma_FindPage_Add_Btn = "//button[@data-testid='PROFORMA INVOICE ADD ICON']";
 	/** @Locator XPATH */
 	public static final String GateEntryPendingIcon = "//button[@data-testid='Create_GE']";
 	/** @Locator XPATH */

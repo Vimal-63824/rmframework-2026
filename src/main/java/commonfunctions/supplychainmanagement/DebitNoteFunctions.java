@@ -45,8 +45,8 @@ public class DebitNoteFunctions {
 	 * @return boolean
 	 */
 	public boolean createDebitMemoWithGRNGeneral() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToDebitNoteScreen();
 		ClickingDebitNotePendingIcon();
 		SearchingDocumentNo();
@@ -56,8 +56,8 @@ public class DebitNoteFunctions {
 		clickingDebitNotePostButton();
 		DebitNoteforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getDBdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getDBdocno());
@@ -529,8 +529,8 @@ public class DebitNoteFunctions {
 	 * @return boolean
 	 */
 	public boolean createDebitMemoWithoutGRNreference() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToDebitNoteScreen();
 		ClickingDebitNoteAddIcon();
 		InsertingLocationAndCustomer(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -543,8 +543,8 @@ public class DebitNoteFunctions {
 		clickingDebitNotePostButton();
 		DebitNoteforwardForApproval();
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+				"HariUsername");
 		approveFunc.navigateToApprovals();
 		approveFunc.filterDocumentsforApproval(VariableHandler.getDBdocno());
 		approveFunc.verifyApproveWithDocNumber(VariableHandler.getDBdocno());
@@ -661,8 +661,8 @@ public class DebitNoteFunctions {
 	 * @return boolean
 	 */
 	public boolean cancelDebitMemodocument() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToDebitNoteScreen();
 		ClickingDebitNoteAddIcon();
 		InsertingLocationAndCustomer(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -681,8 +681,8 @@ public class DebitNoteFunctions {
 	 * @return boolean
 	 */
 	public boolean cancelDebitMemoLine() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToDebitNoteScreen();
 		ClickingDebitNoteAddIcon();
 		InsertingLocationAndCustomer(commonFunc.getDataFromTestDataSheet("Loc_100"),
