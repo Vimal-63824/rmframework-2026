@@ -192,4 +192,6 @@ public class PricelistPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PricelistAddFrame = "//iframe[@title='Price List Entry ']";
+	/** @locatorType Xpath */
+	public static final String ItemLovButton = "//button[@id='P3670200_ITEM_1_lov_btn']";
 }

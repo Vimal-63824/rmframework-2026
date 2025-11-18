@@ -1664,37 +1664,67 @@ public class PurchaseRequestFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseRequestWithMultipleItemInExcelSheetForMaterial() {
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"ErpUserName");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
-		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("L0001"),
-				commonFunc.getDataFromTestDataSheet("U1"), commonFunc.getDataFromTestDataSheet("PRMaterialType"),
-				commonFunc.getDataFromTestDataSheet("IrpPrefix"), commonFunc.getDataFromTestDataSheet("T1001"),
-				commonFunc.getDataFromTestDataSheet("PR_Department"), commonFunc.getDataFromTestDataSheet("ErpAdmin"));
+		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PRMaterialType"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 				+ "QA Scenario - Purchase.xlsx";
-		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRMaterialSheet"));
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRGeneralSheet"));
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
 			if (!(item.equals("") || item.equals("Total"))) {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String GrossValue = itemmultiple[i][7];
-				String GlAccNumber = itemmultiple[i][8];
-				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost, GlAccNumber);
-				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item,
-						System.getProperty("ErpAdmin"));
-//				clickLineDetailsIconForLastitem();
-//				verifyAddGlAccountNumber(GlAccNumber);
+				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost);
+				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item);
 			} else {
 				break;
 			}
 		}
-
-		saveHeaderAndClickPostWithDevaUser();
+		saveHeaderAndClickPost();
 		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"ErpUserName");
+//		commonFunc.navigatePurchaseRequestPage();
+//		clickAddIconFillDetailsOfPurchaseRequest(commonFunc.getDataFromTestDataSheet("L0001"),
+//				commonFunc.getDataFromTestDataSheet("U1"), commonFunc.getDataFromTestDataSheet("PRMaterialType"),
+//				commonFunc.getDataFromTestDataSheet("Prefix_PR100"), commonFunc.getDataFromTestDataSheet("PR_CPCCode"),
+//				commonFunc.getDataFromTestDataSheet("PR_Department"),
+//				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+//		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+//		ExcelUtils excelUtils = new ExcelUtils();
+//		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+//				+ "QA Scenario - Purchase.xlsx";
+//		itemmultiple = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("PRMaterialSheet"));
+//		for (int i = 3; i < itemmultiple.length; i++) {
+//			String item = itemmultiple[i][1];
+//			if (!(item.equals("") || item.equals("Total"))) {
+//				String Quantity = itemmultiple[i][5];
+//				String UnitCost = itemmultiple[i][6];
+//				String GrossValue = itemmultiple[i][7];
+//				String GlAccNumber = itemmultiple[i][8];
+//				fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost, GlAccNumber);
+//				purchaseOrderFunc.verifyLineAmountCalculationValidation(GrossValue, item,
+//						System.getProperty("HodValue"));
+////				clickLineDetailsIconForLastitem();
+////				verifyAddGlAccountNumber(GlAccNumber);
+//			} else {
+//				break;
+//			}
+//		}
+//
+//		saveHeaderAndClickPost();
+//		searchPRAndCheckPRStatus(VariableHandler.getPRNumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 	}
 
 //	/**

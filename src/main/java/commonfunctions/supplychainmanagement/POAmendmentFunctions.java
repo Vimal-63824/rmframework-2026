@@ -1043,6 +1043,7 @@ public class POAmendmentFunctions {
 	 * @param ExpectedStatus
 	 */
 	public void verifyOpenPONumber(String POno) {
+		webDB.navigateToRefresh();
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PONumberSelect, POno);
 		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
 		if (flag) {
@@ -1058,6 +1059,9 @@ public class POAmendmentFunctions {
 				if (flag) {
 					webDB.clickAnElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
 					flag = webDB.waitForElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
+				} else {
+//					webDB.navigateToRefresh();
+//					verifyOpenPONumber(POno);
 				}
 			}
 		}
@@ -6769,8 +6773,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6810,14 +6814,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();

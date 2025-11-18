@@ -1439,7 +1439,7 @@ public class PricelistPageFunctions {
 		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(PricelistPageLocators.FindScreenItemField, ElementType.Xpath);
 		if (flag) {
-			webDB.sendTextToAnElement(PricelistPageLocators.FindScreenItemField, Item1, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(PricelistPageLocators.ItemLovButton, Item1);
 			logs.logging("INFO", "Search is clicked");
 			flag = webDB.waitForElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			if (flag) {
