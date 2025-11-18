@@ -158,7 +158,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialRequest = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String CreateMaterialRequestButton = "//button[@id='B163869976007639589']";
+	public static final String CreateMaterialRequestButton = "//button[@data-testid='Add_MR']";
 	/** @locatorType Xpath */
 	public static final String InventoryReportsTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[3]";
 	/** @locatorType Xpath */
@@ -188,7 +188,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MIVTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String PendingMIV = "//button[@id='B1496310898532082770']";
+	public static final String PendingMIV = "//button[@data-testid='create_issuance']";
 	/** @locatorType Xpath */
 	public static final String ItemTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[1]/*//a[text()='Items']";
 	/** @locatorType Xpath */

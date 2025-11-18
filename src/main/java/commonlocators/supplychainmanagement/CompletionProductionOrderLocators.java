@@ -63,7 +63,7 @@ public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String CompletionTransNumber(String Number) {
-		return "//a[text()='" + Number + "']";
+		return "//table[@id='16501786899999762915_orig']//a[text()='" + Number + "']";
 	}
 
 	/** @locatorType XPATH */
@@ -117,6 +117,8 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String MultiProdNo = "//button[@id='P80_FIND_PROD_NO_lov_btn']";
 	/** @locatorType XPATH */
+	public static final String PendingSearchButtonMulti = "//button[@id='B807324816757716737']";
+	/** @locatorType XPATH */
 	public static final String CreateCompProc = "//button[@id='B1']";
 	/** @locatorType XPATH */
 	public static final String MultipleCreateCompletionProcessOkBtn = "//button[@id='CREATE']";
@@ -146,17 +148,22 @@ public class CompletionProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String MultipleProcessDetails(String ProdNo) {
-		return "//td[text()='" + ProdNo + "']/../td[21]";
+		return "//td[text()='" + ProdNo + "']/../td[22]/a";
 	}
 
 	/** @locatorType XPATH */
 	public static final String MultipleProductionOrderNo(String ProdNo) {
 		return "//td[text()='" + ProdNo + "']";
 	}
+	
+	/** @locatorType XPATH */
+	public static final String MultipleProcessCreateCheckBox(String No) {
+		return "//table[@id='3358456827714383579_orig']/tbody//td[text()='" + No + "']/../td/input[@type='checkbox']";
+	}
 
 	/** @locatorType XPATH */
 	public static final String MultipleProcessCheckBox(int No) {
-		return "//table[@id='2062393616266069054_orig']/tbody/tr[" + No + "]/td[7]/input";
+		return "//table[@id='2731233389405342880_orig']/tbody/tr[" + No + "]/td[7]/input";
 	}
 
 	/** @locatorType XPATH */
@@ -233,8 +240,8 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String PendingSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
 	/** @locatorType XPATH */
-	public static final String SearchResultStatusData = "//table[@id='2775888757349079215_orig']//tbody/tr/td/div[contains(@style,'color')]";
+	public static final String SearchResultStatusData = "//table[@id='16501786899999762915_orig']//tbody/tr/td/div[contains(@style,'color')]";
 	/** @locatorType XPATH */
-	public static final String Pending_TableSelectAllCheckBox = "//table[@id='2554136343121425027']/tr/th//input[@id='check_all']";
+	public static final String Pending_TableSelectAllCheckBox = "//table[@id='3222976116260698853']/tr/th//input[@id='check_all']";
 
 }
