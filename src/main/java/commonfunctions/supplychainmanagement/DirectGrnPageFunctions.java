@@ -63,8 +63,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
-		
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -92,7 +95,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -115,7 +122,11 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("FreePassDirectGRNSerUserDefined"));
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNSerUserDefined"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
@@ -954,7 +965,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -980,7 +995,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1003,7 +1022,11 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyGrnAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("FreePassDirectRateSer"));
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectRateSer"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
@@ -1027,7 +1050,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectPriceListGen"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassDirectPriceListGen"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1055,7 +1082,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectPriceListGen"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNRateGen"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("FreePassDirectPriceListGen"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1080,7 +1111,11 @@ public class DirectGrnPageFunctions {
 		verifyGrnAddLineDetailsOtherThanUserDefinedPriceList(
 				webDB.getDataFromProperties("FreePassDirectGRNPriceListSer"));
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNPriceListSer"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
 
@@ -1402,7 +1437,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnDifFreePassRateContGen"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectGrnDifFreePassRateContGen"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnDifFreePassRateContGen"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1429,7 +1468,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnDifFreePassRateContGen"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectGrnDifFreePassRateContGen"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnDifFreePassRateContGen"));
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1457,7 +1500,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1486,7 +1533,11 @@ public class DirectGrnPageFunctions {
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
 		lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
@@ -1511,8 +1562,12 @@ public class DirectGrnPageFunctions {
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 	}
 
@@ -1557,11 +1612,14 @@ public class DirectGrnPageFunctions {
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
 		lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirectgrndiffFreePassPricelistG"));
-		GRNFunc.waitingForApproval();
+		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("FreePassDirectGRNUserDefined"));
+		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 		afterVerifyTheStatusMrvToCancelDocumentWise();
-
 	}
 	/**
 	 * This Method to handle After Approve the Status Document Move to QC or MRV
