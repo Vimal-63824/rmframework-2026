@@ -305,9 +305,9 @@ public class BillOfMaterialsLocators {
 	/** @locatorType Xpath */
 	public static final String CopyBOMEffFromInput = "//*[@data-testid='CopyBOMEffFromInput']/input";
 	/** @locatorType Xpath */
-	public static final String CopyBOMEffToInput = "//input[@id='P21513101008_COPY_EFF_TO_input']";
+	public static final String CopyBOMEffToInput = "//*[@data-testid='CopyBOMEffToInput']/input";
 	/** @locatorType Xpath */
-	public static final String CopyBOMNameInput = "//*[@data-testid='CopyBOMEffToInput']/input";
+	public static final String CopyBOMNameInput = "//input[@data-testid='CopyBOMNameInput']";
 	/** @locatorType Xpath */
 	public static final String CopyBOMTickIcon = "//button[@data-testid='CopyBOMTickIcon']";
 }

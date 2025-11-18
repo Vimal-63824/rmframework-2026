@@ -317,9 +317,7 @@ public class MaterialRequestFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(MaterialRequestLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-				approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 //				if (flag) {
 //					webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
 //					flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
@@ -785,28 +783,83 @@ public class MaterialRequestFunctions {
 					if (flag) {
 						logs.logging("INFO", "Status was approved for Material request");
 					} else {
-						webDB.moveToElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
-						webDB.clickAnElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
-						flag = webDB.waitForElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
+						flag = webDB.waitForElement(MaterialRequestLocators.FindStatusSelectField, ElementType.Xpath);
 						if (flag) {
-							logs.logging("INFO", "MR Status not Approve selected the Document to post");
-							headerSaveAndPost();
+							webDB.selectDropDownByText(MaterialRequestLocators.FindStatusSelectField,
+									commonFunc.getDataFromTestDataSheet("Draft"), ElementType.Xpath);
+							webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							webDB.moveToElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+							webDB.clickAnElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo),
+									ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "MR Status not Approve selected the Document to post");
+								headerSaveAndPost();
+								if (!VariableHandler.getApprovalFlag()) {
+									approvalPageFunc.waitingForApprovalWithFordwarder(
+											commonFunc.getDataFromTestDataSheet("HodValue"));
+									commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+											VariableHandler.getMaterialRequestNo(),
+											webDB.getDataFromProperties("HodEmpId"),
+											commonFunc.getDataFromTestDataSheet("Unit_100"),
+											System.getProperty("HariUsername"));
+								}
+								commonFunc.navigateToInventoryMaterialRequest();
+								checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
+										commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to store Material Request Number And check Status approve
+	 * with Production Order Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdNo
+	 * @param ExpectedStatus
+	 */
+	public void storeMRNoAndCheckStatusDraftAndPostWithProdNo(String ProdNo) {
+		commonFunc.searchAndSelectValueInFilters(MaterialRequestLocators.FindProdNoLovBtn, ProdNo);
+		flag = webDB.waitForElement(MaterialRequestLocators.FindStatusSelectField, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByText(MaterialRequestLocators.FindStatusSelectField,
+					commonFunc.getDataFromTestDataSheet("Draft"), ElementType.Xpath);
+			flag = webDB.waitForElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(MaterialRequestLocators.FindSearchBtn, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search Button clicked and Prod No: " + ProdNo + " Displayed");
+					String MRNo = webDB.getTextFromElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo),
+							ElementType.Xpath);
+					VariableHandler.setMaterialRequestNo(MRNo);
+					logs.logging("INFO", "Material Number: '" + VariableHandler.getMaterialRequestNo() + "'");
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.moveToElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+					webDB.clickAnElement(MaterialRequestLocators.Find_MRNo_TableData(ProdNo), ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "MR Status not Approve selected the Document to post");
+						headerSaveAndPost();
+						if (!VariableHandler.getApprovalFlag()) {
+							approvalPageFunc
+									.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 							commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 									VariableHandler.getMaterialRequestNo(), webDB.getDataFromProperties("HodEmpId"),
-									commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-//							commonFunc.logoutUser();
-//							commonFunc.validCommonLogin(System.getProperty("HariUsername"),
-//									System.getProperty("LoginPassword"), "HariUsername");
-//							approvalPageFunc.navigateToApprovals();
-//							approvalPageFunc.filterDocumentsforApproval(VariableHandler.getMaterialRequestNo());
-//							approvalPageFunc.verifyApproveWithDocNumber(VariableHandler.getMaterialRequestNo());
-//							flag = commonFunc.logoutUser();
-//							commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
-//									System.getProperty("LoginPassword"), "AdminUsername");
-							commonFunc.navigateToInventoryMaterialRequest();
-							checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
-									commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+									commonFunc.getDataFromTestDataSheet("Unit_100"),
+									System.getProperty("HariUsername"));
 						}
+						commonFunc.navigateToInventoryMaterialRequest();
+						checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
+								commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 					}
 				}
 			}

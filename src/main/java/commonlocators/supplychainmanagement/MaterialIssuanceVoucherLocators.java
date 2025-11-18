@@ -95,7 +95,7 @@ public class MaterialIssuanceVoucherLocators {
 	public static final String VoucherNoLovButton = "//input[@data-testid='VoucherNoLovButton']/following-sibling::button";
 	/** @locatorType XPATH */
 
-	public static final String MivSearchButton = "//button[@id='B169311723934634049']";
+	public static final String MivSearchButton = "//button[@data-testid='find_miv']";
 
 	/** @locatorType XPATH */
 	public static final String TypeText = "//span[contains(@id,'ISTHD_ISSUETO_TYPE_DISPLAY')]";
@@ -129,7 +129,7 @@ public class MaterialIssuanceVoucherLocators {
 	/** @locatorType XPATH */
 	public static final String LineDetailsIframeCloseIcon = "//iframe[@title='Line Details']/ancestor::div//button";
 	/** @locatorType XPATH */
-	public static final String CreateMIVButton = "//button[@id='B535610713637463114']";
+	public static final String CreateMIVButton = "//button[@id='B1204579228130823385']";
 	/** @locatorType XPATH */
-	public static final String PendingCreateMIV = "//button[@id='B535610713637463114']";//TODO
+	public static final String PendingCreateMIV = "//button[@id='B1204579228130823385']";//TODO
 }

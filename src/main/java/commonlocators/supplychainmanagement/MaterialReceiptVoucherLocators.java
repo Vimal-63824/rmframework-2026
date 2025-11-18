@@ -11,7 +11,7 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String PendingIssuance = "//button[@data-testid='PendingInsurance']";
 	/** @locatorType Xpath */
-	public static final String VoucherNumberLovButton = "//button[@id='P9313117703_VOU_NO_lov_btn']";
+	public static final String VoucherNumberLovButton = "//button[@id='P93131177_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='SearchButton']";
 	/** @locatorType Xpath */
@@ -37,7 +37,7 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderPostIcon = "//button[@id='B5342121585954108719']";
 	/** @locatorType Xpath */
-	public static final String AllCheckBox = "//table[@id='1639124680070035577']//input[@id='check_all']";
+	public static final String AllCheckBox = "//table[@id='2308093194563395848']//input[@id='check_all']";
 
 	/** @locatorType Xpath */
 	public static final String MRVCheckBox(String GrnNo) {
@@ -46,7 +46,7 @@ public class MaterialReceiptVoucherLocators {
 
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptStatusTableText(String Mrno) {
-		return "//a[text()='" + Mrno + "']/../../td/div[contains(@style,'Green')]";
+		return "//table[@id='3380521312027296684_orig']//a[text()='" + Mrno + "']/../../td/div[contains(@style,'Green')]";
 	}
 
 	/** @locatorType Xpath */

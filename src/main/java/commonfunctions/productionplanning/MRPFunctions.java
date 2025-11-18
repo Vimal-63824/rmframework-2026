@@ -778,40 +778,9 @@ public class MRPFunctions {
 			Cost = "10";
 		}
 		try {
+			saleOrderFunc.verifySalesOrderCreationForMRP();
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
-			commonFunc.navigateSalesOrderPage();
-			saleOrderFunc.verifyClickAddButtonInSo();
-			saleOrderFunc.FrameSwitchingInSOCreation();
-			saleOrderFunc.verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
-					commonFunc.getDataFromTestDataSheet("Customer"));
-			saleOrderFunc.chooseHeaderCPCCodeAndSaveHeader(commonFunc.getDataFromTestDataSheet("GeneralU100-CPC"));
-			saleOrderFunc.addItemsInSO(FGItem);
-			saleOrderFunc.addQuantityAndUnitCost(Qnty, Cost);
-			saleOrderFunc.chooseHsnCodeAndClickLineWiseSaveButton(commonFunc.getDataFromTestDataSheet("HSN2022-5%"));
-			saleOrderFunc.checkSaleOrderTaxCalculationForLastAddedItem();
-			saleOrderFunc.clickLineWiseDetailsButton();
-			saleOrderFunc.switchToLineDetailFrameInSaleOrder();
-			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOSpecialDiscountAssblValue,
-					SalesOrderLocators.SOSpecialDiscountpercentageField,
-					SalesOrderLocators.SOSpecialDiscountAmountField, RandomStringUtils.randomNumeric(1));
-			commonFunc.checkDiscountInLineDetails(SalesOrderLocators.SOCashDiscountAssblValue,
-					SalesOrderLocators.SOCashDiscountpercentageField, SalesOrderLocators.SOCashDiscountAmountField,
-					RandomStringUtils.randomNumeric(1));
-			saleOrderFunc.clickLineWiseDetailsSaveButton();
-			webDB.switchToDefaultContent();
-			saleOrderFunc.getSalesOrderTotalAmount();
-			saleOrderFunc.clickPostButton();
-			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
-						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HariUsername"));
-			}
-			commonFunc.navigateSalesOrderPage();
-			saleOrderFunc.validateSalesOrderLineDocumentStatus(VariableHandler.getSONumber(),
-					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			commonFunc.navigateToMRPScreenInProdPlanning();
 			clickAddIconInMRP();
 			fillDetailsInMRPCreationAndClickTickIcon(Today, MRPName, Today, "ALL");
@@ -835,7 +804,7 @@ public class MRPFunctions {
 			clickHeaderSaveAndClickPost();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRPNumber(),
 						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 						System.getProperty("HariUsername"));
 			}
