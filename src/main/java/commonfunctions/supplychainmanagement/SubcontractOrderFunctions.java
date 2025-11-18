@@ -5678,7 +5678,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalRegistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -5724,7 +5724,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -5734,7 +5733,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalRegistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -5780,7 +5779,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -5790,7 +5788,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalRegistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -5838,7 +5836,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -5848,7 +5845,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalRegistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -5896,7 +5893,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -5906,7 +5902,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -5952,7 +5948,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -5962,7 +5957,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateUnRegistered() {
+	public void createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -6071,7 +6066,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6081,7 +6075,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefInterstateUnregistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefInterstateUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -6146,7 +6140,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6154,9 +6147,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-Interstate(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateUnregistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -6265,16 +6257,14 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
 	 * Create Subcontract Order From Pending With Project-Interstate(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithProjectInterstateUnregistered() {
+	public void createSubcontractOrderFromPendingWithProjectInterstateUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -6339,7 +6329,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6348,7 +6337,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeLocalUnregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeLocalUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6396,7 +6385,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6404,9 +6392,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorLocalUnRegistered() {
+	public void createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6450,7 +6437,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6458,9 +6444,8 @@ public class SubcontractOrderFunctions {
 	 * Ref-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6506,7 +6491,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6514,9 +6498,8 @@ public class SubcontractOrderFunctions {
 	 * Conv Factor-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalUnRegistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6562,7 +6545,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6570,9 +6552,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalUnRegistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6620,7 +6601,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6628,9 +6608,8 @@ public class SubcontractOrderFunctions {
 	 * Sales Order Ref-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalUnRegistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6678,7 +6657,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6686,9 +6664,8 @@ public class SubcontractOrderFunctions {
 	 * Project-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -6734,7 +6711,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6742,9 +6718,8 @@ public class SubcontractOrderFunctions {
 	 * Type-Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateRegistered() {
+	public void createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -6852,7 +6827,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 
 	}
 
@@ -6861,9 +6835,8 @@ public class SubcontractOrderFunctions {
 	 * Ref-Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -6928,7 +6901,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -6936,9 +6908,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateRegistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -7046,16 +7017,14 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
 	 * Create Subcontract Order From Pending With Project-Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithProjectInterstateRegistered() {
+	public void createSubcontractOrderFromPendingWithProjectInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -7120,16 +7089,14 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
 	 * Direct Subcontract Order With BOM For Standard Type - UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderWithBOMForStandardTypeUTGSTUnregistered() {
+	public void createDirectSubcontractOrderWithBOMForStandardTypeUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7150,16 +7117,14 @@ public class SubcontractOrderFunctions {
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
-		return flag;
 	}
 
 	/**
 	 * Direct Subcontract Order For SCO Value Addition Type- UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeUTGSTUnregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7207,7 +7172,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7215,9 +7179,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTUnregistered() {
+	public void createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7261,7 +7224,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7269,9 +7231,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7317,7 +7278,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7325,9 +7285,8 @@ public class SubcontractOrderFunctions {
 	 * Conv Factor-UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTUnregistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7373,7 +7332,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7381,9 +7339,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTUnregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7431,7 +7388,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7439,9 +7395,8 @@ public class SubcontractOrderFunctions {
 	 * Sales Order Ref- UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTUnregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7489,7 +7444,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7497,9 +7451,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7545,7 +7498,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7554,7 +7506,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderWithBOMForStandardTypeUTGSTregistered() {
+	public void createDirectSubcontractOrderWithBOMForStandardTypeUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7575,16 +7527,14 @@ public class SubcontractOrderFunctions {
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
-		return flag;
 	}
 
 	/**
 	 * Direct Subcontract Order For SCO Value Addition Type- UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeUTGSTregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7632,7 +7582,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7640,9 +7589,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTregistered() {
+	public void createDirectSubcontractOrderWithBOMForStandardTypeInConversionFactorUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7686,7 +7634,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7694,9 +7641,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTregistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7742,7 +7688,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7750,9 +7695,8 @@ public class SubcontractOrderFunctions {
 	 * Conv Factor-UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTregistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeInSalesOrderRefandConvFactorUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7798,7 +7742,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7806,9 +7749,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7856,7 +7798,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7864,9 +7805,8 @@ public class SubcontractOrderFunctions {
 	 * Sales Order Ref- UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTregistered() {
+	public void createDirectSubcontractOrderForValueAdditionTypeWithConvFactorAndSOrefUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7914,7 +7854,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7922,9 +7861,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTregistered() {
+	public void directSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -7970,7 +7908,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -7978,9 +7915,8 @@ public class SubcontractOrderFunctions {
 	 * Type-UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTregistered() {
+	public void createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8086,7 +8022,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8094,9 +8029,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefUTGSTregistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefUTGSTregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8160,7 +8094,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8168,9 +8101,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-Local(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTRegistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8277,16 +8209,14 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
 	 * Create Subcontract Order From Pending With Project-UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithProjectUTGSTRegistered() {
+	public void createSubcontractOrderFromPendingWithProjectUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8350,7 +8280,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8358,9 +8287,8 @@ public class SubcontractOrderFunctions {
 	 * Ref-UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSerialItemSubcontractOrderFromPendingWithSalesOrderRefUTGSTRegistered() {
+	public void createSerialItemSubcontractOrderFromPendingWithSalesOrderRefUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8470,7 +8398,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8478,9 +8405,8 @@ public class SubcontractOrderFunctions {
 	 * Project-UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSerialitemSubcontractOrderFromPendingWithProjectUTGSTRegistered() {
+	public void createSerialitemSubcontractOrderFromPendingWithProjectUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8544,7 +8470,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8552,9 +8477,8 @@ public class SubcontractOrderFunctions {
 	 * Type-UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTUnRegistered() {
+	public void createSubcontractOrderFromPendingWithConversionFactorinGRN_PRTypeUTGSTUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8660,7 +8584,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8668,9 +8591,8 @@ public class SubcontractOrderFunctions {
 	 * Ref-UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefUTGSTUnregistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8734,7 +8656,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8742,9 +8663,8 @@ public class SubcontractOrderFunctions {
 	 * Factor-UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTUnRegistered() {
+	public void createSubcontractOrderFromPendingWithSalesOrderRefandConvFactorUTGSTUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8851,16 +8771,14 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
 	 * Create Subcontract Order From Pending With Project-UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSubcontractOrderFromPendingWithProjectUTGSTUnRegistered() {
+	public void createSubcontractOrderFromPendingWithProjectUTGSTUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -8924,7 +8842,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -8962,9 +8879,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSerialItemSubcontractOrderForValueAdditionTypeUTGSTUnregistered() {
+	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9012,7 +8928,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9020,9 +8935,8 @@ public class SubcontractOrderFunctions {
 	 * Order Ref- UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9068,7 +8982,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9076,9 +8989,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTUnregistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9124,7 +9036,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9162,9 +9073,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSerialItemSubcontractOrderForValueAdditionTypeUTGSTRegistered() {
+	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9212,7 +9122,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9220,9 +9129,8 @@ public class SubcontractOrderFunctions {
 	 * Order Ref- UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9268,7 +9176,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9276,9 +9183,8 @@ public class SubcontractOrderFunctions {
 	 * UTGST(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectUTGSTRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9324,7 +9230,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9362,9 +9267,8 @@ public class SubcontractOrderFunctions {
 	 * Local(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSerialItemSubcontractOrderForValueAdditionTypeLocalRegistered() {
+	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9412,7 +9316,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9420,9 +9323,8 @@ public class SubcontractOrderFunctions {
 	 * Order Ref- Local(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9468,7 +9370,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9476,9 +9377,8 @@ public class SubcontractOrderFunctions {
 	 * Project-Local(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectLocalRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9524,7 +9424,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9562,9 +9461,8 @@ public class SubcontractOrderFunctions {
 	 * Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSerialItemSubcontractOrderForValueAdditionTypeLocalUnRegistered() {
+	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9612,7 +9510,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9620,9 +9517,8 @@ public class SubcontractOrderFunctions {
 	 * Order Ref- Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9668,7 +9564,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9676,9 +9571,8 @@ public class SubcontractOrderFunctions {
 	 * Project-Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectLocalUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -9724,7 +9618,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9732,9 +9625,8 @@ public class SubcontractOrderFunctions {
 	 * Ref-Interstate(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSerialItemSubcontractOrderFromPendingWithSalesOrderRefInterstateUnRegistered() {
+	public void createSerialItemSubcontractOrderFromPendingWithSalesOrderRefInterstateUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -9846,7 +9738,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9854,9 +9745,8 @@ public class SubcontractOrderFunctions {
 	 * Project-Interstate(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSerialitemSubcontractOrderFromPendingWithProjectInterstateUnRegistered() {
+	public void createSerialitemSubcontractOrderFromPendingWithProjectInterstateUnRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -9921,7 +9811,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -9929,9 +9818,8 @@ public class SubcontractOrderFunctions {
 	 * Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSerialItemSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered() {
+	public void createSerialItemSubcontractOrderFromPendingWithSalesOrderRefInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -10043,7 +9931,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -10051,9 +9938,8 @@ public class SubcontractOrderFunctions {
 	 * Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createSerialitemSubcontractOrderFromPendingWithProjectInterstateRegistered() {
+	public void createSerialitemSubcontractOrderFromPendingWithProjectInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
@@ -10118,7 +10004,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -10157,9 +10042,8 @@ public class SubcontractOrderFunctions {
 	 * Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean createDirectSerialItemSubcontractOrderForValueAdditionTypeInterstateRegistered() {
+	public void createDirectSerialItemSubcontractOrderForValueAdditionTypeInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -10208,7 +10092,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -10216,9 +10099,8 @@ public class SubcontractOrderFunctions {
 	 * Order Ref-Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefInterstateRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeInSalesOrderRefInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -10265,7 +10147,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 
 	/**
@@ -10273,9 +10154,8 @@ public class SubcontractOrderFunctions {
 	 * Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
-	 * @return boolean
 	 */
-	public boolean directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered() {
+	public void directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
@@ -10322,6 +10202,5 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		return flag;
 	}
 }
