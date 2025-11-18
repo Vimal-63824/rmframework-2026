@@ -103,7 +103,7 @@ public class SalesStandardPriceFunctions {
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -153,7 +153,7 @@ public class SalesStandardPriceFunctions {
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -203,7 +203,7 @@ public class SalesStandardPriceFunctions {
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -252,7 +252,7 @@ public class SalesStandardPriceFunctions {
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -302,7 +302,7 @@ public class SalesStandardPriceFunctions {
 		SalesPriceList.clickAddButton();
 		clickStandardPriceButton();
 		clickAddbutton();
-		clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+		clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		insertItemIdStandardPrice();
 		insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 		insertMapPriceStdPrice(Map_Value);
@@ -644,9 +644,10 @@ public class SalesStandardPriceFunctions {
 		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
 			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SaveButton, ElementType.Xpath);
-			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
+			flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Saved a Record ");
+				commonFunc.hardWait(2000);
 			}
 		}
 		assertTrue(flag);
@@ -658,15 +659,16 @@ public class SalesStandardPriceFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void clickActiveButton() {
-		flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
+		commonFunc.hardWait(4000);
+		flag = webDB.waitForElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesStandardPriceLocators.ActiveButton, ElementType.CssSelector);
-			if (flag) {
-				logs.logging("INFO", "Succeessfully Active Record");
-			}
+			webDB.clickAnElement(SalesStandardPriceLocators.ActiveButton, ElementType.Xpath);
+			logs.logging("INFO", "Succeessfully Active Record");
+			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
 	}
+
 
 	/**
 	 * Verify Search Button Clicking
@@ -792,7 +794,7 @@ public class SalesStandardPriceFunctions {
 						SalesPriceList.clickAddButton();
 						clickStandardPriceButton();
 						clickAddbutton();
-						clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+						clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 						insertItemIdStandardPrice();
 						insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 						insertMapPriceStdPrice(Map_Value);
@@ -1097,7 +1099,7 @@ public class SalesStandardPriceFunctions {
 			SalesPriceList.clickAddButton();
 			clickStandardPriceButton();
 			clickAddbutton();
-			clickLocutionField(commonFunc.getDataFromTestDataSheet("L100StdPrice"));
+			clickLocutionField(commonFunc.getDataFromTestDataSheet("Loc_100"));
 			insertItemIdStandardPrice();
 			insertCurcyField(commonFunc.getDataFromTestDataSheet("CatalogueCurcy"));
 			insertMapPriceStdPrice(Map_Value);

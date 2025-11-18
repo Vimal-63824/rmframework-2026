@@ -425,10 +425,10 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void searchedItem() {
-		flag = webDB.waitForElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.SearchedItemDrillDown, ElementType.CssSelector);
 		if (flag) {
-			webDB.moveToElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
-			webDB.javaScriptClickAnElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
+			webDB.moveToElement(CommonUiLocators.SearchedItemDrillDown, ElementType.CssSelector);			
+			webDB.clickAnElement(CommonUiLocators.SearchedItemDrillDown, ElementType.CssSelector);
 			flag = webDB.waitForElement(CommonUiLocators.SalesTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Clicked a Drilldown Item");
