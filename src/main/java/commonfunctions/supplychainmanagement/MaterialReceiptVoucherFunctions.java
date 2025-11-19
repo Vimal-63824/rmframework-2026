@@ -76,6 +76,7 @@ public class MaterialReceiptVoucherFunctions {
 							if (flag) {
 								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
+								webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);
@@ -577,6 +578,7 @@ public class MaterialReceiptVoucherFunctions {
 							if (flag) {
 								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
+								webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);

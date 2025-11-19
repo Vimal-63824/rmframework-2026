@@ -2417,6 +2417,7 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
@@ -2597,6 +2598,7 @@ public class CommonFunctions {
 		restApi.setQueryParam("p_wfdc_act", "A");
 		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
 		String Value = restApi.response.getHeader("p_out_msg");
+		VariableHandler.setLastApprovalAPIHeaderText(Value);
 		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
 		logs.logging("INFO", "Displayed Approval Response Status Code: " + restApi.response.getStatusCode());
 		flag = Value.contains("Approved");

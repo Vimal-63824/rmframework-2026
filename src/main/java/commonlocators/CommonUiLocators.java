@@ -232,11 +232,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SubcontractOrder = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingSubcontractOrder = "//button[@id='B1477708597840489099']";
+	public static final String PendingSubcontractOrder = "//button[@data-testid='Create_SCO']";
 	/** @locatorType Xpath */
 	public static final String GrnSco = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String PendingGrn = "//button[@id='B1191369337279430568']";
+	public static final String PendingGrn = "//button[@data-testid='Pending_PO_SCO']";
 	/** @locatorType Xpath */
 	public static final String RfqTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
