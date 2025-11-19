@@ -41,9 +41,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RfqSupplierfield = "//*[@id=\"ig_suplr_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
-	public static final String RfqlineSupplierSaveButton = "//button[@id='B3358038263045194185']";//button[@data-testid='Save_sup_line']
+	public static final String RfqlineSupplierSaveButton = "//button[@data-testid='Save_supplier']";
 	/** @locatorType Xpath */
-	public static final String RfqHeaderSendRfq = "//*[@id=\"B3312063791261874721\"]/span";
+	public static final String RfqHeaderSendRfq = "//button[@data-testid='EntryCompleted']";
 	/** @locatorType Xpath */
 	public static final String RfqSupplierTab = "//*[@id=\"P161513105801_TAB\"]/div/div/div[2]/label";
 	/** @locatorType Xpath */
@@ -59,7 +59,7 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RfqpendPRNumField = "//*[@id=\"P16151310401_PR_NO\"]";
 	/** @locatorType Xpath */
-	public static final String Rfqsuplinesave = "//button[@id='B3449898581806387380']";
+	public static final String Rfqsuplinesave = "//button[@data-testid='Save_sup_line']";
 	/** @locatorType Xpath */
 	public static final String RfqsuplineHsnInput = "//input[@data-testid='PQLN_HSN_CODE']";
 	/** @locatorType Xpath */
@@ -149,7 +149,7 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePoBtn = "//button[@data-testid='Create_PO']";
 	/** @locatorType Xpath */
-	public static final String BtmPage = "//th[text()='TVS ARGOMM PVT. LTD.']";
+	public static final String BtmPage = "//th[text()='ROADMAP AUTOMATION']";
 	/** @locatorType Xpath */
 	public static final String RfqLineNum = "//*[@id='add_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
@@ -201,7 +201,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {//*[@id="R756144529071251319_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[2]
-		return "//*[@id=\'R756144529071251319_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'R1425065621357575423_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
@@ -236,7 +236,7 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RateFinalMessage = "//*[@id=\"t_Alert_Success\"]/div/div[3]/button/span";
 	/** @locatorType Xpath */
-	public static final String HsnInput = "//input[@id='C3398221505224762505']";
+	public static final String HsnInput = "//input[@data-testid='PQLN_HSN_CODE']";
 	/** @locatorType Xpath */
 	public static final String QuoteQty = "//*[@id=\"ig_sup_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */

@@ -81,7 +81,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpenSOOkButtonForward = "//*[@id='B1612723241586671539']";
 		/** @locatorType Xpath */
-		public static final String OpenSOFindPageSearchBtn = "/button[@data-testid='Find_line']";
+		public static final String OpenSOFindPageSearchBtn = "//button[@data-testid='Find_line']";
 		/** @locatorType Xpath */
 		public static final String FindOpenSOItemLovBtn = "//*[@data-testid='P19151310131_ITEM_1']/following-sibling::button";
 		/** @locatorType Xpath */
@@ -103,7 +103,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpsoWorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 		/** @locatorType Xpath */
-		public static final String OpsoOkButtonForward = "//button[@id='B1614624587133182023']";
+		public static final String OpsoOkButtonForward = "//button[@id='B2283240970459214424']";
 		/** @locatorType Xpath */
 		public static final String Transactions = "//span[contains(text(),'Transaction')]";
 		/** @locatorType Xpath */

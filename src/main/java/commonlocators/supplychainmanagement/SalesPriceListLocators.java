@@ -29,9 +29,9 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String SalesDiscPercent = " //input[@data-testid='CPL_DISC_PCT']";
 	/** @locatorType Xpath */
-	public static final String EffiticeFrom = "//input[@id='C6927517929604873531_input']";
+	public static final String EffiticeFrom = "//input[@id='C7596134312930905932_input']";
 	/** @locatorType Xpath */
-	public static final String EffiticeTo = "//input[@id='C6927518958121873531_input']";
+	public static final String EffiticeTo = "//input[@id='C7596135341447905932_input']";
 	/** @locatorType Xpath */
 	public static final String SalesPriceFields(int i) {
 		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[11] ";
@@ -60,7 +60,7 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 
 	/** @locatorType Xpath */
-	public static final String SearchIcon = "//BUTTON[@id='B1762998351090159309']";
+	public static final String SearchIcon = "//button[@data-testid='Search']";
 
 	/** @locatorType Xpath */
 	public static final String Documentno(int i) {
@@ -103,10 +103,8 @@ public class SalesPriceListLocators {
 	public static final String PriceListFlagFindPage = "//label[@id='P1915131012_PRICE_LIST_LABEL']";
 	/** @locatorType Xpath */
 	public static final String PriceListHyperLink = "(//table[@id='1253627943780396496_orig']//tr/td[4])[1]" ;
-	//*[@id="1253627943780396496_orig"]/tbody/tr[2]/td[4]/a
 	/** @locatorType Xpath */
-	public static final String PriceListHyperLink2 = "//*[@id=\"1253627943780396496_orig\"]/tbody/tr[2]/td[4]/a" ;
-
+	public static final String PriceListHyperLink2 = "//a[text()='Price List']" ;
 	/** @locatorType Xpath */
 	public static final String AmdendButton = "//*[@id='SO_ig_grid_vc']//div[3]/table/tbody/tr/td[14]/a";
 	/** @locatorType Xpath */
