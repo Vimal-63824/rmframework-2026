@@ -123,7 +123,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdTypeDropDown = "//select[@data-testid='CSAmdTypeField']";
 	/** @Locator Xpath */
-	public static final String CSAmdSchTypeDropDown = "//select[@data-testid='CAML_FIRM_TYPE']";
+	public static final String CSAmdSchTypeDropDown = "//select[@data-testid='CSAmdSchTypeField']";
 	/** @Locator Xpath */
 	public static final String CSAmdLineWiseSaveButton = "//button[@data-testid='CSAmdLineWiseSaveButton']";
 	/** @Locator Xpath */
