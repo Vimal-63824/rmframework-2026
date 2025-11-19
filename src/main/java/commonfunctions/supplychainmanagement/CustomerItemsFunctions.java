@@ -726,7 +726,7 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Export"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Interstate"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
@@ -760,7 +760,7 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Export"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("Cus_Interstate"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
@@ -906,7 +906,6 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
-		commonFunc.logoutUser();
 
 	}
 	/**Creates Open So Item - Export Customer

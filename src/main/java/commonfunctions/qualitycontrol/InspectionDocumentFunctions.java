@@ -617,10 +617,10 @@ public class InspectionDocumentFunctions {
 							enterObservationValue();
 						}
 						clickTickAndPostIconForGrnDocument();
-						waitingForApprovalWithEDPManager();
+						waitingForApproval();
 						commonFunc.hardWait(2000);
-						commonFunc.validCommonLogin(System.getProperty("TvsUsername"),
-								System.getProperty("TvsPassword"), "TvsUsername");
+						commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+								System.getProperty("LoginPassword"), "AdminUsername");
 						commonFunc.navigateInspectionDocumentsPage();
 					}
 				}

@@ -333,19 +333,19 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String AdvreceiptsQueryBalanceAmount = "//span[@id='P11813101101_PARD_BAL_AMT_SUM_DISPLAY']";
 	/** @Locator Xpath */
-	public static final String PendingReceivablesAdvance = "//button[@id='B1542613326053122044']";
+	public static final String PendingReceivablesAdvance = "//span[contains(text(),'Pending Receivable - Advance')]/ancestor::button";
 	/** @Locator Xpath */
 	public static final String PendingReceivableFrame = "//iframe[@title='Pend. Receivable - Advance']";
 	/** @Locator Xpath */
 	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @Locator Xpath */
-	public static final String PaymentReceiptSearchButton = "//button[@id='B1896591399049140413']";
+	public static final String PaymentReceiptSearchButton = "//button[@id='B2565063806063080317']";
 	/** @Locator Xpath */
-	public static final String PayementReceiptCreateButton = "//button[@id='B1568332492973947677']";
+	public static final String PayementReceiptCreateButton = "//button[@id='B2236804899987887581']";
 	/** @Locator Xpath */
 	public static final String BankReceiptsLovButton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @Locator Xpath */
-	public static final String BankReceiptsOkButton = "//button[@id='B1568333378045947686']";
+	public static final String BankReceiptsOkButton = "//button[@id='B2236805785059887590']";
 	/** @Locator Xpath */
 	public static final String BankReceiptpostButton = "//button[@id='POST']";
 	/** @Locator Xpath */

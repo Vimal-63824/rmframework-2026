@@ -235,5 +235,6 @@ public class PurchaseRequestLocators {
 	public static final String GlAccNo = "//div[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[13]";
 	/** @locatorType Xpath */
 	public static final String GlAccNoLovButton = "//input[@data-testid='PRL_PUR_ACCT']/following-sibling::button";
-
+	/** @Locator XPATH */
+	public static final String PendingPR = "//button[@id='B1607785281688206710']";
 }

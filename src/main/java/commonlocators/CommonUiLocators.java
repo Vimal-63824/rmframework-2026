@@ -132,7 +132,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingCrDocs = "//button[@id='B1920165536554853812']";
+	public static final String PendingCrDocs = "//span[contains(text(),'Pending Cr. Docs.')]/ancestor::button";
 	/** Locator Xpath */
 	public static final String SalesSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]";
 	/** Locator Xpath */
@@ -401,7 +401,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
 	/** @locatorType Xpath */
-	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
+	public static final String PurchaseAddIcon = "//button[@title='Create PR/SSR']";
 	/** @locatorType Xpath */
 	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
 	/** @locatorType Xpath */
@@ -416,4 +416,6 @@ public class CommonUiLocators {
 	public static final String LeftSideAddIconPo = "//button[@data-testid=\"Add\"]";
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
+	/** @Locator XPATH */
+	public static final String PendingPR = "//button[@id='B1607785281688206710']";
 }
