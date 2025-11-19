@@ -401,7 +401,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
 	/** @locatorType Xpath */
-	public static final String PurchaseAddIcon = "//button[@title='Create PR/SSR']";
+	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
 	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
 	/** @locatorType Xpath */
