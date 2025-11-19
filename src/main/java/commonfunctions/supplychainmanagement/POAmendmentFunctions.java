@@ -49,8 +49,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPODomesticGeneralWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticGeneralSimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -79,15 +79,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -109,8 +109,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPODomesticMaterialWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticMaterialSimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -138,15 +138,15 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -168,8 +168,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPOImportGeneralWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPOImportGeneralSimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -198,15 +198,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -228,8 +228,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPOImportMaterialWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPOImportMaterialSimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -258,15 +258,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -693,6 +693,8 @@ public class POAmendmentFunctions {
 				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
+				commonFunc.hardWait(2000);
+				webDB.waitUntilElementToNotBeStale(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
 				flag = webDB.waitForElement(POAmendmentLocators.POPendingIcon, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Verified Navigate To POA Home Page");
@@ -1044,27 +1046,27 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyOpenPONumber(String POno) {
 		webDB.navigateToRefresh();
-		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PONumberSelect, POno);
-		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
-		if (flag) {
-			logs.logging("INFO", "Header CheckBox Is Displayed");
-			webDB.clickAnElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
-				logs.logging("INFO", "Search Button Is Clicked");
-				commonFunc.hardWait(1000);
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
-					flag = webDB.waitForElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
-				} else {
-//					webDB.navigateToRefresh();
-//					verifyOpenPONumber(POno);
-				}
-			}
-		}
+//		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PONumberSelect, POno);
+//		flag = webDB.waitForElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+//		if (flag) {
+//			logs.logging("INFO", "Header CheckBox Is Displayed");
+//			webDB.clickAnElement(OpenPoRcLocators.HeaderCheckBox, ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+//			if (flag) {
+//				webDB.clickAnElement(PurchaseOrderPageLocators.SearchButton, ElementType.Xpath);
+//				logs.logging("INFO", "Search Button Is Clicked");
+//				commonFunc.hardWait(1000);
+//				commonFunc.checkRefreshCellsDisappear();
+//				flag = webDB.waitForElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
+//				if (flag) {
+//					webDB.clickAnElement(POAmendmentLocators.PONumber(POno), ElementType.Xpath);
+//					flag = webDB.waitForElement(PurchaseOrderPageLocators.UOMTable, ElementType.Xpath);
+//				} else {
+////					webDB.navigateToRefresh();
+////					verifyOpenPONumber(POno);
+//				}
+//			}
+//		}
 		assertTrue(flag);
 	}
 
@@ -1262,8 +1264,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPODomesticServiceWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticServiceSimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1291,15 +1293,15 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("Gwl_Service_Item_03"),
@@ -1319,8 +1321,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPODomesticGeneralWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDomesticGeneralSimilarUOMFromPRtoPO();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1349,15 +1351,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -1379,8 +1381,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPOImportGeneralWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyImportGeneralSimilarUOMFromPRtoPO();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1408,15 +1410,15 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -1438,8 +1440,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPODomesticServiceWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDomesticServiceSimilarUOMFromPRtoPO();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1467,15 +1469,15 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -1497,8 +1499,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPODomesticGeneralWithDissimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticGeneralDissimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1525,15 +1527,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("GwlDissimilarItem"),
@@ -1553,8 +1555,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPODomesticMaterialWithDissimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticMaterialDissimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1580,15 +1582,15 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("GwlDissimilarItem"),
@@ -1608,8 +1610,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPOImportGeneralWithDissimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPOImportGeneralDissimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1636,15 +1638,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("GwlDissimilarItem"),
@@ -1664,8 +1666,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyDirectPOImportMaterialWithDissimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPOImportMaterialDissimilarUOM();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1692,15 +1694,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("GwlDissimilarItem"),
@@ -1720,8 +1722,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPODomesticGeneralWithDissimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDomesticGeneralDissimilarUOMFromPRtoPO();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1748,15 +1750,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("GwlDissimilarItem"),
@@ -1776,8 +1778,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPOImportGeneralWithDissimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyImportGeneralDissimilarUOMFromPRtoPO();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1804,15 +1806,15 @@ public class POAmendmentFunctions {
 
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			String[] Totalitem = { commonFunc.getDataFromTestDataSheet("GwlDissimilarItem"),
@@ -1833,8 +1835,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyDirectPODomesticGeneralWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticGeneralSimilarUOMWithMultipleItemsWithExcelInput();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1865,15 +1867,15 @@ public class POAmendmentFunctions {
 		}
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -1944,8 +1946,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyDirectPODomesticMaterialWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticMaterialSimilarUOMWithMultipleItems();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1976,15 +1978,15 @@ public class POAmendmentFunctions {
 		}
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -2045,8 +2047,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyDirectPOImportGeneralWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPOImportGeneralSimilarUOMWithMultipleItems();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2077,15 +2079,15 @@ public class POAmendmentFunctions {
 		}
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -2118,8 +2120,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyDirectPOImportMaterialWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPOImportMaterialSimilarUOMWithMultipleItems();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2150,15 +2152,15 @@ public class POAmendmentFunctions {
 		}
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -2190,8 +2192,8 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyDirectPODomesticServiceWithSimilarStockAndSupplierUOM() {
 		purchaseOrderFunctions.verifyDirectPODomesticServiceSimilarUOMWithMultipleItems();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2222,15 +2224,15 @@ public class POAmendmentFunctions {
 		}
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			makingTotalAmountCalculationToZero();
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -2264,8 +2266,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2304,14 +2306,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2443,8 +2445,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2482,14 +2484,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2522,8 +2524,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("POAServiceItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2560,14 +2562,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2601,8 +2603,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2640,14 +2642,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2680,8 +2682,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2720,14 +2722,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2760,8 +2762,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2800,14 +2802,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2841,8 +2843,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarItemPRTOPOImportSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2880,14 +2882,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -2921,8 +2923,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("POAServiceItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -2960,14 +2962,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3000,8 +3002,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3039,14 +3041,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3079,8 +3081,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3118,14 +3120,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3158,8 +3160,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3198,14 +3200,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3238,8 +3240,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3278,14 +3280,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3319,8 +3321,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3358,14 +3360,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3399,8 +3401,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOImportSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3438,14 +3440,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3479,8 +3481,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3522,14 +3524,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -3588,8 +3590,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3631,14 +3633,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -3672,8 +3674,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3715,14 +3717,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -3756,8 +3758,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3799,14 +3801,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -3840,8 +3842,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("ModifyPOAServiceItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3883,14 +3885,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -3925,8 +3927,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -3968,14 +3970,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4010,8 +4012,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("ModifyPOAServiceItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4053,14 +4055,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4094,8 +4096,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4137,14 +4139,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4178,8 +4180,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4221,14 +4223,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4263,8 +4265,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("ModifyPOASimilarPRTOPOImportSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4306,14 +4308,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4347,8 +4349,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4390,14 +4392,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4431,8 +4433,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4474,14 +4476,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4565,8 +4567,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4596,14 +4598,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4637,8 +4639,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4668,9 +4670,9 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4704,8 +4706,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4735,14 +4737,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4776,8 +4778,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4807,14 +4809,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4848,8 +4850,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("CloseshortPOAServiceItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4879,14 +4881,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4921,8 +4923,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -4952,14 +4954,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -4994,8 +4996,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("CloseshortPOAServiceItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5025,14 +5027,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5067,8 +5069,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("CloseshortPOASimilarPRTOPOImporSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5098,14 +5100,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5139,8 +5141,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5170,14 +5172,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5211,8 +5213,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5242,14 +5244,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5283,8 +5285,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5314,14 +5316,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5355,8 +5357,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5386,14 +5388,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5428,8 +5430,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5459,14 +5461,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5499,8 +5501,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5635,8 +5637,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("ModifyPOADissimilarItemPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5678,14 +5680,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5720,8 +5722,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("ModifyPOADissimilarImportPRTOPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -5763,14 +5765,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -5805,7 +5807,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("POASimilarItemPRTOPOMaterialSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -5879,7 +5881,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOMaterialSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -5954,7 +5956,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("POASimilarItemPRTOPOMaterialImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6028,7 +6030,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6103,7 +6105,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("ModifyPOASimilarItemPRTOPOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6181,7 +6183,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("ModifyPOASimilarPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6259,7 +6261,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("ModifyPOADissimilarPRTOPOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6337,7 +6339,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("ModifyPOADissimilarPRTOPOImpMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6415,7 +6417,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("CloseshortPOASimilarPRTOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6481,7 +6483,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("CloseshortPOASimilarItemPRTOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6547,7 +6549,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("CSPOADissimilarPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6613,7 +6615,7 @@ public class POAmendmentFunctions {
 				webDB.getDataFromProperties("CloseshortPOADissimilarPRTOPMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
 		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"SelvaUsername-Admin");
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -6677,8 +6679,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6716,14 +6718,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -6860,8 +6862,8 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInputTaxValidation(
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6901,14 +6903,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -6948,8 +6950,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -6989,14 +6991,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7036,8 +7038,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarItemInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7077,14 +7079,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7124,8 +7126,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarItemLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7165,14 +7167,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7211,8 +7213,8 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInputTaxValidation(
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarItemInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7252,14 +7254,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7299,8 +7301,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarItemLocalUnRegSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7340,14 +7342,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7387,8 +7389,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarItemInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7428,14 +7430,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7474,8 +7476,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarItemLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7515,14 +7517,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7562,8 +7564,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarItemInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7603,14 +7605,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7650,8 +7652,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarItemLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7691,14 +7693,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7738,8 +7740,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarItemInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7779,14 +7781,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7826,8 +7828,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarItemLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7867,14 +7869,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -7914,8 +7916,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarItemInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -7955,14 +7957,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8002,8 +8004,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarItemLocalUnRegSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8043,14 +8045,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8090,8 +8092,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarItemInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8131,14 +8133,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8177,8 +8179,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("POAServiceLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8217,14 +8219,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8263,8 +8265,8 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInputWithTaxValidation(
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("POAServiceInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8304,14 +8306,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8351,8 +8353,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("POAServiceLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8391,14 +8393,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8438,8 +8440,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("POAServiceInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8479,14 +8481,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8525,8 +8527,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POASimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8565,14 +8567,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8611,8 +8613,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("POADissimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8651,14 +8653,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8696,8 +8698,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POADissimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8736,14 +8738,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8781,8 +8783,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("POASimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8821,14 +8823,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8867,8 +8869,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("POAServiceImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8907,14 +8909,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -8955,8 +8957,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarLocalRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -8996,14 +8998,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9043,8 +9045,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarInterstateRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9084,14 +9086,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9132,8 +9134,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarLocalUnRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9173,14 +9175,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9221,8 +9223,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarInterstateUnRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9262,14 +9264,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9309,8 +9311,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POASimilarImportPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9350,14 +9352,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9398,8 +9400,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarLocalRegPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9439,14 +9441,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9486,8 +9488,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarInterstRegPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9527,14 +9529,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9575,8 +9577,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarLocalUnRegPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9616,14 +9618,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9664,8 +9666,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarInterstUnRegPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9705,14 +9707,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9752,8 +9754,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("POADissimilarImportPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9793,14 +9795,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9840,8 +9842,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("POAServiceLocalRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9881,14 +9883,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -9928,8 +9930,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("POAServiceInterstateRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -9969,14 +9971,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -10017,8 +10019,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("POAServiceLocalUnRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10058,14 +10060,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -10106,8 +10108,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("POAServiceInterstateUnRgPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10147,14 +10149,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -10194,8 +10196,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Service"),
 				webDB.getDataFromProperties("POAServiceImportPRTPOSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PRGWL"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10235,14 +10237,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -10282,8 +10284,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10325,14 +10327,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10371,8 +10373,8 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInputTaxValidation(
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10414,14 +10416,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10461,8 +10463,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10504,14 +10506,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10551,8 +10553,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10594,14 +10596,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10641,8 +10643,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10684,14 +10686,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10731,8 +10733,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10774,14 +10776,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10821,8 +10823,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10864,14 +10866,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -10911,8 +10913,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -10954,14 +10956,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11001,8 +11003,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11044,14 +11046,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11091,8 +11093,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOASimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11134,14 +11136,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11181,8 +11183,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("ModifyPOAServiceLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11224,14 +11226,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11270,8 +11272,8 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInputWithTaxValidation(
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("ModifyPOAServiceInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11313,14 +11315,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11360,8 +11362,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("ModifyPOAServiceInterstateUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11403,14 +11405,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11450,8 +11452,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("ModifyPOAServiceLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11493,14 +11495,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11540,8 +11542,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"),
 				webDB.getDataFromProperties("ModifyPOAServiceImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11583,14 +11585,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11630,8 +11632,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11673,14 +11675,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11719,8 +11721,8 @@ public class POAmendmentFunctions {
 		purchaseOrderFunctions.verifyDirectPOWithMultipleItemsWithExcelInputTaxValidation(
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"), commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11762,14 +11764,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11809,8 +11811,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarInterUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11852,14 +11854,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11899,8 +11901,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -11942,14 +11944,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -11989,8 +11991,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12032,14 +12034,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12079,8 +12081,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12122,14 +12124,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12169,8 +12171,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("AgrCeramics"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarInterstateRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12212,14 +12214,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12259,8 +12261,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("InterstateUnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarInterUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12302,14 +12304,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12349,8 +12351,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarLocalUnRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12392,14 +12394,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12439,8 +12441,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"),
 				webDB.getDataFromProperties("ModifyPOADissimilarImportSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12482,14 +12484,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12530,8 +12532,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_General"),
 				webDB.getDataFromProperties("ModifyPOASimilarIsURPrToPoSheet"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12573,14 +12575,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -12620,8 +12622,8 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
 				webDB.getDataFromProperties("CSPOASimilarLocalRgSheet"));
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12655,14 +12657,14 @@ public class POAmendmentFunctions {
 		commonFunc.logoutUser();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HodUsername"));
+				System.getProperty("HariUsername"));
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePoAmendmentPage();
 			verifyValidatePOAStatus(VariableHandler.getPOANumber(),
 					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"));
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyOpenPONumber(VariableHandler.getPONumber());
 

@@ -418,4 +418,6 @@ public class CommonUiLocators {
 	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
 	/** @Locator XPATH */
 	public static final String PendingPR = "//button[@id='B1607785281688206710']";
+	/** @locatorType Xpath */
+	public static final String PurchaseRequestAddIcon = "//button[@title='Create PR/SSR']";
 }

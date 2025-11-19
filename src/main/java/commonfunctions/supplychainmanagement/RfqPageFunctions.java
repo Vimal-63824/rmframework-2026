@@ -59,9 +59,9 @@ public class RfqPageFunctions {
 		saveHeaderAndClickPost();
 		waitingForApproval();
 		commonFunc.hardWait(3000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getPRNumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -96,9 +96,9 @@ public class RfqPageFunctions {
 		verifysRfqSobButton();
 		waitingForApproval();
 		commonFunc.hardWait(3000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getRfqDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRfqDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -133,9 +133,9 @@ public class RfqPageFunctions {
 		verifysRfqSobButton();
 		waitingForApproval();
 		commonFunc.hardWait(3000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getRfqDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRfqDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -144,7 +144,7 @@ public class RfqPageFunctions {
 	 * This Methods Is Used To Verify Creation Of Pending Po From Rfq
 	 * 
 	 * @author Durai-RMITS
-	 * @return 
+	 * @return
 	 */
 	public boolean verifyCreationOfPendingPOFromRfq() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -199,13 +199,13 @@ public class RfqPageFunctions {
 				filterDocumentsForPriceListApproval(VariableHandler.getPONumber());
 				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
-				if(flag) {
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-						"AdminUsername");
-				commonFunc.navigatePurchaseOrderPage();
-				verifyPoRefind();
+				if (flag) {
+					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),
+							System.getProperty("LoginPassword"), "AdminUsername");
+					commonFunc.navigatePurchaseOrderPage();
+					verifyPoRefind();
+				}
 			}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -2273,27 +2273,29 @@ public class RfqPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method used to click create icon - left add icon
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	public void clickCreateIcon() {
-		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestAddIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.PurchaseRequestAddIcon, ElementType.Xpath);
 			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
 		}
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This Method used to click create icon - left add icon
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	private void VerifyClickingPendingCreatePRBtn() {
-		flag=webDB.waitForElement(PurchaseRequestLocators.PendingPR, ElementType.Xpath);
-		if(flag) {
+		flag = webDB.waitForElement(PurchaseRequestLocators.PendingPR, ElementType.Xpath);
+		if (flag) {
 			webDB.clickAnElement(PurchaseRequestLocators.PendingPR, ElementType.Xpath);
 			logs.logging("INFO", "Pending PR Button Is clicked");
 		}

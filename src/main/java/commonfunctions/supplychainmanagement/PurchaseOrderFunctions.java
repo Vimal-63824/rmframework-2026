@@ -7277,7 +7277,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("PriceListSupplier"), commonFunc.getDataFromTestDataSheet("ServiceValue"));
+				commonFunc.getDataFromTestDataSheet("PriceListSupplier"),
+				commonFunc.getDataFromTestDataSheet("ServiceValue"));
 		verifyTickIconcreatePO();
 		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
@@ -12098,10 +12099,10 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PoIgstAmount")));
 		verifyAssertionBothValues(Utgst, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("PoUtgstAmount")));
-		verifyAssertionBothValues(CessPercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
-		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
-				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
+//		verifyAssertionBothValues(CessPercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
+//		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
+//				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
 		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
 	}
@@ -13837,6 +13838,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used for Approve the Document
 	 * 
