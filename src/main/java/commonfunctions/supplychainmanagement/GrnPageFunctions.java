@@ -1810,6 +1810,7 @@ public class GrnPageFunctions {
 		multipleLotAndSerialItem(webDB.getDataFromProperties("DifferentUOMRateGen"));
 		lotSerialQtyApportion();
 		overAllSaveAndPost(webDB.getDataFromProperties("DifferentUOMRateGen"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
