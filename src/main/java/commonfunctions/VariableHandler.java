@@ -230,6 +230,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SCOConvFact = new ThreadLocal<>();
 	private static ThreadLocal<String> SCOProcUOM = new ThreadLocal<>();
 	private static ThreadLocal<String> InspectionPlanDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> LastApprovalAPIHeaderText = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1971,5 +1972,13 @@ public class VariableHandler {
 
 	public static void setInspectionPlanDocNo(String Data) {
 		InspectionPlanDocNo.set(Data);
+	}
+	
+	public static String getLastApprovalAPIHeaderText() {
+		return LastApprovalAPIHeaderText.get();
+	}
+	
+	public static void setLastApprovalAPIHeaderText(String Data) {
+		LastApprovalAPIHeaderText.set(Data);
 	}
 }
