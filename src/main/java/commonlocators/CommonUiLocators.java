@@ -132,7 +132,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PaymentsReceipts = "//span[text()='Financials']/ancestor::li/*/li[2]/*/li[4]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingCrDocs = "//button[@id='B1920165536554853812']";
+	public static final String PendingCrDocs = "//span[contains(text(),'Pending Cr. Docs.')]/ancestor::button";
 	/** Locator Xpath */
 	public static final String SalesSetupTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]/*/li[1]";
 	/** Locator Xpath */

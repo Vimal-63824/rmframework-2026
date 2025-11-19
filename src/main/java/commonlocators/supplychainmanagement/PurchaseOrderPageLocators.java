@@ -463,7 +463,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderItemLov = "//input[@data-testid='DUM_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PurchaseOrderHsnLov = "//button[@id='C3138043587156640997_lov_btn']";
+	public static final String PurchaseOrderHsnLov = "//input[@data-testid='POL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderHsnInput = "//input[@data-testid='POL_HSN_CODE']";
 	/** @locatorType Xpath */

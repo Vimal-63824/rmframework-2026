@@ -1896,8 +1896,8 @@ public class PricelistPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfPricelistFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyAmendFilterSearchSOB(PricelistPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("LovButton"));
@@ -1925,8 +1925,8 @@ public class PricelistPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfPricelistAmdFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePricelistPage();
 		verifyAmendFilterSearchSOB(PricelistPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("LovButton"));

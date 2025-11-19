@@ -469,7 +469,7 @@ public class CustomerScheduleTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result,Method method) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		customerScheduleFunctions.verifyAfterMethod();
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
