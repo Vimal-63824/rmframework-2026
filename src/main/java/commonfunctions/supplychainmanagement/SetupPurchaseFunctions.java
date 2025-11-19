@@ -204,7 +204,7 @@ public class SetupPurchaseFunctions {
 		String SeqNo = RandomStringUtils.randomNumeric(5);
 		String EmployeeName = "AUTOMATION " + SeqNo;
 		String EmployeeId = "AUTO" + SeqNo;
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigateToEmployeeQuickEntryTab();
 		String Mobile = commonFunc.getDataFromTestDataSheet("Mobile") + SeqNo;
@@ -214,7 +214,7 @@ public class SetupPurchaseFunctions {
 				commonFunc.getDataFromTestDataSheet("PurchaseManager"), commonFunc.getDataFromTestDataSheet("Purchase"),
 				Mobile, Mail);
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"HodUsername-Admin");
 		String BuyerName = "AUTO " + SeqNo;
 		commonFunc.navigateToPurchaseSetupTab();
@@ -235,7 +235,7 @@ public class SetupPurchaseFunctions {
 		String SeqNo = RandomStringUtils.randomNumeric(5);
 		String EmployeeName1 = "AUTOMATION " + SeqNo;
 		String EmployeeId = "AUTO" + SeqNo;
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigateToEmployeeQuickEntryTab();
 		String Mobile = commonFunc.getDataFromTestDataSheet("Mobile") + SeqNo;
@@ -245,7 +245,7 @@ public class SetupPurchaseFunctions {
 				commonFunc.getDataFromTestDataSheet("PurchaseManager"), commonFunc.getDataFromTestDataSheet("Purchase"),
 				Mobile, Mail);
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"HodUsername-Admin");
 		commonFunc.navigateToPurchaseSetupTab();
 		verifyNavigateToBuyerTab();

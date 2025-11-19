@@ -25,13 +25,13 @@ public class SetupPurchaseLocators {
 	/** @locatorType XPATH */
 	public static final String EmployeeLovButton = "//input[@data-testid='BUYER_EMP_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String EffFromToday = "//div[@role='region']/button[@aria-controls='C7572275565175149456_input']";
+	public static final String EffFromToday = "//div[@role='region']/button[@aria-controls='C8241196657461473560_input']";
 	/** @locatorType XPATH */
 	public static final String TableTop = "//div[@id='C']/table/tbody/tr/td[1]";
 	/** @locatorType XPATH */
 	public static final String EffToInput = "//input[@id='C7569265663973351339_input']";
 	/** @locatorType XPATH */
-	public static final String EffToToday = "//div[@role='region']/button[@aria-controls='C7572275661233149457_input']";
+	public static final String EffToToday = "//div[@role='region']/button[@aria-controls='C8241196753519473561_input']";
 	/** @locatorType XPATH */
 	public static final String BuyerSearch = "//input[@aria-label='Search']";
 	/** @locatorType XPATH */
@@ -55,7 +55,7 @@ public class SetupPurchaseLocators {
 	/** @locatorType XPATH */
 	public static final String EmployeeEffTo = "//input[@id='P36701802101_EFF_TO_input']";
 	/** @locatorType XPATH */
-	public static final String OkButton = "//button[@id='B3308696719201254886']";
+	public static final String OkButton = "//button[@id='B3977617811487578990']";
 
 	/** @locatorType XPATH */
 	public static final String BuyerName(String Name) {

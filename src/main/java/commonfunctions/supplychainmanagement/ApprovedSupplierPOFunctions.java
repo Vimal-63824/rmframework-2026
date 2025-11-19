@@ -84,7 +84,7 @@ public class ApprovedSupplierPOFunctions {
 		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.ToastMessagePopup, ElementType.Xpath, 60);
 		if (flag) {
 			String MessagePopup = webDB.getTextFromElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
-			Pattern pattern = Pattern.compile("APPS-\\d{4}-\\d{5}");
+			Pattern pattern = Pattern.compile("ASP/\\d{5}/\\d{2}-\\d{2}");
 			Matcher matcher = pattern.matcher(MessagePopup);
 			if (matcher.find()) {
 				String match = matcher.group();
@@ -102,34 +102,38 @@ public class ApprovedSupplierPOFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateApprovedSupplierForCreatedItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
-		pricelistPageFunc.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("RawMaterial10Item"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		System.out.println(commonFunc.getDataFromTestDataSheet("OpenSCOApprovedstatus"));
+		pricelistPageFunc.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("ChargesItems"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateToApprovedSupplierPOTab();
 		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
 				commonFunc.getDataFromTestDataSheet("Apps"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UserDefinedGeneral"),
-				commonFunc.getDataFromTestDataSheet("HSN2022-5%"),
+				commonFunc.getDataFromTestDataSheet("HsnService"),
 				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+//			commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//					"HodUsername");
+//			approvalFunc.navigateToApprovals();
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getAppsNumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateToApprovedSupplierPOTab();
 		verifyApprovedSupplierApprovalStatus(VariableHandler.getAppsNumber());
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -152,11 +156,11 @@ public class ApprovedSupplierPOFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateApprovedSupplierForCreatedItemWithOpenBlanket() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunc.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("RawMaterial10Item"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateToApprovedSupplierPOTab();
 		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -166,15 +170,18 @@ public class ApprovedSupplierPOFunctions {
 				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
+//			commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"HodUsername");
+//			approvalFunc.navigateToApprovals();
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getAppsNumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateToApprovedSupplierPOTab();
 		verifyApprovedSupplierApprovalStatus(VariableHandler.getAppsNumber());
@@ -188,11 +195,11 @@ public class ApprovedSupplierPOFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreateApprovedSupplierForCreatedItemWithPriceList() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateItemPage();
 		pricelistPageFunc.verifySearchOfItem(commonFunc.getDataFromTestDataSheet("RawMaterial10Item"));
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateToApprovedSupplierPOTab();
 		verifyCreateApprovedSupplier(commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -202,15 +209,18 @@ public class ApprovedSupplierPOFunctions {
 				commonFunc.getDataFromTestDataSheet("LeaveElgblDays"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
+//			commonFunc.logoutUser();
+//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//					"HodUsername");
+//			approvalFunc.navigateToApprovals();
+//			approvalFunc.filterDocumentsforApproval(VariableHandler.getAppsNumber());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getAppsNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getAppsNumber(),
+					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 		}
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"TvsUsername");
 		commonFunc.navigateToApprovedSupplierPOTab();
 		verifyApprovedSupplierApprovalStatus(VariableHandler.getAppsNumber());

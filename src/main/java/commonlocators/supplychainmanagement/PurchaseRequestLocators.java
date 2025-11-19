@@ -101,7 +101,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PR_UploadedFileText = "//div[contains(@id,'FILE_DROPZON')]//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
-	public static final String PR_UploadOkBtn = "//button[@id='B1125775552104225540']";
+	public static final String PR_UploadOkBtn = "//button[@id='B1794696644390549644']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_AddNewBtn = "//button[@title='Add']";
 	/** @locatorType Xpath */
