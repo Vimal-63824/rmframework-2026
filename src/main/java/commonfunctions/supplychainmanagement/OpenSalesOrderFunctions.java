@@ -757,18 +757,23 @@ public class OpenSalesOrderFunctions {
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
-		commonFunc.navigateOpenSO();
-		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
-				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
+//		commonFunc.navigateOpenSO();
+//		validateStatusOfOpenSOWithDocNo(VariableHandler.getOpenSONumber(),
+//				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 	}
 	/**Open So Item Interstate Customer
 	 * 
@@ -778,7 +783,7 @@ public class OpenSalesOrderFunctions {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
-		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Export");
+		String CustomerID = commonFunc.getDataFromTestDataSheet("Cus_Interstate");
 		String Item = commonFunc.getDataFromTestDataSheet("OpenSOItem");
 		String Unit = RandomStringUtils.randomNumeric(2);
 		if (Unit.equals("00")) {
@@ -806,13 +811,18 @@ public class OpenSalesOrderFunctions {
 		fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));		
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
 //		commonFunc.logoutUser();
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
@@ -858,13 +868,18 @@ public class OpenSalesOrderFunctions {
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
-//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+////		commonFunc.logoutUser();
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 //		commonFunc.navigateOpenSO();
@@ -911,13 +926,18 @@ public class OpenSalesOrderFunctions {
 		enterEffectiveFromAndToDate(Today, Today, Today);
 		clickHeaderSaveAndClickPostBtnInOpenSO();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOpenSONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approvalFunc.navigateToApprovals();
-		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
-//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//				"HariUsername");
+//		approvalFunc.navigateToApprovals();
+//		approvalFunc.filterDocumentsforApproval(VariableHandler.getOpenSONumber());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getOpenSONumber());
+////		commonFunc.logoutUser();
 //		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 //				"AdminUsername");
 //		commonFunc.navigateOpenSO();

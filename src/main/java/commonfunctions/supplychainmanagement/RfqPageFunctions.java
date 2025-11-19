@@ -47,8 +47,8 @@ public class RfqPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfPRGeneralRfq() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
 		clickAddIconFillDetailsOfPurchaseRequestRfq(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("PR_General"),
@@ -58,9 +58,10 @@ public class RfqPageFunctions {
 		verifyMultipleLinesPR();
 		saveHeaderAndClickPost();
 		waitingForApproval();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getPRNumber());
-		verifyApproveWithDocNumber(VariableHandler.getPRNumber());
+		commonFunc.hardWait(3000);
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getPRNumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -72,8 +73,8 @@ public class RfqPageFunctions {
 	 */
 	public void verifyCreationOfPendingRfqDomestic() {
 		verifyCreationOfPRGeneralRfq();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateRfqPage();
 		pendingRfq();
 		pendingRfqPRNumber(VariableHandler.getPRNumber());
@@ -94,9 +95,10 @@ public class RfqPageFunctions {
 		verifyRfqRateFinalize();
 		verifysRfqSobButton();
 		waitingForApproval();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getRfqDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getRfqDocNum());
+		commonFunc.hardWait(3000);
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getRfqDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -108,8 +110,8 @@ public class RfqPageFunctions {
 	 */
 	public void verifyCreationOfPendingRfqDomesticAndImport() {
 		verifyCreationOfPRGeneralRfq();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateRfqPage();
 		pendingRfq();
 		pendingRfqPRNumber(VariableHandler.getPRNumber());
@@ -130,9 +132,10 @@ public class RfqPageFunctions {
 		verifyRfqRateFinalize();
 		verifysRfqSobButton();
 		waitingForApproval();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getRfqDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getRfqDocNum());
+		commonFunc.hardWait(3000);
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getRfqDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -144,8 +147,8 @@ public class RfqPageFunctions {
 	 * @return 
 	 */
 	public boolean verifyCreationOfPendingPOFromRfq() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		verifyClickingPndPo();
 		return flag;
@@ -197,8 +200,8 @@ public class RfqPageFunctions {
 				verifyApproveWithDocNumber(VariableHandler.getPONumber());
 				flag = commonFunc.logoutUser();
 				if(flag) {
-				commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-						"SelvaUsername");
+				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+						"AdminUsername");
 				commonFunc.navigatePurchaseOrderPage();
 				verifyPoRefind();
 			}
@@ -1089,7 +1092,8 @@ public class RfqPageFunctions {
 	 */
 	public void clickAddIconFillDetailsOfPurchaseRequestRfq(String Location, String Unit, String PRType, String Prefix,
 			String CPCCode, String Department, String Requester) {
-		commonFunc.clickCreateIcon();
+		clickCreateIcon();
+		VerifyClickingPendingCreatePRBtn();
 		clickFrame();
 		commonFunc.hardWait(2000);
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
@@ -1352,7 +1356,6 @@ public class RfqPageFunctions {
 					logs.logging("INFO", "Ok Button Is Clicked");
 					webDB.switchToDefaultContent();
 					commonFunc.hardWait(7000);
-					flag = commonFunc.logoutUser();
 				}
 			} else {
 				flag = false;
@@ -1965,8 +1968,8 @@ public class RfqPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfRfqFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateRfqPage();
 //		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(RfqLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
@@ -2270,5 +2273,30 @@ public class RfqPageFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**
+	 * This Method used to click create icon - left add icon
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCreateIcon() {
+		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
+			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+		}
+		Assert.assertTrue(flag);
+	}
+	/**
+	 * This Method used to click create icon - left add icon
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	private void VerifyClickingPendingCreatePRBtn() {
+		flag=webDB.waitForElement(PurchaseRequestLocators.PendingPR, ElementType.Xpath);
+		if(flag) {
+			webDB.clickAnElement(PurchaseRequestLocators.PendingPR, ElementType.Xpath);
+			logs.logging("INFO", "Pending PR Button Is clicked");
+		}
 
+	}
 }

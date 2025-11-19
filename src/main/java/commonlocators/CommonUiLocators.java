@@ -401,7 +401,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
 	/** @locatorType Xpath */
-	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
+	public static final String PurchaseAddIcon = "//button[@title='Create PR/SSR']";
 	/** @locatorType Xpath */
 	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
 	/** @locatorType Xpath */
@@ -416,4 +416,6 @@ public class CommonUiLocators {
 	public static final String LeftSideAddIconPo = "//button[@data-testid=\"Add\"]";
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
+	/** @Locator XPATH */
+	public static final String PendingPR = "//button[@id='B1607785281688206710']";
 }
