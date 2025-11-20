@@ -32,14 +32,17 @@ public class InspectionDocumentsLocators {
 	public static final String AcceptedQuantity = "//input[@id='P20171310201_TQHD_ACPT_QTY']";
 	/** @locatorType Xpath */
 	public static final String BackButton = "//button[@id='B2664662933700794505']";
+
 	/** @locatorType Xpath */
 	public static final String InspectionCheckBox(String GrnNo) {
 		return "//td[text()='" + GrnNo + "']/../td/input[@type='checkbox']";
 	}
+
 	/** @locatorType Xpath */
 	public static final String InspectionStatusTableText(String Idno) {
 		return "//a[text()='" + Idno + "']/../../td[20]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String VoucherLov = "//button[@id='P20171310150_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
@@ -68,23 +71,28 @@ public class InspectionDocumentsLocators {
 	public static final String InspectionDocumentNumberDrillDown = "//*[@id=\"12244181022684612374_orig\"]/tbody/tr[2]/td[7]/a";
 	/** @locatorType Xpath */
 	public static final String FindPageSearchBtn = "//button[@data-testid='Find_line']";
+
 	/** @locatorType Xpath */
 	public static final String InspectionCheckBox(int i) {
 		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[4]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String Observationvalue(int i) {
 		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[10]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String ObsLineNumber = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
 	public static final String EnterAcceptQty = "//input[@id=\"P20171310201_TQHD_ACPT_QTY\"]";
 	/** @locatorType Xpath */
 	public static final String EnterAODtQty = "//input[@id=\"P20171310201_TQHD_AOD_QTY\"]";
-	
+
 	/** @locatorType Xpath */
 	public static final String RejtQty = "//input[@id=\"P20171310201_TQHD_REJ_QTY\"]";
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B2324734232804544393']";
+	/** @locatorType Xpath */
+	public static final String PendingProdOrderLov = "//*[@data-testid='P20171310150_PROD_ORD_NO']/following-sibling::button";
 }

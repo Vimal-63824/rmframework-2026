@@ -68,6 +68,13 @@ public class BillOfMaterialsLocators {
 	public static final String RoutingTypeData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[5]";
 	/** @locatorType Xpath */
 	public static final String RoutingTypeSelect = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[5]//select";
+	/** @locatorType Xpath */
+	public static final String RoutingIRFlagData = "//div[@id='ROUTING_ig_grid_vc']//table/tbody/tr[1]/td[12]";
+	
+	/** @locatorType Xpath */
+	public static final String RoutingIRDiv(String ProcessName) {
+		return "//td[text()='" + ProcessName + "']/../td[12]/div";
+	}
 
 	/** @locatorType Xpath */
 	public static final String RoutingIRInputBox(String ProcessName) {

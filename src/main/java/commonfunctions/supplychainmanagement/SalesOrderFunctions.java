@@ -7095,7 +7095,7 @@ public class SalesOrderFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifySalesOrderCreationForMRP() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("loginPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));

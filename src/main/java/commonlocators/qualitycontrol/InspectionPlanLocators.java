@@ -6,15 +6,15 @@ package commonlocators.qualitycontrol;
  */
 public class InspectionPlanLocators {
 	/** @locatorType Xpath */
-	public static final String AddIconInFindPage = "//button[@id='B234555190749163970']";
+	public static final String AddIconInFindPage = "//button[@id='B903556588298544609']";
 	/** @locatorType Xpath */
 	public static final String CreateInspectionIframe = "//iframe[@title='Create Inspection']";
 	/** @locatorType Xpath */
-	public static final String CreateInprocessButton = "//button[@id='B58814859452396229']";
+	public static final String CreateInprocessButton = "//button[@id='B727816257001776868']";
 	/** @locatorType Xpath */
-	public static final String CreateFinalInspectionButton = "//button[@id='B58814425183396229']";
+	public static final String CreateFinalInspectionButton = "//button[@id='B727815822732776868']";
 	/** @locatorType Xpath */
-	public static final String CreatePreDispatchButton = "//button[@id='B58816043343396231']";
+	public static final String CreatePreDispatchButton = "//button[@id='B727817440892776870']";
 	/** @locatorType Xpath */
 	public static final String HeaderLocationLovBtn = "//input[@id='P367024401_TIPHD_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -34,17 +34,17 @@ public class InspectionPlanLocators {
 	/** @locatorType Xpath */
 	public static final String DisplayBOMNo = "//input[@id='P367024401_BOM_NO']";
 	/** @locatorType Xpath */
-	public static final String CreationTickButton = "//button[@id='B1052107397749373373']";
+	public static final String CreationTickButton = "//button[@id='B1721108795298754012']";
 	/** @locatorType Xpath */
-	public static final String HeaderSaveIcon = "//button[@id='B1052107779071373373']";
+	public static final String HeaderSaveIcon = "//button[@id='B1721109176620754012']";
 	/** @locatorType Xpath */
 	public static final String PostButton = "//button[@id='Post']";
 	/** @locatorType Xpath */
-	public static final String CancelButton = "//button[@id='B1052109007182373375']";
+	public static final String CancelButton = "//button[@id='B1721110404731754014']";
 	/** @locatorType Xpath */
-	public static final String LineAddIcon = "//button[@id='B1052076257190373257']";
+	public static final String LineAddIcon = "//button[@id='B1721077654739753896']";
 	/** @locatorType Xpath */
-	public static final String LineSaveIcon = "//button[@id='B1052076652820373259']";
+	public static final String LineSaveIcon = "//button[@id='B1721078050369753898']";
 	/** @locatorType Xpath */
 	public static final String CharacteristicsTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[2])[1]";
 	/** @locatorType Xpath */

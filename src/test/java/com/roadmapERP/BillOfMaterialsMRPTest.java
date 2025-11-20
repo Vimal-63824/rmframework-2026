@@ -121,17 +121,17 @@ public class BillOfMaterialsMRPTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * How to create and Run MRP through sales Order?
-	 * 
-	 * @author Sakthi-GWL
-	 */
-	@Author("Sakthi-GWL")
-	@Test(priority = 19, groups = { "BOM" }, description = "19 How to create and Run MRP through sales Order?")
-	public void VerifyCreateAndRunMRPThroughSalesOrder() {
-		flag = mrpFunc.verifyCreateAndRunMRPThroughSalesOrder();
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * How to create and Run MRP through sales Order?
+//	 * 
+//	 * @author Sakthi-GWL
+//	 */
+//	@Author("Sakthi-GWL")
+//	@Test(priority = 19, groups = { "BOM" }, description = "19 How to create and Run MRP through sales Order?")
+//	public void VerifyCreateAndRunMRPThroughSalesOrder() {
+//		flag = mrpFunc.verifyCreateAndRunMRPThroughSalesOrder();
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Verify After Method

@@ -1,5 +1,9 @@
 package commonfunctions.qualitycontrol;
 
+/**
+ * @author Deepan-GWL, Sakthi
+ * @company Galaxy Weblinks October 27, 2025
+ */
 import static org.testng.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -7,10 +11,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-/**
- * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks October 27, 2025
- */
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
@@ -58,7 +58,7 @@ public class InspectionPlanFunctions {
 	public void switchInsPlanCreateIframe() {
 		flag = webDB.waitForElement(InspectionPlanLocators.CreateInspectionIframe, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(InspectionPlanLocators.CreateInspectionIframe, ElementType.Xpath);
+			webDB.switchToFrame(InspectionPlanLocators.CreateInspectionIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(InspectionPlanLocators.CreateInprocessButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Inspection Plan Creation Iframe Switched");
@@ -80,6 +80,7 @@ public class InspectionPlanFunctions {
 			flag = webDB.waitForElement(InspectionPlanLocators.CreateInprocessButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(InspectionPlanLocators.CreateInprocessButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(InspectionPlanLocators.HeaderLocationLovBtn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Inspection Plan 'Inprocess' Type Created Successfully");
@@ -102,6 +103,7 @@ public class InspectionPlanFunctions {
 			flag = webDB.waitForElement(InspectionPlanLocators.CreateFinalInspectionButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(InspectionPlanLocators.CreateFinalInspectionButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(InspectionPlanLocators.HeaderLocationLovBtn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Inspection Plan 'Final Inspection' Type Created Successfully");
@@ -124,6 +126,7 @@ public class InspectionPlanFunctions {
 			flag = webDB.waitForElement(InspectionPlanLocators.CreatePreDispatchButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(InspectionPlanLocators.CreatePreDispatchButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(InspectionPlanLocators.HeaderLocationLovBtn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Inspection Plan 'Pre Dispatch' Type Created Successfully");
@@ -199,7 +202,8 @@ public class InspectionPlanFunctions {
 				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(InspectionPlanLocators.DisplayPlanNo, ElementType.Xpath);
 				if (flag) {
-					String DocNo = webDB.getTextFromElement(InspectionPlanLocators.DisplayPlanNo, ElementType.Xpath);
+					String DocNo = webDB.getDomAttributeFromElement(InspectionPlanLocators.DisplayPlanNo,
+							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 					logs.logging("INFO", "Displayed Inspection Document Number: " + DocNo);
 					VariableHandler.setInspectionPlanDocNo(DocNo);
 				}
@@ -217,6 +221,8 @@ public class InspectionPlanFunctions {
 	public void clickAddLinesInspectionPlan() {
 		flag = webDB.waitForElement(InspectionPlanLocators.LineAddIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.moveToElement(InspectionPlanLocators.LineAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(InspectionPlanLocators.LineAddIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(InspectionPlanLocators.CharacteristicsTableData, ElementType.Xpath);
@@ -243,7 +249,7 @@ public class InspectionPlanFunctions {
 			logs.logging("INFO", "Character Selected in Lines of Inspection Plan: " + Character);
 			flag = webDB.waitForElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(InspectionPlanLocators.ProcessIdTableLovButton, ElementType.Xpath);
+				webDB.clickAnElement(InspectionPlanLocators.ProcessIdTableData, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(InspectionPlanLocators.ProcessIdTableLovButton, ProcessId);
 				logs.logging("INFO", "Process Id Selected in Lines of Inspection Plan: " + ProcessId);
 				commonPayrollFunc.addDetailInTableWithoutLovButton(InspectionPlanLocators.ModInspectionTableData,
@@ -423,14 +429,16 @@ public class InspectionPlanFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
-		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");
+			commonFunc.navigateItemPage();
+			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
+					"GWL - BOM ITEM - ");
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
-					FGItem);
+					VariableHandler.getItemName());
 			bomFunc.enterEffFromToDateAndSaveHeader(Today, Today);
 			bomFunc.navigateToRoutingSubTab();
 			bomFunc.clickAddLineIconInRoutingTab();
@@ -440,29 +448,19 @@ public class InspectionPlanFunctions {
 					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
 			bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			bomFunc.clickSaveLineIconInRoutingTab();
-			bomFunc.clickAddLineIconInRoutingTab();
-			bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("2", "2",
-					commonFunc.getDataFromTestDataSheet("GwlProcess2"));
-			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
-					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
-			bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess2"));
-			bomFunc.clickSaveLineIconInRoutingTab();
-			bomFunc.clickAddLineIconInRoutingTab();
-			bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("3", "3",
-					commonFunc.getDataFromTestDataSheet("GwlProcess3"));
-			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
-					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
-			bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess3"));
-			bomFunc.clickSaveLineIconInRoutingTab();
+//			bomFunc.clickAddLineIconInRoutingTab();
+//			bomFunc.fillProcSeqNoOprnNoAndProcessIdInRouting("2", "2",
+//					commonFunc.getDataFromTestDataSheet("GwlProcess2"));
+//			bomFunc.fillTypeAndWorkCenterInRouting(commonFunc.getDataFromTestDataSheet("InsideType"),
+//					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"));
+//			bomFunc.clickIRFlagInRoutingTabForProcess(commonFunc.getDataFromTestDataSheet("GwlProcess2"));
+//			bomFunc.clickSaveLineIconInRoutingTab();
 			bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
-			bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess2"));
-			bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
-					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
-			bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess3"));
-			bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
-					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+//			bomFunc.clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess2"));
+//			bomFunc.chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+//					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			bomFunc.navigateToMaterialsSubTab();
 			bomFunc.clickAddLineIconInMaterialTab();
 			bomFunc.fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
@@ -490,14 +488,12 @@ public class InspectionPlanFunctions {
 			commonFunc.navigateToBillOfMaterialsPage();
 			bomFunc.searchBOMNoAndVerifyStatus(VariableHandler.getBOMNumber(),
 					commonFunc.getDataFromTestDataSheet("ActiveStatus"));
-			bomFunc.navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
-			bomFunc.chooseBOMTypeAndSaveHeader(commonFunc.getDataFromTestDataSheet("PrimaryType"));
 			commonFunc.navigateInspectionPlan();
 			clickAddIconAndClickInprocessInInsPlan();
-			fillLocationItemAndPlanNameInHeader(commonFunc.getDataFromTestDataSheet("Loc_100"), FGItem,
-					commonFunc.getDataFromTestDataSheet("AutomationPlanText"));
+			fillLocationItemAndPlanNameInHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					VariableHandler.getBOMNumber(), commonFunc.getDataFromTestDataSheet("AutomationPlanText"));
 			fillFromToDateAndInspectionType(Today, Today, commonFunc.getDataFromTestDataSheet("SingleItemText"));
-			clickSaveHeaderInInspectionPlan();
+			clickCreationTickIconInHeader();
 			clickAddLinesInspectionPlan();
 			fillCharacteristicsProcessIdModOfIns(commonFunc.getDataFromTestDataSheet("Surface_CharText"),
 					commonFunc.getDataFromTestDataSheet("GwlProcess1"),
@@ -507,13 +503,13 @@ public class InspectionPlanFunctions {
 			clickSaveLinesInspectionPlan();
 			clickAddLinesInspectionPlan();
 			fillCharacteristicsProcessIdModOfIns(commonFunc.getDataFromTestDataSheet("Radical_CharText"),
-					commonFunc.getDataFromTestDataSheet("GwlProcess2"),
+					commonFunc.getDataFromTestDataSheet("GwlProcess1"),
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			fillUnitofMeasureAndStdOperatorAndSpecValue(commonFunc.getDataFromTestDataSheet("Kgs"), "ET", "30");
 			clickSaveLinesInspectionPlan();
 			clickAddLinesInspectionPlan();
 			fillCharacteristicsProcessIdModOfIns(commonFunc.getDataFromTestDataSheet("VisualQC_CharText"),
-					commonFunc.getDataFromTestDataSheet("GwlProcess3"),
+					commonFunc.getDataFromTestDataSheet("GwlProcess1"),
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			fillUnitofMeasureAndStdValText(commonFunc.getDataFromTestDataSheet("Kgs"), "30");
 			clickSaveLinesInspectionPlan();
@@ -529,7 +525,7 @@ public class InspectionPlanFunctions {
 			productionOrderFunc.clickAddIconInCreationProductionOrder();
 			productionOrderFunc.createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-					commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+					commonFunc.getDataFromTestDataSheet("PROPrefix"),
 					commonFunc.getDataFromTestDataSheet("ManufactureType"), VariableHandler.getBOMNumber(), "3");
 			productionOrderFunc.clickSaveIconInCreationProductionOrder();
 			productionOrderFunc.selectFirstRestOprEventvaluesAndSaveHeader(
@@ -574,7 +570,6 @@ public class InspectionPlanFunctions {
 				materialReceiptFunctions
 						.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
 			} else {
-				commonFunc.navigateToMaterialReceiptVoucher();
 				materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
 			}
 			materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
@@ -593,16 +588,27 @@ public class InspectionPlanFunctions {
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc
 						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
-				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
+				completionProductionOrderFunc
+						.validateItemAndProcessInPendingProdOrderTable(VariableHandler.getItemName(), ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
 						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-						"AdminUsername");
+				commonFunc.navigateInspectionDocumentsPage();
+				inspectionDocumentsFunc.verifyCreatePendingInspectionDocumentWithProdNumber(
+						VariableHandler.getProductionOrderNumber());
+				inspectionDocumentsFunc.clickTickAndPostIcon();
+				if (!VariableHandler.getApprovalFlag()) {
+					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+							System.getProperty("HariUsername"));
+				}
+				commonFunc.navigateInspectionDocumentsPage();
+				inspectionDocumentsFunc.verifyValidateInspectionDocumentsStatus(VariableHandler.getIDNumber(),
+						commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 				commonFunc.navigateToMaterialReceiptVoucher();
 				commonFunc.clickPendingIcon();
 				materialReceiptFunctions.clickPendingInssuanceBtn();
@@ -624,7 +630,7 @@ public class InspectionPlanFunctions {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Define Inspection Plan - Pre Dispatch?
 	 * 
@@ -636,7 +642,7 @@ public class InspectionPlanFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
-		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String FGItem = commonFunc.getDataFromTestDataSheet("PreDispatchItem");
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -742,7 +748,7 @@ public class InspectionPlanFunctions {
 			productionOrderFunc.clickAddIconInCreationProductionOrder();
 			productionOrderFunc.createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-					commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+					commonFunc.getDataFromTestDataSheet("PROPrefix"),
 					commonFunc.getDataFromTestDataSheet("ManufactureType"), VariableHandler.getBOMNumber(), "3");
 			productionOrderFunc.clickSaveIconInCreationProductionOrder();
 			productionOrderFunc.selectFirstRestOprEventvaluesAndSaveHeader(
@@ -758,7 +764,7 @@ public class InspectionPlanFunctions {
 					commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem);
 			productionOrderFunc.navigateToResourcesSubTab();
 			productionOrderFunc
-			.verifyProcessInResources(new String[] { commonFunc.getDataFromTestDataSheet("GwlProcess1") });
+					.verifyProcessInResources(new String[] { commonFunc.getDataFromTestDataSheet("GwlProcess1") });
 			productionOrderFunc.navigateToExceptionSubTab();
 			productionOrderFunc.validateNoExceptionsShowsInExceptionTab();
 			productionOrderFunc.clickHeaderSaveAndPostProdOrder();
@@ -785,7 +791,7 @@ public class InspectionPlanFunctions {
 			commonFunc.navigateToMaterialReceiptVoucher();
 			if (flag) {
 				materialReceiptFunctions
-				.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
+						.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
 			} else {
 				commonFunc.navigateToMaterialReceiptVoucher();
 				materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
@@ -805,12 +811,12 @@ public class InspectionPlanFunctions {
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc
-				.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
 						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
-				.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
@@ -823,7 +829,7 @@ public class InspectionPlanFunctions {
 				materialReceiptFunctions.validateProcessRecipientWarehouseWithCompletionProdNo(
 						VariableHandler.getProductionCompletionOrderNo(), ProcessName, ConsumptionWH);
 				materialReceiptFunctions
-				.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
+						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
 				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 				materialReceiptFunctions.clickTickAndPostIcon();
 			}
@@ -832,12 +838,11 @@ public class InspectionPlanFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			return flag;
 		} catch (Exception e) {
-			logs.logging("INFO",
-					"Exception occur while executing 'verifyInspectionPlanPreDispatch': " + e);
+			logs.logging("INFO", "Exception occur while executing 'verifyInspectionPlanPreDispatch': " + e);
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Define Inspection Plan - Final Inspection?
 	 * 
@@ -849,7 +854,7 @@ public class InspectionPlanFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
-		String FGItem = commonFunc.getDataFromTestDataSheet("FG-10001-Item");
+		String FGItem = commonFunc.getDataFromTestDataSheet("FinalInspectionItem");
 		String RMItem = commonFunc.getDataFromTestDataSheet("RM-10001-Item");
 		try {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -955,7 +960,7 @@ public class InspectionPlanFunctions {
 			productionOrderFunc.clickAddIconInCreationProductionOrder();
 			productionOrderFunc.createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-					commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+					commonFunc.getDataFromTestDataSheet("PROPrefix"),
 					commonFunc.getDataFromTestDataSheet("ManufactureType"), VariableHandler.getBOMNumber(), "3");
 			productionOrderFunc.clickSaveIconInCreationProductionOrder();
 			productionOrderFunc.selectFirstRestOprEventvaluesAndSaveHeader(
@@ -971,7 +976,7 @@ public class InspectionPlanFunctions {
 					commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem);
 			productionOrderFunc.navigateToResourcesSubTab();
 			productionOrderFunc
-			.verifyProcessInResources(new String[] { commonFunc.getDataFromTestDataSheet("GwlProcess1") });
+					.verifyProcessInResources(new String[] { commonFunc.getDataFromTestDataSheet("GwlProcess1") });
 			productionOrderFunc.navigateToExceptionSubTab();
 			productionOrderFunc.validateNoExceptionsShowsInExceptionTab();
 			productionOrderFunc.clickHeaderSaveAndPostProdOrder();
@@ -998,7 +1003,7 @@ public class InspectionPlanFunctions {
 			commonFunc.navigateToMaterialReceiptVoucher();
 			if (flag) {
 				materialReceiptFunctions
-				.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
+						.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(VariableHandler.getProductionOrderNumber());
 			} else {
 				commonFunc.navigateToMaterialReceiptVoucher();
 				materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
@@ -1018,12 +1023,12 @@ public class InspectionPlanFunctions {
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc
-				.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+						.searchProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
 				completionProductionOrderFunc.validateItemAndProcessInPendingProdOrderTable(FGItem, ProcessName);
 				completionProductionOrderFunc.selectPendingProdOrderAndClickCreateCompletionProcess(
 						VariableHandler.getProductionOrderNumber(), false);
 				completionProductionOrderFunc
-				.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
 				completionProductionOrderFunc.validateProcessConsumptionWarehouse(ProcessName, RecipientWH);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				commonFunc.logoutUser();
@@ -1036,7 +1041,7 @@ public class InspectionPlanFunctions {
 				materialReceiptFunctions.validateProcessRecipientWarehouseWithCompletionProdNo(
 						VariableHandler.getProductionCompletionOrderNo(), ProcessName, ConsumptionWH);
 				materialReceiptFunctions
-				.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
+						.selectVoucherNoAndClickCreateReceipt(VariableHandler.getProductionCompletionOrderNo());
 				materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
 				materialReceiptFunctions.clickTickAndPostIcon();
 			}
@@ -1045,8 +1050,7 @@ public class InspectionPlanFunctions {
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			return flag;
 		} catch (Exception e) {
-			logs.logging("INFO",
-					"Exception occur while executing 'verifyInspectionPlanFinalInspection': " + e);
+			logs.logging("INFO", "Exception occur while executing 'verifyInspectionPlanFinalInspection': " + e);
 			return false;
 		}
 	}
