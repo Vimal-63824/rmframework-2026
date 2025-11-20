@@ -845,9 +845,8 @@ public class GrnPageFunctions {
 					}
 				}
 			}
-			assertTrue(flag);
 		}
-
+		assertTrue(flag);
 	}
 
 	/**
@@ -862,7 +861,7 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("ProcessFlowStatus"));
 		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
 		if (GrnHeaderWiseStatus.equals(commonFunc.getDataFromTestDataSheet("QualityEnabled"))) {
-			qcFunc.InspectionDocumentWithInspectionPlanWithEDPManager();
+			qcFunc.InspectionDocumentWithInspectionPlan();
 		}
 		verifyTocreateMrvDocumentBasedOnAplicationControl();
 		assertTrue(flag);
@@ -3078,7 +3077,7 @@ public class GrnPageFunctions {
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassSerPrice"));
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListSer"));
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),

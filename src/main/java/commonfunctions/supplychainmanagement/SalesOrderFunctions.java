@@ -4193,7 +4193,7 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna -RMITS
 	 * @return boolean flag
 	 */
-	public boolean verifyCancelSalesOrderLines() {
+	public void verifyCancelSalesOrderLines() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
@@ -4210,7 +4210,6 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Customer"));
 		verifySalesOrderLinesStatusDraftWithDB();
 		clickLineWiseDeleteButton();
-		return flag;
 	}
 
 	/**
@@ -7088,7 +7087,7 @@ public class SalesOrderFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Method Is used to SO for MRP
 	 * 

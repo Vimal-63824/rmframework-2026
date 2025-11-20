@@ -11,7 +11,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnType = "//select[@id='P16151311031_PORH_TYPE_1']";
 	/** @locatorType Xpath */
-	public static final String GrnSupplierLov = "//button[@id='P16151311031_PORH_SUPLR_ID_lov_btn']";
+	public static final String GrnSupplierLov = "//input[@data-testid='P16151311031_PORH_SUPLR_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String GrnSupplierBillNo = "//input[@id='P16151311031_PORH_SUPLR_DOC_N']";
 	/** @locatorType Xpath */

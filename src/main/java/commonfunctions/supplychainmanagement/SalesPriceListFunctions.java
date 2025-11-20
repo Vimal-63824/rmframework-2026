@@ -644,7 +644,8 @@ public class SalesPriceListFunctions {
 	public void clickSearchButton() {
 		flag = webDB.waitForElement(SalesPriceListLocators.SearchIcon, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesPriceListLocators.SearchIcon, ElementType.Xpath);
+			webDB.moveToElement(SalesPriceListLocators.SearchIcon, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(SalesPriceListLocators.SearchIcon, ElementType.Xpath);
 			logs.logging("INFO", "Successfully Clicked SerachBox");
 			flag = webDB.waitForElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
 		}

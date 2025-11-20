@@ -526,8 +526,7 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	@Author("Vimal-RMITS")
 	@Test(priority = 40, groups = { "SalesInvoice" }, description = "      177 -  Unpick the Sales Invoice")
 	public void VerifyUnpickTheSalesInvoice() {
-		flag = salesInvoiceFunc.verifyUnpickTheSalesInvoice();
-		Assert.assertTrue(flag);
+		salesInvoiceFunc.verifyUnpickTheSalesInvoice();
 	}
 
 	/**

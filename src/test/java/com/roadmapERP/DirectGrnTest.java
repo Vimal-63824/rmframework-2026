@@ -36,7 +36,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 1, groups = {
 			"GRN" }, description = "337 Direct GRN-General-User Defined-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionFreePassItem() throws IOException {
@@ -49,7 +49,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 2, groups = {
 			"GRN" }, description = "338 Direct GRN-Material-User Defined-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionFreePassItem() throws IOException {
@@ -62,7 +62,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 3, groups = {
 			"GRN" }, description = "339 Direct GRN-Service-User Defined-Same Stock and Supplier UOM")
 
@@ -76,7 +76,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 4, groups = {
 			"GRN" }, description = "341 Direct GRN-General-Rate Contract-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomGeneralRateContractWithInspectionFreePassItem() throws IOException {
@@ -89,7 +89,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 5, groups = {
 			"GRN" }, description = "342 Direct GRN-Material-Rate Contract-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomMaterialRateContractWithInspectionFreePassItem() throws IOException {
@@ -102,7 +102,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 6, groups = {
 			"GRN" }, description = "343 Direct GRN-Service-Rate Contract-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomServiceRateContractWithInspectionFreePassItem() throws IOException {
@@ -115,7 +115,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 7, groups = {
 			"GRN" }, description = "345 Direct GRN-General-Price List-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomGeneralPricelistWithInspectionFreePassItem() throws IOException {
@@ -128,7 +128,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 8, groups = {
 			"GRN" }, description = "346 Direct GRN-Material-Price List-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomMaterialPricelistWithInspectionFreePassItem() throws IOException {
@@ -141,7 +141,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 9, groups = {
 			"GRN" }, description = "347 Direct GRN-Service-Price List-Same Stock and Supplier UOM")
 	public void verifyCreationOfDirectGrnSameUomServicePricelistWithInspectionFreePassItem() throws IOException {
@@ -154,7 +154,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 10, groups = {
 			"GRN" }, description = "349 Direct GRN-General-Rate Contract-Different Stock and Supplier UOM")
 	public void verifyCreationOfDirectGRNGeneralRateContractDifferentStockandSupplierUOM() throws IOException {
@@ -167,7 +167,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 11, groups = {
 			"GRN" }, description = "350 Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM")
 	public void verifyCreationOfDirectGRNMaterialRateContractDifferentStockandSupplierUOM() throws IOException {
@@ -182,7 +182,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 12, groups = {
 			"GRN" }, description = "351 Direct GRN-General-Price List-Different Stock and Supplier UOM")
 	public void verifyCreationOfDirectGRNGeneralPriceListDifferentStockandSupplierUOM() throws IOException {
@@ -195,7 +195,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 13, groups = {
 			"GRN" }, description = "354 Direct GRN-General-Price List-Different Stock and Supplier UOM")
 	public void verifyCreationOfDirectGRNMaterialPriceListDifferentStockandSupplierUOM() throws IOException {
@@ -208,7 +208,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 14, groups = {
 			"GRN" }, description = "375 Check for  Auto creation MRV based on Appln. ctrl -for GRN WO Quality")
 	public void VerifyToCheckforAutoCreationMrvBasedOnApplicationctrlforGrnwithOutQuality() throws IOException {
@@ -221,7 +221,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 15, groups = {
 			"GRN" }, description = "374 Check for  Auto creation MRV based on Appln. ctrl -for GRN with Quality")
 	public void VerifyToCheckforAutoCreationMrvBasedOnApplicationctrlforGrnwithQuality() throws IOException {
@@ -270,7 +270,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 18, groups = { "GRN" }, description = "379 CancelMrvDocument")
 	public void VerifyToCheckforCancelMrvDocument() throws IOException {
 		Grnfunc.VerifyToCancelMrvDocument();
@@ -282,7 +282,7 @@ public class DirectGrnTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	@Author("Durai-RMITS")
+	@Author("Prem-RMITS")
 	@Test(priority = 19, groups = { "GRN" }, description = "373 Find MRV with all possible search parameters")
 	public void FindMRVwithallpossiblesearchparameters() throws IOException {
 		MrvFunc.verifyCreationOfGrnFilterAllFieldWorking();

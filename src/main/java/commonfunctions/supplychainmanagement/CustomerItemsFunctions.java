@@ -557,20 +557,21 @@ public class CustomerItemsFunctions {
 		clickSearchButton();
 		searchedItem();
 		customerAssoFlag();
-		clickedActiveButton();
+		changesNotApplicabeType(commonFunc.getDataFromTestDataSheet("QcFlag"));
+		clickSaveButton();
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.navigateCustomerItemScreen();
 		addPLusButton();
-		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("CUSName"));
+		insertCustomerFromLovField(commonFunc.getDataFromTestDataSheet("catalogCustomer"));
 		addPlusInCustomerItem();
 		insertIteminCustomerItemsAfterCustomerAssoFlag();
 		priceClassSelectStdFormat(commonFunc.getDataFromTestDataSheet("priceClassName"));
-		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("priceBasisValue"));
-		saveButtoninCustomerItems();
-		filltersaItemCustomerItems();
+		priceBasisSelectInCustomerItems(commonFunc.getDataFromTestDataSheet("PriceBasisStandard"));
 		commonFunc.hardWait(3000);
 		commonFunc.checkRefreshCellsDisappear();
-		clickDefaltFlag();
+		clickDefaltFlag2();
 		saveButtoninCustomerItems();
+
 	}
 
 	/**

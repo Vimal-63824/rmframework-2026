@@ -12976,7 +12976,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticPricelistItemWithItemGeneralTypeForFreePassItem(String SheetName)
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -12996,12 +12996,14 @@ public class PurchaseOrderFunctions {
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoQtyEntered(QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
 						commonFunc.getDataFromTestDataSheet("PriceListSupplier"));
@@ -13033,7 +13035,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticPricelistItemWithMaterialTypeForFreePassItem(String SheetName)
 			throws IOException {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -13053,12 +13055,14 @@ public class PurchaseOrderFunctions {
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoQtyEntered(QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
 						commonFunc.getDataFromTestDataSheet("PriceListSupplier"));

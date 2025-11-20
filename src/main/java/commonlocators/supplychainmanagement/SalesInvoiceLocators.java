@@ -263,19 +263,19 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Header_Type = "//span[@id='P191513109001_SIHD_TYPE_DISPLAY']";
 	/** @Locator XPATH */
-	public static final String SI_Pend_SO_Btn = "//button[@id='B990529693486838107']";
+	public static final String SI_Pend_SO_Btn = "//button[@data-testid='Pending_SO']";
 	/** @Locator XPATH */
 	public static final String SI_Pend_Iframe = "//iframe[@title='Pending Invoice']";
 	/** @Locator XPATH */
-	public static final String SI_Pend_SO_No_Lov = "//button[@id='P1915131087_ORD_NO_lov_btn']";
+	public static final String SI_Pend_SO_No_Lov = "//input[@id='P1915131087_ORD_NO']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String SI_Pend_SO_No_Column = "//input[@id='P1915131087_ORD_NO']";
 	/** @Locator XPATH */
-	public static final String SI_Pend_Search_Btn = "//button[@id='B2628575661799932495']";
+	public static final String SI_Pend_Search_Btn = "//button[@data-testid='Find']";
 	/** @Locator XPATH */
 	public static final String SI_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String SI_Pend_CreateInvoice_Btn = "//button[@id='B1']";
+	public static final String SI_Pend_CreateInvoice_Btn = "//button[@data-testid='Sales_Invoice']";
 	/** @Locator XPATH */
 	public static final String PI_Header_PaymentTermColumn = "//input[@id='P191513108501_PIHD_PAY_TERM']";
 	/** @Locator XPATH */
@@ -289,13 +289,13 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Pend_CS_CreateInvoice_Btn = "//button[@id='B2']";
 	/** @Locator XPATH */
-	public static final String SI_Unpick_Btn = "//button[@id='B5974605624050780497']";
+	public static final String SI_Unpick_Btn = "//button[@data-testid='Sales_Invoice']";
 	/** @Locator XPATH */
 	public static final String SI_Cancel_Btn = "//button[@data-testid='Cancel']";
 	/** @Locator XPATH */
-	public static final String SI_Cancel_OK_Btn = "//button[@id='B6744401577700282579']";
+	public static final String SI_Cancel_OK_Btn = "//button[@data-testid='Cancel_OK']";
 	/** @Locator XPATH */
-	public static final String SI_Cancel_Reason = "//input[@id='P191513109001_CANCEL']";
+	public static final String SI_Cancel_Reason = "//input[@data-testid='P191513109001_CANCEL']";
 	/** @Locator XPATH */
 	public static final String SI_Linewise_Delete_Btn = "(//span[@class='fa fa-trash-o'])[1]";
 	/** @Locator XPATH */
@@ -746,7 +746,7 @@ public class SalesInvoiceLocators {
 	public static final String RW_Lot_Field = "//span[@id='P1818131040_RWOHD_LOT_NO_DISPLAY']";
 	/** @Locator XPATH */
 	public static final String RW_Source_Doc_No = "//span[@id='P1818131040_RWOHD_SOU_DOC_NO_DISPLAY']";
-	/** @Locator XPATH */ 
+	/** @Locator XPATH */
 	public static final String RW_Sou_Pfx = "//span[@id='P1818131040_RWOHD_SOU_DOC_PFX_DISPLAY']";
 	/** @Locator XPATH */
 	public static final String RW_Qty_Field = "//span[@id='P1818131040_RWOHD_REWORK_QTY_DISPLAY']";
@@ -766,4 +766,10 @@ public class SalesInvoiceLocators {
 	public static final String SI_Header_Date = "//button[@class='a-Button a-DatePicker--today']";
 	/** @Locator XPATH */
 	public static final String SI_DocNo_DrillDown = "#\\31 5505883317636664368_orig > tbody > tr:nth-child(2) > td:nth-child(12) > a";
+	/** @Locator XPATH */
+	public static final String SI_Location_Field = "//INPUT[@data-testid='P1915131343_SIHD_PLNT_LOC_ID']";
+	/** @Locator XPATH */
+	public static final String SI_Type_Field = "//INPUT[@data-testid='P1915131343_SIHD_TYPE']";
+	/** @Locator XPATH */
+	public static final String SI_Frwd_Person = "//input[@data-testid='P236131090_FWD_PERSON']";
 }
