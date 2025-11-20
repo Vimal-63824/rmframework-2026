@@ -1610,7 +1610,7 @@ public class PurchaseRequestFunctions {
 		if (flag) {
 			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 //			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.GlAccountNoLovButton, GlAccNumber);
-			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
+//			webDB.switchToFrame(PurchaseRequestLocators.PR_LineDetailsIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseRequestLocators.LineDetailSaveButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(PurchaseRequestLocators.LineDetailSaveButton, ElementType.Xpath);

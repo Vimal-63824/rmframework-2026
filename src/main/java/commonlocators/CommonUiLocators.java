@@ -232,11 +232,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SubcontractOrder = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingSubcontractOrder = "//button[@id='B1477708597840489099']";
+	public static final String PendingSubcontractOrder = "//button[@data-testid='Create_SCO']";
 	/** @locatorType Xpath */
 	public static final String GrnSco = "//span[text()='Supply Chain']/ancestor::li/*/li[2]/*/li[2]/*/li[3]";
 	/** @locatorType Xpath */
-	public static final String PendingGrn = "//button[@id='B1191369337279430568']";
+	public static final String PendingGrn = "//button[@data-testid='Pending_PO_SCO']";
 	/** @locatorType Xpath */
 	public static final String RfqTab = "//span[text()='Supply Chain']/ancestor::li/*/li[1]/*/li[2]/*/li[9]";
 	/** @locatorType Xpath */
@@ -401,7 +401,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
 	/** @locatorType Xpath */
-	public static final String PurchaseAddIcon = "//button[@title='Create PR/SSR']";
+	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
 	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
 	/** @locatorType Xpath */
@@ -418,4 +418,6 @@ public class CommonUiLocators {
 	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
 	/** @Locator XPATH */
 	public static final String PendingPR = "//button[@id='B1607785281688206710']";
+	/** @locatorType Xpath */
+	public static final String PurchaseRequestAddIcon = "//button[@title='Create PR/SSR']";
 }

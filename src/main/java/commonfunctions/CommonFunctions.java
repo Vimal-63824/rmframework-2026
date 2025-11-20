@@ -155,11 +155,7 @@ public class CommonFunctions {
 	 * @throws InterruptedException
 	 */
 	public void validCommonLogin(String Username, String Password, String... Name) {
-		if (Username.equals(System.getProperty("ErpAdmin")) || Username.equals(System.getProperty("DevaUserName"))) {
-			enterOldUrl();
-		} else {
-			enterUrl();
-		}
+		enterUrl();
 		flag = webDB.waitForElement(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
 		if (flag) {
 			webDB.clearTextField(CommonUiLocators.LoginEmailTextBox, ElementType.Xpath);
@@ -2417,6 +2413,7 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
@@ -2597,6 +2594,7 @@ public class CommonFunctions {
 		restApi.setQueryParam("p_wfdc_act", "A");
 		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
 		String Value = restApi.response.getHeader("p_out_msg");
+		VariableHandler.setLastApprovalAPIHeaderText(Value);
 		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
 		logs.logging("INFO", "Displayed Approval Response Status Code: " + restApi.response.getStatusCode());
 		flag = Value.contains("Approved");
@@ -3082,15 +3080,4 @@ public class CommonFunctions {
 				InspectionPlanLocators.AddIconInFindPage);
 	}
 
-	/**
-	 * This method used to navigate url that was set in Maven Goal
-	 * 
-	 * @author Deepan-GWL
-	 * @return boolean
-	 */
-	public boolean enterOldUrl() {
-		webDB.enterURL(System.getProperty("OldJUrl"));
-		flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.LoginForm, ElementType.Xpath, 45);
-		return flag;
-	}
 }

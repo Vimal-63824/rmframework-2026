@@ -371,6 +371,7 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(5000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(2000);
@@ -392,26 +393,27 @@ public class SubcontractOrderFunctions {
 		flag = webDB.waitForElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Include Charges Is Displayed");
+			webDB.moveToElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			webDB.clickAnElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
-			commonFunc.hardWait(1500);
+			commonFunc.checkSuccessToastMessageDisappear();
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
-				commonFunc.hardWait(2000);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(SubcontractOrderLocators.HeaderPost, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(1000);
+					commonFunc.checkSuccessToastMessageDisappear();
 					logs.logging("INFO", "Save Button Is Clicked");
 					webDB.clickAnElement(SubcontractOrderLocators.HeaderPost, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 					logs.logging("INFO", "Post Button Is Clicked");
-
 				}
 			}
 		}
@@ -553,6 +555,7 @@ public class SubcontractOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("HSN2022-5%"));
 			webDB.waitForElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
 			if (flag) {
+				webDB.moveToElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);

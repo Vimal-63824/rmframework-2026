@@ -135,7 +135,7 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	@Test(priority = 9, groups = {
 			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as OR - Move Type - Single")
 	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoOrMoveTypeSingle() {
-		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInside();
+		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideCQOR();
 	}
 
 	/**
@@ -145,8 +145,7 @@ public class ProductionOrderTest extends RoadMapERPTest {
 	@Test(priority = 10, groups = {
 			"Production Order WithOut Sale Order Reference" }, description = "Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
 	public void VerifyPOWithoutSORFirstOutsideOtherInsideWithFoCqRoCqMoveTypeSingle() {
-		prodOrderFunc
-				.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithFoCqRoCqMoveTypeSingle();
+		prodOrderFunc.verifyManualProductionOrderWithoutSoFirstProcessOutsideRemainingInsideWithCQCQMoveTypeSingle();
 	}
 
 	/**
