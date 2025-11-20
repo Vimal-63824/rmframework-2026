@@ -2549,7 +2549,7 @@ public class CustomerScheduleFunctions {
 		addHeaderDetailsOfCSAmendment(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("CSAmendPrefix"), commonFunc.getDataFromTestDataSheet("Customer"));
 		clickFetchButtonInCSAmd();
-		passDocumentNumberAndClickOKButton(commonFunc.getDataFromTestDataSheet("CSAmendmentDoc"));
+		passDocumentNumberAndClickOKButton(VariableHandler.getCSDocNumber());
 //		changeQtyInCSAmd("100");
 		changePriceInCSAmd("2500");
 		clickLineWiseSaveButtonInCSAmd();

@@ -432,7 +432,7 @@ public class PricelistPageFunctions {
 			commonFunc.hardWait(3000);
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRLISTNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("LoginPassword"));
+					System.getProperty("HariUsername"));
 		}
 		assertTrue(flag);
 	}

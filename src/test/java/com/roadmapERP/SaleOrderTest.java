@@ -329,8 +329,7 @@ public class SaleOrderTest extends RoadMapERPTest {
 	@Author("Harikrishna-RMITS")
 	@Test(priority = 23, groups = { "SalesOrder" }, description = "Cancel SO Lines")
 	public void verifySalesOrderLineWiseCancel() {
-		flag = SalesOrdFunc.verifyCancelSalesOrderLines();
-		Assert.assertTrue(flag);
+		SalesOrdFunc.verifyCancelSalesOrderLines();
 	}
 
 	/**

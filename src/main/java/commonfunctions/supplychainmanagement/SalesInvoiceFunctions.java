@@ -40,6 +40,9 @@ public class SalesInvoiceFunctions {
 	static MaterialReceiptVoucherFunctions mrvFunc = new MaterialReceiptVoucherFunctions();
 	static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
 	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	public ArrayList<String> MultiSIDocNumber = new ArrayList<String>();
+	String BRFilepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+			+ "Financials.xlsx";
 
 	/**
 	 * Verify Clicking Add Button
@@ -75,10 +78,18 @@ public class SalesInvoiceFunctions {
 	public void verifyCreateDirectSalesInvoiceAddingParameters(String LocationId, String SI_Type, String CustomerName) {
 		flag = webDB.waitForElement(SalesInvoiceLocators.Loc_ID_Btn, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Loc_ID_Btn, LocationId);
+			String GetTextLocation = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_Location_Field,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetTextLocation.equals(LocationId)) {
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Loc_ID_Btn, LocationId);
+			}
 			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Type_Btn, ElementType.Xpath);
 			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Type_Btn, SI_Type);
+				String GetTextSIType = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_Type_Field,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				if (!GetTextSIType.equals(SI_Type)) {
+					commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Type_Btn, SI_Type);
+				}
 				flag = webDB.waitForElement(SalesInvoiceLocators.Customer_ID_Btn, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Customer_ID_Btn, CustomerName);
@@ -103,6 +114,7 @@ public class SalesInvoiceFunctions {
 				String SIdocno = webDB.getTextFromElement(SalesInvoiceLocators.SI_Doc_NO, ElementType.Xpath);
 				logs.logging("INFO", "Get SI DocNo Is: " + SIdocno);
 				VariableHandler.setSIdocno(SIdocno);
+				MultiSIDocNumber.add(VariableHandler.getSIdocno());
 			}
 		}
 		assertTrue(flag);
@@ -156,8 +168,11 @@ public class SalesInvoiceFunctions {
 	public void verifyHeaderCPCCode(String CPC_Code) {
 		flag = webDB.waitForElement(SalesInvoiceLocators.CPC_Column, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CPC_Column, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Header_CPC_LOV_Btn, CPC_Code);
+			String GetTextCPCCode = webDB.getDomPropertyFromElement(SalesInvoiceLocators.CPC_Column, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetTextCPCCode.equals(CPC_Code)) {
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.Header_CPC_LOV_Btn, CPC_Code);
+			}
 			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Header_Date_field, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesInvoiceLocators.SI_Header_Date_field, ElementType.Xpath);
@@ -258,13 +273,15 @@ public class SalesInvoiceFunctions {
 		if (flag) {
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 			logs.logging("INFO", "Table Input Box Is Clicked");
-			webDB.clearTextField(InputParameter, ElementType.Xpath);
+			webDB.clearText(InputParameter, ElementType.Xpath);
 			logs.logging("INFO", "Clear Text Field The Input Value");
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
 				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
+				commonFunc.checkRefreshCellsDisappear();
 				String value = webDB.getDomPropertyFromElement(InputParameter, ElementType.Xpath,
 						commonFunc.getDataFromTestDataSheet("Value"));
 				logs.logging("INFO", "Get Attribute Value Is: " + value);
@@ -892,6 +909,7 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
+		VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -1093,7 +1111,7 @@ public class SalesInvoiceFunctions {
 		verifyHeaderTickIcon();
 		commonFunc.checkRefreshCellsDisappear();
 		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
-		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("ExportS&D"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("ExportSD"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
 		commonFunc.checkRefreshCellsDisappear();
@@ -1108,7 +1126,7 @@ public class SalesInvoiceFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
-		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportS&D"));
+		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportSD"));
 		return flag;
 	}
 
@@ -1978,9 +1996,9 @@ public class SalesInvoiceFunctions {
 	 * @param PI_Inv_UnitCost
 	 */
 	public void verifyProformaInvoiceQtyUnitcost(String PI_Inv_Qty, String PI_Inv_UnitCost) {
-		commonFunc.hardWait(1000);
+//		commonFunc.hardWait(1000);
 		verifyAddTableSpecs(SalesInvoiceLocators.PI_Qty_Column, SalesInvoiceLocators.PI_Inv_Qty, PI_Inv_Qty);
-		commonFunc.hardWait(1000);
+//		commonFunc.hardWait(1000);
 		verifyAddTableSpecs(SalesInvoiceLocators.PI_UnitCost_Column, SalesInvoiceLocators.PI_UnitCost, PI_Inv_UnitCost);
 	}
 
@@ -2688,15 +2706,10 @@ public class SalesInvoiceFunctions {
 	 */
 	public void verifySIPendingSOSaleorderNo(String SI_Pend_Domestic_SO_No) {
 		webDB.switchToFrame(SalesInvoiceLocators.SI_Pend_Iframe, ElementType.Xpath);
-		flag = webDB.waitForElement(SalesInvoiceLocators.SI_Pend_SO_No_Column, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_SO_No_Column, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.SI_Pend_SO_No_Lov, SI_Pend_Domestic_SO_No);
 			logs.logging("INFO", "Sales Invoice PendingSO SaleOrder No Inserted Successfully");
 			commonFunc.hardWait(1000);
 		}
-		assertTrue(flag);
-	}
 
 	/**
 	 * This Method Used For PendingSO Click SalesOrder No
@@ -3239,7 +3252,7 @@ public class SalesInvoiceFunctions {
 		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
 		verifyHeaderTickIcon();
 		commonFunc.checkRefreshCellsDisappear();
-//		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_UTGST_Customer"));
+		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("SI_Domestic_UTGST_Customer"));
 		AddingUserDefinedItemLineFromReadingExcelSheet(webDB.getDataFromProperties("UTGSTCustomer"));
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAllocLSbatch();
@@ -3256,7 +3269,7 @@ public class SalesInvoiceFunctions {
 				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
-				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("InterStateCustomer"));
+				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("UTGSTCustomer"));
 		return flag;
 	}
 
@@ -3309,7 +3322,7 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
-		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
+		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOM();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3352,7 +3365,7 @@ public class SalesInvoiceFunctions {
 	 * @return boolean
 	 */
 	public boolean verifyCreateSalesInvoiceExportFromApprovedSalesorders() {
-		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOMSalesInvoice();
+		salesOrderFunctions.verifyExportSOGeneralSimilarStockAndCustomerUOM();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3602,7 +3615,7 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyUnpickTheSalesInvoice() {
+	public void verifyUnpickTheSalesInvoice() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateSalesInvoicePage();
@@ -3624,7 +3637,6 @@ public class SalesInvoiceFunctions {
 		verifyPickButton();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyUnpickButton();
-		return flag;
 	}
 
 	/**

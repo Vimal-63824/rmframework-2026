@@ -27,7 +27,7 @@ public class SetupSalesFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void CreatesSalesSetup() {
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateSetup_Sales();
 		clickSalesRegion();
