@@ -3077,7 +3077,7 @@ public class GrnPageFunctions {
 		clickSelectAllButton();
 		createGrn();
 		supplierBillNumberAndDcNumber();
-		overAllSaveAndPost(webDB.getDataFromProperties("FreePassSerPrice"));
+		overAllSaveAndPost(webDB.getDataFromProperties("DirectPoPriceListSer"));
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),

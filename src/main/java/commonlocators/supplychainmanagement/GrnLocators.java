@@ -172,7 +172,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnChargesBasis = "//*[@id=\"chrg_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
-	public static String GrnChargesSelect = "//select[@id='C3842958976155565901']";
+	public static String GrnChargesSelect = "//select[@data-testid='PROTC_CHRG_BASIS']";
 	/** @locatorType Xpath */
 	public static String GrnChargesSaveBtn = "//button[@data-testid='GRNP_SAVE_CHARGES_BTN']";
 	/** @locatorType Xpath */
@@ -274,7 +274,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLandedCostAmountGrid = "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[10]";
 	/** @locatorType Xpath */
-	public static final String GrnLandedCostAmountValue = "//input[@id='C3169590837668096280']";
+	public static final String GrnLandedCostAmountValue = "//input[@data-testid='PRLC_TC_AMT']";
 	/** @locatorType Xpath */
 	public static final String GrnLandedCostDocumentGrid = "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[11]";
 	/** @locatorType Xpath */
