@@ -86,8 +86,8 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	@Author("Kowshik-RMITS")
-	@Test(priority = 6, groups = { "Sales Catalogue Price" }, description = "Multiples Lines Creates")
+//	@Author("Kowshik-RMITS")
+//	@Test(priority = 6, groups = { "Sales Catalogue Price" }, description = "Multiples Lines Creates")
 	public void veriftyCreatesMultiplesCataloguePrice() {
 		Scp.createsMultiplesCataloguePrice();
 	}

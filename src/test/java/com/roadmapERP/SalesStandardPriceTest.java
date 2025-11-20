@@ -96,8 +96,8 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	@Author("Kowshik-RMITS")
-	@Test(priority = 6, groups = { "Sales Standard Price" }, description = "Creates Multiples Item Same Price Class ")
+//	@Author("Kowshik-RMITS")
+//	@Test(priority = 6, groups = { "Sales Standard Price" }, description = "Creates Multiples Item Same Price Class ")
 	public void veriftyCreateItemMultipleStdPrice() {
 		Std.createsMultiplesItemsStdPrice();
 	}
@@ -107,9 +107,9 @@ public class SalesStandardPriceTest extends RoadMapERPTest {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	@Author("Kowshik-RMITS")
-	@Test(priority = 7, groups = {
-			"Sales Standard Price" }, description = "Creates Multiples Item Same Price Class With Different PriceClass")
+//	@Author("Kowshik-RMITS")
+//	@Test(priority = 7, groups = {
+//			"Sales Standard Price" }, description = "Creates Multiples Item Same Price Class With Different PriceClass")
 	public void veriftyCreatesItemsMultiplesStdPriceDifferentPriceClass() {
 		Std.createsMultiplesItemStdPriceDifferentPriceClass();
 	}

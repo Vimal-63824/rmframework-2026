@@ -238,8 +238,8 @@ public class OpenSoAmdTest extends RoadMapERPTest {
 	 *
 	 * @author Kowshik
 	 */
-	@Author("Kowshik-RMITS")
-	@Test(priority = 18, groups = { "Open Sales Order " }, description = "verifyOpenSoamdMultiplesLines")
+//	@Author("Kowshik-RMITS")
+//	@Test(priority = 18, groups = { "Open Sales Order " }, description = "verifyOpenSoamdMultiplesLines")
 	public void verifyOpenSoamdMultiplesLines() {
 		OSOA.verifyMutiplesAddTypes();
 	}

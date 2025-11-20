@@ -145,7 +145,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdTentativeQtyInputField = "//input[@data-testid='CSAmdTentativeQtyInputField']";
 	/** @Locator Xpath */
-	public static final String CSAmdTentativeDateInputField = "//input[@id='C360457911114043498_input']";
+	public static final String CSAmdTentativeDateInputField = "//input[@id='C1029074294440075899_input']";
 	/** @Locator Xpath */
 	public static final String CSAmdTentaiveDateField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */

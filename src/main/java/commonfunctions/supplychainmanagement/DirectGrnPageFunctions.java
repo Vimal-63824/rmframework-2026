@@ -3883,7 +3883,7 @@ public class DirectGrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
-		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnRateContract"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DIFUOMDirectGrnRateContract"));
 		GRNFunc.overAllSaveAndPost();
 		GRNFunc.waitingForApproval();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
@@ -3955,7 +3955,7 @@ public class DirectGrnPageFunctions {
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"),
-				commonFunc.getDataFromTestDataSheet("DIFUOMDirectGrnPriceList"),
+				commonFunc.getDataFromTestDataSheet("PriceListSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
 		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DIFUOMDirectGrnPriceList"));
@@ -3983,7 +3983,7 @@ public class DirectGrnPageFunctions {
 		verifyGrnAdd();
 		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPM"),
-				commonFunc.getDataFromTestDataSheet("DIFUOMDirectGrnMatPriceList"),
+				commonFunc.getDataFromTestDataSheet("PriceListSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(
 				webDB.getDataFromProperties("DIFUOMDirectGrnMatPriceList"));

@@ -845,9 +845,8 @@ public class GrnPageFunctions {
 					}
 				}
 			}
-			assertTrue(flag);
 		}
-
+		assertTrue(flag);
 	}
 
 	/**
@@ -862,7 +861,7 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("ProcessFlowStatus"));
 		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
 		if (GrnHeaderWiseStatus.equals(commonFunc.getDataFromTestDataSheet("QualityEnabled"))) {
-			qcFunc.InspectionDocumentWithInspectionPlanWithEDPManager();
+			qcFunc.InspectionDocumentWithInspectionPlan();
 		}
 		verifyTocreateMrvDocumentBasedOnAplicationControl();
 		assertTrue(flag);

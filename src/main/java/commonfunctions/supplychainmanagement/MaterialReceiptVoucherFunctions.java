@@ -879,8 +879,6 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreditNotePostMaterialReceipt() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
 		commonFunc.navigateToMaterialReceiptVoucher();
 		verifyPendingCReditNoteMRV(VariableHandler.getCNdocno());
 		verifyReceiptLocatorsAndPutAway();
@@ -1120,8 +1118,8 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 
 	public void verifyPostMaterialReceiptWithAndWithoutLocatorBasedOnDocumentWiseCancel() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
 		verifyToCreateMrvDocumentFromPendingMivWithGrnDocument();
 		getMaterialReceiptVoucherNumberFromToastMessage();
