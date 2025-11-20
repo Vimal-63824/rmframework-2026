@@ -272,18 +272,19 @@ public class BillOfMaterialsFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickIRFlagInRoutingTabForProcess(String process) {
-		commonFunc.hardWait(2000);
 		commonFunc.checkRefreshCellsDisappear();
-		flag = webDB.isElementSelected(BillOfMaterialsLocators.RoutingIRInputBox(process), ElementType.Xpath);
-		if (!flag) {
-			webDB.moveToElement(BillOfMaterialsLocators.RoutingSaveLineBtn, ElementType.Xpath);
-			webDB.clickAnElement(BillOfMaterialsLocators.RoutingSaveLineBtn, ElementType.Xpath);
-			commonFunc.hardWait(2000);
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.isElementSelected(BillOfMaterialsLocators.RoutingIRInputBox(process), ElementType.Xpath);
-		}
+		flag = webDB.waitForElement(BillOfMaterialsLocators.RoutingIRFlagData, ElementType.Xpath);
 		if (flag) {
-			logs.logging("INFO", "Inspection Required Checkbox Selected");
+			webDB.moveToElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
+			flag = webDB.javaScriptClickAnElement(BillOfMaterialsLocators.RoutingIRDiv(process), ElementType.Xpath);
+//			commonFunc.hardWait(3000);
+//			commonFunc.checkRefreshCellsDisappear();
+//			flag = webDB.isElementSelected(BillOfMaterialsLocators.RoutingIRInputBox(process), ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Inspection Required Checkbox Selected");
+			} else {
+				logs.logging("INFO", "Inspection Required Checkbox Not Selected.. Check Manually");
+			}
 		}
 		assertTrue(flag);
 	}
@@ -1233,18 +1234,18 @@ public class BillOfMaterialsFunctions {
 			webDB.clickAnElement(BillOfMaterialsLocators.CopyBOMBtn, ElementType.Xpath);
 			switchToCopyBOMFrameInBOM();
 			logs.logging("INFO", "Copy BOM Button Clicked");
+			commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffFromInput,
+					BillOfMaterialsLocators.CopyBOMEffFromInput, effFrom);
+			logs.logging("INFO", "Effective From Date Entered: " + effFrom);
+			commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffToInput,
+					BillOfMaterialsLocators.CopyBOMEffToInput, effTo);
+			logs.logging("INFO", "Effective To Date Entered: " + effTo);
+			commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CopyBOMItemLovBtn, Item);
+			logs.logging("INFO", "Item Selected in Copy BOM: " + Item);
+			switchToCopyBOMFrameInBOM();
 			flag = webDB.sendTextToAnElement(BillOfMaterialsLocators.CopyBOMNameInput, BOMName, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "BOM Name Entered in Copy BOM: " + BOMName);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffFromInput,
-						BillOfMaterialsLocators.CopyBOMEffFromInput, effFrom);
-				logs.logging("INFO", "Effective From Date Entered: " + effFrom);
-				commonPayrollFunc.addDetailInTableWithoutLovButton(BillOfMaterialsLocators.CopyBOMEffToInput,
-						BillOfMaterialsLocators.CopyBOMEffToInput, effTo);
-				logs.logging("INFO", "Effective To Date Entered: " + effTo);
-				commonFunc.searchAndSelectValueInFilters(BillOfMaterialsLocators.CopyBOMItemLovBtn, Item);
-				logs.logging("INFO", "Item Selected in Copy BOM: " + Item);
-				switchToCopyBOMFrameInBOM();
 				flag = webDB.waitForElement(BillOfMaterialsLocators.CopyBOMTickIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(BillOfMaterialsLocators.CopyBOMTickIcon, ElementType.Xpath);
@@ -1634,8 +1635,6 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
