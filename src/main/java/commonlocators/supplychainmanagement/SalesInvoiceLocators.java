@@ -237,7 +237,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String PI_Pend_SO_No_Column = "//input[@id='P1915131084_SO_NO']";
 	/** @Locator XPATH */
-	public static final String PI_Pend_Search_Btn = "//button[@id='B2546229395991996625']";
+	public static final String PI_Pend_Search_Btn = "//button[@data-testid='Save']";
 	/** @Locator XPATH */
 	public static final String PI_Pend_SelectAll = "//input[@id='check_all']";
 	/** @Locator XPATH */

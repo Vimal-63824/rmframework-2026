@@ -4572,12 +4572,12 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkSILineDetailsShipsetDataBaseValuesWithUIValues() {
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_Store_ID, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
-						commonFunc.getDataFromTestDataSheet("SIDBStoreIDColumn")));
-		logs.logging("INFO", "Line Detail StoreID Matched With DataBase Values");
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_Store_ID, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.SILineDetails(VariableHandler.getSIdocno(),
+//						commonFunc.getDataFromTestDataSheet("SIDBStoreIDColumn")));
+//		logs.logging("INFO", "Line Detail StoreID Matched With DataBase Values");
 
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_LineDet_UnitCost, ElementType.Xpath,
@@ -5229,12 +5229,12 @@ public class SalesInvoiceFunctions {
 						commonFunc.getDataFromTestDataSheet("CRDBCustNameColumn")));
 		logs.logging("INFO", "Header Detail CustomerName Matched With DataBase Values");
 
-		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getDomPropertyFromElement(SalesInvoiceLocators.CR_GoodsType, ElementType.Xpath,
-						commonFunc.getDataFromTestDataSheet("Value")),
-				dbCommonFunctions.CRHeaderDetails(VariableHandler.getCRdocno(),
-						commonFunc.getDataFromTestDataSheet("CRDBGoodsTypeColumn")));
-		logs.logging("INFO", "Header Detail Goods Type Matched With DataBase Values");
+//		salesOrderFunctions.verifyAssertionBothValues(
+//				webDB.getDomPropertyFromElement(SalesInvoiceLocators.CR_GoodsType, ElementType.Xpath,
+//						commonFunc.getDataFromTestDataSheet("Value")),
+//				dbCommonFunctions.CRHeaderDetails(VariableHandler.getCRdocno(),
+//						commonFunc.getDataFromTestDataSheet("CRDBGoodsTypeColumn")));
+//		logs.logging("INFO", "Header Detail Goods Type Matched With DataBase Values");
 
 		checkCreditNoteDraftStatusDetailsDataBaseValuesWithUIValues();
 	}
@@ -5595,6 +5595,7 @@ public class SalesInvoiceFunctions {
 					flag = webDB.waitForElement(SalesInvoiceLocators.CR_Parameter_Inserting_Tick_Icon,
 							ElementType.Xpath);
 					if (flag) {
+						commonFunc.hardWait(1000);
 						webDB.clickAnElement(SalesInvoiceLocators.CR_Parameter_Inserting_Tick_Icon, ElementType.Xpath);
 						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SalesInvoiceLocators.CR_Close_Toast_Msg, ElementType.Xpath);

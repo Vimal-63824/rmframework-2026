@@ -68,7 +68,9 @@ public class CustomerScheduleFunctions {
 	String Today = date.format(formatter);
 	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
 	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
+	DateTimeFormatter myFormatObj1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String tomorrowDate = myDateObj.format(myFormatObj);
+	String tomorrowDate1 = myDateObj.format(myFormatObj1);
 
 	/**
 	 * This Method Is Used To Add The Customer Schedule Header Details And Get The
@@ -1053,10 +1055,11 @@ public class CustomerScheduleFunctions {
 				getPriceListDocumentno(MultiPriceList);
 				clickPostButton1();
 				verifyWaitingForApproval1(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-//				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.checkRefreshCellsDisappear();
 			}
 		}
 		VariableHandler.setMultiplePriceListDocs(MultiPriceList);
+		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.logoutUser();
 //		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
 //				"HariUsername");
@@ -2433,6 +2436,7 @@ public class CustomerScheduleFunctions {
 			webDB.sendTextToAnElement(CustomerScheduleLocators.CSAmdTentativeDateInputField, TentaiveEndDate,
 					ElementType.Xpath);
 			webDB.pressTabKey();
+			commonFunc.checkRefreshCellsDisappear();
 		}
 		Assert.assertTrue(flag);
 	}
@@ -2594,7 +2598,7 @@ public class CustomerScheduleFunctions {
 		changeQtyInCSAmd("100");
 		changeTentaiveQtyInCSAmd("200");
 		changePriceInCSAmd("2500");
-		addEndDateInTentativeField(tomorrowDate);
+		addEndDateInTentativeField(tomorrowDate1);
 		clickLineWiseSaveButtonInCSAmd();
 		clickPostButtonInCSAmd();
 		flag = salesOrderFunctions.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
