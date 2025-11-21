@@ -110,7 +110,7 @@
 	"ITEM": "TVS-FG-00059",
 	"CUSName_OSO": "CU0060",
 	"ITEM_OSO": "TVS-FG-100768",
-	"HodValue": "HARIKRISHNA",
+	"HodValue": "EMP0001",
 	"ZeroValue": "0",
 	"Sales_Invoice": "Sales Invoice",
 	"SI_Type": "SI - GENERAL",
@@ -1329,5 +1329,15 @@
 	"InprocessBOM": "BOM-2526-0000074",
 	"FinalInspectionBOM": "BOM-2526-0000076",
 	"PreDispatchBOM": "BOM-2526-0000075",
-	"NovemberMonth": "November"
+	"NovemberMonth": "November",
+	"StandardBOM": "BOM-2526-0000002",
+	"FinalInsWH": "FINAL INSPECTION WAREHOUSE",
+	"PreDispatchWH": "PRE DISPATCH WAREHOUSE",
+	"PreDispatchPrefix": "IRPRE",
+	"PreDispatchText": "Pre Dispatch",
+	"StockQcPrefix": "INRQT",
+	"StockQcText": "Stock QC",
+	"GWL-RInspector": "GWL  R",
+	"ForwardQCtatus": "Forward to qc",
+	"FG-10005-Item": "GWL-FG-10005"
 }

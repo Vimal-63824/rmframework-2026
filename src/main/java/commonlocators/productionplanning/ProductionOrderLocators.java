@@ -13,12 +13,12 @@ public class ProductionOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String Find_TableData_ProdNoWithMRPNo(String MRPNo) {
-		return "//*[contains(text(),'" + MRPNo + "')]/../td[4]/a";
+		return "//*[contains(text(),'" + MRPNo + "')]/../td[6]/a";
 	}
 
 	/** @locatorType XPATH */
 	public static final String Find_TableData_ProdNo(String ProdNo) {
-		return "//*[contains(text(),'" + ProdNo + "')]/../../td[4]/a";
+		return "//*[contains(text(),'" + ProdNo + "')]/../../td[6]/a";
 	}
 
 	/** @locatorType XPATH */

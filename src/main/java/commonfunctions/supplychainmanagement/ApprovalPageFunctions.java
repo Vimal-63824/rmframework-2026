@@ -229,9 +229,10 @@ public class ApprovalPageFunctions {
 			logs.logging("INFO", "Switched To Workflow Frame");
 			String GetText = webDB.getDomPropertyFromElement(CommonUiLocators.WorkFlow_Frwd_To_Emp, ElementType.Xpath,
 					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Already Displayed Document Forwarder Person: " + GetText);
 			if (!GetText.equals(user)) {
 				commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
-				logs.logging("INFO", "Document Forwarder Person: " + user);
+				logs.logging("INFO", "Document Forwarder Person Selected: " + user);
 				webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
 			}

@@ -750,8 +750,8 @@ public class PreparePayrollFunctions {
 					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickLinesRadioButtonInFind();
-//			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
-//			webDB.navigateToRefresh();
+			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
+			webDB.navigateToRefresh();
 			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202526"));
 			webDB.navigateToRefresh();
 			findWithDesignationInLineWise(commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"));

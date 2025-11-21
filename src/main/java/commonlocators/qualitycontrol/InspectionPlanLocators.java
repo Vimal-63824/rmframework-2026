@@ -85,4 +85,12 @@ public class InspectionPlanLocators {
 	public static final String AttributeSpecTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[14])[1]";
 	/** @locatorType Xpath */
 	public static final String AttributeSpecTableLovButton = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[14])[1]//button";
+	/** @locatorType Xpath */
+	public static final String NoOfSampleData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[15])[1]";
+	/** @locatorType Xpath */
+	public static final String NoOfSampleInput = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[15])[1]//input";
+	/** @locatorType Xpath */
+	public static final String NoOfObservationData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[16])[1]";
+	/** @locatorType Xpath */
+	public static final String NoOfObservationInput = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[16])[1]//input";
 }

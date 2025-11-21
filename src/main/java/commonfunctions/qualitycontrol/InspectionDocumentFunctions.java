@@ -942,6 +942,79 @@ public class InspectionDocumentFunctions {
 				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
 				if (flag) {
 					commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingProdOrderLov, DocNo);
+					webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Go Button IS Displayed");
+						webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							logs.logging("INFO", "Inspection CheckBox Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+									ElementType.Xpath);
+							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId,
+											ElementType.Xpath);
+									if (flag) {
+										String AcceptedValue = webDB.getDomPropertyFromElement(
+												InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
+												commonFunc.getDataFromTestDataSheet("Value"));
+										if (AcceptedValue.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"))) {
+											logs.logging("INFO",
+													"Inspection Documents Is Not Created Properly Retry Again....");
+											flag = webDB.waitForElement(InspectionDocumentsLocators.BackButton,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
+														ElementType.Xpath);
+												verifyPendingInspectionDocuments(VariableHandler.getScoGrnNumber());
+											}
+										}
+									}
+									storeInspectionDocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * Verify Create Pending Inspection Documents with Voucher Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocNo
+	 */
+	public void verifyCreatePendingInspectionDocumentWithVoucherNumber(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingVoucherNoLov, DocNo);
+					webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
 					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
 							ElementType.Xpath);
 					if (flag) {
@@ -1159,4 +1232,78 @@ public class InspectionDocumentFunctions {
 			logs.logging("INFO", "No alert appeared or other error: " + e.getMessage());
 		}
 	}
+	
+	/**
+	 * Verify Create Pending Inspection Documents with Production Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocNo
+	 */
+	public void verifyCreatePendingInspectionDocumentWithInsReqNumber(String DocNo) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
+				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingInsReqNoLov, DocNo);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Go Button IS Displayed");
+						webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+						webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							logs.logging("INFO", "Inspection CheckBox Is Displayed");
+							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+									ElementType.Xpath);
+							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(3000);
+								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Ok Button Is Displayed");
+									webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId,
+											ElementType.Xpath);
+									if (flag) {
+										String AcceptedValue = webDB.getDomPropertyFromElement(
+												InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
+												commonFunc.getDataFromTestDataSheet("Value"));
+										if (AcceptedValue.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"))) {
+											logs.logging("INFO",
+													"Inspection Documents Is Not Created Properly Retry Again....");
+											flag = webDB.waitForElement(InspectionDocumentsLocators.BackButton,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
+														ElementType.Xpath);
+												verifyPendingInspectionDocuments(VariableHandler.getScoGrnNumber());
+											}
+										}
+									}
+									storeInspectionDocumentsNumber();
+									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+//	public void 
 }

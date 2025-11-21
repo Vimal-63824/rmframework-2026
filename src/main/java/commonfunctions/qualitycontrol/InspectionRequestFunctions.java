@@ -91,10 +91,10 @@ public class InspectionRequestFunctions {
 	 * @param wh
 	 * @param Inspector
 	 */
-	public void fillWarehouseAndInspectorInCreationFrame(String wh, String Inspector) {
+	public void fillWarehouseAndInspectorInCreationFrame(String WH, String Inspector) {
 		switchToIRCreationIframe();
-		commonFunc.searchAndSelectValueInFilters(InspectionRequestLocators.IRCreateWarehouseId, wh);
-		logs.logging("INFO", "Warehouse entered in Ins Req: " + wh);
+		commonFunc.searchAndSelectValueInFilters(InspectionRequestLocators.IRCreateWarehouseId, WH);
+		logs.logging("INFO", "Warehouse entered in Ins Req: " + WH);
 		switchToIRCreationIframe();
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(InspectionRequestLocators.IRCreateIncharge, Inspector);

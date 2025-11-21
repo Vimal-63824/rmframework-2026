@@ -95,4 +95,8 @@ public class InspectionDocumentsLocators {
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B2324734232804544393']";
 	/** @locatorType Xpath */
 	public static final String PendingProdOrderLov = "//*[@data-testid='P20171310150_PROD_ORD_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PendingVoucherNoLov = "//*[@data-testid='P20171310150_VOU_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PendingInsReqNoLov = "//*[@data-testid='P20171310150_INSP_REQ_NO']/following-sibling::button";
 }
