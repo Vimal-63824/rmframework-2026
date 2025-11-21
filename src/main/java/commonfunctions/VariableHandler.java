@@ -232,6 +232,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> InspectionPlanDocNo = new ThreadLocal<>();
 	private static ThreadLocal<String> LastApprovalAPIHeaderText = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultipleSIDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> InspectionReqNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1974,20 +1975,28 @@ public class VariableHandler {
 	public static void setInspectionPlanDocNo(String Data) {
 		InspectionPlanDocNo.set(Data);
 	}
-	
+
 	public static String getLastApprovalAPIHeaderText() {
 		return LastApprovalAPIHeaderText.get();
 	}
-	
+
 	public static void setLastApprovalAPIHeaderText(String Data) {
 		LastApprovalAPIHeaderText.set(Data);
 	}
-	
+
 	public static ArrayList<String> getMultipleSIDocs() {
 		return MultipleSIDocs.get();
 	}
 
 	public static void setMultipleSIDocs(ArrayList<String> data) {
 		MultipleSIDocs.set(data);
+	}
+
+	public static String getInspectionReqNumber() {
+		return InspectionReqNumber.get();
+	}
+
+	public static void setInspectionReqNumber(String Data) {
+		InspectionReqNumber.set(Data);
 	}
 }

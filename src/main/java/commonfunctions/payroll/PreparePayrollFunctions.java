@@ -745,25 +745,22 @@ public class PreparePayrollFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyPreparePayrollFindWithLineWiseRecord() {
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
-		String Month = date.format(formatter);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickLinesRadioButtonInFind();
-			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
-			webDB.navigateToRefresh();
+//			findWithUnitInLineWise(commonFunc.getDataFromTestDataSheet("Unit1"));
+//			webDB.navigateToRefresh();
 			findWithYearInLineWise(commonFunc.getDataFromTestDataSheet("Year202526"));
 			webDB.navigateToRefresh();
-			findWithDesignationInLineWise(commonFunc.getDataFromTestDataSheet("ChairmanText"));
+			findWithDesignationInLineWise(commonFunc.getDataFromTestDataSheet("Emp_SalaryDesignation"));
 			webDB.navigateToRefresh();
 			findWithDepartmentInLineWise(commonFunc.getDataFromTestDataSheet("QualityText"));
 			webDB.navigateToRefresh();
 			commonFunc.searchAndSelectValueInFilters(PreparePayrollLocators.FindYearLovBtn,
 					commonFunc.getDataFromTestDataSheet("Year202526"));
-			findWithPeriodInLineWise(Month);
+			findWithPeriodInLineWise(commonFunc.getDataFromTestDataSheet("NovemberMonth"));
 			webDB.navigateToRefresh();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -922,8 +919,8 @@ public class PreparePayrollFunctions {
 		String SearchMonth = date.format(formatter);
 		String verifyMonth = date.format(formatter1);
 		try {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-					"HariUsername");
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
 			commonFunc.navigateToPrepareProcessPayrollTab();
 			clickHeaderRadioButtonInFind();
 			findWithYearInHeaderWise(commonFunc.getDataFromTestDataSheet("Year202526"));

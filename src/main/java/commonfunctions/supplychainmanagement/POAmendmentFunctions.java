@@ -5802,16 +5802,16 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPODomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItem() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("POASimilarItemPRTOPOMaterialSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
-				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		verifyTickIconSingleAmendment();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -5843,12 +5843,13 @@ public class POAmendmentFunctions {
 		}
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
-		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPOANumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 		flag = commonFunc.logoutUser();
@@ -5876,12 +5877,12 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPODomesticMaterialWithDissimilarStockAndSupplierUOMWithMultipleItem() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOMaterialSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
-				"AdminUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
@@ -5918,11 +5919,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 		flag = commonFunc.logoutUser();
@@ -5955,7 +5956,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("POASimilarItemPRTOPOMaterialImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -5993,11 +5994,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 		flag = commonFunc.logoutUser();
@@ -6029,7 +6030,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6067,11 +6068,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 		flag = commonFunc.logoutUser();
@@ -6104,7 +6105,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemPRTOPOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6145,11 +6146,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6182,7 +6183,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOASimilarPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6223,11 +6224,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6260,7 +6261,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOADissimilarPRTOPOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6301,11 +6302,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6338,7 +6339,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOADissimilarPRTOPOImpMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6379,11 +6380,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6416,7 +6417,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CloseshortPOASimilarPRTOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6445,11 +6446,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6482,7 +6483,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemPRTOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6511,11 +6512,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6548,7 +6549,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CSPOADissimilarPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6577,11 +6578,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 
@@ -6614,7 +6615,7 @@ public class POAmendmentFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarPRTOPMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername-Admin");
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
@@ -6643,11 +6644,11 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("ErpUserId"), commonFunc.getDataFromTestDataSheet("U1"),
-				System.getProperty("DevaUserName"));
+				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("ErpAdmin"), System.getProperty("ErpAdminPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		verifyOpenPONumber(VariableHandler.getPONumber());
 

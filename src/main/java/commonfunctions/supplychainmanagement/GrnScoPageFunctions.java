@@ -337,9 +337,11 @@ public class GrnScoPageFunctions {
 	public void addHeatNumberAndTestNumber() {
 		flag = webDB.waitForElement(GrnScoLocators.SupplierLotNumber, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(GrnScoLocators.HeatNumber, ElementType.Xpath);
 			String HeatValue = webDB.getTextFromElement(GrnScoLocators.SupplierLotNumber, ElementType.Xpath);
 			commonFunc.verifyAddTableSpecs(GrnScoLocators.HeatNumber, GrnScoLocators.HeatNumberInput, HeatValue);
 			commonFunc.verifyAddTableSpecs(GrnScoLocators.TestNumber, GrnScoLocators.TestNumberInput, HeatValue);
+			webDB.moveToElement(GrnScoLocators.SaveButton, ElementType.Xpath);
 			webDB.clickAnElement(GrnScoLocators.SaveButton, ElementType.Xpath);
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);

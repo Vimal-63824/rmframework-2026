@@ -126,8 +126,7 @@ public class InspectionDocumentFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.clickAnElement(InspectionDocumentsLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		assertTrue(flag);
@@ -942,13 +941,12 @@ public class InspectionDocumentFunctions {
 				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
 				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Inspection Pending Icon IS Clicked");
-					webDB.sendTextToAnElement(InspectionDocumentsLocators.PendingSearchField,
-							VariableHandler.getScoGrnNumber(), ElementType.Xpath);
-					flag = webDB.waitForElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingProdOrderLov, DocNo);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
+							ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Go Button IS Displayed");
-						webDB.clickAnElement(InspectionDocumentsLocators.GoButton, ElementType.Xpath);
+						webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
 						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
 								ElementType.Xpath);
 						if (flag) {
