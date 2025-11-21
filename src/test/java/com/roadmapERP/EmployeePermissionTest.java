@@ -251,7 +251,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 */
 	@Author("Kishore-RMITS")
 	@Test(priority = 18, groups = {
-			"Employee Comp-Off" }, description = "96.To Check Comp-Off Entry  based on Leave Types")
+			"Employee Comp-Off" }, description = "96.To Check Comp-Off Entry based on Leave Types")
 	public void checkCompOffEntryBasedOnLeaveTypes() {
 		flag = attendanceLeave.CheckCompOffEntryBasedOnLeaveTypes();
 		Assert.assertTrue(flag);

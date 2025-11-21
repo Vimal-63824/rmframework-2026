@@ -345,8 +345,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLeaveEncashmentBasedOnReturnToRequestRecord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		EncashmentEntry(commonFunc.getDataFromTestDataSheet("EncashmentRequestDate"));
 		EncashmentEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -354,22 +354,17 @@ public class AttendanceLeaveFunctions {
 		EncashmentDaysEntry(commonFunc.getDataFromTestDataSheet("EncashDaysField"),
 				commonFunc.getDataFromTestDataSheet("EncashReasonField"));
 		EncashmentForward();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-			verifyReturnWithDocNumber(VariableHandler.getEncashmentDocNo());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getEncashmentDocNo());
-				verifyReturnWithDocNumber(VariableHandler.getEncashmentDocNo());
-				flag = commonFunc.logoutUser();
-			}
-		}
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEncashmentDocNo(),
+				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		commonFunc.navigateLeaveEncashmentScreen();
+		EncashmentCancel();
 		return flag;
 	}
 
@@ -379,8 +374,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckCompOffEntryBasedOnLeaveTypes() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		CompOffEntry();
 		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -388,15 +383,19 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("CompOffDays"),
 				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
 		CompOffEntrySaveAndPostDocument();
-		verifyWaitingForApproval();
+//		verifyWaitingForApproval();
+//		flag = commonFunc.logoutUser();
+//		if (flag) {
+//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//			approvalFunc.navigateToApprovals();
+//			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
+//			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCompOffDocNo());
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getCompOffDocNo());
-			flag = commonFunc.logoutUser();
-		}
 		return flag;
 	}
 
@@ -407,8 +406,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckCompOffBasedOnReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateLeaveEncashmentScreen();
 		CompOffEntry();
 		compOffEmployeeLOVEntry(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
@@ -416,23 +415,29 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("CompOffDays"),
 				commonFunc.getDataFromTestDataSheet("CompOffReferenceField"));
 		CompOffEntrySaveAndPostDocument();
-		verifyWaitingForApproval();
+//		verifyWaitingForApproval();
+//		flag = commonFunc.logoutUser();
+//		if (flag) {
+//			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//			approvalFunc.navigateToApprovals();
+//			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
+//			verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
+//			flag = commonFunc.logoutUser();
+//			if (flag) {
+//				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
+//				approvalFunc.navigateToApprovals();
+//				filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
+//				verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getCompOffDocNo(),
+				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		CheckCompOffFindPageWithAllLineWiseRecord(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
 		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-			verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
-			flag = commonFunc.logoutUser();
-			if (flag) {
-				commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"));
-				approvalFunc.navigateToApprovals();
-				filterDocumentsforPermissionApproval(VariableHandler.getCompOffDocNo());
-				verifyReturnWithDocNumber(VariableHandler.getCompOffDocNo());
-				CheckCompOffFindPageWithAllLineWiseRecord(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
-				flag = commonFunc.logoutUser();
-			}
-		}
 		return flag;
 	}
 
@@ -1155,6 +1160,51 @@ public class AttendanceLeaveFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used to Cancel The Encashment Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EncashmentCancel() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Encashment Button is Clicked");
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(1000);
+					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Encashment Search Button is Clicked");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindDocSelect, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(1000);
+							webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindDocSelect, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Encashment Doc is Selected");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentCancelButton,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(1000);
+									webDB.clickAnElement(AttendanceLeaveLocators.EncashmentCancelButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Encashment Document Cancelled Successfully");
+										commonFunc.hardWait(2000);
+										flag = commonFunc.logoutUser();
+									}
+									Assert.assertTrue(flag);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
