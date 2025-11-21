@@ -550,7 +550,7 @@ public class CommonFunctions {
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
 		webDB.switchToMainTab();
-		enterUrl();
+//		enterUrl();
 	}
 
 	/**

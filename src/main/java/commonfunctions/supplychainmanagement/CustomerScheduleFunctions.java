@@ -3043,7 +3043,7 @@ public class CustomerScheduleFunctions {
 		MultiCatalogPriceDoc.clear();
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
-		commonFunc.enterUrl();
+//		commonFunc.enterUrl();
 	}
 
 	/**

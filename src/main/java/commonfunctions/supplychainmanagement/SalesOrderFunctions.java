@@ -2039,7 +2039,7 @@ public class SalesOrderFunctions {
 		MultipleSO.clear();
 		webDB.navigateToRefresh();
 		webDB.switchToDefaultContent();
-		commonFunc.enterUrl();
+//		commonFunc.enterUrl();
 	}
 
 	/**
