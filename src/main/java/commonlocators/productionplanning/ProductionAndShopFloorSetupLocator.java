@@ -17,45 +17,45 @@ public class ProductionAndShopFloorSetupLocator {
 	/** @locatorType Xpath */
 	public static final String Process_Tab = "//label[@for='P3670133_PP_TABS_4']";
 	/** @locatorType Xpath */
-	public static final String Process_AddIcon = "//button[@id='B2704482955912684678']";
+	public static final String Process_AddIcon = "//button[@id='B3373322729051958504']";
 	/** @locatorType Xpath */
-	public static final String ProcessID_Input = "//input[@id='C18340554957954236564']";
+	public static final String ProcessID_Input = "//input[@id='C19009394731093510390']";
 	/** @locatorType Xpath */
-	public static final String ProcessName_Input = "//input[@id='C18340555088433236565']";
+	public static final String ProcessName_Input = "//input[@id='C19009394861572510391']";
 	/** @locatorType Xpath */
-	public static final String Process_UOM_Lov = "//button[@id='C18340555839436236573_lov_btn']";
+	public static final String Process_UOM_Lov = "//button[@id='C19009395612575510399_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String Proc_Type_Select_Class = "//select[@id='C18340556729295236582']";
+	public static final String Proc_Type_Select_Class = "//select[@id='C19009396502434510408']";
 	/** @locatorType Xpath */
 	public static final String Proc_Suffix = "//*[@id=\"process_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @locatorType Xpath */
 	public static final String Process_save_Toast_Msg = "(//button[@title='Close'])[1]";
 	/** @locatorType Xpath */
-	public static final String Process_Save_Icon = "//button[@id='B2704483408437684680']";
+	public static final String Process_Save_Icon = "//button[@id='B3373323181576958506']";
 	/** @locatorType Xpath */
 	public static final String Proc_Type_Field = "//*[@id='process_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[5]";
 	/** @locatorType Xpath */
-	public static final String Proc_Suffix_input = "//input[@id='C18351230369469970360']";
+	public static final String Proc_Suffix_input = "//input[@id='C19020070142609244186']";
 	/** @locatorType Xpath */
-	public static final String Proc_Charge_Lov = "//button[@id='C18340555470802236569_lov_btn']";
+	public static final String Proc_Charge_Lov = "//input[@id='C19009395243941510395']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String Get_ProcessID = "//*[@id=\"process_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
 	public static final String ProcessAsso_Tab = "//label[@for='P3670133_PP_TABS_5']";
 	/** @locatorType Xpath */
-	public static final String ProcessAsso_AddIcon = "//button[@id='B2704509300111684786']";
+	public static final String ProcessAsso_AddIcon = "//button[@id='B3373349073250958612']";
 	/** @locatorType Xpath */
-	public static final String ProcessAsso_Lov = "//button[@id='C6827200030632914480_lov_btn']";
+	public static final String ProcessAsso_Lov = "//input[@id='C7496039803772188306']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_Unit_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_Unit_Lov = "//button[@id='C6827199888798914479_lov_btn']";
+	public static final String ProcAsso_Unit_Lov = "//input[@id='C7496039661938188305']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_Workcenter_Lov = "//button[@id='C6828368028489122662_lov_btn']";
+	public static final String ProcAsso_Workcenter_Lov = "//input[@id='C7497207801628396488']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_ConsWH_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[6]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_ConsWH_Lov = "//button[@id='C6828368085840122663_lov_btn']";
+	public static final String ProcAsso_ConsWH_Lov = "//button[@id='C7497207858979396489']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_RecpWH_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */

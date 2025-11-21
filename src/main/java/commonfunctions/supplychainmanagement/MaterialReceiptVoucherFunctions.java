@@ -964,8 +964,6 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void verifyReworkCompletionPostMaterialReceipt() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
 		commonFunc.navigateToMaterialReceiptVoucher();
 		verifyPendingReworkCompletionMRV(VariableHandler.getRWCdocno());
 		verifyReceiptLocatorsAndPutAway();
@@ -1166,8 +1164,8 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfGrnFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateToMaterialReceiptVoucherAdminUser();
 		verifyDateAfterAndBefore();
 		verifyAmendFilterSearchSOB(MaterialReceiptVoucherLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"),
