@@ -265,6 +265,7 @@ public class OpenPoRcFunctions {
 				logs.logging("INFO", "Verified Effective From Date Successfully");
 				webDB.clickAnElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
 				webDB.clearText(OpenPoRcLocators.EffTo, ElementType.Xpath);
+				commonFunc.hardWait(500);
 				webDB.clickAnElement(OpenPoRcLocators.OpenPoNo, ElementType.Xpath);
 				webDB.sendTextToAnElement(OpenPoRcLocators.EffTo, commonFunc.getDataFromTestDataSheet("EffToDate"),
 						ElementType.Xpath);
