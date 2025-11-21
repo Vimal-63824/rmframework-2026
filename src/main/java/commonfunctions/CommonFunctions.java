@@ -38,6 +38,7 @@ import commonlocators.productionplanning.BillOfMaterialsLocators;
 import commonlocators.productionplanning.MRPLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.qualitycontrol.InspectionPlanLocators;
+import commonlocators.qualitycontrol.InspectionRequestLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
 import commonlocators.supplychainmanagement.CustomerItemsLocators;
@@ -2628,6 +2629,8 @@ public class CommonFunctions {
 			if (flag) {
 				logs.logging("INFO", "Verified Approval Response Status Code");
 			}
+		} else {
+			logs.logging("INFO", "'Doc No'" + DocNo + " Not Approved Check Response Header");
 		}
 		assertTrue(flag);
 	}
@@ -3102,6 +3105,16 @@ public class CommonFunctions {
 	public void navigateInspectionPlan() {
 		navigateToSearchTab(webDB.getDataFromProperties("InspectionPlanScreen"),
 				InspectionPlanLocators.AddIconInFindPage);
+	}
+
+	/**
+	 * This method used to Navigate Quality Control Inspection Request
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateInspectionRequest() {
+		navigateToSearchTab(webDB.getDataFromProperties("InspectionRequestScreen"),
+				InspectionRequestLocators.InspectionRequestAddIcon);
 	}
 
 }

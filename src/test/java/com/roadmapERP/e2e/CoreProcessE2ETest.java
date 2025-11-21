@@ -1,5 +1,7 @@
 package com.roadmapERP.e2e;
 
+import java.lang.reflect.Method;
+
 import org.testng.Assert;
 /**
  * @author Deepan-GWL, Sakthi
@@ -11,6 +13,7 @@ import org.testng.annotations.Test;
 
 import com.roadmapERP.RoadMapERPTest;
 
+import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.coreprocess.CoreProcessPageFunctions;
 import utils.Mailer;
@@ -28,6 +31,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 1, groups = { "Core Process" }, description = "Purchase Request to Payment End to End Process")
 	public void VerifyPurchaseRequestToPayment() {
 		coreProcessPageFunctions.verifyPurchaseRequestToPayment();
@@ -38,6 +42,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 2, groups = {
 			"Core Process" }, description = "Open Sales Order to Payment Receipt End to End Process")
 	public void VerifySalesOrderToPaymentReceipts() {
@@ -50,6 +55,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 3, groups = { "Core Process" }, description = "Sales Order to MRP End to End Process")
 	public void VerifySaleOrderToMRP() {
 		flag = coreProcessPageFunctions.verifySaleOrderToMRP();
@@ -62,6 +68,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 4, groups = {
 			"Core Process" }, description = "Production Order to Completion to MRV End to End Process")
 	public void VerifyProductionOrderToCompletionToMaterialReceiptVoucher() {
@@ -74,6 +81,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 5, groups = {
 			"Core Process" }, description = "Material Request to Material Receipt voucher (Intra Transfer) End to End Process")
 	public void VerifyMaterialRequestToMRVIntraTransferType() {
@@ -85,6 +93,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 6, groups = {
 			"Core Process" }, description = "Material Request to Material Receipt voucher (Inter Transfer) End to End Process")
 	public void VerifyMaterialRequestToMRVInterTransferType() {
@@ -96,6 +105,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 7, groups = {
 			"Core Process" }, description = "Material Request to Material Issuance voucher (Department)")
 	public void VerifyMaterialRequestToMRVDepartmentType() {
@@ -107,6 +117,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 8, groups = {
 			"Core Process" }, description = "Material Request to Material Receipt voucher (production-WIP)")
 	public void VerifyMaterialRequestToMRVWipType() {
@@ -118,6 +129,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Sakthi-GWL
 	 */
+	@Author("Sakthi-GWL")
 	@Test(priority = 9, groups = { "Core Process" }, description = "Bill Of Materials Creation")
 	public void VerifyCreationOfBillOfMaterials() {
 		flag = coreProcessPageFunctions.verifyCreationOfBillOfMaterials();
@@ -129,6 +141,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 10, groups = {
 			"Core Process" }, description = "Material Request to Material Receipt voucher (Subcontract) End to End Process")
 	public void VerifyMaterialRequestToMRVSubcontractType() {
@@ -140,6 +153,7 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * 
 	 * @author Deepan-GWL
 	 */
+	@Author("Deepan-GWL")
 	@Test(priority = 11, groups = { "Core Process" }, description = "Subcontract Order to Payment End to End Process")
 	public void VerifySubcontractToPayment() {
 		coreProcessPageFunctions.subcontractToPayment();
@@ -152,7 +166,8 @@ public class CoreProcessE2ETest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.enterAuthorNamesInExtentReport(method);
 		commonFunc.verifyAfterMethod();
 	}
 
