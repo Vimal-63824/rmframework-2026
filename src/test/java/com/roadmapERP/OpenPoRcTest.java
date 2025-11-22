@@ -78,31 +78,31 @@ public class OpenPoRcTest extends RoadMapERPTest {
 		openPoRcFunctions.verifyCreateStandardImportWithStockAndSupplierDissimilarUOM();
 	}
 
-//	/**
-//	 * Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * similar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 5, groups = {
-//			"Open PO/RC" }, description = "Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
-//	public void VerifyCreateStockTransferDomesticWithSimilarStockAndSupplierUOM() {
-//		openPoRcFunctions.verifyCreateStockTransferDomesticWithStockAndSupplierSimilarUOM();
-//	}
-//
-//	/**
-//	 * Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * dissimilar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 6, groups = {
-//			"Open PO/RC" }, description = "Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
-//	public void VerifyCreateStockTransferDomesticWithDissimilarStockAndSupplierUOM() {
-//		openPoRcFunctions.verifyCreateStockTransferDomesticWithStockAndSupplierDissimilarUOM();
-//	}
+	/**
+	 * Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 5, groups = {
+			"Open PO/RC" }, description = "Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyCreateStockTransferDomesticWithSimilarStockAndSupplierUOM() {
+		openPoRcFunctions.verifyCreateStockTransferDomesticWithStockAndSupplierSimilarUOM();
+	}
+
+	/**
+	 * Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 6, groups = {
+			"Open PO/RC" }, description = "Create - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyCreateStockTransferDomesticWithDissimilarStockAndSupplierUOM() {
+		openPoRcFunctions.verifyCreateStockTransferDomesticWithStockAndSupplierDissimilarUOM();
+	}
 
 	/**
 	 * Create - Service - Domestic Supplier with Stock and Supplier UOM similar
@@ -203,31 +203,31 @@ public class OpenPoRcTest extends RoadMapERPTest {
 		openPoRcFunctions.verifyAmendStandardImportWithStockAndSupplierDissimilarUOM();
 	}
 
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * similar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 15, groups = {
-//			" Amendment Open PO/RC Addition" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
-//	public void VerifyAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
-//		openPoRcFunctions.verifyAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
-//	}
-//
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * dissimilar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 16, groups = {
-//			" Amendment Open PO/RC Addition" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
-//	public void VerifyAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
-//		openPoRcFunctions.verifyAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
-//	}
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 15, groups = {
+			" Amendment Open PO/RC Addition" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
+		openPoRcFunctions.verifyAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 16, groups = {
+			" Amendment Open PO/RC Addition" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
+		openPoRcFunctions.verifyAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
+	}
 
 	/**
 	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
@@ -292,31 +292,31 @@ public class OpenPoRcTest extends RoadMapERPTest {
 		openPoRcFunctions.verifyDOIAmendStandardImportWithStockAndSupplierDissimilarUOM();
 	}
 
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * similar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 22, groups = {
-//			" Amendment Open PO/RC Deletion" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
-//	public void VerifyDOIAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
-//		openPoRcFunctions.verifyDOIAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
-//	}
-//
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * dissimilar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 23, groups = {
-//			" Amendment Open PO/RC Deletion" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
-//	public void VerifyDOIAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
-//		openPoRcFunctions.verifyDOIAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
-//	}
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 22, groups = {
+			" Amendment Open PO/RC Deletion" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyDOIAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
+		openPoRcFunctions.verifyDOIAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 23, groups = {
+			" Amendment Open PO/RC Deletion" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyDOIAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
+		openPoRcFunctions.verifyDOIAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
+	}
 
 	/**
 	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
@@ -381,31 +381,31 @@ public class OpenPoRcTest extends RoadMapERPTest {
 		openPoRcFunctions.verifyPCAmendStandardImportWithStockAndSupplierDissimilarUOM();
 	}
 
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * similar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 29, groups = {
-//			" Amendment Open PO/RC PriceChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
-//	public void VerifyPCAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
-//		openPoRcFunctions.verifyPCAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
-//	}
-//
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * dissimilar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 30, groups = {
-//			" Amendment Open PO/RC PriceChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
-//	public void VerifyPCAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
-//		openPoRcFunctions.verifyPCAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
-//	}
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 29, groups = {
+			" Amendment Open PO/RC PriceChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyPCAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
+		openPoRcFunctions.verifyPCAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 30, groups = {
+			" Amendment Open PO/RC PriceChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyPCAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
+		openPoRcFunctions.verifyPCAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
+	}
 
 	/**
 	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
@@ -497,31 +497,31 @@ public class OpenPoRcTest extends RoadMapERPTest {
 		openPoRcFunctions.verifyTermChangeAmendStandardImportWithStockAndSupplierDissimilarUOM();
 	}
 
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * similar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 38, groups = {
-//			" Amendment Open PO/RC TermChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
-//	public void VerifyTermChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
-//		openPoRcFunctions.verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
-//	}
-//
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * dissimilar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 39, groups = {
-//			" Amendment Open PO/RC TermChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
-//	public void VerifyTermChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
-//		openPoRcFunctions.verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
-//	}
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 38, groups = {
+			" Amendment Open PO/RC TermChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyTermChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
+		openPoRcFunctions.verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 39, groups = {
+			" Amendment Open PO/RC TermChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyTermChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
+		openPoRcFunctions.verifyTermChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
+	}
 
 	/**
 	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar
@@ -586,31 +586,31 @@ public class OpenPoRcTest extends RoadMapERPTest {
 		openPoRcFunctions.verifyOtherChangeAmendStandardImportWithStockAndSupplierDissimilarUOM();
 	}
 
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * similar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 45, groups = {
-//			" Amendment Open PO/RC OtherChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
-//	public void VerifyOtherChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
-//		openPoRcFunctions.verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
-//	}
-//
-//	/**
-//	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
-//	 * dissimilar
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 46, groups = {
-//			" Amendment Open PO/RC OtherChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
-//	public void VerifyOtherChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
-//		openPoRcFunctions.verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
-//	}
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * similar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 45, groups = {
+			" Amendment Open PO/RC OtherChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM similar")
+	public void VerifyOtherChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMSimilar() {
+		openPoRcFunctions.verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierSimilarUOM();
+	}
+
+	/**
+	 * Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM
+	 * dissimilar
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 46, groups = {
+			" Amendment Open PO/RC OtherChange" }, description = "Amend - Stock transfer - Domestic Supplier with Stock and Supplier UOM dissimilar")
+	public void VerifyOtherChangeAmendStockTransferDomesticSupplierWithStockAndSupplierUOMDissimilar() {
+		openPoRcFunctions.verifyOtherChangeAmendStockTransferDomesticWithStockAndSupplierDissimilarUOM();
+	}
 
 	/**
 	 * Amend - Service - Domestic Supplier with Stock and Supplier UOM similar

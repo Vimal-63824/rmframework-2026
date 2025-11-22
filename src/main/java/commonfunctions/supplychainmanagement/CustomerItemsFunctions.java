@@ -120,27 +120,31 @@ public class CustomerItemsFunctions {
 		}
 		assertTrue(flag);
 	}
-	/**To Changes a Qc Type 
+
+	/**
+	 * To Changes a Qc Type
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param QcFlag
 	 */
 	public void changesNotApplicabeType(String QcFlag) {
 		flag = webDB.waitForElement(CommonUiLocators.QualityTab, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.TypeDropDown, ElementType.Xpath);
 				flag = webDB.selectDropDownByText(CommonUiLocators.TypeDropDown, QcFlag, ElementType.Xpath);
-				if(flag) {
-					logs.logging("INFO","Successfully Changed a Type" +  QcFlag);
+				if (flag) {
+					logs.logging("INFO", "Successfully Changed a Type" + QcFlag);
 				}
 			}
 		}
 		assertTrue(flag);
 	}
-	/**Click Default Flag
+
+	/**
+	 * Click Default Flag
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -150,14 +154,12 @@ public class CustomerItemsFunctions {
 			webDB.moveToElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			webDB.javaScriptClickAnElement(CustomerItemsLocators.DefaultFlagField, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Default Flag Is Checked ");
 			}
 		}
 		assertTrue(flag);
 	}
-	
-	
 
 	/**
 	 * Price Class Select
@@ -236,7 +238,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CustomerItemsLocators.PriceBasisCL, ElementType.Xpath);
-			 webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
+			webDB.selectDropDownByText(CustomerItemsLocators.PriceBasisSelectDropdown, priceBasisValue,
 					ElementType.Xpath);
 			flag = webDB.waitForElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			if (flag) {
@@ -252,11 +254,10 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik To Select Catalogue
 	 */
 	public void catalogSelectInCustomerItems(String catalogName) {
-			flag = webDB.waitForClickElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
+		flag = webDB.waitForClickElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(CustomerItemsLocators.CatalogSelectDropdown, ElementType.Xpath);
-			webDB.selectDropDownByText(CustomerItemsLocators.CatalogSelectDropdown, catalogName,
-					ElementType.Xpath);
+			webDB.selectDropDownByText(CustomerItemsLocators.CatalogSelectDropdown, catalogName, ElementType.Xpath);
 			if (flag) {
 				logs.logging("Info", "Catalog Fixed Done Successfully" + catalogName);
 			}
@@ -375,7 +376,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.unitLov, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(CommonUiLocators.unitLov, Unit_100);
-				logs.logging("INFO", "Successfully Searched a unit" + Unit_100);
+			logs.logging("INFO", "Successfully Searched a unit" + Unit_100);
 		}
 		assertTrue(flag);
 	}
@@ -414,7 +415,7 @@ public class CustomerItemsFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.SearchButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.SearchButton, ElementType.Xpath);
-			logs.logging("INFO","Successfully Fillter a Item In Find Page");
+			logs.logging("INFO", "Successfully Fillter a Item In Find Page");
 		}
 		assertTrue(flag);
 	}
@@ -425,10 +426,10 @@ public class CustomerItemsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void searchedItem() {
-		flag = webDB.waitForElement(CommonUiLocators.SearchedItemDrillDown, ElementType.CssSelector);
+		flag = webDB.waitForElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(CommonUiLocators.SearchedItemDrillDown, ElementType.CssSelector);			
-			webDB.clickAnElement(CommonUiLocators.SearchedItemDrillDown, ElementType.CssSelector);
+			webDB.moveToElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.SearchedItemDrillDown, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.SalesTab, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Successfully Clicked a Drilldown Item");
@@ -469,7 +470,7 @@ public class CustomerItemsFunctions {
 	public void clickedActiveButton() {
 		flag = webDB.waitForElement(CommonUiLocators.activeButton, ElementType.Xpath);
 		if (flag) {
-			 webDB.clickAnElement(CommonUiLocators.activeButton, ElementType.Xpath);
+			webDB.clickAnElement(CommonUiLocators.activeButton, ElementType.Xpath);
 			logs.logging("INFO", "Item Actived Successfully");
 			commonFunc.checkRefreshCellsDisappear();
 		}
@@ -607,7 +608,9 @@ public class CustomerItemsFunctions {
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
-	/**Creates Open So Item - Domestic Customer
+
+	/**
+	 * Creates Open So Item - Domestic Customer
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -638,9 +641,11 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
-		
+
 	}
-	/**Creates Open So Item - Domestic Customer -Price Class Change
+
+	/**
+	 * Creates Open So Item - Domestic Customer -Price Class Change
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -672,7 +677,9 @@ public class CustomerItemsFunctions {
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 	}
-	/**Creates Open So Item - Domestic Customer -Addition of Item
+
+	/**
+	 * Creates Open So Item - Domestic Customer -Addition of Item
 	 * 
 	 * @author Kowshik-Rmits
 	 */
@@ -703,9 +710,11 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
-	
+
 	}
-	/**Creates Open So Item - Interstate Customer -Addition of Item
+
+	/**
+	 * Creates Open So Item - Interstate Customer -Addition of Item
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -738,8 +747,9 @@ public class CustomerItemsFunctions {
 		saveButtoninCustomerItems();
 
 	}
-	
-	/**Creates Open So Item - Interstate Customer -Deletation of Item
+
+	/**
+	 * Creates Open So Item - Interstate Customer -Deletation of Item
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -771,9 +781,11 @@ public class CustomerItemsFunctions {
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 		commonFunc.logoutUser();
-	
+
 	}
-	/**Creates a Open So
+
+	/**
+	 * Creates a Open So
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -807,8 +819,9 @@ public class CustomerItemsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	
-	/**Creates a Open So For Local customer for Deletation of item 
+
+	/**
+	 * Creates a Open So For Local customer for Deletation of item
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -842,7 +855,9 @@ public class CustomerItemsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	/**Creates a Open So For UTGST Customer Deletation Process
+
+	/**
+	 * Creates a Open So For UTGST Customer Deletation Process
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -876,7 +891,9 @@ public class CustomerItemsFunctions {
 		commonFunc.logoutUser();
 
 	}
-	/**Create Item Open So
+
+	/**
+	 * Create Item Open So
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -909,7 +926,9 @@ public class CustomerItemsFunctions {
 		saveButtoninCustomerItems();
 
 	}
-	/**Creates Open So Item - Export Customer
+
+	/**
+	 * Creates Open So Item - Export Customer
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -942,7 +961,9 @@ public class CustomerItemsFunctions {
 		saveButtoninCustomerItems();
 
 	}
-	/**Creates Open So Item - Domestic Customer - Cancel Stage
+
+	/**
+	 * Creates Open So Item - Domestic Customer - Cancel Stage
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -974,7 +995,7 @@ public class CustomerItemsFunctions {
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
 		commonFunc.logoutUser();
-		
+
 	}
 
 	/**
@@ -1364,5 +1385,28 @@ public class CustomerItemsFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		clickDefaltFlag2();
 		saveButtoninCustomerItems();
+	}
+
+	/**
+	 * To Naviates Customer Sales Click Customer Asso Flag
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateQualityAndClickPreDispatch() {
+		flag = webDB.waitForElement(CommonUiLocators.QualityTab, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.QualityTab, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PreDispatchLabel, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Quality Tab Clicked Successfully");
+				webDB.clickAnElement(CommonUiLocators.PreDispatchLabel, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.clickAnElement(CommonUiLocators.PreDispatchInputBox, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Successfully Checked a PreDispatch Flag");
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }

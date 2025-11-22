@@ -5919,7 +5919,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -5952,7 +5952,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPOImportMaterialWithSimilarStockAndSupplierUOMWithMultipleItem() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("POASimilarItemPRTOPOMaterialImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -5994,7 +5994,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6026,7 +6026,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPRToPOImportMaterialWithDissimilarStockAndSupplierUOMWithMultipleItem() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("POADissimilarItemPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6068,7 +6068,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6101,7 +6101,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyPrToPoDomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOASimilarItemPRTOPOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6110,7 +6110,7 @@ public class POAmendmentFunctions {
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
-				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		verifyTickIconSingleAmendment();
 		verifyAddPoLineItemForModify();
@@ -6146,7 +6146,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6179,7 +6179,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyPrToPoImportMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOASimilarPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6224,7 +6224,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6257,7 +6257,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyPrToPoDomesticMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOADissimilarPRTOPOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6266,7 +6266,7 @@ public class POAmendmentFunctions {
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
-				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		verifyTickIconSingleAmendment();
 		verifyAddPoLineItemForModify();
@@ -6302,7 +6302,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6335,7 +6335,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendModifyPrToPoImportMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("ModifyPOADissimilarPRTOPOImpMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6344,7 +6344,7 @@ public class POAmendmentFunctions {
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
-				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("CurrencyUsd"));
 		verifyTickIconSingleAmendment();
 		verifyAddPoLineItemForModify();
@@ -6380,7 +6380,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6413,7 +6413,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendCloseshortPRToPOImportMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CloseshortPOASimilarPRTOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6446,7 +6446,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6479,7 +6479,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendCloseshortPRToPODomesticMaterialWithSimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CloseshortPOASimilarItemPRTOMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6488,7 +6488,7 @@ public class POAmendmentFunctions {
 		commonFunc.navigatePoAmendmentPage();
 		createPendingPOAmendment();
 		verifyUpdateSinglePoAmendmentDetails(commonFunc.getDataFromTestDataSheet("L0001"),
-				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("CurrencyInr"));
 		verifyTickIconSingleAmendment();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -6512,7 +6512,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6545,7 +6545,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendCloseshortPRToPOImportMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("HatsunSupplier"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CSPOADissimilarPRTOPOMatImpSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6578,7 +6578,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
@@ -6611,7 +6611,7 @@ public class POAmendmentFunctions {
 	 */
 	public void verifyPoAmendCloseshortPRToPODomesticMaterialWithDissimilarStockAndSupplierUOMWithMultipleItemWithExcelInput() {
 		purchaseOrderFunctions.verifyPRtoPOWithMultipleItemInExcelSheetForMaterial(
-				commonFunc.getDataFromTestDataSheet("AsianLeathers"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				webDB.getDataFromProperties("CloseshortPOADissimilarPRTOPMatSheet"),
 				commonFunc.getDataFromTestDataSheet("IrpPrefix"));
@@ -6644,7 +6644,7 @@ public class POAmendmentFunctions {
 		verifyHeaderTickAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("DevaValue"));
 		commonFunc.approveDocuments(commonFunc.getDataFromTestDataSheet("Kare"), VariableHandler.getPOANumber(),
-				commonFunc.getDataFromTestDataSheet("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("U1"),
 				System.getProperty("HariUsername"));
 		verifyValidatePOAStatus(VariableHandler.getPOANumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();

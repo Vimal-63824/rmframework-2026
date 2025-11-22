@@ -17,7 +17,7 @@ import commonfunctions.supplychainmanagement.SsoPageFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
 
-public class SsoTest {
+public class SsoTest extends RoadMapERPTest {
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static Mailer mail = new Mailer();

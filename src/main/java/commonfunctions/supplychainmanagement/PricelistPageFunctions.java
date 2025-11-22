@@ -1843,14 +1843,6 @@ public class PricelistPageFunctions {
 					commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("ROAU-BU"),
 							VariableHandler.getItemName(), webDB.getDataFromProperties("HariEmpId"),
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-//					approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HodUsername"));
-//					commonFunc.logoutUser();
-//					commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-//							"HodUsername");
-//					approvalFunc.navigateToApprovals();
-//					approvalFunc.filterDocumentsforApproval(VariableHandler.getItemName());
-//					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getItemName());
-//					commonFunc.logoutUser();
 				}
 			}
 		}
