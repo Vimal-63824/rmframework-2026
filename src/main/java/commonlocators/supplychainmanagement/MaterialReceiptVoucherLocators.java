@@ -21,9 +21,9 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String MrvFrame = "//iframe[@title='Create MRV']";
 	/** @locatorType Xpath */
-	public static final String LocationId = "//span[@id='P9313117701_ISTHD_PLNT_LOC_ID_DISPLAY']";
+	public static final String LocationId = "//span[@data-testid='LocationId']";
 	/** @locatorType Xpath */
-	public static final String MRVNO = "//span[@id='P9313117701_ISTHD_DOC_NO_DISPLAY']";
+	public static final String MRVNO = "//span[@data-testid='MRVNO']";
 	/** @locatorType Xpath */
 	public static final String RecptorLocators = "//button[@id='B1872975695598792964']";
 	/** @locatorType Xpath */
@@ -48,6 +48,12 @@ public class MaterialReceiptVoucherLocators {
 	public static final String MaterialReceiptStatusTableText(String Mrno) {
 		return "//table[@id='3380521312027296684_orig']//a[text()='" + Mrno
 				+ "']/../../td/div[contains(@style,'Green')]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String MaterialReceiptStatus(String ProdNo) {
+		return "//table[@id='3380521312027296684_orig']//*[text()='" + ProdNo
+				+ "']/../td/div[contains(@style,'Green')]";
 	}
 
 	/** @locatorType Xpath */

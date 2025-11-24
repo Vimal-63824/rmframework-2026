@@ -86,7 +86,7 @@ public class MaterialReceiptVoucherFunctions {
 									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
 									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
+									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVNO,
 											ElementType.Xpath);
 									storeMRVDocumentsNumber();
 									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -143,8 +143,7 @@ public class MaterialReceiptVoucherFunctions {
 						if (flag) {
 							logs.logging("INFO", "Put Amay Is Clicked");
 							webDB.clickAnElement(MaterialReceiptVoucherLocators.CloseIcon, ElementType.Xpath);
-							flag = webDB.waitForClickElement(MaterialReceiptVoucherLocators.LocationId,
-									ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVNO, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Location Id Is Displayed");
 							}
@@ -588,7 +587,7 @@ public class MaterialReceiptVoucherFunctions {
 									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
 									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
+									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVNO,
 											ElementType.Xpath);
 									storeMRVDocumentsNumber();
 									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -812,6 +811,7 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public boolean autoCreateMRVCheckboxIsSelected() {
 		flag = webDB.isElementSelected(CommonUiLocators.AutoCreationMrvCheckBox, ElementType.Xpath);
+		autoPostMRVCheckboxIsSelected();
 		return flag;
 	}
 
@@ -924,11 +924,13 @@ public class MaterialReceiptVoucherFunctions {
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
 										ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+										ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+											ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
 											ElementType.Xpath);
@@ -955,6 +957,7 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public boolean autoPostMRVCheckboxIsSelected() {
 		flag = webDB.isElementSelected(CommonUiLocators.AutoPostMRVCheckBox, ElementType.Xpath);
+		VariableHandler.setAutoPostMRVFlag(flag);
 		return flag;
 	}
 
@@ -1009,13 +1012,15 @@ public class MaterialReceiptVoucherFunctions {
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVCheckBox(DocNo),
 										ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+										ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn, ElementType.Xpath);
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+											ElementType.Xpath);
 									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.LocationId,
+									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVNO,
 											ElementType.Xpath);
 									storeMRVDocumentsNumber();
 									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -1498,6 +1503,36 @@ public class MaterialReceiptVoucherFunctions {
 					} else {
 						break;
 					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Validate Inspection
+	 * 
+	 * @author Sakthi-GWL
+	 * @param MrvNo
+	 * @param ExpectedStatus
+	 */
+	public void verifyValidateMRVStatusWithProdOrderNo(String ProdNo, String ExpectedStatus) {
+		commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.FindProdNoLovBtn, ProdNo);
+		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.SearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(MaterialReceiptVoucherLocators.SearchButton, ElementType.Xpath);
+			logs.logging("INFO", "Search Button Is Clicked");
+			commonFunc.hardWait(1000);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MaterialReceiptStatus(ProdNo),
+					ElementType.Xpath);
+			if (flag) {
+				String Status = webDB.getTextFromElement(MaterialReceiptVoucherLocators.MaterialReceiptStatus(ProdNo),
+						ElementType.Xpath);
+				flag = Status.contains(ExpectedStatus);
+				if (flag) {
+					logs.logging("INFO", "Expected Status: " + ExpectedStatus);
+					logs.logging("INFO", "Verified Status ,Displayed Status: " + Status);
 				}
 			}
 		}
