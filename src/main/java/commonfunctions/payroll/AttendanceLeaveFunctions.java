@@ -1307,8 +1307,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLoanRequestBasedOnRequiredDate() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
 				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
@@ -1317,11 +1317,16 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
+//		flag = commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//		approvalFunc.navigateToApprovals();
+//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
@@ -3551,25 +3556,33 @@ public class AttendanceLeaveFunctions {
 	public void LoanRequestDocumentProcess() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(1000);
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestPostIcon, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.PermissionWorkApprovalFrame,
-					ElementType.Xpath, 45);
-			if (flag) {
-				webDB.switchToFrame(AttendanceLeaveLocators.PermissionWorkApprovalFrame, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval,
-						commonFunc.getDataFromTestDataSheet("KishoreValue"));
-				logs.logging("INFO", "Forward User is Selected");
-				webDB.switchToFrame(AttendanceLeaveLocators.PermissionWorkApprovalFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.WorkApprovalOkButton, ElementType.Xpath);
-					logs.logging("INFO", "Ok Button Is Clicked");
-					webDB.switchToDefaultContent();
-				}
-			}
+//			flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath, 5);
+//			if (flag) {
+//				VariableHandler.setApprovalFlag(flag);
+//				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+//				logs.logging("INFO", "Switched To Workflow Frame");
+//				commonFunc.searchAndSelectValueInFilters(CommonUiLocators.WorkAppoval_ForwardLovBtn, user);
+//				logs.logging("INFO", "Document Forwarder Person: " + user);
+//				webDB.waitForElement(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+//				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
+//				flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+//				if (flag) {
+//					webDB.moveToElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+//					flag = webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+//					commonFunc.checkSuccessToastMessageDisappear();
+//					commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(3000);
+//					flag = !webDB.verifyIsElementDisplayed(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
+//					if (flag) {
+//						logs.logging("INFO", "Workflow Approval Ok Button Clicked");
+//						webDB.switchToDefaultContent();
+//					}
+//				}
+//			}
 		}
-		Assert.assertTrue(flag);
+		assertTrue(flag);
 	}
 
 	/**
@@ -3610,8 +3623,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLoanRequestBasedonReturnToApprovalRecord() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
 				commonFunc.getDataFromTestDataSheet("EmployeeDurai"), commonFunc.getDataFromTestDataSheet("LoanTypes"),
@@ -3620,14 +3633,23 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-		verifyReturnWithDocNumber(VariableHandler.getLoanRequestDocNo());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+//		flag = commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//		approvalFunc.navigateToApprovals();
+//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+//		verifyReturnWithDocNumber(VariableHandler.getLoanRequestDocNo());
+//		flag = commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+//				"TvsUsername");
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
+		commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+				webDB.getDataFromProperties("HRUSEREmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HrRqtUsername"), webDB.getDataFromProperties("HRUSEREmpId"));
 		commonFunc.navigateToLoanRequestScreen();
 		CheckLoanRequestFindPageWithAllLineWiseRecord();
 		return flag;
@@ -3804,7 +3826,7 @@ public class AttendanceLeaveFunctions {
 	 * @param Number
 	 */
 	public boolean CheckLoanPaymentEntry() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
@@ -3814,16 +3836,20 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//		flag = commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//		approvalFunc.navigateToApprovals();
+//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
+//		flag = commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToLoanPaymentScreen();
 		LoanPaymentDocumentSelect();
-		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
@@ -3883,7 +3909,7 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckLoanPaymentWithReversePartOption() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToLoanRequestScreen();
 		LoanRequestEntry(commonFunc.getDataFromTestDataSheet("PermFromDate1"),
@@ -3893,17 +3919,23 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("LoanAmount"),
 				commonFunc.getDataFromTestDataSheet("LoanInstallmentAmount"));
 		LoanRequestDocumentProcess();
+//		flag = commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+//		approvalFunc.navigateToApprovals();
+//		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
+//		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLoanRequestDocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-		approvalFunc.navigateToApprovals();
-		filterDocumentsforPermissionApproval(VariableHandler.getLoanRequestDocNo());
-		approvalFunc.verifyApproveWithDocNumber(VariableHandler.getLoanRequestDocNo());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToLoanPaymentScreen();
 		LoanPaymentDocumentReverse();
+		commonFunc.navigateToLoanPaymentScreen();
+		flag = commonFunc.logoutUser();
 		return flag;
-
 	}
 
 	/**

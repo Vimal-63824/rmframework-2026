@@ -6,6 +6,7 @@ package commonfunctions.payroll;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -660,6 +661,12 @@ public class PreparePayrollFunctions {
 	 */
 	public boolean verifyPayrollProcessFromLoadUnitToProcessPayroll() {
 		LocalDate date = LocalDate.now();
+		DayOfWeek day = date.getDayOfWeek();
+		if (day == DayOfWeek.SATURDAY) {
+		    date = date.minusDays(1);
+		} else if (day == DayOfWeek.SUNDAY) {
+		    date = date.minusDays(2);
+		}
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
 		String PayrollMonth = date.format(formatter).toUpperCase();
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");

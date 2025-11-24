@@ -704,9 +704,9 @@ public class SaleOrderTest extends RoadMapERPTest {
 	public void SalesOrderAmendmentQtyChangeUTGSTCustomer() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentQtyChangeUTGST(commonFunc.getDataFromTestDataSheet("UTGSTCustomer"),
 				commonFunc.getDataFromTestDataSheet("UTGST_cus"), webDB.getDataFromProperties("UTGSTQtyChange"),
-				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
-				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"));
 		Assert.assertTrue(flag);
 	}
 
@@ -721,9 +721,9 @@ public class SaleOrderTest extends RoadMapERPTest {
 	public void SalesOrderAmendmentPriceChangeUTGSTCustomer() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentPriceChangeUTGST(commonFunc.getDataFromTestDataSheet("UTGSTCustomer"),
 				commonFunc.getDataFromTestDataSheet("UTGST_cus"), webDB.getDataFromProperties("UTGSTPriceChange"),
-				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
-				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"));
 		Assert.assertTrue(flag);
 	}
 
@@ -738,9 +738,9 @@ public class SaleOrderTest extends RoadMapERPTest {
 	public void SalesOrderAmendmentDiscountChangeUTGSTCustomer() throws IOException {
 		flag = SalesOrdFunc.SalesOrderAmendmentDiscountChangeUTGST(commonFunc.getDataFromTestDataSheet("UTGSTCustomer"),
 				commonFunc.getDataFromTestDataSheet("UTGST_cus"), webDB.getDataFromProperties("UTGSTDiscChange"),
-				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+				webDB.getDataFromProperties("SOUTGST"), commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
-				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"));
 		Assert.assertTrue(flag);
 	}
 
@@ -756,9 +756,9 @@ public class SaleOrderTest extends RoadMapERPTest {
 		flag = SalesOrdFunc.SalesOrderAmendmentAdditionOfLinesUTGST(
 				commonFunc.getDataFromTestDataSheet("UTGSTCustomer"), commonFunc.getDataFromTestDataSheet("UTGST_cus"),
 				webDB.getDataFromProperties("UTGSTAddOfItem"), webDB.getDataFromProperties("SOUTGST"),
-				commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
+				commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("UTGSTSOAPrefix"),
-				commonFunc.getDataFromTestDataSheet("UTGSTUnit"));
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"));
 		Assert.assertTrue(flag);
 	}
 
