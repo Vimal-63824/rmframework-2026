@@ -1326,7 +1326,7 @@ public class CustomerScheduleFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void getPriceListDocumentno(ArrayList<String> DocNum) {
-//		commonFunc.hardWait(2000);
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForElement(SalesPriceListLocators.Documentno(1), ElementType.Xpath);
 		if (flag) {
 			String PriceListdocno = webDB.getTextFromElement(SalesPriceListLocators.Documentno(1), ElementType.Xpath);
@@ -2409,6 +2409,7 @@ public class CustomerScheduleFunctions {
 		salesOrderFunctions.verifyClickAndEnterValueInTableFields(CustomerScheduleLocators.CSAmdPriceField,
 				CustomerScheduleLocators.CSAmdPriceInputField, UnitPrice);
 		webDB.pressTabKey();
+		commonFunc.checkRefreshCellsDisappear();
 	}
 
 	/**
