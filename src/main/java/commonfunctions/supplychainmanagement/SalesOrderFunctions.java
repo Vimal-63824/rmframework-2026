@@ -2673,7 +2673,7 @@ public class SalesOrderFunctions {
 		commonFunc.navigateToFinancialPaymentReceipt();
 		clickPendingReceiveablesAdvance(DocNumber, BankName);
 		verifyBankReceiptDocument(RefNumber);
-		forwardForApprovalbankReceipts();
+		forwardForApprovalbankReceipts(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		flag = commonFunc.logoutUser();
 		if (flag) {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
@@ -2884,18 +2884,21 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna - RMITS
 	 * @return boolean flag
 	 */
-	public boolean forwardForApprovalbankReceipts() {
-		commonFunc.hardWait(3000);
+	public boolean forwardForApprovalbankReceipts(String FrwdEmployee) {
+		commonFunc.hardWait(1000);
 		if (webDB.verifyIsElementDisplayed(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath)) {
 			flag = true;
 			VariableHandler.setApprovalFlag(flag);
 			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
-			commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov,
-					commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
-			commonFunc.hardWait(2000);
-			webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
-			logs.logging("INFO", "Switched To WorkFlow Frame");
+			String GetTextFrwdPerson = webDB.getDomPropertyFromElement(SalesOrderLocators.ForwardEmpInputField,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetTextFrwdPerson.equals(FrwdEmployee)) {
+				commonFunc.searchAndSelectValueInFilters(SalesOrderLocators.ForwardApprovalLov, FrwdEmployee);
+				commonFunc.hardWait(1000);
+				webDB.switchToFrame(SalesOrderLocators.WorkApprovalFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched To WorkFlow Frame");
+			}
 			flag = webDB.waitForElement(SalesOrderLocators.AdvancereceiptsworkflowOkButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SalesOrderLocators.AdvancereceiptsworkflowOkButton, ElementType.Xpath);
@@ -5248,8 +5251,8 @@ public class SalesOrderFunctions {
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateSalesOrderPage();
 		checkSOMControl(webDB.getDataFromProperties("So"));
-		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
-				commonFunc.getDataFromTestDataSheet("UTGSTUnit"), commonFunc.getDataFromTestDataSheet("SO_General"),
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("UTGSTCustomer"));
 		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOUTGST"),
@@ -5260,7 +5263,7 @@ public class SalesOrderFunctions {
 		if (flag) {
 			verifySalesOrderDocumentStatusEntryCompletedWithDB();
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("UTGSTUnit"),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("UTGSTUnit1"),
 					System.getProperty("HariUsername"));
 //			flag = commonFunc.logoutUser();
 			if (flag) {

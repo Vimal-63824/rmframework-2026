@@ -826,6 +826,8 @@
 	"UTGSTLocation": "L0001",
 	"UTGSTUnit": "U1",
 	"UTGSTSOAPrefix": "SOA3",
+	"UTGSTLocation1": "L0003",
+	"UTGSTUnit1": "U-3",
 	"SOADBLineOldUTGSTColumnName": "SALC_OLD_UTGST_AMT",
 	"SOADBLineNewUTGSTColumnName": "SALC_NEW_UTGST_AMT",
 	"CSBatchPrefix": "CS",

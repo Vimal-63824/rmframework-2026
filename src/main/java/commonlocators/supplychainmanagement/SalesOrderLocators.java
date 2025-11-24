@@ -291,7 +291,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String AdvancereceiptsDocumentNoteAlertCloseIcon = "//span[@class='t-Icon icon-close']";
 	/** @Locator Xpath */
-	public static final String AdvancereceiptsworkflowOkButton = "//button[@id='B1459367661417504650']";
+	public static final String AdvancereceiptsworkflowOkButton = "//button[@data-testid='Entry']";
 	/** @Locator Xpath */
 	public static final String SalesOrderGeneralTab = "//label[@for='P191513134001_OVERALL_REG_PRM_3']";
 	/** @Locator Xpath */
@@ -574,6 +574,8 @@ public class SalesOrderLocators {
 	public static final String SOSearchButton = "//button[@data-testid='SO_Srch_Button']";
 	/** @locatorType Xpath */
 	public static final String PaymentsReceiptModeField = "//div[@id='P341310231_BANK_TYPE_CONTAINER']";
+	/** @locatorType Xpath */
+	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {
