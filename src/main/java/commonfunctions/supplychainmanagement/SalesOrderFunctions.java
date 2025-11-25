@@ -2571,6 +2571,7 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void verifyAdvPercentageWithUIAndDBValues() {
+		commonFunc.hardWait(1000);
 		getPaymentTermAdvpercentagesInDB();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAssertionDomPropertyValidation(SalesOrderLocators.AdvMaterialPercentage,
