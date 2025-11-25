@@ -169,6 +169,10 @@ public class CommonFunctions {
 				if (flag) {
 					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
+					if(webDB.verifyIsElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					}
 					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.PageHeaderText, ElementType.Xpath, 15);
 					if (!flag) {
 						flag = webDB.isElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath);
@@ -2549,49 +2553,26 @@ public class CommonFunctions {
 	 * @param Enteredvalue
 	 */
 	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
-//		checkRefreshCellsDisappear();
-//		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
-//		if (flag) {
-//			webDB.moveToElement(Tablespec, ElementType.Xpath);
-//			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-////			logs.logging("INFO", "Table Input Box Is Clicked");
-//			webDB.clearText(InputParameter, ElementType.Xpath);
-////			logs.logging("INFO", "Clear Text Field The Input Value");
-//			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
-//			if (flag) {
-//				hardWait(1000);
-//				webDB.clickAnElement(Tablespec, ElementType.Xpath);
-//				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
-//				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
-//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-//						getDataFromTestDataSheet("Value"));
-////				logs.logging("INFO", "Get Attribute Value Is: " + value);
-//				flag = value.contains(Enteredvalue);
-//				if (flag) {
-////					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
-//				}
-//			}
-//		}
+		checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(Tablespec, ElementType.Xpath);
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
-			flag = webDB.waitForElement(InputParameter, ElementType.Xpath);
+//			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.clearText(InputParameter, ElementType.Xpath);
+//			logs.logging("INFO", "Clear Text Field The Input Value");
+			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
-				try {
-					JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-					WebElement InputElement = webDB.getDriver().findElement(By.xpath(InputParameter));
-					js.executeScript("arguments[0].value='" + Enteredvalue + "';", InputElement);
-					logs.logging("INFO", Enteredvalue + " - Added in the Table Data");
-					String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-							getDataFromTestDataSheet("Value"));
-//					logs.logging("INFO", "Get Attribute Value Is: " + value);
-					flag = value.contains(Enteredvalue);
-					if (flag) {
-//						logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
-					}
-				} catch (Exception e) {
-					flag = false;
+				hardWait(1000);
+				webDB.clickAnElement(Tablespec, ElementType.Xpath);
+				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
+				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
+						getDataFromTestDataSheet("Value"));
+//				logs.logging("INFO", "Get Attribute Value Is: " + value);
+				flag = value.contains(Enteredvalue);
+				if (flag) {
+//					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
 				}
 			}
 		}

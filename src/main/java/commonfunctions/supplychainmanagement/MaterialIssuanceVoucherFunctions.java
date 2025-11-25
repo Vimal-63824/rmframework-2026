@@ -500,6 +500,11 @@ public class MaterialIssuanceVoucherFunctions {
 			webDB.clickAnElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
 			switchMaterialRequestLinesIframe();
 			commonFunc.clearFiltersInFindPage();
+			webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+			webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+			webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
 			switchMaterialRequestLinesIframe();
 			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
@@ -510,11 +515,9 @@ public class MaterialIssuanceVoucherFunctions {
 				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "CheckBox IS Displayed");
-					commonFunc.hardWait(3000);
 					webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 					webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
 					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Create Mi Button Is Displayed");
@@ -610,6 +613,7 @@ public class MaterialIssuanceVoucherFunctions {
 		}
 
 	}
+
 	/**
 	 * This Method Is Used To Create The Pending MIV Documents
 	 * 
@@ -648,7 +652,8 @@ public class MaterialIssuanceVoucherFunctions {
 							flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.PendingCreateMIV,
 									ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(MaterialIssuanceVoucherLocators.PendingCreateMIV, ElementType.Xpath);
+								webDB.clickAnElement(MaterialIssuanceVoucherLocators.PendingCreateMIV,
+										ElementType.Xpath);
 								webDB.switchToDefaultContent();
 								commonFunc.hardWait(4000);
 								storeMaterialIssuanceNumber();
