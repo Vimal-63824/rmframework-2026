@@ -5,7 +5,7 @@
 		<!-- <listener class-name="utils.RetryListener"></listener> -->
 		<listener class-name="utils.Listener"></listener>
 	</listeners>
-	<test parallel="classes" name="Road Map Test" thread-count="4"
+	<test parallel="classes" name="Road Map Test" thread-count="5"
 		preserve-order="true">
 		<classes>
 			<class name="com.roadmapERP.POAmendmentTest" />
