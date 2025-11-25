@@ -303,9 +303,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RFQSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id=\"9390509402468592891_orig\"]/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='10059430494754916995_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id=\"238717335899819756_orig\"]/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='907638428186143860_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "(//input[@data-testid='P1615131058_RADIO_GRP']/following-sibling::label)[2]";
 	/** @locatorType Xpath */
@@ -313,12 +313,12 @@ public class RfqLocators {
 	
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='238717335899819756_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='907638428186143860_orig']/tbody/tr/td["+ i +"]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='9390509402468592891_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='10059430494754916995_orig']/tbody/tr/td["+ i +"]";
 	}
 
 }

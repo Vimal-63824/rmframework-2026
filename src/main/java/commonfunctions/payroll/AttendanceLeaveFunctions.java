@@ -281,7 +281,6 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateLeaveEncashmentScreen();
 		PermissionDocumentCancel(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("PermissionFindType"));
-		flag = commonFunc.logoutUser();
 		return flag;
 	}
 
@@ -596,6 +595,7 @@ public class AttendanceLeaveFunctions {
 								webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton, ElementType.Xpath);
 								commonFunc.hardWait(5000);
 								logs.logging("INFO", "Permission Document is Cancelled");
+								flag = commonFunc.logoutUser();
 							}
 						}
 					}
@@ -1086,23 +1086,34 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.EncashmentButton, ElementType.Xpath);
-			logs.logging("INFO", "Encashment Button is Clicked");
-			flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(3000);
-				webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
-				webDB.switchToFrame(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
+				logs.logging("INFO", "Encashment Button is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon, ElementType.Xpath);
-					logs.logging("INFO", "Pending Encashment Doc No Flag Is Checked");
-					flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentButton, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentLeave, ElementType.Xpath);
-						logs.logging("INFO", "Encashment Leave Created");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton,
+						logs.logging("INFO", "Pending Enashment Button is Clicked");
+						webDB.switchToFrame(AttendanceLeaveLocators.PendingEncashmentscreen, ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon,
 								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(AttendanceLeaveLocators.PendingEncashmentSelectFlagIcon,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Pending Encashment Doc No Flag Is Checked");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentLeave,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentLeave,
+											ElementType.Xpath);
+									logs.logging("INFO", "Encashment Leave Created");
+									flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton,
+											ElementType.Xpath);
+								}
+							}
+						}
 					}
 				}
 			}
@@ -1118,11 +1129,13 @@ public class AttendanceLeaveFunctions {
 	public void CheckLeaveEncashmentBasedOnEncashInPayroll() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.CreateEncashmentOkButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
 			webDB.clickAnElement(AttendanceLeaveLocators.CreateEncashmentOkButton, ElementType.Xpath);
-			commonFunc.hardWait(5000);
-			webDB.switchToDefaultContent();
-			flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Encashment OK Button Is Clicked");
+				commonFunc.hardWait(2000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindPageEmployeeLOV, ElementType.Xpath);
+			}
 		}
 		Assert.assertTrue(flag);
 	}
@@ -3892,6 +3905,7 @@ public class AttendanceLeaveFunctions {
 									if (flag) {
 										webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
 												ElementType.Xpath);
+										flag = commonFunc.logoutUser();
 									}
 								}
 							}

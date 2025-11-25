@@ -442,7 +442,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanRequestDocNoField = "//Input[@data-testid='LOAN_REQ_NO']";
 	/** @locatorType Xpath */
-	public static final String LoanRequestFindDocNoClick = "//*[@id\"5010808342268184269_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String LoanRequestFindDocNoClick = "//*[@id=\"5010808342268184269_orig\"]/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String LoanRequestFindSearch = "//button[@data-testid='LOAN_REQ_SEARCH_BUTTON']";
 	/** @locatorType Xpath */
