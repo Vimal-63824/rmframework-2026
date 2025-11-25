@@ -221,6 +221,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SCOdocno = new ThreadLocal<>();
 	private static ThreadLocal<String> EmpUpdateDocNo = new ThreadLocal<>();
 	private static ThreadLocal<Boolean> EmpLeaveEntryAutoPost = ThreadLocal.withInitial(() -> false);
+	private static ThreadLocal<Boolean> AutoPostMRVFlag = ThreadLocal.withInitial(() -> false);
 	private static ThreadLocal<String> ProcessIDAsso = new ThreadLocal<>();
 	private static ThreadLocal<String> ResourceGrp = new ThreadLocal<>();
 	private static ThreadLocal<String> ManpowerResourceGrp = new ThreadLocal<>();
@@ -1998,5 +1999,13 @@ public class VariableHandler {
 
 	public static void setInspectionReqNumber(String Data) {
 		InspectionReqNumber.set(Data);
+	}
+
+	public static void setAutoPostMRVFlag(boolean flag) {
+		AutoPostMRVFlag.set(flag);
+	}
+
+	public static boolean getAutoPostMRVFlag() {
+		return AutoPostMRVFlag.get();
 	}
 }

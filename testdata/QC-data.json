@@ -1341,5 +1341,6 @@
 	"StockQcText": "Stock QC",
 	"GWL-RInspector": "GWL  R",
 	"ForwardQCtatus": "Forward to qc",
-	"FG-10005-Item": "GWL-FG-10005"
+	"FG-10005-Item": "GWL-FG-10005",
+	"FG-10001-Item-BOM": "BOM-2526-0000002"
 }

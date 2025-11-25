@@ -25,6 +25,11 @@ public class RoadMapERPTest {
 	 */
 	@BeforeClass(alwaysRun = true)
 	public void BrowserSetup() {
+		WebDriverBase.chromeOptions.addArguments("--disable-gpu");
+		WebDriverBase.chromeOptions.addArguments("--no-sandbox");
+		WebDriverBase.chromeOptions.addArguments("--disable-dev-shm-usage");
+		WebDriverBase.chromeOptions.addArguments("--disable-extensions");
+		WebDriverBase.chromeOptions.addArguments("--disable-software-rasterizer");
 		commonFunc.browserOpen();
 	}
 
