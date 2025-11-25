@@ -717,10 +717,10 @@ public class MRPFunctions {
 		switchToReleaseIframe();
 		flag = webDB.selectDropDownByText(MRPLocators.MRP_Release_OrderTypeSelect, OrderType, ElementType.Xpath);
 		if (flag) {
-			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_Release_FromData,
-					MRPLocators.MRP_Release_FromData, FromDate);
-			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_Release_ToData,
-					MRPLocators.MRP_Release_ToData, ToDate);
+//			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_Release_FromData,
+//					MRPLocators.MRP_Release_FromData, FromDate);
+//			commonPayrollFunc.addDetailInTableWithoutLovButton(MRPLocators.MRP_Release_ToData,
+//					MRPLocators.MRP_Release_ToData, ToDate);
 			webDB.switchToDefaultContent();
 			flag = webDB.waitForElement(MRPLocators.MRP_ReleaseIframeCloseIcon, ElementType.Xpath);
 		}

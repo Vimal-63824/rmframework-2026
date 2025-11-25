@@ -61,8 +61,13 @@ public class MaterialReceiptVoucherFunctions {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					commonFunc.hardWait(3000);
-					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 					if (flag) {
+						webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+						webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+						webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 						logs.logging("INFO", "Inspection Pending Icon IS Clicked");
 						commonFunc.clearFiltersInFindPage();
 						commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.VoucherNo, DocNo);
@@ -562,27 +567,30 @@ public class MaterialReceiptVoucherFunctions {
 				if (flag) {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
-					commonFunc.hardWait(3000);
+					webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 					commonFunc.clearFiltersInFindPage();
+					webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+					webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+					webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 					commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MIVNumberLovButton, DocNo);
 					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(2000);
+							webDB.moveToElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 							webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 							if (flag) {
-								commonFunc.hardWait(3000);
 								logs.logging("INFO", "Mrv CheckBox Is Displayed");
 								webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
 								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 										ElementType.Xpath);
 								if (flag) {
-									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Create Qc Doc Is Displayed");
 									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
