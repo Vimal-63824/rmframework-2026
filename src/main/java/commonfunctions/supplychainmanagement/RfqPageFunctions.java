@@ -149,6 +149,9 @@ public class RfqPageFunctions {
 	public boolean verifyCreationOfPendingPOFromRfq() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
+		verifyCreationOfPendingRfqDomestic();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		verifyClickingPndPo();
 		return flag;
@@ -195,9 +198,9 @@ public class RfqPageFunctions {
 				verifyRfqNumInPoDetails();
 				verifyPoRfqPost();
 				waitingForApproval();
-				forwardApprovalScreen();
-				filterDocumentsForPriceListApproval(VariableHandler.getPONumber());
-				verifyApproveWithDocNumber(VariableHandler.getPONumber());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
 				flag = commonFunc.logoutUser();
 				if (flag) {
 					commonFunc.validCommonLogin(System.getProperty("AdminUsername"),

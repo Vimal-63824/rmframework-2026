@@ -67,10 +67,11 @@ public class CustomerScheduleFunctions {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String Today = date.format(formatter);
 	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+	LocalDateTime myDateObj1 = LocalDateTime.now().plusDays(3);
 	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
 	DateTimeFormatter myFormatObj1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String tomorrowDate = myDateObj.format(myFormatObj);
-	String tomorrowDate1 = myDateObj.format(myFormatObj1);
+	String tomorrowDate1 = myDateObj1.format(myFormatObj1);
 
 	/**
 	 * This Method Is Used To Add The Customer Schedule Header Details And Get The
