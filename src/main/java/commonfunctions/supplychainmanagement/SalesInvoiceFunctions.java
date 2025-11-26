@@ -5589,7 +5589,7 @@ public class SalesInvoiceFunctions {
 					flag = webDB.waitForElement(SalesInvoiceLocators.CR_Parameter_Inserting_Tick_Icon,
 							ElementType.Xpath);
 					if (flag) {
-						commonFunc.hardWait(1000);
+						commonFunc.hardWait(2000);
 						webDB.clickAnElement(SalesInvoiceLocators.CR_Parameter_Inserting_Tick_Icon, ElementType.Xpath);
 						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SalesInvoiceLocators.CR_Close_Toast_Msg, ElementType.Xpath);

@@ -8,6 +8,7 @@
 	<test name="Road Map Test" parallel="classes" thread-count="5"
 		preserve-order="true">
 		<classes>
+		
 			<class name="com.roadmapERP.POAmendmentTest" />
 			<class name="com.roadmapERP.SaleInvoiceTest" />
 			<class name="com.roadmapERP.ProductionOrderTest" />
@@ -27,6 +28,7 @@
 			<class name="com.roadmapERP.PreparePayrollTest" />
 			<class name="com.roadmapERP.EmployeePermissionTest" />
 			<class name="com.roadmapERP.SsoTest" />
+			<class name="com.roadmapERP.GateEntryTest" />
 			<class name="com.roadmapERP.OpenPoRcTest" />
 			<class name="com.roadmapERP.DirectGrnTest2" />
 			<class name="com.roadmapERP.PurchaseRequestTest" />
@@ -40,8 +42,8 @@
 			<class name="com.roadmapERP.SalesPriceListTest" />
 			<class name="com.roadmapERP.SalesCataloguePriceTest" />
 			<class name="com.roadmapERP.SalesStandardPriceTest" />
-			<class name="com.roadmapERP.SetupSalesTest" />
-			<!--<class name="com.roadmapERP.ProductionAndShopFloorSetupTest" />-->
+			<class name="com.roadmapERP.SetupSalesTest" />    -->
+			<!--<class name="com.roadmapERP.ProductionAndShopFloorSetupTest" />
 			<!--			<class name="com.roadmapERP.SubcontractTransactionTest" />-->
 			<!--			<class name="com.roadmapERP.SubcontractSetUpTest" />-->
 		</classes>
