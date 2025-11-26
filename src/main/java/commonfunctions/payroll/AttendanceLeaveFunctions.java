@@ -3620,14 +3620,18 @@ public class AttendanceLeaveFunctions {
 						if (flag) {
 							commonFunc.hardWait(3000);
 							webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindSearch,
+									ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Loan Request Document Have been Cancelled");
+								commonFunc.logoutUser();
 							}
 						}
 					}
 				}
 			}
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -3905,7 +3909,7 @@ public class AttendanceLeaveFunctions {
 									if (flag) {
 										webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
 												ElementType.Xpath);
-										flag = commonFunc.logoutUser();
+									commonFunc.logoutUser();
 									}
 								}
 							}
