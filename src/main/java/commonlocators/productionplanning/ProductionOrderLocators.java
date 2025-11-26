@@ -215,6 +215,10 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String RoutingRcptWHTableSelect = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[9])[1]//select";
 	/** @locatorType XPATH */
+	public static final String RoutingLineDetailsIcon = "(//div[@id='ROUTING_ig_grid_vc']//table//tr/td[11])[1]//a";
+	/** @locatorType XPATH */
+	public static final String LineDetailsIframe = "//iframe";
+	/** @locatorType XPATH */
 	public static final String MaterialReqAddBtn = "//button[@data-testid='MaterialReqAddBtn']";
 	/** @locatorType XPATH */
 	public static final String MaterialReqSaveBtn = "//button[@data-testid='MaterialReqSaveBtn']";
@@ -296,5 +300,13 @@ public class ProductionOrderLocators {
 	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator XPATH */
 	public static final String OkButtonForward = "//BUTTON[@ID='B479819303601188310']";
+	/** @Locator XPATH */
+	public static final String NonStandardLotSerialDetailTable = "//div[@id='detail_ig_grid_vc']//table//tr/td[11]";
+	/** @Locator XPATH */
+	public static final String NonStandardLotSerialDetailSelect = "//div[@id='detail_ig_grid_vc']//table//tr/td[11]//select";
+	/** @Locator XPATH */
+	public static final String LineDetailsSaveIcon = "//button[@id='B1611356104066403183']";
+	/** @Locator XPATH */
+	public static final String LineDetailsCloseIcon = "//div[@id='ROUTING_ig_grid_vc_floatingItem_dialog']/following-sibling::div//button[@title='Close']";
 
 }

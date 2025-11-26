@@ -16,35 +16,37 @@ public class InspectionPlanLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePreDispatchButton = "//button[@id='B727817440892776870']";
 	/** @locatorType Xpath */
-	public static final String HeaderLocationLovBtn = "//input[@id='P367024401_TIPHD_PLNT_LOC_ID']/following-sibling::button";
+	public static final String HeaderLocationLovBtn = "//input[contains(@id,'TIPHD_PLNT_LOC_ID')]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String HeaderItemIdLovBtn = "//input[@id='P367024401_ITEM_ID']/following-sibling::button";
+	public static final String HeaderCustomerLovBtn = "//input[contains(@id,'TIPHD_CUST_ID')]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String HeaderPlanNameInput = "//input[@id='P367024401_TIPHD_INS_PLAN_NAME']";
+	public static final String HeaderItemIdLovBtn = "//input[contains(@id,'ITEM_ID')]/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String HeaderPlanTypeSelect = "//select[@id='P367024401_TIPHD_ASS_TYPE']";
+	public static final String HeaderPlanNameInput = "//input[contains(@id,'TIPHD_INS_PLAN_NAME')]";
 	/** @locatorType Xpath */
-	public static final String HeaderReferenceInput = "//input[@id='P367024401_TIPHD_REF']";
+	public static final String HeaderPlanTypeSelect = "//select[contains(@id,'TIPHD_ASS_TYPE')]";
 	/** @locatorType Xpath */
-	public static final String HeaderDateFromInput = "//input[@id='P367024401_TIPHD_DT_FROM_input']";
+	public static final String HeaderReferenceInput = "//input[contains(@id,'TIPHD_REF')]";
 	/** @locatorType Xpath */
-	public static final String HeaderDateToInput = "//input[@id='P367024401_TIPHD_DT_TO_input']";
+	public static final String HeaderDateFromInput = "//input[contains(@id,'TIPHD_DT_FROM_input')]";
 	/** @locatorType Xpath */
-	public static final String DisplayPlanNo = "//input[@id='P367024401_TIPHD_INS_PLAN_NO']";
+	public static final String HeaderDateToInput = "//input[contains(@id,'TIPHD_DT_TO_input')]";
+	/** @locatorType Xpath */
+	public static final String DisplayPlanNo = "//input[contains(@id,'TIPHD_INS_PLAN_NO')]";
 	/** @locatorType Xpath */
 	public static final String DisplayBOMNo = "//input[@id='P367024401_BOM_NO']";
 	/** @locatorType Xpath */
-	public static final String CreationTickButton = "//button[@id='B1721108795298754012']";
+	public static final String CreationTickButton = "//button[@title='Create']";
 	/** @locatorType Xpath */
-	public static final String HeaderSaveIcon = "//button[@id='B1721109176620754012']";
+	public static final String HeaderSaveIcon = "//button[@id='Post']/preceding-sibling::button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PostButton = "//button[@id='Post']";
+	public static final String PostButton = "//button[@id='Post']";	
 	/** @locatorType Xpath */
 	public static final String CancelButton = "//button[@id='B1721110404731754014']";
 	/** @locatorType Xpath */
-	public static final String LineAddIcon = "//button[@id='B1721077654739753896']";
+	public static final String LineAddIcon = "//div[@id='ig_line']//button[contains(@title,'Add')]";
 	/** @locatorType Xpath */
-	public static final String LineSaveIcon = "//button[@id='B1721078050369753898']";
+	public static final String LineSaveIcon = "//div[@id='ig_line']//button[@title='Save']";
 	/** @locatorType Xpath */
 	public static final String CharacteristicsTableData = "(//div[@id='ig_line_ig_grid_vc']//table/tbody//td[2])[1]";
 	/** @locatorType Xpath */

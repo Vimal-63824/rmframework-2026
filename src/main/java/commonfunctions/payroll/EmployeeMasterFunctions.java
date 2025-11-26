@@ -2303,6 +2303,18 @@ public class EmployeeMasterFunctions {
 						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 					}
 				}
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+						"HariUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				flag = commonFunc.logoutUser();
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+						"HariUsername");
+				commonFunc.navigateEmployeeMasterScreenInPayroll();
+				searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
 			}
 			if (flag) {
 				logs.logging("INFO", "Employee Post Icon Clicked");

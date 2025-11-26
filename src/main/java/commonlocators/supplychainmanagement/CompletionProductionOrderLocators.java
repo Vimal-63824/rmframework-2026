@@ -243,5 +243,11 @@ public class CompletionProductionOrderLocators {
 	public static final String SearchResultStatusData = "//table[@id='16501786899999762915_orig']//tbody/tr/td/div[contains(@style,'color')]";
 	/** @locatorType XPATH */
 	public static final String Pending_TableSelectAllCheckBox = "//table[@id='3222976116260698853']/tr/th//input[@id='check_all']";
+	/** @locatorType XPATH */
+	public static final String Pending_TableShowMyRecordBtn = "//button[@id='B779447955121908765']";
+	/** @locatorType XPATH */
+	public static final String Pending_TableShowMyRecordBtnClicked = "//button[@id='B796427138443435120']";
+	/** @locatorType XPATH */
+	public static final String Pending_TableNoDataSelected = "//div[@class='a-IRR-noDataMsg-icon']";
 
 }
