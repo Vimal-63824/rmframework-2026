@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
@@ -40,6 +41,7 @@ public class MaterialReceiptVoucherFunctions {
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private static StocksPageFunctions stockPageFunc = new StocksPageFunctions();
 	private static StockTransactionPageFunctions stockTransactionPageFunc = new StockTransactionPageFunctions();
+	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * Verify Pending Inspection Documents
@@ -915,10 +917,19 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreditNotePostMaterialReceipt() {
-		commonFunc.navigateToMaterialReceiptVoucher();
-		verifyPendingCReditNoteMRV(VariableHandler.getCNdocno());
-		verifyReceiptLocatorsAndPutAway();
-		clickTickAndPostIcon();
+		String ApplicationControlPostMrv = dbCommonFunctions.InAplctrl(commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoPostMRV"));
+		logs.logging("INFO", "AutoPost Flag Is " + ApplicationControlPostMrv);
+		String ApplicationcontrolCreationMrv = dbCommonFunctions.InAplctrl(
+				commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
+		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
+		if (!ApplicationControlPostMrv.equals("Y") && !ApplicationcontrolCreationMrv.equals("Y")) {
+			commonFunc.navigateToMaterialReceiptVoucher();
+			verifyPendingCReditNoteMRV(VariableHandler.getCNdocno());
+			verifyReceiptLocatorsAndPutAway();
+			clickTickAndPostIcon();
+		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
@@ -1003,10 +1014,19 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void verifyReworkCompletionPostMaterialReceipt() {
+		String ApplicationControlPostMrv = dbCommonFunctions.InAplctrl(commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoPostMRV"));
+		logs.logging("INFO", "AutoPost Flag Is " + ApplicationControlPostMrv);
+		String ApplicationcontrolCreationMrv = dbCommonFunctions.InAplctrl(
+				commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
+		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
+		if (!ApplicationControlPostMrv.equals("Y") && !ApplicationcontrolCreationMrv.equals("Y")) {
 		commonFunc.navigateToMaterialReceiptVoucher();
 		verifyPendingReworkCompletionMRV(VariableHandler.getRWCdocno());
 		verifyReceiptLocatorsAndPutAway();
 		clickTickAndPostIcon();
+		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();

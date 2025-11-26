@@ -57,7 +57,7 @@ public class PurchaseOrderFunctions {
 	 * @param POType
 	 */
 	public void verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
-//		verifyCLickPurchaseOrderFrame();
+		verifyCLickPurchaseOrderFrame();
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
 		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
@@ -6055,7 +6055,7 @@ public class PurchaseOrderFunctions {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DBDETAILS.xlsx";
+				+ "DirectGrnDetails.xlsx";
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		System.out.println(PRMultipleline.length);
 		for (int i = i1; i <= i1; i++) {
@@ -6759,7 +6759,7 @@ public class PurchaseOrderFunctions {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "DBDETAILS.xlsx";
+				+ "DirectGrnDetails.xlsx";
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i2; i <= i2; i++) {
 			String ItemId = PRMultipleline[i2][1];
@@ -13364,7 +13364,7 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
 			String SheetName) {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		clickCreateIcon();
 		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
@@ -13403,19 +13403,12 @@ public class PurchaseOrderFunctions {
 		commonFunc.hardWait(3000);
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-//			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-//					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("PohType"),
-//					commonFunc.getDataFromTestDataSheet("NOS"));
-//			approvalFunc.verifyNavigateback();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
+		commonFunc.hardWait(3000);
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getPONumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			flag = commonFunc.logoutUser();
-		}
+		
 		assertTrue(flag);
 	}
 

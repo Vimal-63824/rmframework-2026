@@ -4,6 +4,10 @@ package commonfunctions.supplychainmanagement;
  * @company Roadmap May 02, 2025
  */
 import static org.testng.Assert.assertTrue;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -32,20 +36,26 @@ public class SsoPageFunctions {
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
+	LocalDate date = LocalDate.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	String Today = date.format(formatter);
+	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	String tomorrowDate = myDateObj.format(myFormatObj);
 	/**
 	 * This Methods Is Used To Verify Creation Of Item
 	 * 
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfItemforPriceList() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		waitingForApproval();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getItemName());
-		verifyApproveWithDocNumber(VariableHandler.getItemName());
+		commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getItemName(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -178,8 +188,9 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfSsoDomesticSupplierSimilarUomGate() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("Opo_SupId"), commonFunc.getDataFromTestDataSheet("PR_Department"),
@@ -187,7 +198,7 @@ public class SsoPageFunctions {
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
 		supplierScheduleHeaderValidation();
-		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("L49"));
+		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("L49ID"));
 		supplierScheduleHeaderSupplierValidation();
 		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
 		supplierScheduleHeaderWarehouseValidation();
@@ -201,9 +212,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -602,14 +613,14 @@ public class SsoPageFunctions {
 							if (flag) {
 								webDB.doubleClickAnElement(SsoPageLocators.SSOFirmDateFromField(i), ElementType.Xpath);
 								webDB.clearText(SsoPageLocators.SSOFirmDateFromInput, ElementType.Xpath);
-								webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateFromInput, FirmDateFrom,
+								webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateFromInput, Today,
 										ElementType.Xpath);
 								commonFunc.checkRefreshCellsDisappear();
 								flag = webDB.waitForElement(SsoPageLocators.SSOFirmDateToField(i), ElementType.Xpath);
 								if (flag) {
 									webDB.doubleClickAnElement(SsoPageLocators.SSOFirmDateToField(i),
 											ElementType.Xpath);
-									webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateToInput, FirmDateTo,
+									webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateToInput, tomorrowDate,
 											ElementType.Xpath);
 									commonFunc.hardWait(1000);
 									webDB.pressTabKey();
@@ -619,7 +630,7 @@ public class SsoPageFunctions {
 										webDB.doubleClickAnElement(SsoPageLocators.SSOTentDateFromField(i),
 												ElementType.Xpath);
 										webDB.clearText(SsoPageLocators.SSOTentDateFromInput, ElementType.Xpath);
-										webDB.sendTextToAnElement(SsoPageLocators.SSOTentDateFromInput, FirmDateFrom,
+										webDB.sendTextToAnElement(SsoPageLocators.SSOTentDateFromInput, Today,
 												ElementType.Xpath);
 										commonFunc.hardWait(1000);
 										flag = webDB.waitForElement(SsoPageLocators.SSOTentDateToField(i),
@@ -627,7 +638,7 @@ public class SsoPageFunctions {
 										if (flag) {
 											webDB.doubleClickAnElement(SsoPageLocators.SSOTentDateToField(i),
 													ElementType.Xpath);
-											webDB.sendTextToAnElement(SsoPageLocators.SSOTentDateToInput, FirmDateTo,
+											webDB.sendTextToAnElement(SsoPageLocators.SSOTentDateToInput, tomorrowDate,
 													ElementType.Xpath);
 											webDB.pressTabKey();
 
@@ -890,9 +901,9 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
@@ -1164,7 +1175,6 @@ public class SsoPageFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				commonFunc.hardWait(7000);
-				flag = commonFunc.logoutUser();
 			}
 		} else {
 			flag = false;
@@ -1213,7 +1223,7 @@ public class SsoPageFunctions {
 	 */
 	public void forwardApprovalScreen() {
 		commonFunc.hardWait(1000);
-		commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		approvalFunc.navigateToApprovals();
 		flag = webDB.waitForElement(ApprovalPageLocators.UserNotifyIcon, ElementType.Xpath);
 		if (flag) {
@@ -1321,7 +1331,7 @@ public class SsoPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
 						commonFunc.getDataFromTestDataSheet("SSODbLocationColumnName")),
-				commonFunc.getDataFromTestDataSheet("Unit_100"));
+				commonFunc.getDataFromTestDataSheet("L49ID"));
 		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
 	}
 
@@ -1358,7 +1368,7 @@ public class SsoPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
 						commonFunc.getDataFromTestDataSheet("SSODbWHToColumnName")),
-				commonFunc.getDataFromTestDataSheet("WH_To"));
+				commonFunc.getDataFromTestDataSheet("RAW MATERIAL WH -49-4"));
 		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
 	}
 

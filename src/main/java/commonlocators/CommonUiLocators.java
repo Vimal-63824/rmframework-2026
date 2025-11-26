@@ -322,7 +322,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//table[@id='12451204724453765688_orig']/tbody//td[2]/a";
+	public static final String SearchedItemDrillDown = "#\\31 2451204724453765688_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */
@@ -369,12 +369,11 @@ public class CommonUiLocators {
 	public static final String ProfileIcon = "#t_Header > div > img";
 	/** @locatorType Xpath */
 	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
-	/** @locatorType Xpath */
 	public static final String QualityTab = "//label[text()='Quality']";
 	/** @locatorType Xpath */
 	public static final String TypeDropDown = "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']";
 	/** @locatorType Xpath */
-	public static final String CreatePORadioButton = "//button[@id='B927512421169129619']";
+	public static final String CreatePORadioButton = "//button[@id='B1596433513455453723']";
 	/** @Locator XPATH */
 	public static final String Open_SCO_Find_AddIcon = "//button[@id='B1629410608331693435']";
 	/** @Locator XPATH */

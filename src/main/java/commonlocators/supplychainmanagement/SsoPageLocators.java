@@ -30,7 +30,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoPendingBtnNew = "//button[@data-testid='Create_PO']";
 	/** @locatorType Xpath */
-	public static final String PendingSso = "//button[@id='B927512565196129620']";
+	public static final String PendingSso = "//button[@id='B1596433657482453724']";
 	
 	
 	/** @locatorType Xpath */
@@ -54,7 +54,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String OPOLineItemInput = "//input[@id='C3897485352951750384']";
 	/** @locatorType Xpath */
-	public static final String OPOLineItemLov = "//button[@id='C3900495350211548502_lov_btn']";
+	public static final String OPOLineItemLov = "//input[@data-testid='DUM_PROD']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String OPOLineCostFiled = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
@@ -66,15 +66,15 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String OPOLineHsnField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static final String OPOLineHsnLov = "//button[@id='C4506263904107339499_lov_btn']";
+	public static final String OPOLineHsnLov = "//input[@data-testid='PRCLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String OPOLineSave = "//button[@data-testid='Save']";
 	/** @locatorType Xpath */
 	public static final String OPOPost = "//button[@data-testid='Entry_Complete']";
 	/** @locatorType Xpath */
-	public static final String OPODocNum = "//span[@data-testid=\"P161513102501_PRCHD_PO_NO\"]";
+	public static final String OPODocNum = "//span[@data-testid='P161513102501_PRCHD_PO_NO']";
 	/** @locatorType Xpath */
-	public static final String FetchOPOBtn = "//button[@id='B1055965137480215544']";
+	public static final String FetchOPOBtn = "//button[@data-testid='Fetch_Open_Order']";
 	/** @locatorType Xpath */
 	public static final String FetchOPOFrame = "//iframe[@title='Open Order Dtls.']";
 	/** @locatorType Xpath */
@@ -82,7 +82,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String FetchOPOSearchOkBtn = "//button[@id='QC_search_button']";
 	/** @locatorType Xpath */
-	public static final String FetchOPOSelectall = "//*[@id=\"1956799288720660936_orig\"]/tbody/tr[2]/td[11]";//input[@id='check_all']
+	public static final String FetchOPOSelectall = "//*[@id=\"2625720381006985040_orig\"]/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
 	public static final String FetchOPOOKBtn = "//*[@id=\"B1\"]/span";
 	/** @locatorType Xpath */
@@ -100,23 +100,23 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SSOItemFieldInput = "//input[@data-testid='DUM_PROD']";
 	/** @locatorType Xpath */
-	public static final String SSOFirmDateFromInput = "//input[@id='C1056115776862222156_input']";
+	public static final String SSOFirmDateFromInput = "//input[@id='C1725036869148546260_input']";
 	/** @locatorType Xpath */
-	public static final String SSOFirmDateToInput = "//input[@id='C1056115803025222157_input']";
+	public static final String SSOFirmDateToInput = "//input[@id='C1725036895311546261_input']";
 	/** @locatorType Xpath */
-	public static final String SSOTentDateFromInput = "//input[@id='C1056418322374047728_input']";
+	public static final String SSOTentDateFromInput = "//input[@id='C1725339414660371832_input']";
 	/** @locatorType Xpath */
-	public static final String SSOTentDateToInput = "//input[@id='C1056418447432047729_input']";
+	public static final String SSOTentDateToInput = "//input[@id='C1725339539718371833_input']";
 	/** @locatorType Xpath */
 	public static final String SSOLineSave = "//button[@data-testid='SaveLineRow']";
 	/** @locatorType Xpath */
-	public static final String FetchPOSelectNUm = "//*[@id=\"C1956806366053661061\"]";
+	public static final String FetchPOSelectNUm = "//*[@id=\"QC_toolbar_controls\"]/div[1]/div/div[2]";
 	/** @locatorType Xpath */
-	public static final String FetchPOEneterNum = "//input[@id='QC_sort_widget_search_field']";
+	public static final String FetchPOEneterNum = "//input[@id='QC_search_field']";
 	/** @locatorType Xpath */
-	public static final String SsoTentType = "//*[@id=\"C1056115492761222153\"]";
+	public static final String SsoTentType = "//SELECT[@data-testid='SSLN_BUCKET_TYPE']";
 	/** @locatorType Xpath */
-	public static final String SsoFirmType = "//*[@id=\"C1056419890013047743\"]";
+	public static final String SsoFirmType = "//SELECT[@data-testid='SSLN_FRM_BKT_TYPE']";
 	/** @locatorType Xpath */
 	public static final String SsoGenSchdl = "//button[@data-testid='Generate_Schedule']";
 	/** @locatorType Xpath */
@@ -126,7 +126,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoItemFrame = "//*[@id=\"apex_dialog_1\"]/iframe";
 	/** @locatorType Xpath */
-	public static final String ItmworkflowOK = "//button[@id='B1629660995946245032']";
+	public static final String ItmworkflowOK = "//button[@id='B2298629510439605303']";
 	/** @locatorType Xpath */
 	public static final String SsoLineCount = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */

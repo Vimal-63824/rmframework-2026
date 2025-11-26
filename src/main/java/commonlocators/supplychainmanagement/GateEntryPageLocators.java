@@ -21,7 +21,7 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static String GateEntryPendingPoSelectAll = "//input[@id='check_all']";
 	/** @locatorType Xpath */
-	public static String CreateGeFromPO = "//button[@data-testid='Create_GE' and not(@title)]";
+	public static String CreateGeFromPO = "//button[@data-testid='Create_GE']";
 	/** @locatorType Xpath */
 	public static String SelectGateKeeper = "//select[@data-testid='P16151311001_GACDT_GATE_KEEPER']";
 	/** @locatorType Xpath */
@@ -59,37 +59,37 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static String PendSupplierInput = "//input[@id='P1615131109_SUPPLIER']";
 	/** @locatorType Xpath */
-	public static String SelectGateKeeperSso = "//*[@id=\"P1615131109_GACDT_GATE_KEEPER\"]";
+	public static String SelectGateKeeperSso = "//select[@data-testid='P16151311001_GACDT_GATE_KEEPER']";
 	/** @locatorType Xpath */
-	public static String DcNumberFieldSso = "//input[@id=\"P1615131109_GACDT_DC_NO\"]";
+	public static String DcNumberFieldSso = "//input[@data-testid='P16151311001_GACDT_DC_NO']";
 	/** @locatorType Xpath */
-	public static String SupplierBillNumberSso = "//input[@id=\"P1615131109_GACDT_INV_NO\"]";
+	public static String SupplierBillNumberSso = "//input[@data-testid='P16151311001_GACDT_INV_NO']";
 	/** @locatorType Xpath */
-	public static String VehicleNumberSso = "//input[@id=\"P1615131109_GACDT_VEHICLE_NO\"]";
+	public static String VehicleNumberSso = "//input[@data-testid='P16151311001_GACDT_VEHICLE_NO']";
 	/** @locatorType Xpath */
-	public static String DriverNameSso = "//input[@id=\"P1615131109_GACDT_DRIVER_NAME\"]";
+	public static String DriverNameSso = "//input[@data-testid='P16151311001_GACDT_DRIVER_NAME']";
 	/** @locatorType Xpath */
-	public static String ReferenceFieldSso = "//input[@id=\"P1615131109_GACDT_REF\"]";
+	public static String ReferenceFieldSso = "//input[@data-testid='P16151311001_GACDT_REF']";
 	/** @locatorType Xpath */
-	public static String OkButtonSso = "//*[@id=\"B235091616153357503\"]/span";
+	public static String OkButtonSso = "//button[@data-testid='OK_ge']";
 	/** @locatorType Xpath */
-	public static String DateInputSso = "//input[@id='P1615131109_DATE_1_input']";
+	public static String DateInputSso = "//input[@id='P16151311001_DATE_1_input']";
 	/** @locatorType Xpath */
-	public static String DocNumSso = "//input[@id='P1615131109_DOC_NO']";
+	public static String DocNumSso = "//input[@data-testid='P16151311001_GACDT_DC_NO']";
 	/** @locatorType Xpath */
-	public static String GateKeeperSso = "//*[@id=\"P751310201_GEHD_GK_ID_lov_btn\"]/span";
+	public static String GateKeeperSso = "//input[@data-testid='P751310201_GEHD_GK_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static String GateEntryAdd = "//*[@id=\"B1166919941905991607\"]";
+	public static String GateEntryAdd = "//button[@data-testid='add']";
 	/** @locatorType Xpath */
-	public static String GateEntryLocLov = "//*[@id=\"P75131020_GEHD_PLNT_LOC_ID_lov_btn\"]/span";
+	public static String GateEntryLocLov = "//*[@id='P7513102011_GEHD_PLNT_LOC_ID_lov_btn']/span";
 	/** @locatorType Xpath */
-	public static String GateEntryType = "//*[@id=\"P75131020_GEHD_MODE\"]";
+	public static String GateEntryType = "//select[@data-testid='P75131020_GEHD_MODE']";
 	/** @locatorType Xpath */
-	public static String GateKeeperDirectLov = "//*[@id=\"P75131020_GEHD_GK_ID_lov_btn\"]/span";
+	public static String GateKeeperDirectLov = "//input[@data-testid='P75131020_GEHD_GK_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static String DirectDriverNameGate = "//input[@id=\"P75131020_GEHD_DRIVER_NAME\"]";
+	public static String DirectDriverNameGate = "//input[@data-testid='P75131020_GEHD_DRIVER_NAME']";
 	/** @locatorType Xpath */
-	public static String DirectGateCreate = "//*[@id=\"B1226849180519755237\"]/span";
+	public static String DirectGateCreate = "//button[@id='B1569463386726405156']";
 	/** @locatorType Xpath */
 	public static String DirectGateAddLine = "//*[@id=\"B4689423975622198221\"]/span";
 	/** @locatorType Xpath */
@@ -190,4 +190,10 @@ public class GateEntryPageLocators {
 	public static final String FindGateEntryNumber(String value) {
 		return "(//a[text()='" + value + "']/../../td/div[contains(@style,'color')])[last()]";
 	}
+	/** @locatorType Xpath */
+	public static final String OpoAddFrame = "//iframe[@title='Open PO/RC ']";
+	/** @locatorType Xpath */
+	public static final String GateDirectFrame = "//iframe[@title='Gate Entry ']";
+	
+	
 }
