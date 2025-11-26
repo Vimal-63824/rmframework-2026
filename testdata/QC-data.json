@@ -1350,6 +1350,7 @@
 	"WholeInsItem": "GWL - ITEM - WHOLE INS",
 	"PartialInsItem": "GWL - ITEM - PARTIAL INS (RM)",
 	"MaterialReturnPrefix": "MRTN",
-	"WarehouseType": "Warehouse"
+	"WarehouseType": "Warehouse",
+	"OutsideType": "Outside"
 	
 }

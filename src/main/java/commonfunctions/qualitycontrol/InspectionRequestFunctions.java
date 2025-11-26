@@ -104,16 +104,21 @@ public class InspectionRequestFunctions {
 			if (flag) {
 				webDB.clickAnElement(InspectionRequestLocators.IRCreateTickIcon, ElementType.Xpath);
 				webDB.switchToDefaultContent();
-				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-				}
-				flag = webDB.waitForElement(InspectionRequestLocators.IRDisplayDocNumber, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "Inspection Request Created Successfully");
-					String DisplayDocNo = webDB.getTextFromElement(InspectionRequestLocators.IRDisplayDocNumber,
-							ElementType.Xpath);
-					VariableHandler.setInspectionReqNumber(DisplayDocNo);
-					logs.logging("INFO", "Dislayed Doc no: " + DisplayDocNo);
+					logs.logging("INFO", "Inspection Document Creation Tick Icon Clicked");
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+					commonFunc.checkSuccessToastMessageDisappear();
+					flag = webDB.waitForElement(InspectionRequestLocators.IRDisplayDocNumber, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Inspection Request Created Successfully");
+						String DisplayDocNo = webDB.getTextFromElement(InspectionRequestLocators.IRDisplayDocNumber,
+								ElementType.Xpath);
+						VariableHandler.setInspectionReqNumber(DisplayDocNo);
+						logs.logging("INFO", "Dislayed Doc no: " + DisplayDocNo);
+					}
 				}
 			}
 		}
@@ -128,6 +133,10 @@ public class InspectionRequestFunctions {
 	public void clickLoadButtonInInspectionRequest() {
 		flag = webDB.waitForElement(InspectionRequestLocators.IRLoadButton, ElementType.Xpath);
 		if (flag) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(InspectionRequestLocators.IRLoadButton, ElementType.Xpath);
 			webDB.clickAnElement(InspectionRequestLocators.IRLoadButton, ElementType.Xpath);
 			flag = webDB.waitForElement(InspectionRequestLocators.IRLoadPendingIframe, ElementType.Xpath);
@@ -175,9 +184,12 @@ public class InspectionRequestFunctions {
 				flag = webDB.waitForElement(InspectionRequestLocators.IRPendingDocQuantityInput(Item),
 						ElementType.Xpath);
 				if (flag) {
+					logs.logging("INFO", "Item Searched and Displayed in Load Frame");
+					webDB.clearTextField(InspectionRequestLocators.IRPendingDocQuantityInput(Item), ElementType.Xpath);
 					flag = webDB.sendTextToAnElement(InspectionRequestLocators.IRPendingDocQuantityInput(Item),
 							Quantity, ElementType.Xpath);
 					if (flag) {
+						logs.logging("INFO", "Quantity Entered: " + Quantity);
 						webDB.moveToElement(InspectionRequestLocators.IRPendingDocCheckBox(Item), ElementType.Xpath);
 						webDB.clickAnElement(InspectionRequestLocators.IRPendingDocCheckBox(Item), ElementType.Xpath);
 						flag = webDB.waitForElement(InspectionRequestLocators.IRLoadPendingOkButton, ElementType.Xpath);
@@ -186,6 +198,9 @@ public class InspectionRequestFunctions {
 							webDB.clickAnElement(InspectionRequestLocators.IRLoadPendingOkButton, ElementType.Xpath);
 							webDB.switchToDefaultContent();
 							flag = webDB.waitForElement(InspectionRequestLocators.IRPostButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Check Box Clicked and Item Loaded");
+							}
 						}
 					}
 				}
@@ -203,8 +218,8 @@ public class InspectionRequestFunctions {
 		flag = webDB.waitForElement(InspectionRequestLocators.IRHeaderSaveIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(InspectionRequestLocators.IRHeaderSaveIcon, ElementType.Xpath);
-			webDB.clickAnElement(InspectionRequestLocators.IRHeaderSaveIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			flag = webDB.clickAnElement(InspectionRequestLocators.IRHeaderSaveIcon, ElementType.Xpath);
+//			webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Post Button Clicked");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -213,8 +228,8 @@ public class InspectionRequestFunctions {
 				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(InspectionRequestLocators.IRPostButton, ElementType.Xpath);
 				if (flag) {
-					webDB.moveToElement(InspectionRequestLocators.IRHeaderSaveIcon, ElementType.Xpath);
-					webDB.clickAnElement(InspectionRequestLocators.IRHeaderSaveIcon, ElementType.Xpath);
+					webDB.moveToElement(InspectionRequestLocators.IRPostButton, ElementType.Xpath);
+					webDB.clickAnElement(InspectionRequestLocators.IRPostButton, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 					if (flag) {
 						logs.logging("INFO", "Post Button Clicked");

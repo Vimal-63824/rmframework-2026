@@ -45,6 +45,7 @@ import commonlocators.supplychainmanagement.CustomerItemsLocators;
 import commonlocators.supplychainmanagement.CustomerScheduleLocators;
 import commonlocators.supplychainmanagement.GateEntryPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
+import commonlocators.supplychainmanagement.MaterialReturnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.POAmendmentLocators;
@@ -169,7 +170,7 @@ public class CommonFunctions {
 				if (flag) {
 					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
-					if(webDB.verifyIsElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath)) {
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					}
@@ -3096,6 +3097,17 @@ public class CommonFunctions {
 	public void navigateInspectionRequest() {
 		navigateToSearchTab(webDB.getDataFromProperties("InspectionRequestScreen"),
 				InspectionRequestLocators.InspectionRequestAddIcon);
+	}
+
+	/**
+	 * This method used to Navigate Material Return
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateMaterialReturn() {
+//		hardWait(10000);
+		navigateToSearchTab(webDB.getDataFromProperties("MaterialReturnScreen"),
+				MaterialReturnLocators.MaterialReturnAddIcon);
 	}
 
 }

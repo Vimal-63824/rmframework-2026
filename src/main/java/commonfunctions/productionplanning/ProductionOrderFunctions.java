@@ -989,6 +989,7 @@ public class ProductionOrderFunctions {
 		flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Show More Button Is Displayed");
+			webDB.moveToElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
 			if (flag) {
@@ -1007,6 +1008,7 @@ public class ProductionOrderFunctions {
 							flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Show Less Button Is Displayed");
+								webDB.moveToElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 								webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 								flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 							}
@@ -2106,7 +2108,7 @@ public class ProductionOrderFunctions {
 		verifyProductionOrderMREventAndRestOP(FirstOpr, RestOpr,
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
-				commonFunc.getDataFromTestDataSheet("InsideType"));
+				commonFunc.getDataFromTestDataSheet("BothType"));
 		verifyStoreProcessAndRawMaterial();
 		navigateToRoutingSubTab();
 		storeRoutingProcessAndProcessType();
@@ -2297,8 +2299,8 @@ public class ProductionOrderFunctions {
 		clickSaveIconInCreationProductionOrder();
 		verifyProductionOrderMREventAndRestOP(FirstOpr, RestOpr,
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
-		verifyProcessType(commonFunc.getDataFromTestDataSheet("Outside"),
-				commonFunc.getDataFromTestDataSheet("InsideType"));
+		verifyProcessType(commonFunc.getDataFromTestDataSheet("BothType"),
+				commonFunc.getDataFromTestDataSheet("BothType"));
 		verifyStoreProcessAndRawMaterial();
 		navigateToRoutingSubTab();
 		storeRoutingProcessAndProcessType();
@@ -2559,7 +2561,7 @@ public class ProductionOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 
-	public void verifyManualProductionOrderPendingQueueInsideAndOutside() {
+	public boolean verifyManualProductionOrderPendingQueueInsideAndOutside() {
 		try {
 			int OrderReleaseCount = 0;
 			String FirstOpr = commonFunc.getDataFromTestDataSheet("ComQty");
@@ -2713,6 +2715,7 @@ public class ProductionOrderFunctions {
 						// TODO Will Add Steps for Outside Operations Subcontract Steps
 					} else if (Operation.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("ComQty"))) {
 						commonFunc.navigateToSubcontractOrder();
+						// Before Verify
 						subContractOrderFunc
 								.verifySearchPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 						subContractOrderFunc.verifyQueueQuantityForSubcontract(ProcessName);
@@ -2734,11 +2737,13 @@ public class ProductionOrderFunctions {
 							String Value = VariableHandler.getLastApprovalAPIHeaderText();
 							Value = Value.replace("Material Request Created. : ", "").trim();
 							Value = Value.replace("SUBCONTRACT ORDER Document is Approved.", "").trim();
+							VariableHandler.setMRNumber(Value);
 							System.out.println(VariableHandler.getMRNumber());
 						}
 						commonFunc.navigateToSubcontractOrder();
 						subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
 								commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+						// After Verify
 						subContractOrderFunc
 								.verifySearchPendingSubcontractOrder(VariableHandler.getProductionOrderNumber());
 						subContractOrderFunc.verifyQueueQuantityForSubcontractAfterOutside(ProcessName);
@@ -2808,12 +2813,11 @@ public class ProductionOrderFunctions {
 			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
 			flag = commonFunc.logoutUser();
-			assertTrue(flag);
+			return flag;
 		} catch (Exception e) {
 			logs.logging("INFO",
 					"Exception occurs while executing 'verifyProdOrderWithoutSOAllInsideOperCQORMoveTypeSingle': " + e);
-			Assert.fail();
-			;
+			return false;
 		}
 	}
 
@@ -3560,6 +3564,7 @@ public class ProductionOrderFunctions {
 			String Value = VariableHandler.getLastApprovalAPIHeaderText();
 			Value = Value.replace("Material Request Created. : ", "").trim();
 			Value = Value.replace("SUBCONTRACT ORDER Document is Approved.", "").trim();
+			VariableHandler.setMRNumber(Value);
 			System.out.println(VariableHandler.getMRNumber());
 		}
 		commonFunc.navigateToSubcontractOrder();
@@ -5733,8 +5738,8 @@ public class ProductionOrderFunctions {
 			clickSaveIconInCreationProductionOrder();
 			verifyProductionOrderMREventAndRestOP(FirstOpr, RestOpr,
 					commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
-			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
-					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("OutsideType"),
+					commonFunc.getDataFromTestDataSheet("OutsideType"));
 			verifyStoreProcessAndRawMaterial();
 			navigateToRoutingSubTab();
 			storeRoutingProcessAndProcessType();
