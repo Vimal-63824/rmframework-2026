@@ -289,7 +289,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Pend_CS_CreateInvoice_Btn = "//button[@id='B2']";
 	/** @Locator XPATH */
-	public static final String SI_Unpick_Btn = "//button[@data-testid='Sales_Invoice']";
+	public static final String SI_Unpick_Btn = "//button[@data-testid='Unpick']";
 	/** @Locator XPATH */
 	public static final String SI_Cancel_Btn = "//button[@data-testid='Cancel']";
 	/** @Locator XPATH */
