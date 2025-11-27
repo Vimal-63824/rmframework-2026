@@ -94,8 +94,9 @@ public class MaterialRequestFunctions {
 					logs.logging("INFO", "Tick Icon Is Displayed");
 					webDB.clickAnElement(MaterialRequestLocators.TickIconMaterialRequest, ElementType.Xpath);
 					webDB.switchToDefaultContent();
-					flag = webDB.waitForElement(MaterialRequestLocators.HeaderLocationId, ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialRequestLocators.MaterialRequestDocumentNo, ElementType.Xpath);
 					if (flag) {
+						storeMaterialRequestNumber();
 						logs.logging("INFO", "Location Id Is Displayed");
 					}
 				}
@@ -177,7 +178,7 @@ public class MaterialRequestFunctions {
 					webDB.clickAnElement(MaterialRequestLocators.RequestQuantity, ElementType.Xpath);
 					flag = webDB.waitForElement(MaterialRequestLocators.RequestQuantityInput, ElementType.Xpath);
 					if (flag) {
-						webDB.sendTextToAnElement(MaterialRequestLocators.RequestQuantityInput, RequestQty,
+						flag = webDB.sendTextToAnElement(MaterialRequestLocators.RequestQuantityInput, RequestQty,
 								ElementType.Xpath);
 //						String value = webDB.getAttributeFromElement(MaterialRequestLocators.RequestQuantityInput,
 //								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));

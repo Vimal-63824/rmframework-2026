@@ -30,13 +30,13 @@ public class InspectionRequestLocators {
 	/** @locatorType Xpath */
 	public static final String IRCreatePrefix = "//input[@data-testid='P20171010_TQPHD_PLN_PFX']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String IRCreateLocationId = "//input[@data-testid='P20171011_TQPHD_PLNT_LOC_ID']/following-sibling::button";
+	public static final String IRCreateLocationId = "//input[@data-testid='P20171010_TQPHD_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String IRCreateWarehouseId = "//input[@data-testid='P20171011_TQPHD_QC_ID']/following-sibling::button";
+	public static final String IRCreateWarehouseId = "//input[@data-testid='P20171010_TQPHD_QC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String IRCreateIncharge = "//input[@data-testid='P20171011_TQPHD_QLTY_INCHARGE']/following-sibling::button";
+	public static final String IRCreateIncharge = "//input[@data-testid='P20171010_TQPHD_QLTY_INCHARGE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String IRCreateDocDateInput = "//*[@data-testid='P20171010_TQPHD_PLN_DATE']/a";
+	public static final String IRCreateDocDateInput = "//*[@data-testid='P20171010_TQPHD_PLN_DATE']/input";
 	/** @locatorType Xpath */
 	public static final String IRDisplayDocNumber = "//span[@data-testid='P201710101_TQPHD_PLN_NO']";
 

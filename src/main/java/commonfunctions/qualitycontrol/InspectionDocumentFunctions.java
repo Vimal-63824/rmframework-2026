@@ -6,6 +6,10 @@ package commonfunctions.qualitycontrol;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.io.File;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -17,12 +21,16 @@ import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.MaterialIssuanceVoucherFunctions;
+import commonfunctions.supplychainmanagement.MaterialRequestFunctions;
+import commonfunctions.supplychainmanagement.MaterialReturnFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.MaterialReceiptVoucherLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -33,6 +41,10 @@ public class InspectionDocumentFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
+	private static InspectionRequestFunctions insRequestFunc = new InspectionRequestFunctions();
+	private static MaterialRequestFunctions MRFunc = new MaterialRequestFunctions();
+	private static MaterialReturnFunctions MatReturnFunc = new MaterialReturnFunctions();
+	private static MaterialIssuanceVoucherFunctions materialIssuanceVoucherFunc = new MaterialIssuanceVoucherFunctions();
 
 	/**
 	 * Verify Pending Inspection Documents
@@ -996,7 +1008,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * Verify Create Pending Inspection Documents with Voucher Number
 	 * 
@@ -1232,9 +1244,40 @@ public class InspectionDocumentFunctions {
 			logs.logging("INFO", "No alert appeared or other error: " + e.getMessage());
 		}
 	}
-	
+
 	/**
-	 * Verify Create Pending Inspection Documents with Production Number
+	 * Click Cancel Icon in header
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCancelInHeaderInspectionDocument() {
+		flag = webDB.waitForElement(InspectionDocumentsLocators.InspDocHeaderCancelButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(InspectionDocumentsLocators.InspDocHeaderCancelButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Pending Iframe switching
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void switchIframeInPendingInspectionDocument() {
+		flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Pending Inspection Documents with Request Number
 	 * 
 	 * @author Sakthi-GWL
 	 * @param DocNo
@@ -1243,58 +1286,206 @@ public class InspectionDocumentFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
-			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
+			switchIframeInPendingInspectionDocument();
+			logs.logging("INFO", "Pending Icon Clicked in Ins Doc.");
+			commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingInsReqNoLov, DocNo);
+			switchIframeInPendingInspectionDocument();
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "Pending Inspection Documents Is Displayed");
-				webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(InspectionDocumentsLocators.PendingSearchField, ElementType.Xpath);
+				webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingInsReqNoLov, DocNo);
-					flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
+					logs.logging("INFO", "Search button Clicked and Doc No Displayed");
+					webDB.moveToElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+					webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+					flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+					if (flag) {
+						webDB.moveToElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+							webDB.switchToDefaultContent();
+							flag = webDB.waitForElement(InspectionDocumentsLocators.InspactionDocumentsNumber,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Document Created Successfully");
+								storeInspectionDocumentsNumber();
+							}
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Click Checkbox Pending Inspection Documents with Request Number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocNo
+	 */
+	public void clickPendingSelectTwoInspectDocumentWithInsReqNumber(String DocNo, String DocNo2) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			switchIframeInPendingInspectionDocument();
+			logs.logging("INFO", "Pending Icon Clicked in Ins Doc.");
+			commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingInsReqNoLov, DocNo);
+			switchIframeInPendingInspectionDocument();
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search button Clicked and Doc No Displayed");
+					webDB.moveToElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+					flag = webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
 							ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Go Button IS Displayed");
-						webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
-						webDB.switchToFrame(InspectionDocumentsLocators.PendingInspectionFrame, ElementType.Xpath);
-						flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+						logs.logging("INFo", "Document No 1 Searched and Checkbox Clicked: " + DocNo);
+						commonFunc.clearFiltersInFindPage();
+						commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingInsReqNoLov,
+								DocNo2);
+						switchIframeInPendingInspectionDocument();
+						flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
 								ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(3000);
-							logs.logging("INFO", "Inspection CheckBox Is Displayed");
-							webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+							webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn,
 									ElementType.Xpath);
-							flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo2),
+									ElementType.Xpath);
 							if (flag) {
-								commonFunc.hardWait(3000);
-								webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
-								flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								logs.logging("INFO", "Search button Clicked and Doc No Displayed");
+								webDB.moveToElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo),
+										ElementType.Xpath);
+								flag = webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo2),
+										ElementType.Xpath);
 								if (flag) {
-									logs.logging("INFO", "Ok Button Is Displayed");
-									webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(InspectionDocumentsLocators.LocationId,
-											ElementType.Xpath);
-									if (flag) {
-										String AcceptedValue = webDB.getDomPropertyFromElement(
-												InspectionDocumentsLocators.AcceptedQuantity, ElementType.Xpath,
-												commonFunc.getDataFromTestDataSheet("Value"));
-										if (AcceptedValue.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"))) {
-											logs.logging("INFO",
-													"Inspection Documents Is Not Created Properly Retry Again....");
-											flag = webDB.waitForElement(InspectionDocumentsLocators.BackButton,
-													ElementType.Xpath);
-											if (flag) {
-												webDB.clickAnElement(InspectionDocumentsLocators.BackButton,
-														ElementType.Xpath);
-												verifyPendingInspectionDocuments(VariableHandler.getScoGrnNumber());
-											}
-										}
-									}
+									logs.logging("INFo", "Document No 2 Searched and Checkbox Clicked: " + DocNo2);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Click Create QC button Pending Inspection Documents with Request
+	 * Number
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyTwoInspectionDocumentsSelectedInPending(String Doc1, String Doc2) {
+		switchIframeInPendingInspectionDocument();
+		flag = webDB.waitForElement(InspectionDocumentsLocators.InspDocPendingShowDoc, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(InspectionDocumentsLocators.InspDocPendingShowDoc, ElementType.Xpath);
+			flag = webDB.clickAnElement(InspectionDocumentsLocators.InspDocPendingShowDoc, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Show My Record Button Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitForElement(InspectionDocumentsLocators.InspDocPendingTableDocNo, ElementType.Xpath);
+				List<WebElement> elements = webDB
+						.getListOfElements(InspectionDocumentsLocators.InspDocPendingTableDocNo, ElementType.Xpath);
+				flag = elements.size() == 2;
+				logs.logging("INFO", "Table Documents Size: " + elements.size());
+				if (flag) {
+					for (WebElement webElement : elements) {
+						if (webElement.getText().equalsIgnoreCase(Doc1)
+								|| webElement.getText().equalsIgnoreCase(Doc1)) {
+							flag = true;
+						}
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Click Create QC button Pending Inspection Documents with Request
+	 * Number
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCreateQCInPendingInspectionDocument() {
+		switchIframeInPendingInspectionDocument();
+		flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+			webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(InspectionDocumentsLocators.InspactionDocumentsNumber, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Document Created Successfully");
+					storeInspectionDocumentsNumber();
+				}
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Pending Inspection Documents with partial quantity
+	 * 
+	 * @author Sakthi-GWL
+	 * @param DocNo
+	 */
+	public void verifyCreatePendingInsDocWithVouNoPartialQuantity(String DocNo, String Quantity) {
+		flag = webDB.waitForElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CommonUiLocators.PendingInspectionDocuments, ElementType.Xpath);
+			switchIframeInPendingInspectionDocument();
+			logs.logging("INFO", "Pending Icon Clicked in Ins Doc.");
+			commonFunc.searchAndSelectValueInFilters(InspectionDocumentsLocators.PendingVoucherNoLov, DocNo);
+			switchIframeInPendingInspectionDocument();
+			flag = webDB.waitForElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(InspectionDocumentsLocators.PendingInspectionSearchBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Search button Clicked and Doc No Displayed");
+					webDB.clearTextField(InspectionDocumentsLocators.InspectionQuantityInput(DocNo), ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(InspectionDocumentsLocators.InspectionQuantityInput(DocNo),
+							Quantity, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Quantity Entered value: " + Quantity);
+						webDB.moveToElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+						webDB.clickAnElement(InspectionDocumentsLocators.InspectionCheckBox(DocNo), ElementType.Xpath);
+						flag = webDB.waitForElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							webDB.clickAnElement(InspectionDocumentsLocators.CreateQCDoc, ElementType.Xpath);
+							flag = webDB.waitForElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(InspectionDocumentsLocators.OKButton, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(InspectionDocumentsLocators.InspactionDocumentsNumber,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Document Created Successfully");
 									storeInspectionDocumentsNumber();
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
-												ElementType.Xpath);
-									}
+								}
+								if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath);
 								}
 							}
 						}
@@ -1304,6 +1495,251 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
-	
-//	public void 
+
+	/**
+	 * How to create Inspection document from Pending Inspection Request - Whole?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyInspectionDocumentsFromRequestWholeType() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String Quantity = "10";
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateInspectionRequest();
+			insRequestFunc.clickAddIconInInspectionRequest();
+			insRequestFunc.fillDateVoucherTypeAndPrefixInCreationFrame(Today,
+					commonFunc.getDataFromTestDataSheet("StockQcText"),
+					commonFunc.getDataFromTestDataSheet("StockQcPrefix"));
+			insRequestFunc.fillWarehouseAndInspectorInCreationFrame(
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"),
+					commonFunc.getDataFromTestDataSheet("GWL-RInspector"));
+			insRequestFunc.clickLoadButtonInInspectionRequest();
+			insRequestFunc.searchItemNameInPendingLoadAndCreate(commonFunc.getDataFromTestDataSheet("WholeInsItem"),
+					Quantity);
+			insRequestFunc.clickSaveHeaderAndPostDocument();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getInspectionReqNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateInspectionDocumentsPage();
+			verifyCreatePendingInspectionDocumentWithInsReqNumber(VariableHandler.getInspectionReqNumber());
+			clickTickAndPostIcon();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyInspectionDocumentsFromRequestWholeType': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * How to create Inspection document from Pending Inspection Request - partial?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyInspectionDocumentsFromRequestPartialType() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String Quantity = "10";
+		String PartialQuantity = "5";
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					System.getProperty("AdminUsername"));
+			commonFunc.navigateToInventoryMaterialRequest();
+			MRFunc.verifyCreateMaterialRequest(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("IntraTransfer"),
+					commonFunc.getDataFromTestDataSheet("FG-WH-KD"),
+					commonFunc.getDataFromTestDataSheet("GWL-RInspector"),
+					commonFunc.getDataFromTestDataSheet("Shift_100"));
+			MRFunc.verifyAddItem(commonFunc.getDataFromTestDataSheet("PartialInsItem"), Quantity);
+			MRFunc.lineSaveButton();
+			MRFunc.headerSaveAndPost();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToInventoryMaterialRequest();
+			MRFunc.checkStatusOfMRNo(VariableHandler.getMRNumber(),
+					commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+			commonFunc.navigateToMaterialIssuanceVoucherTab();
+			materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMRNumber());
+			materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+			commonFunc.navigateToMaterialIssuanceVoucherTab();
+			materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
+					commonFunc.getDataFromTestDataSheet("PostedStatus"));
+			commonFunc.navigateMaterialReturn();
+			MatReturnFunc.clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("MaterialReturnPrefix"),
+					commonFunc.getDataFromTestDataSheet("WarehouseType"),
+					commonFunc.getDataFromTestDataSheet("FG-WH-KD"), commonFunc.getDataFromTestDataSheet("RMU100_WH"),
+					commonFunc.getDataFromTestDataSheet("Shift_100"));
+			MatReturnFunc.fillTypeAndMIVDocNumberAndFetchLoad(commonFunc.getDataFromTestDataSheet("PartialInsItem"),
+					VariableHandler.getMIVNumber());
+			MatReturnFunc.fillToolLifeRefAndSaveHeader(commonFunc.getDataFromTestDataSheet("RefText_Test"));
+			MatReturnFunc.clickMoveToInspection();
+			commonFunc.navigateInspectionDocumentsPage();
+			verifyCreatePendingInsDocWithVouNoPartialQuantity(VariableHandler.getInspectionReqNumber(),
+					PartialQuantity);
+			clickTickAndPostIcon();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateInspectionDocumentsPage();
+			verifyCreatePendingInsDocWithVouNoPartialQuantity(VariableHandler.getInspectionReqNumber(),
+					PartialQuantity);
+			clickTickAndPostIcon();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			// TODO Need to Add MRV Steps
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyInspectionDocumentsFromRequestPartialType': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * How to Cancel the Inspection document?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyCancelInspectionDocuments() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String Quantity = "10";
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateInspectionRequest();
+			insRequestFunc.clickAddIconInInspectionRequest();
+			insRequestFunc.fillDateVoucherTypeAndPrefixInCreationFrame(Today,
+					commonFunc.getDataFromTestDataSheet("StockQcText"),
+					commonFunc.getDataFromTestDataSheet("StockQcPrefix"));
+			insRequestFunc.fillWarehouseAndInspectorInCreationFrame(
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"),
+					commonFunc.getDataFromTestDataSheet("GWL-RInspector"));
+			insRequestFunc.clickLoadButtonInInspectionRequest();
+			insRequestFunc.searchItemNameInPendingLoadAndCreate(commonFunc.getDataFromTestDataSheet("WholeInsItem"),
+					Quantity);
+			insRequestFunc.clickSaveHeaderAndPostDocument();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getInspectionReqNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateInspectionDocumentsPage();
+			verifyCreatePendingInspectionDocumentWithInsReqNumber(VariableHandler.getInspectionReqNumber());
+			clickCancelInHeaderInspectionDocument();
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO", "Exception occur while executing 'verifyCancelInspectionDocuments': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * How to create Inspection document for Multiple Pending Inspection request?
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean
+	 */
+	public boolean verifyInspectionDocumentsFromRequestMultiDocuments() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate date = LocalDate.now();
+		String Today = date.format(formatter);
+		String Quantity = "10";
+		String Doc1 = null;
+		String Doc2 = null;
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateInspectionRequest();
+			insRequestFunc.clickAddIconInInspectionRequest();
+			insRequestFunc.fillDateVoucherTypeAndPrefixInCreationFrame(Today,
+					commonFunc.getDataFromTestDataSheet("StockQcText"),
+					commonFunc.getDataFromTestDataSheet("StockQcPrefix"));
+			insRequestFunc.fillWarehouseAndInspectorInCreationFrame(
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"),
+					commonFunc.getDataFromTestDataSheet("GWL-RInspector"));
+			insRequestFunc.clickLoadButtonInInspectionRequest();
+			insRequestFunc.searchItemNameInPendingLoadAndCreate(commonFunc.getDataFromTestDataSheet("WholeInsItem"),
+					Quantity);
+			insRequestFunc.clickSaveHeaderAndPostDocument();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getInspectionReqNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			Doc1 = VariableHandler.getInspectionReqNumber();
+			commonFunc.navigateInspectionRequest();
+			insRequestFunc.clickAddIconInInspectionRequest();
+			insRequestFunc.fillDateVoucherTypeAndPrefixInCreationFrame(Today,
+					commonFunc.getDataFromTestDataSheet("StockQcText"),
+					commonFunc.getDataFromTestDataSheet("StockQcPrefix"));
+			insRequestFunc.fillWarehouseAndInspectorInCreationFrame(
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"),
+					commonFunc.getDataFromTestDataSheet("GWL-RInspector"));
+			insRequestFunc.clickLoadButtonInInspectionRequest();
+			insRequestFunc.searchItemNameInPendingLoadAndCreate(commonFunc.getDataFromTestDataSheet("WholeInsItem"),
+					Quantity);
+			insRequestFunc.clickSaveHeaderAndPostDocument();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getInspectionReqNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			Doc2 = VariableHandler.getInspectionReqNumber();
+			commonFunc.navigateInspectionDocumentsPage();
+			clickPendingSelectTwoInspectDocumentWithInsReqNumber(Doc1, Doc2);
+			verifyTwoInspectionDocumentsSelectedInPending(Doc1, Doc2);
+			clickCreateQCInPendingInspectionDocument();
+			clickTickAndPostIcon();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occur while executing 'verifyInspectionDocumentsFromRequestWholeType': " + e);
+			return false;
+		}
+	}
+
 }

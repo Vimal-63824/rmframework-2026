@@ -39,6 +39,11 @@ public class InspectionDocumentsLocators {
 	}
 
 	/** @locatorType Xpath */
+	public static final String InspectionQuantityInput(String DocNo) {
+		return "//input[@id='inputField_" + DocNo + "']";
+	}
+
+	/** @locatorType Xpath */
 	public static final String InspectionStatusTableText(String Idno) {
 		return "//a[text()='" + Idno + "']/../../td[20]";
 	}
@@ -99,4 +104,10 @@ public class InspectionDocumentsLocators {
 	public static final String PendingVoucherNoLov = "//*[@data-testid='P20171310150_VOU_NO']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String PendingInsReqNoLov = "//*[@data-testid='P20171310150_INSP_REQ_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String InspDocHeaderCancelButton = "//button[@id='B4177685788772509642']";
+	/** @locatorType Xpath */
+	public static final String InspDocPendingShowDoc = "//button[@id='show']";
+	/** @locatorType Xpath */
+	public static final String InspDocPendingTableDocNo = "//table[@id='8792142794784090710']//tr/td[5]";
 }
