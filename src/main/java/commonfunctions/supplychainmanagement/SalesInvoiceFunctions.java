@@ -5397,14 +5397,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -6554,15 +6551,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(
 				webDB.getDataFromProperties("MultipleSalesInvoiceLine"));

@@ -53,7 +53,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
 				"GateEntry");
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
@@ -73,9 +73,9 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromMultiplePo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
 				"GateEntry");
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
 				"GateEntry");
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
