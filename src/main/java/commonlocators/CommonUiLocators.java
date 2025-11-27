@@ -420,4 +420,8 @@ public class CommonUiLocators {
 	public static final String PendingPR = "//button[@id='B1607785281688206710']";
 	/** @locatorType Xpath */
 	public static final String PurchaseRequestAddIcon = "//button[@title='Create PR/SSR']";
+	/** @locatorType Xpath */
+	public static final String PreDispatchLabel = "//input[@data-testid='P36719401_PRODPLNT_PDI_FLAG_3']/following-sibling::label";
+	/** @locatorType Xpath */
+	public static final String PreDispatchInputBox = "//input[@data-testid='P36719401_PRODPLNT_PDI_FLAG_3']";
 }
