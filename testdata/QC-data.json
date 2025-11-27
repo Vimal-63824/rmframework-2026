@@ -1343,6 +1343,7 @@
 	"ForwardQCtatus": "Forward to qc",
 	"FG-10005-Item": "GWL-FG-10005",
 	"FG-10001-Item-BOM": "BOM-2526-0000002",
+	"BomAllInsideSORef": "BOM-2526-0000143",
 	"SoDesc-BOMItem": "GWL-SO-BOMITEM-10001",
 	"SoDescNumber": "SORD-2526-00432",
 	"ProdAgainstSOQuantity": "10",
@@ -1351,6 +1352,9 @@
 	"PartialInsItem": "GWL - ITEM - PARTIAL INS (RM)",
 	"MaterialReturnPrefix": "MRTN",
 	"WarehouseType": "Warehouse",
-	"OutsideType": "Outside"
+	"OutsideType": "Outside",
+	"BomFirstInsideRestOutside": "BOM-2526-0000183",
+	"BomAllOutsideSORef": "BOM-2526-0000185",
+	"BomAFirstInsideRestOutsideSORef": "BOM-2526-0000188"
 	
 }

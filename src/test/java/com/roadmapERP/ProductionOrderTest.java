@@ -393,8 +393,8 @@ public class ProductionOrderTest extends RoadMapERPTest {
 		flag = prodOrderFunc.verifyProdOrderWithoutSOAllInsideOperCQCQMoveTypeItem();
 		Assert.assertTrue(flag);
 	}
-	
-	//-----------New Scenarios------------
+
+	// -----------New Scenarios------------
 
 //	/**
 //	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
@@ -465,6 +465,76 @@ public class ProductionOrderTest extends RoadMapERPTest {
 //		flag = prodOrderFunc.verifyManualProdOrderWithSOAllInsideCQCQMoveTypeSingle();
 //		Assert.assertTrue(flag);
 //	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - OR and Rest Op. MR
+	 * Event as CQ - Move Type - Single
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 34, groups = {
+			"Prod Order" }, description = "61 Manual Production order with first Operation MR Event - OR and Rest Op. MR Event as CQ - Move Type - Single")
+	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideOperORCQMoveTypeSingle() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideOperORCQMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 35, groups = {
+			"Prod Order" }, description = "63 Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
+	public void VerifyProdOrderWithoutSOFirstInsideRestOutsideOperCQCQMoveTypeSingle() {
+		flag = prodOrderFunc.verifyProdOrderWithoutSOFirstInsideRestOutsideOperCQCQMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move type Single
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 36, groups = {
+			"Prod Order" }, description = "166 Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move type Single")
+	public void VerifyManualProdOrderWithSOAllOutsideCQCQMoveTypeSingle() {
+		flag = prodOrderFunc.verifyManualProdOrderWithSOAllOutsideCQCQMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - OR and Rest Op. MR
+	 * Event as CQ - Move Type - Single
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 37, groups = {
+			"Prod Order" }, description = "176 Manual Production order with first Operation MR Event - OR and Rest Op. MR Event as CQ - Move Type - Single")
+	public void verifyManualProdOrderWithSOFirstInsideRestOutsideORCQMoveTypeSingle() {
+		flag = prodOrderFunc.verifyManualProdOrderWithSOFirstInsideRestOutsideORCQMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Manual Production order with first Operation MR Event - CQ and Rest Op. MR
+	 * Event as CQ - Move Type - Single
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 38, groups = {
+			"Prod Order" }, description = "177 Manual Production order with first Operation MR Event - CQ and Rest Op. MR Event as CQ - Move Type - Single")
+	public void verifyManualProdOrderWithSOFirstInsideRestOutsideCQCQMoveTypeSingle() {
+		flag = prodOrderFunc.verifyManualProdOrderWithSOFirstInsideRestOutsideCQCQMoveTypeSingle();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Verify After Method

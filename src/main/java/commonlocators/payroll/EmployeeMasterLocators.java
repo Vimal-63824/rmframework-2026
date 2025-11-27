@@ -46,11 +46,9 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_SaveButton = "//*[@data-testid=' AddEmp_SaveButton']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_DisplayEmpID = "//div[@id='emp_dtl']//b";// "//*[@data-testid='
-																				// AddEmp_DisplayEmpID']";
+	public static final String AddEmp_DisplayEmpID = "//div[@id='emp_dtl']//b";
 	/** @locatorType XPATH */
-	public static final String AddEmp_ContactAddLinesIcon = "//button[@id='B1471085506897061068']";// "//*[@data-testid='
-																									// AddEmp_ContactAddLinesIcon']";
+	public static final String AddEmp_ContactAddLinesIcon = "//button[@id='B1471085506897061068']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_QualificationAddLinesIcon = "//*[@data-testid=',AddEmp_QualificationAddLinesIcon']";
 	/** @locatorType XPATH */
@@ -142,8 +140,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_LoadAllowanceBtn = "//*[@data-testid=' AddEmp_LoadAllowanceBtn']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_SaveAllowanceTableBtn = "//button[@id='B1470856383280060568']";// "//*[@data-testid='
-																									// AddEmp_SaveAllowanceTableBtn']";
+	public static final String AddEmp_SaveAllowanceTableBtn = "//button[@id='B1470856383280060568']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AllowanceTableAmountData = "(//b[text()='Allowances']/following::table)[2]//tr/td[3]";
 	/** @locatorType XPATH */
@@ -669,8 +666,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationUploadInput = "//input[@id='P367090602_UPLOAD_input']";
 	/** @locatorType XPATH */
-	public static final String EmpDetailsMigrationUploadBtn = "//button[@id='B4123849933164718752']";// TODO
-																										// Nondata-testid
+	public static final String EmpDetailsMigrationUploadBtn = "//button[@id='B4123849933164718752']";
 	/** @locatorType XPATH */
 	public static final String EmpDetailsMigrationCheckExceptionBtn = "//*[@data-testid='BTN_Check_yIcon']";
 	/** @locatorType XPATH */
