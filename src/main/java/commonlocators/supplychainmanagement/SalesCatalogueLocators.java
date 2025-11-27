@@ -5,7 +5,7 @@ public class SalesCatalogueLocators {
 	/** @locatorType Xpath */
 	public static final String CataloguePriceButton = "//span[text()='Catalog Price']";
 	/** @locatorType Xpath */
-	public static final String AddButtonCatalogue = "//span[@class='t-Icon fa fa-plus']";
+	public static final String AddButtonCatalogue = "//button[@data-testid='add']";
 	/** @locatorType Xpath */
 	public static final String CatalogueItemLov = "//input[@data-testid='SCTLN_PROD_ID']/following-sibling::button";
 
@@ -63,7 +63,7 @@ public class SalesCatalogueLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String EffFromDateClick = "//input[@id='C1798236075098082219_input']";
+	public static final String EffFromDateClick = "//*[@data-testid='SCTLN_DATE_FROM']/input";
 
 	/** @locatorType Xpath */
 	public static final String EffToDateField(int i) {
@@ -71,7 +71,7 @@ public class SalesCatalogueLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String EffToDateClick = "//input[@id='C1798237123294082220_input']";
+	public static final String EffToDateClick = "//*[@data-testid='SCTLN_DATE_TO']/input";
 	/** @locatorType Xpath */
 	public static final String Savebutton = "//button[@data-testid='save']";
 	/** @locatorType Xpath */
