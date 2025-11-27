@@ -992,7 +992,7 @@
 	"SetupSalesScreen": "Setup - Sales",
 	"South": "South_Region_",
 	"SalesRegionManager": "EMP0003",
-	"BomOutsideAndInsideWithMaterial": "BOM00/00292/25-26",
+	"BomOutsideAndInsideWithMaterial": "BOM-2526-0000171",
 	"ProdOrderNonStandard": "Production Order - Non Standard",
 	"GWL_Item(SOStandard)": "GWL_SO(Standard)_Item",
 	"BomAllInside": "BOM-2526-0000036",
@@ -1121,7 +1121,6 @@
 	"TrdSupplier": "SUP20222",
 	"Equip1000": "EQUIP-1000",
 	"AgrCeramics": "TAX-FJD",
-	"BomAllOutside": "BOM00/00452/25-26",
 	"GeneralU100-CPC": "GENERAL U-100",
 	"DBBU": "ROAU",
 	"DBSOMCNTRLALLOWSO": "Allow SO",
@@ -1340,8 +1339,18 @@
 	"PreDispatchText": "Pre Dispatch",
 	"StockQcPrefix": "INRQT",
 	"StockQcText": "Stock QC",
-	"GWL-RInspector": "GWL  R",
+	"GWL-RInspector": "ADMIN",
 	"ForwardQCtatus": "Forward to qc",
 	"FG-10005-Item": "GWL-FG-10005",
-	"FG-10001-Item-BOM": "BOM-2526-0000002"
+	"FG-10001-Item-BOM": "BOM-2526-0000002",
+	"SoDesc-BOMItem": "GWL-SO-BOMITEM-10001",
+	"SoDescNumber": "SORD-2526-00432",
+	"ProdAgainstSOQuantity": "10",
+	"BomAllOutside": "BOM-2526-0000170",
+	"WholeInsItem": "GWL - ITEM - WHOLE INS",
+	"PartialInsItem": "GWL - ITEM - PARTIAL INS (RM)",
+	"MaterialReturnPrefix": "MRTN",
+	"WarehouseType": "Warehouse",
+	"OutsideType": "Outside"
+	
 }

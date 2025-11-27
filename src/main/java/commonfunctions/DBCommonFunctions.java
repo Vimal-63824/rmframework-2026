@@ -1199,4 +1199,45 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
 		return value;
 	}
+	
+	/**
+	 * BOM Header Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BOMNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BOMHeaderDetails(String BOMNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BOMHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * BOM Routing Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BOMNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BOMRoutingDetails(String BOMNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BOMRoutingQuery"),
+				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * BOM Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BOMNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BOMLinesDetails(String BOMNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BOMLineDetailsQuery"),
+				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
+		return value;
+	}
 }

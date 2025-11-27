@@ -52,28 +52,23 @@ public class CompletionProductionOrderFunctions {
 	 */
 	public void searchProductionOrderNoAndVerifyFilter(String ProdNo) {
 		switchToPendingProdOrderIframe();
-		commonFunc.hardWait(2000);
-		flag = webDB.waitForClickElement(CompletionProductionOrderLocators.PendingProdOrderSearchBar,
-				ElementType.Xpath);
+		commonFunc.clearFiltersInFindPage();
+		commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.Pend_ProdOrderLovBtn, ProdNo);
+		switchToPendingProdOrderIframe();
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
 		if (flag) {
-			webDB.doubleClickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchBar, ElementType.Xpath);
-			webDB.sendTextToAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchBar, ProdNo,
-					ElementType.Xpath);
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn,
+			webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
 					ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(CompletionProductionOrderLocators.PendingProdOrderSearchGoBtn, ElementType.Xpath);
-				commonFunc.hardWait(4000);
-				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData,
-						ElementType.Xpath);
+				logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
+				String DisplayProdNo = webDB.getTextFromElement(
+						CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
+				flag = DisplayProdNo.contains(ProdNo);
 				if (flag) {
-					logs.logging("INFO", "Searched with Production Order No: " + ProdNo);
-					String DisplayProdNo = webDB.getTextFromElement(
-							CompletionProductionOrderLocators.PendingProdOrder_ProdNoTableData, ElementType.Xpath);
-					flag = DisplayProdNo.contains(ProdNo);
-					if (flag) {
-						logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
-					}
+					logs.logging("INFO", "Filtered Successfully with Production Order No: " + DisplayProdNo);
 				}
 			}
 		}
