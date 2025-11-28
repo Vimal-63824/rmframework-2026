@@ -25,7 +25,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpenSO_PONumberInput = "//input[@data-testid='P19151310131_SRCHD_PO_NO']";
 		/** @locatorType Xpath */
-		public static final String OpenSO_PODateInput = "//input[@id='P191513101301_SRCHD_PO_DATE_input']";
+		public static final String OpenSO_PODateInput = "//*[@data-testid='P191513101301_SRCHD_PO_DATE']/input";
 		/** @locatorType Xpath */
 		public static final String OpenSO_FormTickIcon = "//button[@data-testid='SAVE']";
 		/** @locatorType Xpath */

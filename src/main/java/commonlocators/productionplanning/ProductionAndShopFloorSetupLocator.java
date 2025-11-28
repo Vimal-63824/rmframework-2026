@@ -55,13 +55,13 @@ public class ProductionAndShopFloorSetupLocator {
 	/** @locatorType Xpath */
 	public static final String ProcAsso_ConsWH_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[6]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_ConsWH_Lov = "//button[@id='C7497207858979396489']/following-sibling::button";
+	public static final String ProcAsso_ConsWH_Lov = "//input[@id='C7497207858979396489']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_RecpWH_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_RecpWH_Lov = "//button[@id='C6828368270306122664_lov_btn']";
+	public static final String ProcAsso_RecpWH_Lov = "//input[@id='C7497208043445396490']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String Process_Asso_Save_Icon = "//button[@id='B2704509992033684789']";
+	public static final String Process_Asso_Save_Icon = "//button[@id='B3373349765172958615']";
 	/** @locatorType Xpath */
 	public static final String ProcessAsso_Toast_Msg = "(//button[@title='Close'])[1]";
 	/** @locatorType Xpath */

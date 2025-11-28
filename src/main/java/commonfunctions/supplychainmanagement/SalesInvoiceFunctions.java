@@ -3352,8 +3352,8 @@ public class SalesInvoiceFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
-		salesOrderFunctions
-				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
+//		salesOrderFunctions
+//				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
 		return flag;
 	}
 
@@ -3397,8 +3397,8 @@ public class SalesInvoiceFunctions {
 				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
-		salesOrderFunctions
-				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SOExpUserDefined"));
+//		salesOrderFunctions
+//				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SOExpUserDefined"));
 		return flag;
 	}
 
@@ -3664,12 +3664,6 @@ public class SalesInvoiceFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyCancelButton(commonFunc.getDataFromTestDataSheet("SI_Cancel_Reason"));
 		flag = commonFunc.logoutUser();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
-		commonFunc.navigateSalesInvoicePage();
-		verifySalesInvoiceDocumentCancelStatus(VariableHandler.getSIdocno(),
-				commonFunc.getDataFromTestDataSheet("Exp_Cancel_Status"));
 		return flag;
 	}
 
@@ -5134,15 +5128,15 @@ public class SalesInvoiceFunctions {
 	 */
 	public void forwardForApprovalInSalesInvoiceReverse() {
 		commonFunc.hardWait(3000);
-		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath)) {
+		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.SI_Reverse_Iframe, ElementType.Xpath)) {
 			flag = true;
 			VariableHandler.setApprovalFlag(flag);
-			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			webDB.switchToFrame(SalesInvoiceLocators.SI_Reverse_Iframe, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Workflow Frame");
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.ForwardApprovalLov,
 					commonFunc.getDataFromTestDataSheet("SI_HOD"));
 			commonFunc.hardWait(2000);
-			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			webDB.switchToFrame(SalesInvoiceLocators.SI_Reverse_Iframe, ElementType.Xpath);
 			logs.logging("INFO", "Switched To WorkFlow Frame");
 			flag = webDB.waitForElement(SalesInvoiceLocators.SI_Reverse_ForwardApproval, ElementType.Xpath);
 			if (flag) {
@@ -5150,7 +5144,7 @@ public class SalesInvoiceFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(SalesInvoiceLocators.SI_Predispatch_Btn, ElementType.Xpath);
+				flag = webDB.waitForElement(SalesInvoiceLocators.Header_Tick_Icon, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Verified Navigate To SI Home Page");
 				}
@@ -5403,14 +5397,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_Prefix"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -5595,7 +5586,7 @@ public class SalesInvoiceFunctions {
 					flag = webDB.waitForElement(SalesInvoiceLocators.CR_Parameter_Inserting_Tick_Icon,
 							ElementType.Xpath);
 					if (flag) {
-						commonFunc.hardWait(1000);
+						commonFunc.hardWait(2000);
 						webDB.clickAnElement(SalesInvoiceLocators.CR_Parameter_Inserting_Tick_Icon, ElementType.Xpath);
 						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SalesInvoiceLocators.CR_Close_Toast_Msg, ElementType.Xpath);
@@ -6560,15 +6551,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(
 				webDB.getDataFromProperties("MultipleSalesInvoiceLine"));

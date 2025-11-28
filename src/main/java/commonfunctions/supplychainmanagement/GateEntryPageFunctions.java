@@ -7,6 +7,7 @@ package commonfunctions.supplychainmanagement;
 import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -39,6 +40,12 @@ public class GateEntryPageFunctions {
 	static SsoPageFunctions Ssofunc = new SsoPageFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	LocalDate date = LocalDate.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	String Today = date.format(formatter);
+	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yy");
+	String tomorrowDate = myDateObj.format(myFormatObj);
 
 	/**
 	 * This Methods Is Used To verify Create Gate Entry for Single Purchase Order
@@ -46,9 +53,9 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
-				"DirectGrnGenUD");
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
+				"GateEntry");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingPo();
 		verifygateEntryDetailsPo();
@@ -66,11 +73,11 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromMultiplePo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
-				"DirectGrnGenUD");
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
-				"DirectGrnGenUD");
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
+				"GateEntry");
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
+				"GateEntry");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingMultiPo();
 		verifygateEntryDetails();
@@ -99,7 +106,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateDirectGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyAddingInwardDetails(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("Direct_Entry"), commonFunc.getDataFromTestDataSheet("Gate_Keeper"),
@@ -133,7 +140,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPendingPo() {
-		VariableHandler.setPONumber("POGL3/00045/25-26");
+//		VariableHandler.setPONumber("POGL3/00045/25-26");
 		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
 		if (flag)
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
@@ -195,7 +202,7 @@ public class GateEntryPageFunctions {
 			flag = webDB.waitForElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(GateEntryPageLocators.PendDateInput, ElementType.Xpath);
-				webDB.sendTextToAnElement(GateEntryPageLocators.PendDateInput, "28-03-2025", ElementType.Xpath);
+				webDB.sendTextToAnElement(GateEntryPageLocators.PendDateInput, Today, ElementType.Xpath);
 				logs.logging("INFO", "Date is Entered");
 				webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 				if (flag) {
@@ -442,8 +449,8 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfOpenPurchaseOrderGateEntry() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenPoOrderPage();
 		verifyCreationOfOPO();
 		verifyAddingFillDetailsOfOPO(commonFunc.getDataFromTestDataSheet("L49"),
@@ -454,9 +461,9 @@ public class GateEntryPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getOPODocNum());
-		verifyApproveWithDocNumber(VariableHandler.getOPODocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -488,11 +495,12 @@ public class GateEntryPageFunctions {
 	 * @param OPOSupplier
 	 */
 	public void verifyAddingFillDetailsOfOPO(String OPOLocation, String OPOSupplier) {
+		VerifyClickingFrame();
 		flag = webDB.waitForElement(SsoPageLocators.OPOLocLov, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOLocLov, OPOLocation);
 			logs.logging("INFO", "LOcation Entered is:" + OPOLocation);
-
+			VerifyClickingFrame();
 			flag = webDB.waitForElement(SsoPageLocators.OPOSupplierLov, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.OPOSupplierLov, OPOSupplier);
@@ -508,6 +516,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyClickingOpoCreate() {
+		VerifyClickingFrame();
 		flag = webDB.waitForElement(SsoPageLocators.OPOCreateBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.OPOCreateBtn, ElementType.Xpath);
@@ -525,7 +534,7 @@ public class GateEntryPageFunctions {
 	 * @param HSN
 	 */
 	public void verifyCreatingItemForOpo(String Item, String Cost, String Disc, String HSN) {
-
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(SsoPageLocators.OPODocNum, ElementType.Xpath);
 		if (flag) {
 			String OPODocNum = webDB.getTextFromElement(SsoPageLocators.OPODocNum, ElementType.Xpath);
@@ -721,10 +730,12 @@ public class GateEntryPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(GateEntryPageLocators.GateEntryAdd, ElementType.Xpath);
 			logs.logging("INFO", "Add Button Is Clicked");
+			VerifyClickingGateDirectFrame();
 			flag = webDB.waitForElement(GateEntryPageLocators.GateEntryLocLov, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateEntryLocLov, Location);
 				logs.logging("INFO", "Entered Location Is:" + Location);
+				VerifyClickingGateDirectFrame();
 				flag = webDB.waitForElement(GateEntryPageLocators.GateEntryType, ElementType.Xpath);
 				if (flag) {
 					webDB.selectDropDownByValue(GateEntryPageLocators.GateEntryType, Type, ElementType.Xpath);
@@ -733,6 +744,7 @@ public class GateEntryPageFunctions {
 					if (flag) {
 						commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperDirectLov, Name);
 						logs.logging("INFO", Driver);
+						VerifyClickingGateDirectFrame();
 						flag = webDB.waitForElement(GateEntryPageLocators.DirectDriverNameGate, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(GateEntryPageLocators.DirectDriverNameGate, ElementType.Xpath);
@@ -934,7 +946,7 @@ public class GateEntryPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.GATEdetails(VariableHandler.getGATEDocNum(),
 						commonFunc.getDataFromTestDataSheet("GATEDbSupplierColumnName")),
-				commonFunc.getDataFromTestDataSheet("POGateSupplier"));
+				commonFunc.getDataFromTestDataSheet("POSupplierName"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
 
@@ -978,7 +990,7 @@ public class GateEntryPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfGENFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"SelvaUsername");
 		commonFunc.navigateToGateEntryDocument();
 //		verifyDateAfterAndBefore();
@@ -1403,5 +1415,19 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+	private void VerifyClickingFrame() {
+		flag=webDB.waitForElement(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
+		if(flag) {
+			webDB.switchToFrame(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Frame");
+		}
 
+	}
+	private void VerifyClickingGateDirectFrame() {
+		flag=webDB.waitForElement(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
+		if(flag) {
+			webDB.switchToFrame(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Frame");
+		}
+	}
 }

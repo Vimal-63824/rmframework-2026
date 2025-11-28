@@ -81,6 +81,8 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CreateProdOrd_LocationLovbtn = "//input[@data-testid='CreateProdOrd_LocationLovbtn']/following-sibling::button";
 	/** @locatorType XPATH */
+	public static final String CreateProdOrd_SODescLovbtn = "//input[@data-testid='SoDesc']/following-sibling::button";
+	/** @locatorType XPATH */
 	public static final String CreateProdOrd_OrderTypeLovbtn = "//input[@data-testid='CreateProdOrd_OrderTypeLovbtn']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String CreateProdOrd_PrefixLovbtn = "//input[@data-testid='CreateProdOrd_PrefixLovbtn']/following-sibling::button";

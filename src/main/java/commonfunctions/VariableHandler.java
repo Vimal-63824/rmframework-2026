@@ -234,6 +234,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> LastApprovalAPIHeaderText = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultipleSIDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> InspectionReqNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> MaterialReturnNumber = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -1999,6 +2000,14 @@ public class VariableHandler {
 
 	public static void setInspectionReqNumber(String Data) {
 		InspectionReqNumber.set(Data);
+	}
+	
+	public static String getMaterialReturnNumber() {
+		return MaterialReturnNumber.get();
+	}
+	
+	public static void setMaterialReturnNumber(String Data) {
+		MaterialReturnNumber.set(Data);
 	}
 
 	public static void setAutoPostMRVFlag(boolean flag) {

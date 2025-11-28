@@ -34,6 +34,7 @@ public class SubcontractSetUpFunctions {
 	public ProductionAndShopFloorSetupFunctions prodsetupFunc = new ProductionAndShopFloorSetupFunctions();
 	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 
 	/**
 	 * This Method Used For Clicking Open SCO Find Screen Add Icon
@@ -181,6 +182,7 @@ public class SubcontractSetUpFunctions {
 				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
 						commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN")));
 		logs.logging("INFO", "Header Detail UnitID Matched With DataBase Values");
+		commonFunc.hardWait(2000);
 	}
 
 	/**
@@ -214,6 +216,7 @@ public class SubcontractSetUpFunctions {
 				dbCommonFunctions.OSPHeaderDetails(VariableHandler.getoscdocno(),
 						commonFunc.getDataFromTestDataSheet("OSPDBSTATUSCOLUMN")));
 		logs.logging("INFO", "Header Detail UnitID Matched With DataBase Values");
+		commonFunc.hardWait(2000);
 	}
 
 	/**
@@ -360,18 +363,19 @@ public class SubcontractSetUpFunctions {
 				flag = webDB.waitForElement(SubcontractOrderLocators.OpenScoCreate_TickIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(SubcontractOrderLocators.OpenScoCreate_TickIcon, ElementType.Xpath);
+					webDB.switchToDefaultContent();
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.hardWait(1000);
 					if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 							ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
 								ElementType.Xpath);
-						commonFunc.hardWait(2000);
+						commonFunc.hardWait(1000);
 						String oscdocno = webDB.getTextFromElement(SubcontractOrderLocators.OpenPriceDocNO,
 								ElementType.Xpath);
 						logs.logging("INFO", "Get OSC DocNo Is: " + oscdocno);
 						VariableHandler.setoscdocno(oscdocno);
-						commonFunc.hardWait(1000);
+						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Open SCO Price Header Created Sucessfully");
@@ -506,11 +510,12 @@ public class SubcontractSetUpFunctions {
 								ElementType.Xpath);
 						logs.logging("INFO", "Get OSC DocNo Is: " + oscdocno);
 						VariableHandler.setoscdocno(oscdocno);
-						commonFunc.hardWait(1000);
+						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.OP_LineAdd_Icon, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Open SCO Price Header Created Sucessfully");
 							checkOpenSCOPriceHeaderDetailsDataBaseValuesWithUIValuesProcess();
+							commonFunc.checkRefreshCellsDisappear();
 						}
 					}
 				}
@@ -832,14 +837,11 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
@@ -863,14 +865,11 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
@@ -894,14 +893,11 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
@@ -925,14 +921,11 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
 		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceApprovedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
@@ -1052,23 +1045,17 @@ public class SubcontractSetUpFunctions {
 	 */
 	public boolean extractOpenSCODocNumber() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert, ElementType.Xpath);
-
 		if (flag) {
 			String text = webDB.getTextFromElement(SubcontractOrderLocators.OP_AfterReverse_NewDoc_NoteAlert,
 					ElementType.Xpath);
-			logs.logging("INFO", "Get Text From Toast Alert Is: " + text);
-
-			// Pattern to match the Rate Contract Document format
-			String regex = "Rate Contract Document Revised.-(OOS10/\\d{5}/\\d{2}-\\d{2})";
+			logs.logging("INFO", "Toast Alert Text: " + text);
+			String regex = "Rate Contract Document Revised\\.-(OSP1-\\d{4}-\\d{4})";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(text);
-
 			if (matcher.find()) {
-				String OSCOdocNumber = matcher.group(1); // e.g., OOS10/00132/25-26
-				logs.logging("INFO", "Extracted Rate Contract Document Number: " + OSCOdocNumber);
-
-				// Optional: store it somewhere if needed
-				VariableHandler.setRevdocno(OSCOdocNumber); // You should define this method
+				String extractedDocNumber = matcher.group(1);
+				logs.logging("INFO", "Extracted Rate Contract Document Number: " + extractedDocNumber);
+				VariableHandler.setRevdocno(extractedDocNumber);
 			} else {
 				logs.logging("INFO", "No match found for Rate Contract Document Number.");
 				flag = false;
@@ -1148,31 +1135,22 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
-		flag = commonFunc.logoutUser();
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -1194,30 +1172,22 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
-		flag = commonFunc.logoutUser();
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
@@ -1240,31 +1210,22 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
-		flag = commonFunc.logoutUser();
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -1286,30 +1247,22 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getoscdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getoscdocno());
-		flag = commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToOpenPriceSCO();
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
-		openSCOforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getRevdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getRevdocno());
-		flag = commonFunc.logoutUser();
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;

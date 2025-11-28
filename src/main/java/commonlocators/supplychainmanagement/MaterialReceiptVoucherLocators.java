@@ -180,4 +180,12 @@ public class MaterialReceiptVoucherLocators {
 		return "//table[@id='3380521312027296684_orig']/tbody/tr/td[" + i + "]";
 	}
 
+	/** @locatorType XPATH */
+	public static final String Pending_TableSelectAllCheckBox = "//table[@id='2308093194563395848']/tr/th//input[@id='check_all']";
+	/** @locatorType XPATH */
+	public static final String Pending_TableShowMyRecordBtn = "//button[@id='sow']";
+	/** @locatorType XPATH */
+	public static final String Pending_TableShowMyRecordBtnClicked = "//button[@id='hid']";
+	/** @locatorType XPATH */
+	public static final String Pending_TableNoDataSelected = "//div[@id='PEND_data_panel']//div[@class='a-IRR-noDataMsg-icon']";
 }

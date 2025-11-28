@@ -499,41 +499,68 @@ public class MaterialIssuanceVoucherFunctions {
 			logs.logging("INFO", "Pending MIV Button Is Displayed");
 			webDB.clickAnElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
 			switchMaterialRequestLinesIframe();
-			commonFunc.clearFiltersInFindPage();
-			webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
-			webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+			webDB.moveToElement(MaterialIssuanceVoucherLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
+			webDB.clickAnElement(MaterialIssuanceVoucherLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
-			webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
-			commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
-			switchMaterialRequestLinesIframe();
-			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Search Button Is Displayed");
-				webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
+			commonFunc.hardWait(3000);
+			flag = webDB.verifyIsElementDisplayed(MaterialIssuanceVoucherLocators.Pending_TableNoDataSelected,
+					ElementType.Xpath);
+			if (!flag) {
+				webDB.waitForElementUntilGivenTime(MaterialIssuanceVoucherLocators.Pending_TableSelectAllCheckBox,
+						ElementType.Xpath, 5);
+				if (webDB.isElementSelected(MaterialIssuanceVoucherLocators.Pending_TableSelectAllCheckBox,
+						ElementType.Xpath)) {
+					webDB.moveToElement(MaterialIssuanceVoucherLocators.Pending_TableSelectAllCheckBox,
+							ElementType.Xpath);
+					webDB.clickAnElement(MaterialIssuanceVoucherLocators.Pending_TableSelectAllCheckBox,
+							ElementType.Xpath);
+				}
 				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.verifyIsElementDisplayed(MaterialIssuanceVoucherLocators.Pending_TableNoDataSelected,
+						ElementType.Xpath);
+			}
+			if (flag) {
+				webDB.moveToElement(MaterialIssuanceVoucherLocators.Pending_TableShowMyRecordBtnClicked,
+						ElementType.Xpath);
+				webDB.clickAnElement(MaterialIssuanceVoucherLocators.Pending_TableShowMyRecordBtnClicked,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.clearFiltersInFindPage();
+				commonFunc.searchAndSelectValueInFilters(MaterialIssuanceVoucherLocators.MRLovButton, MRNumber);
+				switchMaterialRequestLinesIframe();
+				flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 				if (flag) {
-					logs.logging("INFO", "CheckBox IS Displayed");
-					webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
-					webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+					logs.logging("INFO", "Search Button Is Displayed");
+					webDB.clickAnElement(MaterialIssuanceVoucherLocators.SearchButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+					flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Create Mi Button Is Displayed");
-						webDB.moveToElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
-						webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
-						webDB.switchToDefaultContent();
-						switchMaterialRequestLinesIframe();
-						flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMIVButton, ElementType.Xpath);
+						logs.logging("INFO", "CheckBox IS Displayed");
+						webDB.moveToElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+						webDB.clickAnElement(MaterialIssuanceVoucherLocators.CheckBox, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMIVButton, ElementType.Xpath);
-							logs.logging("INFO", "MIV Documents Created Successfully");
+							logs.logging("INFO", "Create Mi Button Is Displayed");
+							webDB.moveToElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
+							webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMiButton, ElementType.Xpath);
 							webDB.switchToDefaultContent();
-							storeMaterialIssuanceNumber();
-						}
-						if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+							switchMaterialRequestLinesIframe();
+							flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.CreateMIVButton,
+									ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(MaterialIssuanceVoucherLocators.CreateMIVButton,
+										ElementType.Xpath);
+								logs.logging("INFO", "MIV Documents Created Successfully");
+								webDB.switchToDefaultContent();
+								storeMaterialIssuanceNumber();
+							}
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
 						}
 					}
 				}

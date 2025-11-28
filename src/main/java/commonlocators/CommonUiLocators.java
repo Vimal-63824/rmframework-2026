@@ -369,14 +369,13 @@ public class CommonUiLocators {
 	public static final String ProfileIcon = "#t_Header > div > img";
 	/** @locatorType Xpath */
 	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
-	/** @locatorType Xpath */
 	public static final String QualityTab = "//label[text()='Quality']";
 	/** @locatorType Xpath */
 	public static final String TypeDropDown = "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']";
 	/** @locatorType Xpath */
-	public static final String CreatePORadioButton = "//button[@id='B927512421169129619']";
+	public static final String CreatePORadioButton = "//button[@id='B1596433513455453723']";
 	/** @Locator XPATH */
-	public static final String Open_SCO_Find_AddIcon = "//button[@id='B1629410608331693435']";
+	public static final String Open_SCO_Find_AddIcon = "//button[@id='B2298331700618017539']";
 	/** @Locator XPATH */
 	public static final String OP_Find_DocNO = "//input[@data-testid='P193151010_FIND_PO_NO']/following-sibling::button";
 	/** @Locator XPATH */

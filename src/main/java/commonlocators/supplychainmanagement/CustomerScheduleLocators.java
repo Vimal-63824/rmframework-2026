@@ -13,7 +13,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSFrame = "//iframe[@title='Customer Schedule']";
 	/** @Locator Xpath */
-	public static final String CSButton = "//button[@id='B1597068993780180909']";
+	public static final String CSButton = "//span[text()='Customer Schedule']";
 	/** @Locator Xpath */
 	public static final String CSAddButton = "//BUTTON[@data-testid='CS_AddButton']";
 	/** @Locator Xpath */
@@ -67,7 +67,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSLineWiseEndDateField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */
-	public static final String CSLineWiseEndDateInputField = "//input[@id='C6628098156841911312_input']";
+	public static final String CSLineWiseEndDateInputField = "//*[@data-testid='COLN_SCHD_FRM_END_DATE']/input";
 	/** @Locator Xpath */
 	public static final String CSLineWiseGenerateButton1 = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @Locator CSS Selector */
@@ -145,7 +145,7 @@ public class CustomerScheduleLocators {
 	/** @Locator Xpath */
 	public static final String CSAmdTentativeQtyInputField = "//input[@data-testid='CSAmdTentativeQtyInputField']";
 	/** @Locator Xpath */
-	public static final String CSAmdTentativeDateInputField = "//input[@id='C1029074294440075899_input']";
+	public static final String CSAmdTentativeDateInputField = "//*[@data-testid='CAML_SCHD_END_DATE']/input";
 	/** @Locator Xpath */
 	public static final String CSAmdTentaiveDateField = "//*[@id='cs_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[18]";
 	/** @Locator Xpath */

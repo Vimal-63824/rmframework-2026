@@ -754,10 +754,19 @@ public class RfqPageFunctions {
 					webDB.clickAnElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
 					logs.logging("INFO", "Inside Item Field Is Clicked");
 					webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					webDB.moveToElement(RfqLocators.QuoteQty, ElementType.Xpath);
+					webDB.moveToElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+					commonFunc.hardWait(2000);
 					flag = webDB.waitForElement(RfqLocators.SupCostField(i), ElementType.Xpath);
 					if (flag) {
+						commonFunc.hardWait(2000);
 						webDB.doubleClickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
-						webDB.clearText(RfqLocators.RfqSupplierCostInput, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						webDB.clickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+						System.out.println("Waiting for Scroll");
+						webDB.clearTextField(RfqLocators.RfqSupplierCostInput, ElementType.Xpath);
+						webDB.doubleClickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
 						webDB.sendTextToAnElement(RfqLocators.RfqSupplierCostInput, Cost1, ElementType.Xpath);
 						logs.logging("INFO", "Cost Is entered:" + Cost1);
 						flag = webDB.waitForElement(RfqLocators.QuoteQty, ElementType.Xpath);
@@ -830,26 +839,35 @@ public class RfqPageFunctions {
 			logs.logging("INFO", "Line Number Is:" + LineNumber.size());
 			for (int i = 1; i <= LineNumber.size(); i++) {
 				webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
-				webDB.scrollDown(1000);
 				flag = webDB.waitForElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
-				webDB.moveToElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(RfqLocators.ItemNameInside(i), ElementType.Xpath);
 					logs.logging("INFO", "Inside Item Field Is Clicked");
-					commonFunc.hardWait(2000);
-					webDB.scrollDown(1000);
 					webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+					webDB.pressDownArrowKey();
+					webDB.pressDownArrowKey();
+					webDB.pressDownArrowKey();
+					webDB.moveToElement(RfqLocators.BtmPage, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					webDB.moveToElement(RfqLocators.QuoteQty, ElementType.Xpath);
+					webDB.moveToElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+					commonFunc.hardWait(2000);
 					flag = webDB.waitForElement(RfqLocators.SupCostField(i), ElementType.Xpath);
 					if (flag) {
+						commonFunc.hardWait(2000);
 						webDB.doubleClickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
-						webDB.clearText(RfqLocators.RfqSupplierCostInput, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						webDB.clickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
+						System.out.println("Waiting for Scroll");
+						webDB.clearTextField(RfqLocators.RfqSupplierCostInput, ElementType.Xpath);
+						webDB.doubleClickAnElement(RfqLocators.SupCostField(i), ElementType.Xpath);
 						webDB.sendTextToAnElement(RfqLocators.RfqSupplierCostInput, Cost2, ElementType.Xpath);
-						logs.logging("INFO", "Cost Is Entered:" + Cost2);
+						logs.logging("INFO", "Cost Is entered:" + Cost2);
 						flag = webDB.waitForElement(RfqLocators.QuoteQty, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(RfqLocators.QuoteQty, ElementType.Xpath);
 							logs.logging("INFO", "Quote Qty Is Clicked");
-							commonFunc.hardWait(1000);
+							commonFunc.hardWait(700);
 							chooseTradeDiscForParticularSupllierItem(
 									commonFunc.getDataFromTestDataSheet("Trd_Discount"), i);
 							chooseSpclDiscForParticularSupllierItem(

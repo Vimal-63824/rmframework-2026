@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class SalesOrderLocators {
 
 	/** @Locator Xpath */
-	public static final String SOButton = "//button[@id='B1597068964897180908']";
+	public static final String SOButton = "//span[text()='Sales Order']";
 	/** @Locator Xpath */
 	public static final String AddButtonSalesOrder = "//BUTTON[@TITLE='Create SO/CS']";
 	/** @Locator Xpath */
@@ -15,7 +15,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String LocationLOV = "//button[contains(@id,'P19151313402_UNIT_LOC_lov_btn')]";
 	/** @Locator Xpath */
-	public static final String SalesSubVoucherTypeLOV = "//button[@id='P19151313402_SOH_ORDER_TYPE_lov_btn']";
+	public static final String SalesSubVoucherTypeLOV = "//input[@data-testid='SalesSubVoucherTypeLOV']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String SalesTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]";
 	/** @Locator Xpath */
@@ -443,11 +443,11 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdNewQtyField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @Locator Xpath */
-	public static final String SoAmdlocationLov = "//button[@id='P1915131072_SOH_PLNT_LOC_ID_lov_btn']/span";
+	public static final String SoAmdlocationLov = "//input[@data-testid='P1915131072_SOH_PLNT_LOC_ID']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String SoAmdPrefixLov = "//button[@id='P1915131072_SOH_DOC_PFX_lov_btn']/span";
+	public static final String SoAmdPrefixLov = "//input[@data-testid='SoAmdPrefixLov']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String SoAmdSoNumberlov = "//button[@id='P1915131072_SO_PFX_NO_DUM_lov_btn']/span";
+	public static final String SoAmdSoNumberlov = "//input[@data-testid='P1915131072_SO_PFX_NO_DUM']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String SoAmdDocNumber = "//span[@data-testid='P1915131072_SOH_DOC_NO']";
 	/** @Locator Xpath */

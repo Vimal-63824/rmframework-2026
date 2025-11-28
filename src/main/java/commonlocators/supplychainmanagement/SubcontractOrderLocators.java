@@ -112,7 +112,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CreateSoc = "//button[@data-testid='CREATE_SCO']";
 	/** @locatorType XPATH */
-	public static final String Open_SCO_Find_AddIcon = "//button[@id='B1629410608331693435']";
+	public static final String Open_SCO_Find_AddIcon = "//button[@id='B2298331700618017539']";
 	/** @locatorType XPATH */
 	public static final String OpenSCO_LocID_Input = "//input[@data-testid='P193151010_SPRCHD_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -120,7 +120,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OpenSCO_ItemID_Input = "//input[@data-testid='P193151010_SPRCHD_PROD_ID']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String OpenSCO_Supl_Input = "//input[@id='P193151011_SPRCHD_SUPLR_ID']/following-sibling::button";
+	public static final String OpenSCO_Supl_Input = "//input[@data-testid='P193151010_SPRCHD_SUPLR_ID']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String Open_SCO_FROMDATE_Field = "//*[@id=\"P193151011_SPRCHD_EFF_FROM_input\"]";
 	/** @locatorType XPATH */
@@ -128,13 +128,13 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String Open_SCO_ToDATE_input = "//input[@id='P193151011_SPRCHD_EFF_TO_input']";
 	/** @locatorType XPATH */
-	public static final String OpenScoCreate_TickIcon = "//button[@id='B895348322307945714']";
+	public static final String OpenScoCreate_TickIcon = "//button[@id='B1564269414594269818']";
 	/** @locatorType XPATH */
 	public static final String OpenSCO_NoteAlert_Close = "(//button[@title='Close'])[1]";
 	/** @locatorType XPATH */
 	public static final String OpenPriceDocNO = "//span[@data-testid='P1931510101_SPRCHD_PO_NO']";
 	/** @locatorType XPATH */
-	public static final String OP_LineAdd_Icon = "//button[@id='B1487467062679432954']";
+	public static final String OP_LineAdd_Icon = "//button[@id='B2156388154965757058']";
 	/** @locatorType XPATH */
 	public static final String OpenSCO_Proc_Input = "//input[@data-testid='SPRCLN_PROC_ID']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -142,19 +142,19 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_BatchCost_Input = "//input[@data-testid='SPRCLN_UNIT_COST']";
 	/** @locatorType XPATH */
-	public static final String OP_LineWise_Save = "//button[@id='B1487467134739432955']";
+	public static final String OP_LineWise_Save = "//button[@id='B2156388227025757059']";
 	/** @locatorType XPATH */
-	public static final String OP_Post_Btn = "//button[@id='B1487463608830432920']";
+	public static final String OP_Post_Btn = "//button[@id='B2156384701116757024']";
 	/** @locatorType XPATH */
 	public static final String OP_Forward_Ok_Btn = "//button[@ID='B1615685367453460714']";
 	/** @locatorType XPATH */
 	public static final String OP_Find_DocNO = "//input[@data-testid='P193151010_FIND_PO_NO']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String OP_Find_Search_Btn = "//button[@ID='B1490501406078823246']";
+	public static final String OP_Find_Search_Btn = "//button[@ID='B2159422498365147350']";
 	/** @locatorType XPATH */
-	public static final String OP_DrillDown = "//*[@id=\"1476895525491129740_orig\"]/tbody/tr[2]/td[5]/a";
+	public static final String OP_DrillDown = "//*[@id=\"2145816617777453844_orig\"]/tbody/tr[2]/td[5]/a";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_Btn = "//button[@ID='B1487463835015432922']";
+	public static final String OP_Reverse_Btn = "//button[@ID='B2156384927301757026']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_CloseDate_Btn = "(//button[@class='a-Button a-Button--calendar'])[1]";
 	/** @locatorType XPATH */
@@ -164,13 +164,13 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate_input = "(//button[@class='a-Button a-DatePicker--today'])[3]";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_OK_Btn = "//button[@ID='B1492455031216601445']";
+	public static final String OP_Reverse_OK_Btn = "//button[@ID='B2161376123502925549']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */
 	public static final String OP_AfterReverse_NewDoc_NoteAlert = "//*[@id=\"t_Alert_Success\"]/div/div[2]/div/h6";
 	/** @locatorType XPATH */
-	public static final String OP_Cancel_Btn = "//button[@ID='B1487463718576432921']";
+	public static final String OP_Cancel_Btn = "//button[@ID='B2156384810862757025']";
 	/** @locatorType XPATH */
 	public static final String OP_Iframe = "//iframe[@title='Open SCO Price']";
 	/** @locatorType XPATH */
@@ -403,7 +403,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_Location_Details_PurGSTClstype = "//Select[@data-testid='P1615131060412_POH_GST_CLF_TYPE_1']";
 	/** @locatorType XPATH */
-	public static final String SCO_Location_Details_SaveIcon = "//*[@id=\"B1270930321800469137\"]/span";
+	public static final String SCO_Location_Details_SaveIcon = "//button[@data-testid='Save']";
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
 	/** @locatorType XPATH */

@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.qualitycontrol.InspectionDocumentsLocators;
@@ -40,6 +41,7 @@ public class MaterialReceiptVoucherFunctions {
 	public CommonFunctions commonFunc = new CommonFunctions();
 	private static StocksPageFunctions stockPageFunc = new StocksPageFunctions();
 	private static StockTransactionPageFunctions stockTransactionPageFunc = new StockTransactionPageFunctions();
+	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * Verify Pending Inspection Documents
@@ -568,39 +570,67 @@ public class MaterialReceiptVoucherFunctions {
 					logs.logging("INFO", "Mrv Frame Is Displayed");
 					webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 					webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
-					commonFunc.clearFiltersInFindPage();
-					webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-					webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+					webDB.moveToElement(MaterialReceiptVoucherLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
+					webDB.clickAnElement(MaterialReceiptVoucherLocators.Pending_TableShowMyRecordBtn,
+							ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-					webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MIVNumberLovButton, DocNo);
-					flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+					commonFunc.hardWait(3000);
+					flag = webDB.verifyIsElementDisplayed(MaterialReceiptVoucherLocators.Pending_TableNoDataSelected,
+							ElementType.Xpath);
+					if (!flag) {
+						webDB.waitForElementUntilGivenTime(
+								MaterialReceiptVoucherLocators.Pending_TableSelectAllCheckBox, ElementType.Xpath, 5);
+						if (webDB.isElementSelected(MaterialReceiptVoucherLocators.Pending_TableSelectAllCheckBox,
+								ElementType.Xpath)) {
+							webDB.moveToElement(MaterialReceiptVoucherLocators.Pending_TableSelectAllCheckBox,
+									ElementType.Xpath);
+							webDB.clickAnElement(MaterialReceiptVoucherLocators.Pending_TableSelectAllCheckBox,
+									ElementType.Xpath);
+						}
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(3000);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.verifyIsElementDisplayed(
+								MaterialReceiptVoucherLocators.Pending_TableNoDataSelected, ElementType.Xpath);
+					}
 					if (flag) {
-						webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
-						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
+						webDB.moveToElement(MaterialReceiptVoucherLocators.Pending_TableShowMyRecordBtnClicked,
+								ElementType.Xpath);
+						webDB.clickAnElement(MaterialReceiptVoucherLocators.Pending_TableShowMyRecordBtnClicked,
+								ElementType.Xpath);
+						commonFunc.clearFiltersInFindPage();
+						commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MIVNumberLovButton,
+								DocNo);
+						flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
 						if (flag) {
-							webDB.moveToElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
-							webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+							webDB.switchToFrame(MaterialReceiptVoucherLocators.MrvFrame, ElementType.Xpath);
+							flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVSearchButton,
+									ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Mrv CheckBox Is Displayed");
-								webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-								webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
-								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+								webDB.moveToElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
+								webDB.clickAnElement(MaterialReceiptVoucherLocators.MRVSearchButton, ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								flag = webDB.waitForElement(MaterialReceiptVoucherLocators.AllCheckBox,
 										ElementType.Xpath);
 								if (flag) {
-									logs.logging("INFO", "Create Qc Doc Is Displayed");
-									webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
+									logs.logging("INFO", "Mrv CheckBox Is Displayed");
+									webDB.moveToElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+									webDB.clickAnElement(MaterialReceiptVoucherLocators.AllCheckBox, ElementType.Xpath);
+									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 											ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVNO,
-											ElementType.Xpath);
-									storeMRVDocumentsNumber();
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+									if (flag) {
+										logs.logging("INFO", "Create Qc Doc Is Displayed");
+										webDB.clickAnElement(MaterialReceiptVoucherLocators.CreateMrvBtn,
 												ElementType.Xpath);
+										webDB.switchToDefaultContent();
+										flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MRVNO,
+												ElementType.Xpath);
+										storeMRVDocumentsNumber();
+										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath)) {
+											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+													ElementType.Xpath);
+										}
 									}
 								}
 							}
@@ -887,10 +917,19 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreditNotePostMaterialReceipt() {
-		commonFunc.navigateToMaterialReceiptVoucher();
-		verifyPendingCReditNoteMRV(VariableHandler.getCNdocno());
-		verifyReceiptLocatorsAndPutAway();
-		clickTickAndPostIcon();
+		String ApplicationControlPostMrv = dbCommonFunctions.InAplctrl(commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoPostMRV"));
+		logs.logging("INFO", "AutoPost Flag Is " + ApplicationControlPostMrv);
+		String ApplicationcontrolCreationMrv = dbCommonFunctions.InAplctrl(
+				commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
+		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
+		if (!ApplicationControlPostMrv.equals("Y") && !ApplicationcontrolCreationMrv.equals("Y")) {
+			commonFunc.navigateToMaterialReceiptVoucher();
+			verifyPendingCReditNoteMRV(VariableHandler.getCNdocno());
+			verifyReceiptLocatorsAndPutAway();
+			clickTickAndPostIcon();
+		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
@@ -975,10 +1014,19 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void verifyReworkCompletionPostMaterialReceipt() {
+		String ApplicationControlPostMrv = dbCommonFunctions.InAplctrl(commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoPostMRV"));
+		logs.logging("INFO", "AutoPost Flag Is " + ApplicationControlPostMrv);
+		String ApplicationcontrolCreationMrv = dbCommonFunctions.InAplctrl(
+				commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
+		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
+		if (!ApplicationControlPostMrv.equals("Y") && !ApplicationcontrolCreationMrv.equals("Y")) {
 		commonFunc.navigateToMaterialReceiptVoucher();
 		verifyPendingReworkCompletionMRV(VariableHandler.getRWCdocno());
 		verifyReceiptLocatorsAndPutAway();
 		clickTickAndPostIcon();
+		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 		commonFunc.logoutUser();
