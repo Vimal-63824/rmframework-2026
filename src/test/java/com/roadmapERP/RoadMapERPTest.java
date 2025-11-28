@@ -30,6 +30,7 @@ public class RoadMapERPTest {
 		WebDriverBase.chromeOptions.addArguments("--disable-dev-shm-usage");
 		WebDriverBase.chromeOptions.addArguments("--disable-extensions");
 		WebDriverBase.chromeOptions.addArguments("--disable-software-rasterizer");
+		WebDriverBase.chromeOptions.setAcceptInsecureCerts(true);
 		commonFunc.browserOpen();
 	}
 
