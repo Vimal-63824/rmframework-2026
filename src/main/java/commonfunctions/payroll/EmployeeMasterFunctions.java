@@ -456,6 +456,7 @@ public class EmployeeMasterFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCheckEmployeeCreationDependentDetails() {
+		String aadhar = commonFunc.getDataFromTestDataSheet("EmpAadharNum");
 		try {
 			if (!VariableHandler.getAddEmployeDefaultExecution()) {
 				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
@@ -482,7 +483,7 @@ public class EmployeeMasterFunctions {
 			clickAddIconInDependentDetails();
 			fillRequiredDetailsInDependentDetails(commonFunc.getDataFromTestDataSheet("EmpDependentName"),
 					commonFunc.getDataFromTestDataSheet("EmpDependentRelation"),
-					commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"), RandomStringUtils.randomNumeric(12),
+					commonFunc.getDataFromTestDataSheet("EmpDependentRelationDOB"), aadhar,
 					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
 					RandomStringUtils.randomNumeric(5));
 			clickSaveIconInDependentDetails();
@@ -4387,6 +4388,7 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void postUploadedTemplateInEmployeeDetailsMigration() {
+		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
