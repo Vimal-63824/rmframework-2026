@@ -77,7 +77,7 @@ public class GateEntryTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Author("Durai-RMITS")
-	@Test(priority = 1, groups = { "GRN" }, description = "Find Gate Entry inward with all possible search parameters")
+	@Test(priority = 5, groups = { "GRN" }, description = "Find Gate Entry inward with all possible search parameters")
 	public void verifyCreationOfGrnFilterAllFieldWorking() {
 		Gatefunc.verifyCreationOfGENFilterAllFieldWorking();
 	}

@@ -1816,6 +1816,7 @@ public class SalesOrderFunctions {
 		flag = webDB.waitForElement(SalesOrderLocators.GeneralTab, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SalesOrderLocators.GeneralTab, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(SalesOrderLocators.PrintCustDesc, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated Sucessfully To General Tab");
@@ -2571,7 +2572,7 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna - RMITS
 	 */
 	public void verifyAdvPercentageWithUIAndDBValues() {
-		commonFunc.hardWait(1000);
+		commonFunc.hardWait(2000);
 		getPaymentTermAdvpercentagesInDB();
 		commonFunc.checkRefreshCellsDisappear();
 		verifyAssertionDomPropertyValidation(SalesOrderLocators.AdvMaterialPercentage,

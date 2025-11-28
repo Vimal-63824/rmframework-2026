@@ -1281,6 +1281,7 @@ public class CustomerScheduleFunctions {
 		if (flag) {
 			webDB.javaScriptClickAnElement(SalesPriceListLocators.SaveButton, ElementType.Xpath);
 			logs.logging("INFO", "Successfully Save Button Record");
+			commonFunc.hardWait(500);
 			commonFunc.checkRefreshCellsDisappear();
 		}
 	}
@@ -1327,7 +1328,7 @@ public class CustomerScheduleFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void getPriceListDocumentno(ArrayList<String> DocNum) {
-		commonFunc.hardWait(1000);
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(SalesPriceListLocators.Documentno(1), ElementType.Xpath);
 		if (flag) {
 			String PriceListdocno = webDB.getTextFromElement(SalesPriceListLocators.Documentno(1), ElementType.Xpath);

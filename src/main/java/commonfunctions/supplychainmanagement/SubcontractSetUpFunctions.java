@@ -1135,7 +1135,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
@@ -1145,13 +1145,12 @@ public class SubcontractSetUpFunctions {
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
-		commonFunc.checkRefreshCellsDisappear();
 		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
 		return flag;
 	}
@@ -1173,7 +1172,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
@@ -1183,10 +1182,10 @@ public class SubcontractSetUpFunctions {
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -1211,7 +1210,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
@@ -1221,10 +1220,10 @@ public class SubcontractSetUpFunctions {
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		checkOpenSCOPriceRevisedStatusDetailsDataBaseValuesWithUIValues();
@@ -1248,7 +1247,7 @@ public class SubcontractSetUpFunctions {
 				commonFunc.getDataFromTestDataSheet("OpenPriceItem"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceSupplier"),
 				commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"));
-		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
+		addingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
@@ -1258,10 +1257,10 @@ public class SubcontractSetUpFunctions {
 		inFindFilterTheDocumentAndDrillDown(commonFunc.getDataFromTestDataSheet("OpenPriceTodateInput"),
 				VariableHandler.getoscdocno());
 		afterReviseTheDocumentAndDrillDown(VariableHandler.getRevdocno());
-		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCORevise"));
+		afterReviseaddingProcessLineFromExcelSheet(webDB.getDataFromProperties("OpenSCO"));
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getoscdocno(),
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRevdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.checkRefreshCellsDisappear();
