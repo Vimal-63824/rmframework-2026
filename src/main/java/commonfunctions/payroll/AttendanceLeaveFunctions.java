@@ -150,10 +150,12 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Permission Type is" + PermissionFindType);
 				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+						ElementType.CssSelector);
 				if (flag) {
 					commonFunc.hardWait(2000);
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+							ElementType.CssSelector);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Permission Document is Clicked");
@@ -201,9 +203,11 @@ public class AttendanceLeaveFunctions {
 			if (flag) {
 				logs.logging("INFO", "Type selected is" + OnDutyFindType);
 				webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
-				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+						ElementType.CssSelector);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+							ElementType.CssSelector);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "On-Duty Document is Clicked");
@@ -524,9 +528,10 @@ public class AttendanceLeaveFunctions {
 					logs.logging("INFO", "Permission Type is" + PermissionFindType);
 					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-							ElementType.Xpath);
+							ElementType.CssSelector);
 					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
+							ElementType.CssSelector);
 					if (flag) {
 						logs.logging("INFO", "Permission Document Is Clicked");
 						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionReverse, ElementType.Xpath);
@@ -583,19 +588,22 @@ public class AttendanceLeaveFunctions {
 						logs.logging("INFO", "Permission Type is" + PermissionFindType);
 						webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindPageSearchButton, ElementType.Xpath);
 						flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-								ElementType.Xpath);
+								ElementType.CssSelector);
 						if (flag) {
-							commonFunc.hardWait(4000);
+							commonFunc.hardWait(2000);
 							webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick,
-									ElementType.Xpath);
-							flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
-									ElementType.Xpath);
+									ElementType.CssSelector);
 							if (flag) {
 								logs.logging("INFO", "Permission Document is Clicked");
-								webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton, ElementType.Xpath);
-								commonFunc.hardWait(5000);
-								logs.logging("INFO", "Permission Document is Cancelled");
-								flag = commonFunc.logoutUser();
+								flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionCancelButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(AttendanceLeaveLocators.PermissionCancelButton,
+											ElementType.Xpath);
+									commonFunc.hardWait(2000);
+									logs.logging("INFO", "Permission Document is Cancelled");
+									flag = commonFunc.logoutUser();
+								}
 							}
 						}
 					}
@@ -846,10 +854,10 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public void permissionReverseDocument() {
-		flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.CssSelector);
 		if (flag) {
 			commonFunc.hardWait(3000);
-			webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.Xpath);
+			webDB.clickAnElement(AttendanceLeaveLocators.PermissionFindDocumentNoClick, ElementType.CssSelector);
 		}
 	}
 
@@ -1193,10 +1201,12 @@ public class AttendanceLeaveFunctions {
 					webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindSearchButon, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Encashment Search Button is Clicked");
-						flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindDocSelect, ElementType.Xpath);
+						flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentFindDocSelect,
+								ElementType.CssSelector);
 						if (flag) {
 							commonFunc.hardWait(1000);
-							webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindDocSelect, ElementType.Xpath);
+							webDB.clickAnElement(AttendanceLeaveLocators.EncashmentFindDocSelect,
+									ElementType.CssSelector);
 							if (flag) {
 								logs.logging("INFO", "Encashment Doc is Selected");
 								flag = webDB.waitForElement(AttendanceLeaveLocators.EncashmentCancelButton,
@@ -3610,20 +3620,21 @@ public class AttendanceLeaveFunctions {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindSearch, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Loan Request Find Serach Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.CssSelector);
 				if (flag) {
 					commonFunc.hardWait(3000);
-					webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestFindDocNoClick, ElementType.CssSelector);
 					if (flag) {
 						logs.logging("INFO", "Loan Request document have been clicked");
 						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
 						if (flag) {
 							commonFunc.hardWait(3000);
 							webDB.clickAnElement(AttendanceLeaveLocators.LoanRequestDocCancel, ElementType.Xpath);
-							flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestFindSearch,
-									ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "Loan Request Document Have been Cancelled");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanRequestAmountField,
+										ElementType.Xpath);
+								commonFunc.hardWait(1000);
 								commonFunc.logoutUser();
 							}
 						}
@@ -3881,9 +3892,9 @@ public class AttendanceLeaveFunctions {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
 					if (flag) {
 						logs.logging("INFO", "Loan DocNo Is Clicked");
 						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentCreateLoanButton,
@@ -3909,7 +3920,7 @@ public class AttendanceLeaveFunctions {
 									if (flag) {
 										webDB.clickAnElement(AttendanceLeaveLocators.LoanCreateLoanPaymentSaveOption,
 												ElementType.Xpath);
-									commonFunc.logoutUser();
+										commonFunc.logoutUser();
 									}
 								}
 							}
@@ -3967,9 +3978,9 @@ public class AttendanceLeaveFunctions {
 			webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentFindSearch, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "LoanPayment Find Search Button Is Clicked");
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
 				if (flag) {
-					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.Xpath);
+					webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentDocNoClick, ElementType.CssSelector);
 					if (flag) {
 						logs.logging("INFO", "Loan DocNo Is Clicked");
 						flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentReverseButton,
@@ -3979,6 +3990,8 @@ public class AttendanceLeaveFunctions {
 							webDB.clickAnElement(AttendanceLeaveLocators.LoanPaymentReverseButton, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "loan Payment Document Is Reversed");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.LoanPaymentFindSearch,
+										ElementType.Xpath);
 							}
 						}
 					}

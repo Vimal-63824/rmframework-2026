@@ -163,20 +163,20 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GENSearchBtn = "//button[@data-testid='Find_header']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id=\"22335393014035837389_orig\"]/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id=\"23264372453714718596_orig\"]/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id=\"1119004294775107902_orig\"]/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id=\"2047983734453989109_orig\"]/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
 
 	/** @locatorType Xpath */
 	public static final String GENLineFindTableData(int i) {
-		return "//table[@id='1119004294775107902_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='2047983734453989109_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String GENFindTableData(int i) {
-		return "//table[@id='22335393014035837389_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='23264372453714718596_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */

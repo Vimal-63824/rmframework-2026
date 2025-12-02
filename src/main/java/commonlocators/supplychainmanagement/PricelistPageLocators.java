@@ -88,21 +88,21 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumsearchField = "//*[@id=\"PopupLov_1615131025212_P1615131025212_DOCP_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static final String FindDocNumDrilldown = "#\\32 126264260268616424_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
+	public static final String FindDocNumDrilldown = "#\\32 386242705686113607_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
 	/** @locatorType Xpath */
 	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
 	/** @locatorType Xpath */
-	public static final String AmendcloseDate = "//input[@id='P161513102524_CLOSE_DATE_input']";
+	public static final String AmendcloseDate = "//*[@data-testid='P161513102524_CLOSE_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String AmendFromDate = "//input[@id='P161513102524_EFF_FROM_DATE_input']";
+	public static final String AmendFromDate = "//*[@data-testid='P161513102524_EFF_FROM_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String AmendToDate = "//input[@id='P161513102524_EFF_TO_DATE_input']";
+	public static final String AmendToDate = "//*[@data-testid='P161513102524_EFF_TO_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String AmendReason = "//input[@id='P161513102524_REASON']";
+	public static final String AmendReason = "//input[@data-testid='P161513102524_REASON']";
 	/** @locatorType Xpath */
 	public static final String PriceListAmndFrame = "//iframe[@title='Amendment']";
 	/** @locatorType Xpath */
-	public static final String PriceListAmndOk = "//button[@id='B4364078624181791110']";
+	public static final String PriceListAmndOk = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
 	public static final String SucessMsg = "//h6[@class='succ_msg']";
 	/** @locatorType Xpath */
@@ -133,21 +133,21 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindScreenItemField = "//input[@id='P3670200_ITEM_1']";
 	/** @locatorType Xpath */
-	public static final String ItemSearchBtn = "//button[@id='B1956605616894148687']";
+	public static final String ItemSearchBtn = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "#\\31 6358674989224040257_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
+	public static final String ItemDrillDownBtn = "#\\31 6618653128147539484_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String ItemGeneral = "//*[@id=\"P367020004_TAB\"]/div/div/div[3]/label";
 	/** @locatorType Xpath */
-	public static final String ItemCopy = "//button[@id='B887777911198249864']";
+	public static final String ItemCopy = "//button[@data-testid='Copy_Item']";
 	/** @locatorType Xpath */
-	public static final String ItemIdInputCopy = "//input[@id='P367020004_ITEM']";
+	public static final String ItemIdInputCopy = "//input[@data-testid='P367020004_ITEM']";
 	/** @locatorType Xpath */
-	public static final String ItemDescInputCopy = "//input[@id='P367020004_ITEM_DESC']";
+	public static final String ItemDescInputCopy = "//input[@data-testid='P367020004_ITEM_DESC']";
 	/** @locatorType Xpath */
-	public static final String ItemOkCopy = "//button[@id='B887774698026249856']";
+	public static final String ItemOkCopy = "//button[@data-testid='ok']";
 	/** @locatorType Xpath */
-	public static final String ItemPost = "//button[@id='B887458191673248848']";
+	public static final String ItemPost = "//button[@data-testid='Entry_Completed']";
 	/** @locatorType Xpath */
 	public static final String ItemFindBtn = "//*[@id=\"B215430562028062028\"]/span";
 	/** @locatorType Xpath */
@@ -157,7 +157,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLForwardLov = "//button[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PRLForwardOkBtn = "//button[@id='B2298629510439605303']";
+	public static final String PRLForwardOkBtn = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
 	public static final String PRLFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
@@ -177,7 +177,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String PRLFindTable = "//*[@id='2126264260268616424_orig']/tbody/tr[2]/td[1]";
+	public static final String PRLFindTable = "//*[@id='2386242705686113607_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String ClearButton = "//button[@data-testid='Clear']";
 	/** @locatorType Xpath */

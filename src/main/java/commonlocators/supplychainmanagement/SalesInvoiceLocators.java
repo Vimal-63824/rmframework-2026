@@ -253,7 +253,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Customer_Name = "//input[@id='P191513109001_SIHD_SUPLR_NAME']";
 	/** @Locator XPATH */
-	public static final String Location_det_tickIcon = "//button[@id='B2211454230480269909']";
+	public static final String Location_det_tickIcon = "//button[@data-testid='Save']";
 	/** @Locator XPATH */
 	public static final String SI_Currency = "//span[@id='P191513109001_SIHD_CURRENCY_DISPLAY']";
 	/** @Locator XPATH */

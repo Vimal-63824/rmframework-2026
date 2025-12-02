@@ -52,7 +52,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String PermissionFindEmployeeColumn = "//*[@id='C1249623153083282334']/a";
 	/** @locatorType Xpath */
-	public static final String PermissionFindDocumentNoClick = "//*[@id=\"1921225137182250564_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String PermissionFindDocumentNoClick = "#\\32 181202086408729697_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String PermissionReverse = "//button[@data-testid='PER_REVER']";
 	/** @locatorType Xpath */
@@ -82,7 +82,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String EncashmentDocNumber = "//Input[@data-testid='P41_LR_REQ_NO']";
 	/** @locatorType Xpath */
-	public static final String EncashmentFindDocSelect = "//*[@id=\"1925381684399899474_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String EncashmentFindDocSelect = "#\\32 185358633626378607_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String EncashmentPostButton = "//button[@data-testid='ENCAH_POST_BTN']";
 	/** @locatorType Xpath */
@@ -442,7 +442,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanRequestDocNoField = "//Input[@data-testid='LOAN_REQ_NO']";
 	/** @locatorType Xpath */
-	public static final String LoanRequestFindDocNoClick = "//*[@id=\"5010808342268184269_orig\"]/tbody/tr[2]/td[2]/a";
+	public static final String LoanRequestFindDocNoClick = "#\\35 270785291494663402_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String LoanRequestFindSearch = "//button[@data-testid='LOAN_REQ_SEARCH_BUTTON']";
 	/** @locatorType Xpath */
@@ -484,7 +484,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanPaymentFindSearch = "//button[@data-testid='ELN_SEARCH_Button']";
 	/** @locatorType Xpath */
-	public static final String LoanPaymentDocNoClick = "//*[@id=\"5190753575282402773_orig\"]/tbody/tr[2]/td[1]/a";
+	public static final String LoanPaymentDocNoClick = "#\\35 450730524508881906_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 	/** @locatorType Xpath */
 	public static final String LoanPaymentCreateLoanButton = "//button[@data-testid='ELP_CRE_LOAN_Button']";
 	/** @locatorType Xpath */
@@ -492,7 +492,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanCreateLoanPaymentpayrollOption = "//*[@id='P8181210302_PAY_MODE']/div/div/div[1]/label";
 	/** @locatorType Xpath */
-	public static final String LoanCreateLoanPaymentSaveOption = "//*[@id=\"B3933970893643713800\"]";
+	public static final String LoanCreateLoanPaymentSaveOption = "//*[@id=\"B4193947842870192933\"]";
 	/** @locatorType Xpath */
 	public static final String LoanPaymentReverseButton = "//button[@data-testid='ELP_REVERSE_Button']";
 }
