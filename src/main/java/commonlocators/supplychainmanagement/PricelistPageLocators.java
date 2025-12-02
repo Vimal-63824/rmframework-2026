@@ -157,7 +157,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLForwardLov = "//button[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PRLForwardOkBtn = "//button[@id='B2298629510439605303']";
+	public static final String PRLForwardOkBtn = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
 	public static final String PRLFrame = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
