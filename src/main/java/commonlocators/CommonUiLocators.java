@@ -399,11 +399,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PrCreateFrame = "//iframe[@title='Purchase Request']";
 	/** @locatorType Xpath */
-	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
+	public static final String CreatePrButton = "//button[@data-testid='ADD_PR']";
 	/** @locatorType Xpath */
 	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
+	public static final String CreatePRTickIcon = "//button[@id='B1785679090129335091']";
 	/** @locatorType Xpath */
 	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
 	/** @Locator XPATH */
