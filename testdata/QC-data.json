@@ -1352,5 +1352,10 @@
 	"MaterialReturnPrefix": "MRTN",
 	"WarehouseType": "Warehouse",
 	"OutsideType": "Outside",
-	"EmpAadharNum": "211693509719"
+	"EmpAadharNum": "211693509719",
+	"GENNumber":"GEN/0086/25-26",
+	"ARUN PACKS (P) LTD":"ARUN PACKS (P) LTD",
+	"GateKeeperName":"VIMAL",
+	"GENItem":"ROAU-RM-KDK-01",
+	"GENStatus":"Completed"
 }

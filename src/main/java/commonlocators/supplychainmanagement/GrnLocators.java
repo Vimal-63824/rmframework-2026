@@ -61,9 +61,9 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotserialItemInput = "//input[contains(@class,'a-PopupLOV-search apex-item-text')]";
 	/** @locatorType Xpath */
-	public static final String LotNumberInput = "//input[@id='C2557772811515364123']";
+	public static final String LotNumberInput = "//input[@data-testid='PRLT_LOT_NO1']";
 	/** @locatorType Xpath */
-	public static final String SerialNumberInput = "//input[@id='C2557773121832364126']";
+	public static final String SerialNumberInput = "//input[@data-testid='PRLT_START_SER_NO1']";
 	/** @locatorType Xpath */
 	public static final String LotSerialSaveButton = "//button[@data-testid='GRNP_SAVELOT_SER_BTN']";
 	/** @locatorType Xpath */
@@ -75,7 +75,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerialDate = "//*[@id=\"grn_lot_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String DateInput = "//input[@id='C2557773538645364130_input']";
+	public static final String DateInput = "//*[@data-testid='PRLT_EXPIRY_DATE']/input";
 	/** @locatorType Xpath */
 	public static final String LotSerialSave = "//button[@data-testid='Save_Lot']";
 	/** @locatorType Xpath */
@@ -322,4 +322,6 @@ public class GrnLocators {
 	public static final String OkButton = "//button[@id='B1893866759219808428']";
 	/** @locatorType Xpath */
 	public static final String CreateGeButton = "//button[@id='BTN_GE']";
+	/** @locatorType Xpath */
+	public static final String GRN_LotSerialButton = "//button[@data-testid='GRNP_GEN_LOT_SER_BTN']";
 }

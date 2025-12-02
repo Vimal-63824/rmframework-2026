@@ -116,7 +116,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
 	/** @locatorType Xpath */
-	public static final String PendingReceiptVoucherButton = "//button[@id='B5397011073920818820']";
+	public static final String PendingReceiptVoucherButton = "//button[@title='Create Receipt Voucher']";
 	/** @locatorType Xpath */
 	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
 	/** @locatorType Xpath */

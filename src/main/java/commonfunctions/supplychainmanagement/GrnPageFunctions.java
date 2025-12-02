@@ -683,56 +683,45 @@ public class GrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(GrnLocators.LotserialitemsInput, ITEM_NAME, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(GrnLocators.LotserialitemsInput, ITEM_NAME);
+			logs.logging("INFO", "Item Successfully Added");
+			webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.LotclickInput, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-				flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+				webDB.clickAnElement(GrnLocators.LotclickInput, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.isElementDisplayed(GrnLocators.LotNumberInput, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					logs.logging("INFO", "Item Successfully Added");
-					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnLocators.LotclickInput, ElementType.Xpath);
+					webDB.sendTextToAnElement(GrnLocators.LotNumberInput, LOT_NUMBER, ElementType.Xpath);
+					flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(GrnLocators.LotclickInput, ElementType.Xpath);
-						commonFunc.hardWait(3000);
-						flag = webDB.isElementDisplayed(GrnLocators.LotNumberInput, ElementType.Xpath);
+						logs.logging("INFO", "Lot Number Insert Successfully");
+						flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
+						if (!flag) {
+							logs.logging("info", "Verified Serial Is Disabled");
+						} else {
+							logs.logging("INFO", "Serial Is Enabled");
+						}
+						flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
 						if (flag) {
-							webDB.sendTextToAnElement(GrnLocators.LotNumberInput, LOT_NUMBER, ElementType.Xpath);
-							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+							webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+							flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
 							if (flag) {
-								logs.logging("INFO", "Lot Number Insert Successfully");
-								flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
-								if (!flag) {
-									logs.logging("info", "Verified Serial Is Disabled");
-								} else {
-									logs.logging("INFO", "Serial Is Enabled");
-								}
-								flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+								commonFunc.hardWait(5000);
+								webDB.sendTextToAnElement(GrnLocators.DateInput,
+										commonFunc.getDataFromTestDataSheet("LotSerialDate"), ElementType.Xpath);
+								logs.logging("INFO", "Lot Date Insert Successfully");
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-									flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
+									webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+									commonFunc.hardWait(3000);
+									closeToastIfDisplayed();
+									flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
 									if (flag) {
 										commonFunc.hardWait(5000);
-										webDB.sendTextToAnElement(GrnLocators.DateInput,
-												commonFunc.getDataFromTestDataSheet("LotSerialDate"),
-												ElementType.Xpath);
-										logs.logging("INFO", "Lot Date Insert Successfully");
-										commonFunc.hardWait(2000);
-										flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-										if (flag) {
-											webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-											commonFunc.hardWait(3000);
-											closeToastIfDisplayed();
-											flag = webDB.waitForElement(GrnLocators.LotSerialQtyField,
-													ElementType.Xpath);
-											if (flag) {
-												commonFunc.hardWait(5000);
-												webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-												logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-											}
-										}
+										webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
+										logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
 									}
 								}
 							}
@@ -741,6 +730,7 @@ public class GrnPageFunctions {
 				}
 			}
 		}
+
 		assertTrue(flag);
 
 	}
@@ -754,14 +744,7 @@ public class GrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(GrnLocators.LotserialitemsInput, ITEM_NAME, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-				flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
+			commonFunc.searchAndSelectValueInFilters(GrnLocators.LotserialitemsInput, ITEM_NAME);
 					logs.logging("INFO", "item Successfully Added");
 					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
 					flag = webDB.waitForElement(GrnLocators.SerialClickInput, ElementType.Xpath);
@@ -804,8 +787,6 @@ public class GrnPageFunctions {
 
 					}
 				}
-			}
-		}
 		assertTrue(flag);
 	}
 

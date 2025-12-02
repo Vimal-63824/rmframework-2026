@@ -92,11 +92,11 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
 	/** @locatorType Xpath */
-	public static final String AmendcloseDate = "//*[@data-testid='P161513102524_CLOSE_DATE']";
+	public static final String AmendcloseDate = "//*[@data-testid='P161513102524_CLOSE_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String AmendFromDate = "//*[@data-testid='P161513102524_EFF_FROM_DATE']";
+	public static final String AmendFromDate = "//*[@data-testid='P161513102524_EFF_FROM_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String AmendToDate = "//*[@data-testid='P161513102524_EFF_TO_DATE']";
+	public static final String AmendToDate = "//*[@data-testid='P161513102524_EFF_TO_DATE']/input";
 	/** @locatorType Xpath */
 	public static final String AmendReason = "//input[@data-testid='P161513102524_REASON']";
 	/** @locatorType Xpath */
