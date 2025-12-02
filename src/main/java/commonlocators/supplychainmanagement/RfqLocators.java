@@ -201,7 +201,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {//*[@id="R756144529071251319_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[2]
-		return "//*[@id=\'R1425065621357575423_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'R1685044066775072606_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
@@ -242,8 +242,8 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String PoDetailsBtn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[32]/a/span";
 	/** @locatorType Xpath */
-	public static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr.a-GV-row.is-selected > td:nth-child(32) > a";
-	/** @locatorType Xpath */
+	public static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(33) > a";
+	/** @locatorType Xpath */					
 	public static final String PoLineDetails2 = "//label[@for='P161513106045_TYPE_1']";
 	/** @locatorType Xpath */
 	public static final String DetailsRfqNum = "//input[@id='P161513106045_POL_RFQ_NO']";
@@ -303,9 +303,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RFQSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='10059430494754916995_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='10319408940172414178_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='907638428186143860_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='1167616873603641043_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "(//input[@data-testid='P1615131058_RADIO_GRP']/following-sibling::label)[2]";
 	/** @locatorType Xpath */
@@ -313,12 +313,12 @@ public class RfqLocators {
 	
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='907638428186143860_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='1167616873603641043_orig']/tbody/tr/td["+ i +"]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='10059430494754916995_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='10319408940172414178_orig']/tbody/tr/td["+ i +"]";
 	}
 
 }

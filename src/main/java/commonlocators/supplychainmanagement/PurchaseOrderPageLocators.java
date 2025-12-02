@@ -24,7 +24,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String Buyer = "//*[@id='P1615131061_POH_BUYER_ID']";
 	/** @locatorType Xpath */
-	public static final String LocationIdButton = "//input[@data-testid='P1615131061_POH_PLNT_LOC_ID']/following-sibling::button";
+	public static final String LocationIdButton = "//input[@data-testid='P161513106101_POH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String SupplierNameButton = "//input[@data-testid='P1615131061_POH_SUPLR_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -443,7 +443,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[32]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[33]";
 	}
 
 	/** @locatorType Xpath */
