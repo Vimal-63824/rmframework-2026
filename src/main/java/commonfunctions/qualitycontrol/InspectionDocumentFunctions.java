@@ -191,8 +191,8 @@ public class InspectionDocumentFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void AcceptInspectionDocuments() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
+		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+				"HariUsername-Admin");
 		commonFunc.navigateInspectionDocumentsPage();
 		verifyPendingInspectionDocuments(VariableHandler.getGrnDocNumber());
 		clickTickAndPostIcon();
@@ -205,8 +205,8 @@ public class InspectionDocumentFunctions {
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
 			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
 			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername-Admin");
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+					"HariUsername-Admin");
 			commonFunc.navigateInspectionDocumentsPage();
 		}
 		verifyValidateInspectionDocumentsStatus(VariableHandler.getIDNumber(),
@@ -784,8 +784,8 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void InspectionDocumentWithInspectionPlanForStocktransferType() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessageForStocktransferType();
@@ -796,8 +796,8 @@ public class InspectionDocumentFunctions {
 		}
 		clickTickAndPostIconForGrnDocument();
 		waitingForApproval();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
@@ -1109,7 +1109,7 @@ public class InspectionDocumentFunctions {
 					commonFunc.logoutUser();
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
 							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-							System.getProperty("HodUsername"));
+							System.getProperty("HariUsername"));
 				}
 			}
 		}
@@ -1123,8 +1123,8 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void InspectionDocumentWithInspectionPlanWithEDPManager() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessage();
@@ -1135,8 +1135,8 @@ public class InspectionDocumentFunctions {
 		}
 		clickTickAndPostIconForGrnDocument();
 		waitingForApprovalWithEDPManager();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
@@ -1172,7 +1172,7 @@ public class InspectionDocumentFunctions {
 			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
 			String InspectionDocumentNumber = webDB
 					.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
-			String regex = "ID49-\\d{4}-\\d{5}";
+			String regex = "INDP-\\d{4}-\\d{4}";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(InspectionDocumentNumber);
 			ArrayList<String> documentNumbers = new ArrayList<>();
@@ -1190,7 +1190,7 @@ public class InspectionDocumentFunctions {
 				int endNum = Integer.parseInt(toNum);
 				ArrayList<String> allDocumentNumbers = new ArrayList<>();
 				for (int i = startNum; i <= endNum; i++) {
-					String generatedDocumentNumber = "ID49-" + "2526-" + String.format("%05d", i);
+					String generatedDocumentNumber = "INDP-" + "2526-" + String.format("%04d", i);
 					allDocumentNumbers.add(generatedDocumentNumber);
 				}
 				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
@@ -1213,8 +1213,8 @@ public class InspectionDocumentFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void InspectionDocumentWithInspectionPlanWithEDPManagerForDifferentLoc() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		pendingInspectionRequestDocumentToCreateInspectionDocument();
 		getInspectionDocumentNumberFromToastMessageForDifferntLoc();
@@ -1225,13 +1225,13 @@ public class InspectionDocumentFunctions {
 		}
 		clickTickAndPostIconForGrnDocument();
 		waitingForApprovalWithEDPManager();
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*ID\\d{2}-\\d{4}-\\d{5}\\s*to\\s*ID\\d{2}-\\d{4}-\\d{5}";
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*INDP-\\d{4}-\\d{4}\\s*to\\s*INDP-\\d{4}-\\d{4}";
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 				commonFunc.logoutUser();
