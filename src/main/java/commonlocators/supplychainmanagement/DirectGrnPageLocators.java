@@ -17,29 +17,29 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnDcNo = "//input[@id='P16151311031_PORH_DC_NO_1']";
 	/** @locatorType Xpath */
-	public static final String GrnCreate = "//button[@id='B1565716347563432813']";
+	public static final String GrnCreate = "//button[@data-testid='CREATE']";
 	/** @locatorType Xpath */
 	public static final String GrnLineAdd = "//button[@data-testid='Add_Line']";
 	/** @locatorType Xpath */
-	public static final String GrnLineItemLov = "//button[@id='C4397622368467653804_lov_btn']";
+	public static final String GrnLineItemLov = "//button[@id='C4657600813885150987_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String GrnLineItemField = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
 	public static final String GrnLineHsnField = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
-	public static final String GrnLineHsnLov = "//button[@id='C3762102212526152818_lov_btn']";
+	public static final String GrnLineHsnLov = "//input[@data-testid='PORL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInput = "//input[@id='C3762068166294152527']";
+	public static final String GrnLineSupQtyInput = "//input[@data-testid='PORL_SUPLR_BILL_QTY']";
 	/** @locatorType Xpath */
 	public static final String GrnLineSupQty = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType Xpath */
 	public static final String GrnLineRcpQty = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInput = "//input[@id='C3762102320443152819']";
+	public static final String GrnLineRcpQtyInput = "//input[@data-testid='PORL_TEMP_INV_QTY']";
 	/** @locatorType Xpath */
 	public static final String GrnLineCost = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @locatorType Xpath */
-	public static final String GrnLineCostInput = "//*[@id=\"cost\"]";
+	public static final String GrnLineCostInput = "//input[@data-testid='PORL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
 	public static final String GrnLineSave = "//button[@data-testid='GRNP_SAVE_LINE']";
 	/** @locatorType Xpath */
@@ -101,7 +101,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineDetailsFrame = "//iframe[@title='GRN Line']";
 	/** @locatorType Xpath */
-	public static final String GrnLineDetailsSave = "//button[@id='B742557713301663570']";
+	public static final String GrnLineDetailsSave = "//button[@id='B1002536158719160753']";
 	
 	
 	/** @locatorType Xpath */
