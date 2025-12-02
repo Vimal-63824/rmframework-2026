@@ -116,7 +116,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
 	/** @locatorType Xpath */
-	public static final String PendingReceiptVoucherButton = "//button[@id='B5397011073920818820']";
+	public static final String PendingReceiptVoucherButton = "//button[@title='Create Receipt Voucher']";
 	/** @locatorType Xpath */
 	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
 	/** @locatorType Xpath */
@@ -322,7 +322,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//table[@id='12451204724453765688_orig']/tbody//td[2]/a";
+	public static final String SearchedItemDrillDown = "//table[@id='12711182863377264915_orig']/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */

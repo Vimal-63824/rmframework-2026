@@ -291,7 +291,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String AdvancereceiptsDocumentNoteAlertCloseIcon = "//span[@class='t-Icon icon-close']";
 	/** @Locator Xpath */
-	public static final String AdvancereceiptsworkflowOkButton = "//button[@data-testid='Entry']";
+	public static final String AdvancereceiptsworkflowOkButton = "//button[@data-testid='Entry' or @data-testid='OK']";
 	/** @Locator Xpath */
 	public static final String SalesOrderGeneralTab = "//label[@for='P191513134001_OVERALL_REG_PRM_3']";
 	/** @Locator Xpath */
@@ -339,13 +339,13 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @Locator Xpath */
-	public static final String PaymentReceiptSearchButton = "//button[@id='B2565063806063080317']";
+	public static final String PaymentReceiptSearchButton = "//button[@id='B2825075200891698481']";
 	/** @Locator Xpath */
-	public static final String PayementReceiptCreateButton = "//button[@id='B2236804899987887581']";
+	public static final String PayementReceiptCreateButton = "//button[@id='B2496816294816505745']";
 	/** @Locator Xpath */
 	public static final String BankReceiptsLovButton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @Locator Xpath */
-	public static final String BankReceiptsOkButton = "//button[@id='B2236805785059887590']";
+	public static final String BankReceiptsOkButton = "//button[@id='B2496817179888505754']";
 	/** @Locator Xpath */
 	public static final String BankReceiptpostButton = "//button[@id='POST']";
 	/** @Locator Xpath */
@@ -674,7 +674,7 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String PendingPaymentReceiptCheckBox(String AdvRecDocNum) {
-		return "//td[text()='" + AdvRecDocNum + "']/../td[13]";
+		return "//td[text()='" + AdvRecDocNum + "']/../td[14]";
 	}
 
 	/** @Locator Xpath */

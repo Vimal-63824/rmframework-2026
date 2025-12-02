@@ -435,6 +435,8 @@ public class GateEntryPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 						logs.logging("INFO", "Gate Entry Document Posted Successfully");
+						commonFunc.hardWait(200);
+						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
 					}
 				}
