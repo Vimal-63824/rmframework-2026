@@ -135,13 +135,13 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String fetchButtonGoButton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */
-		public static final String SelectItem = "//*[@id='7528720435910082596_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelectItem = "//*[@id='7788732405652705160_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String Gobutton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */
 		public static final String SearchInputField = "//input[@id='QC_search_field']";
 		/** @locatorType Xpath */
-		public static final String SelecCheckBox = "//*[@id='7528720435910082596_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelecCheckBox = "//table[@id='7788732405652705160_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String HeaderStatus = "//span[@data-testid='P191513101301_SRCHD_STATUS']" ;
 		
