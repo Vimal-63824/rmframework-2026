@@ -213,67 +213,67 @@ public class GrnTest extends RoadMapERPTest {
 		// TODO Covered
 		// PotoGrnGeneralPriceListSameStockAndSupplierUOMWithInspectionPlan() Method
 	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO with and without
-//	 * Inspection Stock Transfer Rate Contract Type
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 * @throws Exception
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 13, groups = {
-//			"GRN" }, description = "236 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
-//	public void PoToGrnStockTransferRateContractSameStockAndSupplierUomWithInspection() throws Exception {
-//		grnPageFunc.PoToGrnStockTransferRateContractSameStockAndSupplierUomWithAndWithoutInspection();
-//	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-//	 * Transfer Rate Contract Type
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 14, groups = {
-//			"GRN" }, description = "237 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM -Without Inspection Plan")
-//	public void PoToGrnStockTransferRateContractSameStockAndSupplierUomWithoutInspection() {
-//		logs.logging("INFO",
-//				"This Test Scenarios Is Covered Under PoToGrnStockTransferRateContractSameStockAndSupplierUomWithInspection");
-//		// TODO Covered
-//		// PoToGrnStockTransferRateContractSameStockAndSupplierUomWithInspection()
-//		// Method
-//	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO with Inspection Stock
-//	 * Transfer User Defined Type
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 * @throws Exception
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 15, groups = {
-//			"GRN" }, description = "229 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
-//	public void POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithInspection() throws Exception {
-//		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
-//	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-//	 * Transfer User Defined Type
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 16, groups = {
-//			"GRN" }, description = "230 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM -Without Inspection Plan")
-//	public void POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithoutInspection() {
-//		logs.logging("INFO",
-//				"This Test Scenarios Is Covered Under POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithInspection");
-//		// TODO Covered
-//		// POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithInspection() Method
-//	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with and without
+	 * Inspection Stock Transfer Rate Contract Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 13, groups = {
+			"GRN" }, description = "236 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
+	public void PoToGrnStockTransferRateContractSameStockAndSupplierUomWithInspection() throws Exception {
+		grnPageFunc.PoToGrnStockTransferRateContractSameStockAndSupplierUomWithAndWithoutInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Rate Contract Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 14, groups = {
+			"GRN" }, description = "237 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM -Without Inspection Plan")
+	public void PoToGrnStockTransferRateContractSameStockAndSupplierUomWithoutInspection() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under PoToGrnStockTransferRateContractSameStockAndSupplierUomWithInspection");
+		// TODO Covered
+		// PoToGrnStockTransferRateContractSameStockAndSupplierUomWithInspection()
+		// Method
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection Stock
+	 * Transfer User Defined Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 15, groups = {
+			"GRN" }, description = "229 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
+	public void POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithInspection() throws Exception {
+		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer User Defined Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 16, groups = {
+			"GRN" }, description = "230 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM -Without Inspection Plan")
+	public void POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithoutInspection() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithInspection");
+		// TODO Covered
+		// POtoGRNStockTransferUserDefinedSameStockandSupplierUOMWithInspection() Method
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO without Inspection
@@ -289,37 +289,37 @@ public class GrnTest extends RoadMapERPTest {
 		grnPageFunc.poToGRNServicePriceListSameStockAndSupplierUOMWOInspectionPlan();
 	}
 
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO with Inspection Stock
-//	 * Transfer Price List Type
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 * @throws Exception
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 18, groups = {
-//			"GRN" }, description = "243 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With Inspection Plan")
-//	public void POToGrnStockTransferPriceListSameStockandSupplierUOMWithInspectionPlanQualityEnabled()
-//			throws Exception {
-//		grnPageFunc.poToGrnStockTransferPriceListSameStockandSupplierUOMWithAndWOInspection();
-//	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
-//	 * Transfer Price List Type
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 19, groups = {
-//			"GRN" }, description = "244 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM -Without Inspection Plan")
-//	public void POToGrnStockTransferPriceListSameStockandSupplierUOMWOInspectionPlan() {
-//		logs.logging("INFO",
-//				"This Test Scenarios Is Covered Under POToGrnStockTransferPriceListSameStockandSupplierUOMWithInspectionPlan");
-//		// TODO Covered
-//		// POToGrnStockTransferPriceListSameStockandSupplierUOMWithInspectionPlan()
-//		// Method
-//	}
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection Stock
+	 * Transfer Price List Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 18, groups = {
+			"GRN" }, description = "243 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With Inspection Plan")
+	public void POToGrnStockTransferPriceListSameStockandSupplierUOMWithInspectionPlanQualityEnabled()
+			throws Exception {
+		grnPageFunc.poToGrnStockTransferPriceListSameStockandSupplierUOMWithAndWOInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO without Inspection Stock
+	 * Transfer Price List Type
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 19, groups = {
+			"GRN" }, description = "244 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM -Without Inspection Plan")
+	public void POToGrnStockTransferPriceListSameStockandSupplierUOMWOInspectionPlan() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under POToGrnStockTransferPriceListSameStockandSupplierUOMWithInspectionPlan");
+		// TODO Covered
+		// POToGrnStockTransferPriceListSameStockandSupplierUOMWithInspectionPlan()
+		// Method
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
@@ -382,38 +382,38 @@ public class GrnTest extends RoadMapERPTest {
 		// Method
 
 	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO withOut Inspection For
-//	 * Material UserDefined Item
-//	 * 
-//	 * @author PremKumar.K-RMITS issue reported
-//	 * @throws Exception
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 24, groups = {
-//			"GRN" }, description = "250 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
-//	public void POtoGRNStockTransferUserDefinedDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
-//		grnPageFunc.poToGRNStockTransferUserDefinedDissimilarUOMWithAndWithoutInspection();
-//	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO withOut Inspection For
-//	 * Material UserDefined Item
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 25, groups = {
-//			"GRN" }, description = "251 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - Without Inspection Plan")
-//	public void POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithoutInspectionPlanStockTransferType() {
-//		logs.logging("INFO",
-//				"This Test Scenarios Is Covered Under POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithInspectionPlan");
-//		// TODO Covered in
-//		// POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithInspectionPlan()
-//		// Method
-//
-//	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO withOut Inspection For
+	 * Material UserDefined Item
+	 * 
+	 * @author PremKumar.K-RMITS issue reported
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 24, groups = {
+			"GRN" }, description = "250 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
+	public void POtoGRNStockTransferUserDefinedDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
+		grnPageFunc.poToGRNStockTransferUserDefinedDissimilarUOMWithAndWithoutInspection();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO withOut Inspection For
+	 * Material UserDefined Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 25, groups = {
+			"GRN" }, description = "251 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - Without Inspection Plan")
+	public void POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithoutInspectionPlanStockTransferType() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithInspectionPlan");
+		// TODO Covered in
+		// POtoGRNMaterialUserDefinedDifferentStockAndSupplierUOMWithInspectionPlan()
+		// Method
+
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection For
@@ -428,24 +428,24 @@ public class GrnTest extends RoadMapERPTest {
 	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithInspectionPlan() throws Exception {
 		grnPageFunc.poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType();
 	}
-//
-//	/**
-//	 * This Methods Is Used To Create GRN Document from PO with Inspection For
-//	 * General Rate Contract Item
-//	 * 
-//	 * @author PremKumar.K-RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Prem-RMITS")
-//	@Test(priority = 27, groups = {
-//			"GRN" }, description = "253 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - Without Inspection Plan")
-//	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithoutInspectionPlan() {
-//		logs.logging("INFO",
-//				"This Test Scenarios Is Covered Under poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType");
-//		// TODO Covered in
-//		// poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType()
-//		// Method
-//	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection For
+	 * General Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 27, groups = {
+			"GRN" }, description = "253 PO to GRN-Stock Transfer-User Defined-Different Stock and Supplier UOM - Without Inspection Plan")
+	public void POtoGRNGeneralRateContractDifferentStockAndSupplierUOMWithoutInspectionPlan() {
+		logs.logging("INFO",
+				"This Test Scenarios Is Covered Under poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType");
+		// TODO Covered in
+		// poToGrnGeneralRateContractDifferentStockAndSupplierUOMWithAndWithoutInspectionGeneralType()
+		// Method
+	}
 
 	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection For
