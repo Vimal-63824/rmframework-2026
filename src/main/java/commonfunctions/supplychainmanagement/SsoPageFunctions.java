@@ -1206,7 +1206,6 @@ public class SsoPageFunctions {
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
 				commonFunc.hardWait(7000);
-				flag = commonFunc.logoutUser();
 			}
 		} else {
 			flag = false;

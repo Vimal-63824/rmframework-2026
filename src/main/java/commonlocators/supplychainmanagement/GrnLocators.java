@@ -142,13 +142,13 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnNumberInput = "//*[@id=\"PopupLov_1615131103_P1615131103_GRN_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static String GrnSearchButton = "//button[@id='B1849430181374803906']";
+	public static String GrnSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static String GrnProcessFlowStatus = "//*[@id=\"11313277488189564682\"]/tbody/tr[2]/td[16]/div";
+	public static String GrnProcessFlowStatus = "//*[@id=\\\"12242177025893385969\\\"]/tbody/tr[2]/td[16]/div";
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//*[@id='11982198580475888786']/tbody/tr[2]/td[17]";
+	public static String GrnDocumentStatus = "//*[@id=\\\"12242177025893385969\\\"]/tbody/tr[2]/td[17]/div";
 	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */

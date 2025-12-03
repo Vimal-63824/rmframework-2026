@@ -25,7 +25,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String ToastCloseIcon = "//button[@title='Close']";
 	/** @locatorType Xpath */
-	public static final String SearchTableResult = "//table[@id='26915332410434516987_orig']/tbody/tr[2]/td[1]";
+	public static final String SearchTableResult = "//*[@id=\\\"27175343432221112590_orig\\\"]/tbody/tr[2]/td[1]";
 	/** @locatorType Id */
 	public static final String CURRENCY = "P161513106044_POH_CURRENCY_DISPLAY";
 	/** @locatorType Id */
@@ -35,7 +35,7 @@ public class ApprovalPageLocators {
 	/** @locatorType Xpath */
 	public static final String BackButton = "//button[@id='B720942771947006229']";
 	/** @locatorType Xpath */
-	public static final String ApproveProcessButton = "//button[@id='B6713263706681036713']";
+	public static final String ApproveProcessButton = "//button[@id='B6973274728467632316']";
 	/** @locatorType Xpath */
 	public static final String Backicon = "//button[@id='B723952769206804347']";
 

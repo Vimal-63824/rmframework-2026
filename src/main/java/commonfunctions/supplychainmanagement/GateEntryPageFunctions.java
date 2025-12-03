@@ -93,7 +93,7 @@ public class GateEntryPageFunctions {
 		Ssofunc.verifyCreationOfItemforPriceList();
 		verifyCreationOfOpenPurchaseOrderGateEntry();
 		Ssofunc.verifyCreationOfSsoDomesticSupplierSimilarUomGate();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingMultiSsoo(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
 		verifygateEntryDetails();
@@ -251,9 +251,11 @@ public class GateEntryPageFunctions {
 //					webDB.clickAnElement(GateEntryPageLocators.PendSupplierInput, ElementType.Xpath);
 //					webDB.sendTextToAnElement(GateEntryPageLocators.PendSupplierInput, Supplier, ElementType.Xpath);
 //					logs.logging("INFO", "Date is Entered");
-					webDB.sendTextToAnElement(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum(),
-							ElementType.Xpath);
+//					webDB.sendTextToAnElement(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum(),
+//							ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum());
 					logs.logging("INFO", "Document Number is Entered");
+					webDB.switchToFrame(GateEntryPageLocators.PendingSsoGIframe, ElementType.Xpath);
 					webDB.waitForElement(GateEntryPageLocators.GateEntrySsoSearchButton, ElementType.Xpath);
 					if (flag) {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntrySsoSearchButton, ElementType.Xpath);
@@ -268,7 +270,6 @@ public class GateEntryPageFunctions {
 							webDB.waitForElement(GateEntryPageLocators.CreateGeFromSso, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(GateEntryPageLocators.CreateGeFromSso, ElementType.Xpath);
-
 							}
 						}
 					}
