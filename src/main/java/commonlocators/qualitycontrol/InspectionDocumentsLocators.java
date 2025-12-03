@@ -97,7 +97,7 @@ public class InspectionDocumentsLocators {
 	/** @locatorType Xpath */
 	public static final String RejtQty = "//input[@id=\"P20171310201_TQHD_REJ_QTY\"]";
 	/** @locatorType Xpath */
-	public static final String OkButtonFwdForQcDocument = "//button[@id='B2584712274934044961']";
+	public static final String OkButtonFwdForQcDocument = "//span[text()='Ok']/../../button";
 	/** @locatorType Xpath */
 	public static final String PendingProdOrderLov = "//*[@data-testid='P20171310150_PROD_ORD_NO']/following-sibling::button";
 	/** @locatorType Xpath */

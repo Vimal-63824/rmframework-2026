@@ -2053,13 +2053,13 @@ public class PurchaseOrderFunctions {
 		commonFunc.hardWait(1000);
 		String CurrencyValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.CurrencyInput,
 				ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-		WebElement prefixelement = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoPfxSelect));
-		Select selectprefix = new Select(prefixelement);
-		for (WebElement Textprefix : selectprefix.getAllSelectedOptions()) {
-			String PoPrefix = Textprefix.getText();
-			verifyTickIconcreatePO();
+//		WebElement prefixelement = webDB.getDriver().findElement(By.xpath(PurchaseOrderPageLocators.PoPfxSelect));
+//		Select selectprefix = new Select(prefixelement);
+//		for (WebElement Textprefix : selectprefix.getAllSelectedOptions()) {
+//			String PoPrefix = Textprefix.getText();
+		verifyTickIconcreatePO();
 //			verifyPoHeaderDetails(PoType, location, SupplierName, CurrencyValue, PoPrefix);
-		}
+//		}
 	}
 
 	/**

@@ -38,7 +38,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String BackIconBtn = "//button[@title='Back']";
 	/** @locatorType Xpath */
-	public static final String PostBtn = "//button[@id='post']";
+	public static final String PostBtn = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
 	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]";
 	/** @locatorType Xpath */
