@@ -65,7 +65,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderCancelButton = "//button[@data-testid='CANCEL']";
 	/** @locatorType Xpath */
-	public static final String OpenPOTable = "//table[@id='2616201806000265464_orig']/tbody/tr[2]/td[1]";
+	public static final String OpenPOTable = "//table[@id='2876180251417762647_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String FindLocationButton = "//input[@data-testid='P1615131025_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
