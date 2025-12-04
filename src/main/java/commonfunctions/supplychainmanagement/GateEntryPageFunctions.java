@@ -80,7 +80,7 @@ public class GateEntryPageFunctions {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingMultiPo();
-		verifygateEntryDetails();
+		verifygateEntryDetailsPO();
 		verifyToOverAllSaveAndPostTheGateEntryDocument();
 	}
 
@@ -93,10 +93,10 @@ public class GateEntryPageFunctions {
 		Ssofunc.verifyCreationOfItemforPriceList();
 		verifyCreationOfOpenPurchaseOrderGateEntry();
 		Ssofunc.verifyCreationOfSsoDomesticSupplierSimilarUomGate();
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		verifyToCreateGateEntryFromPendingMultiSsoo(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
-		verifygateEntryDetails();
+		verifygateEntryDetailsSso();
 		verifyToOverAllSaveAndPostTheGateEntryDocument();
 	}
 
@@ -251,9 +251,11 @@ public class GateEntryPageFunctions {
 //					webDB.clickAnElement(GateEntryPageLocators.PendSupplierInput, ElementType.Xpath);
 //					webDB.sendTextToAnElement(GateEntryPageLocators.PendSupplierInput, Supplier, ElementType.Xpath);
 //					logs.logging("INFO", "Date is Entered");
-					webDB.sendTextToAnElement(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum(),
-							ElementType.Xpath);
+//					webDB.sendTextToAnElement(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum(),
+//							ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum());
 					logs.logging("INFO", "Document Number is Entered");
+					webDB.switchToFrame(GateEntryPageLocators.PendingSsoGIframe, ElementType.Xpath);
 					webDB.waitForElement(GateEntryPageLocators.GateEntrySsoSearchButton, ElementType.Xpath);
 					if (flag) {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntrySsoSearchButton, ElementType.Xpath);
@@ -268,7 +270,6 @@ public class GateEntryPageFunctions {
 							webDB.waitForElement(GateEntryPageLocators.CreateGeFromSso, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(GateEntryPageLocators.CreateGeFromSso, ElementType.Xpath);
-
 							}
 						}
 					}
@@ -341,7 +342,74 @@ public class GateEntryPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
-	public void verifygateEntryDetails() {
+	public void verifygateEntryDetailsPO() {
+		flag = webDB.waitForElement(GateEntryPageLocators.DateInputPo, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.DateInputPo, ElementType.Xpath);
+			logs.logging("INFO", "Date Field Is Clicked");
+			flag = webDB.waitForElement(GateEntryPageLocators.SelectGateKeeperPo, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.selectDropDownByValue(GateEntryPageLocators.SelectGateKeeperPo, "0001",
+						ElementType.Xpath);
+				logs.logging("INFO", "Gate Keeper Selected SuccessFully");
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(GateEntryPageLocators.DcNumberFieldPo, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GateEntryPageLocators.DcNumberFieldPo, ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(GateEntryPageLocators.DcNumberFieldPo,
+							VariableHandler.getPONumber(), ElementType.Xpath);
+					logs.logging("INFO", "DC Number SuccessFully Updated");
+					commonFunc.hardWait(500);
+					flag = webDB.waitForElement(GateEntryPageLocators.SupplierBillNumberPo, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(500);
+						webDB.clickAnElement(GateEntryPageLocators.SupplierBillNumberPo, ElementType.Xpath);
+						webDB.sendTextToAnElement(GateEntryPageLocators.SupplierBillNumberPo,
+								VariableHandler.getPONumber(), ElementType.Xpath);
+						logs.logging("INFO", "Supplier Bill Number Updated");
+						flag = webDB.waitForElement(GateEntryPageLocators.VehicleNumberPo, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(500);
+							webDB.clickAnElement(GateEntryPageLocators.VehicleNumberPo, ElementType.Xpath);
+							webDB.sendTextToAnElement(GateEntryPageLocators.VehicleNumberPo,
+									VariableHandler.getPONumber(), ElementType.Xpath);
+							logs.logging("INFO", "Vehicle Number Updated SuccessFully");
+							flag = webDB.waitForElement(GateEntryPageLocators.DriverNamePo, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(500);
+								webDB.sendTextToAnElement(GateEntryPageLocators.DriverNamePo,
+										commonFunc.getDataFromTestDataSheet("DriverName"), ElementType.Xpath);
+								logs.logging("INFO", "Driver Name Updated SuccessFully");
+								flag = webDB.waitForElement(GateEntryPageLocators.ReferenceFieldPo, ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(500);
+									webDB.sendTextToAnElement(GateEntryPageLocators.ReferenceFieldPo,
+											commonFunc.getDataFromTestDataSheet("ReferenceField"), ElementType.Xpath);
+									logs.logging("INFO", "Reference Field Updated SuccessFully");
+									flag = webDB.waitForElement(GateEntryPageLocators.OkButtonPo, ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(GateEntryPageLocators.OkButtonPo, ElementType.Xpath);
+										logs.logging("INFO", "Gate Entry Document Created Successfully");
+										webDB.switchToDefaultContent();
+										commonFunc.hardWait(500);
+										flag = webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
+
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To verify Gate Entry Details
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifygateEntryDetailsSso() {
 		flag = webDB.waitForElement(GateEntryPageLocators.DateInputSso, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GateEntryPageLocators.DateInputSso, ElementType.Xpath);
@@ -403,7 +471,6 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	/**
 	 * This Methods Is Used To verify Clicking Overall save and POst The Gate Entry
 	 * Document

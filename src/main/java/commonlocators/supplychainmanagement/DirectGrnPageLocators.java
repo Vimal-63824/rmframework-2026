@@ -21,7 +21,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineAdd = "//button[@data-testid='Add_Line']";
 	/** @locatorType Xpath */
-	public static final String GrnLineItemLov = "//button[@id='C4657600813885150987_lov_btn']";
+	public static final String GrnLineItemLov = "//input[@data-testid='PORL_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String GrnLineItemField = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
@@ -41,7 +41,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineCostInput = "//input[@data-testid='PORL_SC_UNIT_COST']";
 	/** @locatorType Xpath */
-	public static final String GrnLineSave = "//button[@data-testid='GRNP_SAVE_LINE']";
+	public static final String GrnLineSave = "//button[@data-testid='Save_Line']";
 	/** @locatorType Xpath */
 	public static final String InspAttrTab = "//*[@id=\"SR_R5658842567854189405_tab\"]/a/span";
 	/** @locatorType Xpath */
