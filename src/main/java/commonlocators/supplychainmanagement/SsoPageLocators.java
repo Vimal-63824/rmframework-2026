@@ -30,7 +30,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoPendingBtnNew = "//button[@data-testid='Create_PO']";
 	/** @locatorType Xpath */
-	public static final String PendingSso = "//button[@id='B1596433657482453724']";
+	public static final String PendingSso = "//button[@data-testid='ADD_SSO']";
 	
 	
 	/** @locatorType Xpath */
@@ -82,9 +82,9 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String FetchOPOSearchOkBtn = "//button[@id='QC_search_button']";
 	/** @locatorType Xpath */
-	public static final String FetchOPOSelectall = "//*[@id=\"2625720381006985040_orig\"]/tbody/tr[2]/td[11]";
+	public static final String FetchOPOSelectall = "//*[@id='2885698826424482223_orig']/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
-	public static final String FetchOPOOKBtn = "//*[@id=\"B1\"]/span";
+	public static final String FetchOPOOKBtn = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
 	public static final String FetchOPODocNumChoose = "//*[@id=\"QC_sort_widget_rows\"]/a[1]";
 	
@@ -100,13 +100,13 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SSOItemFieldInput = "//input[@data-testid='DUM_PROD']";
 	/** @locatorType Xpath */
-	public static final String SSOFirmDateFromInput = "//input[@id='C1725036869148546260_input']";
+	public static final String SSOFirmDateFromInput = "//*[@data-testid='SSLN_FROM_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String SSOFirmDateToInput = "//input[@id='C1725036895311546261_input']";
+	public static final String SSOFirmDateToInput = "//*[@data-testid='SSLN_TO_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String SSOTentDateFromInput = "//input[@id='C1725339414660371832_input']";
+	public static final String SSOTentDateFromInput = "//*[@data-testid='SSLN_TEN_FROM_DATE']/input";
 	/** @locatorType Xpath */
-	public static final String SSOTentDateToInput = "//input[@id='C1725339539718371833_input']";
+	public static final String SSOTentDateToInput = "//*[@data-testid='SSLN_TEN_TO_DATE']/input";
 	/** @locatorType Xpath */
 	public static final String SSOLineSave = "//button[@data-testid='SaveLineRow']";
 	/** @locatorType Xpath */
@@ -126,7 +126,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoItemFrame = "//*[@id=\"apex_dialog_1\"]/iframe";
 	/** @locatorType Xpath */
-	public static final String ItmworkflowOK = "//button[@id='B2298629510439605303']";
+	public static final String ItmworkflowOK = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
 	public static final String SsoLineCount = "//*[@id=\"LINES_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */

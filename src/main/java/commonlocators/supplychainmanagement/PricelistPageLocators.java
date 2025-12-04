@@ -64,7 +64,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Refindsearchok = "//*[@id=\"PLE_search_button\"]/span";
 	/** @locatorType Xpath */
-	public static final String CancellStatus = "//*[@id=\"2126264260268616424_orig\"]/tbody/tr[2]/td[22]/div";
+	public static final String CancellStatus = "//*[@id='2386242705686113607_orig']/tbody/tr[2]/td[22]/div";
 	/** @locatorType Xpath */
 	public static final String FindLocLov = "//input[@data-testid='P1615131025212_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */

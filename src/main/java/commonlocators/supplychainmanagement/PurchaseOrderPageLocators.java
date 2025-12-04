@@ -338,13 +338,13 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@data-testid='PO_Item_Tick_Icon']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[30]";
+	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[31]";
 	/** @locatorType Xpath */
 	public static final String PoseriviceWithGrnSelectedValues = "//select[@data-testid='GRN_RQRD_FLAG']";
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1655732835255163754']";
 	/** @locatorType Xpath */
-	public static final String SaleOrderDrillDown = "//*[@id=\"4063111239500440821_orig\"]/tbody/tr[2]/td[9]/a";
+	public static final String SaleOrderDrillDown = "//*[@id=\"4991739592569095786_orig\"]/tbody/tr[2]/td[9]/a";
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {
