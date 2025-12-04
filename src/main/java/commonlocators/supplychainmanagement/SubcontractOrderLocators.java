@@ -403,7 +403,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String SCO_Location_Details_PurGSTClstype = "//Select[@data-testid='P1615131060412_POH_GST_CLF_TYPE_1']";
 	/** @locatorType XPATH */
-	public static final String SCO_Location_Details_SaveIcon = "//*[@id=\"B1270930321800469137\"]/span";
+	public static final String SCO_Location_Details_SaveIcon = "//button[@data-testid='Save']";
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_Btn = "//button[@data-testid='Serialwise-Pending']";
 	/** @locatorType XPATH */

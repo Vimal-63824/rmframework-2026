@@ -116,7 +116,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String MaterialReceiptVoucherTab = "//span[text()='Supply Chain']/ancestor::li/*/li[3]/*/li[2]/*/li[5]";
 	/** @locatorType Xpath */
-	public static final String PendingReceiptVoucherButton = "//button[@id='B5397011073920818820']";
+	public static final String PendingReceiptVoucherButton = "//button[@title='Create Receipt Voucher']";
 	/** @locatorType Xpath */
 	public static final String FinancialTab = "//span[text()='Financials']/ancestor::li";
 	/** @locatorType Xpath */
@@ -322,7 +322,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "#\\31 2451204724453765688_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
+	public static final String SearchedItemDrillDown = "//table[@id='12711182863377264915_orig']/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */
@@ -375,7 +375,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String CreatePORadioButton = "//button[@id='B1596433513455453723']";
 	/** @Locator XPATH */
-	public static final String Open_SCO_Find_AddIcon = "//button[@id='B1629410608331693435']";
+	public static final String Open_SCO_Find_AddIcon = "//button[@id='B2298331700618017539']";
 	/** @Locator XPATH */
 	public static final String OP_Find_DocNO = "//input[@data-testid='P193151010_FIND_PO_NO']/following-sibling::button";
 	/** @Locator XPATH */
@@ -399,11 +399,11 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String PrCreateFrame = "//iframe[@title='Purchase Request']";
 	/** @locatorType Xpath */
-	public static final String CreatePrButton = "//button[@id='B1607785281688206710']";
+	public static final String CreatePrButton = "//button[@data-testid='ADD_PR']";
 	/** @locatorType Xpath */
 	public static final String PurchaseAddIcon = "//button[@data-testid='Add']";
 	/** @locatorType Xpath */
-	public static final String CreatePRTickIcon = "//button[@id='B1525700644711837908']";
+	public static final String CreatePRTickIcon = "//button[@id='B1785679090129335091']";
 	/** @locatorType Xpath */
 	public static final String CreatePoTickIcon = "//button[@data-testid='Create_PO_Form']";
 	/** @Locator XPATH */

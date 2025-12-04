@@ -25,7 +25,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpenSO_PONumberInput = "//input[@data-testid='P19151310131_SRCHD_PO_NO']";
 		/** @locatorType Xpath */
-		public static final String OpenSO_PODateInput = "//input[@id='P191513101301_SRCHD_PO_DATE_input']";
+		public static final String OpenSO_PODateInput = "//*[@data-testid='P191513101301_SRCHD_PO_DATE']/input";
 		/** @locatorType Xpath */
 		public static final String OpenSO_FormTickIcon = "//button[@data-testid='SAVE']";
 		/** @locatorType Xpath */
@@ -103,7 +103,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String OpsoWorkApprovalFrame = "//iframe[@title='Workflow Approval']";
 		/** @locatorType Xpath */
-		public static final String OpsoOkButtonForward = "//button[@id='B2283240970459214424']";
+		public static final String OpsoOkButtonForward = "//button[@data-testid='Entry']";
 		/** @locatorType Xpath */
 		public static final String Transactions = "//span[contains(text(),'Transaction')]";
 		/** @locatorType Xpath */
@@ -135,13 +135,13 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String fetchButtonGoButton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */
-		public static final String SelectItem = "//*[@id='7528720435910082596_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelectItem = "//*[@id='7788732405652705160_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String Gobutton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */
 		public static final String SearchInputField = "//input[@id='QC_search_field']";
 		/** @locatorType Xpath */
-		public static final String SelecCheckBox = "//*[@id='7528720435910082596_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelecCheckBox = "//table[@id='7788732405652705160_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String HeaderStatus = "//span[@data-testid='P191513101301_SRCHD_STATUS']" ;
 		

@@ -38,7 +38,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String BackIconBtn = "//button[@title='Back']";
 	/** @locatorType Xpath */
-	public static final String PostBtn = "//button[@id='post']";
+	public static final String PostBtn = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
 	public static final String ItemDataLastRow = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]";
 	/** @locatorType Xpath */
@@ -236,5 +236,5 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String GlAccNoLovButton = "//input[@data-testid='PRL_PUR_ACCT']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String PendingPR = "//button[@id='B1607785281688206710']";
+	public static final String PendingPR = "//button[@data-testid='ADD_PR']";
 }

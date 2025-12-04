@@ -19,7 +19,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String CurrentRateGObtn = "//button[contains(@id,'Contract_search_button')]";
 	/** @locatorType Xpath */
-	public static final String currentRateDefault = "//*[@id='2119715103898907128_orig']/tbody/tr[2]/td[13]";
+	public static final String currentRateDefault = "//table[@id='2379727073641529692_orig']/tbody/tr[2]/td[13]";
 	/** @locatorType Xpath */
 	public static final String soAmdBtn = "//span[contains(text(),'SO Amendment')]";
 	/** @locatorType Xpath */
@@ -65,9 +65,9 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String AddButtoninAdditionType = "//BUTTON[@data-testid='OSO_Lines_Add_Button']";
 	/** @locatorType Xpath */
-	public static final String ItemClickField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String ItemClickField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String ItemLovButton = "//button[@id='C1553467561844625692_lov_btn']";
+	public static final String ItemLovButton = "//button[@id='C1813479531587248256_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String DiscFieldClick = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]\r\n";
 	/** @locatorType Xpath */
@@ -81,7 +81,7 @@ public class OpenSoAmdLocators {
 	/** @locatorType Xpath */
 	public static final String HsnCodeField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[11]";
 	/** @locatorType Xpath */
-	public static final String HsnCodeLov = "//button[@id='C1553469159376625708_lov_btn']";
+	public static final String HsnCodeLov = "//button[@id='C1813481129119248272_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String IgstFieldInLineDetails = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 

@@ -276,6 +276,7 @@ public class CustomerItemsFunctions {
 			webDB.clickAnElement(CustomerItemsLocators.SaveButtonCustomer, ElementType.Xpath);
 			logs.logging("Info", "Save Button Clicked Successfully");
 			flag = webDB.waitForClickElement(CustomerItemsLocators.ToastAlertMessageCustomerItems, ElementType.Xpath);
+			commonFunc.hardWait(1000);
 		}
 		assertTrue(flag);
 	}

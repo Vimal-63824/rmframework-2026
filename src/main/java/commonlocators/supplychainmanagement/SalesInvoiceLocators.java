@@ -67,7 +67,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Doc_NO = "//span[@id='P191513109001_SIHD_DOC_NO_DISPLAY']";
 	/** @Locator XPATH */
-	public static final String Header_Tick_Icon = "//button[@id='Save']";
+	public static final String Header_Tick_Icon = "//button[@data-testid='SAVE']";
 	/** @Locator XPATH */
 	public static final String Header_CPC_LOV_Btn = "//input[@data-testid='P191513109001_SIHD_CC_CODE']/following-sibling::button";
 	/** @Locator XPATH */
@@ -75,7 +75,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String HSN_Code_LOV_Btn = "//input[@data-testid='SILN_HSN_CODE']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String Headerwise_TickIcon = "//button[@id='Save']";
+	public static final String Headerwise_TickIcon = "//button[@data-testid='SAVE']";
 	/** @Locator XPATH */
 	public static final String Alloc_ls_batch_Btn = "//button[@data-testid='SI ALLOC.LS/BATCH BUTTON']";
 	/** @Locator XPATH */
@@ -253,7 +253,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String Customer_Name = "//input[@id='P191513109001_SIHD_SUPLR_NAME']";
 	/** @Locator XPATH */
-	public static final String Location_det_tickIcon = "//button[@id='B2211454230480269909']";
+	public static final String Location_det_tickIcon = "//button[@data-testid='Save']";
 	/** @Locator XPATH */
 	public static final String SI_Currency = "//span[@id='P191513109001_SIHD_CURRENCY_DISPLAY']";
 	/** @Locator XPATH */

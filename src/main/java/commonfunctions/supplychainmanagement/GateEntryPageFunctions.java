@@ -53,7 +53,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromPo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
 				"GateEntry");
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
@@ -73,9 +73,9 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToCreateGateEntryFromMultiplePo() {
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
 				"GateEntry");
-		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntry(
+		POfunc.verifyDirectPODomesticMaterialSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItemWithGateEntryD(
 				"GateEntry");
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
@@ -435,6 +435,8 @@ public class GateEntryPageFunctions {
 					if (flag) {
 						webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 						logs.logging("INFO", "Gate Entry Document Posted Successfully");
+						commonFunc.hardWait(200);
+						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.logoutUser();
 					}
 				}
@@ -990,7 +992,7 @@ public class GateEntryPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreationOfGENFilterAllFieldWorking() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"SelvaUsername");
 		commonFunc.navigateToGateEntryDocument();
 //		verifyDateAfterAndBefore();

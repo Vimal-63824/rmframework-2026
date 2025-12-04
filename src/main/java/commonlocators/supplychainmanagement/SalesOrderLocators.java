@@ -7,7 +7,7 @@ package commonlocators.supplychainmanagement;
 public class SalesOrderLocators {
 
 	/** @Locator Xpath */
-	public static final String SOButton = "//button[@id='B1597068964897180908']";
+	public static final String SOButton = "//span[text()='Sales Order']";
 	/** @Locator Xpath */
 	public static final String AddButtonSalesOrder = "//BUTTON[@TITLE='Create SO/CS']";
 	/** @Locator Xpath */
@@ -15,7 +15,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String LocationLOV = "//button[contains(@id,'P19151313402_UNIT_LOC_lov_btn')]";
 	/** @Locator Xpath */
-	public static final String SalesSubVoucherTypeLOV = "//button[@id='P19151313402_SOH_ORDER_TYPE_lov_btn']";
+	public static final String SalesSubVoucherTypeLOV = "//input[@data-testid='SalesSubVoucherTypeLOV']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String SalesTab = "//span[text()='Supply Chain']/ancestor::li/*/li[4]";
 	/** @Locator Xpath */
@@ -291,7 +291,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String AdvancereceiptsDocumentNoteAlertCloseIcon = "//span[@class='t-Icon icon-close']";
 	/** @Locator Xpath */
-	public static final String AdvancereceiptsworkflowOkButton = "//button[@data-testid='Entry']";
+	public static final String AdvancereceiptsworkflowOkButton = "//button[@data-testid='Entry' or @data-testid='OK']";
 	/** @Locator Xpath */
 	public static final String SalesOrderGeneralTab = "//label[@for='P191513134001_OVERALL_REG_PRM_3']";
 	/** @Locator Xpath */
@@ -339,13 +339,13 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @Locator Xpath */
-	public static final String PaymentReceiptSearchButton = "//button[@id='B2565063806063080317']";
+	public static final String PaymentReceiptSearchButton = "//button[@id='B2825075200891698481']";
 	/** @Locator Xpath */
-	public static final String PayementReceiptCreateButton = "//button[@id='B2236804899987887581']";
+	public static final String PayementReceiptCreateButton = "//button[@id='B2496816294816505745']";
 	/** @Locator Xpath */
 	public static final String BankReceiptsLovButton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @Locator Xpath */
-	public static final String BankReceiptsOkButton = "//button[@id='B2236805785059887590']";
+	public static final String BankReceiptsOkButton = "//button[@id='B2496817179888505754']";
 	/** @Locator Xpath */
 	public static final String BankReceiptpostButton = "//button[@id='POST']";
 	/** @Locator Xpath */
@@ -443,11 +443,11 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdNewQtyField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @Locator Xpath */
-	public static final String SoAmdlocationLov = "//button[@id='P1915131072_SOH_PLNT_LOC_ID_lov_btn']/span";
+	public static final String SoAmdlocationLov = "//input[@data-testid='P1915131072_SOH_PLNT_LOC_ID']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String SoAmdPrefixLov = "//button[@id='P1915131072_SOH_DOC_PFX_lov_btn']/span";
+	public static final String SoAmdPrefixLov = "//input[@data-testid='SoAmdPrefixLov']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String SoAmdSoNumberlov = "//button[@id='P1915131072_SO_PFX_NO_DUM_lov_btn']/span";
+	public static final String SoAmdSoNumberlov = "//input[@data-testid='P1915131072_SO_PFX_NO_DUM']/following-sibling::button";
 	/** @Locator Xpath */
 	public static final String SoAmdDocNumber = "//span[@data-testid='P1915131072_SOH_DOC_NO']";
 	/** @Locator Xpath */
@@ -674,7 +674,7 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String PendingPaymentReceiptCheckBox(String AdvRecDocNum) {
-		return "//td[text()='" + AdvRecDocNum + "']/../td[13]";
+		return "//td[text()='" + AdvRecDocNum + "']/../td[14]";
 	}
 
 	/** @Locator Xpath */

@@ -61,9 +61,9 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotserialItemInput = "//input[contains(@class,'a-PopupLOV-search apex-item-text')]";
 	/** @locatorType Xpath */
-	public static final String LotNumberInput = "//input[@id='C2557772811515364123']";
+	public static final String LotNumberInput = "//input[@data-testid='PRLT_LOT_NO1']";
 	/** @locatorType Xpath */
-	public static final String SerialNumberInput = "//input[@id='C2557773121832364126']";
+	public static final String SerialNumberInput = "//input[@data-testid='PRLT_START_SER_NO1']";
 	/** @locatorType Xpath */
 	public static final String LotSerialSaveButton = "//button[@data-testid='GRNP_SAVELOT_SER_BTN']";
 	/** @locatorType Xpath */
@@ -75,7 +75,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerialDate = "//*[@id=\"grn_lot_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String DateInput = "//input[@id='C2557773538645364130_input']";
+	public static final String DateInput = "//*[@data-testid='PRLT_EXPIRY_DATE']/input";
 	/** @locatorType Xpath */
 	public static final String LotSerialSave = "//button[@data-testid='Save_Lot']";
 	/** @locatorType Xpath */
@@ -125,7 +125,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnStockTransferCreation = "//*[@id=\"BTN_GRN_STS\"]";
 	/** @locatorType Xpath */
-	public static final String LotserialItemSelect = "//*[@id=\"PopupLov_161513110304_C2541854415472088671_dlg\"]/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
+	public static final String LotserialItemSelect = "//*[@id=\"PopupLov_161513110304_C2801832860889585854_dlg\"]/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
 	/** @locatorType Xpath */
 	public static final String PendingStockTransfer = "//button[@id='B1639076800886007125']";
 	/** @locatorType Xpath */
@@ -299,7 +299,7 @@ public class GrnLocators {
 	public static final String GrnLineWiseDeleteButton = "//span[@title='Delete']";
 	// span[@title="Delete"]
 	/** @locatorType Xpath */
-	public static final String GrnLineWiseStatus= "//*[@id=\"7517972640098794132_orig\"]/tbody/tr[2]/td[92]/div";
+	public static final String GrnLineWiseStatus = "//*[@id=\"7517972640098794132_orig\"]/tbody/tr[2]/td[92]/div";
 	/** @locatorType Xpath */
 	public static final String GrnDocumentwiseCancelButton = "//button[@data-testid='Cancel_GRN']";
 	/** @locatorType Xpath */
@@ -319,7 +319,9 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String FindGELovButton = "//input[@name='P1615131100_GE_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String OkButton = "//button[@id='B1893866759219808428']";
+	public static final String OkButton = "//button[@id='B2822766296923629715']";
 	/** @locatorType Xpath */
 	public static final String CreateGeButton = "//button[@id='BTN_GE']";
+	/** @locatorType Xpath */
+	public static final String GRN_LotSerialButton = "//button[@data-testid='GRNP_GEN_LOT_SER_BTN']";
 }

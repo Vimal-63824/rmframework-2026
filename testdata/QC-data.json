@@ -775,7 +775,7 @@
 	"PriceListSupplier": "SUP00025",
 	"DeletionOfItem": "DOI",
 	"PriceChange": "PC",
-	"L3": "L3",
+	"L3": "L-3",
 	"L49": "LOC49",
 	"L49ID": "L49",
 	"Opo_SupId_ID": "SUP10557",
@@ -1351,6 +1351,11 @@
 	"PartialInsItem": "GWL - ITEM - PARTIAL INS (RM)",
 	"MaterialReturnPrefix": "MRTN",
 	"WarehouseType": "Warehouse",
-	"OutsideType": "Outside"
-	
+	"OutsideType": "Outside",
+	"EmpAadharNum": "211693509719",
+	"GENNumber":"GEN/0086/25-26",
+	"ARUN PACKS (P) LTD":"ARUN PACKS (P) LTD",
+	"GateKeeperName":"VIMAL",
+	"GENItem":"ROAU-RM-KDK-01",
+	"GENStatus":"Completed"
 }
