@@ -951,10 +951,12 @@ public class CompletionProductionOrderFunctions {
 		flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
 				ElementType.Xpath);
 		if (!flag) {
+			logs.logging("INFO", "No Data Selected Container not displayed");
 			webDB.waitForElementUntilGivenTime(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 					ElementType.Xpath, 5);
 			if (webDB.isElementSelected(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 					ElementType.Xpath)) {
+				logs.logging("INFO", "Check all selected");
 				webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 						ElementType.Xpath);
 				webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
@@ -967,6 +969,7 @@ public class CompletionProductionOrderFunctions {
 					ElementType.Xpath);
 		}
 		if (flag) {
+			logs.logging("INFO", "No Data Selected Container displayed");
 			webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtnClicked,
 					ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtnClicked,
@@ -983,6 +986,7 @@ public class CompletionProductionOrderFunctions {
 				flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 						ElementType.Xpath);
 				if (flag) {
+					logs.logging("INFO", "Pending Prod no Searched");
 					webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 							ElementType.Xpath);
 					webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
@@ -990,6 +994,7 @@ public class CompletionProductionOrderFunctions {
 					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 							ElementType.Xpath);
 					if (flag) {
+						logs.logging("INFO", "Pending Prod No Checkbox Clicked");
 						webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 								ElementType.Xpath);
 						webDB.doubleClickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
@@ -1006,6 +1011,15 @@ public class CompletionProductionOrderFunctions {
 									ElementType.Xpath);
 							webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
 									ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							if (webDB.verifyIsElementDisplayed(
+									CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn, ElementType.Xpath)) {
+								flag = webDB.clickAnElement(
+										CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
+										ElementType.Xpath);
+								logs.logging("INFO", "Create Completion Process clicked with all process No");
+							}
 							webDB.switchToDefaultContent();
 							flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
 									ElementType.Xpath);
