@@ -144,11 +144,11 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static String GrnProcessFlowStatus = "//*[@id=\\\"12242177025893385969\\\"]/tbody/tr[2]/td[16]/div";
+	public static String GrnProcessFlowStatus = "//*[@id=\"12242177025893385969\"]/tbody/tr[2]/td[16]/div";
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//*[@id=\\\"12242177025893385969\\\"]/tbody/tr[2]/td[17]/div";
+	public static String GrnDocumentStatus = "//*[@id=\"12242177025893385969\"]/tbody/tr[2]/td[17]/div";
 	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */

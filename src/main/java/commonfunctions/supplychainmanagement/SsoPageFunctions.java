@@ -85,8 +85,8 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfOpenPurchaseOrderDomesticSupplier() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenPoOrderPage();
 		verifyCreationOfOPO();
 		verifyAddingFillDetailsOfOPO(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -103,9 +103,9 @@ public class SsoPageFunctions {
 		openPurchaseOrderHeaderHsnValidation();
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getOPODocNum());
-		verifyApproveWithDocNumber(VariableHandler.getOPODocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -117,8 +117,8 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfOpenPurchaseOrderImportSupplier() {
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateOpenPoOrderPage();
 		verifyCreationOfOPO();
 		verifyAddingFillDetailsOfOPO(commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -151,8 +151,8 @@ public class SsoPageFunctions {
 	public void verifyCreationOfSsoDomesticSupplierSimilarUom() {
 		verifyCreationOfItemforPriceList();
 		verifyCreationOfOpenPurchaseOrderDomesticSupplier();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Opo_SupId"), commonFunc.getDataFromTestDataSheet("PR_Department"),
@@ -174,9 +174,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -228,8 +228,8 @@ public class SsoPageFunctions {
 	public void verifyCreationOfSsoImportSupplierSimilarUom() {
 		verifyCreationOfItemforPriceList();
 		verifyCreationOfOpenPurchaseOrderImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
@@ -264,8 +264,8 @@ public class SsoPageFunctions {
 	public void verifyCreationOfSsoDomesticSupplierDisSimilarUom() {
 		verifyCreationOfItemforPriceListDisSimilarItem();
 		verifyCreationOfOpenPurchaseOrderDomesticSupplier();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Opo_SupId"), commonFunc.getDataFromTestDataSheet("PR_Department"),
@@ -303,8 +303,8 @@ public class SsoPageFunctions {
 	public void verifyCreationOfSsoImportSupplierDisSimilarUom() {
 		verifyCreationOfItemforPriceListDisSimilarItem();
 		verifyCreationOfOpenPurchaseOrderImportSupplier();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"),
@@ -357,8 +357,8 @@ public class SsoPageFunctions {
 	public void verifyCreationOfSsoDomesticSupplierSimilarUomCancel() {
 		verifyCreationOfItemforPriceList();
 		verifyCreationOfOpenPurchaseOrderDomesticSupplier();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Opo_SupId"), commonFunc.getDataFromTestDataSheet("PR_Department"),
@@ -392,8 +392,8 @@ public class SsoPageFunctions {
 	public void verifyCreationOfSsoDomesticSupplierSimilarUomCancelHeader() {
 		verifyCreationOfItemforPriceList();
 		verifyCreationOfOpenPurchaseOrderDomesticSupplier();
-		commonFunc.validCommonLogin(System.getProperty("SelvaUsername"), System.getProperty("SelvaPassword"),
-				"SelvaUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateSupplierScheduleOrderPage();
 		verifyCreationOfItemforSso(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Opo_SupId"), commonFunc.getDataFromTestDataSheet("PR_Department"),
@@ -620,7 +620,7 @@ public class SsoPageFunctions {
 								if (flag) {
 									webDB.doubleClickAnElement(SsoPageLocators.SSOFirmDateToField(i),
 											ElementType.Xpath);
-									webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateToInput, tomorrowDate,
+									webDB.sendTextToAnElement(SsoPageLocators.SSOFirmDateToInput, Today,
 											ElementType.Xpath);
 									commonFunc.hardWait(1000);
 									webDB.pressTabKey();
@@ -638,7 +638,7 @@ public class SsoPageFunctions {
 										if (flag) {
 											webDB.doubleClickAnElement(SsoPageLocators.SSOTentDateToField(i),
 													ElementType.Xpath);
-											webDB.sendTextToAnElement(SsoPageLocators.SSOTentDateToInput, tomorrowDate,
+											webDB.sendTextToAnElement(SsoPageLocators.SSOTentDateToInput, Today,
 													ElementType.Xpath);
 											webDB.pressTabKey();
 
@@ -653,7 +653,6 @@ public class SsoPageFunctions {
 									}
 								}
 							}
-
 						}
 					}
 
