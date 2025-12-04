@@ -649,9 +649,9 @@ public class ApprovalPageFunctions {
 				webDB.switchToDefaultContent();
 				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoPurchaseNumber(),
-						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-						System.getProperty("HariUsername"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getScoPurchaseNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				assertTrue(flag);
 
 				commonFunc.checkSuccessToastMessageDisappear();
@@ -662,5 +662,24 @@ public class ApprovalPageFunctions {
 			flag = true;
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To ExtractStocktransferDocNumber
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public boolean ExtractStocktransferDocNumber(String text) {
+		logs.logging("INFO", "Get Text From Note Alert Is :" + text);
+		String regex = "SO-\\d+-\\d{4}-\\d{4}";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher SaleOrderDocNumber = pattern.matcher(text);
+		if (SaleOrderDocNumber.find()) {
+			String SONumber = SaleOrderDocNumber.group();
+			VariableHandler.setSalesOrdertDocNumber(SONumber);
+			logs.logging("INFO", "Sales Order number Is :" + VariableHandler.getSalesOrdertDocNumber());
+		}
+		return flag;
 	}
 }

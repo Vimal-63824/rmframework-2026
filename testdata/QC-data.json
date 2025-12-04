@@ -1362,5 +1362,6 @@
 	"BomAllOutsideSORef": "BOM-2526-0000185",
 	"BomAFirstInsideRestOutsideSORef": "BOM-2526-0000188",
 	"BomAFirstOutsideRestInsideSORef": "BOM-2526-0000197",
-	"BomAFirstOutsideRestBothSORef": "BOM-2526-0000198"
+	"BomAFirstOutsideRestBothSORef": "BOM-2526-0000198",
+	"Unit7": "U-7"
 }
