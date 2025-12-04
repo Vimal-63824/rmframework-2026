@@ -1353,9 +1353,14 @@
 	"WarehouseType": "Warehouse",
 	"OutsideType": "Outside",
 	"EmpAadharNum": "211693509719",
-	"GENNumber":"GEN/0086/25-26",
-	"ARUN PACKS (P) LTD":"ARUN PACKS (P) LTD",
-	"GateKeeperName":"VIMAL",
-	"GENItem":"ROAU-RM-KDK-01",
-	"GENStatus":"Completed"
+	"GENNumber": "GEN/0086/25-26",
+	"ARUN PACKS (P) LTD": "ARUN PACKS (P) LTD",
+	"GateKeeperName": "VIMAL",
+	"GENItem": "ROAU-RM-KDK-01",
+	"GENStatus": "Completed",
+	"BomFirstInsideRestOutside": "BOM-2526-0000183",
+	"BomAllOutsideSORef": "BOM-2526-0000185",
+	"BomAFirstInsideRestOutsideSORef": "BOM-2526-0000188",
+	"BomAFirstOutsideRestInsideSORef": "BOM-2526-0000197",
+	"BomAFirstOutsideRestBothSORef": "BOM-2526-0000198"
 }

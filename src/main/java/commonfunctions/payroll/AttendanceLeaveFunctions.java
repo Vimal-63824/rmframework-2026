@@ -1385,7 +1385,7 @@ public class AttendanceLeaveFunctions {
 			saveLeaveEntryAndStoreLeaveRequestNo();
 			clickPostButtonInLeaveRequest();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("ROAUAdminEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getLeaveRequestNo(),
 						webDB.getDataFromProperties("ROAUAdminEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 						System.getProperty("HariUsername"));
@@ -1446,7 +1446,7 @@ public class AttendanceLeaveFunctions {
 			checkExceptionAndSaveHeaderInLOPMigration();
 			clickPostLOPLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("ROAUAdminEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
 						VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("ROAUAdminEmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -1489,7 +1489,7 @@ public class AttendanceLeaveFunctions {
 			checkExceptionAndSaveHeaderInAccrualMigration();
 			clickPostAccrualLeaveButton();
 			if (!VariableHandler.getApprovalFlag()) {
-				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
+				approvalFunc.waitingForApprovalWithFordwarder(webDB.getDataFromProperties("ROAUAdminEmpId"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
 						VariableHandler.getLeaveEntryDocNo(), webDB.getDataFromProperties("ROAUAdminEmpId"),
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
@@ -1772,6 +1772,9 @@ public class AttendanceLeaveFunctions {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryPendReqCheckBox(LeaveRequestNo),
 				ElementType.Xpath);
 		if (flag) {
+			webDB.waitUntilElementToNotBeStale(AttendanceLeaveLocators.LeaveEntryPendReqCheckBox(LeaveRequestNo),
+					ElementType.Xpath);
+			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryPendReqCheckBox(LeaveRequestNo), ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryPendReqCheckBox(LeaveRequestNo), ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Leave Request Number '" + LeaveRequestNo + "' CheckBox Clicked");
@@ -3810,6 +3813,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay, ElementType.Xpath);
 			if (flag) {
+				commonFunc.hardWait(1000);
 				logs.logging("INFO", "Header Saved Successfully in Leave Entry");
 				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveEntryNumberDisplay,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));

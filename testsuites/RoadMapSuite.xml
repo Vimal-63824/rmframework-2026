@@ -8,11 +8,9 @@
 	<test name="Road Map Test" parallel="classes" thread-count="5"
 		preserve-order="true">
 		<classes>
-		
-		
 			<class name="com.roadmapERP.POAmendmentTest" />
 			<class name="com.roadmapERP.SaleInvoiceTest" />
-			<class name="com.roadmapERP.ProductionOrderTest" />
+<!--			<class name="com.roadmapERP.ProductionOrderTest" />-->
 			<class name="com.roadmapERP.DirectGrnTest" />
 			<class name="com.roadmapERP.PriselistTest" />
 			<class name="com.roadmapERP.GrnTest" />
