@@ -263,7 +263,7 @@ public class ApprovalPageFunctions {
 		if (flag) {
 			String text = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			logs.logging("INFO", "Get Text From Note Alert Is :" + text);
-			String regex = "SOST-\\d{4}-\\d{5}";
+			String regex = "SOST-\\d{4}-\\d{7}";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher SaleOrderDocNumber = pattern.matcher(text);
 			if (SaleOrderDocNumber.find()) {

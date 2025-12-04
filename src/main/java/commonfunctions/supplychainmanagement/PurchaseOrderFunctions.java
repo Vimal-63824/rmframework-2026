@@ -3066,6 +3066,7 @@ public class PurchaseOrderFunctions {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
 			String UNIT_COST = itemmultiple[i][6];
+			String HSN = itemmultiple[i][68];
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
@@ -3073,6 +3074,7 @@ public class PurchaseOrderFunctions {
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoQtyEntered(QUANTITY);
 				verifyDirectPoUnitCostEntered(UNIT_COST);
+				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
 				webDB.switchToDefaultContent();
@@ -3080,17 +3082,13 @@ public class PurchaseOrderFunctions {
 			}
 
 		}
-		commonFunc.hardWait(3000);
+		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
 			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("STTYPE"));
-			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -3242,12 +3240,14 @@ public class PurchaseOrderFunctions {
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoQtyEntered(QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
 						commonFunc.getDataFromTestDataSheet("StockTransferSupplier"));
@@ -3258,17 +3258,13 @@ public class PurchaseOrderFunctions {
 			}
 
 		}
-		commonFunc.hardWait(3000);
+		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
 			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("STTYPE"));
-			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -12820,12 +12816,14 @@ public class PurchaseOrderFunctions {
 		for (int i = 22; i < itemmultiple.length; i++) {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoQtyEntered(QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
 						commonFunc.getDataFromTestDataSheet("StockTransferSupplier"));
@@ -12836,17 +12834,13 @@ public class PurchaseOrderFunctions {
 			}
 
 		}
-		commonFunc.hardWait(3000);
+		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
 			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("STTYPE"));
-			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
@@ -12883,6 +12877,7 @@ public class PurchaseOrderFunctions {
 			String ITEM_NAME = itemmultiple[i][1];
 			String QUANTITY = itemmultiple[i][5];
 			String UNIT_COST = itemmultiple[i][6];
+			String HSN = itemmultiple[i][68];
 			if (!ITEM_NAME.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(3000);
@@ -12890,6 +12885,7 @@ public class PurchaseOrderFunctions {
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoQtyEntered(QUANTITY);
 				verifyDirectPoUnitCostEntered(UNIT_COST);
+				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
 				webDB.switchToDefaultContent();
@@ -12897,17 +12893,13 @@ public class PurchaseOrderFunctions {
 			}
 
 		}
-		commonFunc.hardWait(3000);
+		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
 			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyValidatedetailsPoDetails(VariableHandler.getPONumber(),
-					commonFunc.getDataFromTestDataSheet("CurrencyInr"), commonFunc.getDataFromTestDataSheet("STTYPE"));
-			approvalFunc.verifyNavigateback();
 			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
 			verifyApproveWithDocNumber(VariableHandler.getPONumber());
 			flag = commonFunc.logoutUser();
