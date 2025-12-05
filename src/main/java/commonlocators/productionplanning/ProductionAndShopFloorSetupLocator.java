@@ -17,51 +17,51 @@ public class ProductionAndShopFloorSetupLocator {
 	/** @locatorType Xpath */
 	public static final String Process_Tab = "//label[@for='P3670133_PP_TABS_4']";
 	/** @locatorType Xpath */
-	public static final String Process_AddIcon = "//button[@id='B3373322729051958504']";
+	public static final String Process_AddIcon = "//button[@data-testid='Process_AddIcon']";
 	/** @locatorType Xpath */
-	public static final String ProcessID_Input = "//input[@id='C19009394731093510390']";
+	public static final String ProcessID_Input = "//input[@data-testid='ProcessID_Input']";
 	/** @locatorType Xpath */
-	public static final String ProcessName_Input = "//input[@id='C19009394861572510391']";
+	public static final String ProcessName_Input = "//input[@data-testid='ProcessName_Input']";
 	/** @locatorType Xpath */
-	public static final String Process_UOM_Lov = "//button[@id='C19009395612575510399_lov_btn']";
+	public static final String Process_UOM_Lov = "//input[@data-testid='Process_UOM_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String Proc_Type_Select_Class = "//select[@id='C19009396502434510408']";
+	public static final String Proc_Type_Select_Class = "//select[@data-testid='Proc_Type_Select_Class']";
 	/** @locatorType Xpath */
 	public static final String Proc_Suffix = "//*[@id=\"process_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
 	/** @locatorType Xpath */
 	public static final String Process_save_Toast_Msg = "(//button[@title='Close'])[1]";
 	/** @locatorType Xpath */
-	public static final String Process_Save_Icon = "//button[@id='B3373323181576958506']";
+	public static final String Process_Save_Icon = "//button[@data-testid='Process_Save_Icon']";
 	/** @locatorType Xpath */
 	public static final String Proc_Type_Field = "//*[@id='process_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[5]";
 	/** @locatorType Xpath */
-	public static final String Proc_Suffix_input = "//input[@id='C19020070142609244186']";
+	public static final String Proc_Suffix_input = "//input[@data-testid='Proc_Suffix_input']";
 	/** @locatorType Xpath */
-	public static final String Proc_Charge_Lov = "//input[@id='C19009395243941510395']/following-sibling::button";
+	public static final String Proc_Charge_Lov = "//input[@data-testid='Proc_Charge_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String Get_ProcessID = "//*[@id=\"process_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
 	public static final String ProcessAsso_Tab = "//label[@for='P3670133_PP_TABS_5']";
 	/** @locatorType Xpath */
-	public static final String ProcessAsso_AddIcon = "//button[@id='B3373349073250958612']";
+	public static final String ProcessAsso_AddIcon = "//button[@data-testid='ProcessAsso_AddIcon']";
 	/** @locatorType Xpath */
-	public static final String ProcessAsso_Lov = "//input[@id='C7496039803772188306']/following-sibling::button";
+	public static final String ProcessAsso_Lov = "//input[@data-testid='ProcessAsso_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_Unit_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[3]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_Unit_Lov = "//input[@id='C7496039661938188305']/following-sibling::button";
+	public static final String ProcAsso_Unit_Lov = "//input[@data-testid='ProcAsso_Unit_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_Workcenter_Lov = "//input[@id='C7497207801628396488']/following-sibling::button";
+	public static final String ProcAsso_Workcenter_Lov = "//input[@data-testid='ProcAsso_Workcenter_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_ConsWH_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[6]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_ConsWH_Lov = "//input[@id='C7497207858979396489']/following-sibling::button";
+	public static final String ProcAsso_ConsWH_Lov = "//input[@data-testid='ProcAsso_ConsWH_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ProcAsso_RecpWH_Field = "//*[@id=\"unit_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[7]";
 	/** @locatorType Xpath */
-	public static final String ProcAsso_RecpWH_Lov = "//input[@id='C7497208043445396490']/following-sibling::button";
+	public static final String ProcAsso_RecpWH_Lov = "//input[@data-testid='ProcAsso_RecpWH_Lov']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String Process_Asso_Save_Icon = "//button[@id='B3373349765172958615']";
+	public static final String Process_Asso_Save_Icon = "//button[@data-testid='Process_Asso_Save_Icon']";
 	/** @locatorType Xpath */
 	public static final String ProcessAsso_Toast_Msg = "(//button[@title='Close'])[1]";
 	/** @locatorType Xpath */
