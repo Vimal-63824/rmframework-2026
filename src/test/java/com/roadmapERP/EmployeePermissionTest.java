@@ -437,12 +437,13 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 		// TODO Covered in CheckLoanPaymentWithReversePartOption() Method
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To CheckTDS Declaration based on TDS Revision
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 33, groups = {
 			"Employee TDS Declaration" }, description = "126.To Check TDS Declaration based on regime wise checking")
 	public void checkTDSDeclarationBasedOnTDSRevision() {
@@ -455,6 +456,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 34, groups = {
 			"Employee TDS Declaration" }, description = "124.To CheckTDS Declaration Find page with all line wise record")
 	public void checkTDSDeclarationFindPageWithAllLineWiseRecord() {
@@ -467,6 +469,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 35, groups = {
 			"Employee TDS Declaration" }, description = "130.To Check TDS Declaration based on forward to approval record")
 	public void checkTDSDeclarationBasedOnForwardToApprovalRecord() {
@@ -479,6 +482,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 36, groups = {
 			"Employee TDS Declaration" }, description = "129.To Check TDS Declaration report fetches values correctly")
 	public void CheckTDSDeclarationReportFetchesValuesCorrectly() {
@@ -491,6 +495,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 37, groups = {
 			"Employee TDS Declaration" }, description = "131.To Check TDS Declaration based on Return to approval record")
 	public void checkTDSDeclarationBasedOnReturnToApprovalRecord() {
@@ -503,6 +508,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 38, groups = {
 			"Employee TDS Declaration" }, description = "128.To CheckTDS Declaration based on TDS Existing Regme and New Regime")
 	public void checkTDSDeclarationBasedOnTDSExistingRegimeAndNewRegime() {
@@ -515,6 +521,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 39, groups = {
 			"Employee TDS Declaration" }, description = "125.To CheckTDS Declaration based on section value assigning")
 	public void checkTDSDeclarationBasedOnSectionValueAssigning() {
@@ -527,6 +534,7 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	 * 
 	 * @author Kishore-RMITS
 	 */
+	@Author("Kishore-RMITS")
 	@Test(priority = 40, groups = {
 			"Employee TDS Declaration" }, description = "126.To CheckTDS Declaration based on regime wise checking")
 	public void checkTDSDeclarationBasedOnRegimeWiseChecking() {
