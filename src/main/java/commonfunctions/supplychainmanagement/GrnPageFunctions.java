@@ -745,48 +745,48 @@ public class GrnPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(GrnLocators.LotserialitemsInput, ITEM_NAME);
-					logs.logging("INFO", "item Successfully Added");
-					webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnLocators.SerialClickInput, ElementType.Xpath);
+			logs.logging("INFO", "item Successfully Added");
+			webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.SerialClickInput, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.SerialClickInput, ElementType.Xpath);
+				flag = webDB.isElementDisplayed(GrnLocators.SerialNumberInput, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(GrnLocators.SerialNumberInput, SERIAL_NUMBER, ElementType.Xpath);
+					logs.logging("INFO", "Serial Number Insert Successfully");
+					flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
+					if (!flag) {
+						logs.logging("info", "verified lot is disabled");
+					} else {
+						logs.logging("INFO", "lot Is Enabled");
+					}
+					flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(GrnLocators.SerialClickInput, ElementType.Xpath);
-						flag = webDB.isElementDisplayed(GrnLocators.SerialNumberInput, ElementType.Xpath);
+						webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+						flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
 						if (flag) {
-							webDB.sendTextToAnElement(GrnLocators.SerialNumberInput, SERIAL_NUMBER, ElementType.Xpath);
-							logs.logging("INFO", "Serial Number Insert Successfully");
-							flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
-							if (!flag) {
-								logs.logging("info", "verified lot is disabled");
-							} else {
-								logs.logging("INFO", "lot Is Enabled");
-							}
-							flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
+							commonFunc.hardWait(5000);
+							webDB.sendTextToAnElement(GrnLocators.DateInput,
+									commonFunc.getDataFromTestDataSheet("LotSerialDate"), ElementType.Xpath);
+							logs.logging("INFO", "Serial Date Insert Successfully");
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-								flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
+								webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+								closeToastIfDisplayed();
+								flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
 								if (flag) {
 									commonFunc.hardWait(5000);
-									webDB.sendTextToAnElement(GrnLocators.DateInput,
-											commonFunc.getDataFromTestDataSheet("LotSerialDate"), ElementType.Xpath);
-									logs.logging("INFO", "Serial Date Insert Successfully");
-									commonFunc.hardWait(2000);
-									flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-									if (flag) {
-										webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-										closeToastIfDisplayed();
-										flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-										if (flag) {
-											commonFunc.hardWait(5000);
-											webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-											logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-										}
-									}
+									webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
+									logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
 								}
 							}
 						}
-
 					}
 				}
+
+			}
+		}
 		assertTrue(flag);
 	}
 
@@ -1030,15 +1030,9 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void stockTransferAfterForwardToApproval() {
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-					"HodUsername");
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getSalesOrdertDocNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getSalesOrdertDocNumber());
-			commonFunc.hardWait(3000);
-			flag = commonFunc.logoutUser();
-		}
+		commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit7"),
+				System.getProperty("HariUsername"));
 		assertTrue(flag);
 	}
 
@@ -1164,7 +1158,7 @@ public class GrnPageFunctions {
 		clickPendingStockTransfer();
 		clickSelectAllButtonForStockTransferItem();
 		overAllSaveAndPost();
-		//waitingForApproval();
+		// waitingForApproval();
 	}
 
 	/**
@@ -6030,6 +6024,7 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("StPoToMRVWOIpSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
 	}
+
 	/**
 	 * This Method to Handle PO To GRN Stock Transfer Price List Same Stock and
 	 * Supplier UOM With And WO Inspection
@@ -6069,6 +6064,7 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("StockTransferRCFreePass"));
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method to Handle PO To GRN Stock Transfer Price List Same Stock and
 	 * Supplier UOM With And WO Inspection
@@ -6109,5 +6105,159 @@ public class GrnPageFunctions {
 		assertTrue(flag);
 	}
 
-	
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(General)
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntry() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"), webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(Material)
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnMaterialUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntry() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"), webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for UserDefined Item(Service)
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnServiceUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntry() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"), webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+	}
 }

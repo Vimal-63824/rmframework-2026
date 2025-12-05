@@ -59,9 +59,9 @@ public class ShareOfBusinessLocators {
 	/** @locatorType Xpath */
 	public static final String CancelDocuments = "//button[@data-testid='Cancel']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='2744906586978358873_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='3004885032395856056_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='2740877697640655244_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@id='3000856143058152427_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String SOBLocId = "//input[@data-testid='P1615131010_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */

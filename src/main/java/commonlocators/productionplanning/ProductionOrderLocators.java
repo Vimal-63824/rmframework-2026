@@ -140,9 +140,9 @@ public class ProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String ShowMoreHeaderBtn = "//button[@id='show']";
 	/** @locatorType XPATH */
-	public static final String FirstOprMREventSelect = "//select[@id='P19631010001_PROHD_FO_OPRN_MR_']";
+	public static final String FirstOprMREventSelect = "//select[@data-testid='FirstOprMREventSelect']";
 	/** @locatorType XPATH */
-	public static final String RestOprMREventSelect = "//select[@id='P19631010001_PROHD_RO_OPRN_MR_']";
+	public static final String RestOprMREventSelect = "//select[@data-testid='RestOprMREventSelect']";
 
 	/** @locatorType XPATH */
 	public static final String FindTableStatusWithProdOrderNo(String DocNo) {

@@ -7,6 +7,8 @@ package commonfunctions.supplychainmanagement;
 import static org.testng.Assert.assertTrue;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import commonfunctions.CommonFunctions;
 import commonfunctions.sysadministration.EmployeeQuickEntryFunctions;
@@ -46,6 +48,9 @@ public class SetupPurchaseFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void clickAddBuyerButton(String BuyerName, String EmployeeId, String EffTo) {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		flag = webDB.waitForElement(SetupPurchaseLocators.AddBuyerButton, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
@@ -67,15 +72,13 @@ public class SetupPurchaseFunctions {
 							webDB.clickAnElement(SetupPurchaseLocators.EffFromTable, ElementType.Xpath);
 							flag = webDB.waitForElement(SetupPurchaseLocators.EffFromToday, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SetupPurchaseLocators.EffFromToday, ElementType.Xpath);
+								webDB.sendTextToAnElement(SetupPurchaseLocators.EffFromToday, Today, ElementType.Xpath);
 								logs.logging("INFO", "Effective From Is Selected Successfully");
 								flag = webDB.waitForElement(SetupPurchaseLocators.EffToIdTable, ElementType.Xpath);
 								if (flag) {
 									webDB.clickAnElement(SetupPurchaseLocators.EffToIdTable, ElementType.Xpath);
-									flag = webDB.waitForElement(SetupPurchaseLocators.EffToToday, ElementType.Xpath);
+									flag = webDB.waitForElement(SetupPurchaseLocators.EffToInput, ElementType.Xpath);
 									if (flag) {
-										webDB.clickAnElement(SetupPurchaseLocators.EffToToday, ElementType.Xpath);
-										webDB.clearText(SetupPurchaseLocators.EffToInput, ElementType.Xpath);
 										webDB.sendTextToAnElement(SetupPurchaseLocators.EffToInput, EffTo,
 												ElementType.Xpath);
 										logs.logging("INFO", "Effective To Input Is: " + EffTo);
