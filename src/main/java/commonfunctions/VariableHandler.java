@@ -211,6 +211,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> RawMaterialCost = new ThreadLocal<>();
 	private static ThreadLocal<String> CompletionFgUnitCost = new ThreadLocal<>();
 	private static ThreadLocal<String> LoanRequestDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> TDSDeclarationDocNo = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultiMRVDocNumber = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultiMRVDocStatus = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultipleCSLineDocs = ThreadLocal.withInitial(() -> null);
@@ -2016,5 +2017,13 @@ public class VariableHandler {
 
 	public static boolean getAutoPostMRVFlag() {
 		return AutoPostMRVFlag.get();
+	}
+	
+	public static void setTDSDeclarationDocNo(String Data) {
+		TDSDeclarationDocNo.set(Data);
+	}
+	
+	public static String getTDSDeclarationDocNo() {
+		return TDSDeclarationDocNo.get();
 	}
 }

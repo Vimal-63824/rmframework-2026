@@ -164,20 +164,20 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String MRVdateTo = "//input[@id='P93131177_DATE_TO_input']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='1386904042820874247_orig']/tbody/tr[2]/td[2]";
+	public static final String AmendFindTable = "//*[@id='1646882181744373474_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='3380521312027296684_orig']/tbody/tr[2]/td[2]";
+	public static final String AmendLineFindTable = "//*[@id='3640499450950795911_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SourceVoucher = "//input[@id='P93131177_SOURCE_VOU_NO']";
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='1386904042820874247_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='1646882181744373474_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='3380521312027296684_orig']/tbody/tr/td[" + i + "]";
+		return "//table[@id='3640499450950795911_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType XPATH */

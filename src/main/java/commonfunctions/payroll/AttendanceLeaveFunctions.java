@@ -4004,4 +4004,325 @@ public class AttendanceLeaveFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * This method is used To Check TDS Declaration based on TDS Revision
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnTDSRevision() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on forward to approval
+	 * record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnForwardToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on Return to approval
+	 * record record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnReturnToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSReturnDocument();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To CheckTDS Declaration based on TDS Existing Regme and
+	 * New Regime
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnTDSExistingRegimeAndNewRegime() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSRegimeChoose();
+		return flag;
+	}
+
+	/**
+	 * This method is used To CheckTDS Declaration based on section value assigning
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnSectionValueAssigning() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSSectionWise(commonFunc.getDataFromTestDataSheet("TDSAmount"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on TDS Revision
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnRegimeWiseChecking() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Employee TDS Declaration Select
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeDocumentSelect(String Employee) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclFindEmpLOV, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TDSDeclFindEmpLOV, Employee);
+			if (flag) {
+				logs.logging("INFO", "TDS Employee is Selected");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "TDS Employee is Searched");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDocumentSelect, ElementType.CssSelector);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDocumentSelect,
+									ElementType.CssSelector);
+							if (flag) {
+								logs.logging("INFO", "TDS Document is Selected");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration to Revise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeDocumentRevise() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(1000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "TDS Employee is Searched");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The TDS Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSPostDocument() {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(2000);
+				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+				flag = commonFunc.logoutUser();
+			}
+			Assert.assertTrue(flag);
+		}
+	}
+
+	/**
+	 * This method is used To Return The TDS Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSReturnDocument() {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(2000);
+				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+						webDB.getDataFromProperties("HRUSEREmpId"));
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
+						webDB.getDataFromProperties("HRUSEREmpId"));
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Select TDS Tax Regime
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSRegimeChoose() {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(1000);
+				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "TDS Tax Regime Field Is Clicked");
+					webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationNewTax, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(1000);
+						flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationNewTax, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "TDS New Tax Is Selected");
+							webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+							String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+									AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+									commonFunc.getDataFromTestDataSheet("Value"));
+							VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+							logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(2000);
+								flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+										ElementType.Xpath);
+								approvalFunc.waitingForApprovalWithFordwarder(
+										commonFunc.getDataFromTestDataSheet("HodValue"));
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getTDSDeclarationDocNo(),
+										webDB.getDataFromProperties("HodEmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HariUsername"));
+								flag = commonFunc.logoutUser();
+							}
+							Assert.assertTrue(flag);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * This method is used To Enter Section Wise Amount
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSSectionWise(String TDSAmount) {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			if (flag) {
+				webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField,
+							ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					webDB.clearText(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, TDSAmount,
+							ElementType.Xpath);
+					webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSaveButton, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(1000);
+						flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationSaveButton,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "TDS Declaration is Saved");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(5000);
+								flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+										ElementType.Xpath);
+								approvalFunc.waitingForApprovalWithFordwarder(
+										commonFunc.getDataFromTestDataSheet("HodValue"));
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getTDSDeclarationDocNo(),
+										webDB.getDataFromProperties("HodEmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HariUsername"));
+								flag = commonFunc.logoutUser();
+							}
+							Assert.assertTrue(flag);
+						}
+					}
+				}
+			}
+		}
+	}
 }

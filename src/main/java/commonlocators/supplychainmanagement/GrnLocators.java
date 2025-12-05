@@ -44,7 +44,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerial = "//button[contains(@id,'B3157814851916052373')]";
 	/** @locatorType Xpath */
-	public static final String OverAllSave = "//button[@data-testid='GRNP_OVERALL_SAVE_BTN']";
+	public static final String OverAllSave = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
 	public static final String PostButton = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */

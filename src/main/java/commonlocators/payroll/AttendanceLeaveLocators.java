@@ -495,4 +495,27 @@ public class AttendanceLeaveLocators {
 	public static final String LoanCreateLoanPaymentSaveOption = "//*[@id=\"B4193947842870192933\"]";
 	/** @locatorType Xpath */
 	public static final String LoanPaymentReverseButton = "//button[@data-testid='ELP_REVERSE_Button']";
+	
+	
+	public static final String TDSFindSearchButton = "//button[@data-testid='TDS_FindSearch_Btn']";
+	/** @locatorType Xpath */
+	public static final String TDSDeclFindEmpLOV = "//button[@data-testid='EMP_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TDSDocumentSelect = "#\\31 7108316738168652464_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationDocNoToPost = "//*[@id=\"P1013_HTDH_DOC_NO\"]";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationReviseButton = "//button[@data-testid='Cre_rev_Btn']";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationEntryFindButton = "//button[@id='B1451851613601726697']";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationPostButton = "//button[@data-testid='Post_Btn']";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationRegimeType = "//*[@id=\"P1013_HTDH_TAX_TYPE\"]";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationNewTax = "//*[@id=\"P1013_HTDH_TAX_TYPE\"]/option[2]";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationSectionWiseField = "//input[@id='P1013_HTDLD_SEC10_13A_H']";
+	/** @locatorType Xpath */
+	public static final String TDSDeclarationSaveButton = "//button[@data-testid='Save_Btn']";
 }
