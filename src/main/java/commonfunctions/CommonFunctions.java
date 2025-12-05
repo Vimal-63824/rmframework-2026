@@ -2943,6 +2943,15 @@ public class CommonFunctions {
 	}
 
 	/**
+	 * This Method Is Used To Navigate TDS Declaration Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToTDSDeclarationScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSFindSearchButton);
+	}
+	
+	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 
 	 * @author Sakthi-GWL
