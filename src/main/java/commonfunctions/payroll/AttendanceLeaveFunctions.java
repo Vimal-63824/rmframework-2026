@@ -4004,7 +4004,7 @@ public class AttendanceLeaveFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This method is used To Check TDS Declaration based on TDS Revision
 	 * 
@@ -4187,8 +4187,8 @@ public class AttendanceLeaveFunctions {
 						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 				flag = commonFunc.logoutUser();
 			}
-			Assert.assertTrue(flag);
 		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -4265,12 +4265,12 @@ public class AttendanceLeaveFunctions {
 										System.getProperty("HariUsername"));
 								flag = commonFunc.logoutUser();
 							}
-							Assert.assertTrue(flag);
 						}
 					}
 				}
 			}
 		}
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -4318,11 +4318,11 @@ public class AttendanceLeaveFunctions {
 										System.getProperty("HariUsername"));
 								flag = commonFunc.logoutUser();
 							}
-							Assert.assertTrue(flag);
 						}
 					}
 				}
 			}
 		}
+		Assert.assertTrue(flag);
 	}
 }

@@ -1380,5 +1380,6 @@
 	"BomForQCLotItem":"FG70001-QC-LOT"
 	"TDSAmount":"100000",
     "Calendar":"00001 - 1 TO 30/31",
-    "Period":"APRIL"
+    "Period":"APRIL",
+    "ImpSupplier": "SUP10388"
 }
