@@ -4792,10 +4792,6 @@ public class SalesInvoiceFunctions {
 	 */
 	public void PendingGateEntryInsertingInvoicedNoSelectAndCreate(String GEdocno) {
 		webDB.switchToFrame(SalesInvoiceLocators.CR_GE_Iframe, ElementType.Xpath);
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_GE_Doc_No, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_GE_Doc_No, ElementType.Xpath);
-			commonFunc.hardWait(1000);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_GE_Doc_No, GEdocno);
 			webDB.switchToDefaultContent();
 			commonFunc.hardWait(2000);
@@ -4824,7 +4820,6 @@ public class SalesInvoiceFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 

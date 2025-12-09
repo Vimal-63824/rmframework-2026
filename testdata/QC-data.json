@@ -244,7 +244,7 @@
 	"PI_Inv_UnitCost": "120",
 	"PI_Inv_Discount": "2",
 	"PI_HSN_code": "(740410)-18%",
-	"PI_SO_Ref_Advance": "SORD-2526-00077",
+	"PI_SO_Ref_Advance": "SORD-2526-00943",
 	"PI_SO_Ref_Advance_Item_ID": "HK-FG-RC-DISSIMILAR ITEM-10001",
 	"PI_Advance_Type": "PROFORMA INVOICE (ADVANCE)",
 	"PI_PreDispatch_Type": "PROFORMA INVOICE (PRE DESPATCH)",

@@ -310,5 +310,7 @@ public class ProductionOrderLocators {
 	public static final String LineDetailsSaveIcon = "//button[@id='B1611356104066403183']";
 	/** @Locator XPATH */
 	public static final String LineDetailsCloseIcon = "//div[@id='ROUTING_ig_grid_vc_floatingItem_dialog']/following-sibling::div//button[@title='Close']";
+	/** @Locator XPATH */
+	public static final String FromSerial_Input = "//input[@id='P64196310101_FROM_SERIAL']";
 
 }
