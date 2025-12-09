@@ -530,9 +530,9 @@ public class GateEntryPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOPODocNum(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -1213,7 +1213,7 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyAmendTableValue(int i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(DirectGrnPageLocators.AmendFindTableData(i)));
+				.findElements(By.xpath(GateEntryPageLocators.GENFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1234,7 +1234,7 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyLineAmendTableValue(int i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(DirectGrnPageLocators.AmendLineFindTableData(i)));
+				.findElements(By.xpath(GateEntryPageLocators.GENLineFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1427,30 +1427,28 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyClickSelectAllButton() {
 		commonFunc.hardWait(5000);
-//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-//		if (flag) {
-		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		List<WebElement> CheckBox = webDB.getDriver()
-				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-		for (WebElement element : CheckBox) {
-			try {
-				if (element.isDisplayed()) {
-					if (!element.isSelected()) {
-						element.click();
-						flag = true;
-						break;
-					} else {
-						element.click();
-						Thread.sleep(10000);
-						verifyClickSelectAllButton();
-						flag = true;
-						break;
+		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		if (flag) {
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						if (!element.isSelected()) {
+							element.click();
+							flag = true;
+							break;
+						} else {
+							element.click();
+							Thread.sleep(10000);
+							verifyClickSelectAllButton();
+							flag = true;
+							break;
+						}
 					}
+				} catch (Exception e) {
 				}
-			} catch (Exception e) {
-				System.out.println(e);
 			}
-//			}
 		}
 		assertTrue(flag);
 	}
@@ -1486,19 +1484,17 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
 	private void VerifyClickingFrame() {
-		flag = webDB.waitForElement(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
-		if (flag) {
+		flag=webDB.waitForElement(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
+		if(flag) {
 			webDB.switchToFrame(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
 		}
 
 	}
-
 	private void VerifyClickingGateDirectFrame() {
-		flag = webDB.waitForElement(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
-		if (flag) {
+		flag=webDB.waitForElement(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
+		if(flag) {
 			webDB.switchToFrame(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
 		}

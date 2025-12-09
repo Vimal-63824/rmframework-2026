@@ -1020,7 +1020,7 @@ public class PricelistPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(PricelistPageLocators.FindSearchButton, ElementType.Xpath);
 				logs.logging("INFO", "Search Button is clicked");
-				commonFunc.hardWait(1000);
+				commonFunc.hardWait(2000);
 				String canclsts = webDB.getTextFromElement(PricelistPageLocators.CancellStatus, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Expected Text: " + "Cancelled" + " Displayed: " + canclsts);

@@ -95,6 +95,7 @@ public class SsoPageFunctions {
 		verifyCreatingItemForOpo(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
 				commonFunc.getDataFromTestDataSheet("SO_Special_Disc"),
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		commonFunc.hardWait(3000);
 		openPurchaseOrderHeaderValidation();
 		openPurchaseOrderHeaderSupplierValidation();
 		openPurchaseOrderHeaderItemValidation();
@@ -127,6 +128,8 @@ public class SsoPageFunctions {
 		verifyCreatingItemForOpo(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
 				commonFunc.getDataFromTestDataSheet("SO_Special_Disc"),
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
 		openPurchaseOrderHeaderValidation();
 		openPurchaseOrderHeaderImportSupplierValidation();
 		openPurchaseOrderHeaderItemValidation();
@@ -311,6 +314,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Department"), commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
+		commonFunc.hardWait(2000);
 		supplierScheduleHeaderValidationUnit1();
 		supplierScheduleHeaderImportSupplierValidation();
 		supplierScheduleHeaderWarehouseValidationUnit1();

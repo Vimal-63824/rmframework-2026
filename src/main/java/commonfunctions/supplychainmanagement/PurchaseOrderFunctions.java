@@ -6025,6 +6025,8 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoLineWiseSaved() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
