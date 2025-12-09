@@ -556,6 +556,7 @@ public class EmployeeMasterFunctions {
 			updateEmployeePayrollGrpAndNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndPostInEmployeeParticular();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -627,6 +628,7 @@ public class EmployeeMasterFunctions {
 			updateEmpCityZipCodeAndTelephoneInAddressTab(commonFunc.getDataFromTestDataSheet("Emp_City"),
 					RandomStringUtils.randomNumeric(6), commonFunc.randomMobileNumberGenerator());
 			clickSaveIconAndPostInAddress();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -697,6 +699,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
 					RandomStringUtils.randomNumeric(5));
 			clickSaveAndPostInUpdateDependentDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -767,6 +770,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
 					commonFunc.getDataFromTestDataSheet("Emp_City"));
 			clickSaveAndPostInUpdateContactDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -837,6 +841,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
 					RandomStringUtils.randomNumeric(2));
 			clickSaveAndPostInUpdateQualificationDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -905,6 +910,7 @@ public class EmployeeMasterFunctions {
 			fillDetailsInUpdateSkillDetails(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
 					commonFunc.getDataFromTestDataSheet("Emp_Level"));
 			clickSaveAndPostInUpdateSkillDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
