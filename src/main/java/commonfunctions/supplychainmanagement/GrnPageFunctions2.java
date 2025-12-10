@@ -46,7 +46,7 @@ public class GrnPageFunctions2 {
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
 			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-					+ "ImportDirectGRN.xlsx";
+					+ "DBDETAILS.xlsx";
 			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 			for (int i = 22; i < GRNMultipleline.length; i++) {
 				String ITEM_NAME = GRNMultipleline[i][1];
@@ -90,7 +90,7 @@ public class GrnPageFunctions2 {
 				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 				ExcelUtils excelUtils = new ExcelUtils();
 				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-						+ "ImportDirectGRN.xlsx";
+						+ "DBDETAILS.xlsx";
 				itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 				for (int i = 22; i < itemmultiple.length; i++) {
 					String ITEM_NAME = itemmultiple[i][1];
@@ -154,7 +154,7 @@ public class GrnPageFunctions2 {
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
 			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-					+ "ImportDirectGRN.xlsx";
+					+ "DBDETAILS.xlsx";
 			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 			for (int i = 22; i < GRNMultipleline.length; i++) {
 				String ITEM_NAME = GRNMultipleline[i][1];
