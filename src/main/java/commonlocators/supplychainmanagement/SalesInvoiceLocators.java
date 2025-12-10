@@ -553,9 +553,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Reverse_Iframe = "//iframe[@title='Doc. Reversal']";
 	/** @Locator XPATH */
-	public static final String SI_Reverse_OK_Btn = "//button[@id='B2639114730030593602']";
+	public static final String SI_Reverse_OK_Btn = "//button[@id='B2899126698435215755']";
 	/** @Locator XPATH */
-	public static final String SI_Reverse_ForwardApproval = "//button[@id='B4049224260903671822']";
+	public static final String SI_Reverse_ForwardApproval = "//button[@id='B4309236229308293975']";
 	/** @Locator XPATH */
 	public static final String SI_Charges_Tab = "//label[@for='P191513109001_TAB_LINE_1']";
 	/** @Locator XPATH */
@@ -765,7 +765,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Header_Date = "//button[@class='a-Button a-DatePicker--today']";
 	/** @Locator XPATH */
-	public static final String SI_DocNo_DrillDown = "#\31 5765895287379286932_orig > tbody > tr:nth-child(2) > td:nth-child(12) > a";
+	public static final String SI_DocNo_DrillDown = "//*[@id=\"15765895287379286932_orig\"]/tbody/tr[2]/td[12]/a";
 	/** @Locator XPATH */
 	public static final String SI_Location_Field = "//INPUT[@data-testid='P1915131343_SIHD_PLNT_LOC_ID']";
 	/** @Locator XPATH */
