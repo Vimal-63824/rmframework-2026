@@ -829,7 +829,7 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	private void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
+	public void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
 		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);

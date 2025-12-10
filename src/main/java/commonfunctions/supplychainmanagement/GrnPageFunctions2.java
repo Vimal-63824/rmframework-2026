@@ -7,7 +7,10 @@ package commonfunctions.supplychainmanagement;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
@@ -21,10 +24,118 @@ import utils.WebDriverBase.ElementType;
 public class GrnPageFunctions2 {
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static CommonFunctions commonFunc = new CommonFunctions();
+	private static ApprovalPageFunctions approveFunc = new ApprovalPageFunctions();
 	private static DirectGrnPageFunctions DirectGRNFunc = new DirectGrnPageFunctions();
 	private static ReportLoger logs = new ReportLoger();
 	private static GrnPageFunctions GRNFunc = new GrnPageFunctions();
 	private boolean flag = false;
+
+	/**
+	 * This Methods Is Used To Add Line Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param SheetName
+	 */
+	public void verifyGrnAddLineDetails(String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+					+ "ImportDirectGRN.xlsx";
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 22; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][68];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(3000);
+					DirectGRNFunc.verifyClickingAdd();
+					DirectGRNFunc.verifyClickingItemField(ITEM_NAME);
+					DirectGRNFunc.verifyClickingHsnField(HSN);
+					DirectGRNFunc.verifyClickingSuppQuantity(QTY);
+					DirectGRNFunc.verifyClickingReceiptQuantity(QTY);
+					DirectGRNFunc.verifyClickingCost(COST);
+					DirectGRNFunc.verifyClickingSaveLine();
+					DirectGRNFunc.verifyAddingDiscount(i, SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Method to handle Multiple Lot serial Item for General Type
+	 * Document
+	 * 
+	 * @author Sakthi-GWL
+	 * @param SheetName
+	 */
+	public void multipleLotandSerialWithGeneralType(String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Successfully Created GRN and Entered GRN Transaction Screen");
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "LOT/SERIAL Button Clicked");
+			flag = webDB.waitForElement(GrnLocators.LotSerialIframe, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+				ExcelUtils excelUtils = new ExcelUtils();
+				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+						+ "ImportDirectGRN.xlsx";
+				itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				for (int i = 22; i < itemmultiple.length; i++) {
+					String ITEM_NAME = itemmultiple[i][1];
+					String LOT_SERIAL = itemmultiple[i][54];
+					String LOT_NUMBER = itemmultiple[i][55];
+					String SERIAL_NUMBER = itemmultiple[i][56];
+					logs.logging("INFO", "Total Line Length: " + itemmultiple.length);
+					if (!ITEM_NAME.equals("")) {
+						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
+							continue;
+						}
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+								List<WebElement> removeFilter = webDB.getDriver()
+										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
+								for (WebElement element : removeFilter) {
+									if (element.isDisplayed()) {
+										element.sendKeys(ITEM_NAME);
+										break;
+									}
+								}
+								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+							}
+						}
+					}
+					if (flag) {
+						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Lot"))) {
+							DirectGRNFunc.inputLotNumber(ITEM_NAME, LOT_NUMBER);
+						} else if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Serial"))) {
+							DirectGRNFunc.inputSerialNumber(ITEM_NAME, SERIAL_NUMBER);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 
 	/**
 	 * This Methods Is Used To Verify Grn Add Line Details from Sheet
@@ -84,14 +195,16 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		DirectGRNFunc.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
-		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
+		verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -110,14 +223,16 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPM"), commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		DirectGRNFunc.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
-		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
+		verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -136,14 +251,16 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPS"), commonFunc.getDataFromTestDataSheet("WalmartSupplier"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		DirectGRNFunc.verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDService"));
-		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDService"));
+		verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDService"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDService"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameUDService"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -167,10 +284,12 @@ public class GrnPageFunctions2 {
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -194,10 +313,12 @@ public class GrnPageFunctions2 {
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -221,10 +342,12 @@ public class GrnPageFunctions2 {
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameRCService"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameRCService"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -248,10 +371,12 @@ public class GrnPageFunctions2 {
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -275,10 +400,12 @@ public class GrnPageFunctions2 {
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 //		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -302,10 +429,12 @@ public class GrnPageFunctions2 {
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSamePLService"));
 		DirectGRNFunc.lotSerialQtyApportion();
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSamePLService"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -333,10 +462,12 @@ public class GrnPageFunctions2 {
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -364,10 +495,12 @@ public class GrnPageFunctions2 {
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -395,10 +528,12 @@ public class GrnPageFunctions2 {
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
@@ -426,10 +561,12 @@ public class GrnPageFunctions2 {
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"));
-		GRNFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
 		flag = commonFunc.logoutUser();
 		GRNFunc.verifyReturnToGrnPageHeaderStatus();
 	}
