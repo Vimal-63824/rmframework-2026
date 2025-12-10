@@ -1675,6 +1675,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay, ElementType.Xpath);
 			if (flag) {
+				commonFunc.hardWait(2000);
 				logs.logging("INFO", "Header Saved Successfully in Leave Request");
 				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -1697,6 +1698,10 @@ public class AttendanceLeaveFunctions {
 	private void clickPostButtonInLeaveRequest() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestPostBtn, ElementType.Xpath);
 		if (flag) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveRequestPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveRequestPostBtn, ElementType.Xpath);
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
