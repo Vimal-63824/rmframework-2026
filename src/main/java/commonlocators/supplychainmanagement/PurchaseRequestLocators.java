@@ -101,7 +101,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String PR_UploadedFileText = "//div[contains(@id,'FILE_DROPZON')]//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
-	public static final String PR_UploadOkBtn = "//button[@id='B1794696644390549644']";
+	public static final String PR_UploadOkBtn = "//button[@data-testid='Upload_OK']";
 	/** @locatorType Xpath */
 	public static final String PRCloseShort_AddNewBtn = "//button[@title='Add']";
 	/** @locatorType Xpath */
@@ -211,7 +211,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String GlAccountNoLovButton = "//button[@id='P161513103003_PRL_PUR_ACCT_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String LineDetailSaveButton = "//button[@id='B2169996138592424446']";
+	public static final String LineDetailSaveButton = "//button[@id='B2429974584009921629']";
 
 	/** @locatorType Xpath */
 	public static final String LineDetailsButton(String Item) {

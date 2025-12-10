@@ -44,7 +44,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotSerial = "//button[contains(@id,'B3157814851916052373')]";
 	/** @locatorType Xpath */
-	public static final String OverAllSave = "//button[@data-testid='GRNP_OVERALL_SAVE_BTN']";
+	public static final String OverAllSave = "//button[@data-testid='SAVE']";
 	/** @locatorType Xpath */
 	public static final String PostButton = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
@@ -127,7 +127,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String LotserialItemSelect = "//*[@id=\"PopupLov_161513110304_C2801832860889585854_dlg\"]/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
 	/** @locatorType Xpath */
-	public static final String PendingStockTransfer = "//button[@id='B1639076800886007125']";
+	public static final String PendingStockTransfer = "//button[@data-testid='Pending_ST']";
 	/** @locatorType Xpath */
 	public static final String CustomerInvoiceNumberLov = "//button[@id='P1615131100_INV_NO_lov_btn']";
 

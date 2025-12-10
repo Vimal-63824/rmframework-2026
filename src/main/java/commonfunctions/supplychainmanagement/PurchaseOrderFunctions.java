@@ -57,7 +57,7 @@ public class PurchaseOrderFunctions {
 	 * @param POType
 	 */
 	public void verifyCreateDirectPOAddingParameters(String LocationId, String SupplierName, String POType) {
-		//verifyCLickPurchaseOrderFrame();
+		// verifyCLickPurchaseOrderFrame();
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.LocationIdButton, LocationId);
 		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
@@ -6025,6 +6025,7 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoLineWiseSaved() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
@@ -6123,6 +6124,7 @@ public class PurchaseOrderFunctions {
 
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Entered Discount For UserDefined Item
 	 * 
@@ -6211,6 +6213,7 @@ public class PurchaseOrderFunctions {
 
 		Assert.assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
 	 * UOM(General)
@@ -6900,6 +6903,7 @@ public class PurchaseOrderFunctions {
 			}
 		}
 	}
+
 	/**
 	 * This Method Is Used To Verify The Discount Amount For PO Document
 	 * 
@@ -13550,13 +13554,14 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.hardWait(3000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getPONumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			flag = commonFunc.logoutUser();
-		
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Verify Direct PO with Price list Item for Similar UOM
 	 * With And Without Inspection Plan(Material Type)
@@ -13607,13 +13612,14 @@ public class PurchaseOrderFunctions {
 		verifyHeaderTickAndPost();
 		verifyWaitingForApproval();
 		commonFunc.hardWait(3000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getPONumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-			flag = commonFunc.logoutUser();
-		
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Select the item For Excel Sheet
 	 * 
@@ -13623,6 +13629,8 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoHsnSelectedFromLov(String HSN) {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
@@ -13798,9 +13806,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
+					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			approvalFunc.ExtractStocktransferDocNumber(DocumentNo);
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));

@@ -1452,13 +1452,19 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void verifyGRNSubcontractForMaterialReceipt() {
-		commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"),
-				"HodUsername-Admin");
-		commonFunc.navigateToMaterialReceiptVoucher();
-		verifyGRNSubcontractMRV(VariableHandler.getScoGrnNumber());
-		verifyReceiptLocatorsAndPutAway();
-		clickTickAndPostIcon();
-		commonFunc.logoutUser();
+		String ApplicationControlPostMrv = dbCommonFunctions.InAplctrl(commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoPostMRV"));
+		logs.logging("INFO", "AutoPost Flag Is " + ApplicationControlPostMrv);
+		String ApplicationcontrolCreationMrv = dbCommonFunctions.InAplctrl(
+				commonFunc.getDataFromTestDataSheet("ControlBU"),
+				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
+		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
+		if (!ApplicationControlPostMrv.equals("Y") && !ApplicationcontrolCreationMrv.equals("Y")) {
+			commonFunc.navigateToMaterialReceiptVoucher();
+			verifyGRNSubcontractMRV(VariableHandler.getScoGrnNumber());
+			verifyReceiptLocatorsAndPutAway();
+			clickTickAndPostIcon();
+		}
 	}
 
 	/**

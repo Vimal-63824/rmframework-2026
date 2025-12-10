@@ -505,17 +505,17 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String GE_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Curr_ProcQty = "//*[@id='2166366926821871308_orig']/tbody/tr[2]/td[12]/input";
+	public static final String GE_Pend_Curr_ProcQty = "//input[@style='text-align:end']";
 	/** @Locator XPATH */
 	public static final String GE_Pend_LS_Tab = "//span[@class='fa fa-balance-scale']";
 	/** @Locator XPATH */
 	public static final String GE_Pend_Curr_Qty_Column = "//*[@id='LS_GE_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C2230020844874526946']";
+	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C3159000284553408153']";
 	/** @Locator XPATH */
 	public static final String GE_LS_Iframe = "//iframe[@title='Lot /Serial']";
 	/** @Locator XPATH */
-	public static final String GE_LS_Save_Icon = "//button[@id='B2253712014455508015']";
+	public static final String GE_LS_Save_Icon = "//button[@id='B3182691454134389222']";
 	/** @Locator XPATH */
 	public static final String Create_GE = "//button[@data-testid='CREATE_GE']";
 	/** @Locator XPATH */
@@ -533,13 +533,13 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String CR_GE_Iframe = "//iframe[@title='Pending Gate Entry']";
 	/** @Locator XPATH */
-	public static final String CR_GE_Doc_No = "//button[@id='P316151310944_DOC_NO_lov_btn']";
+	public static final String CR_GE_Doc_No = "//input[@data-testid='P316151310944_DOC_NO']/following-sibling::button";
 	/** @Locator XPATH */
-	public static final String CR_GE_Pend_Search = "//button[@id='B2544241653702413006']";
+	public static final String CR_GE_Pend_Search = "//button[@data-testid='Find']";
 	/** @Locator XPATH */
 	public static final String CR_GE_Pend_SelectAll = "(//input[@id='check_all'])[1]";
 	/** @Locator XPATH */
-	public static final String CR_GE_CreateReturn_Btn = "//button[@data-testid='CREATE_GE']";
+	public static final String CR_GE_CreateReturn_Btn = "//button[@data-testid='Create_Return']";
 	/** @Locator XPATH */
 	public static final String CR_GE_ToastMsg = "(//button[@title='Close'])[1]";
 	/** @Locator XPATH */
@@ -765,7 +765,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Header_Date = "//button[@class='a-Button a-DatePicker--today']";
 	/** @Locator XPATH */
-	public static final String SI_DocNo_DrillDown = "//*[@id=\"15505883317636664368_orig\"]/tbody/tr[2]/td[12]/a";
+	public static final String SI_DocNo_DrillDown = "#\31 5765895287379286932_orig > tbody > tr:nth-child(2) > td:nth-child(12) > a";
 	/** @Locator XPATH */
 	public static final String SI_Location_Field = "//INPUT[@data-testid='P1915131343_SIHD_PLNT_LOC_ID']";
 	/** @Locator XPATH */

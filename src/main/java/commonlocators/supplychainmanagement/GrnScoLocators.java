@@ -120,6 +120,6 @@ public class GrnScoLocators {
 	/** @locatorType Xpath */
 	public static final String US_Type_Field = "(//input[@style='text-align:right;width:70px'])[5]";
 	/** @locatorType Xpath */
-	public static final String CS_Type_Field = "(//input[@type='number'])[4]";
+	public static final String CS_Type_Field = "(//input[@type='number'])[3]";
 
 }

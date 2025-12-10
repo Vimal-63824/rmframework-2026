@@ -2943,6 +2943,15 @@ public class CommonFunctions {
 	}
 
 	/**
+	 * This Method Is Used To Navigate TDS Declaration Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToTDSDeclarationScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSFindSearchButton);
+	}
+	
+	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 
 	 * @author Sakthi-GWL
@@ -3108,6 +3117,44 @@ public class CommonFunctions {
 //		hardWait(10000);
 		navigateToSearchTab(webDB.getDataFromProperties("MaterialReturnScreen"),
 				MaterialReturnLocators.MaterialReturnAddIcon);
+	}
+
+	/**
+	 * This method used to approve documents using API
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BU
+	 * @param DocNo
+	 * @param EmpId
+	 * @param Unit
+	 * @param User
+	 */
+	public String approveDocumentsWithDocumentNumber(String BU, String DocNo, String EmpId, String Unit, String User) {
+		RestUtils.resetRestAssured();
+		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
+		restApi.setQueryParam("p_bu", BU);
+		restApi.setQueryParam("p_doc_no", DocNo);
+		restApi.setQueryParam("p_from_empid", EmpId);
+		restApi.setQueryParam("p_plnt", Unit);
+		restApi.setQueryParam("p_user", User);
+		restApi.setQueryParam("p_wfdc_act", "A");
+		restApi.userHitsTheRequestAs(methodType.Post, ContentType.ANY);
+		String Value = restApi.response.getHeader("p_out_msg");
+		VariableHandler.setLastApprovalAPIHeaderText(Value);
+		logs.logging("INFO", "Displayed Approval Response Header: " + Value);
+		logs.logging("INFO", "Displayed Approval Response Status Code: " + restApi.response.getStatusCode());
+		flag = Value.contains("Approved");
+		if (flag) {
+			logs.logging("INFO", "Verified Approval Response Header");
+			flag = restApi.response.getStatusCode() == 200;
+			if (flag) {
+				logs.logging("INFO", "Verified Approval Response Status Code");
+			}
+		} else {
+			logs.logging("INFO", "'Doc No'" + DocNo + " Not Approved Check Response Header");
+		}
+		assertTrue(flag);
+		return Value;
 	}
 
 }

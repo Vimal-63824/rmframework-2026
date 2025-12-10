@@ -5907,16 +5907,10 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnthroughgateEntryDomestic() {
 		createSalesInvoiceDomesticForGateEntry();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateTogateEntry();
 		clickingPendingGateEntry();
 		InsertingpPendingInvoiceNoAndCreateTheDocument(VariableHandler.getSIInvNo(),
 				commonFunc.getDataFromTestDataSheet("DriverName"));
-		flag = commonFunc.logoutUser();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNoteGateEntryPendingIcon();
 		PendingGateEntryInsertingInvoicedNoSelectAndCreate(VariableHandler.getGEdocno());
@@ -5924,14 +5918,11 @@ public class SalesInvoiceFunctions {
 				commonFunc.getDataFromTestDataSheet("CR_CN_GE_Pfx"),
 				commonFunc.getDataFromTestDataSheet("CR_Return_Reason"));
 		CreditNoteclickPostButton();
-		creditnoteforwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getCRdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getCRdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCRdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkCreditNoteInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyCreditNotePostMaterialReceipt();
 		salesOrderFunctions.verifyAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
@@ -5970,15 +5961,11 @@ public class SalesInvoiceFunctions {
 		verifyCreateInvoiceNo();
 		commonFunc.checkRefreshCellsDisappear();
 		clickPostButton();
-		forwardForApproval();
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-				"HariUsername");
-		approveFunc.navigateToApprovals();
-		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
-		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
-		flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions
 				.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("CRNoteGateEntry"));
@@ -6083,6 +6070,7 @@ public class SalesInvoiceFunctions {
 												webDB.clickAnElement(SalesInvoiceLocators.GE_Header_Save_Icon,
 														ElementType.Xpath);
 												commonFunc.checkRefreshCellsDisappear();
+												commonFunc.hardWait(3000);
 												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Header_Post_Btn,
 														ElementType.Xpath);
 												if (flag) {

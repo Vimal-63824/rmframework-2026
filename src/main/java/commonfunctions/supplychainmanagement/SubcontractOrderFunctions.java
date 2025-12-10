@@ -785,6 +785,7 @@ public class SubcontractOrderFunctions {
 				VariableHandler.setSCOdocno(SCOdocno);
 				commonFunc.hardWait(1000);
 				checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+				commonFunc.hardWait(1000);
 			}
 		}
 		assertTrue(flag);
@@ -1156,7 +1157,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
@@ -1184,9 +1185,10 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
+		System.out.println(VariableHandler.getMRNumber());
 		commonFunc.navigateToMaterialRequestScreen();
 		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
 		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
@@ -1227,7 +1229,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1272,7 +1274,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
@@ -1300,7 +1302,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1343,7 +1345,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1389,7 +1391,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
@@ -1417,7 +1419,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1456,12 +1458,12 @@ public class SubcontractOrderFunctions {
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1500,14 +1502,14 @@ public class SubcontractOrderFunctions {
 	 * @param SubcontractSupplier
 	 */
 	public void insertingSubcontractParametersForValueAdditionType(String LocationId, String SubcontractSupplier,
-			String SCOVoutype, String ValueAdditionPFX) {
+			String SCOVoutype) {
 		commonFunc.hardWait(1000);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractLocId, LocationId);
 		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SCO_Vou_Type_lov, SCOVoutype);
 		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
-		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ValueAdditionPfx, ValueAdditionPFX);
-		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
+//		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ValueAdditionPfx, ValueAdditionPFX);
+//		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractSupplierId, SubcontractSupplier);
 		webDB.switchToFrame(SubcontractOrderLocators.SubcontractFindIframe, ElementType.Xpath);
 		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCreateTickIcon, ElementType.Xpath);
@@ -1545,8 +1547,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -1559,7 +1560,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1622,10 +1623,10 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		clickingHeaderCancelButton();
+//		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1670,6 +1671,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -1677,6 +1679,7 @@ public class SubcontractOrderFunctions {
 		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
 		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
 		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -1714,19 +1717,20 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHCONVFACTOR"),
 				commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
@@ -1741,51 +1745,8 @@ public class SubcontractOrderFunctions {
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		commonFunc.navigateToMaterialRequestScreen();
-		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
-		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
-		materialRequestFunc.headerSaveAndPost();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		commonFunc.navigateToMaterialIssuanceVoucher();
-		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
-		materialIssuanceVoucherFunc.headerTickAndPostIcon();
-		commonFunc.navigateToGrnSco();
-		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
-//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
-//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
-//			grnScoPageFunc.verifyViewLineDetails();
-		grnScoPageFunc.saveHeaderAndPost();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
-		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
-				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
-		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
-		clickLocationDetailsButtonValidationwithDataBase();
-		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		storeBatchQtyAndBtachCost();
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		clickPostButton();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -1802,10 +1763,10 @@ public class SubcontractOrderFunctions {
 		materialIssuanceVoucherFunc.headerTickAndPostIcon();
 		commonFunc.navigateToGrnSco();
 		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
-//				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
 		grnScoPageFunc.verifyGenMatConsAndAllocate();
-//				grnScoPageFunc.checkConsumptionAfterGenerationMat();
-//				grnScoPageFunc.verifyViewLineDetails();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -1970,7 +1931,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2056,7 +2017,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
@@ -2085,7 +2046,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2142,7 +2103,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2187,7 +2148,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREFANDCONV"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONV"));
@@ -2216,7 +2177,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2259,7 +2220,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2304,8 +2265,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -2318,7 +2278,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2363,8 +2323,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -2377,7 +2336,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2434,7 +2393,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2478,7 +2437,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMProject"));
@@ -2507,7 +2466,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2552,7 +2511,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
@@ -2580,7 +2539,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2609,49 +2568,6 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
-				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
-		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
-		clickLocationDetailsButtonValidationwithDataBase();
-		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-		storeBatchQtyAndBtachCost();
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		clickPostButton();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		commonFunc.navigateToMaterialRequestScreen();
-		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
-		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
-		materialRequestFunc.headerSaveAndPost();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		commonFunc.navigateToMaterialIssuanceVoucher();
-		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
-		materialIssuanceVoucherFunc.headerTickAndPostIcon();
-		commonFunc.navigateToGrnSco();
-		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
-//				grnScoPageFu`nc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
-//				grnScoPageFunc.checkConsumptionAfterGenerationMat();
-//				grnScoPageFunc.verifyViewLineDetails();
-		grnScoPageFunc.saveHeaderAndPost();
-		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
-				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-				System.getProperty("HariUsername"));
-		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
 
@@ -2669,9 +2585,9 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -2697,7 +2613,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2727,61 +2643,63 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateInspectionDocumentsPage();
 		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
 		qcFunc.clickTickAndPostIcon();
-		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-		if (!VariableHandler.getApprovalFlag()) {
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-			flag = commonFunc.logoutUser();
-			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-			commonFunc.navigateToSubcontractOrder();
-			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
-					commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
-			checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
-			clickLocationDetailsButtonValidationwithDataBase();
-			checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
-			storeBatchQtyAndBtachCost();
-			getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-			processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-			clickingMRPDetailsTabVerificationWithBOMAgainst();
-			subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
-			headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-					webDB.getDataFromProperties("ProcCalculationLocalReg"));
-			clickPostButton();
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			commonFunc.navigateToMaterialRequestScreen();
-			materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
-			materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
-			materialRequestFunc.headerSaveAndPost();
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			commonFunc.navigateToMaterialIssuanceVoucher();
-			materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
-			materialIssuanceVoucherFunc.headerTickAndPostIcon();
-			commonFunc.navigateToGrnSco();
-			grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
 //				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-			grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
 //				grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //				grnScoPageFunc.verifyViewLineDetails();
-			grnScoPageFunc.saveHeaderAndPost();
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
-					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
-			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		}
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
 
@@ -2799,9 +2717,9 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -2827,7 +2745,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2854,6 +2772,14 @@ public class SubcontractOrderFunctions {
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
@@ -2870,7 +2796,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2901,17 +2827,12 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateInspectionDocumentsPage();
 		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
 		qcFunc.clickTickAndPostIcon();
-		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-		if (!VariableHandler.getApprovalFlag()) {
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-			flag = commonFunc.logoutUser();
-			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		}
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
 
@@ -2929,9 +2850,9 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -2956,7 +2877,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -2987,15 +2908,11 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateInspectionDocumentsPage();
 		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
 		qcFunc.clickTickAndPostIcon();
-		flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-		if (!VariableHandler.getApprovalFlag()) {
-			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
-			flag = commonFunc.logoutUser();
-			commonFunc.validCommonLogin(System.getProperty("AshokUsername"), System.getProperty("AshokPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
-			flag = commonFunc.logoutUser();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 			commonFunc.navigateToSubcontractOrder();
 			verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
@@ -3011,7 +2928,7 @@ public class SubcontractOrderFunctions {
 			clickPostButton();
 			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+			approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 			commonFunc.navigateToMaterialRequestScreen();
@@ -3038,8 +2955,15 @@ public class SubcontractOrderFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
+			commonFunc.navigateInspectionDocumentsPage();
+			qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+			qcFunc.clickTickAndPostIcon();
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			mrvFunc.verifyGRNSubcontractForMaterialReceipt();
-		}
 		return flag;
 	}
 
@@ -3366,6 +3290,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkSucontractOrderValueAdditionLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3436,6 +3361,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkSucontractOrderValueAdditionWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3474,7 +3400,8 @@ public class SubcontractOrderFunctions {
 		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
 
 		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo, ElementType.Xpath),
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value")),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
 						commonFunc.getDataFromTestDataSheet("SCODBSALEORDERDESCCOLUMN")));
 		logs.logging("INFO", "Line Detail SalesOrderRef Matched With DataBase Values");
@@ -3512,6 +3439,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkSucontractOrderPendingFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3588,6 +3516,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkDirectSucontractOrderWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3626,7 +3555,8 @@ public class SubcontractOrderFunctions {
 		logs.logging("INFO", "Line Detail TarOperProc Matched With DataBase Values");
 
 		salesOrderFunctions.verifyAssertionBothValues(
-				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo, ElementType.Xpath),
+				webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_LineDetails_SaleOrderRefNo,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value")),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
 						commonFunc.getDataFromTestDataSheet("SCODBSALEORDERDESCCOLUMN")));
 		logs.logging("INFO", "Line Detail SalesOrderRef Matched With DataBase Values");
@@ -3664,6 +3594,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkDirectSucontractOrderWithoutProdAndSOLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3740,6 +3671,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkDirectSucontractOrderWithoutSOFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3816,6 +3748,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkSucontractOrderPendingAfterFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -3904,6 +3837,7 @@ public class SubcontractOrderFunctions {
 	 * @author Vimal - RMITS
 	 */
 	public void checkSucontractOrderPendingAfterFirstProcessWithSOrefLineWiseDetailsVerificationDataBaseValuesWithUIValues() {
+		commonFunc.hardWait(1000);
 		salesOrderFunctions.verifyAssertionBothValues(
 				webDB.getTextFromElement(SubcontractOrderLocators.SCO_LineDetails_Inputtype, ElementType.Xpath),
 				dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
@@ -4268,6 +4202,7 @@ public class SubcontractOrderFunctions {
 			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				commonFunc.hardWait(1000);
 				checkSucontractOrderPendingFirstProcessLineWiseDetailsVerificationDataBaseValuesWithUIValues();
 				commonFunc.hardWait(1000);
 				webDB.switchToDefaultContent();
@@ -4427,7 +4362,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
@@ -4455,7 +4390,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		return flag;
@@ -4550,7 +4485,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
@@ -4578,7 +4513,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -4610,7 +4545,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -4630,8 +4565,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -4644,7 +4578,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -4706,8 +4640,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		clickingHeaderCancelButton();
 		commonFunc.logoutUser();
@@ -4727,7 +4660,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BomSerialSOref"));
@@ -4756,7 +4689,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -4802,7 +4735,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -4859,7 +4792,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -4904,8 +4837,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -4918,7 +4850,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -4975,7 +4907,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5020,10 +4952,10 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
+				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMProject"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -5049,7 +4981,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5405,6 +5337,7 @@ public class SubcontractOrderFunctions {
 		String SCOProcUOM = webDB.getTextFromElement(SubcontractOrderLocators.SCO_ProcessUOM_Field, ElementType.Xpath);
 		logs.logging("INFO", "Get SCO ProcUOM Is: " + SCOProcUOM);
 		VariableHandler.setSCOProcUOM(SCOProcUOM);
+		commonFunc.hardWait(1000);
 	}
 
 	/**
@@ -5574,8 +5507,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5587,7 +5519,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5631,7 +5563,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5643,7 +5575,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5687,7 +5619,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5699,7 +5631,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5742,7 +5674,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5754,7 +5686,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5797,9 +5729,8 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5811,7 +5742,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5854,9 +5785,8 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5868,7 +5798,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5911,7 +5841,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithProject"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -5923,7 +5853,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -5967,7 +5897,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHCONVFACTOR"),
 				commonFunc.getDataFromTestDataSheet("BomQty"));
@@ -5997,7 +5927,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6041,7 +5971,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6085,7 +6015,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
@@ -6115,7 +6045,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6158,7 +6088,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREFANDCONV"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONV"));
@@ -6188,7 +6118,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6232,7 +6162,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6274,7 +6204,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMProject"));
@@ -6304,7 +6234,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6347,8 +6277,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
@@ -6360,7 +6289,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6413,6 +6342,7 @@ public class SubcontractOrderFunctions {
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -6466,7 +6396,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6520,7 +6450,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6563,8 +6493,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
@@ -6576,7 +6505,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6619,8 +6548,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
@@ -6632,7 +6560,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6686,7 +6614,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6729,19 +6657,20 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHCONVFACTOR"),
 				commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierInterstateRegistered"));
@@ -6757,6 +6686,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -6765,7 +6695,8 @@ public class SubcontractOrderFunctions {
 		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
 		materialRequestFunc.headerSaveAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialIssuanceVoucher();
@@ -6802,7 +6733,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6846,7 +6777,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
@@ -6876,7 +6807,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6919,7 +6850,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREFANDCONV"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONV"));
@@ -6949,7 +6880,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -6992,7 +6923,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7034,7 +6965,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMProject"));
@@ -7064,7 +6995,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7104,7 +7035,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
@@ -7117,7 +7048,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 	}
@@ -7132,10 +7063,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
@@ -7147,7 +7077,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7188,7 +7118,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
@@ -7200,6 +7130,7 @@ public class SubcontractOrderFunctions {
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -7240,9 +7171,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSO"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7253,7 +7184,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7294,9 +7225,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConvU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7307,7 +7238,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7348,10 +7279,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
@@ -7363,7 +7293,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7404,11 +7334,10 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConvU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7419,7 +7348,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7460,9 +7389,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithProject"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithProjectU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7473,7 +7402,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7514,7 +7443,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
@@ -7527,7 +7456,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 	}
@@ -7542,10 +7471,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
@@ -7557,7 +7485,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7598,7 +7526,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
@@ -7610,6 +7538,7 @@ public class SubcontractOrderFunctions {
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -7650,9 +7579,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSO"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7663,7 +7592,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7704,9 +7633,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConvU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7717,7 +7646,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7758,10 +7687,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithConv"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
@@ -7773,7 +7701,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7814,11 +7742,10 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConv"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithSOandConvU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7829,7 +7756,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7870,9 +7797,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithProject"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithProjectU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -7883,7 +7810,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -7924,21 +7851,21 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHCONVFACTOR"),
 				commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
@@ -7953,6 +7880,7 @@ public class SubcontractOrderFunctions {
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -7961,7 +7889,8 @@ public class SubcontractOrderFunctions {
 		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
 		materialRequestFunc.headerSaveAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialIssuanceVoucher();
@@ -7997,7 +7926,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8038,12 +7967,12 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
+				commonFunc.getDataFromTestDataSheet("BOMSOREFU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8069,7 +7998,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8110,12 +8039,13 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREFANDCONV"),
-				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONV"));
+				commonFunc.getDataFromTestDataSheet("BomQty"),
+				commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONVU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8141,7 +8071,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8184,7 +8114,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8224,12 +8154,12 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BOMProjectU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8255,7 +8185,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8296,12 +8226,12 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
-				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BomSerialSOref"));
+				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BomSerialSOrefU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8327,7 +8257,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8373,7 +8303,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8414,12 +8344,12 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
+				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMProjectU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8445,7 +8375,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8486,21 +8416,22 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHCONVFACTOR"),
 				commonFunc.getDataFromTestDataSheet("BomQty"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("Orderreleases"),
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
 		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
@@ -8515,6 +8446,7 @@ public class SubcontractOrderFunctions {
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
@@ -8523,7 +8455,8 @@ public class SubcontractOrderFunctions {
 		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
 		materialRequestFunc.headerSaveAndPost();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialIssuanceVoucher();
@@ -8559,7 +8492,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8600,12 +8533,12 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
+				commonFunc.getDataFromTestDataSheet("BOMSOREFU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8631,7 +8564,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8672,12 +8605,13 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREFANDCONV"),
-				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONV"));
+				commonFunc.getDataFromTestDataSheet("BomQty"),
+				commonFunc.getDataFromTestDataSheet("BOMSOREFWITHCONVU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8703,7 +8637,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8746,7 +8680,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8786,12 +8720,12 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToProductionOrderScreen();
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
-		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefixU3"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BOMProjectU3"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -8817,7 +8751,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8858,7 +8792,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
@@ -8871,7 +8805,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -8888,10 +8822,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
@@ -8903,7 +8836,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8944,9 +8877,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSO"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSOU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -8957,7 +8890,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -8998,9 +8931,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTUnRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithPrj"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithPrjU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTUnreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -9011,7 +8944,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9052,7 +8985,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
@@ -9065,7 +8998,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -9082,10 +9015,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
@@ -9097,7 +9029,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9138,9 +9070,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSO"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithSOU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -9151,7 +9083,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9192,9 +9124,9 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("UTGSTLocation1"),
 				commonFunc.getDataFromTestDataSheet("SupplierUTGSTRegistered"));
-		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithPrj"));
+		AddingProcessLineAndSaleOrderRefFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithPrjU3"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -9205,7 +9137,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9259,7 +9191,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -9278,8 +9210,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
@@ -9291,7 +9222,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9345,7 +9276,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9399,7 +9330,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9453,7 +9384,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -9472,8 +9403,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalUnRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
@@ -9485,7 +9415,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9539,7 +9469,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9593,7 +9523,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9636,7 +9566,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BomSerialSOref"));
@@ -9666,7 +9596,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9713,7 +9643,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9756,10 +9686,10 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
+				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMProject"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -9786,7 +9716,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9829,7 +9759,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
 				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BomSerialSOref"));
@@ -9859,7 +9789,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9906,7 +9836,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -9949,10 +9879,10 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderWithSORefParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PRD0Prefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
-				commonFunc.getDataFromTestDataSheet("BomForSerialItem"), commonFunc.getDataFromTestDataSheet("BomQty"),
-				commonFunc.getDataFromTestDataSheet("BOMProject"));
+				commonFunc.getDataFromTestDataSheet("BomForSerialItemWithSO"),
+				commonFunc.getDataFromTestDataSheet("BomQty"), commonFunc.getDataFromTestDataSheet("BOMProject"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
 		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
 				commonFunc.getDataFromTestDataSheet("ComQty"),
@@ -9979,7 +9909,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -10034,7 +9964,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.logoutUser();
@@ -10053,8 +9983,7 @@ public class SubcontractOrderFunctions {
 		clickingAddIconForSCO();
 		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("SupplierInterstateRegistered"),
-				commonFunc.getDataFromTestDataSheet("SCOVoutype"),
-				commonFunc.getDataFromTestDataSheet("ValueAdditionPFX"));
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
@@ -10067,7 +9996,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -10122,7 +10051,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();
@@ -10177,7 +10106,7 @@ public class SubcontractOrderFunctions {
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToMaterialRequestScreen();

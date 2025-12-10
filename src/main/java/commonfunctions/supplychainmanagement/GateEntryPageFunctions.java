@@ -1063,10 +1063,10 @@ public class GateEntryPageFunctions {
 				"SelvaUsername");
 		commonFunc.navigateToGateEntryDocument();
 //		verifyDateAfterAndBefore();
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 2,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.Unit, commonFunc.getDataFromTestDataSheet("L3"), 1,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(GateEntryPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 3,
+		verifyAmendFilterSearchSOB(GateEntryPageLocators.LocId, commonFunc.getDataFromTestDataSheet("L49ID"), 2,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
 		verifyAmendFilterSearchSOB(GateEntryPageLocators.GENNo, commonFunc.getDataFromTestDataSheet("GENNumber"), 4,
@@ -1213,7 +1213,7 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyAmendTableValue(int i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(DirectGrnPageLocators.AmendFindTableData(i)));
+				.findElements(By.xpath(GateEntryPageLocators.GENFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1234,7 +1234,7 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyLineAmendTableValue(int i, String Value) {
 		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(DirectGrnPageLocators.AmendLineFindTableData(i)));
+				.findElements(By.xpath(GateEntryPageLocators.GENLineFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
