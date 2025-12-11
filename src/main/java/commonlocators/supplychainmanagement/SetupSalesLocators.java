@@ -27,7 +27,7 @@ public class SetupSalesLocators {
 	/** Locator Xpath */
 	public static final String SalesRegionLovSZTab = "//button[@id='C6991965416787072275_lov_btn']" ;
 	/** Locator Xpath */
-	public static final String SalesZoneManagerLovSZTab = "/button[@id='C6991965582337072276_lov_btn']" ;
+	public static final String SalesZoneManagerLovSZTab = "//button[@id='C6991965582337072276_lov_btn']" ;
 	/** Locator Xpath */
 	public static final String SaveButtonSalesZoneTab ="//button[@data-testid='SaveButtonSalesZoneTab']" ;
 	/** Locator Xpath */

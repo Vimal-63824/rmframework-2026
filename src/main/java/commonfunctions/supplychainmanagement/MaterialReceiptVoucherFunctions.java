@@ -932,7 +932,6 @@ public class MaterialReceiptVoucherFunctions {
 		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
-		commonFunc.logoutUser();
 	}
 
 	/**
@@ -1029,7 +1028,6 @@ public class MaterialReceiptVoucherFunctions {
 		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));
-		commonFunc.logoutUser();
 	}
 
 	/**
