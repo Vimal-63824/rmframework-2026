@@ -7,14 +7,20 @@ package commonfunctions.supplychainmanagement;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.payroll.CommonPayrollFunctions;
+import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
@@ -29,6 +35,7 @@ public class GrnPageFunctions2 {
 	private static ReportLoger logs = new ReportLoger();
 	private static GrnPageFunctions GRNFunc = new GrnPageFunctions();
 	private boolean flag = false;
+	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
 
 	/**
 	 * This Methods Is Used To Add Line Details
@@ -182,12 +189,50 @@ public class GrnPageFunctions2 {
 	}
 
 	/**
+	 * 
+	 * @param BillNo
+	 * @param Date
+	 */
+	public void clickImportLRAndfillBillNo(String BillNo, String Date) {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRN_ImportLRBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(DirectGrnPageLocators.GRN_ImportLRBtn, ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GRN_ImportLRBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(DirectGrnPageLocators.GRN_ImportBillNoInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Import / LR Button Clicked");
+				commonPayrollFunc.addDetailInTableWithoutLovButton(DirectGrnPageLocators.GRN_ImportBillNoInput,
+						DirectGrnPageLocators.GRN_ImportBillNoInput, BillNo);
+				logs.logging("INFO", "Import / LR Bill No Entered: " + BillNo);
+				commonPayrollFunc.addDetailInTableWithoutLovButton(DirectGrnPageLocators.GRN_ImportBillDateInput,
+						DirectGrnPageLocators.GRN_ImportBillDateInput, Date);
+				logs.logging("INFO", "Import / LR Date Entered: " + Date);
+				flag = webDB.waitForElement(DirectGrnPageLocators.GRN_ImportLROkBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(DirectGrnPageLocators.GRN_ImportLROkBtn, ElementType.Xpath);
+					flag = webDB.clickAnElement(DirectGrnPageLocators.GRN_ImportLROkBtn, ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						logs.logging("INFO", "Import / LR Ok Button Clicked");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * This Methods Is Used To Verify Creation of Direct GRN-General-User
 	 * Defined-Same Stock and Supplier UOM
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnUserDefinedSameUomGeneralTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -198,6 +243,7 @@ public class GrnPageFunctions2 {
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -216,6 +262,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnUserDefinedSameUomMaterialTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -226,6 +277,7 @@ public class GrnPageFunctions2 {
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -244,6 +296,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnUserDefinedSameUomServiceTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -254,6 +311,7 @@ public class GrnPageFunctions2 {
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("DirGRNImpSameUDService"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameUDService"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameUDService"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -272,6 +330,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnRateContractSameUomGeneralTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -283,6 +346,7 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -301,6 +365,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnRateContractSameUomMaterialTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -312,6 +381,7 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -330,6 +400,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -341,6 +416,7 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSameRCService"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSameRCService"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -359,6 +435,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -370,6 +451,7 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -388,6 +470,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -399,6 +486,7 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -417,6 +505,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -428,6 +521,7 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("WalmartSupplier"));
 		DirectGRNFunc.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirGRNImpSamePLService"));
 		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpSamePLService"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -446,6 +540,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -461,6 +560,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -479,6 +579,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -494,6 +599,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -512,6 +618,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -527,6 +638,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -545,6 +657,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportSupplier() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
@@ -560,6 +677,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 			Assert.fail("Failed in 'verifyGrnAddLineDetailsOtherThanUserDefined' with Exception : " + e);
 		}
+		clickImportLRAndfillBillNo(BillNo, Today);
 		GRNFunc.overAllSaveAndPostForExcess(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"));
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
