@@ -5012,8 +5012,7 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
 				logs.logging("INFO", "Document Successfully posted");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		assertTrue(flag);
