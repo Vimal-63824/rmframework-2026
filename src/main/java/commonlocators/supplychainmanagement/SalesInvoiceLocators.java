@@ -671,7 +671,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String ResourceUsage_RW_Seq_No = "//*[@id='Resource_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @Locator XPATH */
-	public static final String ResourceUsage_RW_Seq_No_Lov = "//input[@id='C519624675795660805']/following-sibling::button";
+	public static final String ResourceUsage_RW_Seq_No_Lov = "//input[@data-testid='RWC_Res_Seq_Field']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String WorkCenter_Lov_btn = "//input[@data-testid='RWC_Res_WC_Field']/following-sibling::button";
 	/** @Locator XPATH */
@@ -685,9 +685,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RWC_ToDate_Next = "//td[@class='is-current']/following::td[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Today = "//*[@id='C14235701061160375144_dialog']/div/div[3]/div[2]/button[1]";
+	public static final String RWC_ToDate_Today = "//*[@id=\"C15167450858846899685_dialog\"]/div/div[3]/div[2]/button[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Done = "//*[@id='C14238633589499133137_dialog']/div/div[3]/div[2]/button[2]";
+	public static final String RWC_ToDate_Done = "//*[@id=\"C15167450858846899685_dialog\"]/div/div[3]/div[2]/button[2]";
 	/** @Locator XPATH */
 	public static final String RWC_Line_save_Icon = "//button[@data-testid='RWC_Res_Save_btn']";
 	/** @Locator XPATH */
