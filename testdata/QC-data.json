@@ -1378,9 +1378,10 @@
 	"BomSerialSOrefU3":"SO3-2526-00097",
 	"PROPrefixU3": "PRO3",
 	"BOMProjectU3":"VJ-PROJECTU3",
-	"BomForQCLotItem":"FG70001-QC-LOT"
+	"BomForQCLotItem":"FG70001-QC-LOT",
 	"TDSAmount":"100000",
     "Calendar":"00001 - 1 TO 30/31",
     "Period":"APRIL",
-    "ImpSupplier": "SUP10388"
+    "ImpSupplier": "SUP10388",
+    "ImportGRNBillNoText": "BILL-"
 }

@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -102,24 +103,27 @@ public class DirectGrnPageLocators {
 	public static final String GrnLineDetailsFrame = "//iframe[@title='GRN Line']";
 	/** @locatorType Xpath */
 	public static final String GrnLineDetailsSave = "//button[@id='B1002536158719160753']";
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String StdOperatorType(int i) {
-		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr["+ i +"]/td[6]";
+		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[6]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String TolFrom(int i) {
-		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr["+ i +"]/td[8]";
+		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[8]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String TolTo(int i) {
-		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr["+ i +"]/td[9]";
+		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[9]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String GrnDetailsBtn(int i) {
-		return "//*[@id=\'add_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr["+ i +"]/td[25]/a/span";
+		return "//*[@id=\'add_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[25]/a/span";
 	}
+
 	/** @locatorType Xpath */
 	public static final String LocId = "//button[@id='P1615131103_UNIT_LOCATION_lov_btn']";
 	/** @locatorType Xpath */
@@ -142,6 +146,7 @@ public class DirectGrnPageLocators {
 	public static final String AddHeaderFrame = "//iframe[@title='GRN - Purchase']";
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTable = "//*[@id='7777951085516291315_orig']/tbody/tr[2]/td[1]";
+
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
 		return "//table[@id='7777951085516291315_orig']/tbody/tr/td[" + i + "]";
@@ -151,6 +156,7 @@ public class DirectGrnPageLocators {
 	public static final String AmendFindTableData(int i) {
 		return "//table[@id='12242177025893385969']/tbody/tr/td[" + i + "]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String GRNDtFrom = "//input[@id='P1615131103_DATE_FROM_input']";
 	/** @locatorType Xpath */
@@ -163,4 +169,13 @@ public class DirectGrnPageLocators {
 	public static final String AmendFindTable = "//table[@id='12242177025893385969']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String GRN_Status = "//select[@id='P1615131103_STATUS']";
+	/** @locatorType Xpath */
+	public static final String GRN_ImportLRBtn = "//span[text()='Import/LR']/parent::button";
+	/** @locatorType Xpath */
+	public static final String GRN_ImportBillNoInput = "//input[contains(@id,'PID_BOE_NO')]";
+	/** @locatorType Xpath */
+	public static final String GRN_ImportBillDateInput = "//a-date-picker[contains(@id,'PID_BOE_DATE')]/input";
+	/** @locatorType Xpath */
+	public static final String GRN_ImportLROkBtn = "//button[@data-testid='OK_import_LR']";
+
 }
