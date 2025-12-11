@@ -169,6 +169,10 @@ public class CommonFunctions {
 				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
 					if (webDB.verifyIsElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);

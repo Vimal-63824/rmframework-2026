@@ -1180,7 +1180,7 @@ public class EmployeeMasterFunctions {
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
-						webDB.getDataFromProperties("KishoreUserName"));
+						webDB.getDataFromProperties("HrRqtUsername"));
 //				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
 //						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
 //						webDB.getDataFromProperties("KishoreEmpId"));
@@ -2298,31 +2298,6 @@ public class EmployeeMasterFunctions {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-			if (!VariableHandler.getApprovalFlag()) {
-				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-					logs.logging("INFO", "Ok Button Is Clicked");
-					webDB.switchToDefaultContent();
-					commonFunc.checkSuccessToastMessageDisappear();
-					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
-				}
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-				flag = commonFunc.logoutUser();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
-				commonFunc.navigateEmployeeMasterScreenInPayroll();
-				searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
-			}
 			if (flag) {
 				logs.logging("INFO", "Employee Post Icon Clicked");
 			}
