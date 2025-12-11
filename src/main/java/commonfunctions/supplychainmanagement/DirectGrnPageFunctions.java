@@ -290,7 +290,7 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	public void verifyGrnAddLineDetails(String SheetName) throws IOException {
+	public void verifyGrnAddLineDetails(String SheetName) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(3000);
@@ -829,7 +829,7 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	private void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
+	public void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
 		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
@@ -1209,8 +1209,7 @@ public class DirectGrnPageFunctions {
 	 * 
 	 */
 
-	public void verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(int i1, String SheetName)
-			throws IOException {
+	public void verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(int i1, String SheetName) {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -1243,7 +1242,7 @@ public class DirectGrnPageFunctions {
 	 *
 	 */
 
-	private void otherThanUserdefinedDiscountAmountForGrn(int i1, String SheetName) {
+	public void otherThanUserdefinedDiscountAmountForGrn(int i1, String SheetName) {
 
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
