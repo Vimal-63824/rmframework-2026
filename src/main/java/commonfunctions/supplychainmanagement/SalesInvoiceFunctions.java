@@ -4792,12 +4792,7 @@ public class SalesInvoiceFunctions {
 	 */
 	public void PendingGateEntryInsertingInvoicedNoSelectAndCreate(String GEdocno) {
 		webDB.switchToFrame(SalesInvoiceLocators.CR_GE_Iframe, ElementType.Xpath);
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_GE_Doc_No, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_GE_Doc_No, ElementType.Xpath);
-			commonFunc.hardWait(1000);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_GE_Doc_No, GEdocno);
-			webDB.switchToDefaultContent();
 			commonFunc.hardWait(2000);
 			webDB.switchToFrame(SalesInvoiceLocators.CR_GE_Iframe, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesInvoiceLocators.CR_GE_Pend_Search, ElementType.Xpath);
@@ -4824,7 +4819,6 @@ public class SalesInvoiceFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -6164,16 +6158,10 @@ public class SalesInvoiceFunctions {
 	 */
 	public boolean createSalesReturnthroughgateEntryExport() {
 		createSalesInvoiceExportForGateEntry();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateTogateEntry();
 		clickingPendingGateEntry();
 		InsertingpPendingInvoiceNoAndCreateTheDocument(VariableHandler.getSIInvNo(),
 				commonFunc.getDataFromTestDataSheet("DriverName"));
-		flag = commonFunc.logoutUser();
-		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.navigateToCreditNoteScreen();
 		ClickingCreditNoteGateEntryPendingIcon();
 		PendingGateEntryInsertingInvoicedNoSelectAndCreate(VariableHandler.getGEdocno());
