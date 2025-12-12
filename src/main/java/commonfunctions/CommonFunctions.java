@@ -2956,6 +2956,17 @@ public class CommonFunctions {
 	}
 	
 	/**
+	 * This Method Is Used To Navigate Employee Overtime
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToEmployeeOvertime() {
+		navigateToSearchTab(webDB.getDataFromProperties("Overtime"),
+				AttendanceLeaveLocators.OvertimeFindSearchButton);
+	}
+
+	
+	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 
 	 * @author Sakthi-GWL

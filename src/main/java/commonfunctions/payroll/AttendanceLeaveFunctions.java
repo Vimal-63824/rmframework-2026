@@ -19,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
@@ -40,6 +41,7 @@ public class AttendanceLeaveFunctions {
 	public CommonPayrollFunctions commonPayrollFunctions = new CommonPayrollFunctions();
 	public EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 	public ExcelUtils excelUtils = new ExcelUtils();
+	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 
 	/**
 	 * This method is used to To Check Permission based on Employee Data
@@ -4329,5 +4331,354 @@ public class AttendanceLeaveFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check Overtime based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 * @param i
+	 */
+	public boolean CheckOvertimeBasedOnEmployeeWise() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
+		EmployeeOvertimeDocumentPost();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Overtime based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckOvertimeEntryBasedOnForwardToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
+		EmployeeOvertimeDocumentPost();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Overtime Entry based on Return to approval
+	 * record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckOvertimeEntryBasedOnReturnToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
+		EmployeeOvertimeDocumentReturn();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration to Revise
+	 * 
+	 * @author Kishore-RMITS
+	 * @param Calendar
+	 * @param Year202526
+	 * @param OvertimePeriod
+	 * @param OvertimeReference
+	 */
+	public void OvertimeEmployeeAdd(String Calendar, String Year202526, String OvertimePeriod,
+			String OvertimeReference) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Add Button is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocCalSelectLOV, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeDocCalSelectLOV,
+								Calendar);
+						if (flag) {
+							logs.logging("INFO", "Overtime Calendar is Selected");
+							webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeYearLOV, ElementType.Xpath);
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeYearLOV,
+									Year202526);
+							if (flag) {
+								logs.logging("INFO", "Overtime Year is Selected");
+								webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePeriodLOV,
+										ElementType.Xpath);
+								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimePeriodLOV,
+										OvertimePeriod);
+								if (flag) {
+									logs.logging("INFO", "Overtime Period is Selected");
+									webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+									flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeReferenceField,
+											ElementType.Xpath);
+									if (flag) {
+										flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeReferenceField,
+												OvertimeReference, ElementType.Xpath);
+										if (flag) {
+											logs.logging("INFO", "Overtime Reference Entered");
+											flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocSave,
+													ElementType.Xpath);
+											if (flag) {
+												flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDocSave,
+														ElementType.Xpath);
+												if (flag) {
+													logs.logging("INFO", "Overtime Document Saved");
+													webDB.switchToDefaultContent();
+													flag = webDB.waitForElement(
+															AttendanceLeaveLocators.OvertimeEntryAddButton,
+															ElementType.Xpath);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Enter the Overtime Line Data
+	 * 
+	 * @author Kishore-RMITS
+	 * @param EmployeeDurai
+	 * @param OvertimeDate
+	 */
+	public void EmployeeEntryLineData(String EmployeeDurai, String OvertimeDate) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLOVButton, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeLOVButton,
+								EmployeeDurai);
+						if (flag) {
+							logs.logging("INFO", "Overtime Employee is Selected");
+							webDB.pressTabKey();
+							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateSelect,
+										ElementType.Xpath);
+								commonFunc.hardWait(1000);
+								webDB.moveToElement(AttendanceLeaveLocators.OvertimeDateSelect, ElementType.Xpath);
+								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeDateSelect,
+										OvertimeDate, ElementType.Xpath);
+								logs.logging("INFO", "Date is Selected");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Select the Employee Overtime Data Select
+	 * 
+	 * @author Kishore-RMITS
+	 * @param OvertimeHours
+	 */
+	public void EmployeeOvertimeDataSelect(String OvertimeHours) {
+		webDB.pressTabKey();
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeHoursField, OvertimeHours,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Hours is Entered");
+				flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.OvertimeLineSaveButton,
+						ElementType.Xpath, 45);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime Entry IS Saved");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(5000);
+							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Overtime Document Have been Saved");
+								commonFunc.checkSuccessToastMessageDisappear();
+								webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The Overtime Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeOvertimeDocumentPost() {
+		webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+		logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Amount Have been Uploaded");
+				commonFunc.hardWait(200);
+				commonFunc.checkRefreshCellsDisappear();
+				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(5000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime post button is clicked");
+						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+						flag = commonFunc.logoutUser();
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The Overtime Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeOvertimeDocumentReturn() {
+		webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+		logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Amount Have been Uploaded");
+				commonFunc.hardWait(200);
+				commonFunc.checkRefreshCellsDisappear();
+				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(5000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime post button is clicked");
+						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+								webDB.getDataFromProperties("HRUSEREmpId"));
+						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
+								webDB.getDataFromProperties("HRUSEREmpId"));
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+						flag = commonFunc.logoutUser();
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check The Overtime Amount Validation
+	 * 
+	 * @author Kishore-RMITS
+	 * @param
+	 */
+	public void OvertimeAmount(String SheetName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "Overtime Calculation.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(ItemMultiple.length);
+		for (int i = 2; i < ItemMultiple.length; i++) {
+			String EmpId = ItemMultiple[i][0];
+			String OTCal = ItemMultiple[i][9];
+
+			if (!EmpId.equals("")) {
+				verifyAssertionBothValues(dbCommonFunc.OvertimeLinesDetails(VariableHandler.getOvertimeDocNo(), EmpId,
+						commonFunc.getDataFromTestDataSheet("OTAmount")), OTCal);
+				logs.logging("INFO", "Overtime Amount Has Been Updated For :" + EmpId);
+			}
+		}
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value 8: " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
 	}
 }
