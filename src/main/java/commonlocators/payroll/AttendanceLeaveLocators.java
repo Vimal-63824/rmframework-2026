@@ -518,4 +518,50 @@ public class AttendanceLeaveLocators {
 	public static final String TDSDeclarationSectionWiseField = "//input[@id='P1013_HTDLD_SEC10_13A_H']";
 	/** @locatorType Xpath */
 	public static final String TDSDeclarationSaveButton = "//button[@data-testid='Save_Btn']";
+	
+	
+	/** @locatorType Xpath */
+	public static final String OvertimeFindSearchButton = "//button[@data-testid='prmn_goreport_btn']";
+	/** @locatorType Xpath */
+	public static final String OvertimeFindSearchAddButton = "//button[@data-testid='prmn_add_btn']";
+	/** @locatorType Xpath */
+	public static final String OvertimeFrameScreen = "//iframe[@title='Employee Overtime']";
+	/** @locatorType Xpath */
+	public static final String OvertimeDocCalSelectLOV = "//BUTTON[@ID='P16251310403_CALANDER_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String OvertimeYearLOV = "//button[@id='P16251310403_YEAR_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String OvertimePeriodLOV = "//button[@id='P16251310403_PERIOD_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String OvertimeReferenceField = "//input[@id='P16251310403_REFERENCE']";
+	/** @locatorType Xpath */
+	public static final String OvertimeDocSave = "//*[@id=\"B1837224170188183596\"]";
+	/** @locatorType Xpath */
+	public static final String OvertimeEntrySaveButton = "//*[@id=\"B4175001055445630277\"]";
+	/** @locatorType Xpath */
+	public static final String OvertimeDocNoField = "//span[@id='P16251310401_EOHD_DOC_NO_DISPLAY']";
+	/** @locatorType Xpath */
+	public static final String OvertimeEntryAddButton = "//button[@id='B4182943217260046819']";
+	/** @locatorType Xpath */
+	public static final String OvertimeEntryEmpLOVField = "//*[@id='ig_line_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String OvertimeLOVButton = "//button[@id='C4626597131473778956_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String OvertimeDateSelect = "//input[@id='C4626697235654781915_input']";
+	/** @locatorType Xpath */
+	public static final String OvertimeDateField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String OvertimeHoursField = "//input[@id='C4626697307354781916']";
+	/** @locatorType Xpath */
+	public static final String OvertimeLineSaveButton = "//button[@id='B4182943313815046820']";
+	/** @locatorType Xpath */
+	public static final String OvertimeSAVEButton = "//button[@id='B4175001055445630277']";
+	/** @locatorType Xpath */
+	public static final String OvertimeUploadAmtButton = "//*[@id=\"B4175614290542191932\"]/span[2]";
+	/** @locatorType Xpath */
+	public static final String OvertimePostButton = "//button[@id='B4175614224926191931']";
+	/** @locatorType Xpath */
+	public static final String OvertimeDocNoSelect = "//*[@id=\'3617691308132691817_orig\']/tbody/tr[2]/td[2]/a";
+	/** @locatorType Xpath */
+	public static final String OvertimeReverseButton = "//button[@id='B2669010986177427172']";
 }

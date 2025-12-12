@@ -1240,4 +1240,17 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
 		return value;
 	}
+	
+	/**
+	 * Overtime Lines Details
+	 * 
+	 * @author Kishore-RMITS
+	 * 
+	 */
+	public String OvertimeLinesDetails(String OTNO, String Emp, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("OvertimeAmount"),
+				commonFunc.getDataFromTestDataSheet("OTNO"), OTNO, commonFunc.getDataFromTestDataSheet("EMPID"),
+				Emp, DBHeaderColumnValue);
+		return value;
+	}
 }
