@@ -126,7 +126,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	public void VerifyCreationOfDirectGrnPriceListSameUomServiceTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnPriceListSameUomServiceTypeImportSupplier();
 	}
-	
+
 	/**
 	 * Direct GRN-General-User Defined-Different Stock and Supplier UOM
 	 * 
@@ -134,11 +134,11 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 10, groups = {
-	"Direct GRN" }, description = "655 Direct GRN-General-User Defined-Different Stock and Supplier UOM")
+			"Direct GRN" }, description = "655 Direct GRN-General-User Defined-Different Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnUserDefinedDifferentUomGeneralTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnUserDefinedDifferentUomGeneralTypeImportSupplier();
 	}
-	
+
 	/**
 	 * Direct GRN-Material-User Defined-Different Stock and Supplier UOM
 	 * 
@@ -146,7 +146,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 11, groups = {
-	"Direct GRN" }, description = "656 Direct GRN-Material-User Defined-Different Stock and Supplier UOM")
+			"Direct GRN" }, description = "656 Direct GRN-Material-User Defined-Different Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnUserDefinedDifferentUomMaterialTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnUserDefinedDifferentUomMaterialTypeImportSupplier();
 	}
@@ -158,7 +158,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 12, groups = {
-			"Direct GRN" }, description = "657 Direct GRN-General-Rate Contract-Different Stock and Supplier UOM")
+			"Direct GRN" }, description = "659 Direct GRN-General-Rate Contract-Different Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeImportSupplier();
 	}
@@ -170,7 +170,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 13, groups = {
-			"Direct GRN" }, description = "658 Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM")
+			"Direct GRN" }, description = "660 Direct GRN-Material-Rate Contract-Different Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeImportSupplier();
 	}
@@ -182,7 +182,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 14, groups = {
-			"Direct GRN" }, description = "661 Direct GRN-General-Price List-Different Stock and Supplier UOM")
+			"Direct GRN" }, description = "663 Direct GRN-General-Price List-Different Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportSupplier();
 	}
@@ -194,7 +194,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 15, groups = {
-			"Direct GRN" }, description = "662 Direct GRN-Material-Price List-Different Stock and Supplier UOM")
+			"Direct GRN" }, description = "664 Direct GRN-Material-Price List-Different Stock and Supplier UOM")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportSupplier() {
 		grn2Func.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportSupplier();
 	}
@@ -206,7 +206,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 16, groups = {
-			"Direct GRN" }, description = "663 PO to GRN-General-User Defined-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "667 PO to GRN-General-User Defined-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryGeneralUDSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryGeneralUDSameStockAndSupplierUomImport();
 	}
@@ -218,7 +218,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 17, groups = {
-			"Direct GRN" }, description = "664 PO to GRN-Material-User Defined-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "668 PO to GRN-Material-User Defined-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryMaterialUDSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryMaterialUDSameStockAndSupplierUomImport();
 	}
@@ -230,7 +230,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 18, groups = {
-			"Direct GRN" }, description = "665 PO to GRN-Service-User Defined-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "669 PO to GRN-Service-User Defined-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryServiceUDSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryServiceUDSameStockAndSupplierUomImport();
 	}
@@ -242,7 +242,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 19, groups = {
-			"Direct GRN" }, description = "667 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "671 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryGeneralRCSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryGeneralRCSameStockAndSupplierUomImport();
 	}
@@ -254,7 +254,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 20, groups = {
-			"Direct GRN" }, description = "668 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "672 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryMaterialRCSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryMaterialRCSameStockAndSupplierUomImport();
 	}
@@ -266,7 +266,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 21, groups = {
-			"Direct GRN" }, description = "669 PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "673 PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryServiceRCSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryServiceRCSameStockAndSupplierUomImport();
 	}
@@ -278,7 +278,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 22, groups = {
-			"Direct GRN" }, description = "671 PO to GRN-General-Price List-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "675 PO to GRN-General-Price List-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryGeneralPLSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryGeneralPLSameStockAndSupplierUomImport();
 	}
@@ -290,7 +290,7 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 23, groups = {
-			"Direct GRN" }, description = "672 PO to GRN-Material-Price List-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "676 PO to GRN-Material-Price List-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryMaterialPLSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryMaterialPLSameStockAndSupplierUomImport();
 	}
@@ -302,9 +302,81 @@ public class GrnTest3 extends RoadMapERPTest {
 	 */
 	@Author("Sakthi-GWL")
 	@Test(priority = 24, groups = {
-			"Direct GRN" }, description = "673 PO to GRN-Service-Price List-Same Stock and Supplier UOM")
+			"Po to GRN" }, description = "677 PO to GRN-Service-Price List-Same Stock and Supplier UOM")
 	public void VerifyPOtoGRNWithFPsGateEntryServicePLSameStockAndSupplierUomImport() {
 		grn2Func.verifyPOtoGRNWithFPsGateEntryServicePLSameStockAndSupplierUomImport();
+	}
+
+	/**
+	 * PO to GRN-General-User Defined-Different Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 25, groups = {
+			"Po to GRN" }, description = "679 PO to GRN-General-User Defined-Different Stock and Supplier UOM")
+	public void VerifyPOtoGRNWithFPsGateEntryGeneralUDDifferentStockAndSupplierUomImport() {
+		grn2Func.verifyPOtoGRNWithFPsGateEntryGeneralUDDifferentStockAndSupplierUomImport();
+	}
+
+	/**
+	 * PO to GRN-Material-User Defined-Different Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 26, groups = {
+			"Po to GRN" }, description = "680 PO to GRN-Material-User Defined-Different Stock and Supplier UOM")
+	public void VerifyPOtoGRNWithFPsGateEntryMaterialUDDifferentStockAndSupplierUomImport() {
+		grn2Func.verifyPOtoGRNWithFPsGateEntryMaterialUDDifferentStockAndSupplierUomImport();
+	}
+
+	/**
+	 * PO to GRN-General-Rate Contract-Different Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 27, groups = {
+			"Po to GRN" }, description = "683 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM")
+	public void VerifyPOtoGRNWithFPsGateEntryGeneralRCDifferentStockAndSupplierUomImport() {
+		grn2Func.verifyPOtoGRNWithFPsGateEntryGeneralRCDifferentStockAndSupplierUomImport();
+	}
+
+	/**
+	 * PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 28, groups = {
+			"Po to GRN" }, description = "684 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM")
+	public void VerifyPOtoGRNWithFPsGateEntryMaterialRCDifferentStockAndSupplierUomImport() {
+		grn2Func.verifyPOtoGRNWithFPsGateEntryMaterialRCDifferentStockAndSupplierUomImport();
+	}
+
+	/**
+	 * PO to GRN-General-Price List-Different Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 29, groups = {
+			"Po to GRN" }, description = "687 PO to GRN-General-Price List-Different Stock and Supplier UOM")
+	public void VerifyPOtoGRNWithFPsGateEntryGeneralPLDifferentStockAndSupplierUomImport() {
+		grn2Func.verifyPOtoGRNWithFPsGateEntryGeneralPLDifferentStockAndSupplierUomImport();
+	}
+
+	/**
+	 * PO to GRN-Material-Price List-Different Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 30, groups = {
+			"Po to GRN" }, description = "688 PO to GRN-Material-Price List-Different Stock and Supplier UOM")
+	public void VerifyPOtoGRNWithFPsGateEntryMaterialPLDifferentStockAndSupplierUomImport() {
+		grn2Func.verifyPOtoGRNWithFPsGateEntryMaterialPLDifferentStockAndSupplierUomImport();
 	}
 
 	/**
