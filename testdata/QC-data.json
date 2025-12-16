@@ -1383,5 +1383,12 @@
 	"Calendar": "00001 - 1 TO 30/31",
 	"Period": "APRIL",
 	"ImpSupplier": "SUP10388",
-	"ImportGRNBillNoText": "BILL-"
+	"ImportGRNBillNoText": "BILL-",
+	"OvertimePeriod":"MAY",
+    "OvertimeReference":"Employee Overtime",
+    "OvertimeHours":"40",
+    "OvertimeDate":"15-05-2025",
+    "OTNO":"${OTNO}",
+    "EMPID": "${EMPID}",
+    "OTAmount":"EOLN_OT_AMT"
 }

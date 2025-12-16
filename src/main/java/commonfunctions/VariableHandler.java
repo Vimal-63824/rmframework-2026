@@ -236,6 +236,7 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultipleSIDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> InspectionReqNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> MaterialReturnNumber = new ThreadLocal<>();
+	private static ThreadLocal<String> OvertimeDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2025,5 +2026,13 @@ public class VariableHandler {
 	
 	public static String getTDSDeclarationDocNo() {
 		return TDSDeclarationDocNo.get();
+	}
+	
+	public static String getOvertimeDocNo() {
+		return OvertimeDocNo.get();
+	}
+
+	public static void setOvertimeDocNo(String data) {
+		OvertimeDocNo.set(data);
 	}
 }

@@ -1392,6 +1392,18 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	public void DirectSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered() {
 		SubcontractFunc.directSerialItemSubcontractOrderWithBOMForStandardTypeWithProjectInterstateRegistered();
 	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for PR type - Free pass
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 105, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for PR type - Free pass Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR();
+	}
 
 	/**
 	 * Verify After Method

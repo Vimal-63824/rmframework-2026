@@ -150,7 +150,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Find_DocNO = "//input[@data-testid='P193151010_FIND_PO_NO']/following-sibling::button";
 	/** @locatorType XPATH */
-	public static final String OP_Find_Search_Btn = "//button[@ID='B2159422498365147350']";
+	public static final String OP_Find_Search_Btn = "//button[@data-testid='Find']";
 	/** @locatorType XPATH */
 	public static final String OP_DrillDown = "//*[@id=\"2405795063194951027_orig\"]/tbody/tr[2]/td[5]/a";
 	/** @locatorType XPATH */
@@ -422,4 +422,8 @@ public class SubcontractOrderLocators {
 	public static final String Pend_SerialWise_CreateSCO_SubconLOV = "//input[@data-testid='P19631108_SUPLR_ID']/following-sibling::button";
 	/** @Locator XPATH */
 	public static final String Pend_SerialWise_CreateSCO_OKBtn = "//button[@data-testid='OK']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE = "//button[@data-testid='Pending_SCO_GE']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_iFrame = "//iframe[@title='Pending SCO']";
 }
