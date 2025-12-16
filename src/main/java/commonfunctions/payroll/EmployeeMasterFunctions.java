@@ -1180,7 +1180,7 @@ public class EmployeeMasterFunctions {
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
-						webDB.getDataFromProperties("HrRqtUsername"));
+						webDB.getDataFromProperties("HRuserEmpId"));
 //				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
 //						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
 //						webDB.getDataFromProperties("KishoreEmpId"));

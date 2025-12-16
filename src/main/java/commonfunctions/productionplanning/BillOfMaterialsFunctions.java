@@ -1305,7 +1305,7 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreateBOMItemSingleProcessAssembly() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -1373,7 +1373,7 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreateBOMItemMultipleSubAssembly() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -1446,8 +1446,9 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCreateMultipleBOMSameItem() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
-		String BOMName2 = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
+		String BOMName2 = commonFunc.getDataFromTestDataSheet("BomNamePreposition")
+				+ RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -1552,7 +1553,7 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCorrectBillOfMaterials() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -1623,8 +1624,9 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyCopyBillOfMaterials() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
-		String BOMName2 = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
+		String BOMName2 = commonFunc.getDataFromTestDataSheet("BomNamePreposition")
+				+ RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -1693,7 +1695,7 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyReviseBillOfMaterials() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		LocalDate date1 = LocalDate.now().plusDays(1);
@@ -1766,7 +1768,7 @@ public class BillOfMaterialsFunctions {
 	 * @return boolean flag
 	 */
 	public boolean verifyInactivateBillOfMaterials() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);

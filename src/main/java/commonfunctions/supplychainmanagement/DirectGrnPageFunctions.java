@@ -610,6 +610,7 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingSaveLine() {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 			logs.logging("INFO", "GRN Line Is Saved");
 			commonFunc.hardWait(4000);
