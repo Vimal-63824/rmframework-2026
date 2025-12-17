@@ -1455,4 +1455,61 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, DBHeaderColumnValue);
 		return value;
 	}
+	/**Purchase Bills Headers
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PurchaseBillsEx
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String PurchaseBillsExHeader(String PurchaseBillsEx , String DBHeaderColumnValue) {
+	String value =	getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsHeader"), 
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"),
+				PurchaseBillsEx, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**Purchase Bills Lines
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PurchaseBillsEx
+	 * @param DBHeaderColumnValue
+	 * @param string 
+	 * @return
+	 */
+	public String PurchaseBillsEx(String PurchaseBillsEx , String DBHeaderColumnValue) {
+	String value =	getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsEx"), 
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"),
+				PurchaseBillsEx, DBHeaderColumnValue);
+		return value;
+	}
+	/**This Is Used To Compare Po Document and Purchase Bills Document
+	 * 
+	 * @param PurchaseBillsEx
+	 * @param item
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String PurchaseBillsLineWise(String PurchaseBillsEx,String item ,String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsEx"), 
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx,
+				commonFunc.getDataFromTestDataSheet("PRBillsId"),item,DBHeaderColumnValue);
+		return value;
+		
+	}
+	/**This Is Method Used To Db Valid a Item With Expenses Account
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PurchaseBillsEx
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String PurchaseBillsItemWithExpOrdBy(String PurchaseBillsEx ,String SeqNo ,String DBHeaderColumnValue) {
+		String value =	getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsDocOrderBy"), 
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"),
+				PurchaseBillsEx,commonFunc.getDataFromTestDataSheet("SeqNo"),SeqNo, DBHeaderColumnValue );
+		return value;
+
+	}
+
 }

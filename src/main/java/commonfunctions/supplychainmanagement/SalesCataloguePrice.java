@@ -68,19 +68,19 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceSimilarUomAndDomesticCustomer() {
+	public void createsCataloguePriceSimilarUomAndDomesticCustomer(String min_Disc, String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
 		}
-		String min_Disc = RandomStringUtils.randomNumeric(1);
-		if (min_Disc.equals("0")) {
-			min_Disc = "10";
-		}
-		String max_Disc = RandomStringUtils.randomNumeric(2);
-		if (max_Disc.equals("00")) {
-			max_Disc = "10";
-		}
+//		String min_Disc = RandomStringUtils.randomNumeric(1);
+//		if (min_Disc.equals("0")) {
+//			min_Disc = "10";
+//		}
+//		String max_Disc = RandomStringUtils.randomNumeric(2);
+//		if (max_Disc.equals("00")) {
+//			max_Disc = "10";
+//		}
 		cusItems.createsCataloguePriceSimilarUOMAndDomesticCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -126,19 +126,19 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceDisSimilarUomAndDomesticCustomer() {
+	public void createsCataloguePriceDisSimilarUomAndDomesticCustomer(String min_Disc , String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
 		}
-		String min_Disc = RandomStringUtils.randomNumeric(1);
-		if (min_Disc.equals("0")) {
-			min_Disc = "10";
-		}
-		String max_Disc = RandomStringUtils.randomNumeric(2);
-		if (max_Disc.equals("00")) {
-			max_Disc = "10";
-		}
+//		String min_Disc = RandomStringUtils.randomNumeric(1);
+//		if (min_Disc.equals("0")) {
+//			min_Disc = "10";
+//		}
+//		String max_Disc = RandomStringUtils.randomNumeric(2);
+//		if (max_Disc.equals("00")) {
+//			max_Disc = "10";
+//		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndDomesticCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -183,19 +183,19 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceSimilarUomAndExportCustomer() {
+	public void createsCataloguePriceSimilarUomAndExportCustomer(String min_Disc , String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
 		}
-		String min_Disc = RandomStringUtils.randomNumeric(1);
-		if (min_Disc.equals("0")) {
-			min_Disc = "10";
-		}
-		String max_Disc = RandomStringUtils.randomNumeric(2);
-		if (max_Disc.equals("00")) {
-			max_Disc = "10";
-		}
+//		String min_Disc = RandomStringUtils.randomNumeric(1);
+//		if (min_Disc.equals("0")) {
+//			min_Disc = "10";
+//		}
+//		String max_Disc = RandomStringUtils.randomNumeric(2);
+//		if (max_Disc.equals("00")) {
+//			max_Disc = "10";
+//		}
 		cusItems.createsCataloguePriceSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -241,19 +241,19 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceDisSimilarUomAndExportCustomer() {
+	public void createsCataloguePriceDisSimilarUomAndExportCustomer(String min_Disc ,String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
 		}
-		String min_Disc = RandomStringUtils.randomNumeric(1);
-		if (min_Disc.equals("0")) {
-			min_Disc = "10";
-		}
-		String max_Disc = RandomStringUtils.randomNumeric(2);
-		if (max_Disc.equals("00")) {
-			max_Disc = "10";
-		}
+//		String min_Disc = RandomStringUtils.randomNumeric(1);
+//		if (min_Disc.equals("0")) {
+//			min_Disc = "10";
+//		}
+//		String max_Disc = RandomStringUtils.randomNumeric(2);
+//		if (max_Disc.equals("00")) {
+//			max_Disc = "10";
+//		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -298,19 +298,19 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCancelCatalogPrice() {
+	public void createsCancelCatalogPrice(String min_Disc, String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
 		}
-		String min_Disc = RandomStringUtils.randomNumeric(1);
-		if (min_Disc.equals("0")) {
-			min_Disc = "10";
-		}
-		String max_Disc = RandomStringUtils.randomNumeric(2);
-		if (max_Disc.equals("00")) {
-			max_Disc = "10";
-		}
+//		String min_Disc = RandomStringUtils.randomNumeric(1);
+//		if (min_Disc.equals("0")) {
+//			min_Disc = "10";
+//		}
+//		String max_Disc = RandomStringUtils.randomNumeric(2);
+//		if (max_Disc.equals("00")) {
+//			max_Disc = "10";
+//		}
 		cusItems.createsCataloguePriceDisSimilarUOMAndExportCustomer();
 		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
