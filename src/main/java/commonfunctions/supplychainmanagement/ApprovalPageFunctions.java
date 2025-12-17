@@ -682,4 +682,30 @@ public class ApprovalPageFunctions {
 		}
 		return flag;
 	}
+
+	/**
+	 * This Methods Is Used To ExtractStocktransferDocNumber
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public boolean ExtractStocktransferDocNumberForLocalSupplier() {
+		flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+		if (flag) {
+			String text = webDB.getTextFromElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+			logs.logging("INFO", "Get Text From Note Alert Is :" + text);
+			// Extract the document number starting with SOT8-
+			String regex = "SOT8-\\d{4}-\\d{4}";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher SaleOrderDocNumber = pattern.matcher(text);
+			if (SaleOrderDocNumber.find()) {
+				String SONumber = SaleOrderDocNumber.group();
+				VariableHandler.setSalesOrdertDocNumber(SONumber);
+				logs.logging("INFO", "Sales Order Number Is :" + VariableHandler.getSalesOrdertDocNumber());
+			} else {
+				logs.logging("INFO", "No match found for Sale Order Number in Extract Stock transfer.");
+			}
+		}
+		return flag;
+	}
 }

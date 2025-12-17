@@ -2,7 +2,7 @@ package commonfunctions.financials;
 
 /**
  * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks Feburary 12, 2025
+ * @company Galaxy Weblinks December 17, 2025
  */
 import static org.testng.Assert.assertTrue;
 
@@ -45,6 +45,14 @@ public class PurchaseBillsFunctionsGrn {
 	String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 			+ "DirectGrnDetails.xlsx";
 
+	/**
+	 * This Method Is Used To Add The Bill Number And Pay Amount In The Bank Payment
+	 * View Details
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param BillNumber
+	 * @param PayAmount
+	 */
 	public void VerifyCreatingPurchaseBillwithAdvance() throws IOException {
 		VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -77,6 +85,14 @@ public class PurchaseBillsFunctionsGrn {
 		}
 	}
 
+	/**
+	 * This Method Is Used To Add The Bill Number And Pay Amount In The Bank Payment
+	 * View Details
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param BillNumber
+	 * @param PayAmount
+	 */
 	public void VerifyCreatePaymentFromPurchaseBill(String Type, String PayMode, String BankName) {
 		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBBPPendingCrDoc, ElementType.Xpath);
 		if (flag) {
@@ -106,11 +122,11 @@ public class PurchaseBillsFunctionsGrn {
 							webDB.clickAnElement(PurchaseBillsGrnLocators.PendingPayablesSearchBtn, ElementType.Xpath);
 							logs.logging("INFO", "Search Button Is Clicked");
 
-							flag = webDB.waitForElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(VariableHandler.getPbNumber()),
-									ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
+									VariableHandler.getPbNumber()), ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(VariableHandler.getPbNumber()),
-										ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
+										VariableHandler.getPbNumber()), ElementType.Xpath);
 								logs.logging("INFO", "Document Is Selected");
 								commonFunc.checkRefreshCellsDisappear();
 								commonFunc.hardWait(1500);
@@ -1193,7 +1209,7 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber() , commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		ValidateHeaderDetails();
 		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -2288,7 +2304,8 @@ public class PurchaseBillsFunctionsGrn {
 							if (Type.equals(commonFunc.getDataFromTestDataSheet("Expensetype"))) {
 								VerifyToCreateExpenseType(GLAccount, Cost, HSN);
 							} else if (Type.equals(commonFunc.getDataFromTestDataSheet("ItemType"))) {
-								VerifyToCreatetheItemTypeDocument(Item, Cost, Qty, HSN, GLAccount, TrdDisc, SpclDisc, CashDisc);
+								VerifyToCreatetheItemTypeDocument(Item, Cost, Qty, HSN, GLAccount, TrdDisc, SpclDisc,
+										CashDisc);
 							}
 						}
 					}
@@ -2346,7 +2363,8 @@ public class PurchaseBillsFunctionsGrn {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void VerifyToCreatetheItemTypeDocument(String Item, String Cost, String Qty, String HSN, String GLAccount ,String TrdDisc, String SpclDisc, String CashDisc) {
+	public void VerifyToCreatetheItemTypeDocument(String Item, String Cost, String Qty, String HSN, String GLAccount,
+			String TrdDisc, String SpclDisc, String CashDisc) {
 		webDB.waitForElement(PurchaseBillsGrnLocators.PBItemField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseBillsGrnLocators.PBItemField, ElementType.Xpath);
@@ -2388,7 +2406,7 @@ public class PurchaseBillsFunctionsGrn {
 										logs.logging("INFO", "Entered Cost Is:" + HSN);
 										commonFunc.checkRefreshCellsDisappear();
 										webDB.pressTabKey();
-										VerifyAddingTradeSpclCashDiscount(TrdDisc,SpclDisc,CashDisc);
+										VerifyAddingTradeSpclCashDiscount(TrdDisc, SpclDisc, CashDisc);
 										VerifySaveLine();
 									}
 								}
@@ -2419,7 +2437,8 @@ public class PurchaseBillsFunctionsGrn {
 				if (flag) {
 					webDB.clickAnElement(PurchaseBillsGrnLocators.PBCashDiscPercField, ElementType.Xpath);
 					webDB.clearText(PurchaseBillsGrnLocators.PBCashDiscPercInput, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBCashDiscPercInput, CashDisc, ElementType.Xpath);
+					webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBCashDiscPercInput, CashDisc,
+							ElementType.Xpath);
 					logs.logging("INFO", "Cash Discount Percent Is Entered: " + CashDisc);
 					webDB.pressTabKey();
 

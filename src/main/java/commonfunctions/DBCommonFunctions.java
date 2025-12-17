@@ -1455,62 +1455,68 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, DBHeaderColumnValue);
 		return value;
 	}
-	/**Purchase Bills Headers
+
+	/**
+	 * Purchase Bills Headers
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param PurchaseBillsEx
 	 * @param DBHeaderColumnValue
 	 * @return
 	 */
-	public String PurchaseBillsExHeader(String PurchaseBillsEx , String DBHeaderColumnValue) {
-	String value =	getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsHeader"), 
-				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"),
-				PurchaseBillsEx, DBHeaderColumnValue);
+	public String PurchaseBillsExHeader(String PurchaseBillsEx, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsHeader"),
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx, DBHeaderColumnValue);
 		return value;
 	}
-	
-	/**Purchase Bills Lines
+
+	/**
+	 * Purchase Bills Lines
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param PurchaseBillsEx
 	 * @param DBHeaderColumnValue
-	 * @param string 
+	 * @param string
 	 * @return
 	 */
-	public String PurchaseBillsEx(String PurchaseBillsEx , String DBHeaderColumnValue) {
-	String value =	getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsEx"), 
-				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"),
-				PurchaseBillsEx, DBHeaderColumnValue);
+	public String PurchaseBillsEx(String PurchaseBillsEx, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsEx"),
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx, DBHeaderColumnValue);
 		return value;
 	}
-	/**This Is Used To Compare Po Document and Purchase Bills Document
+
+	/**
+	 * This Is Used To Compare Po Document and Purchase Bills Document
 	 * 
 	 * @param PurchaseBillsEx
 	 * @param item
 	 * @param DBHeaderColumnValue
 	 * @return
 	 */
-	public String PurchaseBillsLineWise(String PurchaseBillsEx,String item ,String DBHeaderColumnValue) {
-		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsEx"), 
+	public String PurchaseBillsLineWise(String PurchaseBillsEx, String item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsEx"),
 				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx,
-				commonFunc.getDataFromTestDataSheet("PRBillsId"),item,DBHeaderColumnValue);
+				commonFunc.getDataFromTestDataSheet("PRBillsId"), item, DBHeaderColumnValue);
 		return value;
-		
+
 	}
-	/**This Is Method Used To Db Valid a Item With Expenses Account
+
+	/**
+	 * This Is Method Used To Db Valid a Item With Expenses Account
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param PurchaseBillsEx
 	 * @param DBHeaderColumnValue
 	 * @return
 	 */
-	public String PurchaseBillsItemWithExpOrdBy(String PurchaseBillsEx ,String SeqNo ,String DBHeaderColumnValue) {
-		String value =	getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsDocOrderBy"), 
-				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"),
-				PurchaseBillsEx,commonFunc.getDataFromTestDataSheet("SeqNo"),SeqNo, DBHeaderColumnValue );
+	public String PurchaseBillsItemWithExpOrdBy(String PurchaseBillsEx, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsDocOrderBy"),
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx,
+				commonFunc.getDataFromTestDataSheet("SeqNo"), SeqNo, DBHeaderColumnValue);
 		return value;
 
 	}
+
 	/**
 	 * PurchaseBills Header Details
 	 * 
@@ -1524,6 +1530,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate Purchase Bills Pending GRN
 	 * 
@@ -1537,6 +1544,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate PB Pending GRn Lines
 	 * 
@@ -1553,6 +1561,7 @@ public class DBCommonFunctions {
 				SeqNO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate Purchase Bills line Details
 	 * 
@@ -1564,10 +1573,11 @@ public class DBCommonFunctions {
 
 	public String PurchaseBillLineQuery(String PBNo, String SeqNO, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillLineQuery"),
-				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SEQNO"),
-				SeqNO, DBHeaderColumnValue);
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SEQNO"), SeqNO,
+				DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate GRN Line Details
 	 * 
@@ -1576,12 +1586,13 @@ public class DBCommonFunctions {
 	 * @param DBHeaderColumnValue
 	 * @return String Value
 	 */
-	public String GRNPBLineQuery(String GRNNumber,String SeqNO, String DBHeaderColumnValue) {
+	public String GRNPBLineQuery(String GRNNumber, String SeqNO, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNPBLineQuery"),
-				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber,commonFunc.getDataFromTestDataSheet("SEQNO"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("SEQNO"),
 				SeqNO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate PB Pending GRn Lines
 	 * 
@@ -1598,6 +1609,7 @@ public class DBCommonFunctions {
 				SeqNO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * This Method Is Used To Validate PB Pending GRn Lines
 	 * 
@@ -1610,9 +1622,72 @@ public class DBCommonFunctions {
 
 	public String PurchaseBillLine(String PBNo, String SeqNO, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillLine"),
-				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SEQNO"), SeqNO,
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Method Is Used To Validate Purchase Bills Pending GRN
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param GRNNumber
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String GrnLandedCostQuery(String GRNNO, String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("LandedCostQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNO, commonFunc.getDataFromTestDataSheet("SUPID"),
 				SeqNO, DBHeaderColumnValue);
 		return value;
 	}
-	
+
+	/**
+	 * This Method Is Used To Validate Purchase Bills Pending GRN
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param GRNNumber
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PurchaseBillLandedCostQuery(String PBNo, String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PBLandedCost"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SupSeqNo"),
+				SeqNO, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Method Is Used To Validate po Details
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String PBLineLevelQuery(String PBNo, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PBHSNLineWiseQuery"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("PBItemID"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Method Is Used To Validate po Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String GRNhistQuery(String GRNNumber, String Item, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNHistQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("GRNID"),
+				Item, DBHeaderColumnValue);
+		return value;
+	}
+
 }

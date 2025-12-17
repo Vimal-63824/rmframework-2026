@@ -755,21 +755,21 @@ public class GrnTest2 extends RoadMapERPTest {
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomForFreePassItem();
 	}
 
-	/**
-	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
-	 * Document for Material Type Without Quality Enabled For Landed Cost And Other
-	 * Charges
-	 * 
-	 * @author PremKumar.K-RMITS Direct GRN
-	 * @throws IOException
-	 */
-	@Author("Prem-RMITS")
-	@Test(priority = 95, groups = { "GRN" }, description = "334  Inward GRN with Landed cost and other charges")
-	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostAnd()
-			throws IOException {
-
-		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost();
-	}
+//	/**
+//	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+//	 * Document for Material Type Without Quality Enabled For Landed Cost And Other
+//	 * Charges
+//	 * 
+//	 * @author PremKumar.K-RMITS Direct GRN
+//	 * @throws IOException
+//	 */
+//	@Author("Prem-RMITS")
+//	@Test(priority = 95, groups = { "GRN" }, description = "334  Inward GRN with Landed cost and other charges")
+//	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCostAnd()
+//			throws IOException {
+//
+//		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLandedCost();
+//	}
 	/**
 	 * This Methods Is Used To Create GRN Document from PO with Inspection Stock
 	 * Transfer Price List Type
