@@ -445,7 +445,7 @@ public class InspectionPlanFunctions {
 	 * @return flag
 	 */
 	public boolean verifyInspectionPlanInProcessForManufacturingProcess() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -652,7 +652,7 @@ public class InspectionPlanFunctions {
 	 * @return flag
 	 */
 	public boolean verifyInspectionPlanPreDispatch() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
@@ -881,7 +881,7 @@ public class InspectionPlanFunctions {
 	 * @return flag
 	 */
 	public boolean verifyInspectionPlanFinalInspection() {
-		String BOMName = "AUTOMATION BOM - " + RandomStringUtils.randomNumeric(4);
+		String BOMName = commonFunc.getDataFromTestDataSheet("BomNamePreposition") + RandomStringUtils.randomNumeric(4);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate date = LocalDate.now();
 		String Today = date.format(formatter);
