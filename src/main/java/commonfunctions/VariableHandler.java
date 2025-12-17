@@ -237,6 +237,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> InspectionReqNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> MaterialReturnNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> OvertimeDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> InvoiceDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2003,11 +2004,11 @@ public class VariableHandler {
 	public static void setInspectionReqNumber(String Data) {
 		InspectionReqNumber.set(Data);
 	}
-	
+
 	public static String getMaterialReturnNumber() {
 		return MaterialReturnNumber.get();
 	}
-	
+
 	public static void setMaterialReturnNumber(String Data) {
 		MaterialReturnNumber.set(Data);
 	}
@@ -2019,20 +2020,28 @@ public class VariableHandler {
 	public static boolean getAutoPostMRVFlag() {
 		return AutoPostMRVFlag.get();
 	}
-	
+
 	public static void setTDSDeclarationDocNo(String Data) {
 		TDSDeclarationDocNo.set(Data);
 	}
-	
+
 	public static String getTDSDeclarationDocNo() {
 		return TDSDeclarationDocNo.get();
 	}
-	
+
 	public static String getOvertimeDocNo() {
 		return OvertimeDocNo.get();
 	}
 
 	public static void setOvertimeDocNo(String data) {
 		OvertimeDocNo.set(data);
+	}
+
+	public static String getInvoiceDocNo() {
+		return InvoiceDocNo.get();
+	}
+
+	public static void setInvoiceDocNo(String Data) {
+		InvoiceDocNo.set(Data);
 	}
 }
