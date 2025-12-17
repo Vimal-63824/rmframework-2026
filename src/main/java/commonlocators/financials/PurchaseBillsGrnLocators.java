@@ -1,8 +1,8 @@
 package commonlocators.financials;
 
 /**
- * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks Feburary 12, 2025
+ * @author Deepan-GWL, Sakthi-GWL
+ * @company Galaxy Weblinks December 17, 2025
  */
 public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
