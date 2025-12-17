@@ -1,8 +1,8 @@
 package commonfunctions.financials;
 
 /**
- * @author Deepan-GWL, Sakthi
- * @company Galaxy Weblinks Feburary 12, 2025
+ * @author HariKrishna-RMITS
+ * @company Galaxy Weblinks October 16, 2025
  */
 import static org.testng.Assert.assertTrue;
 
