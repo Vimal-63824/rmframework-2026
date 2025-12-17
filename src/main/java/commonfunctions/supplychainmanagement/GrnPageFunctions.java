@@ -4920,42 +4920,42 @@ public class GrnPageFunctions {
 			String ItemId = PRMultipleline[i][1];
 			if (!ItemId.equals("")) {
 				System.out.println("tradevalueup");
-//				verifyAssertionBothValues(
-//						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("TradeAssessableValue")),
-//						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("GRNTradeAssessableValue")));
-//				logs.logging("INFO", "Trade Assessable Value Matched For PO and GRN " + ItemId);
-//				verifyAssertionBothValues(
-//						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("SpecialAssessableValue")),
-//						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("GRNSpecialAssessableValue")));
-//				logs.logging("INFO", "Special Assessable Value Matched For PO and GRN " + ItemId);
-//				verifyAssertionBothValues(
-//						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("CashAssessableValue")),
-//						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("GRNCashAssessableValue")));
-//				logs.logging("INFO", "Cash Assessable Value Matched For PO and GRN " + ItemId);
-//				verifyAssertionBothValues(
-//						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("TradeDiscountAmount")),
-//						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("GRNTradeDiscountAmount")));
-//				logs.logging("INFO", "Trade Discount Amount Matched For PO and GRN " + ItemId);
-//				verifyAssertionBothValues(
-//						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("SpecialDiscountAmount")),
-//						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("GRNSpecialDiscountAmount")));
-//				logs.logging("INFO", "Special Discount Amount Matched For PO and GRN " + ItemId);
-//				verifyAssertionBothValues(
-//						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("CashDiscountAmount")),
-//						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
-//								commonFunc.getDataFromTestDataSheet("GRNCashDiscountAmount")));
-//				logs.logging("INFO", "Cash  Discount Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("TradeAssessableValue")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNTradeAssessableValue")));
+				logs.logging("INFO", "Trade Assessable Value Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("SpecialAssessableValue")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialAssessableValue")));
+				logs.logging("INFO", "Special Assessable Value Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("CashAssessableValue")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNCashAssessableValue")));
+				logs.logging("INFO", "Cash Assessable Value Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("TradeDiscountAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNTradeDiscountAmount")));
+				logs.logging("INFO", "Trade Discount Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("SpecialDiscountAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialDiscountAmount")));
+				logs.logging("INFO", "Special Discount Amount Matched For PO and GRN " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("CashDiscountAmount")),
+						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNCashDiscountAmount")));
+				logs.logging("INFO", "Cash  Discount Amount Matched For PO and GRN " + ItemId);
 				verifyAssertionBothValues(
 						dbCommonFunctions.poDetails(VariableHandler.getPONumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("PoIgstAmount")),
