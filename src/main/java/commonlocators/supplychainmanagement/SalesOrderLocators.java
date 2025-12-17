@@ -523,7 +523,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String MultiCloseShortDocPrefix = "//input[@data-testid='P1915131078_SAMH_DOC_PFX']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String MultiCloseShortHeaderWiseSaveButton = "//button[@data-testid='MultiCloseShortHeaderWiseSaveButton']";
+	public static final String MultiCloseShortHeaderWiseSaveButton = "//button[@title='Create Hd']";
 	/** @Locator Xpath */
 	public static final String MultiCloseShortPendingSoButton = "//button[@data-testid='MultiCloseShortPendingSoButton']";
 	/** @Locator Xpath */

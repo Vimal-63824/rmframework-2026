@@ -4470,15 +4470,16 @@ public class SalesOrderFunctions {
 						if (webDB.isElementDisplayed(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath)) {
 							webDB.clickAnElement(SalesOrderLocators.NoteAlertCloseIcon, ElementType.Xpath);
 							logs.logging("INFO", "Sales Order Amendment Header Record Created Sucessfully");
-							flag = webDB.waitForElement(SalesOrderLocators.SoAmdDocNumber, ElementType.Xpath);
-							if (flag) {
-								String SOAmndDocNumber = webDB.getTextFromElement(SalesOrderLocators.SoAmdDocNumber,
-										ElementType.Xpath);
-								VariableHandler.setSOAmdNumber(SOAmndDocNumber);
-								logs.logging("INFO", "Sales Order Amendment Document Number Is : "
-										+ VariableHandler.getSOAmdNumber());
-								commonFunc.checkRefreshCellsDisappear();
-							}
+						}
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(SalesOrderLocators.SoAmdDocNumber, ElementType.Xpath);
+						if (flag) {
+							String SOAmndDocNumber = webDB.getTextFromElement(SalesOrderLocators.SoAmdDocNumber,
+									ElementType.Xpath);
+							VariableHandler.setSOAmdNumber(SOAmndDocNumber);
+							logs.logging("INFO",
+									"Sales Order Amendment Document Number Is : " + VariableHandler.getSOAmdNumber());
+							commonFunc.checkRefreshCellsDisappear();
 						}
 					}
 				}

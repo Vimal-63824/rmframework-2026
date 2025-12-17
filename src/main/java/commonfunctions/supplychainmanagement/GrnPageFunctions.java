@@ -7303,4 +7303,69 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(webDB.getDataFromProperties("StPoToMRVWFPlSheet"),
 				webDB.getDataFromProperties("PoToMrvSheet"));
 	}
+
+	/**
+	 * This Methods Is Used After Give all Details to Click overall save and Forward
+	 * the Approval User
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void clickPostButton() {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(1000);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			flag = webDB.waitForClickElement(GrnLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
+				logs.logging("INFO", "Document Successfully posted");
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used for Approve the Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApprovalHK(String Employee) {
+		commonFunc.hardWait(1000);
+		if (webDB.verifyIsElementDisplayed(GrnLocators.DocAprovalIfrmae, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			String GetTextEmployee = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.ForwardEmployeefield,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetTextEmployee.equals(Employee)) {
+				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ForwardApproval, Employee);
+				commonFunc.hardWait(500);
+				webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched To WorkFlow Frame");
+			}
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+							VariableHandler.getGrnDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+				}
+
+			}
+		}
+		assertTrue(flag);
+	}
 }

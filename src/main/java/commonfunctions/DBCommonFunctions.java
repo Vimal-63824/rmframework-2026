@@ -12,9 +12,12 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import utils.ExcelUtils;
@@ -1199,7 +1202,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SCONO"), SCONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * BOM Header Details
 	 * 
@@ -1213,7 +1216,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * BOM Routing Details
 	 * 
@@ -1227,6 +1230,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * BOM Lines Details
 	 * 
@@ -1240,7 +1244,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * Overtime Lines Details
 	 * 
@@ -1249,8 +1253,206 @@ public class DBCommonFunctions {
 	 */
 	public String OvertimeLinesDetails(String OTNO, String Emp, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("OvertimeAmount"),
-				commonFunc.getDataFromTestDataSheet("OTNO"), OTNO, commonFunc.getDataFromTestDataSheet("EMPID"),
-				Emp, DBHeaderColumnValue);
+				commonFunc.getDataFromTestDataSheet("OTNO"), OTNO, commonFunc.getDataFromTestDataSheet("EMPID"), Emp,
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BankPaymentHeaderDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BankPaymentHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * CS Line Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SOANo
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String BankPaymentLineDetails(String BRNo, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("BankPaymentLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), BRNo, commonFunc.getDataFromTestDataSheet("PONO"), SeqNo,
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * GLM Control
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String GLMControl(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("GLMControlQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BankReceiptPendingReceivablesDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BankReceiptPendingQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Exchange Rate details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String ExchangeRateDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("ExchangeRateQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BankPaymentPendingPayablesDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BankPaymentPendingQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String BankPaymentPBHeaderDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PBHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * get Required Data From DB Using Query Using 2 Parameters
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param Query
+	 * @param Replacechar
+	 * @param Replacedchar
+	 * @param Replacechar1
+	 * @param Replacedchar1
+	 * @param ExpectedData
+	 * @return String returnname
+	 */
+	public String[][] getMultipleDataFromDBUsingQuery(String Query, String Replacechar, String Replacedchar,
+			String ExpectedData) {
+		String[][] tableData = null;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (getConnection() == null) {
+				establishDBConnection();
+			}
+
+			Statement statement = getConnection().createStatement();
+			ResultSet resultSet = statement.executeQuery(Query.replace(Replacechar, Replacedchar));
+
+			ResultSetMetaData meta = resultSet.getMetaData();
+			int columnCount = meta.getColumnCount();
+
+			List<String[]> rows = new ArrayList<>();
+
+			while (resultSet.next()) {
+				String[] row = new String[columnCount];
+				for (int i = 0; i < columnCount; i++) {
+					row[i] = resultSet.getString(i + 1); // Column index starts from 1
+				}
+				rows.add(row);
+			}
+
+			// Convert List<String[]> to String[][]
+			tableData = rows.toArray(new String[0][0]);
+
+			resultSet.close();
+			statement.close();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		// Print 2D array for verification
+		for (String[] row : tableData) {
+			System.out.println(Arrays.toString(row));
+		}
+		return tableData;
+	}
+
+	/**
+	 * PR Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String[][] SOLineDetailsQueryWithSeq(String SONo, String HeaderValue) {
+		String[][] value = getMultipleDataFromDBUsingQuery(getDataFromDBTestDataSheet("SOLineQueryWithSeq1"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, HeaderValue);
+		return value;
+	}
+
+	/**
+	 * SO Header Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String SOLineDetailsQueryWithSeq(String SONo, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("SOLineQueryWithSeq"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, commonFunc.getDataFromTestDataSheet("PONO"), SeqNo,
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Method Is Used To Validate GRN Header Details
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String GRNPBHeaderQuery(String GRNNumber, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("GRNPBHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, DBHeaderColumnValue);
 		return value;
 	}
 }

@@ -1,4 +1,5 @@
 package com.roadmapERP;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks December 17, 2025
@@ -13,7 +14,6 @@ import org.testng.annotations.Test;
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
 import commonfunctions.supplychainmanagement.GrnPageFunctions;
-import commonfunctions.supplychainmanagement.PoToMrvPageFunctions;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import utils.Mailer;
 import utils.WebDriverBase;
@@ -24,7 +24,6 @@ public class PoToMRVTest extends RoadMapERPTest {
 	static Mailer mail = new Mailer();
 	static WebDriverBase webDB = new WebDriverBase();
 	static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
-	static PoToMrvPageFunctions poToMrvPageFunc = new PoToMrvPageFunctions();
 	static GrnPageFunctions grnPageFunc = new GrnPageFunctions();
 
 	/**
