@@ -1,0 +1,152 @@
+package commonlocators.financials;
+
+/**
+ * @author Deepan-GWL, Sakthi-GWL
+ * @company Galaxy Weblinks December 17, 2025
+ */
+public class PurchaseBillsGrnLocators {
+	/** @locatorType Xpath */
+	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
+	/** @locatorType Xpath */
+	public static final String PendingGrn = "//button[@data-testid='PendingGRN']";
+	/** @locatorType Xpath */
+	public static final String Iframe = "//iframe";
+	/** @locatorType Xpath */
+	public static final String GrnNo = "//input[@data-testid=\"P116131004_GRN_NO\"]/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String SearchButton = "//button[@data-testid='SearchGRN']";
+	/** @locatorType Xpath */
+	public static final String CheckBox(String GrnNo) {
+		return "//td[contains(text(),'"+ GrnNo +"')]/../td[13]";
+	}
+	/** @locatorType Xpath */
+	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
+	/** @locatorType Xpath */
+	public static final String OkButton = "//button[@data-testid='INV']";
+	/** @locatorType Xpath */
+	public static final String LocationId = "//span[@data-testid='P11613101001_SUPHD_PLNT_LOC_ID']";
+	/** @locatorType Xpath */
+	public static final String CreateJournal = "//button[@data-testid='CreJournal']";
+	/** @locatorType Xpath */
+	public static final String PostButton = "//button[@data-testid='POST']";
+	/** @locatorType Xpath */
+	public static final String VoucherNumber = "//span[@data-testid='VouNo']";
+	/** @locatorType Xpath */
+	public static final String WorkFlowOkButton = "//button[@id='B1457704718951134857']";
+	/** @locatorType Xpath */
+	public static final String VoucherNumberLovButton = "//button[@id='P116131010_VOU_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PurchaseBillSearchButton = "//button[@id='B1552825888922175484']";
+	/** @locatorType Xpath */
+	public static final String ApproveOkButton = "//button[@id='B1457704718951134857']";
+
+	/** @locatorType Xpath */
+	public static final String ApprovedStatus(String PbNo) {
+		return "//a[text()='" + PbNo + "']/../../td[13]";
+	}
+	/** @locatorType Xpath */
+	public static final String OkButtonForward = "//button[@data-testid='OK']";
+	/** @locatorType Xpath */
+	public static final String PBCostInput = "//input[@id='amt']";
+	/** @locatorType Xpath */
+	public static final String PBCostField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[10]";
+	/** @locatorType Xpath */                
+	public static final String PBAddLine = "//button[@data-testid='ADDLN']";
+	/** @locatorType Xpath */
+	public static final String GlAccDescField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]" ;
+	/** @locatorType Xpath */
+	public static final String GlAccLov = "//button[@id='C2691931750024847071_lov_btn']" ;
+	/** @locatorType Xpath */
+	public static final String PBAddOverallSave = "//button[@data-testid='SAVEHD']" ;
+	/** @locatorType Xpath */
+	public static final String PBAddSave = "//button[@data-testid='IN_SAVE']" ;
+	/** @locatorType Xpath */
+	public static final String PBAddTypeExp = "//select[@data-testid='SUPLN_TYPE']" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustmentTab = "//label[@for='P11613101001_TABS_2']" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustmentLoadBtn = "//button[@id='loadadj']" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustDocSelect = "//*[@id=\"1985325153421018015_orig\"]/tbody/tr[2]/td[11]" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustValueEnterField = "//*[@id=\"1985325153421018015_orig\"]/tbody/tr[2]/td[10]";
+	/** @locatorType Xpath */
+	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustmentOk = "//button[@id='B1']" ;
+	/** @locatorType Xpath */
+	public static final String PBReferenceTab = "//label[@for='P11613101001_TABS_3']" ;
+	/** @locatorType Xpath */
+	public static final String PBIGSTFlag = "//label[@for='P11613101001_ALOW_IGST_CSGST']" ;
+	/** @locatorType Xpath */
+	public static final String PBRCMFlag = "//label[@for='P11613101001_SUHD_ALOW_RCM_TAX']" ;
+	/** @locatorType Xpath */
+	public static final String PBItcSelect = "//select[@id='C2386871711424680771']" ;
+	/** @locatorType Xpath */
+	public static final String PBItcSelectField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[24]" ;
+	/** @locatorType Xpath */
+	public static final String PBItcSectionSelect = "//select[@id='C2386874327766680748']" ;
+	/** @locatorType Xpath */
+	public static final String PBItcSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[63]" ;
+	/** @locatorType Xpath */
+	public static final String PBItcSubSectionSelect = "//select[@id='C2386874439302680749']" ;
+	/** @locatorType Xpath */
+	public static final String PBItcSubSectionField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[64]" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustmentSearchField = "//input[@id='PEND_search_field']" ;
+	/** @locatorType Xpath */
+	public static final String PBAdjustmentSearchGoBtn = "//button[@id='PEND_search_button']" ;
+	/** @locatorType Xpath */
+	public static final String PBBPPendingCrDoc = "//span[contains(text(),'Pending Cr. Docs.')]" ;
+	/** @locatorType Xpath */
+	public static final String PBBPPendingPayables = "//button[@data-testid='PendingPayables']" ;
+	/** @locatorType Xpath */
+	public static final String PBBPPendingFrame = "//iframe[@title='Pending Payables']" ;
+	/** @locatorType Xpath */
+	public static final String PBBPPendingDocNoLov = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button" ;
+	/** @locatorType Xpath */
+	public static final String PBGetDocNo = "//span[@data-testid='VouNo']" ;
+	/** @locatorType Xpath */
+	public static final String PendingPayablesSearchBtn = "//button[@data-testid='Search1']" ;
+	/** @locatorType Xpath */
+	public static final String PendingPayableSelectDoc = "//input[@type='checkbox']" ;
+	/** @locatorType Xpath */
+	public static final String PendingPayableCreateBtn = "//button[@data-testid='Create']" ;
+	/** @locatorType Xpath */
+	public static final String PendingPayablePayMode = "//select[@data-testid='P3413101001_SUPHD_PYMT_TYPE']" ;
+	/** @locatorType Xpath */
+	public static final String ExpenseHsnLovBtn = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button" ;
+	/** @locatorType Xpath */
+	public static final String ExpenseHsnField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[14]" ;
+	/** @locatorType Xpath */
+	public static final String PBQtyField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[9]";
+	/** @locatorType Xpath */
+	public static final String PBQtyInput = "//input[@data-testid='SUPLN_INV_QTY']";
+	/** @locatorType Xpath */
+	public static final String PBItemField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[3]";
+	/** @locatorType Xpath */
+	public static final String PBItemLov = "//input[@data-testid='PROD_ID_REV']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PBTrdDiscPercField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[33]";
+	/** @locatorType Xpath */
+	public static final String PBTrdDiscPercInput = "//input[@data-testid='SUPLN_TRD_DISC_PCT']";
+	/** @locatorType Xpath */
+	public static final String PBSpclDiscPercField = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[36]";
+	/** @locatorType Xpath */
+	public static final String PBSpclDiscPercInput = "//input[@data-testid='SUPLN_SPL_DISC_PCT']";
+	/** @locatorType Xpath */
+	public static final String PBCashDiscPercField = "//*[@id=\'IN_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr[1]/td[39]";
+	/** @locatorType Xpath */
+	public static final String PBCashDiscPercInput = "//input[@data-testid='SUPLN_CASH_DISC_PCT']";
+	
+	/** @locatorType Xpath */
+	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
+		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[13]/*";
+	}
+	
+	
+	
+	
+}

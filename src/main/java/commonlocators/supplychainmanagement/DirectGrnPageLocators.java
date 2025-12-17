@@ -177,5 +177,17 @@ public class DirectGrnPageLocators {
 	public static final String GRN_ImportBillDateInput = "//a-date-picker[contains(@id,'PID_BOE_DATE')]/input";
 	/** @locatorType Xpath */
 	public static final String GRN_ImportLROkBtn = "//button[@data-testid='OK_import_LR']";
+	/** @locatorType Xpath */
+	public static final String GRN_LotSerialButton = "//button[@data-testid='GRNP_GEN_LOT_SER_BTN']";
+	/** @locatorType Xpath */
+	public static final String GRN_LocationField = "//input[@data-testid='P16151311031_PORH_PLNT_LOC_ID']";
+	/** @locatorType Xpath */
+	public static final String ImportLRButton = "//span[text()='Import/LR']/parent::button";
+	/** @locatorType Xpath */
+	public static final String BOEInputField = "//input[@id='P161513110303_PID_BOE_NO']";
+	/** @locatorType Xpath */
+	public static final String BOEDateInputField = "//input[@id='P161513110303_PID_BOE_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String BOEOkButton = "//button[@data-testid='OK_import_LR']";
 
 }
