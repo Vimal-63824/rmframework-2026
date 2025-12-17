@@ -439,6 +439,110 @@ public class EmployeePermissionTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * To CheckTDS Declaration based on TDS Revision
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 33, groups = {
+			"Employee TDS Declaration" }, description = "126.To Check TDS Declaration based on regime wise checking")
+	public void checkTDSDeclarationBasedOnTDSRevision() {
+		flag = attendanceLeave.CheckTDSDeclarationBasedOnTDSRevision();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * CheckTDS Declaration Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 34, groups = {
+			"Employee TDS Declaration" }, description = "124.To CheckTDS Declaration Find page with all line wise record")
+	public void checkTDSDeclarationFindPageWithAllLineWiseRecord() {
+		// TODO Covered in CheckTDSDeclarationBasedOnTDSRevision() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check TDS Declaration based on forward to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 35, groups = {
+			"Employee TDS Declaration" }, description = "130.To Check TDS Declaration based on forward to approval record")
+	public void checkTDSDeclarationBasedOnForwardToApprovalRecord() {
+		flag = attendanceLeave.CheckTDSDeclarationBasedOnForwardToApprovalRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check TDS Declaration report fetches values correctly
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 36, groups = {
+			"Employee TDS Declaration" }, description = "129.To Check TDS Declaration report fetches values correctly")
+	public void CheckTDSDeclarationReportFetchesValuesCorrectly() {
+		// TODO Covered in CheckTDSDeclarationBasedOnForwardToApprovalRecord() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check TDS Declaration based on Return to approval record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 37, groups = {
+			"Employee TDS Declaration" }, description = "131.To Check TDS Declaration based on Return to approval record")
+	public void checkTDSDeclarationBasedOnReturnToApprovalRecord() {
+		flag = attendanceLeave.CheckTDSDeclarationBasedOnReturnToApprovalRecord();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To CheckTDS Declaration based on TDS Existing Regime and New Regime
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 38, groups = {
+			"Employee TDS Declaration" }, description = "128.To CheckTDS Declaration based on TDS Existing Regme and New Regime")
+	public void checkTDSDeclarationBasedOnTDSExistingRegimeAndNewRegime() {
+		flag = attendanceLeave.CheckTDSDeclarationBasedOnTDSExistingRegimeAndNewRegime();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To CheckTDS Declaration based on section value assigning.
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 39, groups = {
+			"Employee TDS Declaration" }, description = "125.To CheckTDS Declaration based on section value assigning")
+	public void checkTDSDeclarationBasedOnSectionValueAssigning() {
+		flag = attendanceLeave.CheckTDSDeclarationBasedOnSectionValueAssigning();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To CheckTDS Declaration based on regime wise checking
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 40, groups = {
+			"Employee TDS Declaration" }, description = "126.To CheckTDS Declaration based on regime wise checking")
+	public void checkTDSDeclarationBasedOnRegimeWiseChecking() {
+		flag = attendanceLeave.CheckTDSDeclarationBasedOnRegimeWiseChecking();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL

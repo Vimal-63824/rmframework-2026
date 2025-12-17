@@ -6025,6 +6025,7 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoLineWiseSaved() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
@@ -13628,6 +13629,8 @@ public class PurchaseOrderFunctions {
 	 */
 
 	public void verifyDirectPoHsnSelectedFromLov(String HSN) {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);

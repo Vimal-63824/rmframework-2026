@@ -66,14 +66,14 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreationOfItemforPriceListDisSimilarItem() {
-		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
-				"TvsUsername");
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
 		commonFunc.navigateItemPage();
 		verifySearchOfItemDis(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		waitingForApproval();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getItemName());
-		verifyApproveWithDocNumber(VariableHandler.getItemName());
+		commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getItemName(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -95,6 +95,7 @@ public class SsoPageFunctions {
 		verifyCreatingItemForOpo(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
 				commonFunc.getDataFromTestDataSheet("SO_Special_Disc"),
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		commonFunc.hardWait(3000);
 		openPurchaseOrderHeaderValidation();
 		openPurchaseOrderHeaderSupplierValidation();
 		openPurchaseOrderHeaderItemValidation();
@@ -127,6 +128,8 @@ public class SsoPageFunctions {
 		verifyCreatingItemForOpo(VariableHandler.getItemName(), commonFunc.getDataFromTestDataSheet("UnitCostValue"),
 				commonFunc.getDataFromTestDataSheet("SO_Special_Disc"),
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
 		openPurchaseOrderHeaderValidation();
 		openPurchaseOrderHeaderImportSupplierValidation();
 		openPurchaseOrderHeaderItemValidation();
@@ -135,9 +138,9 @@ public class SsoPageFunctions {
 		openPurchaseOrderHeaderHsnValidation();
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getOPODocNum());
-		verifyApproveWithDocNumber(VariableHandler.getOPODocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -159,11 +162,11 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
-		supplierScheduleHeaderValidation();
+		supplierScheduleHeaderValidationD();
 		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
-		supplierScheduleHeaderSupplierValidation();
+		supplierScheduleHeaderSupplierValidationD();
 		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
-		supplierScheduleHeaderWarehouseValidation();
+		supplierScheduleHeaderWarehouseValidationD();
 		validateWarehouseInSsoHeader(commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
@@ -236,9 +239,9 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Department"), commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
-		supplierScheduleHeaderValidation();
+		supplierScheduleHeaderValidationUnit1();
 		supplierScheduleHeaderImportSupplierValidation();
-		supplierScheduleHeaderWarehouseValidation();
+		supplierScheduleHeaderWarehouseValidationUnit1();
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
 		verifyLineDetails(commonFunc.getDataFromTestDataSheet("Firm_Qty"),
@@ -248,9 +251,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -272,11 +275,11 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
-		supplierScheduleHeaderValidation();
+		supplierScheduleHeaderValidationUnit1();
 		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		supplierScheduleHeaderSupplierValidation();
 		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
-		supplierScheduleHeaderWarehouseValidation();
+		supplierScheduleHeaderWarehouseValidationUnit1();
 		validateWarehouseInSsoHeader(commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
@@ -287,9 +290,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -311,9 +314,10 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("PR_Department"), commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
-		supplierScheduleHeaderValidation();
+		commonFunc.hardWait(2000);
+		supplierScheduleHeaderValidationUnit1();
 		supplierScheduleHeaderImportSupplierValidation();
-		supplierScheduleHeaderWarehouseValidation();
+		supplierScheduleHeaderWarehouseValidationUnit1();
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
 		verifyLineDetails(commonFunc.getDataFromTestDataSheet("Firm_Qty"),
@@ -323,9 +327,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		forwardApprovalScreen();
-		filterDocumentsForPriceListApproval(VariableHandler.getSsoDocNum());
-		verifyApproveWithDocNumber(VariableHandler.getSsoDocNum());
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -365,11 +369,11 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
-		supplierScheduleHeaderValidation();
+		supplierScheduleHeaderValidationUnit1();
 		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		supplierScheduleHeaderSupplierValidation();
 		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
-		supplierScheduleHeaderWarehouseValidation();
+		supplierScheduleHeaderWarehouseValidationUnit1();
 		validateWarehouseInSsoHeader(commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
@@ -400,11 +404,11 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyClickingSsoCreate();
 		verifyGetTextDocNum();
-		supplierScheduleHeaderValidation();
+		supplierScheduleHeaderValidationUnit1();
 		validateLocationInSsoHeader(commonFunc.getDataFromTestDataSheet("Loc_100"));
 		supplierScheduleHeaderSupplierValidation();
 		validateSupplierInSsoHeader(commonFunc.getDataFromTestDataSheet("Opo_SupId"));
-		supplierScheduleHeaderWarehouseValidation();
+		supplierScheduleHeaderWarehouseValidationUnit1();
 		validateWarehouseInSsoHeader(commonFunc.getDataFromTestDataSheet("WH_To"));
 		verifyFetchOpenPoButton();
 		verifyFetchOpenPoDocNumberEnetring();
@@ -712,14 +716,22 @@ public class SsoPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifySsoCancelHeader() {
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(SsoPageLocators.SsoHeaderCancel, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoHeaderCancel, ElementType.Xpath);
 			logs.logging("INFO", "Header is Cancelled");
+			flag=webDB.waitForElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
+			if(flag) {
+//				webDB.clickAnElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDocNoLovFindPage, VariableHandler.getSsoDocNum());
+				logs.logging("INFO", "Document No Is Entered");
+			}
 			flag = webDB.waitForElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
 				logs.logging("INFO", "Search Button Is Clicked");
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.hardWait(1000);
 				String canclsts = webDB.getTextFromElement(SsoPageLocators.SsoCanclStatus, ElementType.Xpath);
 				if (flag) {
@@ -1332,7 +1344,30 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("L49ID"));
 		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
 	}
-
+	/**
+	 * Supplier Schedule Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void supplierScheduleHeaderValidationUnit1() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
+						commonFunc.getDataFromTestDataSheet("SSODbLocationColumnName")),
+				commonFunc.getDataFromTestDataSheet("Loc_100"));
+		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
+	}
+	/**
+	 * Supplier Schedule Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void supplierScheduleHeaderValidationD() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
+						commonFunc.getDataFromTestDataSheet("SSODbLocationColumnName")),
+				commonFunc.getDataFromTestDataSheet("Loc_100"));
+		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
+	}
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1342,7 +1377,7 @@ public class SsoPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
 						commonFunc.getDataFromTestDataSheet("SSODbSupplierColumnName")),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"));
+				commonFunc.getDataFromTestDataSheet("ImpSupplier"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
 	/**
@@ -1362,6 +1397,18 @@ public class SsoPageFunctions {
 	 * 
 	 * @author Durai-RMITS
 	 */
+	public void supplierScheduleHeaderSupplierValidationD() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
+						commonFunc.getDataFromTestDataSheet("SSODbSupplierColumnName")),
+				commonFunc.getDataFromTestDataSheet("Opo_SupId_ID"));
+		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
+	}
+	/**
+	 * Supplier Schedule Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 */
 	public void supplierScheduleHeaderWarehouseValidation() {
 		verifyAssertionBothValues(
 				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
@@ -1369,7 +1416,30 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("RAW MATERIAL WH -49-4"));
 		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
 	}
-
+	/**
+	 * Supplier Schedule Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void supplierScheduleHeaderWarehouseValidationUnit1() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
+						commonFunc.getDataFromTestDataSheet("SSODbWHToColumnName")),
+				commonFunc.getDataFromTestDataSheet("WH_To_Id"));
+		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
+	}
+	/**
+	 * Supplier Schedule Order Screen Validation For Location
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void supplierScheduleHeaderWarehouseValidationD() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SSOdetails(VariableHandler.getSsoDocNum(),
+						commonFunc.getDataFromTestDataSheet("SSODbWHToColumnName")),
+				commonFunc.getDataFromTestDataSheet("WH_To_Id"));
+		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
+	}
 	/**
 	 * Open purchase Order Screen Validation For Location
 	 * 
@@ -1407,7 +1477,7 @@ public class SsoPageFunctions {
 		verifyAssertionBothValues(
 				dbCommonFunctions.OPOdetails(VariableHandler.getOPODocNum(),
 						commonFunc.getDataFromTestDataSheet("OPODbSupplierColumnName")),
-				commonFunc.getDataFromTestDataSheet("ImpSupplier_ID"));
+				commonFunc.getDataFromTestDataSheet("ImpSupplier"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
 

@@ -109,7 +109,7 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String RequestMRNo(String MRNumber) {
-		return "//table[@id='2732461713738534821_orig']//a[text()='" + MRNumber + "']";
+		return "//table[@id='2992439852662034048_orig']//a[text()='" + MRNumber + "']";
 	}
 
 	/** @locatorType Xpath */

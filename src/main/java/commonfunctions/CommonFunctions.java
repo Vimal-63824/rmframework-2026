@@ -169,6 +169,10 @@ public class CommonFunctions {
 				flag = webDB.waitForClickElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
 				if (flag) {
 					webDB.javaScriptClickAnElement(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
+					webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
 					checkRefreshCellsDisappear();
 					if (webDB.verifyIsElementDisplayed(CommonUiLocators.LoginBtn, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.LoginBtn, ElementType.Xpath);
@@ -2942,6 +2946,26 @@ public class CommonFunctions {
 				AttendanceLeaveLocators.LoanPaymentFindSearch);
 	}
 
+	/**
+	 * This Method Is Used To Navigate TDS Declaration Screen
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToTDSDeclarationScreen() {
+		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSFindSearchButton);
+	}
+	
+	/**
+	 * This Method Is Used To Navigate Employee Overtime
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void navigateToEmployeeOvertime() {
+		navigateToSearchTab(webDB.getDataFromProperties("Overtime"),
+				AttendanceLeaveLocators.OvertimeFindSearchButton);
+	}
+
+	
 	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 

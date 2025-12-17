@@ -604,7 +604,7 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String EmpMigrationLabel = "//label[text()='Emp.Migration']";
 	/** @locatorType XPATH */
-	public static final String EmpMigrationAddButton = "//button[@id='B2259673565870368032']";// TODO Nondata-testid
+	public static final String EmpMigrationAddButton = "//div[contains(@aria-label,'Employee Migration')]/button[@title='Add']";
 	/** @locatorType XPATH */
 	public static final String EmpMigrationCalendarLov = "//*[@data-testid='P367011401_EMHD_CLNDR_ID_iteminpu']/following-sibling::button";
 	/** @locatorType XPATH */

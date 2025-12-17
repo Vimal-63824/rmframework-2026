@@ -556,6 +556,7 @@ public class EmployeeMasterFunctions {
 			updateEmployeePayrollGrpAndNoticePeriod(commonFunc.getDataFromTestDataSheet("Emp_CleanerPayrollGroup"),
 					commonFunc.getDataFromTestDataSheet("Emp_NoticePeriod-30"));
 			clickSaveIconAndPostInEmployeeParticular();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -627,6 +628,7 @@ public class EmployeeMasterFunctions {
 			updateEmpCityZipCodeAndTelephoneInAddressTab(commonFunc.getDataFromTestDataSheet("Emp_City"),
 					RandomStringUtils.randomNumeric(6), commonFunc.randomMobileNumberGenerator());
 			clickSaveIconAndPostInAddress();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -697,6 +699,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomEmailIdGenerator(), commonFunc.randomMobileNumberGenerator(),
 					RandomStringUtils.randomNumeric(5));
 			clickSaveAndPostInUpdateDependentDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -767,6 +770,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.randomMobileNumberGenerator(), commonFunc.getDataFromTestDataSheet("EmpAddress"),
 					commonFunc.getDataFromTestDataSheet("Emp_City"));
 			clickSaveAndPostInUpdateContactDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -837,6 +841,7 @@ public class EmployeeMasterFunctions {
 					commonFunc.getDataFromTestDataSheet("Emp_YearOfPassing"), RandomStringUtils.randomAlphabetic(1),
 					RandomStringUtils.randomNumeric(2));
 			clickSaveAndPostInUpdateQualificationDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -905,6 +910,7 @@ public class EmployeeMasterFunctions {
 			fillDetailsInUpdateSkillDetails(commonFunc.getDataFromTestDataSheet("Emp_Skill"),
 					commonFunc.getDataFromTestDataSheet("Emp_Level"));
 			clickSaveAndPostInUpdateSkillDetails();
+			commonFunc.hardWait(3000);
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
 				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpUpdateDocNo(),
@@ -1174,7 +1180,7 @@ public class EmployeeMasterFunctions {
 				approvalFunc.navigateToApprovals();
 				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
 				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
-						webDB.getDataFromProperties("KishoreUserName"));
+						webDB.getDataFromProperties("HRuserEmpId"));
 //				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
 //						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
 //						webDB.getDataFromProperties("KishoreEmpId"));
@@ -2292,31 +2298,6 @@ public class EmployeeMasterFunctions {
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmployeePostButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-			if (!VariableHandler.getApprovalFlag()) {
-				webDB.switchToFrame(CommonUiLocators.WorkApprovalFrame, ElementType.Xpath);
-				flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-					logs.logging("INFO", "Ok Button Is Clicked");
-					webDB.switchToDefaultContent();
-					commonFunc.checkSuccessToastMessageDisappear();
-					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
-				}
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-				flag = commonFunc.logoutUser();
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
-				commonFunc.navigateEmployeeMasterScreenInPayroll();
-				searchAndClickEmpIdInFindEmployeePage(VariableHandler.getEmpID());
-			}
 			if (flag) {
 				logs.logging("INFO", "Employee Post Icon Clicked");
 			}

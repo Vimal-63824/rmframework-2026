@@ -19,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
@@ -40,6 +41,7 @@ public class AttendanceLeaveFunctions {
 	public CommonPayrollFunctions commonPayrollFunctions = new CommonPayrollFunctions();
 	public EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 	public ExcelUtils excelUtils = new ExcelUtils();
+	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 
 	/**
 	 * This method is used to To Check Permission based on Employee Data
@@ -1675,6 +1677,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay, ElementType.Xpath);
 			if (flag) {
+				commonFunc.hardWait(2000);
 				logs.logging("INFO", "Header Saved Successfully in Leave Request");
 				String ReqNo = webDB.getDomPropertyFromElement(AttendanceLeaveLocators.LeaveRequestNumberDisplay,
 						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -1697,6 +1700,10 @@ public class AttendanceLeaveFunctions {
 	private void clickPostButtonInLeaveRequest() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveRequestPostBtn, ElementType.Xpath);
 		if (flag) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveRequestPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveRequestPostBtn, ElementType.Xpath);
 			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
@@ -2623,6 +2630,9 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		String Leave = RandomStringUtils.randomNumeric(1);
+		if (Leave.equals("0")) {
+			Leave = "1";
+		}
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");
@@ -4003,5 +4013,675 @@ public class AttendanceLeaveFunctions {
 			}
 		}
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on TDS Revision
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnTDSRevision() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on forward to approval
+	 * record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnForwardToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on Return to approval
+	 * record record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnReturnToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSReturnDocument();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To CheckTDS Declaration based on TDS Existing Regme and
+	 * New Regime
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnTDSExistingRegimeAndNewRegime() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSRegimeChoose();
+		return flag;
+	}
+
+	/**
+	 * This method is used To CheckTDS Declaration based on section value assigning
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnSectionValueAssigning() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSSectionWise(commonFunc.getDataFromTestDataSheet("TDSAmount"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration based on TDS Revision
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTDSDeclarationBasedOnRegimeWiseChecking() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeDocumentRevise();
+		commonFunc.navigateToTDSDeclarationScreen();
+		EmployeeDocumentSelect(commonFunc.getDataFromTestDataSheet("EmployeeDurai"));
+		EmployeeTDSPostDocument();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Employee TDS Declaration Select
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeDocumentSelect(String Employee) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclFindEmpLOV, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TDSDeclFindEmpLOV, Employee);
+			if (flag) {
+				logs.logging("INFO", "TDS Employee is Selected");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "TDS Employee is Searched");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDocumentSelect, ElementType.CssSelector);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDocumentSelect,
+									ElementType.CssSelector);
+							if (flag) {
+								logs.logging("INFO", "TDS Document is Selected");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration to Revise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeDocumentRevise() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(1000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "TDS Employee is Searched");
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The TDS Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSPostDocument() {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(2000);
+				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+				flag = commonFunc.logoutUser();
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Return The TDS Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSReturnDocument() {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(2000);
+				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton, ElementType.Xpath);
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+						webDB.getDataFromProperties("HRUSEREmpId"));
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getTDSDeclarationDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
+						webDB.getDataFromProperties("HRUSEREmpId"));
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Select TDS Tax Regime
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSRegimeChoose() {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
+			if (flag) {
+				commonFunc.hardWait(1000);
+				flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationRegimeType, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "TDS Tax Regime Field Is Clicked");
+					webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationNewTax, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(1000);
+						flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationNewTax, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "TDS New Tax Is Selected");
+							webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+							String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+									AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+									commonFunc.getDataFromTestDataSheet("Value"));
+							VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+							logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(2000);
+								flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+										ElementType.Xpath);
+								approvalFunc.waitingForApprovalWithFordwarder(
+										commonFunc.getDataFromTestDataSheet("HodValue"));
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getTDSDeclarationDocNo(),
+										webDB.getDataFromProperties("HodEmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HariUsername"));
+								flag = commonFunc.logoutUser();
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Enter Section Wise Amount
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeTDSSectionWise(String TDSAmount) {
+		if (flag) {
+			webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath);
+			String TDSDeclarationDocNo = webDB.getDomPropertyFromElement(
+					AttendanceLeaveLocators.TDSDeclarationDocNoToPost, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			VariableHandler.setTDSDeclarationDocNo(TDSDeclarationDocNo);
+			logs.logging("info", "TDS DECLARATION No is:" + VariableHandler.getTDSDeclarationDocNo());
+			if (flag) {
+				webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField,
+							ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					webDB.clearText(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, ElementType.Xpath);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TDSDeclarationSectionWiseField, TDSAmount,
+							ElementType.Xpath);
+					webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationSaveButton, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(1000);
+						flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationSaveButton,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "TDS Declaration is Saved");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(5000);
+								flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
+										ElementType.Xpath);
+								approvalFunc.waitingForApprovalWithFordwarder(
+										commonFunc.getDataFromTestDataSheet("HodValue"));
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										VariableHandler.getTDSDeclarationDocNo(),
+										webDB.getDataFromProperties("HodEmpId"),
+										commonFunc.getDataFromTestDataSheet("Unit_100"),
+										System.getProperty("HariUsername"));
+								flag = commonFunc.logoutUser();
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check Overtime based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 * @param i
+	 */
+	public boolean CheckOvertimeBasedOnEmployeeWise() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
+		EmployeeOvertimeDocumentPost();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Overtime based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckOvertimeEntryBasedOnForwardToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
+		EmployeeOvertimeDocumentPost();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Overtime Entry based on Return to approval
+	 * record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckOvertimeEntryBasedOnReturnToApprovalRecord() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
+		EmployeeOvertimeDocumentReturn();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check TDS Declaration to Revise
+	 * 
+	 * @author Kishore-RMITS
+	 * @param Calendar
+	 * @param Year202526
+	 * @param OvertimePeriod
+	 * @param OvertimeReference
+	 */
+	public void OvertimeEmployeeAdd(String Calendar, String Year202526, String OvertimePeriod,
+			String OvertimeReference) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+		if (flag) {
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFindSearchAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Add Button is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocCalSelectLOV, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeDocCalSelectLOV,
+								Calendar);
+						if (flag) {
+							logs.logging("INFO", "Overtime Calendar is Selected");
+							webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeYearLOV, ElementType.Xpath);
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeYearLOV,
+									Year202526);
+							if (flag) {
+								logs.logging("INFO", "Overtime Year is Selected");
+								webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePeriodLOV,
+										ElementType.Xpath);
+								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimePeriodLOV,
+										OvertimePeriod);
+								if (flag) {
+									logs.logging("INFO", "Overtime Period is Selected");
+									webDB.switchToFrame(AttendanceLeaveLocators.OvertimeFrameScreen, ElementType.Xpath);
+									flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeReferenceField,
+											ElementType.Xpath);
+									if (flag) {
+										flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeReferenceField,
+												OvertimeReference, ElementType.Xpath);
+										if (flag) {
+											logs.logging("INFO", "Overtime Reference Entered");
+											flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocSave,
+													ElementType.Xpath);
+											if (flag) {
+												flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDocSave,
+														ElementType.Xpath);
+												if (flag) {
+													logs.logging("INFO", "Overtime Document Saved");
+													webDB.switchToDefaultContent();
+													flag = webDB.waitForElement(
+															AttendanceLeaveLocators.OvertimeEntryAddButton,
+															ElementType.Xpath);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Enter the Overtime Line Data
+	 * 
+	 * @author Kishore-RMITS
+	 * @param EmployeeDurai
+	 * @param OvertimeDate
+	 */
+	public void EmployeeEntryLineData(String EmployeeDurai, String OvertimeDate) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLOVButton, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeLOVButton,
+								EmployeeDurai);
+						if (flag) {
+							logs.logging("INFO", "Overtime Employee is Selected");
+							webDB.pressTabKey();
+							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateSelect,
+										ElementType.Xpath);
+								commonFunc.hardWait(1000);
+								webDB.moveToElement(AttendanceLeaveLocators.OvertimeDateSelect, ElementType.Xpath);
+								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeDateSelect,
+										OvertimeDate, ElementType.Xpath);
+								logs.logging("INFO", "Date is Selected");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Select the Employee Overtime Data Select
+	 * 
+	 * @author Kishore-RMITS
+	 * @param OvertimeHours
+	 */
+	public void EmployeeOvertimeDataSelect(String OvertimeHours) {
+		webDB.pressTabKey();
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeHoursField, OvertimeHours,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Hours is Entered");
+				flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.OvertimeLineSaveButton,
+						ElementType.Xpath, 45);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime Entry IS Saved");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(5000);
+							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Overtime Document Have been Saved");
+								commonFunc.checkSuccessToastMessageDisappear();
+								webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The Overtime Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeOvertimeDocumentPost() {
+		webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+		logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Amount Have been Uploaded");
+				commonFunc.hardWait(200);
+				commonFunc.checkRefreshCellsDisappear();
+				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(5000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime post button is clicked");
+						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+						flag = commonFunc.logoutUser();
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post The Overtime Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void EmployeeOvertimeDocumentReturn() {
+		webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		String OvertimeDocNo = webDB.getTextFromElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+		VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+		logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Overtime Amount Have been Uploaded");
+				commonFunc.hardWait(200);
+				commonFunc.checkRefreshCellsDisappear();
+				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
+				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(5000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime post button is clicked");
+						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+								webDB.getDataFromProperties("HRUSEREmpId"));
+						commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+								VariableHandler.getOvertimeDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
+								webDB.getDataFromProperties("HRUSEREmpId"));
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+						flag = commonFunc.logoutUser();
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check The Overtime Amount Validation
+	 * 
+	 * @author Kishore-RMITS
+	 * @param
+	 */
+	public void OvertimeAmount(String SheetName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "Overtime Calculation.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(ItemMultiple.length);
+		for (int i = 2; i < ItemMultiple.length; i++) {
+			String EmpId = ItemMultiple[i][0];
+			String OTCal = ItemMultiple[i][9];
+
+			if (!EmpId.equals("")) {
+				verifyAssertionBothValues(dbCommonFunc.OvertimeLinesDetails(VariableHandler.getOvertimeDocNo(), EmpId,
+						commonFunc.getDataFromTestDataSheet("OTAmount")), OTCal);
+				logs.logging("INFO", "Overtime Amount Has Been Updated For :" + EmpId);
+			}
+		}
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value 8: " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
 	}
 }

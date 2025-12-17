@@ -3713,8 +3713,7 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
 				logs.logging("INFO", "Document Successfully posted");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		assertTrue(flag);
@@ -4167,6 +4166,7 @@ public class GrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.GrnAddBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(GrnLocators.GrnAddBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(DirectGrnPageLocators.AddHeaderFrame, ElementType.Xpath);
 			logs.logging("INFO", "Add Button is Clicked");
 		}
 		assertTrue(flag);
@@ -4212,6 +4212,7 @@ public class GrnPageFunctions {
 								webDB.clickAnElement(DirectGrnPageLocators.GrnCreate, ElementType.Xpath);
 								logs.logging("INFO", "GRN Is Created");
 								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 							}
 						}
 					}
@@ -5013,8 +5014,7 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
 				logs.logging("INFO", "Document Successfully posted");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 			}
 		}
 		assertTrue(flag);
