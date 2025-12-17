@@ -225,9 +225,9 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendSelectStatus = "//select[@data-testid='P1615131021_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='2622898004988951553_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='2882876450406448736_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='1059593144628273470_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@id='1319571590045770653_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 

@@ -126,6 +126,7 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyCreatingGetextForGateEntryDocNumber() {
+		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryDocNum, ElementType.Xpath);
 		if (flag) {
 			String GATEDocNum = webDB.getTextFromElement(GateEntryPageLocators.GateEntryDocNum, ElementType.Xpath);
@@ -253,7 +254,8 @@ public class GateEntryPageFunctions {
 //					logs.logging("INFO", "Date is Entered");
 //					webDB.sendTextToAnElement(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum(),
 //							ElementType.Xpath);
-					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.DocNumSso, VariableHandler.getSsoDocNum());
+					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.DocNumSso,
+							VariableHandler.getSsoDocNum());
 					logs.logging("INFO", "Document Number is Entered");
 					webDB.switchToFrame(GateEntryPageLocators.PendingSsoGIframe, ElementType.Xpath);
 					webDB.waitForElement(GateEntryPageLocators.GateEntrySsoSearchButton, ElementType.Xpath);
@@ -349,8 +351,7 @@ public class GateEntryPageFunctions {
 			logs.logging("INFO", "Date Field Is Clicked");
 			flag = webDB.waitForElement(GateEntryPageLocators.SelectGateKeeperPo, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.selectDropDownByValue(GateEntryPageLocators.SelectGateKeeperPo, "0001",
-						ElementType.Xpath);
+				flag = webDB.selectDropDownByValue(GateEntryPageLocators.SelectGateKeeperPo, "0001", ElementType.Xpath);
 				logs.logging("INFO", "Gate Keeper Selected SuccessFully");
 				commonFunc.hardWait(1000);
 				flag = webDB.waitForElement(GateEntryPageLocators.DcNumberFieldPo, ElementType.Xpath);
@@ -404,6 +405,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify Gate Entry Details
 	 * 
@@ -471,6 +473,7 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify Clicking Overall save and POst The Gate Entry
 	 * Document
@@ -486,6 +489,7 @@ public class GateEntryPageFunctions {
 		flag = webDB.waitForElement(GateEntryPageLocators.GateKeeperSso, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
+			webDB.sendTextToAnElement(GateEntryPageLocators.StDriverName, "VIMAL", ElementType.Xpath);
 			flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
 			if (flag) {
 				webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
@@ -1498,5 +1502,80 @@ public class GateEntryPageFunctions {
 			webDB.switchToFrame(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
 		}
+	}
+
+	/**
+	 * This Methods Is Used To verify Create Gate Entry From Pending Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyToCreateGateEntryFromPendingSTNumber() {
+//		VariableHandler.setPONumber("POGL3/00045/25-26");
+		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag)
+			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GateEntryPageLocators.PendingStockTransfer, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.PendingStockTransfer, ElementType.Xpath);
+			logs.logging("INFO", "PendingPOButtonLov Shown");
+			webDB.switchToFrame(GateEntryPageLocators.IframePendingST, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.InvoiceNumberLovBtn, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.InvoiceNumberLovBtn,
+						VariableHandler.getSalesInvoiceNumber());
+				logs.logging("INFO", "PendingPOButtonLov Clicked");
+				webDB.switchToDefaultContent();
+				webDB.switchToFrame(GateEntryPageLocators.IframePendingST, ElementType.Xpath);
+				logs.logging("INFO", "PO Number Shown");
+				webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Document Search And Selected Successfully");
+					verifyClickSelectAllButtonForSt();
+					logs.logging("INFO", "Create Gate Entry Button shown");
+					commonFunc.hardWait(2000);
+					webDB.waitForElement(GateEntryPageLocators.PendingMoveGE, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GateEntryPageLocators.PendingMoveGE, ElementType.Xpath);
+
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is USed To Select All Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickSelectAllButtonForSt() {
+		commonFunc.hardWait(5000);
+//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+//		if (flag) {
+		webDB.moveToElement(GateEntryPageLocators.SelectAll, ElementType.Xpath);
+		List<WebElement> CheckBox = webDB.getDriver().findElements(By.xpath(GateEntryPageLocators.SelectAll));
+		for (WebElement element : CheckBox) {
+			try {
+				if (element.isDisplayed()) {
+					if (!element.isSelected()) {
+						element.click();
+						flag = true;
+						break;
+					} else {
+						element.click();
+						Thread.sleep(10000);
+						verifyClickSelectAllButtonForSt();
+						flag = true;
+						break;
+					}
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+//			}
+		}
+		assertTrue(flag);
 	}
 }

@@ -7404,13 +7404,11 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PoMaterial"), 7,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 17,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PoItem"), 17,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 19,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PoItem"),
+				19, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PO_Status,
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
@@ -14032,9 +14030,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
+					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			approvalFunc.ExtractStocktransferDocNumber(DocumentNo);
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -14285,9 +14284,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
+					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			approvalFunc.ExtractStocktransferDocNumber(DocumentNo);
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
