@@ -672,7 +672,7 @@ public class ApprovalPageFunctions {
 
 	public boolean ExtractStocktransferDocNumber(String text) {
 		logs.logging("INFO", "Get Text From Note Alert Is :" + text);
-		String regex = "SO-\\d+-\\d{4}-\\d{4}";
+		String regex = "SOU\\d-\\d{4}-\\d{4}";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher SaleOrderDocNumber = pattern.matcher(text);
 		if (SaleOrderDocNumber.find()) {

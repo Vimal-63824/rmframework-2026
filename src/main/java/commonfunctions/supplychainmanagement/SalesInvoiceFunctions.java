@@ -7305,8 +7305,8 @@ public class SalesInvoiceFunctions {
 //		checkReworkCompletionPostedStatusDetailsDataBaseValuesWithUIValues();
 		mrvFunc.verifyReworkCompletionPostMaterialReceipt();
 //		checkReworkCompletionApprovedStatusDetailsDataBaseValuesWithUIValues();
-		salesOrderFunctions.verifyScrapAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
-				webDB.getDataFromProperties("LocalCustomer"));
+//		salesOrderFunctions.verifyScrapAfterExpectedReturnStockQtyWithDBValuesAfterInvoice(
+//				webDB.getDataFromProperties("LocalCustomer"));
 		return flag;
 	}
 

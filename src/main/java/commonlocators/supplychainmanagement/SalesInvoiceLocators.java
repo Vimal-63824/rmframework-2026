@@ -91,7 +91,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String ForwardApprovalLov = "//*[@id='P236131090_FWD_PERSON_lov_btn']";
 	/** @Locator XPATH */
-	public static final String OkButtonForward = "//BUTTON[@ID='B1614624587133182023']";
+	public static final String OkButtonForward = "//button[@data-testid='Entry']";
 	/** @Locator XPATH */
 	public static final String Lut_No_LOV_Btn = "//input[@data-testid='P191513109001_LUT_NO']/following-sibling::button";
 	/** @Locator XPATH */
@@ -772,4 +772,6 @@ public class SalesInvoiceLocators {
 	public static final String SI_Type_Field = "//INPUT[@data-testid='P1915131343_SIHD_TYPE']";
 	/** @Locator XPATH */
 	public static final String SI_Frwd_Person = "//input[@data-testid='P236131090_FWD_PERSON']";
+	/** @Locator XPATH */
+	public static final String InvoiceDocNo = "//span[@data-testid='P191513109001_SIHD_EXC_INV_NO']";
 }

@@ -1742,4 +1742,94 @@ public class InspectionDocumentFunctions {
 		}
 	}
 
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void InspectionDocumentWithInspectionPlanWithEDPManagerForStockTransfer() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument();
+		getInspectionDocumentNumberFromToastMessageForStockTransfer();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		} else {
+			enterObservationValue();
+		}
+		clickTickAndPostIconForGrnDocument();
+		waitingForApprovalWithEDPManager();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		try {
+			String alertText = VariableHandler.getIDAlertMessage();
+			logs.logging("INFO", "Alert text: " + alertText);
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDPO-\\d{4}-\\d{4}\\s*to\\s*IDPO-\\d{4}-\\d{4}";
+			if (alertText.matches(".*" + pattern + ".*")) {
+				documentSearchAndSelectLovForFindPage();
+				commonFunc.logoutUser();
+				logs.logging("INFO", "Specific alert found, proceeding with the process.");
+			} else {
+				commonFunc.logoutUser();
+				logs.logging("INFO", "Other alert detected, no action taken.");
+			}
+		} catch (Exception e) {
+			logs.logging("INFO", "No alert appeared or other error: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Get Inspection Document Number from Toast Message
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void getInspectionDocumentNumberFromToastMessageForStockTransfer() {
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
+		if (flag) {
+			String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+					ElementType.Xpath);
+			VariableHandler.setIDAlertMessage(IDAlertMessage);
+			;
+			logs.logging("INFO", "Get Text From Note Alert Is(ID Alert Message:" + IDAlertMessage);
+			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
+			String InspectionDocumentNumber = webDB
+					.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
+			String regex = "IDPO-\\d{4}-\\d{4}";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(InspectionDocumentNumber);
+			ArrayList<String> documentNumbers = new ArrayList<>();
+			while (matcher.find()) {
+				documentNumbers.add(matcher.group());
+			}
+			if (documentNumbers.size() == 2) {
+				String fromDocument = documentNumbers.get(0);
+				String toDocument = documentNumbers.get(1);
+				logs.logging("INFO", "From Document: " + fromDocument);
+				logs.logging("INFO", "To Document: " + toDocument);
+				String fromNum = fromDocument.split("-")[2];
+				String toNum = toDocument.split("-")[2];
+				int startNum = Integer.parseInt(fromNum);
+				int endNum = Integer.parseInt(toNum);
+				ArrayList<String> allDocumentNumbers = new ArrayList<>();
+				for (int i = startNum; i <= endNum; i++) {
+					String generatedDocumentNumber = "IDPO-" + "2526-" + String.format("%04d", i);
+					allDocumentNumbers.add(generatedDocumentNumber);
+				}
+				VariableHandler.setAllDocumentNumber(allDocumentNumbers);
+				logs.logging("INFO", "Generated Document Numbers:");
+				for (String documentNumber : allDocumentNumbers) {
+					System.out.println(documentNumber);
+					allDocumentNumbers.size();
+				}
+			} else {
+				logs.logging("INFO", "Invalid format, unable to extract From and To document numbers.");
+			}
+		}
+		assertTrue(flag);
+	}
+
 }
