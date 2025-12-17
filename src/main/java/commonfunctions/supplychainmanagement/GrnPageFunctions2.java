@@ -50,7 +50,9 @@ public class GrnPageFunctions2 {
 			String Supplier) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
@@ -64,85 +66,19 @@ public class GrnPageFunctions2 {
 				String HSN = GRNMultipleline[i][68];
 				String QTY = GRNMultipleline[i][5];
 				if (!ITEM_NAME.equals("")) {
-					commonFunc.hardWait(3000);
 					DirectGRNFunc.verifyClickingAdd();
 					DirectGRNFunc.verifyClickingItemField(ITEM_NAME);
 					DirectGRNFunc.verifyClickingHsnField(HSN);
-					DirectGRNFunc.verifyClickingSuppQuantity(QTY);
-					DirectGRNFunc.verifyClickingReceiptQuantity(QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
+					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForPriceListItemForGrn(i, FileName, SheetName, Supplier);
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
-//					otherThanUserdefinedDiscountAmountForGrn(i, FileName, SheetName);
-				}
-			}
-		}
-		assertTrue(flag);
-	}
-
-	/**
-	 * This Methods Is Used To Verify Add Line Details in GRN as Price list
-	 * 
-	 * @author Sakthi-GWL
-	 * @param i1
-	 * @param FileName
-	 * @param SheetName
-	 */
-	public void otherThanUserdefinedDiscountAmountForGrn(int i1, String FileName, String SheetName) {
-		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-				+ ".xlsx";
-		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		System.out.println(PRMultipleline.length);
-		for (int i = i1; i <= i1; i++) {
-			String ITEM_NAME = PRMultipleline[i1][1];
-			String SpecialDiscount = PRMultipleline[i1][9];
-			String CashDiscount = PRMultipleline[i1][10];
-			if (!ITEM_NAME.equals("")) {
-				commonFunc.checkRefreshCellsDisappear();
-				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
-					logs.logging("INFO", "Details Button Is Clicked");
-					commonFunc.hardWait(4000);
-					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-					if (flag) {
-						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched To Frame");
-						commonFunc.hardWait(3000);
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
-									ElementType.Xpath);
-							webDB.pressEnterKey();
-							commonFunc.checkRefreshCellsDisappear();
-							commonFunc.hardWait(3000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
-										ElementType.Xpath);
-								webDB.pressEnterKey();
-								commonFunc.checkRefreshCellsDisappear();
-								commonFunc.hardWait(3000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
-									webDB.switchToDefaultContent();
-									commonFunc.checkRefreshCellsDisappear();
-									commonFunc.hardWait(3000);
-									verifyDiscountAmountForGrn(i1, FileName, SheetName);
-									commonFunc.hardWait(4000);
-									webDB.pressEscapeKey();
-								}
-							}
-						}
-					}
 				}
 			}
 		}
@@ -168,7 +104,6 @@ public class GrnPageFunctions2 {
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];
 			if (!ITEM_NAME.equals("")) {
-				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
 				DirectGRNFunc.verifyAssertionBothValues(
 						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
@@ -176,7 +111,6 @@ public class GrnPageFunctions2 {
 						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
 								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
 				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ITEM_NAME);
-				commonFunc.hardWait(3000);
 				commonFunc.checkRefreshCellsDisappear();
 				DirectGRNFunc.verifyAssertionBothValues(
 						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
@@ -228,7 +162,9 @@ public class GrnPageFunctions2 {
 			String Supplier) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
@@ -241,19 +177,20 @@ public class GrnPageFunctions2 {
 				String ITEM_NAME = GRNMultipleline[i][1];
 				String HSN = GRNMultipleline[i][68];
 				String QTY = GRNMultipleline[i][5];
-				String COST = GRNMultipleline[i][6];
 				if (!ITEM_NAME.equals("")) {
-					commonFunc.hardWait(3000);
 					DirectGRNFunc.verifyClickingAdd();
 					DirectGRNFunc.verifyClickingItemField(ITEM_NAME);
 					DirectGRNFunc.verifyClickingHsnField(HSN);
-					DirectGRNFunc.verifyClickingSuppQuantity(QTY);
-					DirectGRNFunc.verifyClickingReceiptQuantity(QTY);
-					DirectGRNFunc.verifyClickingCost(COST);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
+					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForGrn(i, FileName, SheetName, Supplier);
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
-//					otherThanUserdefinedDiscountAmountForGrn(i, FileName, SheetName);
 				}
 			}
 		}
@@ -279,7 +216,6 @@ public class GrnPageFunctions2 {
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];
 			if (!ITEM_NAME.equals("")) {
-				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
 				DirectGRNFunc.verifyAssertionBothValues(
 						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME,
@@ -287,7 +223,6 @@ public class GrnPageFunctions2 {
 						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
 								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
 				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ITEM_NAME);
-				commonFunc.hardWait(3000);
 				commonFunc.checkRefreshCellsDisappear();
 				DirectGRNFunc.verifyAssertionBothValues(
 						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME,
@@ -308,7 +243,9 @@ public class GrnPageFunctions2 {
 	public void verifyGrnAddLineDetails(String FileName, String SheetName) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
@@ -323,13 +260,19 @@ public class GrnPageFunctions2 {
 				String QTY = GRNMultipleline[i][5];
 				String COST = GRNMultipleline[i][6];
 				if (!ITEM_NAME.equals("")) {
-					commonFunc.hardWait(3000);
 					DirectGRNFunc.verifyClickingAdd();
 					DirectGRNFunc.verifyClickingItemField(ITEM_NAME);
 					DirectGRNFunc.verifyClickingHsnField(HSN);
-					DirectGRNFunc.verifyClickingSuppQuantity(QTY);
-					DirectGRNFunc.verifyClickingReceiptQuantity(QTY);
-					DirectGRNFunc.verifyClickingCost(COST);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
+					webDB.pressTabKey();
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
+							DirectGrnPageLocators.GrnLineCostInput, COST);
+					logs.logging("INFO", "Entered Unit Cost Is:" + COST);
 					DirectGRNFunc.verifyClickingSaveLine();
 					verifyAddingDiscount(i, FileName, SheetName);
 				}
@@ -359,50 +302,32 @@ public class GrnPageFunctions2 {
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 				if (flag) {
+					webDB.moveToElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
-					commonFunc.hardWait(4000);
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						logs.logging("INFO", "Switched To Frame");
-						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+						commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineTrdDisc,
+								DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount);
+						logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+						commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSpclDisc,
+								DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount);
+						logs.logging("INFO", "Entered Special Discount Is:" + SpecialDiscount);
+						commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCashDisc,
+								DirectGrnPageLocators.GrnLineCashDisc, CashDiscount);
+						logs.logging("INFO", "Entered Cash Discount Is:" + CashDiscount);
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
-							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
-									ElementType.Xpath);
-							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
-							commonFunc.hardWait(4000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
-								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
-										ElementType.Xpath);
-								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
-								commonFunc.hardWait(4000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
-									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
-											ElementType.Xpath);
-									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
-									commonFunc.hardWait(4000);
-									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
-											ElementType.Xpath);
-									if (flag) {
-										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
-												ElementType.Xpath);
-										logs.logging("INFO", "Details Is Saved");
-										commonFunc.hardWait(4000);
-										webDB.pressEscapeKey();
-										webDB.switchToDefaultContent();
-										verifyDiscountAmountForGrn(i1, FileName, SheetName);
-									}
-								}
-							}
+							webDB.moveToElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+							logs.logging("INFO", "Details Is Saved");
+							commonFunc.checkSuccessToastMessageDisappear();
+							commonFunc.checkRefreshCellsDisappear();
+							webDB.pressEscapeKey();
+							webDB.switchToDefaultContent();
+							verifyDiscountAmountForGrn(i1, FileName, SheetName);
 						}
 					}
 				}
@@ -456,7 +381,6 @@ public class GrnPageFunctions2 {
 								commonFunc.getDataFromTestDataSheet("GRNSpecialDiscountAmount")),
 						SpecialDiscountAmount);
 				logs.logging("INFO", "Special Discount Amount Matched With DB Values For This Item " + ItemId);
-				commonFunc.hardWait(2000);
 				DirectGRNFunc.verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(),
 						ItemId, commonFunc.getDataFromTestDataSheet("GRNCashDiscountAmount")), CashDiscountAmount);
 				logs.logging("INFO", "Cash Discount Amount Matched With DB Values For This Item " + ItemId);
@@ -514,9 +438,9 @@ public class GrnPageFunctions2 {
 							continue;
 						}
 						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
 						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 						if (flag) {
+							webDB.moveToElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
 							if (flag) {
@@ -531,7 +455,6 @@ public class GrnPageFunctions2 {
 										break;
 									}
 								}
-								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 							}
 						}
 					}
@@ -549,69 +472,17 @@ public class GrnPageFunctions2 {
 	}
 
 	/**
-	 * This Methods Is Used To Verify Grn Add Line Details from Sheet
-	 * 
-	 * @author Sakthi-GWL
-	 * @param SheetName
-	 * @param Supplier
-	 */
-	public void addGrnLineDetailsOtherThanUserDefined(String FileName, String SheetName, String Supplier) {
-		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-		if (flag) {
-			commonFunc.hardWait(3000);
-			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-			VariableHandler.setGrnDocNumber(GrnNumber);
-			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
-			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
-			ExcelUtils excelUtils = new ExcelUtils();
-			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-					+ ".xlsx";
-			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
-			for (int i = 22; i < GRNMultipleline.length; i++) {
-				String ITEM_NAME = GRNMultipleline[i][1];
-				String HSN = GRNMultipleline[i][68];
-				String QTY = GRNMultipleline[i][5];
-				String COST = GRNMultipleline[i][6];
-
-				if (!ITEM_NAME.equals("")) {
-					commonFunc.hardWait(3000);
-					DirectGRNFunc.verifyClickingAdd();
-					DirectGRNFunc.verifyClickingItemField(ITEM_NAME);
-					DirectGRNFunc.verifyClickingHsnField(HSN);
-					DirectGRNFunc.verifyClickingSuppQuantity(QTY);
-					DirectGRNFunc.verifyClickingReceiptQuantity(QTY);
-					DirectGRNFunc.verifyClickingCost(COST);
-					DirectGRNFunc.verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForOpenPoItemForGrn(i, FileName, SheetName, Supplier);
-					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
-					otherThanUserdefinedDiscountAmountForGrn(i, FileName, SheetName);
-				}
-			}
-		}
-		assertTrue(flag);
-	}
-
-	/**
 	 * This method used to save GRN and POST document
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	public void overAllSaveAndPostForExcess() {
-		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
 		if (flag) {
-			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-			}
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.checkSuccessToastMessageDisappear();
-			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-			VariableHandler.setGrnDocNumber(GrnNumber);
-			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
+			webDB.moveToElement(GrnLocators.OverAllSave, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(GrnLocators.OverAllSave, ElementType.Xpath);
-				webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
 				logs.logging("INFO", "Document Successfully Saved");
 				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -621,7 +492,6 @@ public class GrnPageFunctions2 {
 				if (flag) {
 					webDB.moveToElement(GrnLocators.PostButton, ElementType.Xpath);
 					webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
-					logs.logging("INFO", "Document Successfully posted");
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				}
 			}
@@ -1128,6 +998,9 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"));
+		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1163,6 +1036,9 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"));
+		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1197,6 +1073,9 @@ public class GrnPageFunctions2 {
 		verifyGrnAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"));
+		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1231,6 +1110,9 @@ public class GrnPageFunctions2 {
 		verifyGrnAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"));
+		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {

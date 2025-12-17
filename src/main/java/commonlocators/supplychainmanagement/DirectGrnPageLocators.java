@@ -6,7 +6,7 @@ package commonlocators.supplychainmanagement;
  */
 public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
-	public static final String GrnAddBtn = "//*[@id=\"active\"]/span";
+	public static final String GrnAddBtn = "//*[@id='active']/span";
 	/** @locatorType Xpath */
 	public static final String GrnLocLov = "//input[@id='P16151311031_PORH_PLNT_LOC_ID']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -24,75 +24,75 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineItemLov = "//input[@data-testid='PORL_PROD_ID_REV']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineItemField = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String GrnLineItemField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String GrnLineHsnField = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
+	public static final String GrnLineHsnField = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[7]";
 	/** @locatorType Xpath */
 	public static final String GrnLineHsnLov = "//input[@data-testid='PORL_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQtyInput = "//input[@data-testid='PORL_SUPLR_BILL_QTY']";
+	public static final String GrnLineSupQtyInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]//input";
 	/** @locatorType Xpath */
-	public static final String GrnLineSupQty = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[8]";
+	public static final String GrnLineSupQty = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[8]";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQty = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
+	public static final String GrnLineRcpQty = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]";
 	/** @locatorType Xpath */
-	public static final String GrnLineRcpQtyInput = "//input[@data-testid='PORL_TEMP_INV_QTY']";
+	public static final String GrnLineRcpQtyInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[9]//input";
 	/** @locatorType Xpath */
-	public static final String GrnLineCost = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[13]";
+	public static final String GrnLineCost = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]";
 	/** @locatorType Xpath */
-	public static final String GrnLineCostInput = "//input[@data-testid='PORL_SC_UNIT_COST']";
+	public static final String GrnLineCostInput = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[13]//input";
 	/** @locatorType Xpath */
 	public static final String GrnLineSave = "//button[@data-testid='Save_Line']";
 	/** @locatorType Xpath */
-	public static final String InspAttrTab = "//*[@id=\"SR_R5658842567854189405_tab\"]/a/span";
+	public static final String InspAttrTab = "//*[@id='SR_R5658842567854189405_tab']/a/span";
 	/** @locatorType Xpath */
 	public static final String InspAttrTabBtn = "//li[@id='SR_R5658842567854189405_tab']";
 	/** @locatorType Xpath */
-	public static final String InspAttrSpecField = "//*[@id=\"ig_line_attr_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[6]";
+	public static final String InspAttrSpecField = "//*[@id='ig_line_attr_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
-	public static final String InspAttrSpecLov = "//*[@id=\"C5660745749386738794_lov_btn\"]/span";
+	public static final String InspAttrSpecLov = "//*[@id='C5660745749386738794_lov_btn']/span";
 	/** @locatorType Xpath */
-	public static final String InspBottomPage = "//*[@id=\"t_Body_content\"]/footer/div[1]/div[2]/table/tbody/tr/th[1]";
+	public static final String InspBottomPage = "//*[@id='t_Body_content']/footer/div[1]/div[2]/table/tbody/tr/th[1]";
 	/** @locatorType Xpath */
-	public static final String InspTextTab = "//*[@id=\"SR_R5660862967681766282_tab\"]/a";
+	public static final String InspTextTab = "//*[@id='SR_R5660862967681766282_tab']/a";
 	/** @locatorType Xpath */
-	public static final String InspTextField = "//*[@id=\"ig_line_text_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[6]";
+	public static final String InspTextField = "//*[@id='ig_line_text_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[6]";
 	/** @locatorType Xpath */
 	public static final String InspTextInput = "//input[@id='C5660866804674766321']";
 	/** @locatorType Xpath */
-	public static final String InspAttrSave = "//*[@id=\"B2163589859481391307\"]/span";
+	public static final String InspAttrSave = "//*[@id='B2163589859481391307']/span";
 	/** @locatorType Xpath */
-	public static final String InspTextSave = "//*[@id=\"B2163612128305391373\"]/span";
+	public static final String InspTextSave = "//*[@id='B2163612128305391373']/span";
 	/** @locatorType Xpath */
-	public static final String AttrNoDataFound = "//*[@id=\"ig_line_attr_ig_grid_vc_no_msg\"]";
+	public static final String AttrNoDataFound = "//*[@id='ig_line_attr_ig_grid_vc_no_msg']";
 	/** @locatorType Xpath */
-	public static final String TextNoDataFound = "//*[@id=\"ig_line_text_ig_grid_vc_no_msg\"]";
+	public static final String TextNoDataFound = "//*[@id='ig_line_text_ig_grid_vc_no_msg']";
 	/** @locatorType Xpath */
-	public static final String OverallSave = "//*[@id=\"B3490118160695547080\"]/span";
+	public static final String OverallSave = "//*[@id='B3490118160695547080']/span";
 	/** @locatorType Xpath */
-	public static final String ObservationLineNum = "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[1]";
+	public static final String ObservationLineNum = "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[1]/td[1]";
 	/** @locatorType Xpath */
-	public static final String RejectQty = "//*[@id=\"P20171310201_TQHD_REJ_QTY\"]";
+	public static final String RejectQty = "//*[@id='P20171310201_TQHD_REJ_QTY']";
 	/** @locatorType Xpath */
-	public static final String DefectTab = "//*[@id=\"P20171310201_TAB\"]/div/div/div[2]/label";
+	public static final String DefectTab = "//*[@id='P20171310201_TAB']/div/div/div[2]/label";
 	/** @locatorType Xpath */
-	public static final String DefectTabAdd = "//*[@id=\"B1502438949409139857\"]/span";
+	public static final String DefectTabAdd = "//*[@id='B1502438949409139857']/span";
 	/** @locatorType Xpath */
-	public static final String DefectLov = "//*[@id=\"C4995383037383030366_lov_btn\"]/span";
+	public static final String DefectLov = "//*[@id='C4995383037383030366_lov_btn']/span";
 	/** @locatorType Xpath */
-	public static final String DefectField = "//*[@id=\"defect_st_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[2]";
+	public static final String DefectField = "//*[@id='defect_st_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
 	public static final String DefectQtyInput = "//input[@id='C4995385088271030368']";
 	/** @locatorType Xpath */
-	public static final String DefectQtyField = "//*[@id=\"defect_st_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[3]";
+	public static final String DefectQtyField = "//*[@id='defect_st_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
 	/** @locatorType Xpath */
-	public static final String DefectSave = "//*[@id=\"B1502439348792139859\"]/span";
+	public static final String DefectSave = "//*[@id='B1502439348792139859']/span";
 	/** @locatorType Xpath */
-	public static final String DefectOverallSave = "//*[@id=\"B3490118160695547080\"]/span";
+	public static final String DefectOverallSave = "//*[@id='B3490118160695547080']/span";
 	/** @locatorType Xpath */
-	public static final String DefectPrimaryQty = "//*[@id=\"defect_st_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String DefectPrimaryQty = "//*[@id='defect_st_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String GrnLineDetails = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[24]/a/span";
+	public static final String GrnLineDetails = "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[24]/a/span";
 	/** @locatorType Xpath */
 	public static final String GrnLineTrdDisc = "//input[@id='P161513110301_PORL_TRD_DISC_PCT']";
 	/** @locatorType Xpath */
@@ -106,22 +106,22 @@ public class DirectGrnPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String StdOperatorType(int i) {
-		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[6]";
+		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[6]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TolFrom(int i) {
-		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[8]";
+		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[8]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String TolTo(int i) {
-		return "//*[@id=\"ig_line_var_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[" + i + "]/td[9]";
+		return "//*[@id='ig_line_var_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[9]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String GrnDetailsBtn(int i) {
-		return "//*[@id=\'add_line_ig_grid_vc\']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[25]/a/span";
+		return "//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[25]/a";
 	}
 
 	/** @locatorType Xpath */
@@ -162,7 +162,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GRNDtTo = "//input[@id='P1615131103_DATE_TO_input']";
 	/** @locatorType Xpath */
-	public static final String ClearButton = "//*[@id=\"Clear\"]";
+	public static final String ClearButton = "//*[@id='Clear']";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 	/** @locatorType Xpath */
