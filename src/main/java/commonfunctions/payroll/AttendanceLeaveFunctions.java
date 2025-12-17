@@ -2630,6 +2630,9 @@ public class AttendanceLeaveFunctions {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date1.format(formatter);
 		String Leave = RandomStringUtils.randomNumeric(1);
+		if (Leave.equals("0")) {
+			Leave = "1";
+		}
 		try {
 			commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 					"HrRqtUsername");

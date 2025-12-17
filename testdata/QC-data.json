@@ -1384,11 +1384,13 @@
 	"Period": "APRIL",
 	"ImpSupplier": "SUP10388",
 	"ImportGRNBillNoText": "BILL-",
-	"OvertimePeriod":"MAY",
-    "OvertimeReference":"Employee Overtime",
-    "OvertimeHours":"40",
-    "OvertimeDate":"15-05-2025",
-    "OTNO":"${OTNO}",
-    "EMPID": "${EMPID}",
-    "OTAmount":"EOLN_OT_AMT"
+	"OvertimePeriod": "MAY",
+	"OvertimeReference": "Employee Overtime",
+	"OvertimeHours": "40",
+	"OvertimeDate": "15-05-2025",
+	"OTNO": "${OTNO}",
+	"EMPID": "${EMPID}",
+	"OTAmount": "EOLN_OT_AMT",
+	"BomNamePreposition": "AUTOMATIONBOM - ",
+	"WalmartSupId": "SUP00375"
 }
