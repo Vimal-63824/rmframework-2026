@@ -4877,7 +4877,13 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
-
+	/**
+	 * This Method Is Used To Verify Generate Lot Serial Button
+	 * Excel UOM(General)
+	 * 
+	 * @author Durai.K-RM ITS
+	 * 
+	 */
 	public void clickGenLotSerialButtonInHeader() {
 		flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
 		if (flag)
@@ -4894,7 +4900,13 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
+	/**
+	 * This Method Is Used To Verify Import LR Button
+	 * Excel UOM(General)
+	 * 
+	 * @author Durai.K-RM ITS
+	 * 
+	 */
 	public void clickImportLRButton() {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(DirectGrnPageLocators.ImportLRButton, ElementType.Xpath);
@@ -4907,7 +4919,13 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
-
+	/**
+	 * This Method Is Used To Verify Enter BOE and BOD
+	 * Excel UOM(General)
+	 * 
+	 * @author Durai.K-RM ITS
+	 * 
+	 */
 	public void enterBOEAndBOD(String BillNo, String BOEDate) {
 		String SupBillNo = RandomStringUtils.randomNumeric(6);
 		if (SupBillNo.equals("000")) {
@@ -4935,5 +4953,31 @@ public class DirectGrnPageFunctions {
 				}
 			}
 		}
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill() throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PurchaseBillGRN"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PurchaseBillGRN"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("PurchaseBillGRN"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("PurchaseBillGRN"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PurchaseBillGRN"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 	}
 }

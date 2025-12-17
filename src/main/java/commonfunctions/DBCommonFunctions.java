@@ -1511,5 +1511,108 @@ public class DBCommonFunctions {
 		return value;
 
 	}
+	/**
+	 * PurchaseBills Header Details
+	 * 
+	 * @author Durai -RMITS
+	 * @param PBNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PBQuery(String PBNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillQuery"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * This Method Is Used To Validate Purchase Bills Pending GRN
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PBPendingGRNQuery(String GRNNumber, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PBPendingGRnQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * This Method Is Used To Validate PB Pending GRn Lines
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param SubSeqNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
 
+	public String PBPendingGRNLineQuery(String GRNNumber, String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PBPendingGRNLineQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SeqNO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * This Method Is Used To Validate Purchase Bills line Details
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param SubSeqNO
+	 * @param DBHeaderColumnValue
+	 */
+
+	public String PurchaseBillLineQuery(String PBNo, String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillLineQuery"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SeqNO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * This Method Is Used To Validate GRN Line Details
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String GRNPBLineQuery(String GRNNumber,String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNPBLineQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber,commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SeqNO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * This Method Is Used To Validate PB Pending GRn Lines
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param SubSeqNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String GRNPBLineQueryHist(String GRNNumber, String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("GRNPBLineQueryHist"),
+				commonFunc.getDataFromTestDataSheet("GRNNO"), GRNNumber, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SeqNO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * This Method Is Used To Validate PB Pending GRn Lines
+	 * 
+	 * @author Durai -RMITS
+	 * @param GRNNumber
+	 * @param SubSeqNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+
+	public String PurchaseBillLine(String PBNo, String SeqNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillLine"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNo, commonFunc.getDataFromTestDataSheet("SEQNO"),
+				SeqNO, DBHeaderColumnValue);
+		return value;
+	}
+	
 }
