@@ -362,16 +362,17 @@ public class CommonFunctions {
 	public void clickCreateIcon() {
 		flag = webDB.waitForElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.PurchaseAddIcon, ElementType.Xpath);
 			logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
-			hardWait(2000);
-			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePoButton, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.CreatePoButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.CreatePoButton, ElementType.Xpath);
+				checkRefreshCellsDisappear();
+				webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+				webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 			}
-			hardWait(2000);
-			webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreatePoTickIcon, ElementType.Xpath);
 		}
 		Assert.assertTrue(flag);
 	}

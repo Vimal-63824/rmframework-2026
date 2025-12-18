@@ -481,35 +481,33 @@ public class GateEntryPageFunctions {
 	 * @author Durai-RMITS
 	 */
 	public void verifyToOverAllSaveAndPostTheGateEntryDocument() {
-
-		commonFunc.hardWait(3000);
+		webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
 		String GateEntryNumber = webDB.getTextFromElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
 		VariableHandler.setGateEntryNumber(GateEntryNumber);
 		logs.logging("INFO", "Gate EntryNumber Is :" + VariableHandler.getGateEntryNumber());
-		flag = webDB.waitForElement(GateEntryPageLocators.GateKeeperSso, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
+		flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
-			webDB.sendTextToAnElement(GateEntryPageLocators.StDriverName, "VIMAL", ElementType.Xpath);
-			flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
+			webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
+					commonFunc.getDataFromTestDataSheet("EwayBillNumber"), ElementType.Xpath);
+			logs.logging("INFO", "E-wayBill NUMBER Entered Successfully");
+			flag = webDB.waitForElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
 			if (flag) {
-				webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
-						commonFunc.getDataFromTestDataSheet("EwayBillNumber"), ElementType.Xpath);
-				logs.logging("INFO", "E-wayBill NUMBER Entered Successfully");
-
-				flag = webDB.waitForElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
-				commonFunc.hardWait(2000);
+				webDB.moveToElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+				webDB.clickAnElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 5);
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(GateEntryPageLocators.OverAllSaveButton, ElementType.Xpath);
-
-					flag = webDB.waitForElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-					commonFunc.hardWait(7000);
-					if (flag) {
-						webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
-						logs.logging("INFO", "Gate Entry Document Posted Successfully");
-						commonFunc.hardWait(200);
-						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.logoutUser();
-					}
+					webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+					webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+					logs.logging("INFO", "Gate Entry Document Posted Successfully");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.logoutUser();
 				}
 			}
 		}
@@ -534,9 +532,9 @@ public class GateEntryPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Hsn_Code"));
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOPODocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -1216,8 +1214,7 @@ public class GateEntryPageFunctions {
 	 * @param Value
 	 */
 	public void verifyAmendTableValue(int i, String Value) {
-		List<WebElement> elements = webDB.getDriver()
-				.findElements(By.xpath(GateEntryPageLocators.GENFindTableData(i)));
+		List<WebElement> elements = webDB.getDriver().findElements(By.xpath(GateEntryPageLocators.GENFindTableData(i)));
 		for (WebElement element : elements) {
 			if (element.isDisplayed()) {
 				flag = element.getText().contains(Value);
@@ -1488,17 +1485,19 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	private void VerifyClickingFrame() {
-		flag=webDB.waitForElement(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
-		if(flag) {
+		flag = webDB.waitForElement(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
+		if (flag) {
 			webDB.switchToFrame(GateEntryPageLocators.OpoAddFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
 		}
 
 	}
+
 	private void VerifyClickingGateDirectFrame() {
-		flag=webDB.waitForElement(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
-		if(flag) {
+		flag = webDB.waitForElement(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
+		if (flag) {
 			webDB.switchToFrame(GateEntryPageLocators.GateDirectFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched To Frame");
 		}

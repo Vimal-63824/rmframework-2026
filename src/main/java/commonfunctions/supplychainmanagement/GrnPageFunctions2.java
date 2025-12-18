@@ -58,8 +58,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
-			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-					+ ".xlsx";
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 			for (int i = 22; i < GRNMultipleline.length; i++) {
 				String ITEM_NAME = GRNMultipleline[i][1];
@@ -98,8 +97,7 @@ public class GrnPageFunctions2 {
 			String PriceListSupplier) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-				+ ".xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];
@@ -134,8 +132,7 @@ public class GrnPageFunctions2 {
 			String SheetName) {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-				+ ".xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Unit Cost For This Item");
 		for (int i = i1; i <= i1; i++) {
@@ -170,8 +167,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
-			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-					+ ".xlsx";
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 			for (int i = 22; i < GRNMultipleline.length; i++) {
 				String ITEM_NAME = GRNMultipleline[i][1];
@@ -210,8 +206,7 @@ public class GrnPageFunctions2 {
 			String RateContractSupplier) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-				+ ".xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];
@@ -251,8 +246,7 @@ public class GrnPageFunctions2 {
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
-			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-					+ ".xlsx";
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 			for (int i = 22; i < GRNMultipleline.length; i++) {
 				String ITEM_NAME = GRNMultipleline[i][1];
@@ -289,8 +283,7 @@ public class GrnPageFunctions2 {
 	public void verifyAddingDiscount(int i1, String FileName, String SheetName) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-				+ ".xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		System.out.println(PRMultipleline.length);
 		for (int i = i1; i <= i1; i++) {
@@ -346,8 +339,7 @@ public class GrnPageFunctions2 {
 	public void verifyDiscountAmountForGrn(int i2, String FileName, String SheetName) {
 		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
-		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName
-				+ ".xlsx";
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = i2; i <= i2; i++) {
 			String ItemId = GRNMultipleline[i2][1];
@@ -425,7 +417,7 @@ public class GrnPageFunctions2 {
 				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 				ExcelUtils excelUtils = new ExcelUtils();
 				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-						+ FileName + ".xlsx";
+						+ FileName;
 				itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 				for (int i = 22; i < itemmultiple.length; i++) {
 					String ITEM_NAME = itemmultiple[i][1];
@@ -479,6 +471,9 @@ public class GrnPageFunctions2 {
 	public void overAllSaveAndPostForExcess() {
 		flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
 		if (flag) {
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
 			webDB.moveToElement(GrnLocators.OverAllSave, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
@@ -1133,10 +1128,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryGeneralUDSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1153,9 +1149,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1163,21 +1156,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1187,10 +1176,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryMaterialUDSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1207,9 +1197,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1217,21 +1204,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSameUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1241,10 +1224,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryServiceUDSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1261,31 +1245,24 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
+//				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+//		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1296,10 +1273,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryGeneralRCSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1316,9 +1294,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1326,21 +1301,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSameRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1350,10 +1321,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryMaterialRCSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1370,9 +1342,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1380,21 +1349,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSameRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1404,10 +1369,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryServiceRCSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1424,31 +1390,24 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
+//				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+//		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1459,10 +1418,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryGeneralPLSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1479,9 +1439,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1489,21 +1446,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSamePLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1513,10 +1466,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryMaterialPLSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1533,9 +1487,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1543,21 +1494,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSamePLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1567,10 +1514,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryServicePLSameStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1587,31 +1535,24 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
+//				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+//		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1622,10 +1563,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryGeneralUDDifferentStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpDiffUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpDiffUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1642,9 +1584,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1652,21 +1591,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpDiffUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpSameUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpDiffUDGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1676,10 +1611,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryMaterialUDDifferentStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1696,9 +1632,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1706,21 +1639,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpDiffUDRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1731,10 +1660,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryGeneralRCDifferentStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1751,9 +1681,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1761,21 +1688,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpDiffRCGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1785,10 +1708,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryMaterialRCDifferentStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1805,9 +1729,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1815,21 +1736,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpDiffRCRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1840,10 +1757,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryGeneralPLDifferentStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1860,9 +1778,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1870,21 +1785,17 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpDiffPLGeneral"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 
 	/**
@@ -1894,10 +1805,11 @@ public class GrnPageFunctions2 {
 	 * @author Sakthi-GWL
 	 */
 	public void verifyPOtoGRNWithFPsGateEntryMaterialPLDifferentStockAndSupplierUomImport() {
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"),
@@ -1914,9 +1826,6 @@ public class GrnPageFunctions2 {
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
 				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
-		commonFunc.logoutUser();
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
 		commonFunc.naviagteGrnPage();
 		GRNFunc.clickPendingGEAndSearchGENo();
 		GRNFunc.clickSelectAllGEButton();
@@ -1924,20 +1833,16 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickOkButton();
 		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.lotSerialQtyApportion();
-		GRNFunc.overAllSaveAndPost(webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		clickImportLRAndfillBillNo(BillNo, Today);
+		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
 			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
 					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
 		}
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
-				webDB.getDataFromProperties("PoToGRNImpDiffPLRawMat"),
-				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
+		verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 	}
 }

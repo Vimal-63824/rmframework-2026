@@ -1315,6 +1315,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	 */
 	@AfterMethod
 	public void VerifyAfterMethod(ITestResult result, Method method) {
+		commonFunc.verifyAfterMethod();
 		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
