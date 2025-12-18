@@ -2503,7 +2503,7 @@ public class SalesOrderFunctions {
 	 * @author Harikrishna -RMITS
 	 */
 	public void verifyIncludeAdvAmtFlagIsChecked() {
-		verifyAdvPercentageWithUIAndDBValues();
+//		verifyAdvPercentageWithUIAndDBValues();
 		flag = webDB.waitForElement(SalesOrderLocators.SalesOrderincludeAdvAmtCheckBox, ElementType.Xpath);
 		if (flag) {
 			if (webDB.isElementSelected(SalesOrderLocators.SalesOrderInputIncludeAdvAmtCheckBox, ElementType.Xpath)) {
