@@ -167,10 +167,8 @@ public class PurchaseOrderFunctions {
 	public void verifyAddItemInPOWithQuantityAndUnitCost(String quantity, String unitcost) {
 		try {
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
-			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput, unitcost);
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
@@ -8851,7 +8849,6 @@ public class PurchaseOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-
 		}
 		webDB.switchToDefaultContent();
 		try {
@@ -14318,6 +14315,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
@@ -14378,6 +14376,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify Approve With Doc Number
 	 * 
@@ -14414,6 +14413,32 @@ public class PurchaseOrderFunctions {
 					}
 				}
 			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To enable free of cost in line detail two
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void enableFreeOfCostCheckbox() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		boolean flag2 = webDB.isElementSelected(PurchaseOrderPageLocators.FreeOfCostInput, ElementType.Xpath);
+		if (!flag2) {
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.FreeOfCostLabel, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(PurchaseOrderPageLocators.FreeOfCostLabel, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseOrderPageLocators.FreeOfCostLabel, ElementType.Xpath);
+				if (flag) {
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					flag = webDB.isElementSelected(PurchaseOrderPageLocators.FreeOfCostInput, ElementType.Xpath);
+				}
+			}
+		} else {
+			flag = true;
 		}
 		Assert.assertTrue(flag);
 	}
