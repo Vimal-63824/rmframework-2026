@@ -7404,13 +7404,11 @@ public class PurchaseOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("PoMaterial"), 7,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 17,
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PoItem"), 17,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
-		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc,
-				commonFunc.getDataFromTestDataSheet("ShareOfBusinessItem"), 19,
-				commonFunc.getDataFromTestDataSheet("LineSearchType"),
+		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PoItem"),
+				19, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PO_Status,
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
@@ -14032,9 +14030,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
+					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			approvalFunc.ExtractStocktransferDocNumber(DocumentNo);
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -14285,9 +14284,10 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
-					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-					System.getProperty("HariUsername"));
+			String DocumentNo = commonFunc.approveDocumentsWithDocumentNumber(webDB.getDataFromProperties("RoauBu"),
+					VariableHandler.getPONumber(), webDB.getDataFromProperties("HariEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			approvalFunc.ExtractStocktransferDocNumber(DocumentNo);
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 			commonFunc.navigatePurchaseOrderPage();
 			verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
@@ -14328,6 +14328,105 @@ public class PurchaseOrderFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
+	 * Same Stock And Supplier UOM With And WithoutInspection
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void verifyToCreatePoForStockTransferUserDefinedLocalTaxSameStockandSupplierUomWithAndWithoutInspection(
+			String SheetName) throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("StockTransferLocalLoaction"),
+				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplier"),
+				commonFunc.getDataFromTestDataSheet("StockTransferValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String UNIT_COST = itemmultiple[i][6];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				verifyDirectPoQtyEntered(QUANTITY);
+				verifyDirectPoUnitCostEntered(UNIT_COST);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				discountFromPrToGrnDocument(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		verifyHeaderTickAndPost();
+		verifyWaitingForApproval();
+		flag = commonFunc.logoutUser();
+		if (flag) {
+			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
+			approvalFunc.navigateToApprovals();
+			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
+			verifyApproveWithDocNumberForLoaclSupplier(VariableHandler.getPONumber());
+			flag = commonFunc.logoutUser();
+
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Methods Is Used To verify Approve With Doc Number
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyApproveWithDocNumberForLoaclSupplier(String Number) {
+		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForClickElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+		if (flag) {
+			webDB.javaScriptClickAnElement(ApprovalPageLocators.POSelectCheckBox(Number), ElementType.Xpath);
+			flag = webDB.waitForClickElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "CheckBox Is Clicked And Process Button IS Displayed");
+				webDB.javaScriptClickAnElement(ApprovalPageLocators.ProcessButton, ElementType.Xpath);
+				flag = webDB.waitForElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO",
+							"CheckBox select for Document Number " + Number + " and Process button clicked");
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(ApprovalPageLocators.ApproveRadioBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Approval Process Button IS Displayed");
+						webDB.clickAnElement(ApprovalPageLocators.ApproveProcessButton, ElementType.Xpath);
+						approvalFunc.ExtractStocktransferDocNumberForLocalSupplier();
+						if (flag) {
+							logs.logging("INFO", "Toast Message Displayed, Posted Successfully");
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+								logs.logging("INFO", "Note Alert Closed");
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 
 }

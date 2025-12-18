@@ -43,6 +43,10 @@ public class DirectGrnPageFunctions {
 	private static InspectionDocumentFunctions InsDocFunc = new InspectionDocumentFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	public ArrayList<String> MultiGRNDocs = new ArrayList<String>();
+	LocalDate date = LocalDate.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	String Today = date.format(formatter);
 
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
@@ -3109,6 +3113,97 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHK(String Supplier, String SheetName)
+			throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(SheetName);
+		verifyDirectGRNStockQtyAndCostForSourceWH(SheetName);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(SheetName);
+		clickGenLotSerialButtonInHeader();
+//		DirectGRNmultipleLotandSerialWithGeneralType(SheetName);
+		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
+		GRNFunc.clickPostButton();
+		GRNFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+//		commonFunc.hardWait(2000);
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionHKMultiUnits(String Supplier, String SheetName,
+			String Location) throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(SheetName);
+		verifyDirectGRNStockQtyAndCostForSourceWH(SheetName);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(Location, commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(SheetName);
+		clickGenLotSerialButtonInHeader();
+//		DirectGRNmultipleLotandSerialWithGeneralType(SheetName);
+		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
+		GRNFunc.clickPostButton();
+		GRNFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+//		commonFunc.hardWait(2000);
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeImportSupplierHK(String Supplier, String SheetName)
+			throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(SheetName);
+		verifyDirectGRNStockQtyAndCostForSourceWH(SheetName);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), Supplier,
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(SheetName);
+		clickGenLotSerialButtonInHeader();
+		clickImportLRButton();
+		enterBOEAndBOD(commonFunc.getDataFromTestDataSheet("SupplierBillNumber"), Today);
+//		DirectGRNmultipleLotandSerialWithGeneralType(SheetName);
+		VariableHandler.setMultipleGRNDocs(MultiGRNDocs);
+		GRNFunc.clickPostButton();
+		GRNFunc.waitingForApprovalHK(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+//		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+//		commonFunc.hardWait(2000);
+//		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
 	public void verifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionD() throws IOException {
 		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnMatUDD"));
 		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnMatUDD"));
@@ -4781,6 +4876,108 @@ public class DirectGrnPageFunctions {
 
 			}
 		}
-
+	}
+	/**
+	 * This Method Is Used To Verify Generate Lot Serial Button
+	 * Excel UOM(General)
+	 * 
+	 * @author Durai.K-RM ITS
+	 * 
+	 */
+	public void clickGenLotSerialButtonInHeader() {
+		flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
+		if (flag)
+			webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
+		logs.logging("INFO", "Document Successfully Saved");
+		flag = webDB.waitForElement(DirectGrnPageLocators.GRN_LotSerialButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.GRN_LotSerialButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Generate Lot Serial Button Is Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Import LR Button
+	 * Excel UOM(General)
+	 * 
+	 * @author Durai.K-RM ITS
+	 * 
+	 */
+	public void clickImportLRButton() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(DirectGrnPageLocators.ImportLRButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(DirectGrnPageLocators.ImportLRButton, ElementType.Xpath);
+			flag = webDB.waitForElement(DirectGrnPageLocators.BOEInputField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Import L/R Button Is Clicked Sucessfully");
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Verify Enter BOE and BOD
+	 * Excel UOM(General)
+	 * 
+	 * @author Durai.K-RM ITS
+	 * 
+	 */
+	public void enterBOEAndBOD(String BillNo, String BOEDate) {
+		String SupBillNo = RandomStringUtils.randomNumeric(6);
+		if (SupBillNo.equals("000")) {
+			SupBillNo = "10";
+		}
+		String BOENumber = BillNo + SupBillNo;
+		flag = webDB.waitForElement(DirectGrnPageLocators.BOEInputField, ElementType.Xpath);
+		if (flag) {
+			webDB.clearTextField(DirectGrnPageLocators.BOEInputField, ElementType.Xpath);
+			webDB.sendTextToAnElement(DirectGrnPageLocators.BOEInputField, BOENumber, ElementType.Xpath);
+			flag = webDB.waitForElement(DirectGrnPageLocators.BOEDateInputField, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "BOE Number Is Entered Sucessfully");
+				webDB.clearTextField(DirectGrnPageLocators.BOEDateInputField, ElementType.Xpath);
+				webDB.sendTextToAnElement(DirectGrnPageLocators.BOEDateInputField, BOEDate, ElementType.Xpath);
+				webDB.pressTabKey();
+				flag = webDB.waitForElement(DirectGrnPageLocators.BOEOkButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Bill Entry Date Is Inserted Successfully");
+					webDB.clickAnElement(DirectGrnPageLocators.BOEOkButton, ElementType.Xpath);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GRN_LotSerialButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Ok Button Is Clicked Sucessfully");
+					}
+				}
+			}
+		}
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill() throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PurchaseBillGRN"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PurchaseBillGRN"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("PurchaseBillGRN"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("PurchaseBillGRN"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PurchaseBillGRN"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 	}
 }

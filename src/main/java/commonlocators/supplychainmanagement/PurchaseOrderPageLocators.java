@@ -397,9 +397,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PO_Status = "//select[@data-testid='P1615132060_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='2426776275689295958_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='3355675813393117245_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='8098271753405592657_orig']/tbody/tr[2]/td[3]";
+	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='9027171291109413944_orig']/tbody/tr[2]/td[3]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
@@ -472,4 +472,8 @@ public class PurchaseOrderPageLocators {
 	public static final String PendingGE_SelectAllCheckBox = "(//input[@id='check_allge'])";
 	/** @locatorType Xpath */
 	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
+	/** @locatorType Xpath */
+	public static final String GE_SelectAllCheckBox = "//table[@id='14371735332902313268_orig']/tbody/tr/td/input[@type='checkbox']";
+	/** @locatorType Xpath */
+	public static final String ForwardEmployeefield = "//input[@data-testid='P236131090_FWD_PERSON']";
 }

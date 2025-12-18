@@ -206,10 +206,22 @@ public class GateEntryPageLocators {
 	public static final String FindGateEntryNumber(String value) {
 		return "(//a[text()='" + value + "']/../../td/div[contains(@style,'color')])[last()]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String OpoAddFrame = "//iframe[@title='Open PO/RC ']";
 	/** @locatorType Xpath */
 	public static final String GateDirectFrame = "//iframe[@title='Gate Entry ']";
-	
-	
+	/** @locatorType Xpath */
+	public static final String PendingStockTransfer = "//button[@data-testid='Pending_ST']";
+	/** @locatorType Xpath */
+	public static final String InvoiceNumberLovBtn = "//input[@data-testid='P1615131100_PO_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String IframePendingST = "//iframe[@title='Pending Stock Transfer']";
+	/** @locatorType Xpath */
+	public static final String PendingMoveGE = "//button[@data-testid='Create_GE_Stock']";
+	/** @locatorType Xpath */
+	public static final String SelectAll = "//input[@id='check_st']";
+	/** @locatorType Xpath */
+	public static final String StDriverName = "//input[@data-testid='P751310201_GEHD_DRIVER_NAME']";
+
 }

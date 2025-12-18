@@ -31,7 +31,8 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	@Test(priority = 1, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with Similar Stock and Customer UOM - Dom. Customer")
 	public void veriftyCreateCatalogPricewithSimilarStockandCustomerUOMDomCustomer() {
-		Scp.createsCataloguePriceSimilarUomAndDomesticCustomer();
+		Scp.createsCataloguePriceSimilarUomAndDomesticCustomer(commonFunc.getDataFromTestDataSheet("min_Disc"),
+				commonFunc.getDataFromTestDataSheet("max_Disc"));
 	}
 
 	/**
@@ -43,7 +44,8 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	@Test(priority = 2, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with DisSimilar Stock and Customer UOM - Dom. Customer")
 	public void veriftyCreateCatalogPricewithDisSimilarStockandCustomerUOMDomCustomer() {
-		Scp.createsCataloguePriceDisSimilarUomAndDomesticCustomer();
+		Scp.createsCataloguePriceDisSimilarUomAndDomesticCustomer(commonFunc.getDataFromTestDataSheet("min_Disc"),
+				commonFunc.getDataFromTestDataSheet("max_Disc"));
 	}
 
 	/**
@@ -55,7 +57,8 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	@Test(priority = 3, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with Similar Stock and Customer UOM - Export Customer")
 	public void veriftyCreateCatalogPricewithSimilarStockandCustomerUOMExportCustomer() {
-		Scp.createsCataloguePriceSimilarUomAndExportCustomer();
+		Scp.createsCataloguePriceSimilarUomAndExportCustomer(commonFunc.getDataFromTestDataSheet("min_Disc"),
+				commonFunc.getDataFromTestDataSheet("max_Disc"));
 	}
 
 	/**
@@ -67,7 +70,8 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	@Test(priority = 4, groups = {
 			"Sales Catalogue Price" }, description = "Create Catalog Price with DisSimilar Stock and Customer UOM - Export Customer")
 	public void veriftyCreateCatalogPricewithDisSimilarStockandCustomerUOMExportCustomer() {
-		Scp.createsCataloguePriceDisSimilarUomAndExportCustomer();
+		Scp.createsCataloguePriceDisSimilarUomAndExportCustomer(commonFunc.getDataFromTestDataSheet("min_Disc"),
+				commonFunc.getDataFromTestDataSheet("max_Disc"));
 	}
 
 	/**
@@ -78,7 +82,8 @@ public class SalesCataloguePriceTest extends RoadMapERPTest {
 	@Author("Kowshik-RMITS")
 	@Test(priority = 5, groups = { "Sales Catalogue Price" }, description = "Cancel Catalog price")
 	public void veriftyCreateCatalogPricewithCancelCatalogPrice() {
-		Scp.createsCancelCatalogPrice();
+		Scp.createsCancelCatalogPrice(commonFunc.getDataFromTestDataSheet("min_Disc"),
+				commonFunc.getDataFromTestDataSheet("max_Disc"));
 	}
 
 	/**
