@@ -14,7 +14,7 @@
 			<class name="com.roadmapERP.PurchaseBillGetDocumenTest"></class>
 			<class name="com.roadmapERP.BankReceiptTest"></class>
 			<class name="com.roadmapERP.PurchaseBillTestGrn"></class>
-			<class name="com.roadmapERP.PoToMRVTest.java"></class>
+			<class name="com.roadmapERP.PoToMRVTest"></class>
 			<class name="com.roadmapERP.CashPaymentTest"></class>
 		</classes>
 	</test>
