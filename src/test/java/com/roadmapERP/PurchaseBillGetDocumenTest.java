@@ -18,6 +18,7 @@ import commonfunctions.supplychainmanagement.MaterialReceiptVoucherFunctions;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -545,8 +546,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		commonFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
+
 	}
 
 }

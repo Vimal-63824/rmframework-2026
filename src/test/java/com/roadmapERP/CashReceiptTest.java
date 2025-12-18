@@ -7,6 +7,7 @@ package com.roadmapERP;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -348,8 +349,9 @@ public class CashReceiptTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		cashReceiptFunc.verifyAfterMethod();
+		commonFunc.enterAuthorNamesInExtentReport(method);
 	}
 
 }
