@@ -43,12 +43,6 @@ public class AttendanceLeaveFunctions {
 	public EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 	public ExcelUtils excelUtils = new ExcelUtils();
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
-	LocalDate date = LocalDate.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	String Today = date.format(formatter);
-	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	String tomorrowDate = myDateObj.format(myFormatObj);
 
 	/**
 	 * This method is used to To Check Permission based on Employee Data
@@ -4931,6 +4925,12 @@ public class AttendanceLeaveFunctions {
 	 * @param EmployeeDurai
 	 */
 	public void EmployeeTraveldates(String DepartCity, String DestCity) {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String tomorrowDate = myDateObj.format(myFormatObj);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
@@ -5217,6 +5217,12 @@ public class AttendanceLeaveFunctions {
 	 * @param EmployeeDurai
 	 */
 	public void EmployeeTraveldateswithCancellingDoc(String DepartCity, String DestCity) {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String tomorrowDate = myDateObj.format(myFormatObj);
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
