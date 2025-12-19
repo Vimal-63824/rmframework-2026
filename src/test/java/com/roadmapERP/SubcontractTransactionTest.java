@@ -1404,6 +1404,300 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR() {
 		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypePR();
 	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for UP type - Free pass
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 106, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for UP type - Free pass Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUP() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUP();
+	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for US type - Free pass
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 107, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for US type - Free pass Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUS() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeUS();
+	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for CS type - Free pass
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 108, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for CS type - Free pass Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNWithGateEntryTypeCS() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithGateEntryTypeCS();
+	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for PR type - QC Enabled
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 109, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for PR type - QC Enabled Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypePR() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypePR();
+	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for UP type - QC Enabled
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 110, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for UP type - QC Enabled Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNWithQCEnableGateEntryTypeUP() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNWithQCEnableGateEntryTypeUP();
+	}
+	/**
+	 * Pending Subcontract Order to GRN With Gate Entry for US type - QC Enabled
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 111, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN With Gate Entry for US type - QC Enabled Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypeUS() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNQCEnableWithGateEntryTypeUS();
+	}
+	/**
+	 * Linewise Cancel The Subcontract GRN
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 112, groups = { "Subcontract" }, description = "Linewise Cancel The Subcontract GRN")
+	public void LineWiseCancelTheSubcontractGRN() {
+		SubcontractFunc.lineWiseCancelTheSubcontractGRN();
+	}
+	/**
+	 * Cancel The Subcontract GRN Document
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 113, groups = { "Subcontract" }, description = "Cancel The Subcontract GRN Document")
+	public void HeaderWiseCancelTheSubcontractGRN() {
+		SubcontractFunc.headerWiseCancelTheSubcontractGRN();
+	}
+	/**
+	 * Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 114, groups = { "Subcontract" }, description = "Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass Items")
+	public void DirectSubcontractorderToGRNTypePR() {
+		SubcontractFunc.directSubcontractorderToGRNTypePR();
+	}
+	/**
+	 * Direct Subcontract Order to GRN without Gate Entry for CS type - Free pass
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 115, groups = {
+			"Subcontract" }, description = "Direct Subcontract Order to GRN without Gate Entry for CS type - Free pass Items")
+	public void DirectSubcontractorderToGRNTypeCS() {
+		SubcontractFunc.directSubcontractorderToGRNTypeCS();
+	}
+	/**
+	 * Direct Subcontract Order to GRN With Gate Entry for PR type - Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 116, groups = {
+			"Subcontract" }, description = "Direct  Subcontract Order to GRN With Gate Entry for PR type - Free pass Items")
+	public void DirectSubcontractorderToGRNWithGateEntryTypePR() {
+		SubcontractFunc.directSubcontractorderToGRNWithGateEntryTypePR();
+	}
+	/**
+	 * Direct Subcontract Order to GRN With Gate Entry for CS type - Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 117, groups = {
+			"Subcontract" }, description = "Direct  Subcontract Order to GRN With Gate Entry for CS type - Free pass Items")
+	public void DirectSubcontractorderToGRNWithGateEntryTypeCS() {
+		SubcontractFunc.directSubcontractorderToGRNWithGateEntryTypeCS();
+	}
+	/**
+	 * Direct Subcontract Order to GRN without Gate Entry for PR type - QC Enabled
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 118, groups = {
+			"Subcontract" }, description = "Direct  Subcontract Order to GRN without Gate Entry for PR type - QC Enabled Items")
+	public void DirectSubcontractorderToGRNWithQCTypePR() {
+		SubcontractFunc.directSubcontractorderToGRNWithQCTypePR();
+	}
+	/**
+	 * Direct Subcontract Order to GRN With Gate Entry for PR type - QC Enabled
+	 * Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 119, groups = {
+			"Subcontract" }, description = "Direct  Subcontract Order to GRN With Gate Entry for PR type - QC Enabled Items")
+	public void DirectSubcontractorderToGRNWithQCEnableGateEntryTypePR() {
+		SubcontractFunc.directSubcontractorderToGRNWithQCEnableGateEntryTypePR();
+	}
+
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for PR type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 120, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for PR type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryPRtype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryPRtype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for UP type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 121, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for UP type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryUPtype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryUPtype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for US type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 122, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for US type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryUStype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryUStype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 122, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryCStype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryCStype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 123, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryPRtype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryPRtype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 124, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for UP type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryUPtype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryUPtype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for US type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 125, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for US type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryUStype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryUStype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for CS type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 126, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for CS type - Free pass Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryCStype() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryCStype();
+	}
+
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for PR type -
+	 * QC Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 127, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for PR type - QC Enabled Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryPRtypeQCEnable() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryPRtypeQCEnable();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for UP type -
+	 * QC Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 128, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for UP type - QC Enabled Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryUPtypeQCEnable() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryUPtypeQCEnable();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type -
+	 * QC Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 130, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type - QC Enabled Items")
+	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable();
+	}
 
 	/**
 	 * Verify After Method

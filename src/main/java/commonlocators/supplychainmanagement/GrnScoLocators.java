@@ -121,5 +121,15 @@ public class GrnScoLocators {
 	public static final String US_Type_Field = "(//input[@style='text-align:right;width:70px'])[5]";
 	/** @locatorType Xpath */
 	public static final String CS_Type_Field = "(//input[@type='number'])[3]";
+	/** @locatorType Xpath */
+	public static final String PendingGateEntry = "//button[@data-testid='Pending_GE']";
+	/** @locatorType Xpath */
+	public static final String PendingGateEntryDocNo = "//input[@data-testid='P1615131101_GE_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PendingGateEntry_SelectAll = "//*[@id=\"check_allge\"]";
+	/** @locatorType Xpath */
+	public static final String Pending_CreateGateEntry = "//button[@data-testid='Create_GRN_Gate']";
+	/** @locatorType Xpath */
+	public static final String Pending_CreateGateEntry_OkButton = "//button[@data-testid='GE_OK']";
 
 }
