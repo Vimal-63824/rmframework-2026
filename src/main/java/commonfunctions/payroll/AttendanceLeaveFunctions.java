@@ -4,6 +4,7 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,12 @@ public class AttendanceLeaveFunctions {
 	public EmployeeMasterFunctions empMasterFunc = new EmployeeMasterFunctions();
 	public ExcelUtils excelUtils = new ExcelUtils();
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
+	LocalDate date = LocalDate.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	String Today = date.format(formatter);
+	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	String tomorrowDate = myDateObj.format(myFormatObj);
 
 	/**
 	 * This method is used to To Check Permission based on Employee Data
@@ -4351,7 +4358,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
 				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
 		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		EmployeeOvertimeDocumentPost();
 		return flag;
@@ -4371,7 +4378,7 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
 				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
 		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		EmployeeOvertimeDocumentPost();
 		return flag;
@@ -4392,9 +4399,28 @@ public class AttendanceLeaveFunctions {
 				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
 				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
 		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
-				commonFunc.getDataFromTestDataSheet("OvertimeDate"));
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
 		EmployeeOvertimeDataSelect(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		EmployeeOvertimeDocumentReturn();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Overtime Entry Based on Cancelled Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckOvertimeEntryBasedOnCancelledDocument() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToEmployeeOvertime();
+		OvertimeEmployeeAdd(commonFunc.getDataFromTestDataSheet("Calendar"),
+				commonFunc.getDataFromTestDataSheet("Year202526"),
+				commonFunc.getDataFromTestDataSheet("OvertimePeriod"),
+				commonFunc.getDataFromTestDataSheet("OvertimeReference"));
+		EmployeeEntryLineData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("OvertimeDate"), commonFunc.getDataFromTestDataSheet("OTType"));
+		EmployeeOvertimeDataCancel(commonFunc.getDataFromTestDataSheet("OvertimeHours"));
 		return flag;
 	}
 
@@ -4479,7 +4505,7 @@ public class AttendanceLeaveFunctions {
 	 * @param EmployeeDurai
 	 * @param OvertimeDate
 	 */
-	public void EmployeeEntryLineData(String EmployeeDurai, String OvertimeDate) {
+	public void EmployeeEntryLineData(String EmployeeDurai, String OvertimeDate, String Type) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeEntryAddButton, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(5000);
@@ -4492,21 +4518,30 @@ public class AttendanceLeaveFunctions {
 					flag = webDB.clickAnElement(AttendanceLeaveLocators.OvertimeEntryEmpLOVField, ElementType.Xpath);
 					flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeLOVButton, ElementType.Xpath);
 					if (flag) {
+						commonFunc.hardWait(2000);
 						commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.OvertimeLOVButton,
 								EmployeeDurai);
 						if (flag) {
 							logs.logging("INFO", "Overtime Employee is Selected");
 							webDB.pressTabKey();
-							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
+							flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePrefixField, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
-								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateSelect,
+								webDB.clickAnElement(AttendanceLeaveLocators.OvertimePrefixField, ElementType.Xpath);
+								webDB.selectDropDownByValue(AttendanceLeaveLocators.OvertimePrefixSelect, Type,
 										ElementType.Xpath);
-								commonFunc.hardWait(1000);
-								webDB.moveToElement(AttendanceLeaveLocators.OvertimeDateSelect, ElementType.Xpath);
-								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeDateSelect,
-										OvertimeDate, ElementType.Xpath);
-								logs.logging("INFO", "Date is Selected");
+								logs.logging("INFO", "Prefix Is Selected:" + Type);
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateField,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(AttendanceLeaveLocators.OvertimeDateField, ElementType.Xpath);
+									flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeDateSelect,
+											ElementType.Xpath);
+									commonFunc.hardWait(1000);
+									webDB.moveToElement(AttendanceLeaveLocators.OvertimeDateSelect, ElementType.Xpath);
+									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeDateSelect,
+											OvertimeDate, ElementType.Xpath);
+									logs.logging("INFO", "Date is Selected");
+								}
 							}
 						}
 					}
@@ -4573,7 +4608,7 @@ public class AttendanceLeaveFunctions {
 			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Overtime Amount Have been Uploaded");
-				commonFunc.hardWait(200);
+				commonFunc.hardWait(2000);
 				commonFunc.checkRefreshCellsDisappear();
 				OvertimeAmount(webDB.getDataFromProperties("OTAmount"));
 				flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimePostButton, ElementType.Xpath);
@@ -4641,6 +4676,75 @@ public class AttendanceLeaveFunctions {
 	}
 
 	/**
+	 * This method is used To Select the Employee Overtime Data Select
+	 * 
+	 * @author Kishore-RMITS
+	 * @param OvertimeHours
+	 */
+	public void EmployeeOvertimeDataCancel(String OvertimeHours) {
+		webDB.pressTabKey();
+		flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeHoursField, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.OvertimeHoursField, OvertimeHours,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Hours is Entered");
+				flag = webDB.waitForElementUntilGivenTime(AttendanceLeaveLocators.OvertimeLineSaveButton,
+						ElementType.Xpath, 45);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(AttendanceLeaveLocators.OvertimeLineSaveButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Overtime Entry IS Saved");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(5000);
+							webDB.clickAnElement(AttendanceLeaveLocators.OvertimeSAVEButton, ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Overtime Document Have been Saved");
+								commonFunc.checkSuccessToastMessageDisappear();
+								webDB.waitForElement(AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+								String OvertimeDocNo = webDB.getTextFromElement(
+										AttendanceLeaveLocators.OvertimeDocNoField, ElementType.Xpath);
+								VariableHandler.setOvertimeDocNo(OvertimeDocNo);
+								logs.logging("info", "Overtime No is:" + VariableHandler.getOvertimeDocNo());
+								flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeUploadAmtButton,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(5000);
+									webDB.clickAnElement(AttendanceLeaveLocators.OvertimeUploadAmtButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Overtime Amount Have been Uploaded");
+										flag = webDB.waitForElement(AttendanceLeaveLocators.OvertimeCancelButton,
+												ElementType.Xpath);
+										if (flag) {
+											commonFunc.hardWait(5000);
+											webDB.clickAnElement(AttendanceLeaveLocators.OvertimeCancelButton,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Overtime Amount Has Been Cancelled");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.OvertimeFindSearchButton,
+														ElementType.Xpath);
+												flag = commonFunc.logoutUser();
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * This method is used To Check The Overtime Amount Validation
 	 * 
 	 * @author Kishore-RMITS
@@ -4650,7 +4754,7 @@ public class AttendanceLeaveFunctions {
 		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Overtime Calculation.xlsx";
+				+ "Overtime Calculation N.xlsx";
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		System.out.println(ItemMultiple.length);
 		for (int i = 2; i < ItemMultiple.length; i++) {
@@ -4681,6 +4785,495 @@ public class AttendanceLeaveFunctions {
 		} else {
 			logs.logging("INFO",
 					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check Travel Request Based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelRequestBasedOnEmployeeWise() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Travel Request Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelRequestBasedOnForwardToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Travel Request Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelRequestBasedOnReturnToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellersReturn(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Travel Request Based on Cancelling The Travel
+	 * Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelRequestBasedOnCancellingTheTravelRequest() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldateswithCancellingDoc(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Add the Travel Employee
+	 * 
+	 * @author Kishore-RMITS
+	 * @param EmployeeDurai
+	 * @param MobileNo
+	 * @param EmailID
+	 * @param PurposeOfTravel
+	 */
+	public void AddTravelEmployee(String EmployeeDurai, String MobileNo, String EmailID, String PurposeOfTravel) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestFindAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestFindAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Travel Request Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestEntryEmployeeLOV, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelRequestEntryEmployeeLOV,
+							EmployeeDurai);
+					logs.logging("INFO", "Travel Request Employee Is Selected");
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelMobileField, ElementType.Xpath);
+					if (flag) {
+						flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelMobileField, MobileNo,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Mobile No Entered");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TravelEmailField, ElementType.Xpath);
+							if (flag) {
+								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelEmailField, EmailID,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Email Is Entered");
+									flag = webDB.waitForElement(AttendanceLeaveLocators.TravelPurposeOfTravelField,
+											ElementType.Xpath);
+									if (flag) {
+										flag = webDB.sendTextToAnElement(
+												AttendanceLeaveLocators.TravelPurposeOfTravelField, PurposeOfTravel,
+												ElementType.Xpath);
+										if (flag) {
+											logs.logging("INFO", "Purpose Of Travel Is Entered");
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Select the Departure and Travel Dates
+	 * 
+	 * @author Kishore-RMITS
+	 * @param DepartCity
+	 * @param DestCity
+	 * @param EmployeeDurai
+	 */
+	public void EmployeeTraveldates(String DepartCity, String DestCity) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
+			webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelDepartureDate, Today, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Departure Date is Entered");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
+					webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelReturnDate, Today, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Return Date is Entered");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureCity, ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDepartureCity,
+									DepartCity);
+							logs.logging("INFO", "Departure City Is Selected");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDestinationCity,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDestinationCity,
+										DestCity);
+								logs.logging("INFO", "Destination City Is Selected");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestSaveButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestSaveButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Travel Request Document Is Saved");
+										commonFunc.checkSuccessToastMessageDisappear();
+										commonFunc.hardWait(2000);
+										webDB.waitForElement(AttendanceLeaveLocators.TravelRequestDocNoField,
+												ElementType.Xpath);
+										String TravelRequestDocNo = webDB.getDomPropertyFromElement(
+												AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath,
+												commonFunc.getDataFromTestDataSheet("Value"));
+										VariableHandler.setTravelRequestDocNo(TravelRequestDocNo);
+										logs.logging("info",
+												"Travel Request No is:" + VariableHandler.getTravelRequestDocNo());
+										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestExpensesButton,
+												ElementType.Xpath);
+										if (flag) {
+											commonFunc.hardWait(6000);
+											webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestExpensesButton,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Expenses Button Is Clicked");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.TravelExpenseAddButton,
+														ElementType.Xpath);
+												if (flag) {
+													commonFunc.hardWait(4000);
+													webDB.clickAnElement(AttendanceLeaveLocators.TravelExpenseAddButton,
+															ElementType.Xpath);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Add the Travel Expenses
+	 * 
+	 * @author Kishore-RMITS
+	 * @param Expenses
+	 * @param ExpenseAmount
+	 * @param ExpenseRef
+	 */
+	public void EmployeeTravelExpenses(String Expenses, String ExpenseAmount, String ExpenseRef) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseLOV, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelExpenseLOV, Expenses);
+			if (flag) {
+				logs.logging("INFO", "Expenses Is Selected");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseAmount, ElementType.Xpath);
+				if (flag) {
+					webDB.pressTabKey();
+					webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelExpenseAmount, ExpenseAmount,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Expenses Amount Is Entered");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseRefField, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(AttendanceLeaveLocators.TravelExpenseRefField, ElementType.Xpath);
+							webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelExpenseRefField, ExpenseRef,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Expenses Reference Is Entered");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseSaveButton,
+										ElementType.Xpath);
+								if (flag) {
+									flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelExpenseSaveButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Expenses Line Data Is Saved");
+										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelExpenseCloseButton,
+												ElementType.Xpath);
+										if (flag) {
+											flag = webDB.clickAnElement(
+													AttendanceLeaveLocators.TravelExpenseCloseButton,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Expenses Line Data Is Saved");
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Add Additional Travellers
+	 * 
+	 * @author Kishore-RMITS
+	 * @param AddTravEmployee
+	 */
+	public void EmployeeAdditionalTravellers(String AddTravEmployee) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Additional Travellers Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Additional Travellers Add Button Is Clicked");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraEMPLOV, ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelAttTraEMPLOV,
+									AddTravEmployee);
+							if (flag) {
+								logs.logging("INFO", "Expenses Is Selected");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
+										ElementType.Xpath);
+								if (flag) {
+									flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Additional Travellers Employee Is Saved");
+										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
+												ElementType.Xpath);
+										if (flag) {
+											flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Additional Travellers Screen Is Closed");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.TravelRequestPostButton,
+														ElementType.Xpath);
+												if (flag) {
+													commonFunc.hardWait(4000);
+													flag = webDB.clickAnElement(
+															AttendanceLeaveLocators.TravelRequestPostButton,
+															ElementType.Xpath);
+													if (flag) {
+														logs.logging("INFO", "Travel Request Post Button Is Clicked");
+														approvalFunc.waitingForApprovalWithFordwarder(
+																commonFunc.getDataFromTestDataSheet("HodValue"));
+														commonFunc.checkRefreshCellsDisappear();
+														commonFunc.approveDocuments(
+																webDB.getDataFromProperties("ROAU-BU"),
+																VariableHandler.getTravelRequestDocNo(),
+																webDB.getDataFromProperties("HodEmpId"),
+																commonFunc.getDataFromTestDataSheet("Unit_100"),
+																System.getProperty("HariUsername"));
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Add Additional Travellers
+	 * 
+	 * @author Kishore-RMITS
+	 * @param AddTravEmployee
+	 */
+	public void EmployeeAdditionalTravellersReturn(String AddTravEmployee) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAdditionalTravellersButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Additional Travellers Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraAddButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Additional Travellers Add Button Is Clicked");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraEMPLOV, ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelAttTraEMPLOV,
+									AddTravEmployee);
+							if (flag) {
+								logs.logging("INFO", "Expenses Is Selected");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
+										ElementType.Xpath);
+								if (flag) {
+									flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraSaveButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Additional Travellers Employee Is Saved");
+										flag = webDB.waitForElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
+												ElementType.Xpath);
+										if (flag) {
+											flag = webDB.clickAnElement(AttendanceLeaveLocators.TravelAttTraCloseButton,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Additional Travellers Screen Is Closed");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.TravelRequestPostButton,
+														ElementType.Xpath);
+												if (flag) {
+													commonFunc.hardWait(4000);
+													flag = webDB.clickAnElement(
+															AttendanceLeaveLocators.TravelRequestPostButton,
+															ElementType.Xpath);
+													if (flag) {
+														logs.logging("INFO", "Travel Request Post Button Is Clicked");
+														approvalFunc.waitingForApprovalWithFordwarder(
+																commonFunc.getDataFromTestDataSheet("HodValue"));
+														commonFunc.checkRefreshCellsDisappear();
+														commonFunc.returnDocuments(
+																webDB.getDataFromProperties("ROAU-BU"),
+																VariableHandler.getTravelRequestDocNo(),
+																webDB.getDataFromProperties("HodEmpId"),
+																commonFunc.getDataFromTestDataSheet("Unit_100"),
+																System.getProperty("HariUsername"),
+																webDB.getDataFromProperties("HRUSEREmpId"));
+														commonFunc.returnDocuments(
+																webDB.getDataFromProperties("ROAU-BU"),
+																VariableHandler.getTravelRequestDocNo(),
+																webDB.getDataFromProperties("HRUSEREmpId"),
+																commonFunc.getDataFromTestDataSheet("Unit_100"),
+																System.getProperty("HrRqtUsername"),
+																webDB.getDataFromProperties("HRUSEREmpId"));
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Select the Departure and Travel Dates
+	 * 
+	 * @author Kishore-RMITS
+	 * @param DepartCity
+	 * @param DestCity
+	 * @param EmployeeDurai
+	 */
+	public void EmployeeTraveldateswithCancellingDoc(String DepartCity, String DestCity) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelDepartureDate, ElementType.Xpath);
+			webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelDepartureDate, Today, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Departure Date is Entered");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelReturnDate, ElementType.Xpath);
+					webDB.sendTextToAnElement(AttendanceLeaveLocators.TravelReturnDate, Today, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Return Date is Entered");
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDepartureCity, ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDepartureCity,
+									DepartCity);
+							logs.logging("INFO", "Departure City Is Selected");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.TravelDestinationCity,
+									ElementType.Xpath);
+							if (flag) {
+								commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.TravelDestinationCity,
+										DestCity);
+								logs.logging("INFO", "Destination City Is Selected");
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRequestSaveButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestSaveButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Travel Request Document Is Saved");
+										commonFunc.checkSuccessToastMessageDisappear();
+										commonFunc.hardWait(2000);
+										webDB.waitForElement(AttendanceLeaveLocators.TravelRequestDocNoField,
+												ElementType.Xpath);
+										String TravelRequestDocNo = webDB.getDomPropertyFromElement(
+												AttendanceLeaveLocators.TravelRequestDocNoField, ElementType.Xpath,
+												commonFunc.getDataFromTestDataSheet("Value"));
+										VariableHandler.setTravelRequestDocNo(TravelRequestDocNo);
+										logs.logging("info",
+												"Travel Request No is:" + VariableHandler.getTravelRequestDocNo());
+										webDB.waitForElement(AttendanceLeaveLocators.TravelRequestCancelButton,
+												ElementType.Xpath);
+										if (flag) {
+											commonFunc.hardWait(4000);
+											webDB.clickAnElement(AttendanceLeaveLocators.TravelRequestCancelButton,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Travel Request Document Is Cancelled");
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		assertTrue(flag);
 	}
