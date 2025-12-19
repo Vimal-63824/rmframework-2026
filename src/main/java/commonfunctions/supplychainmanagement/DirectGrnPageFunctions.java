@@ -848,7 +848,7 @@ public class DirectGrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	private void closeToastIfDisplayed() {
-		if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 			webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			logs.logging("INFO", "Toast Alert Successfully Catched");
 		}

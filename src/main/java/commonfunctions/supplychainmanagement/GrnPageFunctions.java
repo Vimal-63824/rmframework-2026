@@ -299,8 +299,7 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	private void closeToastIfDisplayed() {
-		commonFunc.hardWait(3000);
-		if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 			webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			logs.logging("INFO", "Toast Alert Successfully Catched");
 		}
@@ -685,54 +684,28 @@ public class GrnPageFunctions {
 			webDB.clickAnElement(GrnLocators.LotserialitemsInput, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(GrnLocators.LotserialitemsInput, ITEM_NAME);
 			logs.logging("INFO", "Item Successfully Added");
+			webDB.waitForElement(GrnLocators.LotSerialIframe, ElementType.Xpath);
 			webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotclickInput, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(GrnLocators.LotclickInput, GrnLocators.LotNumberInput, LOT_NUMBER);
+			logs.logging("INFO", "Lot Number Insert Successfully");
+			flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
+			if (!flag) {
+				logs.logging("info", "Verified Serial Is Disabled");
+			} else {
+				logs.logging("INFO", "Serial Is Enabled");
+			}
+			commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialDate, GrnLocators.DateInput,
+					commonFunc.getDataFromTestDataSheet("LotSerialDate"));
+			logs.logging("INFO", "Lot Date Insert Successfully");
+			flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotclickInput, ElementType.Xpath);
-				commonFunc.hardWait(3000);
-				flag = webDB.isElementDisplayed(GrnLocators.LotNumberInput, ElementType.Xpath);
-				if (flag) {
-					webDB.sendTextToAnElement(GrnLocators.LotNumberInput, LOT_NUMBER, ElementType.Xpath);
-					flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-					if (flag) {
-						logs.logging("INFO", "Lot Number Insert Successfully");
-						flag = webDB.isElementEnabled(GrnLocators.SerialNumberInput, ElementType.Xpath);
-						if (!flag) {
-							logs.logging("info", "Verified Serial Is Disabled");
-						} else {
-							logs.logging("INFO", "Serial Is Enabled");
-						}
-						flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-							flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
-							if (flag) {
-								commonFunc.hardWait(5000);
-								webDB.sendTextToAnElement(GrnLocators.DateInput,
-										commonFunc.getDataFromTestDataSheet("LotSerialDate"), ElementType.Xpath);
-								logs.logging("INFO", "Lot Date Insert Successfully");
-								commonFunc.hardWait(2000);
-								flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-								if (flag) {
-									webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-									commonFunc.hardWait(3000);
-									closeToastIfDisplayed();
-									flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-									if (flag) {
-										commonFunc.hardWait(5000);
-										webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-										logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-									}
-								}
-							}
-						}
-					}
-				}
+				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				closeToastIfDisplayed();
+				closeToastIfDisplayed();
 			}
 		}
-
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -747,44 +720,23 @@ public class GrnPageFunctions {
 			commonFunc.searchAndSelectValueInFilters(GrnLocators.LotserialitemsInput, ITEM_NAME);
 			logs.logging("INFO", "item Successfully Added");
 			webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.SerialClickInput, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(GrnLocators.SerialClickInput, GrnLocators.SerialNumberInput, SERIAL_NUMBER);
+			logs.logging("INFO", "Serial Number Insert Successfully");
+			flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
+			if (!flag) {
+				logs.logging("info", "verified lot is disabled");
+			} else {
+				logs.logging("INFO", "lot Is Enabled");
+			}
+			commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialDate, GrnLocators.DateInput,
+					commonFunc.getDataFromTestDataSheet("LotSerialDate"));
+			logs.logging("INFO", "Lot Date Insert Successfully");
+			flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(GrnLocators.SerialClickInput, ElementType.Xpath);
-				flag = webDB.isElementDisplayed(GrnLocators.SerialNumberInput, ElementType.Xpath);
-				if (flag) {
-					webDB.sendTextToAnElement(GrnLocators.SerialNumberInput, SERIAL_NUMBER, ElementType.Xpath);
-					logs.logging("INFO", "Serial Number Insert Successfully");
-					flag = webDB.isElementEnabled(GrnLocators.LotNumberInput, ElementType.Xpath);
-					if (!flag) {
-						logs.logging("info", "verified lot is disabled");
-					} else {
-						logs.logging("INFO", "lot Is Enabled");
-					}
-					flag = webDB.waitForElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(GrnLocators.LotSerialDate, ElementType.Xpath);
-						flag = webDB.waitForElement(GrnLocators.DateInput, ElementType.Xpath);
-						if (flag) {
-							commonFunc.hardWait(5000);
-							webDB.sendTextToAnElement(GrnLocators.DateInput,
-									commonFunc.getDataFromTestDataSheet("LotSerialDate"), ElementType.Xpath);
-							logs.logging("INFO", "Serial Date Insert Successfully");
-							commonFunc.hardWait(2000);
-							flag = webDB.waitForElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-								closeToastIfDisplayed();
-								flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-								if (flag) {
-									commonFunc.hardWait(5000);
-									webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-									logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-								}
-							}
-						}
-					}
-				}
-
+				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				closeToastIfDisplayed();
+				closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
@@ -4759,7 +4711,7 @@ public class GrnPageFunctions {
 					commonFunc.searchAndSelectValueInFilters(GrnLocators.FindGELovButton,
 							VariableHandler.getGateEntryNumber());
 					logs.logging("INFO", "PO Number Succesfully search and Selected");
-					commonFunc.hardWait(2000);
+					webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
 					flag = webDB.waitForElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
 					if (flag) {
@@ -4778,7 +4730,6 @@ public class GrnPageFunctions {
 			}
 		}
 		assertTrue(flag);
-
 	}
 
 	/**
@@ -4858,7 +4809,7 @@ public class GrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.LotSerailButton, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Successfully Created GRN and Entered GRN Transaction Screen");
-			commonFunc.hardWait(3000);
+			webDB.moveToElement(GrnLocators.LotSerailButton, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.LotSerailButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "LOT/SERIAL Button Clicked");
@@ -4883,7 +4834,6 @@ public class GrnPageFunctions {
 						if (flag) {
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 							commonFunc.checkRefreshCellsDisappear();
-							commonFunc.hardWait(3000);
 							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
@@ -4895,7 +4845,6 @@ public class GrnPageFunctions {
 									} else if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Serial"))) {
 										inputSerialNumber(ITEM_NAME, SERIAL_NUMBER);
 									}
-
 								}
 							}
 						}
@@ -5030,7 +4979,6 @@ public class GrnPageFunctions {
 	 */
 	public void clickSelectAllGEButton() {
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(2000);
 		webDB.switchToDefaultContent();
 		flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 		if (flag) {
@@ -5046,9 +4994,8 @@ public class GrnPageFunctions {
 							break;
 						} else {
 							element.click();
-							Thread.sleep(10000);
+							Thread.sleep(3000);
 							clickSelectAllGEButton();
-
 						}
 					}
 				} catch (Exception e) {
@@ -5060,7 +5007,6 @@ public class GrnPageFunctions {
 				logs.logging("INFO", " Document Fully Selected And Create GRN Button Shown");
 			} else {
 				logs.logging("INFO", " Document Not Selected And Create GRN Button Not Shown");
-//				}
 			}
 		}
 		assertTrue(flag);
@@ -5072,14 +5018,13 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void createGrnWithGeButton() {
-		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
 		if (flag) {
 			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
 			flag = webDB.waitForElement(GrnLocators.CreateGeButton, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
+				webDB.moveToElement(GrnLocators.CreateGeButton, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.CreateGeButton, ElementType.Xpath);
 				logs.logging("INFO", "GRN Document Created");
 				flag = webDB.waitForElement(GrnLocators.OkButton, ElementType.Xpath);
@@ -5087,11 +5032,9 @@ public class GrnPageFunctions {
 					logs.logging("INFO", "Supplier Bill Number And DC Field Shown");
 				} else {
 					logs.logging("INFO", "Supplier Bill Number And DC Field Not Shown");
-
 				}
 			}
 		}
-
 		assertTrue(flag);
 	}
 
