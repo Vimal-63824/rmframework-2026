@@ -238,6 +238,11 @@ public class VariableHandler {
 	private static ThreadLocal<String> MaterialReturnNumber = new ThreadLocal<>();
 	private static ThreadLocal<String> OvertimeDocNo = new ThreadLocal<>();
 	private static ThreadLocal<String> InvoiceDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> BankPaymentOrReceiptDoc = new ThreadLocal<>();
+	private static ThreadLocal<String> CashPaymentOrReceiptDoc = new ThreadLocal<>();
+	private static ThreadLocal<ArrayList<String>> MultipleGRNDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<ArrayList<String>> MultiplePBDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> TravelRequestDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2043,5 +2048,45 @@ public class VariableHandler {
 
 	public static void setInvoiceDocNo(String Data) {
 		InvoiceDocNo.set(Data);
+	}
+
+	public static String getBankPaymentOrReceiptDocNumber() {
+		return BankPaymentOrReceiptDoc.get();
+	}
+
+	public static void setBankPaymentOrReceiptDocNumber(String data) {
+		BankPaymentOrReceiptDoc.set(data);
+	}
+
+	public static ArrayList<String> getMultipleGRNDocs() {
+		return MultipleGRNDocs.get();
+	}
+
+	public static void setMultipleGRNDocs(ArrayList<String> data) {
+		MultipleGRNDocs.set(data);
+	}
+
+	public static ArrayList<String> getMultiplePBDocs() {
+		return MultiplePBDocs.get();
+	}
+
+	public static void setMultiplePBDocs(ArrayList<String> data) {
+		MultiplePBDocs.set(data);
+	}
+
+	public static String getCashPaymentOrReceiptDocNumber() {
+		return CashPaymentOrReceiptDoc.get();
+	}
+
+	public static void setCashPaymentOrReceiptDocNumber(String data) {
+		CashPaymentOrReceiptDoc.set(data);
+	}
+	
+	public static String getTravelRequestDocNo() {
+		return TravelRequestDocNo.get();
+	}
+
+	public static void setTravelRequestDocNo(String data) {
+		TravelRequestDocNo.set(data);
 	}
 }

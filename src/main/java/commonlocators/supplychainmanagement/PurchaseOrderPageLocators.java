@@ -474,4 +474,6 @@ public class PurchaseOrderPageLocators {
 	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
 	public static final String GE_SelectAllCheckBox = "//table[@id='14371735332902313268_orig']/tbody/tr/td/input[@type='checkbox']";
+	/** @locatorType Xpath */
+	public static final String ForwardEmployeefield = "//input[@data-testid='P236131090_FWD_PERSON']";
 }

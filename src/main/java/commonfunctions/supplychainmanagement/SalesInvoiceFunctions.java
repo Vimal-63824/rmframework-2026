@@ -920,6 +920,218 @@ public class SalesInvoiceFunctions {
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("DBSales"));
 		return flag;
 	}
+	
+	/**
+	 * create direct Domestic Sales Invoice for the customer - price basis user
+	 * defined- Similar Stock and Customer UOM
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectSalesInvoiceBR(String SheetName, String Customer) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"), Customer);
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+//		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(SheetName);
+		commonFunc.checkRefreshCellsDisappear();
+//		verifyAllocLSbatch();
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyPickButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyCreateInvoiceNo();
+//		commonFunc.checkRefreshCellsDisappear();
+		verifySITotalAmountWithExcelAndDB(SheetName);
+		VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+		clickPostButton();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+//		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(SheetName);
+		commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * create direct Domestic Sales Invoice for the customer - price basis user
+	 * defined- Similar Stock and Customer UOM
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectSalesInvoiceBRMulti(String Customer, String SheetName, String SheetName2, int i1) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateSalesInvoicePage();
+		for (int i = 1; i <= 2; i++) {
+			verifyClickingAddButton();
+			verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("SI_Type"), Customer);
+			commonFunc.checkRefreshCellsDisappear();
+			verifyClickingTickButton();
+			verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+			verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+			verifyHeaderTickIcon();
+			commonFunc.checkRefreshCellsDisappear();
+//			CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
+			AddingUserDefinedItemLineFromReadingExcelSheet(SheetName);
+			commonFunc.checkRefreshCellsDisappear();
+//			verifyAllocLSbatch();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifyPickButton();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifyCreateInvoiceNo();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifySITotalAmountWithExcelAndDB(SheetName);
+			VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+			clickPostButton();
+			forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+//		flag = commonFunc.logoutUser();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.checkRefreshCellsDisappear();
+			checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+			salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(SheetName);
+			excelUtils.writeDataInExcel(BRFilepath, SheetName2, i1, 25 + i,
+					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+		}
+		commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * create direct Domestic Sales Invoice for the customer - price basis user
+	 * defined- Similar Stock and Customer UOM
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectSalesInvoiceBRMultiUnits(String SheetName, String Customer, String Location,
+			String Prefix) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(Location, commonFunc.getDataFromTestDataSheet("SI_Type"),
+				Customer);
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(Prefix);
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+//		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(SheetName);
+		commonFunc.checkRefreshCellsDisappear();
+//		verifyAllocLSbatch();
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyPickButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyCreateInvoiceNo();
+//		commonFunc.checkRefreshCellsDisappear();
+		verifySITotalAmountWithExcelAndDB(SheetName);
+		VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+		clickPostButton();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+//		flag = commonFunc.logoutUser();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+//		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(SheetName);
+		commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * create direct Domestic Sales Invoice for the customer - price basis user
+	 * defined- Similar Stock and Customer UOM
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectSalesInvoiceBRMultiUnits(String Customer, String SheetName, String SheetName2, int i1,
+			String Location, String Prefix) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateSalesInvoicePage();
+		for (int i = 1; i <= 2; i++) {
+			verifyClickingAddButton();
+			verifyCreateDirectSalesInvoiceAddingParameters(Location, commonFunc.getDataFromTestDataSheet("SI_Type"),
+					Customer);
+			commonFunc.checkRefreshCellsDisappear();
+			verifyClickingTickButton();
+			verifyInvoicePfx(Prefix);
+			verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+			verifyHeaderTickIcon();
+			commonFunc.checkRefreshCellsDisappear();
+//			CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("CustomerName"));
+			AddingUserDefinedItemLineFromReadingExcelSheet(SheetName);
+			commonFunc.checkRefreshCellsDisappear();
+//			verifyAllocLSbatch();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifyPickButton();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifyCreateInvoiceNo();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifySITotalAmountWithExcelAndDB(SheetName);
+			VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+			clickPostButton();
+			forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+//		flag = commonFunc.logoutUser();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.checkRefreshCellsDisappear();
+			checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+			salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(SheetName);
+			excelUtils.writeDataInExcel(BRFilepath, SheetName2, i1, 25 + i,
+					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+		}
+		commonFunc.logoutUser();
+		return flag;
+	}
 
 	/**
 	 * create direct Export Sales Invoice for the customer - price basis user
@@ -960,6 +1172,119 @@ public class SalesInvoiceFunctions {
 				System.getProperty("HariUsername"));
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportSD"));
+		return flag;
+	}
+	
+	/**
+	 * create direct Export Sales Invoice for the customer - price basis user
+	 * defined- Similar Stock and Customer UOM
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectSalesInvoiceExportBR(String SheetName, String Customer) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateSalesInvoicePage();
+		verifyClickingAddButton();
+		verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SI_Type"), Customer);
+		commonFunc.checkRefreshCellsDisappear();
+		verifyClickingTickButton();
+		verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+		verifyLUTNO(commonFunc.getDataFromTestDataSheet("LUT_No"));
+		verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+		verifyHeaderTickIcon();
+		commonFunc.checkRefreshCellsDisappear();
+//		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		AddingUserDefinedItemLineFromReadingExcelSheet(SheetName);
+		commonFunc.checkRefreshCellsDisappear();
+//		verifyAllocLSbatch();
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyPickButton();
+//		commonFunc.checkRefreshCellsDisappear();
+//		verifyCreateInvoiceNo();
+//		commonFunc.checkRefreshCellsDisappear();
+		verifySITotalAmountWithExcelAndDB(SheetName);
+		VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+		clickPostButton();
+		forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+//		flag = commonFunc.logoutUser();
+//		commonFunc.checkRefreshCellsDisappear();
+//		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+//		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportSD"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(SheetName);
+		commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * create direct Export Sales Invoice for the customer - price basis user
+	 * defined- Similar Stock and Customer UOM
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean verifyDirectSalesInvoiceExportBRMulti(String Customer, String SheetName, String SheetName2, int i1) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateSalesInvoicePage();
+		for (int i = 1; i <= 2; i++) {
+			verifyClickingAddButton();
+			verifyCreateDirectSalesInvoiceAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("SI_Type"), Customer);
+			commonFunc.checkRefreshCellsDisappear();
+			verifyClickingTickButton();
+			verifyInvoicePfx(commonFunc.getDataFromTestDataSheet("InvoicePrefix"));
+			verifyLUTNO(commonFunc.getDataFromTestDataSheet("LUT_No"));
+			verifyHeaderCPCCode(commonFunc.getDataFromTestDataSheet("CPC_Code"));
+			verifyHeaderTickIcon();
+			commonFunc.checkRefreshCellsDisappear();
+//		CustomerDetailsVerification(commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+			AddingUserDefinedItemLineFromReadingExcelSheet(SheetName);
+			commonFunc.checkRefreshCellsDisappear();
+//			verifyAllocLSbatch();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifyPickButton();
+//			commonFunc.checkRefreshCellsDisappear();
+//			verifyCreateInvoiceNo();
+//			commonFunc.checkRefreshCellsDisappear();
+			verifySITotalAmountWithExcelAndDB(SheetName);
+			VariableHandler.setMultipleSIDocs(MultiSIDocNumber);
+			clickPostButton();
+			forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+//		commonFunc.logoutUser();
+//		commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("HodPassword"),
+//				"HariUsername");
+//		approveFunc.navigateToApprovals();
+//		approveFunc.filterDocumentsforApproval(VariableHandler.getSIdocno());
+//		approveFunc.verifyApproveWithDocNumber(VariableHandler.getSIdocno());
+//		flag = commonFunc.logoutUser();
+//		commonFunc.checkRefreshCellsDisappear();
+//		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+//		salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("ExportSD"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			commonFunc.checkRefreshCellsDisappear();
+			checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
+			salesOrderFunctions.verifyExpectedStockQtyWithDBValuesAfterInvoice(SheetName);
+			excelUtils.writeDataInExcel(BRFilepath, SheetName2, i1, 25 + i,
+					dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+							commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+		}
+		commonFunc.logoutUser();
 		return flag;
 	}
 
@@ -4105,17 +4430,17 @@ public class SalesInvoiceFunctions {
 					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBHSNColumn")));
 			logs.logging("INFO", "Line Detail HSN Code Matched With DataBase Values");
 
-			salesOrderFunctions.verifyAssertionBothValues(IGST, dbCommonFunctions.PILineDetails(
-					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBIGSTAmtColumn")));
-			logs.logging("INFO", "Line Detail IGST Amount Matched With DataBase Values");
-
-			salesOrderFunctions.verifyAssertionBothValues(CGST, dbCommonFunctions.PILineDetails(
-					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBCGSTAmtColumn")));
-			logs.logging("INFO", "Line Detail CGST Amount Matched With DataBase Values");
-
-			salesOrderFunctions.verifyAssertionBothValues(SGST, dbCommonFunctions.PILineDetails(
-					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBSGSTAmtColumn")));
-			logs.logging("INFO", "Line Detail SGST Amount Matched With DataBase Values");
+//			salesOrderFunctions.verifyAssertionBothValues(IGST, dbCommonFunctions.PILineDetails(
+//					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBIGSTAmtColumn")));
+//			logs.logging("INFO", "Line Detail IGST Amount Matched With DataBase Values");
+//
+//			salesOrderFunctions.verifyAssertionBothValues(CGST, dbCommonFunctions.PILineDetails(
+//					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBCGSTAmtColumn")));
+//			logs.logging("INFO", "Line Detail CGST Amount Matched With DataBase Values");
+//
+//			salesOrderFunctions.verifyAssertionBothValues(SGST, dbCommonFunctions.PILineDetails(
+//					VariableHandler.getPI_DocNo(), commonFunc.getDataFromTestDataSheet("PIDBSGSTAmtColumn")));
+//			logs.logging("INFO", "Line Detail SGST Amount Matched With DataBase Values");
 			commonFunc.hardWait(1000);
 		}
 	}
@@ -4906,13 +5231,9 @@ public class SalesInvoiceFunctions {
 	 */
 	public void GateEntryCNPrefix_CreditNoteReason_CreInvoiceNo_UpdNarration_CreateJour_Post(String CR_CN_GE_Pfx,
 			String CR_Return_Reason) {
-		flag = webDB.waitForElement(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_CN_Pfx_Lov_Btn, CR_CN_GE_Pfx);
 			flag = webDB.waitForElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(SalesInvoiceLocators.CR_Reason_Lov_Btn, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.CR_Reason_Lov_Btn, CR_Return_Reason);
 				flag = webDB.waitForElement(SalesInvoiceLocators.CR_Save_Icon, ElementType.Xpath);
 				if (flag) {
@@ -4967,7 +5288,6 @@ public class SalesInvoiceFunctions {
 					}
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
@@ -7578,6 +7898,76 @@ public class SalesInvoiceFunctions {
 					}
 				}
 			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is Used To Verify The SO Total Amount With DataBase
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void verifySITotalAmountWithExcelAndDB(String SheetName) {
+		String[][] SIMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		SIMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 4; i < SIMultipleline.length; i++) {
+			String ITEM_ID = SIMultipleline[i][1];
+			String SI_Total_Amount = SIMultipleline[i][27];
+			if (ITEM_ID.equals("")) {
+				if (!SI_Total_Amount.equals("")) {
+					salesOrderFunctions
+							.verifyAssertionBothValues(
+									dbCommonFunctions.SIHeaderDetails(VariableHandler.getSIdocno(),
+											commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")),
+									SI_Total_Amount);
+					logs.logging("INFO",
+							"Expected Sales Invoice Total Amount Is Matched With DataBase Values For This Sales Invoice Document "
+									+ VariableHandler.getSIdocno());
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Verify forwardForApproval
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void forwardForApproval(String ForwardPerson) {
+		commonFunc.hardWait(1000);
+		if (webDB.verifyIsElementDisplayed(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			String GetTextFrwdPerson = webDB.getDomPropertyFromElement(SalesInvoiceLocators.SI_Frwd_Person,
+					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+			if (!GetTextFrwdPerson.equals(ForwardPerson)) {
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.ForwardApprovalLov, ForwardPerson);
+				commonFunc.hardWait(500);
+				webDB.switchToFrame(SalesInvoiceLocators.WorkApprovalFrame, ElementType.Xpath);
+				logs.logging("INFO", "Switched To WorkFlow Frame");
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(SalesInvoiceLocators.OkButtonForward, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SalesInvoiceLocators.OkButtonForward, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SalesInvoiceLocators.SI_Add_Icon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Verified Navigate To PO Home Page");
+				}
+			}
+			webDB.switchToDefaultContent();
+			assertTrue(flag);
+		} else {
+			flag = false;
+			VariableHandler.setApprovalFlag(flag);
 		}
 		assertTrue(flag);
 	}

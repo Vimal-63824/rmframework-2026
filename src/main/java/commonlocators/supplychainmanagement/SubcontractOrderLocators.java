@@ -426,4 +426,36 @@ public class SubcontractOrderLocators {
 	public static final String Pend_SCO_GE = "//button[@data-testid='Pending_SCO_GE']";
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_iFrame = "//iframe[@title='Pending SCO']";
+	/** @Locator XPATH */
+	public static final String Pend_GE_SCO_No_Lov = "//input[@data-testid='P1615131101_SCO_NO']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_Search = "//button[@data-testid='Find']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_SelectAll = "//*[@id=\"check_all\"]";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_Select = "//*[@id=\"17946853003741197487_orig\"]/tbody/tr[2]/td[19]";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_CreateGE = "//button[@data-testid='Create_GE']";
+	/** @Locator XPATH */
+	public static final String Select_GateKeeper = "//select[@data-testid='P1615131101_GACDT_GATE_KEEPER']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_DCno = "//input[@data-testid='P1615131101_GACDT_DC_NO']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_InvNo = "//input[@data-testid='P1615131101_GACDT_INV_NO']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_VechNo = "//input[@data-testid='P1615131101_GACDT_VEHICLE_NO']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_Ref = "//input[@data-testid='P1615131101_GACDT_REF']";
+	/** @Locator XPATH */
+	public static final String Pend_SCO_GE_CreateGE_OKButton = "//button[@data-testid='OK']";
+	/** @locatorType XPATH */
+	public static final String GateEntryCloseNoteAlert = "(//button[@title='Close'])[1]";
+	/** @locatorType XPATH */
+	public static final String SCO_GRN_LineWise_Delete = "//*[@id=\"add_line_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[34]/a/span";
+	/** @Locator XPATH */
+	public static final String SCO_GRN_Header_CancelBtn = "//button[@data-testid='Cancel_GRN']";
+	/** @Locator XPATH */
+	public static final String SCO_GRN_Header_Cancel_LOVBtn = "//button[@id='P19315104001_PORH_CANCEL_REAS_lov_btn']";
+	/** @Locator XPATH */
+	public static final String SCO_GRN_Header_CancelReason_Ok = "//button[@data-testid='Cancel_Reason']";
 }
