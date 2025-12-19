@@ -38,6 +38,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 1, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation() throws IOException {
@@ -50,6 +51,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 2, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationAndExpense() throws IOException {
@@ -62,6 +64,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 3, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation,Expenses Account and Adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
@@ -74,6 +77,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 4, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN Without Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation() throws IOException {
@@ -86,6 +90,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 5, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
@@ -98,6 +103,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 6, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN Without Deviation and Expenses Account And adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationExpenseAndAdjustment()
@@ -111,6 +117,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 7, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation() throws IOException {
@@ -123,6 +130,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 8, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense() throws IOException {
@@ -135,6 +143,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 9, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN With Deviation and Expenses Account And Adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationExpenseAndAdjustment()
@@ -148,6 +157,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 10, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN Without Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation() throws IOException {
@@ -160,6 +170,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 11, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense() throws IOException {
@@ -172,6 +183,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 12, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationExpenseAndAdjustment()
@@ -185,6 +197,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 13, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviation() throws IOException {
@@ -197,6 +210,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 14, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
@@ -209,6 +223,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 15, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment()
@@ -222,6 +237,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 16, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN Without Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithDeviation() throws IOException {
@@ -234,6 +250,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 17, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithDeviationAndExpense() throws IOException {
@@ -246,6 +263,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 18, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN With Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithDeviationExpenseAndAdjustment()
@@ -259,6 +277,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 19, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithDeviation() throws IOException {
@@ -271,6 +290,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 20, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithDeviationAndExpense()
@@ -284,6 +304,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 21, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation,Expenses Account and Adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment()
@@ -297,6 +318,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 22, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN Without Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviation() throws IOException {
@@ -309,6 +331,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 23, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviationAndExpense()
@@ -322,6 +345,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 24, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN Without Deviation and Expenses Account And adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviationExpenseAndAdjustment()
@@ -335,6 +359,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 25, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviation() throws IOException {
@@ -347,6 +372,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 26, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviationAndExpense()
@@ -360,6 +386,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 27, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN With Deviation and Expenses Account And Adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment()
@@ -374,6 +401,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 28, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN Without Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviation()
@@ -387,6 +415,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 29, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST- Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviationAndExpense()
@@ -400,6 +429,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 30, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviationExpenseAndAdjustment()
@@ -414,6 +444,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 31, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN With Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviation()
@@ -427,6 +458,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 32, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviationAndExpense()
@@ -440,6 +472,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 33, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviationExpenseAndAdjustment()
@@ -454,6 +487,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 34, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN Without Deviation (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviation() throws IOException {
@@ -466,6 +500,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 35, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationAndExpense()
@@ -479,6 +514,7 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
+	@Author("Durai-RMITS")
 	@Test(priority = 36, groups = {
 			"Purchase Bill" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Against GRN With Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment()
