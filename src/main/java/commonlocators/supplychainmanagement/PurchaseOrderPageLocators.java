@@ -249,6 +249,10 @@ public class PurchaseOrderPageLocators {
 	public static final String Supplier_Item_Desc = "//input[@id='P161513106045_POL_SUPLR_PROD_DESC']";
 	/** @locatorType Xpath */
 	public static final String LineDetailTwoButton = "//label[@for='P161513106045_TYPE_1']";
+	/** @locatorType Xpath */ 
+	public static final String FreeOfCostLabel = "//label[contains(@id,'POL_FOC_FLAG_LABEL')]";
+	/** @locatorType Xpath */ 
+	public static final String FreeOfCostInput = "//input[contains(@id,'POL_FOC_FLAG_HIDDENVALUE')]";
 	/** @locatorType Xpath */
 	public static final String UnRegisterHeader = "//h2[text()='Unregister RCM Details']";
 	/** @locatorType Xpath */
