@@ -704,6 +704,7 @@ public class GrnPageFunctions {
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				closeToastIfDisplayed();
 				closeToastIfDisplayed();
+				closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
@@ -736,6 +737,7 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				closeToastIfDisplayed();
 				closeToastIfDisplayed();
 				closeToastIfDisplayed();
 			}
