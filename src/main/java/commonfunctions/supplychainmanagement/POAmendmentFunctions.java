@@ -417,8 +417,8 @@ public class POAmendmentFunctions {
 		if (flag) {
 			webDB.clickAnElement(POAmendmentLocators.ItemTickButton, ElementType.Xpath);
 			commonFunc.hardWait(2500);
-			while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-				webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
+			while (webDB.verifyIsElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException("(//button[text()='OK'])[last()]", ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 			if (flag) {

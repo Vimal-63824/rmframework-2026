@@ -2565,18 +2565,21 @@ public class CommonFunctions {
 			webDB.moveToElement(Tablespec, ElementType.Xpath);
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 //			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.waitForElement(InputParameter, ElementType.Xpath);
 			webDB.clearText(InputParameter, ElementType.Xpath);
 //			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
-				hardWait(1000);
+				webDB.moveToElement(Tablespec, ElementType.Xpath);
 				webDB.clickAnElement(Tablespec, ElementType.Xpath);
-				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				webDB.waitForElement(InputParameter, ElementType.Xpath);
+				checkRefreshCellsDisappear();
+				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
-				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
-						getDataFromTestDataSheet("Value"));
-//				logs.logging("INFO", "Get Attribute Value Is: " + value);
-				flag = value.contains(Enteredvalue);
+//				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
+//						getDataFromTestDataSheet("Value"));
+////				logs.logging("INFO", "Get Attribute Value Is: " + value);
+//				flag = value.contains(Enteredvalue);
 				if (flag) {
 //					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
 				}

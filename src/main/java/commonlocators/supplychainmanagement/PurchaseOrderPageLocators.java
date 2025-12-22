@@ -16,6 +16,10 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoTypeSelect = "//select[@data-testid='P161513106101_POH_TYPE_1']";
 	/** @locatorType Xpath */
+	public static final String PoPfxInput = "//input[contains(@data-testid,'POH_ORDER_PFX_2')]";
+	/** @locatorType Xpath */
+	public static final String PoPfxLovBtn = "//input[contains(@data-testid,'POH_ORDER_PFX_2')]/following-sibling::button";
+	/** @locatorType Xpath */
 	public static final String PoPfxSelect = "//select[@data-testid='P161513106101_POH_ORDER_PFX_2']";
 	/** @locatorType Xpath */
 	public static final String PoDate = "//*[@id='P1615131061_POH_ORDER_DATE_input']";
@@ -447,11 +451,12 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[33]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[34]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String POSubClass = "//span[@id='P161513106045_POL_PROD_SUB_CLS_DISPLAY']";
+	/** @locatorType Xpath */
 	public static final String LineDeatilsSave = "//button[@data-testid='POL_DET_SAVE']";
 
 	/** @locatorType Xpath */

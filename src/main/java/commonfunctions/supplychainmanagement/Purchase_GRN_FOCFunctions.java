@@ -39,15 +39,15 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
 		POfunc.verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Purchase-FocFileName";
-		String SheetName = "DomesticPoFOCUDGeneralSameUOM";
+				+ webDB.getDataFromProperties("Purchase-FocFileName");
+		String SheetName = webDB.getDataFromProperties("DomesticPoFOCUDGeneralSameUOM");
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
@@ -55,6 +55,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String LineAmount = itemmultiple[i][7];
+				String TradePercentage = itemmultiple[i][8];
+				String SplDiscPercentage = itemmultiple[i][9];
+				String CashDiscPercentage = itemmultiple[i][10];
 				String TradeAssblValue = itemmultiple[i][11];
 				String TradeAmt = itemmultiple[i][12];
 				String SDAssemblValue = itemmultiple[i][13];
@@ -76,14 +79,21 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
+				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				POfunc.verifyNavigateLineDetailTwo();
-				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
+				POfunc.navigateToLineDetailPage(item);
+				POfunc.switchToLineDetailFrame();
+				POfunc.verifyNavigateLineDetailTwo();
+				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+				POfunc.verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+				POfunc.verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
 			}
 		}
 		POfunc.verifyHeaderTickAndPost();
@@ -112,15 +122,15 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
 		POfunc.verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Purchase-FocFileName";
-		String SheetName = "DomesticPoFOCUDMaterialSameUOM";
+				+ webDB.getDataFromProperties("Purchase-FocFileName");
+		String SheetName = webDB.getDataFromProperties("DomesticPoFOCUDMaterialSameUOM");
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
@@ -128,6 +138,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String LineAmount = itemmultiple[i][7];
+				String TradePercentage = itemmultiple[i][8];
+				String SplDiscPercentage = itemmultiple[i][9];
+				String CashDiscPercentage = itemmultiple[i][10];
 				String TradeAssblValue = itemmultiple[i][11];
 				String TradeAmt = itemmultiple[i][12];
 				String SDAssemblValue = itemmultiple[i][13];
@@ -149,14 +162,21 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
+				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				POfunc.verifyNavigateLineDetailTwo();
-				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
+				POfunc.navigateToLineDetailPage(item);
+				POfunc.switchToLineDetailFrame();
+				POfunc.verifyNavigateLineDetailTwo();
+				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+				POfunc.verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+				POfunc.verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
 			}
 		}
 		POfunc.verifyHeaderTickAndPost();
@@ -185,15 +205,15 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"));
 		POfunc.verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Purchase-FocFileName";
-		String SheetName = "DomesticPoFOCUDServiceSameUOM";
+				+ webDB.getDataFromProperties("Purchase-FocFileName");
+		String SheetName = webDB.getDataFromProperties("DomesticPoFOCUDServiceSameUOM");
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
@@ -201,6 +221,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String LineAmount = itemmultiple[i][7];
+				String TradePercentage = itemmultiple[i][8];
+				String SplDiscPercentage = itemmultiple[i][9];
+				String CashDiscPercentage = itemmultiple[i][10];
 				String TradeAssblValue = itemmultiple[i][11];
 				String TradeAmt = itemmultiple[i][12];
 				String SDAssemblValue = itemmultiple[i][13];
@@ -222,14 +245,21 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
+				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				POfunc.verifyNavigateLineDetailTwo();
-				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
+				POfunc.navigateToLineDetailPage(item);
+				POfunc.switchToLineDetailFrame();
+				POfunc.verifyNavigateLineDetailTwo();
+				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+				POfunc.verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+				POfunc.verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
 			}
 		}
 		POfunc.verifyHeaderTickAndPost();
@@ -258,15 +288,15 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
 		POfunc.verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Purchase-FocFileName";
-		String SheetName = "ImportPoFOCUDGeneralSameUOM";
+				+ webDB.getDataFromProperties("Purchase-FocFileName");
+		String SheetName = webDB.getDataFromProperties("ImportPoFOCUDGeneralSameUOM");
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
@@ -274,6 +304,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String LineAmount = itemmultiple[i][7];
+				String TradePercentage = itemmultiple[i][8];
+				String SplDiscPercentage = itemmultiple[i][9];
+				String CashDiscPercentage = itemmultiple[i][10];
 				String TradeAssblValue = itemmultiple[i][11];
 				String TradeAmt = itemmultiple[i][12];
 				String SDAssemblValue = itemmultiple[i][13];
@@ -295,14 +328,21 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
+				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				POfunc.verifyNavigateLineDetailTwo();
-				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
+				POfunc.navigateToLineDetailPage(item);
+				POfunc.switchToLineDetailFrame();
+				POfunc.verifyNavigateLineDetailTwo();
+				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+				POfunc.verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+				POfunc.verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
 			}
 		}
 		POfunc.verifyHeaderTickAndPost();
@@ -331,15 +371,15 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
 		POfunc.verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Purchase-FocFileName";
-		String SheetName = "ImportPoFOCUDMaterialSameUOM";
+				+ webDB.getDataFromProperties("Purchase-FocFileName");
+		String SheetName = webDB.getDataFromProperties("ImportPoFOCUDMaterialSameUOM");
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
@@ -347,6 +387,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String LineAmount = itemmultiple[i][7];
+				String TradePercentage = itemmultiple[i][8];
+				String SplDiscPercentage = itemmultiple[i][9];
+				String CashDiscPercentage = itemmultiple[i][10];
 				String TradeAssblValue = itemmultiple[i][11];
 				String TradeAmt = itemmultiple[i][12];
 				String SDAssemblValue = itemmultiple[i][13];
@@ -368,14 +411,21 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
+				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				POfunc.verifyNavigateLineDetailTwo();
-				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
+				POfunc.navigateToLineDetailPage(item);
+				POfunc.switchToLineDetailFrame();
+				POfunc.verifyNavigateLineDetailTwo();
+				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+				POfunc.verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+				POfunc.verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
 			}
 		}
 		POfunc.verifyHeaderTickAndPost();
@@ -404,15 +454,15 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"));
 		POfunc.verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
-				+ "Purchase-FocFileName";
-		String SheetName = "ImportPoFOCUDServiceSameUOM";
+				+ webDB.getDataFromProperties("Purchase-FocFileName");
+		String SheetName = webDB.getDataFromProperties("ImportPoFOCUDServiceSameUOM");
 		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		for (int i = 3; i < itemmultiple.length; i++) {
 			String item = itemmultiple[i][1];
@@ -420,6 +470,9 @@ public class Purchase_GRN_FOCFunctions {
 				String Quantity = itemmultiple[i][5];
 				String UnitCost = itemmultiple[i][6];
 				String LineAmount = itemmultiple[i][7];
+				String TradePercentage = itemmultiple[i][8];
+				String SplDiscPercentage = itemmultiple[i][9];
+				String CashDiscPercentage = itemmultiple[i][10];
 				String TradeAssblValue = itemmultiple[i][11];
 				String TradeAmt = itemmultiple[i][12];
 				String SDAssemblValue = itemmultiple[i][13];
@@ -441,14 +494,21 @@ public class Purchase_GRN_FOCFunctions {
 				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyLineAmountValidationAndPom(item, LineAmount);
 				POfunc.navigateToLineDetailPage(item);
+				POfunc.verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				POfunc.verifyNavigateLineDetailTwo();
-				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 				POfunc.verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 						CDAssemblValue, CDAmt);
+				POfunc.navigateToLineDetailPage(item);
+				POfunc.switchToLineDetailFrame();
+				POfunc.verifyNavigateLineDetailTwo();
+				POfunc.enableFreeOfCostCheckbox();
 				POfunc.verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+				POfunc.verifyTickIconcreateItem();
 				POfunc.verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 						commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+				POfunc.verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+				POfunc.verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
 			}
 		}
 		POfunc.verifyHeaderTickAndPost();
@@ -457,8 +517,8 @@ public class Purchase_GRN_FOCFunctions {
 			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
 					webDB.getDataFromProperties("HariEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 					System.getProperty("HariUsername"));
-			commonFunc.navigatePurchaseOrderPage();
 		}
+		commonFunc.navigatePurchaseOrderPage();
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();

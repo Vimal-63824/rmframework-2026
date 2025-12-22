@@ -17,6 +17,7 @@
 			<class name="com.roadmapERP.PoToMRVTest"></class>
 			<class name="com.roadmapERP.CashPaymentTest"></class>
 			<class name="com.roadmapERP.EmployeeOvertime"></class>
+			<class name="com.roadmapERP.PurchaseFOCTest"></class>
 		</classes>
 	</test>
 </suite>
