@@ -4066,11 +4066,17 @@ public class SalesInvoiceFunctions {
 							commonFunc.checkRefreshCellsDisappear();
 							flag = webDB.waitForElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
-								commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
-										HSNcode_SI);
-								logs.logging("INFO", "HSN Code Inserted Successfully");
+								String GetTextHsnCode = webDB.getTextFromElement(SalesInvoiceLocators.HSNcode_Column,
+										ElementType.Xpath);
+								if (!GetTextHsnCode.equals(HSNcode_SI)) {
+									webDB.clickAnElement(SalesInvoiceLocators.HSNcode_Column, ElementType.Xpath);
+									commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.HSN_Code_LOV_Btn,
+											HSNcode_SI);
+									logs.logging("INFO", "HSN Code Inserted Successfully");
+									webDB.pressTabKey();
+								}
 								webDB.pressTabKey();
+								commonFunc.checkRefreshCellsDisappear();
 							}
 						}
 					}

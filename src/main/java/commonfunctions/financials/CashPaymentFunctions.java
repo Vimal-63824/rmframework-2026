@@ -2714,7 +2714,7 @@ public class CashPaymentFunctions {
 						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
 								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(CashPaymentLocators.PBFindButton, ElementType.Xpath);
+//						flag = webDB.waitForElement(CashPaymentLocators.PBFindButton, ElementType.Xpath);
 //						if (flag) {
 //							webDB.clickAnElement(CashPaymentLocators.PBFindButton, ElementType.Xpath);
 //							flag = webDB.waitForElement(CashPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
