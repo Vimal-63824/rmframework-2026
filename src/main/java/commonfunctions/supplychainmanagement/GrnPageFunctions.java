@@ -2689,9 +2689,9 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("ControlBU"),
 				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
 		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
-		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-				"AdminUsername");
-		commonFunc.navigateToMaterialReceiptVoucher();
+//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+//				"AdminUsername");
+//		commonFunc.navigateToMaterialReceiptVoucher();
 		if (!ApplicationcontrolCreationMrv.equals(commonFunc.getDataFromTestDataSheet("NotCheck"))
 				&& ApplicationControlPostMrv.equals(commonFunc.getDataFromTestDataSheet("NotCheck"))) {
 			System.out.println("CheckCreateflagAndNotCheckPostFlag");
@@ -2715,7 +2715,6 @@ public class GrnPageFunctions {
 		} else if (ApplicationcontrolCreationMrv.equals(commonFunc.getDataFromTestDataSheet("NotCheck"))
 				&& !ApplicationControlPostMrv.equals(commonFunc.getDataFromTestDataSheet("NotCheck"))) {
 			getMaterialReceiptVoucherDocumentNumberFromDB();
-
 		}
 	}
 
