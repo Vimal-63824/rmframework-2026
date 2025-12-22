@@ -1122,6 +1122,7 @@ public class MaterialReceiptVoucherFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyPostMaterialReceiptWithAndWithoutLocatorBasedOnApplicationControl() {
+		commonFunc.navigateToMaterialReceiptVoucher();
 		verifyToCreateMrvDocumentFromPendingMivWithGrnDocument();
 		getMaterialReceiptVoucherNumberFromToastMessage();
 		verifyToPostWithOrWithoutLocator();
@@ -1149,6 +1150,7 @@ public class MaterialReceiptVoucherFunctions {
 	 * @param VoucherNumber
 	 */
 	public void verifyOpenAlreadyCreatedMRVDocumentsWithGRNSCREEN(String MRVNumber) {
+		commonFunc.navigateToMaterialReceiptVoucher();
 		flag = webDB.waitForElement(MaterialReceiptVoucherLocators.MrvDocLovBtn, ElementType.Xpath);
 		if (flag) {
 			commonFunc.searchAndSelectValueInFilters(MaterialReceiptVoucherLocators.MrvDocLovBtn, MRVNumber);

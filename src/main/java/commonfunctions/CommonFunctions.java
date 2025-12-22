@@ -2965,6 +2965,15 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("Overtime"),
 				AttendanceLeaveLocators.OvertimeFindSearchButton);
 	}
+	
+	/**
+	 * This Method Is Used To Navigate Travel Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToTravelRequest() {
+		navigateToSearchTab(webDB.getDataFromProperties("Travel"), AttendanceLeaveLocators.TravelRequestFindAddButton);
+	}
 
 	
 	/**

@@ -564,4 +564,62 @@ public class AttendanceLeaveLocators {
 	public static final String OvertimeDocNoSelect = "//*[@id=\'3617691308132691817_orig\']/tbody/tr[2]/td[2]/a";
 	/** @locatorType Xpath */
 	public static final String OvertimeReverseButton = "//button[@id='B2669010986177427172']";
+	/** @locatorType Xpath */
+	public static final String OvertimeCancelButton = "//button[@id='B4175615583564191945']";
+	/** @locatorType Xpath */
+	public static final String OvertimePrefixField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[5]";
+	/** @locatorType Xpath */
+	public static final String OvertimePrefixSelect = "//select[@id='C4626696958256781913']";
+	
+	
+	/** @locatorType Xpath */
+	public static final String TravelRequestFindAddButton = "//button[@id='B3252850327143126681']";
+	/** @locatorType Xpath */
+	public static final String TravelRequestEntryEmployeeLOV = "//button[@id='P818210001_HTRH_EMP_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TravelMobileField = "//input[@id='P818210001_HTRH_MOBILE_NO']";
+	/** @locatorType Xpath */
+	public static final String TravelEmailField = "//input[@id='P818210001_HTRH_EMAIL_ID']";
+	/** @locatorType Xpath */
+	public static final String TravelPurposeOfTravelField = "//input[@id='P818210001_HTRH_TRVL_PURPOSE']";
+	/** @locatorType Xpath */
+	public static final String TravelDepartureDate = "//input[@id='P818210001_HTRH_DEPART_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String TravelReturnDate = "//input[@id='P818210001_HTRH_RETURN_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String TravelDepartureCity = "//button[@id='P818210001_HTRH_DEPART_CITY_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TravelDestinationCity = "//button[@id='P818210001_HTRH_DESTN_CITY_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TravelRequestSaveButton = "//button[@id='B3256905931077877438']";
+	/** @locatorType Xpath */
+	public static final String TravelRequestExpensesButton = "//button[@id='B3610194488589546803']";
+	/** @locatorType Xpath */
+	public static final String TravelExpenseAddButton = "//button[@id='B3610195251649546810']";
+	/** @locatorType Xpath */
+	public static final String TravelExpenseLOV = "//button[@id='C3257203091174229882_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TravelExpenseAmount = "//input[@id='C3257203182607229883']";
+	/** @locatorType Xpath */
+	public static final String TravelExpenseRefField = "//input[@id='C3257203291296229884']";
+	/** @locatorType Xpath */
+	public static final String TravelExpenseSaveButton = "//button[@id='B3610195302571546811']";
+	/** @locatorType Xpath */
+	public static final String TravelExpenseCloseButton = "//*[@id=\"wwvFlowForm\"]/div[4]/div[1]/button/span\r\n" + "";
+	/** @locatorType Xpath */
+	public static final String TravelAdditionalTravellersButton = "//button[@id='B3610194593055546804']";
+	/** @locatorType Xpath */
+	public static final String TravelAttTraAddButton = "//button[@id='B3616715425365212468']";
+	/** @locatorType Xpath */
+	public static final String TravelAttTraEMPLOV = "//button[@id='C3258928393065510972_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String TravelAttTraSaveButton = "//button[@id='B3616715498294212469']";
+	/** @locatorType Xpath */
+	public static final String TravelAttTraCloseButton = "//*[@id=\"wwvFlowForm\"]/div[5]/div[1]/button/span";
+	/** @locatorType Xpath */
+	public static final String TravelRequestPostButton = "//button[@id='B3616716188369212476']";
+	/** @locatorType Xpath */
+	public static final String TravelRequestDocNoField = "//*[@id=\"P818210001_HTRH_RQST_NO\"]";
+	/** @locatorType Xpath */
+	public static final String TravelRequestCancelButton = "//button[@id='B3618780304057481668']";
 }
