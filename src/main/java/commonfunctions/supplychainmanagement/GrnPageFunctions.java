@@ -300,8 +300,8 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	private void closeToastIfDisplayed() {
-		if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-			webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+		if (webDB.verifyIsElementDisplayed(CommonUiLocators.SuccesToastCloseIcon, ElementType.Xpath)) {
+			webDB.clickAnElementWithoutException(CommonUiLocators.SuccesToastCloseIcon, ElementType.Xpath);
 			logs.logging("INFO", "Toast Alert Successfully Catched");
 		}
 	}
@@ -702,8 +702,10 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				commonFunc.hardWait(3000);
 				closeToastIfDisplayed();
-				closeToastIfDisplayed();
+//				closeToastIfDisplayed();
+//				closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
@@ -736,8 +738,9 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
+				commonFunc.hardWait(3000);
 				closeToastIfDisplayed();
-				closeToastIfDisplayed();
+//				closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
@@ -2082,6 +2085,8 @@ public class GrnPageFunctions {
 						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
 							continue;
 						}
+						commonFunc.hardWait(5000);
+						closeToastIfDisplayed();
 						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
