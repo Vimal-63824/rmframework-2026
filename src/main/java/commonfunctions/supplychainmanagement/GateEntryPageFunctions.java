@@ -1428,29 +1428,30 @@ public class GateEntryPageFunctions {
 	 */
 	public void verifyClickSelectAllButton() {
 		commonFunc.hardWait(5000);
-		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		if (flag) {
-			List<WebElement> CheckBox = webDB.getDriver()
-					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-			for (WebElement element : CheckBox) {
-				try {
-					if (element.isDisplayed()) {
-						if (!element.isSelected()) {
-							element.click();
-							flag = true;
-							break;
-						} else {
-							element.click();
-							Thread.sleep(10000);
-							verifyClickSelectAllButton();
-							flag = true;
-							break;
-						}
+//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+//		if (flag) {
+		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		List<WebElement> CheckBox = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+		for (WebElement element : CheckBox) {
+			try {
+				if (element.isDisplayed()) {
+					if (!element.isSelected()) {
+						element.click();
+						flag = true;
+						break;
+					} else {
+						element.click();
+						Thread.sleep(10000);
+						verifyClickSelectAllButton();
+						flag = true;
+						break;
 					}
-				} catch (Exception e) {
 				}
+			} catch (Exception e) {
 			}
 		}
+//		}
 		assertTrue(flag);
 	}
 
