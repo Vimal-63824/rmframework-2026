@@ -346,7 +346,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@data-testid='PO_Item_Tick_Icon']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[31]";
+	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[32]";
 	/** @locatorType Xpath */
 	public static final String PoseriviceWithGrnSelectedValues = "//select[@data-testid='GRN_RQRD_FLAG']";
 	/** @locatorType Xpath */
@@ -446,7 +446,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[34]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[35]";
 	}
 
 	/** @locatorType Xpath */
