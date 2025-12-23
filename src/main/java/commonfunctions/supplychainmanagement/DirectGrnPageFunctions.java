@@ -319,9 +319,15 @@ public class DirectGrnPageFunctions {
 					verifyClickingAdd();
 					verifyClickingItemField(ITEM_NAME);
 					verifyClickingHsnField(HSN);
-					verifyClickingSuppQuantity(QTY);
-					verifyClickingReceiptQuantity(QTY);
-					verifyClickingCost(COST);
+//					verifyClickingSuppQuantity(QTY);
+//					verifyClickingReceiptQuantity(QTY);
+//					verifyClickingCost(COST);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
+							DirectGrnPageLocators.GrnLineCostInput, COST);
 					verifyClickingSaveLine();
 					verifyAddingDiscount(i, SheetName);
 				}
