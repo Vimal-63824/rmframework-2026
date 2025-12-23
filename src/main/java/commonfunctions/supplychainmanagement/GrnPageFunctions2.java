@@ -180,6 +180,7 @@ public class GrnPageFunctions2 {
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
 							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
 					logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
 							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
@@ -302,6 +303,7 @@ public class GrnPageFunctions2 {
 					if (flag) {
 						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 						logs.logging("INFO", "Switched To Frame");
+						commonFunc.checkRefreshCellsDisappear();
 						commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineTrdDisc,
 								DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount);
 						logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);

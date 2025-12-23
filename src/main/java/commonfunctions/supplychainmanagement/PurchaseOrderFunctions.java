@@ -62,6 +62,11 @@ public class PurchaseOrderFunctions {
 		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PoPfxLovBtn,
+//					commonFunc.getDataFromTestDataSheet("PurchaseOrderPrefix"));
+//			verifyCLickPurchaseOrderFrame();
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
 		}
 		assertTrue(flag);
@@ -139,8 +144,8 @@ public class PurchaseOrderFunctions {
 			webDB.clearTextField(InputParameter, ElementType.Xpath);
 			logs.logging("INFO", "Clear Text Field The Input Value");
 			commonFunc.hardWait(2500);
-			while (webDB.isElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
-				webDB.clickAnElement("(//button[text()='OK'])[last()]", ElementType.Xpath);
+			while (webDB.verifyIsElementDisplayed("(//button[text()='OK'])[last()]", ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException("(//button[text()='OK'])[last()]", ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
@@ -167,11 +172,10 @@ public class PurchaseOrderFunctions {
 	public void verifyAddItemInPOWithQuantityAndUnitCost(String quantity, String unitcost) {
 		try {
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
-			commonFunc.hardWait(1000);
 			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput, unitcost);
+			webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
 					ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
@@ -274,12 +278,13 @@ public class PurchaseOrderFunctions {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickIconPO, ElementType.Xpath);
-			if (webDB.waitForElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath)) {
 				logs.logging("INFO", "Item Tick Icon Is Clicked");
-				webDB.clickAnElement(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.CloseToastIcon, ElementType.Xpath);
 				logs.logging("INFO", "Toast Close Icon Is Clicked");
 			}
-
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.HeaderTickIconPO, ElementType.Xpath);
 		}
 		assertTrue(flag);
@@ -1985,10 +1990,29 @@ public class PurchaseOrderFunctions {
 	public void verifyNavigateLineDetailTwo() {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.UnRegisterHeader, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated To Line Details Two Page");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify switch to Line Details Iframe
+	 * 
+	 * @author Deepan-GWL
+	 * 
+	 */
+	public void switchToLineDetailFrame() {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDetailTwoButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Switched to Line Details Frame");
 			}
 		}
 		assertTrue(flag);
@@ -2038,6 +2062,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyCreateDirectPO() {
+		webDB.waitForElement(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 		webDB.switchToFrame(CommonUiLocators.PoCreateFrame, ElementType.Xpath);
 		String PoType = null;
 		String location = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.LocationIdInput, ElementType.Xpath,
@@ -3071,8 +3096,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -3245,7 +3274,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -5890,8 +5921,12 @@ public class PurchaseOrderFunctions {
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
 				verifyDirectPoHsnSelectedFromLov(HSN);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyPoWithGrnServiceFlagChecked();
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -6087,34 +6122,41 @@ public class PurchaseOrderFunctions {
 				if (flag) {
 					webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 					logs.logging("INFO", "Switched To frame");
-					commonFunc.hardWait(3000);
-					webDB.clearText(PurchaseOrderPageLocators.TradePercentage, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseOrderPageLocators.TradePercentage, TradeDiscount,
-							ElementType.Xpath);
-					webDB.pressEnterKey();
+//					commonFunc.hardWait(3000);
+//					webDB.clearText(PurchaseOrderPageLocators.TradePercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.TradePercentage, TradeDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
-					webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount,
-							ElementType.Xpath);
-					webDB.pressEnterKey();
+//					commonFunc.hardWait(3000);
+					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.TradePercentage,
+							PurchaseOrderPageLocators.TradePercentage, TradeDiscount);
+//					webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
-					webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount,
-							ElementType.Xpath);
-					webDB.pressEnterKey();
+//					commonFunc.hardWait(3000);
+					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.SpecialDiscountPercentage,
+							PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount);
+//					webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
+//					commonFunc.hardWait(3000);
+					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
+							PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount);
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
 						webDB.switchToDefaultContent();
 						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
+//						commonFunc.hardWait(3000);
 						flag = webDB.waitForElement(PurchaseOrderPageLocators.locationDetails, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
+//						commonFunc.hardWait(3000);
 						verifyDiscountAmountForPo(i1, SheetName);
 
 					}
@@ -6249,7 +6291,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+				// verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -6364,7 +6408,6 @@ public class PurchaseOrderFunctions {
 		System.out.println(PRMultipleline.length);
 		for (int i = i1; i <= i1; i++) {
 			String ITEM_NAME = PRMultipleline[i1][1];
-
 			String SpecialDiscount = PRMultipleline[i1][9];
 			String CashDiscount = PRMultipleline[i1][10];
 			if (!ITEM_NAME.equals("")) {
@@ -6391,28 +6434,33 @@ public class PurchaseOrderFunctions {
 				if (flag) {
 					webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 					logs.logging("INFO", "Switched To frame");
-					commonFunc.hardWait(3000);
-					webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount,
-							ElementType.Xpath);
-					webDB.pressEnterKey();
+//					commonFunc.hardWait(3000);
+//					webDB.clearText(PurchaseOrderPageLocators.SpecialDiscountPercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
-					webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount,
-							ElementType.Xpath);
-					webDB.pressEnterKey();
+//					commonFunc.hardWait(3000);
+					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.SpecialDiscountPercentage,
+							PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount);
+//					webDB.clearText(PurchaseOrderPageLocators.CashDiscountPercentage, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount,
+//							ElementType.Xpath);
+//					webDB.pressEnterKey();
+				commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(3000);
+					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
+							PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount);
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(3000);
 					flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
 						webDB.switchToDefaultContent();
 						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
+//						commonFunc.hardWait(3000);
 						flag = webDB.waitForElement(PurchaseOrderPageLocators.locationDetails, ElementType.Xpath);
 						commonFunc.checkRefreshCellsDisappear();
-						commonFunc.hardWait(3000);
+//						commonFunc.hardWait(3000);
 						verifyDiscountAmountForPo(i1, SheetName);
 					}
 				}
@@ -6457,7 +6505,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -6519,8 +6569,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -6573,8 +6627,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -6691,7 +6749,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -6816,8 +6876,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -7096,7 +7160,6 @@ public class PurchaseOrderFunctions {
 	 * @param Value
 	 * @param i
 	 */
-	@SuppressWarnings("unlikely-arg-type")
 	public void verifyAmendFilterSearchSOB(String LovButton, String Value, int i, String Type, String selectflag) {
 		webDB.scrollToAnElement(LovButton, ElementType.Xpath);
 		if (selectflag.equals(commonFunc.getDataFromTestDataSheet("LovButton"))) {
@@ -7383,37 +7446,47 @@ public class PurchaseOrderFunctions {
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.LocId, commonFunc.getDataFromTestDataSheet("Loc_100"), 3,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Location Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.Unit, commonFunc.getDataFromTestDataSheet("Unit_100"), 4,
 				commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Unit Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PrNo, commonFunc.getDataFromTestDataSheet("PrNumber"), 79,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Purchase Request Number Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PONo, commonFunc.getDataFromTestDataSheet("PONumber"), 9,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Purchase Order Number Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.SupplierNameLovButton,
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"), 12,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Supplier Name Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.BuyerLovButton,
 				commonFunc.getDataFromTestDataSheet("SelvaKumarB"), 10,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Buyer Name Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.POTypeSelect,
 				commonFunc.getDataFromTestDataSheet("PoMaterial"), 7,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
+		logs.logging("INFO", "PO Type Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemId, commonFunc.getDataFromTestDataSheet("PoItem"), 17,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("LovButton"));
+		logs.logging("INFO", "Item Id Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.ItemDesc, commonFunc.getDataFromTestDataSheet("PoItem"),
 				19, commonFunc.getDataFromTestDataSheet("HeaderSearchType"),
 				commonFunc.getDataFromTestDataSheet("SendTextInput"));
+		logs.logging("INFO", "Item Description Validated Successfully....");
 		verifyAmendFilterSearchSOB(PurchaseOrderPageLocators.PO_Status,
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"), 15,
 				commonFunc.getDataFromTestDataSheet("LineSearchType"),
 				commonFunc.getDataFromTestDataSheet("SelectType"));
+		logs.logging("INFO", "Po Status Validated Successfully....");
 		commonFunc.logoutUser();
 
 	}
@@ -7451,7 +7524,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyPoWithGrnServiceFlagChecked();
 				verifyDirectPoLineWiseSaved();
@@ -7509,7 +7584,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -7565,8 +7642,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -7625,8 +7706,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -7681,7 +7766,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -7739,7 +7826,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -7797,7 +7886,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -7855,7 +7946,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -7911,7 +8004,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoUnitCostEntered(UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
@@ -7971,8 +8066,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -8026,7 +8125,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -8083,7 +8184,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -8140,7 +8243,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -8198,7 +8303,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -8731,7 +8838,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyPoWithGrnServiceFlagChecked();
 				verifyDirectPoLineWiseSaved();
@@ -8847,11 +8956,9 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyTaxValidation(String Item, String Taxpercent, String Cgst, String Sgst, String Igst, String Utgst,
 			String CessPercent, String CessAmount) {
-		flag = webDB.waitForElement(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
-		if (flag) {
+		if (webDB.waitForElementUntilGivenTime(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath, 10)) {
 			webDB.clickAnElement(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-
 		}
 		webDB.switchToDefaultContent();
 		try {
@@ -12824,7 +12931,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
@@ -12885,8 +12994,12 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
-				verifyDirectPoUnitCostEntered(UNIT_COST);
+//				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoUnitCostEntered(UNIT_COST);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
+						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				discountFromPrToGrnDocument(i, SheetName);
@@ -13399,7 +13512,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -13458,7 +13573,9 @@ public class PurchaseOrderFunctions {
 				commonFunc.hardWait(3000);
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
-				verifyDirectPoQtyEntered(QUANTITY);
+//				verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
 				verifyDirectPoHsnSelectedFromLov(HSN);
 				verifyDirectPoLineWiseSaved();
 				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName,
@@ -13865,9 +13982,12 @@ public class PurchaseOrderFunctions {
 				if (flag) {
 					webDB.switchToFrame(PurchaseOrderPageLocators.LineDetailsIframePO, ElementType.Xpath);
 					logs.logging("INFO", "Switched To frame");
-					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.TradePercentage,
-							PurchaseOrderPageLocators.TradePercentage, TradeDiscount);
-					webDB.pressEnterKey();
+					commonFunc.checkRefreshCellsDisappear();
+					if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.TradePercentage, ElementType.Xpath)) {
+						commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.TradePercentage,
+								PurchaseOrderPageLocators.TradePercentage, TradeDiscount);
+						webDB.pressEnterKey();
+					}
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.SpecialDiscountPercentage,
 							PurchaseOrderPageLocators.SpecialDiscountPercentage, SpecialDiscount);
@@ -14318,6 +14438,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
@@ -14378,6 +14499,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify Approve With Doc Number
 	 * 
@@ -14415,6 +14537,41 @@ public class PurchaseOrderFunctions {
 				}
 			}
 		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To enable free of cost in line detail two
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void enableFreeOfCostCheckbox() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		boolean flag2 = webDB.isElementSelected(PurchaseOrderPageLocators.FreeOfCostInput, ElementType.Xpath);
+		if (!flag2) {
+			logs.logging("INFO", "Free Of Cost Not Selected Already");
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.FreeOfCostLabel, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(PurchaseOrderPageLocators.FreeOfCostLabel, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseOrderPageLocators.FreeOfCostLabel, ElementType.Xpath);
+				webDB.waitUntilElementToNotBeStale(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Free Of Cost Clicked and Enabled");
+					webDB.moveToElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
+					flag = webDB.clickAnElement(PurchaseOrderPageLocators.LineDeatilsSave, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkSuccessToastMessageDisappear();
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		} else {
+			flag = true;
+		}
+		webDB.switchToDefaultContent();
 		Assert.assertTrue(flag);
 	}
 

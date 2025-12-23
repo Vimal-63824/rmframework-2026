@@ -319,9 +319,15 @@ public class DirectGrnPageFunctions {
 					verifyClickingAdd();
 					verifyClickingItemField(ITEM_NAME);
 					verifyClickingHsnField(HSN);
-					verifyClickingSuppQuantity(QTY);
-					verifyClickingReceiptQuantity(QTY);
-					verifyClickingCost(COST);
+//					verifyClickingSuppQuantity(QTY);
+//					verifyClickingReceiptQuantity(QTY);
+//					verifyClickingCost(COST);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
+							DirectGrnPageLocators.GrnLineCostInput, COST);
 					verifyClickingSaveLine();
 					verifyAddingDiscount(i, SheetName);
 				}
@@ -550,10 +556,13 @@ public class DirectGrnPageFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
-			logs.logging("INFO", "HSN Field Is Clicked");
-			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineHsnLov, HSN);
-			logs.logging("INFO", "Entered HSN Code Is:" + HSN);
+			String GetTextHSN = webDB.getTextFromElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
+			if (!GetTextHSN.equals(HSN)) {
+				webDB.clickAnElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
+				logs.logging("INFO", "HSN Field Is Clicked");
+				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineHsnLov, HSN);
+				logs.logging("INFO", "Entered HSN Code Is:" + HSN);
+			}
 		}
 		assertTrue(flag);
 	}
@@ -613,10 +622,10 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingSaveLine() {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			logs.logging("INFO", "GRN Line Is Saved");
+			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.hardWait(4000);
 		}
 		assertTrue(flag);
 	}
@@ -862,6 +871,11 @@ public class DirectGrnPageFunctions {
 	public void lotSerialQtyApportion() {
 		flag = webDB.waitForElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForClickElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
+			webDB.moveToElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			closeToastIfDisplayed();
@@ -4738,10 +4752,11 @@ public class DirectGrnPageFunctions {
 	public void verifyDirectGRNAddLineDetails(String SheetName) throws IOException {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(200);
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
 
 			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 			ExcelUtils excelUtils = new ExcelUtils();
@@ -4755,7 +4770,7 @@ public class DirectGrnPageFunctions {
 				String COST = GRNMultipleline[i][6];
 
 				if (!ITEM_NAME.equals("")) {
-					commonFunc.hardWait(3000);
+					commonFunc.hardWait(200);
 					verifyClickingAdd();
 					verifyClickingItemField(ITEM_NAME);
 					verifyClickingHsnField(HSN);
@@ -4795,7 +4810,7 @@ public class DirectGrnPageFunctions {
 				if (flag) {
 					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 21), ElementType.Xpath);
 					logs.logging("INFO", "Details Button Is Clicked");
-					commonFunc.hardWait(7000);
+					commonFunc.hardWait(500);
 					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
 					if (flag) {
 						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
@@ -4807,7 +4822,7 @@ public class DirectGrnPageFunctions {
 							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
 									ElementType.Xpath);
 							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
-							commonFunc.hardWait(7000);
+							commonFunc.hardWait(1000);
 							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
 							if (flag) {
 								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
@@ -4815,7 +4830,7 @@ public class DirectGrnPageFunctions {
 								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
 										ElementType.Xpath);
 								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
-								commonFunc.hardWait(7000);
+								commonFunc.hardWait(1000);
 								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
 								if (flag) {
 									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
@@ -4823,14 +4838,14 @@ public class DirectGrnPageFunctions {
 									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
 											ElementType.Xpath);
 									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
-									commonFunc.hardWait(7000);
+									commonFunc.hardWait(1000);
 									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
 											ElementType.Xpath);
 									if (flag) {
 										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
 												ElementType.Xpath);
 										logs.logging("INFO", "Details Is Saved");
-										commonFunc.hardWait(5000);
+										commonFunc.hardWait(1000);
 										webDB.pressEscapeKey();
 										webDB.switchToDefaultContent();
 										verifyDiscountAmountForDirectGRN(i1, SheetName);
@@ -4877,9 +4892,9 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
+
 	/**
-	 * This Method Is Used To Verify Generate Lot Serial Button
-	 * Excel UOM(General)
+	 * This Method Is Used To Verify Generate Lot Serial Button Excel UOM(General)
 	 * 
 	 * @author Durai.K-RM ITS
 	 * 
@@ -4900,9 +4915,9 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
-	 * This Method Is Used To Verify Import LR Button
-	 * Excel UOM(General)
+	 * This Method Is Used To Verify Import LR Button Excel UOM(General)
 	 * 
 	 * @author Durai.K-RM ITS
 	 * 
@@ -4919,9 +4934,9 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
-	 * This Method Is Used To Verify Enter BOE and BOD
-	 * Excel UOM(General)
+	 * This Method Is Used To Verify Enter BOE and BOD Excel UOM(General)
 	 * 
 	 * @author Durai.K-RM ITS
 	 * 
@@ -4954,6 +4969,7 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 

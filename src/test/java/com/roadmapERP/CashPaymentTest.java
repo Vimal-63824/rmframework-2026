@@ -359,7 +359,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		Assert.assertTrue(flag);
 	}
-//	
+
 //	/**
 //	 * Payment Against Multi Party, Single Bill (Through Add button)
 //	 * 
