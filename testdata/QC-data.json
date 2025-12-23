@@ -1661,5 +1661,6 @@
 	"BOMForSerialQCItem": "VR-SERIAL-FIFO-BATCH-80001QC",
 	"BOMQtyForSerialQCItem": "1",
 	"CR_CN_PrefixL3": "CNL3",
+	"LCTypePK": "LANDED COST",
 	"PurchaseOrderPrefix": "PURCHASE ORDER"
 }

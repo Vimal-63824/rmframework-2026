@@ -510,10 +510,12 @@ public class SalesCataloguePrice {
 		verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.PriceFieldClick, SalesCatalogueLocators.PriceField,
 				Sales_Value);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Successfully Inserted a Sales Prices " + Sales_Value);
 			verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.MinDiscountPercentField(1),
 					SalesCatalogueLocators.MinDiscInsert, min_Disc);
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", " Successfully Inseted a Mini Disc Percent" + min_Disc);
 				verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.MaxDiscountPercentField(1),
 						SalesCatalogueLocators.MaxDiscInsert, max_Disc);

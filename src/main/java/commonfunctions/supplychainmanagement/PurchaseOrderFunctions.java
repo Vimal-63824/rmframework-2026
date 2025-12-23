@@ -62,11 +62,11 @@ public class PurchaseOrderFunctions {
 		verifyCLickPurchaseOrderFrame();
 		flag = webDB.selectDropDownByValue(PurchaseOrderPageLocators.PoTypeSelect, POType, ElementType.Xpath);
 		if (flag) {
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PoPfxLovBtn,
-					commonFunc.getDataFromTestDataSheet("PurchaseOrderPrefix"));
-			verifyCLickPurchaseOrderFrame();
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PoPfxLovBtn,
+//					commonFunc.getDataFromTestDataSheet("PurchaseOrderPrefix"));
+//			verifyCLickPurchaseOrderFrame();
 			commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.SupplierNameButton, SupplierName);
 		}
 		assertTrue(flag);

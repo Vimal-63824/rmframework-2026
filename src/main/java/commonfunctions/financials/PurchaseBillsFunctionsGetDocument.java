@@ -332,7 +332,7 @@ public class PurchaseBillsFunctionsGetDocument {
 			webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.DocAddBtn, ElementType.Xpath);
 			verifyCLickPurchaseBillsFrame();
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocatorsGetDocument.SubVouType,
-					commonFunc.getDataFromTestDataSheet("LCType"));
+					commonFunc.getDataFromTestDataSheet("LCTypePK"));
 			verifyCLickPurchaseBillsFrame();
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocatorsGetDocument.LocID,
 					commonFunc.getDataFromTestDataSheet("Loc_100"));
