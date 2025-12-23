@@ -505,6 +505,13 @@ public class GateEntryPageFunctions {
 				if (flag) {
 					webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 					webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
+					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					if(!VariableHandler.getApprovalFlag()) {
+						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGateEntryNumber(),
+								webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+								System.getProperty("HariUsername"));
+					}
 					logs.logging("INFO", "Gate Entry Document Posted Successfully");
 					commonFunc.checkRefreshCellsDisappear();
 					commonFunc.logoutUser();

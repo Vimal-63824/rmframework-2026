@@ -16,6 +16,10 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoTypeSelect = "//select[@data-testid='P161513106101_POH_TYPE_1']";
 	/** @locatorType Xpath */
+	public static final String PoPfxInput = "//input[contains(@data-testid,'POH_ORDER_PFX_2')]";
+	/** @locatorType Xpath */
+	public static final String PoPfxLovBtn = "//input[contains(@data-testid,'POH_ORDER_PFX_2')]/following-sibling::button";
+	/** @locatorType Xpath */
 	public static final String PoPfxSelect = "//select[@data-testid='P161513106101_POH_ORDER_PFX_2']";
 	/** @locatorType Xpath */
 	public static final String PoDate = "//*[@id='P1615131061_POH_ORDER_DATE_input']";
@@ -249,6 +253,10 @@ public class PurchaseOrderPageLocators {
 	public static final String Supplier_Item_Desc = "//input[@id='P161513106045_POL_SUPLR_PROD_DESC']";
 	/** @locatorType Xpath */
 	public static final String LineDetailTwoButton = "//label[@for='P161513106045_TYPE_1']";
+	/** @locatorType Xpath */ 
+	public static final String FreeOfCostLabel = "//label[contains(@id,'POL_FOC_FLAG_LABEL')]";
+	/** @locatorType Xpath */ 
+	public static final String FreeOfCostInput = "//input[contains(@id,'POL_FOC_FLAG_HIDDENVALUE')]";
 	/** @locatorType Xpath */
 	public static final String UnRegisterHeader = "//h2[text()='Unregister RCM Details']";
 	/** @locatorType Xpath */
@@ -448,6 +456,7 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String POSubClass = "//span[@id='P161513106045_POL_PROD_SUB_CLS_DISPLAY']";
+	/** @locatorType Xpath */
 	public static final String LineDeatilsSave = "//button[@data-testid='POL_DET_SAVE']";
 
 	/** @locatorType Xpath */

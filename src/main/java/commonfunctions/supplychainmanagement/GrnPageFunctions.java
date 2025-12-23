@@ -704,8 +704,8 @@ public class GrnPageFunctions {
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				commonFunc.hardWait(3000);
 				closeToastIfDisplayed();
-//				closeToastIfDisplayed();
-//				closeToastIfDisplayed();
+				closeToastIfDisplayed();
+				closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
@@ -740,7 +740,8 @@ public class GrnPageFunctions {
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				commonFunc.hardWait(3000);
 				closeToastIfDisplayed();
-//				closeToastIfDisplayed();
+				closeToastIfDisplayed();
+				closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);

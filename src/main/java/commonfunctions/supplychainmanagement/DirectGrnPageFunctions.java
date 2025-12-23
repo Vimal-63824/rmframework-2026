@@ -865,6 +865,11 @@ public class DirectGrnPageFunctions {
 	public void lotSerialQtyApportion() {
 		flag = webDB.waitForElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForClickElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
+			webDB.moveToElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			closeToastIfDisplayed();
@@ -4881,9 +4886,9 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
+
 	/**
-	 * This Method Is Used To Verify Generate Lot Serial Button
-	 * Excel UOM(General)
+	 * This Method Is Used To Verify Generate Lot Serial Button Excel UOM(General)
 	 * 
 	 * @author Durai.K-RM ITS
 	 * 
@@ -4904,9 +4909,9 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
-	 * This Method Is Used To Verify Import LR Button
-	 * Excel UOM(General)
+	 * This Method Is Used To Verify Import LR Button Excel UOM(General)
 	 * 
 	 * @author Durai.K-RM ITS
 	 * 
@@ -4923,9 +4928,9 @@ public class DirectGrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
-	 * This Method Is Used To Verify Enter BOE and BOD
-	 * Excel UOM(General)
+	 * This Method Is Used To Verify Enter BOE and BOD Excel UOM(General)
 	 * 
 	 * @author Durai.K-RM ITS
 	 * 
@@ -4958,6 +4963,7 @@ public class DirectGrnPageFunctions {
 			}
 		}
 	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
