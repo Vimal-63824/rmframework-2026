@@ -312,24 +312,18 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void lotSerialQtyApportion() {
+		flag = webDB.waitForElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(1000);
-			flag = webDB.waitForElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotSerialQtyField, ElementType.Xpath);
-				logs.logging("INFO", "LotSerial Qty Field Clicked Successfully");
-				commonFunc.hardWait(3000);
-				flag = webDB.waitForElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
-				if (flag) {
-					webDB.clickAnElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
-					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(1000);
-					webDB.switchToDefaultContent();
-					flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
-					if (flag) {
-					}
-				}
-			}
+			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitForClickElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
+			webDB.moveToElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.ApportionLSQty, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		}
 		assertTrue(flag);
 	}
@@ -702,8 +696,8 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-				commonFunc.hardWait(3000);
-				closeToastIfDisplayed();
+//				commonFunc.hardWait(3000);
+//				closeToastIfDisplayed();
 				closeToastIfDisplayed();
 				closeToastIfDisplayed();
 			}
@@ -738,8 +732,8 @@ public class GrnPageFunctions {
 			if (flag) {
 				webDB.moveToElement(GrnLocators.LotSerialSave, ElementType.Xpath);
 				webDB.clickAnElement(GrnLocators.LotSerialSave, ElementType.Xpath);
-				commonFunc.hardWait(3000);
-				closeToastIfDisplayed();
+//				commonFunc.hardWait(3000);
+//				closeToastIfDisplayed();
 				closeToastIfDisplayed();
 				closeToastIfDisplayed();
 			}
@@ -3218,6 +3212,7 @@ public class GrnPageFunctions {
 		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("StockTransferRateDifferent"));
 		POfunc.verifyToCreatePoForStockTransferRateContractSameStockandSupplierUomWithAndWithoutInspection(
 				webDB.getDataFromProperties("StockTransferRateDifferent"));
+		
 		verifyToStockTransferSaleOrderDocumentPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
