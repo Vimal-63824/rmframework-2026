@@ -1662,5 +1662,8 @@
 	"BOMQtyForSerialQCItem": "1",
 	"CR_CN_PrefixL3": "CNL3",
 	"LCTypePK": "LANDED COST",
-	"PurchaseOrderPrefix": "PURCHASE ORDER"
+	"PurchaseOrderPrefix": "PURCHASE ORDER",
+	"GRNHIgstAmount": "PORLH_IGST_AMT",
+	"GRNHSgstAmount": "PORLH_SGST_AMT",
+	"GRNHCgstAmount": "PORLH_CGST_AMT"
 }
