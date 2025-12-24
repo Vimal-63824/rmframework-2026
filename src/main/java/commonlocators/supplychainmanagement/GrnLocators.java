@@ -299,7 +299,7 @@ public class GrnLocators {
 	public static final String GrnLineWiseDeleteButton = "//span[@title='Delete']";
 	// span[@title="Delete"]
 	/** @locatorType Xpath */
-	public static final String GrnLineWiseStatus = "//*[@id='7517972640098794132_orig']/tbody/tr[2]/td[92]/div";
+	public static final String GrnLineWiseStatus = "//*[@id='7777951085516291315_orig']/tbody/tr[2]/td[92]/div";
 	/** @locatorType Xpath */
 	public static final String GrnDocumentwiseCancelButton = "//button[@data-testid='Cancel_GRN']";
 	/** @locatorType Xpath */
@@ -324,4 +324,7 @@ public class GrnLocators {
 	public static final String CreateGeButton = "//button[@id='BTN_GE']";
 	/** @locatorType Xpath */
 	public static final String GRN_LotSerialButton = "//button[@data-testid='GRNP_GEN_LOT_SER_BTN']";
+	public static final String GstSupplySelect= "//select[@data-testid='PRLC_GST_EXEMPT_TYPE']";
+	/** @locatorType Xpath */
+	public static final String GrnLandedGstSupplyergrid= "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[16]";
 }

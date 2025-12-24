@@ -103,9 +103,9 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCatalogDocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 //		// forwardForApproval();
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(2000);
@@ -126,7 +126,7 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceDisSimilarUomAndDomesticCustomer(String min_Disc , String max_Disc) {
+	public void createsCataloguePriceDisSimilarUomAndDomesticCustomer(String min_Disc, String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -161,9 +161,9 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCatalogDocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
@@ -183,7 +183,7 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceSimilarUomAndExportCustomer(String min_Disc , String max_Disc) {
+	public void createsCataloguePriceSimilarUomAndExportCustomer(String min_Disc, String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -218,9 +218,9 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCatalogDocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(2000);
@@ -241,7 +241,7 @@ public class SalesCataloguePrice {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void createsCataloguePriceDisSimilarUomAndExportCustomer(String min_Disc ,String max_Disc) {
+	public void createsCataloguePriceDisSimilarUomAndExportCustomer(String min_Disc, String max_Disc) {
 		String Sales_Value = RandomStringUtils.randomNumeric(3);
 		if (Sales_Value.equals("000")) {
 			Sales_Value = "100";
@@ -276,9 +276,9 @@ public class SalesCataloguePrice {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyWaitingForApproval1();
 		commonFunc.hardWait(2000);
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getCatalogDocno(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getCatalogDocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 //		commonFunc.checkRefreshCellsDisappear();
 //		commonFunc.hardWait(2000);
 //		commonFunc.logoutUser();
@@ -402,7 +402,7 @@ public class SalesCataloguePrice {
 						flag = webDB.waitForElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Successfully Populated a Cancelled Record");
-							
+
 						}
 					}
 				}
@@ -410,8 +410,6 @@ public class SalesCataloguePrice {
 		}
 		assertTrue(flag);
 	}
-	
-
 
 	/**
 	 * Click Catalogue Price Button in Find Page
@@ -510,10 +508,12 @@ public class SalesCataloguePrice {
 		verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.PriceFieldClick, SalesCatalogueLocators.PriceField,
 				Sales_Value);
 		if (flag) {
+			commonFunc.hardWait(1500);
 			logs.logging("INFO", "Successfully Inserted a Sales Prices " + Sales_Value);
 			verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.MinDiscountPercentField(1),
 					SalesCatalogueLocators.MinDiscInsert, min_Disc);
 			if (flag) {
+				commonFunc.hardWait(1500);
 				logs.logging("INFO", " Successfully Inseted a Mini Disc Percent" + min_Disc);
 				verifyClickAndEnterValueInTableFields(SalesCatalogueLocators.MaxDiscountPercentField(1),
 						SalesCatalogueLocators.MaxDiscInsert, max_Disc);
@@ -602,6 +602,7 @@ public class SalesCataloguePrice {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * Waiting For Approval
 	 * 
@@ -850,8 +851,8 @@ public class SalesCataloguePrice {
 				if (flag) {
 					approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("AshokValue"));
 					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("HariUsername"),
-							System.getProperty("LoginPassword"), "HariUsername");
+					commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+							"HariUsername");
 					approvalFunc.navigateToApprovals();
 					approvalFunc.filterDocumentsforApproval(item);
 					approvalFunc.verifyApproveWithDocNumber(item);
