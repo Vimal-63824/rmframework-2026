@@ -243,6 +243,7 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultipleGRNDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultiplePBDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> TravelRequestDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> TravelReimbursementDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2081,12 +2082,20 @@ public class VariableHandler {
 	public static void setCashPaymentOrReceiptDocNumber(String data) {
 		CashPaymentOrReceiptDoc.set(data);
 	}
-	
+
 	public static String getTravelRequestDocNo() {
 		return TravelRequestDocNo.get();
 	}
 
 	public static void setTravelRequestDocNo(String data) {
 		TravelRequestDocNo.set(data);
+	}
+
+	public static String getTravelReimbursementtDocNo() {
+		return TravelReimbursementDocNo.get();
+	}
+
+	public static void setTravelReimbursementDocNo(String data) {
+		TravelReimbursementDocNo.set(data);
 	}
 }

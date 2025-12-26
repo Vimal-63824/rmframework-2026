@@ -136,7 +136,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Test(priority = 9, groups = {
 			"Employee Overtime" }, description = "164.To Check Travel Request Based on the adding Additional Travellers")
 	public void checkTravelRequestBasedOnTheAddingAdditionalTravellers() {
-		// TODO Covered in CheckTravelRequest BasedOnEmployeeWise() Method
+		// TODO Covered in CheckTravelRequestBasedOnEmployeeWise() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -215,6 +215,97 @@ public class EmployeeOvertime extends RoadMapERPTest {
 			"Employee Overtime" }, description = "165.To Check Travel Request Based on Cancelling The Travel Request")
 	public void checkTravelRequestBasedOnCancellingTheTravelRequest() {
 		flag = attendanceLeave.CheckTravelRequestBasedOnCancellingTheTravelRequest();
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * To Check Travel Reimbursement Based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 16, groups = {
+			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Based on Employee Wise ")
+	public void checkTravelReimbursementBasedOnEmployeeWise() {
+		flag = attendanceLeave.CheckTravelReimbursementBasedOnEmployeeWise();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 17, groups = {
+			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Find page with all line wise record")
+	public void checkTravelReimbursementFindPageWithAllLineWiseRecord() {
+		// TODO Covered in CheckTravelReimbursementBasedOnEmployeeWise() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement Based on the Expenses details
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 18, groups = {
+			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Based on the Expenses details")
+	public void checkTravelReimbursementBasedOnTheExpensesDetails() {
+		// TODO Covered in CheckTravelReimbursementBasedOnEmployeeWise() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 19, groups = {
+			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Based on Forward To Approval")
+	public void checkTravelReimbursementBasedOnForwardToApproval() {
+		flag = attendanceLeave.CheckTravelReimbursementBasedOnForwardToApproval();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement Based on the adding Additional Travellers
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 20, groups = {
+			"Travel Reimbursement" }, description = "170.To Check Travel Reimbursement Based on the adding Additional Travellers")
+	public void checkTravelReimbursementBasedOnTheAddingAdditionalTravellers() {
+		// TODO Covered in CheckTravelReimbursementBasedOnForwardToApproval() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement Based on all the Required Fields
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 21, groups = {
+			"Travel Reimbursement" }, description = "171.To Check Travel Reimbursement Based on all the Required Fields")
+	public void checkTravelReimbursementBasedOnAllTheRequiredFields() {
+		// TODO Covered in CheckTravelReimbursementBasedOnForwardToApproval() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Travel Reimbursement Based on Return To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 22, groups = {
+			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Based on Return To Approval")
+	public void checkTravelReimbursementBasedOnReturnToApproval() {
+		flag = attendanceLeave.CheckTravelReimbursementBasedOnReturnToApproval();
 		Assert.assertTrue(flag);
 	}
 

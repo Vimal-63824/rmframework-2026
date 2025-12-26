@@ -2556,7 +2556,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillslocalUnreg"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -2615,7 +2615,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillslocalUnreg"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -2645,7 +2645,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("GstTypeValue"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -2729,6 +2729,7 @@ public class PurchaseBillsFunctions {
 		ClickSaveButton();
 		selectDropDownTypeAndInsecTion(FinType, FinTypeSec);
 		ClickSaveButton();
+		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
 		clickValidateAllowRcmFlag();

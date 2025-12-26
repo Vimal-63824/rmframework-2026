@@ -1402,6 +1402,7 @@
 	"ExpenseRef": "Breakfast Amount",
 	"AddTravEmployee": "GWP0059",
 	"TravelCity": "CHENNAI",
+	"TravelReimAmount":"2500",
 	"BomNamePreposition": "AUTOMATIONBOM - ",
 	"WalmartSupId": "SUP00375",
 	"SalesInvoicePrefix": "SIP4",
@@ -1499,7 +1500,7 @@
 	"SubVouType": "EXPENSE",
 	"PurchaseRef": "W.O.Ref.",
 	"Prbills_Pfx": "PB",
-	"Supplier_Local": "PRAXAIR INDIA PVT LTD",
+	"Supplier_Local": "MANI TRADERS",
 	"Gl_Account_Ex": "CUSTOMER DEPOSIT",
 	"PurchaseBillsExNO": "${PURBIL}",
 	"PurchaseBillsGlAccount": "SUPLN_ACCT_DESC",
@@ -1665,5 +1666,8 @@
 	"PurchaseOrderPrefix": "PURCHASE ORDER",
 	"GRNHIgstAmount": "PORLH_IGST_AMT",
 	"GRNHSgstAmount": "PORLH_SGST_AMT",
-	"GRNHCgstAmount": "PORLH_CGST_AMT"
+	"GRNHCgstAmount": "PORLH_CGST_AMT",
+	"min_Disc":"5",
+	 "max_Disc":"30",
+	 "PaymentRec":"SIU1-2526-1759"
 }
