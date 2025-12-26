@@ -143,7 +143,8 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 		purchaseBillsFunc.DomesticRegisteredSupplierWithInterstateGST(commonFunc.getDataFromTestDataSheet("SubVouType"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"), commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
-				commonFunc.getDataFromTestDataSheet("Cus_Interstate"), commonFunc.getDataFromTestDataSheet("bills"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_CasualPerson_Interstate"),
+				commonFunc.getDataFromTestDataSheet("bills"),
 				commonFunc.getDataFromTestDataSheet("Gl_Account_Ex"), commonFunc.getDataFromTestDataSheet("HSNcode_SI"),
 				commonFunc.getDataFromTestDataSheet("unitcost"));
 	}

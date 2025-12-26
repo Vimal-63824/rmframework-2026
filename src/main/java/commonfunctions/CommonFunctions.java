@@ -2958,17 +2958,16 @@ public class CommonFunctions {
 	public void navigateToTDSDeclarationScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSFindSearchButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Employee Overtime
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToEmployeeOvertime() {
-		navigateToSearchTab(webDB.getDataFromProperties("Overtime"),
-				AttendanceLeaveLocators.OvertimeFindSearchButton);
+		navigateToSearchTab(webDB.getDataFromProperties("Overtime"), AttendanceLeaveLocators.OvertimeFindSearchButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Travel Request
 	 * 
@@ -2978,7 +2977,16 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("Travel"), AttendanceLeaveLocators.TravelRequestFindAddButton);
 	}
 
-	
+	/**
+	 * This Method Is Used To Navigate Travel Reimbursement
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToTravelReimbursement() {
+		navigateToSearchTab(webDB.getDataFromProperties("TravelReimbursement"),
+				AttendanceLeaveLocators.TravelReimbFindSearchButton);
+	}
+
 	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 
