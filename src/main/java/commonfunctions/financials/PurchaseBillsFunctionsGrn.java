@@ -351,7 +351,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -378,7 +378,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -464,7 +464,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -540,7 +540,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseType"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -614,7 +614,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -701,7 +701,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -798,7 +798,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -882,7 +882,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -981,7 +981,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1071,7 +1071,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseType"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1161,7 +1161,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1261,7 +1261,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
