@@ -36,7 +36,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String VoucherNumberLovButton = "//button[@id='P116131010_VOU_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PurchaseBillSearchButton = "//button[@id='B1552825888922175484']";
+	public static final String PurchaseBillSearchButton = "//button[@data-testid='Search']";
 	/** @locatorType Xpath */
 	public static final String ApproveOkButton = "//button[@id='B1457704718951134857']";
 

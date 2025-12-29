@@ -1091,9 +1091,10 @@ public class SubcontractOrderFunctions {
 				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_ItemLovbtn, BomForItem);
 				logs.logging("INFO", "Item Selected in Prod Order: " + BomForItem);
 				ProductionordertFunc.switchToCreateProductionOrderFrame();
-				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
+				commonFunc.verifyAddTableSpecs(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 						ProductionOrderLocators.CreateProdOrd_OrderQntyInput, BomQty);
 				logs.logging("INFO", "Order Quantity Entered in Prod Order: " + BomQty);
+				webDB.pressTabKey();
 				webDB.switchToDefaultContent();
 			}
 		}
@@ -2052,9 +2053,10 @@ public class SubcontractOrderFunctions {
 				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.CreateProdOrd_ItemLovbtn, BomForItem);
 				logs.logging("INFO", "Item Selected in Prod Order: " + BomForItem);
 				ProductionordertFunc.switchToCreateProductionOrderFrame();
-				commonPayrollFunc.addDetailInTableWithoutLovButton(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
+				commonFunc.verifyAddTableSpecs(ProductionOrderLocators.CreateProdOrd_OrderQntyInput,
 						ProductionOrderLocators.CreateProdOrd_OrderQntyInput, BomQty);
 				logs.logging("INFO", "Order Quantity Entered in Prod Order: " + BomQty);
+				webDB.pressTabKey();
 				commonFunc.searchAndSelectValueInFilters(ProductionOrderLocators.SoDesc, BOMSOREFWITHCONV);
 				webDB.switchToDefaultContent();
 			}
@@ -2393,7 +2395,7 @@ public class SubcontractOrderFunctions {
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		firstProcessSourceAndTargetSFcode();
+		ValueAdditionProcessSourceAndTargetSFcode();
 		valueAdditionTypeWithSORefclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
 				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -6927,7 +6929,8 @@ public class SubcontractOrderFunctions {
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		secondProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));//TODO
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));// TODO
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -10133,8 +10136,20 @@ public class SubcontractOrderFunctions {
 						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
 								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
+				commonFunc.hardWait(1000);
+				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Process ID Is: " + SCOSFcode);
+				VariableHandler.setSCOSFcode(SCOSFcode);
+				commonFunc.hardWait(1000);
+				String SCOTarSFcode = webDB.getTextFromElement(SubcontractOrderLocators.SCO_GetTarSFcode,
+						ElementType.Xpath);
+				logs.logging("INFO", "Get Process ID Is: " + SCOTarSFcode);
+				VariableHandler.setSCOTarSFcode(SCOTarSFcode);
+				commonFunc.hardWait(1000);
 			}
 		}
+		getSFcodeandWriteInExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
 	}
 
 	/**
@@ -10163,8 +10178,20 @@ public class SubcontractOrderFunctions {
 						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
 								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
+				commonFunc.hardWait(1000);
+				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Process ID Is: " + SCOSFcode);
+				VariableHandler.setSCOSFcode(SCOSFcode);
+				commonFunc.hardWait(1000);
+				String SCOTarSFcode = webDB.getTextFromElement(SubcontractOrderLocators.SCO_GetTarSFcode,
+						ElementType.Xpath);
+				logs.logging("INFO", "Get Process ID Is: " + SCOTarSFcode);
+				VariableHandler.setSCOTarSFcode(SCOTarSFcode);
+				commonFunc.hardWait(1000);
 			}
 		}
+		getSFcodeandWriteInExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
 	}
 
 	/**
@@ -10193,8 +10220,20 @@ public class SubcontractOrderFunctions {
 						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
 								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
 				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
+				commonFunc.hardWait(1000);
+				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Process ID Is: " + SCOSFcode);
+				VariableHandler.setSCOSFcode(SCOSFcode);
+				commonFunc.hardWait(1000);
+				String SCOTarSFcode = webDB.getTextFromElement(SubcontractOrderLocators.SCO_GetTarSFcode,
+						ElementType.Xpath);
+				logs.logging("INFO", "Get Process ID Is: " + SCOTarSFcode);
+				VariableHandler.setSCOTarSFcode(SCOTarSFcode);
+				commonFunc.hardWait(1000);
 			}
 		}
+		getSFcodeandWriteInExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
 	}
 
 	/**
@@ -11938,7 +11977,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -11999,7 +12038,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -12128,7 +12167,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithQC"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -13580,7 +13619,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix49"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMForSerialQCItem"),
 				commonFunc.getDataFromTestDataSheet("BOMQtyForSerialQCItem"));
@@ -13668,7 +13707,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix49"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMForSerialQCItem"),
 				commonFunc.getDataFromTestDataSheet("BOMQtyForSerialQCItem"));
@@ -13870,7 +13909,7 @@ public class SubcontractOrderFunctions {
 		ProductionordertFunc.clickAddIconInCreationProductionOrder();
 		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
-				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix49"),
 				commonFunc.getDataFromTestDataSheet("ManufactureType"),
 				commonFunc.getDataFromTestDataSheet("BOMForSerialQCItem"),
 				commonFunc.getDataFromTestDataSheet("BOMQtyForSerialQCItem"));
@@ -14067,7 +14106,7 @@ public class SubcontractOrderFunctions {
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		ValueAdditionProcessSourceAndTargetSFcode();
+		firstProcessSourceAndTargetSFcode();
 		valueAdditionTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
 				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -14219,7 +14258,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -14279,7 +14318,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -14467,5 +14506,61 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+	}
+
+	/**
+	 * This Methods Used To Get SFcode and Write In Excel Sheet
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void getSFcodeandWriteInExcelSheet(String SheetName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Process Id ");
+		for (int i = 4; i < ItemMultiple.length; i++) {
+			String SCOSFcode = ItemMultiple[i][0];
+			String SCOTarSFcode = ItemMultiple[i][1];
+			if (!SCOSFcode.equals("")) {
+				logs.logging("INFO", "Before SF Code " + SCOSFcode + "Is : " + VariableHandler.getSCOSFcode());
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 0, VariableHandler.getSCOSFcode());
+
+				logs.logging("INFO", "Before TarSF Code " + SCOTarSFcode + "Is : " + VariableHandler.getSCOTarSFcode());
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 1, VariableHandler.getSCOTarSFcode());
+			}
+		}
+
+	}
+	/**
+	 * This Method Used For Verify GRN SF Code Compare Excel Sheet With DataBase
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifyGrnSFcodeWithExcelSheet(String Sheetname) {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheetname);
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String GRNSFCODE = itemmultiple[i][0];
+			String GRNTARSFCODE = itemmultiple[i][1];
+			if (!GRNSFCODE.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+								commonFunc.getDataFromTestDataSheet("SCOGRNDBSFCODECOLUMN")), GRNSFCODE);
+				logs.logging("INFO", "SCO SF CODE Matched With GRN SF CODE AND MATCHED DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+								commonFunc.getDataFromTestDataSheet("SCOGRNDBTARSFCODECOLUMN")), GRNTARSFCODE);
+				logs.logging("INFO", "SCO TAR SF CODE Matched With GRN TAR SF CODE AND MATCHED DataBase Values");
+
+
+			}
+		}
 	}
 }
