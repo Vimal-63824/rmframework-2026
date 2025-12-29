@@ -575,9 +575,10 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingSuppQuantity(String QTY) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSupQty, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSupQty, ElementType.Xpath);
-			webDB.clearText(DirectGrnPageLocators.GrnLineSupQtyInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSupQtyInput, QTY, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+					DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
 		assertTrue(flag);
@@ -591,9 +592,10 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingReceiptQuantity(String QTY) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineRcpQty, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(DirectGrnPageLocators.GrnLineRcpQty, ElementType.Xpath);
-			webDB.clearText(DirectGrnPageLocators.GrnLineRcpQtyInput, ElementType.Xpath);
-			webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineRcpQtyInput, QTY, ElementType.Xpath);
+			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+					DirectGrnPageLocators.GrnLineRcpQty, QTY);
+			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
+			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
 	}
@@ -4123,9 +4125,13 @@ public class DirectGrnPageFunctions {
 					verifyClickingAdd();
 					verifyClickingItemField(ITEM_NAME);
 					verifyClickingHsnField(HSN);
-					verifyClickingSuppQuantity(QTY);
-					verifyClickingReceiptQuantity(QTY);
-					verifyClickingCost(COST);
+//					verifyClickingSuppQuantity(QTY);
+//					verifyClickingReceiptQuantity(QTY);
+//					verifyClickingCost(COST);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
 					verifyClickingSaveLine();
 					verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(i, SheetName,
 							commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
