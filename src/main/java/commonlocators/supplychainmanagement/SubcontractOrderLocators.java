@@ -458,4 +458,8 @@ public class SubcontractOrderLocators {
 	public static final String SCO_GRN_Header_Cancel_LOVBtn = "//button[@id='P19315104001_PORH_CANCEL_REAS_lov_btn']";
 	/** @Locator XPATH */
 	public static final String SCO_GRN_Header_CancelReason_Ok = "//button[@data-testid='Cancel_Reason']";
+	/** @Locator XPATH */
+	public static final String SCO_GetSFcode = "//input[@data-testid='P161713106504_POL_SF_CODE']";
+	/** @Locator XPATH */
+	public static final String SCO_GetTarSFcode = "//span[@data-testid='P161713106504_POL_TARG_SF_CODE']";
 }

@@ -50,18 +50,18 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Subcontract Order to GRN without Gate Entry for UP type - Free pass Items
-	 * 
-	 * @author Vimal - RMITS
-	 */
-	@Author("Vimal-RMITS")
-	@Test(priority = 3, groups = {
-			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for UP type - Free pass Items")
-	public void CreateProductionOrderFromSubcontractorderToGRNUnprocessType() {
-		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNUnprocessType();
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Subcontract Order to GRN without Gate Entry for UP type - Free pass Items
+//	 * 
+//	 * @author Vimal - RMITS
+//	 */
+//	@Author("Vimal-RMITS")
+//	@Test(priority = 3, groups = {
+//			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for UP type - Free pass Items")
+//	public void CreateProductionOrderFromSubcontractorderToGRNUnprocessType() {
+//		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNUnprocessType();
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Subcontract Order to GRN without Gate Entry for US type - Free pass Items

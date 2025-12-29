@@ -1669,5 +1669,8 @@
 	"GRNHCgstAmount": "PORLH_CGST_AMT",
 	"min_Disc":"5",
 	 "max_Disc":"30",
-	 "PaymentRec":"SIU1-2526-1759"
+	 "PaymentRec":"SIU1-2526-1759",
+	 "GRNSNO":"${GRNSNO}",
+	 "SCOGRNDBSFCODECOLUMN":"PORL_SF_CODE",
+	 "SCOGRNDBTARSFCODECOLUMN":"PORL_TAR_SF_CODE"
 }
