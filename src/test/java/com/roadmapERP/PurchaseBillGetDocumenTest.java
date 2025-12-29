@@ -345,7 +345,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeItem();
+				.VerifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeItemAutoCheck();
 	}
 
 	/**
