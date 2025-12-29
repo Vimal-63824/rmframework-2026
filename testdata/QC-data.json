@@ -825,7 +825,7 @@
 	"RFQDbCashDisAmountColumnName": "PQLN_CASH_DISC_AMT",
 	"RFQDbCashAssValueColumnName": "PQLN_CASH_ASSBL_VAL",
 	"SODBUTGSTColumnName": "SOQ_UTGST_AMT",
-	"UTGSTLocation": "L0001",
+	"UTGSTLocation": "L0003",
 	"UTGSTUnit": "U1",
 	"UTGSTSOAPrefix": "SOA3",
 	"UTGSTLocation1": "L0003",
@@ -1672,5 +1672,11 @@
 	 "PaymentRec":"SIU1-2526-1759",
 	 "GRNSNO":"${GRNSNO}",
 	 "SCOGRNDBSFCODECOLUMN":"PORL_SF_CODE",
-	 "SCOGRNDBTARSFCODECOLUMN":"PORL_TAR_SF_CODE"
+	 "SCOGRNDBTARSFCODECOLUMN":"PORL_TAR_SF_CODE",
+	 "Purchase_Bills_UTGST_Prefix":"EX",
+	 "Purchase_Bills_UTGST_Customer_Unreg":"G&V INDUSTRIES",
+	 "Purchase_Bills_Compostion_UTGST":"V&V INDUSTRIALS",
+	 "Purchase_Bills_CasualPerson_UTGST":"PREM TRADERS",
+	 "InterStatePurchaseBillST": "PBST4"
+	 
 }
