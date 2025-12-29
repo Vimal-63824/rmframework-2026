@@ -4925,7 +4925,7 @@ public class PurchaseOrderFunctions {
 	 * @param value
 	 */
 	public void verifyLineAmountValidationAndPom(String Item, String value) {
-		System.out.println("Line " + value + " Item " + Item);
+		System.out.println("Line: " + value + ". Item: " + Item);
 		verifyAssertionBothValues(value, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("LINE_AMT")));
 
@@ -6447,7 +6447,7 @@ public class PurchaseOrderFunctions {
 //					webDB.sendTextToAnElement(PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount,
 //							ElementType.Xpath);
 //					webDB.pressEnterKey();
-				commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkRefreshCellsDisappear();
 //					commonFunc.hardWait(3000);
 					commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
 							PurchaseOrderPageLocators.CashDiscountPercentage, CashDiscount);
@@ -14573,6 +14573,110 @@ public class PurchaseOrderFunctions {
 		}
 		webDB.switchToDefaultContent();
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To verify From PR to PO With Multiple Item In Excel Sheet
+	 * Customized
+	 * 
+	 * @return boolean flag
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(String FileName, String SheetName, String Loc,
+			String Unit, String PRType, String PRPrefix, String POSupplier) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigatePurchaseRequestPage();
+		PR_Func.clickAddIconFillDetailsOfPurchaseRequest(Loc, Unit, PRType, PRPrefix,
+				commonFunc.getDataFromTestDataSheet("PR_CPCCode"), commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("PR_Requester"));
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 3; i < itemmultiple.length; i++) {
+			String item = itemmultiple[i][1];
+			if (!(item.equals("") || item.equals("Total"))) {
+				String Quantity = itemmultiple[i][5];
+				String UnitCost = itemmultiple[i][6];
+				String GrossValue = itemmultiple[i][7];
+				PR_Func.fillItemsQuantityCostAndSaveLine(item, Quantity, UnitCost);
+				verifyLineAmountCalculationValidation(GrossValue, item);
+			} else {
+				break;
+			}
+		}
+		PR_Func.saveHeaderAndClickPost();
+		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickPendingIcon();
+		clickPendingPRAndSearchPRNo();
+		selectAllPendingPRAndClickCreatePO();
+		selectSupplierAndCurrencyPendingPRAndClickTickIcon(POSupplier, commonFunc.getDataFromTestDataSheet("POPrefix"));
+		for (int j = 3; j < itemmultiple.length; j++) {
+			if (itemmultiple[j][0].equals(commonFunc.getDataFromTestDataSheet("PurchaseOrderGrn"))) {
+				for (int i = j + 3; i < itemmultiple.length; i++) {
+					String item = itemmultiple[i][1];
+					if (!(item.equals("") || item.equals(commonFunc.getDataFromTestDataSheet("Total")))) {
+						String Quantity = itemmultiple[i][5];
+						String UnitCost = itemmultiple[i][6];
+						String LineAmount = itemmultiple[i][7];
+						String TradePercentage = itemmultiple[i][8];
+						String SplDiscPercentage = itemmultiple[i][9];
+						String CashDiscPercentage = itemmultiple[i][10];
+						String TradeAssblValue = itemmultiple[i][11];
+						String TradeAmt = itemmultiple[i][12];
+						String SDAssemblValue = itemmultiple[i][13];
+						String SDAmt = itemmultiple[i][14];
+						String CDAssemblValue = itemmultiple[i][15];
+						String CDAmt = itemmultiple[i][16];
+						String TaxPercent = itemmultiple[i][20];
+						String cgst = itemmultiple[i][21];
+						String sgst = itemmultiple[i][22];
+						String Igst = itemmultiple[i][23];
+						String Utgst = itemmultiple[i][24];
+						String CessPercent = itemmultiple[i][25];
+						String Cess = itemmultiple[i][26];
+						String TaxAmount = itemmultiple[i][27];
+						String NetAmount = itemmultiple[i][28];
+						String HsnCode = commonFunc.getDataFromTestDataSheet("HsnCode80200");
+						addHsnCode(item, PurchaseOrderPageLocators.HsnCodeLovButton,
+								PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
+						verifyTickIconcreateItem();
+						verifyLineAmountValidationAndPom(item, LineAmount);
+						navigateToLineDetailPage(item);
+						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
+						verifyNavigateLineDetailTwo();
+						verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
+						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
+								CDAssemblValue, CDAmt);
+						navigateToLineDetailPage(item);
+						switchToLineDetailFrame();
+						verifyNavigateLineDetailTwo();
+						enableFreeOfCostCheckbox();
+						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+						verifyTickIconcreateItem();
+						verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
+								commonFunc.getDataFromTestDataSheet("LINE_AMT")));
+						verifyTaxValidation(item, "0", "0", "0", "0", "0", "0", "0");
+						verifyDiscountCalculationVerification(item, "0", "0", "0", "0", "0", "0");
+					} else {
+						break;
+					}
+				}
+			}
+		}
+		verifyHeaderTickAndPost();
+		if (!VariableHandler.getApprovalFlag()) {
+			approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("RoauBu"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HariEmpId"), Unit, System.getProperty("HariUsername"));
+		}
+		commonFunc.navigatePurchaseOrderPage();
+		verifyValidatePoStatus(VariableHandler.getPONumber(), commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		flag = commonFunc.logoutUser();
+		return flag;
 	}
 
 }
