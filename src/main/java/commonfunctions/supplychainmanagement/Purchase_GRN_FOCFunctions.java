@@ -524,7 +524,7 @@ public class Purchase_GRN_FOCFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - General
 	 * Items with Dissimilar Stock and Supplier UOM
@@ -690,7 +690,7 @@ public class Purchase_GRN_FOCFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
-	
+
 	/**
 	 * Purchase Order-With Free Of Cost - Direct PO - Import Supplier - General
 	 * Items with Dissimilar Stock and Supplier UOM
@@ -854,6 +854,180 @@ public class Purchase_GRN_FOCFunctions {
 		POfunc.verifyValidatePoStatus(VariableHandler.getPONumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Domestic Supplier - General Items
+	 * with Similar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForDomesticSuplrGeneralItemSimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("DomesticPRPoFOCUDGeneralSameUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Domestic Supplier - Material Items
+	 * with Similar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForDomesticSuplrMaterialItemSimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("DomesticPRPoFOCUDMaterialSameUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Domestic Supplier - Service Items
+	 * with Similar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForDomesticSuplrServiceItemSimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("DomesticPRPoFOCUDServiceSameUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Import Supplier - General Items
+	 * with Similar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForImportSuplrGeneralItemSimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("ImportPRPoFOCUDGeneralSameUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Import Supplier - Material Items
+	 * with Similar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForImportSuplrMaterialItemSimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("ImportPRPoFOCUDMaterialSameUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Import Supplier - Service Items
+	 * with Similar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForImportSuplrServiceItemSimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("ImportPRPoFOCUDServiceSameUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PR_Service"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Domestic Supplier - General Items
+	 * with Dissimilar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForDomesticSuplrGeneralItemDissimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("DomesticPRPoFOCUDGeneralDiffUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Domestic Supplier - Material Items
+	 * with Dissimilar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForDomesticSuplrMaterialItemDissimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("DomesticPRPoFOCUDMaterialDiffUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Import Supplier - General Items
+	 * with Dissimilar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForImportSuplrGeneralItemDissimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("ImportPRPoFOCUDGeneralDiffUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PR_General"), commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		return flag;
+	}
+
+	/**
+	 * This method used to verify From PR to PO - Import Supplier - Material Items
+	 * with Dissimilar Stock and Supplier UOM Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyFromPRtoPOFOCForImportSuplrMaterialItemDissimilarUOM() {
+		flag = POfunc.verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(
+				webDB.getDataFromProperties("Purchase-FocFileName"),
+				webDB.getDataFromProperties("ImportPRPoFOCUDMaterialDiffUOM"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
+				commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
 		return flag;
 	}
 }

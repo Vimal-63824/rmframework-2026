@@ -162,7 +162,7 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	public void VerifyPoFilterFieldVerification() {
 		purchaseOrderFunc.poFilterAllFieldWorking();
 	}
-	
+
 	/**
 	 * Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - General
 	 * Items with Dissimilar Stock and Supplier UOM
@@ -190,7 +190,7 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 		flag = purchaseFocFunc.verifyFOCForDirectPODomesticSuplrMaterialItemDissimilarUOM();
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * Purchase Order-With Free Of Cost - Direct PO - Import Supplier - General
 	 * Items with Dissimilar Stock and Supplier UOM
@@ -216,6 +216,146 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 			"Direct PO" }, description = "708 Purchase Order-With Free Of Cost - Direct PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM")
 	public void VerifyFOCForDirectPOImportSuplrMaterialItemDissimilarUOM() {
 		flag = purchaseFocFunc.verifyFOCForDirectPOImportSuplrMaterialItemDissimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Similar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 15, groups = {
+			"From PR to PO" }, description = "699 From PR to PO - Domestic Supplier - General Items with Similar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForDomesticSuplrGeneralItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForDomesticSuplrGeneralItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - Material Items with Similar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 16, groups = {
+			"From PR to PO" }, description = "700 From PR to PO - Domestic Supplier - Material Items with Similar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForDomesticSuplrMaterialItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForDomesticSuplrMaterialItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - Service Items with Similar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 17, groups = {
+			"From PR to PO" }, description = "701 From PR to PO - Domestic Supplier - Service Items with Similar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForDomesticSuplrServiceItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForDomesticSuplrServiceItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - General Items with Similar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 18, groups = {
+			"From PR to PO" }, description = "702 From PR to PO - Import Supplier - General Items with Similar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForImportSuplrGeneralItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForImportSuplrGeneralItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - Material Items with Similar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 19, groups = {
+			"From PR to PO" }, description = "703 From PR to PO - Import Supplier - Material Items with Similar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForImportSuplrMaterialItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForImportSuplrMaterialItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - Service Items with Similar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 20, groups = {
+			"From PR to PO" }, description = "704 From PR to PO - Import Supplier - Service Items with Similar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForImportSuplrServiceItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForImportSuplrServiceItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 21, groups = {
+			"From PR to PO" }, description = "709 From PR to PO - Domestic Supplier - General Items with Dissimilar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForDomesticSuplrGeneralItemDissimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForDomesticSuplrGeneralItemDissimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier - Material Items with Dissimilar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 22, groups = {
+			"From PR to PO" }, description = "710 From PR to PO - Domestic Supplier - Material Items with Dissimilar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForDomesticSuplrMaterialItemDissimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForDomesticSuplrMaterialItemDissimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - General Items with Dissimilar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 23, groups = {
+			"From PR to PO" }, description = "711 From PR to PO - Import Supplier - General Items with Dissimilar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForImportSuplrGeneralItemDissimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForImportSuplrGeneralItemDissimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - Material Items with Dissimilar Stock and
+	 * Supplier UOM - Free of Cost
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 24, groups = {
+			"From PR to PO" }, description = "712 From PR to PO - Import Supplier - Material Items with Dissimilar Stock and Supplier UOM  - Free of Cost")
+	public void VerifyFromPRtoPOFOCForImportSuplrMaterialItemDissimilarUOM() {
+		flag = purchaseFocFunc.verifyFromPRtoPOFOCForImportSuplrMaterialItemDissimilarUOM();
 		assertTrue(flag);
 	}
 
