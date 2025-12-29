@@ -243,6 +243,9 @@ public class VariableHandler {
 	private static ThreadLocal<ArrayList<String>> MultipleGRNDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<ArrayList<String>> MultiplePBDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> TravelRequestDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> TravelReimbursementDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOSFcode = new ThreadLocal<>();
+	private static ThreadLocal<String> SCOTarSFcode = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2081,12 +2084,34 @@ public class VariableHandler {
 	public static void setCashPaymentOrReceiptDocNumber(String data) {
 		CashPaymentOrReceiptDoc.set(data);
 	}
-	
+
 	public static String getTravelRequestDocNo() {
 		return TravelRequestDocNo.get();
 	}
 
 	public static void setTravelRequestDocNo(String data) {
 		TravelRequestDocNo.set(data);
+	}
+
+	public static String getTravelReimbursementtDocNo() {
+		return TravelReimbursementDocNo.get();
+	}
+
+	public static void setTravelReimbursementDocNo(String data) {
+		TravelReimbursementDocNo.set(data);
+	}
+	public static String getSCOSFcode() {
+		return SCOSFcode.get();
+	}
+
+	public static void setSCOSFcode(String Data) {
+		SCOSFcode.set(Data);
+	}
+	public static String getSCOTarSFcode() {
+		return SCOTarSFcode.get();
+	}
+
+	public static void setSCOTarSFcode(String Data) {
+		SCOTarSFcode.set(Data);
 	}
 }

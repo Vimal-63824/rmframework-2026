@@ -1689,5 +1689,17 @@ public class DBCommonFunctions {
 				Item, DBHeaderColumnValue);
 		return value;
 	}
-
+	/**
+	 * SCO GRN LINEWISE
+	 * 
+	 * @author Vimal -RMITS
+	 * @param GRNSNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOGRNLINEWISE(String GRNSNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOGRNLineQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
+		return value;
+	}
 }

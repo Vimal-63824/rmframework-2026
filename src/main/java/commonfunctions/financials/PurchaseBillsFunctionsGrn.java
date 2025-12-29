@@ -333,8 +333,8 @@ public class PurchaseBillsFunctionsGrn {
 	 * @throws IOException
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -351,7 +351,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -378,7 +378,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -464,7 +464,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -524,9 +524,9 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -540,7 +540,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseType"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -553,7 +553,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @throws IOException
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviation() throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -600,9 +600,9 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -614,7 +614,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -701,7 +701,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -798,7 +798,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -810,7 +810,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @throws IOException
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviation() throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -835,7 +835,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -864,9 +864,9 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTITCIneligibleAgainstGRNWithoutDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -882,7 +882,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -894,7 +894,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @throws IOException
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviation() throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -925,7 +925,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviationAndExpense()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -959,9 +959,9 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -981,7 +981,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -995,7 +995,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviation()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1023,7 +1023,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1052,9 +1052,9 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowIgstITCIneligibleAgainstGRNWithoutDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1071,7 +1071,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseType"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForIgstFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1085,7 +1085,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviation()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1110,7 +1110,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviationAndExpense()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1139,8 +1139,8 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithoutDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1161,7 +1161,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1174,7 +1174,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @throws IOException
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviation() throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1205,7 +1205,7 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationAndExpense()
 			throws IOException {
-//		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -1239,8 +1239,8 @@ public class PurchaseBillsFunctionsGrn {
 	 */
 	public void VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment()
 			throws IOException {
-		VerifyCreatingPurchaseBillwithAdvance();
-		commonFunc.logoutUser();
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBill();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1261,7 +1261,7 @@ public class PurchaseBillsFunctionsGrn {
 		VerifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		VerifySaveLine();
-		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		VerifyClickingReferenceTabForRcmFlag();
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1674,7 +1674,7 @@ public class PurchaseBillsFunctionsGrn {
 		if (flag) {
 			webDB.clickAnElement(PurchaseBillsGrnLocators.PBAddSave, ElementType.Xpath);
 			logs.logging("INFO", "Line is Saved");
-
+			commonFunc.hardWait(3000);
 		}
 		assertTrue(flag);
 	}

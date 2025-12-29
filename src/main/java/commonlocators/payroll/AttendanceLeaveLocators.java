@@ -622,4 +622,38 @@ public class AttendanceLeaveLocators {
 	public static final String TravelRequestDocNoField = "//*[@id=\"P818210001_HTRH_RQST_NO\"]";
 	/** @locatorType Xpath */
 	public static final String TravelRequestCancelButton = "//button[@id='B3618780304057481668']";
+	
+	
+	/** @locatorType Xpath */
+	public static final String TravelReimbFindSearchButton = "//button[@id='B3552168085148912411']";
+	/** @locatorType Xpath */
+	public static final String TravelReimbDocSelect = "#\\33 552168605010912416_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	/** @locatorType Xpath */
+	public static final String TravelRePlaceOfVisitAddButton = "//button[@id='B3560986088864771175']";
+	/** @locatorType Xpath */
+	public static final String DateFromField = "//input[@id='C3559196709701186787_input']";
+	/** @locatorType Xpath */
+	public static final String DateToField = "//input[@id='C3559196857657186788_input']";
+	/** @locatorType Xpath */
+	public static final String TravelReimCityLOV = "//button[@id='C3559196918416186789_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PlaceOfVisitSaveButton = "//button[@id='B3601292050261920986']";
+	/** @locatorType Xpath */
+	public static final String TravelReimSaveButton = "//button[@id='B3610192344281546781']";
+	/** @locatorType Xpath */
+	public static final String TravelReimExpensesButton = "//button[@id='B3601293823082921004']";
+	/** @locatorType Xpath */
+	public static final String ExpenseAmountField = "//*[@id=\"ig_expns_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String ExpenseAmountInput = "//input[@id='C3669088115154558307']";
+	/** @locatorType Xpath */
+	public static final String ExpenseFrame = "//*[@id=\"apex_dialog_1\"]/iframe";
+	/** @locatorType Xpath */
+	public static final String TravelReimExpenseSaveButton = "//button[@id='B999392254529084692']";
+	/** @locatorType Xpath */
+	public static final String TravelReimExpenseClose = "//*[@id=\"t_PageBody\"]/div[26]/div[1]/button/span\r\n" + "";
+	/** @locatorType Xpath */
+	public static final String TravelReimPostButton = "//button[@id='B3610192344281546781']";
+	/** @locatorType Xpath */
+	public static final String TravelReimDocNoField = "//*[@id=\"P818210021_HTEH_DOC_NO_DISPLAY\"]";
 }

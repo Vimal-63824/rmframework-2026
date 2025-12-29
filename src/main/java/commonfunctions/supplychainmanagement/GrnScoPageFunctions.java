@@ -1,11 +1,16 @@
 package commonfunctions.supplychainmanagement;
 
 import static org.testng.Assert.assertTrue;
+
+import java.io.File;
+
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.GrnScoLocators;
 import commonlocators.supplychainmanagement.MaterialReceiptVoucherLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -16,6 +21,8 @@ public class GrnScoPageFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
+	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
+	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Method Is Used To Create Pending Grn Sco Doc
@@ -133,6 +140,8 @@ public class GrnScoPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyGenMatConsAndAllocate() {
+		verifyGrnSFcodeWithExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
+		commonFunc.hardWait(2000);
 		flag = webDB.waitForElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Gen Lot Serial Button Is Displayed");
@@ -668,5 +677,35 @@ public class GrnScoPageFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+	/**
+	 * This Method Used For Verify GRN SF Code Compare Excel Sheet With DataBase
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifyGrnSFcodeWithExcelSheet(String Sheetname) {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheetname);
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String GRNSFCODE = itemmultiple[i][0];
+			String GRNTARSFCODE = itemmultiple[i][1];
+			if (!GRNSFCODE.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+								commonFunc.getDataFromTestDataSheet("SCOGRNDBSFCODECOLUMN")), GRNSFCODE);
+				logs.logging("INFO", "SCO SF CODE Matched With GRN SF CODE AND MATCHED DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+								commonFunc.getDataFromTestDataSheet("SCOGRNDBTARSFCODECOLUMN")), GRNTARSFCODE);
+				logs.logging("INFO", "SCO TAR SF CODE Matched With GRN TAR SF CODE AND MATCHED DataBase Values");
+
+
+			}
+		}
 	}
 }

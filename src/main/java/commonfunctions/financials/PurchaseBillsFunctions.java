@@ -256,6 +256,7 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyPurchaseBillApprovalStatus() {
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.VoucherNumberLovButton,
 				VariableHandler.getScoPurchaseNumber());
 		flag = webDB.waitForElement(PurchaseBillsLocators.PurchaseBillSearchButton, ElementType.Xpath);
@@ -918,6 +919,7 @@ public class PurchaseBillsFunctions {
 	 * @author Kowshik-RMITS
 	 */
 	public void closeExpandButtonDirect() {
+		commonFunc.checkRefreshCellsDisappear();
 		if (webDB.verifyIsElementDisplayed(PurchaseBillsLocators.ExpandButton, ElementType.Xpath)) {
 			webDB.javaScriptClickAnElement(PurchaseBillsLocators.ExpandButton, ElementType.Xpath);
 			logs.logging("INFO", "Cursor Button Is Closed ");
@@ -936,7 +938,7 @@ public class PurchaseBillsFunctions {
 	 */
 	public void openExpandButtonDirect() {
 		if (webDB.verifyIsElementDisplayed(PurchaseBillsLocators.OpenExpandButton, ElementType.Xpath)) {
-			webDB.javaScriptClickAnElement(PurchaseBillsLocators.OpenExpandButton, ElementType.Xpath);
+			webDB.clickAnElement(PurchaseBillsLocators.OpenExpandButton, ElementType.Xpath);
 			logs.logging("INFO", "Cursor Button Is Opened");
 			flag = webDB.waitForElement(PurchaseBillsLocators.gstClafField, ElementType.Xpath);
 		}
@@ -2556,7 +2558,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillslocalUnreg"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -2615,7 +2617,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillslocalUnreg"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -2645,7 +2647,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("GstTypeValue"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
@@ -2729,6 +2731,7 @@ public class PurchaseBillsFunctions {
 		ClickSaveButton();
 		selectDropDownTypeAndInsecTion(FinType, FinTypeSec);
 		ClickSaveButton();
+		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
 		clickValidateAllowRcmFlag();
@@ -2910,9 +2913,8 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("GstTypeValue"));
+		clickValidateAllowIgstFlag(commonFunc.getDataFromTestDataSheet("PurchaseBillsInterstate"));
 		movesToInvoiceTap();
-		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
 		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		clickPostButton();
@@ -3975,10 +3977,10 @@ public class PurchaseBillsFunctions {
 		insertPartyInPurchaseBills(CustomerName, Bills);
 		closeExpandButtonDirect();
 		storeSCOPurchaseVoucherNumber();
-		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsUTGST"));
+		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsUTGST_Ureq"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsUTGST"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsUTGST_Ureq"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -4311,11 +4313,11 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		getValueFromTaxAmountInLineDetails();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
-		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -4352,7 +4354,6 @@ public class PurchaseBillsFunctions {
 		getValueFromTaxAmountInLineDetails();
 		clickValidateAllowRcmFlag();
 		movesToInvoiceTap();
-		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
 		verifyLineDetailsWithDbValidationRcmFlag(webDB.getDataFromProperties("PurchaseBillsLocal"));
 		clickPostButton();
@@ -4392,7 +4393,6 @@ public class PurchaseBillsFunctions {
 		getValueFromTaxAmountInLineDetails();
 		clickValidateAllowRcmFlag();
 		movesToInvoiceTap();
-		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
 		verifyLineDetailsWithDbValidationRcmFlag(webDB.getDataFromProperties("PurchaseBillsLocal"));
 		clickPostButton();
