@@ -18,7 +18,7 @@
 			<class name="com.roadmapERP.PurchaseFOCTest"></class>
 		</classes>
 	</test>
-	<test name="Road Map Test">
+	<test name="Road Map Test - 2">
 		<classes>
 			<class name="com.roadmapERP.CashPaymentTest"></class>
 			<class name="com.roadmapERP.CashReceiptTest"></class>
