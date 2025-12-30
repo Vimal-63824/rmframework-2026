@@ -360,6 +360,71 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * Direct GRN-General-User Defined-Same Stock andSupplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 25, groups = {
+			"Direct GRN" }, description = "758 Direct GRN-General-User Defined-Same Stock andSupplier UOM - FOC")
+	public void VerifyDirectGRNFOCForGeneralItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyDirectGRNFOCForGeneralItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Direct GRN-Material-User Defined-Same Stock andSupplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 26, groups = {
+			"Direct GRN" }, description = "759 Direct GRN-Material-User Defined-Same Stock andSupplier UOM - FOC")
+	public void VerifyDirectGRNFOCForMaterialItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyDirectGRNFOCForMaterialItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Direct GRN-Service-User Defined-Same Stock andSupplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 27, groups = {
+			"Direct GRN" }, description = "760 Direct GRN-Service-User Defined-Same Stock andSupplier UOM - FOC")
+	public void VerifyDirectGRNFOCForServiceItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyDirectGRNFOCForServiceItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Direct GRN-General-User Defined-Dissimilar Stock andSupplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 28, groups = {
+			"Direct GRN" }, description = "770 Direct GRN-General-User Defined-Dissimilar Stock andSupplier UOM - FOC")
+	public void VerifyDirectGRNFOCForGeneralItemDissimilarUOM() {
+		flag = purchaseFocFunc.verifyDirectGRNFOCForGeneralItemDissimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Direct GRN-Material-User Defined-Dissimilar Stock andSupplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 29, groups = {
+			"Direct GRN" }, description = "771 Direct GRN-Material-User Defined-Dissimilar Stock andSupplier UOM - FOC")
+	public void VerifyDirectGRNFOCForMaterialItemDissimilarUOM() {
+		flag = purchaseFocFunc.verifyDirectGRNFOCForMaterialItemDissimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Sakthi-GWL
