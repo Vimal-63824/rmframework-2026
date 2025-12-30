@@ -593,7 +593,7 @@ public class DirectGrnPageFunctions {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineRcpQty, ElementType.Xpath);
 		if (flag) {
 			commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
-					DirectGrnPageLocators.GrnLineRcpQty, QTY);
+					DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
 			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
 			commonFunc.checkRefreshCellsDisappear();
 			logs.logging("INFO", "Entered Quantity Is:" + QTY);
