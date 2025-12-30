@@ -114,6 +114,7 @@ public class CashPaymentFunctions {
 									logs.logging("INFO", "Create Documents Is Displayed");
 									commonFunc.hardWait(2000);
 									webDB.clickAnElement(CashPaymentLocators.CreateDoc, ElementType.Xpath);
+									commonFunc.hardWait(500);
 									flag = webDB.waitForElement(CashPaymentLocators.OkButton, ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Okay Button Is Displayed");
@@ -1420,6 +1421,7 @@ public class CashPaymentFunctions {
 				webDB.moveToElement(CashPaymentLocators.BankPendingPartyDocumentScreenOkButton, ElementType.Xpath);
 				webDB.javaScriptClickAnElement(CashPaymentLocators.BankPendingPartyDocumentScreenOkButton,
 						ElementType.Xpath);
+				commonFunc.hardWait(500);
 				commonFunc.checkRefreshCellsDisappear();
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(CashPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
@@ -1981,8 +1983,7 @@ public class CashPaymentFunctions {
 				clickLineWiseSaveButton();
 				clickLineWiseAddButton(i);
 				clickPendingPartyDocumentsInBP();
-				selectPartyDocumentBasedOnPBThroughAdd(PartyName, VariableHandler.getMultiplePBDocs(), i - 1,
-						SheetName);
+				selectPartyDocumentBasedOnPBThroughAdd(PartyName, VariableHandler.getMultiplePBDocs(), i, SheetName);
 				clickLineWiseViewButton(i);
 				clickAddButtonInViewDetails();
 				addBillNumberAndPayAmount(BillNumber, PayAmount);
@@ -2386,7 +2387,7 @@ public class CashPaymentFunctions {
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
 		chooseDocumentNumberInPendingPayablesScreenMPMB(VariableHandler.getMultiplePBDocs(),
-				commonFunc.getDataFromTestDataSheet("PaymentType"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
 				CashierName, CreationType, SheetName);
 		getCashPaymentOrReceiptDocumentNumber();
 		commonFunc.checkRefreshCellsDisappear();
