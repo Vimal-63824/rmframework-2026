@@ -868,9 +868,9 @@ public class CashReceiptFunctions {
 							CashReceiptLocators.PendingReceivablesDocumentNumberField, ElementType.Xpath);
 					if (GetTextDocumentNumber.equals(DocumentNumber.get(i - 1))) {
 //						verifyPendingReceivablesSIDocumentWithDB(SheetName, DocumentNumber.get(i));
-//						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, DocumentNumber.get(i - 1), i);
-						verifyPendingReceivablesSIDocumentThroughGetDocWithDB123(SheetName, DocumentNumber.get(i - 1),
-								i);
+						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, DocumentNumber.get(i - 1), i);
+//						verifyPendingReceivablesSIDocumentThroughGetDocWithDB123(SheetName, DocumentNumber.get(i - 1),
+//								i);
 
 						commonFunc.hardWait(1000);
 						webDB.clickAnElement(CashReceiptLocators.BRPendingReceivablesDocumentSelectCheckBox(
