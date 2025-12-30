@@ -1491,7 +1491,7 @@ public class SubcontractOrderFunctions {
 		grnScoPageFunc.createPendingGrnScoDocForUSType(VariableHandler.getSCOdocno(),
 				commonFunc.getDataFromTestDataSheet("QtyApplyFor0"));
 //			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -2970,7 +2970,7 @@ public class SubcontractOrderFunctions {
 		grnScoPageFunc.createPendingGrnScoDocForUSType(VariableHandler.getSCOdocno(),
 				commonFunc.getDataFromTestDataSheet("QtyApplyFor0"));
 //			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -8095,6 +8095,7 @@ public class SubcontractOrderFunctions {
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		secondProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIconAndAfterFirstProcessValidation();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationUTGSTreg"));
 		clickPostButton();
@@ -11137,7 +11138,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToGrnSco();
 		pendingGRNGateEntry(VariableHandler.getGEdocno());
 //				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //				grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //				grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -11631,7 +11632,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToGrnSco();
 		pendingGRNGateEntry(VariableHandler.getGEdocno());
 //				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //				grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //				grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -11978,17 +11979,17 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -12039,17 +12040,17 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -12168,17 +12169,17 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOWithQC"));
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -12524,7 +12525,7 @@ public class SubcontractOrderFunctions {
 		grnScoPageFunc.createPendingGrnScoDocForUSType(VariableHandler.getSCOdocno(),
 				commonFunc.getDataFromTestDataSheet("QtyApplyFor0"));
 //			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //			grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //			grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -12690,12 +12691,12 @@ public class SubcontractOrderFunctions {
 		clickLocationDetailsButtonValidationwithDataBase();
 		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
 		storeBatchQtyAndBtachCost();
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -12973,7 +12974,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToGrnSco();
 		pendingGRNGateEntry(VariableHandler.getGEdocno());
 //				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //				grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //				grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -13962,7 +13963,7 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToGrnSco();
 		pendingGRNGateEntry(VariableHandler.getGEdocno());
 //				grnScoPageFunc.checkConsumptionBeforeGenerationMat();
-		grnScoPageFunc.verifyGenMatConsAndAllocate();
+		grnScoPageFunc.verifyGenMatConsAndAllocateSFcodeNotVerify();
 //				grnScoPageFunc.checkConsumptionAfterGenerationMat();
 //				grnScoPageFunc.verifyViewLineDetails();
 		grnScoPageFunc.saveHeaderAndPost();
@@ -14259,17 +14260,17 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -14319,10 +14320,10 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
 		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
-				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
-		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
-		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();

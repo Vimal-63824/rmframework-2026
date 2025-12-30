@@ -825,6 +825,64 @@ public class PurchaseBillsFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**
+	 * Click Allows Igst Flag
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickValidateAllowIgstFlagUpdated(String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
+			logs.logging("INFO", "Reference Tap Moved ");
+			flag = webDB.waitForElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(PurchaseBillsLocators.AllowIgstCheckFlag, ElementType.Xpath);
+				logs.logging("INFO ", "Allows Igst Check Box Is Clicked ");
+				commonFunc.hardWait(500);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseBillsLocators.SaveButtonHeader, ElementType.Xpath);
+				if (flag) {
+					webDB.javaScriptClickAnElement(PurchaseBillsLocators.SaveButtonHeader, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Clicked Save Headers");
+					commonFunc.checkRefreshCellsDisappear();
+					validAllowIgstCheckboxForTaxAmountCalculation();
+					//excelUtils.writeDataInExcel(filepath, SheetName, 2, 3, "2");
+					verifyTaxAmountForIgstAmountInDbValidationUpdated(SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**Verift Tax Amount After Check a Allows Igst Flag
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SheetName
+	 */
+	public void verifyTaxAmountForIgstAmountInDbValidationUpdated(String SheetName) {
+		PurchaseBills = excelUtils.readAllDataInExcel(filepath, SheetName);
+		for (int i = 4; i < PurchaseBills.length; i++) {
+			String SeqNumber = Integer.toString(i - 3);
+			String Item = PurchaseBills[i][1];
+			String IgstTaxAmount = PurchaseBills[i][26];
+			if (!Item.equals("")) {
+				verifyAssertionBothValues(
+						dbCommonFunc.PurchaseBillsItemWithExpOrdBy(VariableHandler.getScoPurchaseNumber(), SeqNumber,
+								commonFunc.getDataFromTestDataSheet("PurchaseBillsIgstAmount")),
+						IgstTaxAmount);
+				logs.logging("INFO", "Igst IS Matched With DB Values For This Item " + IgstTaxAmount);
+
+			}
+		}
+		assertTrue(flag);
+	}
+
+
 
 	/**
 	 * Sales Invoice Against Distribute a Values
@@ -5408,6 +5466,173 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
+	/**Unregistered Supplier with Local GST- Purchase Direct and Expenses Account (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+
+		
+	}
+	/**Unregistered Supplier with Local GST- Purchase Direct and Expenses Account (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectStockitemserviceitemAndchargeitem(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		openExpandButtonDirect();
+		getGstClafInLocation();
+		movesToInvoiceTap();
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN"));
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses("purchaseBills_GRN");
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+		
+	}
+	
+	/**Unregistered Supplier with Local GST (Allow IGST tax)- Purchase Direct and Expenses Account (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		ClickSaveButton();
+		openExpandButtonDirect();
+		getGstClafInLocation();
+		movesToInvoiceTap();
+		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		createJvForRecord();
+		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**Unregistered Supplier with Interstate GST- Purchase Direct (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectStockitemserviceitemAndchargeitem(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+				
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBills_Ex_Grn_Igst"));
+		ClickSaveButton();
+		openExpandButtonDirect();
+		getGstClafInLocation();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("PurchaseBills_Ex_Grn_Igst"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**Unregistered Supplier with Interstate GST- Purchase Direct and Expenses Account (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountStockitemserviceitemAndchargeitem(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+		
+	}
+
+
+
+
+
 	
 
 }

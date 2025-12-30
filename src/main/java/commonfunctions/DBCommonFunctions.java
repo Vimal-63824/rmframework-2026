@@ -1702,4 +1702,17 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * SCO GRN LINEWISE Process Tab
+	 * 
+	 * @author Vimal -RMITS
+	 * @param GRNSNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOGRNLineWiseProcTab(String GRNSNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOGRNLineProcessTabQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
+		return value;
+	}
 }

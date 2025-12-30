@@ -23,6 +23,7 @@ public class GrnScoPageFunctions {
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 
 	/**
 	 * This Method Is Used To Create Pending Grn Sco Doc
@@ -358,6 +359,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * Verify TableSpec InputParameter
 	 * 
@@ -389,6 +391,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Create Pending Grn Sco Doc For UP Type
 	 * 
@@ -421,12 +424,12 @@ public class GrnScoPageFunctions {
 							logs.logging("INFO", "Get  Proc Qty Is: " + CurrProcQty);
 							commonFunc.hardWait(1000);
 							webDB.moveToElement(GrnScoLocators.PR_Type_Field, ElementType.Xpath);
-							verifyAddTableSpecs(GrnScoLocators.PR_Type_Field,
-									GrnScoLocators.PR_Type_Field, QtyApplyFor0);
+							verifyAddTableSpecs(GrnScoLocators.PR_Type_Field, GrnScoLocators.PR_Type_Field,
+									QtyApplyFor0);
 							commonFunc.hardWait(1000);
 							webDB.moveToElement(GrnScoLocators.UP_Type_Field, ElementType.Xpath);
-							verifyAddTableSpecs(GrnScoLocators.UP_Type_Field,
-									GrnScoLocators.UP_Type_Input, CurrProcQty);
+							verifyAddTableSpecs(GrnScoLocators.UP_Type_Field, GrnScoLocators.UP_Type_Input,
+									CurrProcQty);
 							commonFunc.hardWait(1000);
 							webDB.moveToElement(GrnScoLocators.ScoNumber(DocNo), ElementType.Xpath);
 							webDB.moveToElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
@@ -476,6 +479,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Create Pending Grn Sco Doc For UP Type
 	 * 
@@ -508,12 +512,12 @@ public class GrnScoPageFunctions {
 							logs.logging("INFO", "Get  Proc Qty Is: " + CurrProcQty);
 							commonFunc.hardWait(1000);
 							webDB.moveToElement(GrnScoLocators.PR_Type_Field, ElementType.Xpath);
-							verifyAddTableSpecs(GrnScoLocators.PR_Type_Field,
-									GrnScoLocators.PR_Type_Field, QtyApplyFor0);
+							verifyAddTableSpecs(GrnScoLocators.PR_Type_Field, GrnScoLocators.PR_Type_Field,
+									QtyApplyFor0);
 							commonFunc.hardWait(1000);
 							webDB.moveToElement(GrnScoLocators.US_Type_Field, ElementType.Xpath);
-							verifyAddTableSpecs(GrnScoLocators.US_Type_Field,
-									GrnScoLocators.US_Type_Field, CurrProcQty);
+							verifyAddTableSpecs(GrnScoLocators.US_Type_Field, GrnScoLocators.US_Type_Field,
+									CurrProcQty);
 							commonFunc.hardWait(1000);
 							webDB.moveToElement(GrnScoLocators.ScoNumber(DocNo), ElementType.Xpath);
 							webDB.moveToElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
@@ -563,6 +567,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Clicking Gen Mat Cons And Allocate
 	 * 
@@ -591,6 +596,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Is Used To Create Pending Grn Sco Doc For UP Type
 	 * 
@@ -678,6 +684,7 @@ public class GrnScoPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used For Verify GRN SF Code Compare Excel Sheet With DataBase
 	 * 
@@ -703,9 +710,129 @@ public class GrnScoPageFunctions {
 						.verifyAssertionBothValues(dbCommonFunctions.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
 								commonFunc.getDataFromTestDataSheet("SCOGRNDBTARSFCODECOLUMN")), GRNTARSFCODE);
 				logs.logging("INFO", "SCO TAR SF CODE Matched With GRN TAR SF CODE AND MATCHED DataBase Values");
-
-
+				commonFunc.hardWait(2000);
+				verifySCOTotalAmountAndGRNTotalAmount();
+				verifySCOProcessDetailsAndGRNProcessDetails();
 			}
 		}
+	}
+
+	/**
+	 * Check Assertion Both Values
+	 * 
+	 * @author Deepan-GWL
+	 * @param Actual
+	 * @param Expected
+	 */
+	public void verifyAssertionBothValues(String Actual, String Expected) {
+		logs.logging("INFO", "Actual DataBase Value Is: " + Actual);
+		logs.logging("INFO", "Expected Value Is: " + Expected);
+		flag = Actual.equals(Expected);
+		if (flag) {
+			logs.logging("INFO", "Verified Actual DataBase Value 8: " + Actual + " And Expected Values : " + Expected);
+		} else {
+			logs.logging("INFO",
+					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Verify SCO Total Amount And GRN Total Amount
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifySCOTotalAmountAndGRNTotalAmount() {
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOHeaderDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBMATAMTCOLUMN")),
+				dbCommonFunc.SCOGRNLINEWISE(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINEAMTCOLUMN")));
+		logs.logging("INFO", "Line Amount Matched With SCO And GRNSCO ");
+		commonFunc.hardWait(1000);
+	}
+
+	/**
+	 * This Method Is Used To Verify Gen Mat Cons And Allocate
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifyGenMatConsAndAllocateSFcodeNotVerify() {
+		flag = webDB.waitForElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Gen Lot Serial Button Is Displayed");
+			webDB.clickAnElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			flag = webDB.waitForElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Gen Mat Cons Button Is Displayed");
+				webDB.clickAnElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(GrnScoLocators.Allocate, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Allocate Button Is Displayed");
+					webDB.clickAnElement(GrnScoLocators.Allocate, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Verify SCO Process Details And GRN Process Details
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifySCOProcessDetailsAndGRNProcessDetails() {
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")),
+				dbCommonFunc.SCOGRNLineWiseProcTab(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINEBatchQtyCOLUMN")));
+		logs.logging("INFO", "Batch Qty Matched With SCO And GRNSCO ");
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")),
+				dbCommonFunc.SCOGRNLineWiseProcTab(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINEBatchCostCOLUMN")));
+		logs.logging("INFO", "Batch Cost Matched With SCO And GRNSCO ");
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCONVFACTORCOLUMN")),
+				dbCommonFunc.SCOGRNLineWiseProcTab(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINEConvfactCOLUMN")));
+		logs.logging("INFO", "ConvFactor Matched With SCO And GRNSCO ");
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBPROCQTYCOLUMN")),
+				dbCommonFunc.SCOGRNLineWiseProcTab(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINEProcQtyCOLUMN")));
+		logs.logging("INFO", "ProcessQty Matched With SCO And GRNSCO ");
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")),
+				dbCommonFunc.SCOGRNLineWiseProcTab(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINESACcodeCOLUMN")));
+		logs.logging("INFO", "SAC code Matched With SCO And GRNSCO ");
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBASBLVALUECOLUMN")),
+				dbCommonFunc.SCOGRNLineWiseProcTab(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("SCOGRNDBLINEAsblValCOLUMN")));
+		logs.logging("INFO", "Asbl. Value Matched With SCO And GRNSCO ");
+		commonFunc.hardWait(1000);
 	}
 }
