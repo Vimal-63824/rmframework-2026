@@ -568,6 +568,28 @@ public class GrnPageFunctions2 {
 	}
 
 	/**
+	 * This method used to verify Free of Cost and update Unit Cost as 0 and Save
+	 * Lines
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyClickFOCAndUpdateCostAndSaveLines() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+			flag = webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "FOC Input Box Clicked in GRN Line Details");
+				commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
+						DirectGrnPageLocators.GrnLineCostInput, "0");
+				logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
+				DirectGRNFunc.verifyClickingSaveLine();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * This Methods Is Used To Verify Creation of Direct GRN-General-User
 	 * Defined-Same Stock and Supplier UOM
 	 * 

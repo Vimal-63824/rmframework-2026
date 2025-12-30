@@ -5,6 +5,11 @@ package commonfunctions.supplychainmanagement;
  * @company Galaxy Weblinks December 15, 2025
  */
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -537,7 +542,7 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
 		POfunc.verifyCreateDirectPO();
@@ -620,7 +625,7 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
 		POfunc.verifyCreateDirectPO();
@@ -703,7 +708,7 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("GeneralValue"));
 		POfunc.verifyCreateDirectPO();
@@ -786,7 +791,7 @@ public class Purchase_GRN_FOCFunctions {
 				"AdminUsername-Admin");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0001"),
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L49"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("MaterialValue"));
 		POfunc.verifyCreateDirectPO();
@@ -1028,6 +1033,196 @@ public class Purchase_GRN_FOCFunctions {
 				commonFunc.getDataFromTestDataSheet("PRMaterialType"),
 				commonFunc.getDataFromTestDataSheet("Prefix_PR100"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct GRN-General-User Defined-Same Stock and
+	 * Supplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDirectGRNFOCForGeneralItemSimilarUOM() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		GRNFunc.verifyGrnAdd();
+		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
+		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
+		GRN2Func.verifyClickFOCAndUpdateCostAndSaveLines();
+		GRN2Func.overAllSaveAndPostForExcess();
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		GRN2Func.verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct GRN-Material-User Defined-Same Stock
+	 * and Supplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDirectGRNFOCForMaterialItemSimilarUOM() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		GRNFunc.verifyGrnAdd();
+		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
+		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
+		GRN2Func.verifyClickFOCAndUpdateCostAndSaveLines();
+		GRN2Func.overAllSaveAndPostForExcess();
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		GRN2Func.verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct GRN-Service-User Defined-Same Stock and
+	 * Supplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDirectGRNFOCForServiceItemSimilarUOM() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		GRNFunc.verifyGrnAdd();
+		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDService"));
+		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpSameUDService"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
+		GRN2Func.verifyClickFOCAndUpdateCostAndSaveLines();
+		GRN2Func.overAllSaveAndPostForExcess();
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		GRN2Func.verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct GRN-General-User Defined-Dissimilar
+	 * Stock and Supplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDirectGRNFOCForGeneralItemDissimilarUOM() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		GRNFunc.verifyGrnAdd();
+		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"));
+		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
+		GRN2Func.verifyClickFOCAndUpdateCostAndSaveLines();
+		GRN2Func.overAllSaveAndPostForExcess();
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		GRN2Func.verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
+		return flag;
+	}
+
+	/**
+	 * This Methods Is Used To Verify Direct GRN-Material-User Defined-Dissimilar
+	 * Stock and Supplier UOM - FOC
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public boolean verifyDirectGRNFOCForMaterialItemDissimilarUOM() {
+		String BillNo = commonFunc.getDataFromTestDataSheet("ImportGRNBillNoText")
+				+ RandomStringUtils.randomAlphanumeric(3);
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+		String Today = date.format(formatter);
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		GRNFunc.verifyGrnAdd();
+		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		GRN2Func.verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"));
+		GRN2Func.multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"));
+		DirectGRNFunc.lotSerialQtyApportion();
+		GRN2Func.clickImportLRAndfillBillNo(BillNo, Today);
+		GRN2Func.verifyClickFOCAndUpdateCostAndSaveLines();
+		GRN2Func.overAllSaveAndPostForExcess();
+		if (!VariableHandler.getApprovalFlag()) {
+			approveFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+		}
+		GRN2Func.verifyGRNDocumentApprovedStatus();
+		flag = commonFunc.logoutUser();
 		return flag;
 	}
 }

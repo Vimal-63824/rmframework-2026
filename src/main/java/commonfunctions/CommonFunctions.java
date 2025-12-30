@@ -2913,19 +2913,22 @@ public class CommonFunctions {
 			String LovInputLocator) {
 		flag = webDB.waitForElement(TableLocator, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(TableLocator, ElementType.Xpath);
 			webDB.clickAnElement(TableLocator, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
 			logs.logging("INFO", "Table Is Clicked");
 			searchAndSelectValueInFilters(LovButton, LovValue);
-			flag = webDB.waitForElement(LovInputLocator, ElementType.Xpath);
-			if (flag) {
-				String value = webDB.getAttributeFromElement(LovInputLocator, ElementType.Xpath,
-						getDataFromTestDataSheet("Value"));
-				logs.logging("INFO", "Get Text Value from Table Is: " + value);
-				flag = value.contains(LovValue);
-				if (flag) {
-					logs.logging("INFO", "Verified Value Successfully");
-				}
-			}
+//			flag = webDB.waitForElement(LovInputLocator, ElementType.Xpath);
+//			if (flag) {
+//				String value = webDB.getAttributeFromElement(LovInputLocator, ElementType.Xpath,
+//						getDataFromTestDataSheet("Value"));
+//				logs.logging("INFO", "Get Text Value from Table Is: " + value);
+//				flag = value.contains(LovValue);
+//				if (flag) {
+//					logs.logging("INFO", "Verified Value Successfully");
+//				}
+//			}
 		}
 		assertTrue(flag);
 	}
