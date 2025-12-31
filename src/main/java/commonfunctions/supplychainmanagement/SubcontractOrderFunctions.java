@@ -12610,7 +12610,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -12715,6 +12715,10 @@ public class SubcontractOrderFunctions {
 		commonFunc.navigateToMaterialIssuanceVoucher();
 		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
 		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateTogateEntry();
+		clickingPendingGateEntry();
+		createRecordPRTypeFromPending(VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("Gatekeeper"));
+		postTheGateEntryDocument(commonFunc.getDataFromTestDataSheet("DriverName"));
 		commonFunc.navigateToGrnSco();
 		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
 //			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
@@ -12758,7 +12762,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -12935,7 +12939,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -13063,7 +13067,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -13551,7 +13555,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -13722,7 +13726,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -13924,7 +13928,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 		commonFunc.navigateToSubcontractOrder();
-		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
 				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
 		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
 		clickLocationDetailsButtonValidationwithDataBase();
@@ -14060,7 +14064,7 @@ public class SubcontractOrderFunctions {
 		clickLocationDetailsButtonValidationwithDataBase();
 		clickingGenMRPbutton();
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
-		ValueAdditionProcessSourceAndTargetSFcode();
+		firstProcessSourceAndTargetSFcode();
 		valueAdditionTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
 				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
@@ -14330,7 +14334,7 @@ public class SubcontractOrderFunctions {
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
 		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -14452,7 +14456,7 @@ public class SubcontractOrderFunctions {
 				"AdminUsername");
 		commonFunc.navigateToSubcontractOrder();
 		clickingAddIconForSCO();
-		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
 				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
 		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerialWithQC"));
 		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));

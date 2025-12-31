@@ -3115,15 +3115,18 @@ public class PurchaseOrderFunctions {
 		}
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
-
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+		if (!VariableHandler.getApprovalFlag()) {
+			verifyWaitingForApproval();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			String text = VariableHandler.getLastApprovalAPIHeaderText();
+			text = text.replace("Stock Transfer Sales Order Created. :", "");
+			text = text.replace("PURCHASE ORDER - STOCK TRANSFER Document is Approved.", "");
+			String text1 = text.split("/")[1];
+			System.out.println(text1.trim());
+			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
 		assertTrue(flag);
 	}
@@ -3293,15 +3296,18 @@ public class PurchaseOrderFunctions {
 		}
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
-
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+		if (!VariableHandler.getApprovalFlag()) {
+			verifyWaitingForApproval();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			String text = VariableHandler.getLastApprovalAPIHeaderText();
+			text = text.replace("Stock Transfer Sales Order Created. :", "");
+			text = text.replace("PURCHASE ORDER - STOCK TRANSFER Document is Approved.", "");
+			String text1 = text.split("/")[1];
+			System.out.println(text1.trim());
+			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
 		assertTrue(flag);
 	}
@@ -12950,15 +12956,18 @@ public class PurchaseOrderFunctions {
 		}
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
-
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+		if (!VariableHandler.getApprovalFlag()) {
+			verifyWaitingForApproval();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			String text = VariableHandler.getLastApprovalAPIHeaderText();
+			text = text.replace("Stock Transfer Sales Order Created. :", "");
+			text = text.replace("PURCHASE ORDER - STOCK TRANSFER Document is Approved.", "");
+			String text1 = text.split("/")[1];
+			System.out.println(text1.trim());
+			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
 		assertTrue(flag);
 	}
@@ -13013,15 +13022,18 @@ public class PurchaseOrderFunctions {
 		}
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
-
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+		if (!VariableHandler.getApprovalFlag()) {
+			verifyWaitingForApproval();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			String text = VariableHandler.getLastApprovalAPIHeaderText();
+			text = text.replace("Stock Transfer Sales Order Created. :", "");
+			text = text.replace("PURCHASE ORDER - STOCK TRANSFER Document is Approved.", "");
+			String text1 = text.split("/")[1];
+			System.out.println(text1.trim());
+			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
 		assertTrue(flag);
 	}
@@ -13749,18 +13761,19 @@ public class PurchaseOrderFunctions {
 	public void verifyDirectPoHsnSelectedFromLov(String HSN) {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.hardWait(1000);
-		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
-			logs.logging("INFO", "Hsn Field Is Clicked");
-
-			flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderHsnLov, ElementType.Xpath);
-			if (flag) {
-				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PurchaseOrderHsnLov, HSN);
-				logs.logging("INFO", "Entered HSN is:" + HSN);
-			}
-			assertTrue(flag);
-		}
+		commonFunc.verifyAddTableLovDetails(PurchaseOrderPageLocators.PurchaseOrderHsnField,
+				PurchaseOrderPageLocators.PurchaseOrderHsnLov, HSN, null);
+//		flag = webDB.waitForClickElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderHsnField, ElementType.Xpath);
+//			logs.logging("INFO", "Hsn Field Is Clicked");
+//			flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderHsnLov, ElementType.Xpath);
+//			if (flag) {
+//				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PurchaseOrderHsnLov, HSN);
+		logs.logging("INFO", "Entered HSN is:" + HSN);
+//			}
+		assertTrue(flag);
+//		}
 	}
 
 	/**
