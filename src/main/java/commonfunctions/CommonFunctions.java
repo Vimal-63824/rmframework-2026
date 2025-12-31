@@ -2599,6 +2599,7 @@ public class CommonFunctions {
 	 * @param User
 	 */
 	public void approveDocuments(String BU, String DocNo, String EmpId, String Unit, String User) {
+		hardWait(3000);
 		RestUtils.resetRestAssured();
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
