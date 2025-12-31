@@ -110,7 +110,10 @@ public class PurchaseOrderFunctions {
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Item Add Button Is Clicked");
+				webDB.moveToElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ItemSelectButton, Item);
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.InputItemPO, ElementType.Xpath);
 				if (flag) {

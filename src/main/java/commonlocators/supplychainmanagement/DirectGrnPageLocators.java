@@ -189,5 +189,9 @@ public class DirectGrnPageLocators {
 	public static final String BOEDateInputField = "//input[@id='P161513110303_PID_BOE_DATE_input']";
 	/** @locatorType Xpath */
 	public static final String BOEOkButton = "//button[@data-testid='OK_import_LR']";
+	/** @locatorType Xpath */
+	public static final String GrnFOCTabledata = "(//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[23])[1]";
+	/** @locatorType Xpath */
+	public static final String GrnFOCTableInput = "(//*[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[23]//input)[1]";
 
 }
