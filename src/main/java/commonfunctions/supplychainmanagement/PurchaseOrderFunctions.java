@@ -3128,6 +3128,7 @@ public class PurchaseOrderFunctions {
 			System.out.println(text1.trim());
 			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -3308,6 +3309,7 @@ public class PurchaseOrderFunctions {
 			System.out.println(text1.trim());
 			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -12967,6 +12969,7 @@ public class PurchaseOrderFunctions {
 			System.out.println(text1.trim());
 			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -13032,6 +13035,7 @@ public class PurchaseOrderFunctions {
 			System.out.println(text1.trim());
 			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
+		assertTrue(flag);
 	}
 
 	/**
