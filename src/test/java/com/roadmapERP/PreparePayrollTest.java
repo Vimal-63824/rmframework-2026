@@ -48,8 +48,9 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
-			Assert.fail();
+					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this is second try.");
+			flag = procPayrollFunc.verifyPayrollProcessFromLoadUnitToProcessPayroll();
+			Assert.assertTrue(flag);
 		}
 	}
 
@@ -65,8 +66,9 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
-			Assert.fail();
+					"Previous two test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee) failed. So this is third try.");
+			flag = procPayrollFunc.verifyPayrollProcessFromLoadUnitToProcessPayroll();
+			Assert.assertTrue(flag);
 		}
 	}
 
@@ -82,7 +84,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -99,7 +101,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -116,7 +118,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -133,7 +135,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -150,7 +152,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -167,7 +169,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -184,7 +186,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -201,7 +203,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -219,7 +221,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -237,7 +239,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -254,7 +256,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -271,7 +273,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 		logs.logging("INFO", "This test covered in 'VerifyPrepareProcessPayrollBasedOnUnitGroupLoading'  Test");
 		if (previousStatus != ITestResult.SUCCESS) {
 			logs.logging("INFO",
-					"Previous test (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading) failed. So this fails too.");
+					"Previous three tries in (VerifyPrepareProcessPayrollBasedOnUnitGroupLoading, VerifyPrepareProcessPayrollBasedOnLoadEmployee, VerifyPrepareProcessPayrollBasedOnUnitGroupSelectFlag) failed. So this fails too.");
 			Assert.fail();
 		}
 	}
@@ -309,7 +311,7 @@ public class PreparePayrollTest extends RoadMapERPTest {
 	 * @param result
 	 */
 	@AfterMethod
-	public void VerifyAfterMethod(ITestResult result,Method method) {
+	public void VerifyAfterMethod(ITestResult result, Method method) {
 		previousStatus = result.getStatus();
 		commonFunc.enterAuthorNamesInExtentReport(method);
 		if (previousStatus == ITestResult.FAILURE || previousStatus == ITestResult.SKIP) {

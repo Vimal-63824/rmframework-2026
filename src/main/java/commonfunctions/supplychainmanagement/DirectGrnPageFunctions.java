@@ -624,9 +624,12 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingSaveLine() {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 			webDB.clickAnElement(DirectGrnPageLocators.GrnLineSave, ElementType.Xpath);
 			logs.logging("INFO", "GRN Line Is Saved");
 			commonFunc.checkRefreshCellsDisappear();
+			closeToastIfDisplayed();
+			closeToastIfDisplayed();
 //			commonFunc.hardWait(4000);
 		}
 		assertTrue(flag);
@@ -858,7 +861,7 @@ public class DirectGrnPageFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	private void closeToastIfDisplayed() {
+	public void closeToastIfDisplayed() {
 		if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 			webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			logs.logging("INFO", "Toast Alert Successfully Catched");

@@ -23,6 +23,7 @@ import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
+import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -573,17 +574,18 @@ public class GrnPageFunctions2 {
 	 * 
 	 * @author Sakthi-GWL
 	 */
-	public void verifyClickFOCAndUpdateCostAndSaveLines() {
-		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+	public void verifyClickFOCAndSaveLines() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
 		if (flag) {
-			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
-			flag = webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+			commonFunc.hardWait(3000);
+			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "FOC Input Box Clicked in GRN Line Details");
-				commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineCost,
-						DirectGrnPageLocators.GrnLineCostInput, "0");
-				logs.logging("INFO", "For Free Of Cost, Entered Unit Cost Is:" + "0");
+				commonFunc.checkRefreshCellsDisappear();
 				DirectGRNFunc.verifyClickingSaveLine();
+				DirectGRNFunc.closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);
