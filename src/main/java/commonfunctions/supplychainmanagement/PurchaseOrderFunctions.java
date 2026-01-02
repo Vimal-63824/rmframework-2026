@@ -177,6 +177,7 @@ public class PurchaseOrderFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			verifyAddTableSpecs(PurchaseOrderPageLocators.OrderedQuantity,
 					PurchaseOrderPageLocators.OrderedQuantityInput, quantity);
+			commonFunc.checkRefreshCellsDisappear();
 			verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput, unitcost);
 			webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber,
@@ -14598,8 +14599,8 @@ public class PurchaseOrderFunctions {
 	 * @return boolean flag
 	 * @author Sakthi-GWL
 	 */
-	public boolean verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(String FileName, String SheetName, String Loc,
-			String Unit, String PRType, String PRPrefix, String POSupplier) {
+	public boolean verifyFromPRtoPOWithMultipleItemInExcelSheetCustomizedForFOC(String FileName, String SheetName,
+			String Loc, String Unit, String PRType, String PRPrefix, String POSupplier) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigatePurchaseRequestPage();
@@ -14671,7 +14672,9 @@ public class PurchaseOrderFunctions {
 						switchToLineDetailFrame();
 						verifyNavigateLineDetailTwo();
 						enableFreeOfCostCheckbox();
-						verifyAddItemInPOWithQuantityAndUnitCost(Quantity, "0");
+						commonFunc.checkRefreshCellsDisappear();
+						verifyAddTableSpecs(PurchaseOrderPageLocators.UnitCost, PurchaseOrderPageLocators.UnitCostInput,
+								"0");
 						verifyTickIconcreateItem();
 						verifyAssertionBothValues("0", dbCommonFunc.poDetails(VariableHandler.getPONumber(), item,
 								commonFunc.getDataFromTestDataSheet("LINE_AMT")));
