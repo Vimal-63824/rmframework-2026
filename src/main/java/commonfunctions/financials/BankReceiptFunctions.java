@@ -372,7 +372,8 @@ public class BankReceiptFunctions {
 		if (flag) {
 			webDB.clickAnElement(BankReceiptLocators.BankLineWiseSaveButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(BankReceiptLocators.BankLineWiseDeleteButton, ElementType.CssSelector);
+			flag = webDB.waitForElementUntilGivenTime(BankReceiptLocators.BankLineWiseDeleteButton,
+					ElementType.CssSelector, 60);
 			if (flag) {
 				logs.logging("INFO", "Bank Receipt Line Wise Save button Is clicked Successfully");
 				commonFunc.hardWait(500);
