@@ -1517,7 +1517,7 @@
 	"PurchaseBillsUnitId": "SUPHD_PLANT",
 	"PurchaseBillsSupplierDesc": "SUPHD_GST_SUPLR_NAME",
 	"Purchase_Bills_Local_2": "TAX-FKI",
-	"Purchase_Bills_Non_Res_UTGST": "TAX-FKI",
+	"Purchase_Bills_Non_Res_UTGST": "DEVAN ENTRPRISES",
 	"Purchase_Bills_UnRed_Sup": "STAR INDUSTRIAL TOOLS",
 	"CustomerName_Import": "MANKIND EXPORTS",
 	"Import_Non_Res_Supplier": "HOLIDAY INN",
@@ -1685,5 +1685,6 @@
 	"SCOGRNDBLINEProcQtyCOLUMN": "SCRP_PROC_QTY",
 	"SCOGRNDBLINEJobworkItemCOLUMN": "SCRP_PROD_ID",
 	"SCOGRNDBLINESACcodeCOLUMN": "SCRP_HSN_CODE",
-	"SCOGRNDBLINEAsblValCOLUMN": "SCRP_ASSBL_VAL"
+	"SCOGRNDBLINEAsblValCOLUMN": "SCRP_ASSBL_VAL",
+	"UTGST_REGRD_SUPPLIER":"HARISH TRADERS"
 }

@@ -413,10 +413,10 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("PaymentRec"));
 
 	}
-
-//	public void DirectExpenseForRecurringJournal() {
-//		purchaseBillsFunc.DirectExpenseForRecurringJournal();
-//	}
+//
+////	public void DirectExpenseForRecurringJournal() {
+////		purchaseBillsFunc.DirectExpenseForRecurringJournal();
+////	}
 	@Author("Kowshik-RMITS")
 	@Test(priority = 24, groups = { "Purchase Bills  " }, description = "Direct Expense - with Adjustments ")
 	public void DomesticRegisteredSupplierWithSEZUnitGST() {
@@ -441,7 +441,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("SubVouType"), commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("UTGSTLocation"),
 				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UTGST_Prefix"),
-				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UTGST_CustomerName"),
+				commonFunc.getDataFromTestDataSheet("UTGST_REGRD_SUPPLIER"),
 				commonFunc.getDataFromTestDataSheet("bills"), commonFunc.getDataFromTestDataSheet("Gl_Account_Ex"),
 				commonFunc.getDataFromTestDataSheet("unitcost"), commonFunc.getDataFromTestDataSheet("HSNcode_SI"));
 	}
