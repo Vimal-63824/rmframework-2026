@@ -868,6 +868,121 @@ public class CashReceiptFunctions {
 							CashReceiptLocators.PendingReceivablesDocumentNumberField, ElementType.Xpath);
 					if (GetTextDocumentNumber.equals(DocumentNumber.get(i - 1))) {
 //						verifyPendingReceivablesSIDocumentWithDB(SheetName, DocumentNumber.get(i));
+//						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, DocumentNumber.get(i - 1), i);
+						verifyPendingReceivablesSIDocumentThroughGetDocWithDB123(SheetName, DocumentNumber.get(i - 1),
+								i);
+
+						commonFunc.hardWait(1000);
+						webDB.clickAnElement(CashReceiptLocators.BRPendingReceivablesDocumentSelectCheckBox(
+								DocumentNumber.get(i - 1)), ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1500);
+						flag = webDB.waitForElement(CashReceiptLocators.PendingPayablesCreateButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "This Sales Invoice Document " + DocumentNumber.get(i - 1)
+									+ " Is Selected Successfully");
+							if (DocumentNumber.size() > 1) {
+								commonFunc.checkRefreshCellsDisappear();
+								webDB.clickAnElement(CashReceiptLocators.BankPendingPartyDocumentClearButton,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(
+										CashReceiptLocators.BankReceiptPendingReceivablesSearchButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(BankPaymentLocators.BankReceiptPendingReceivablesSearchButton,
+											ElementType.Xpath);
+									commonFunc.hardWait(1500);
+									commonFunc.checkRefreshCellsDisappear();
+								}
+							}
+						}
+					} else {
+						logs.logging("INFO", "Some Other Document Is Filtered");
+					}
+				}
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			webDB.moveToElement(CashReceiptLocators.PendingPayablesCreateButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(CashReceiptLocators.PendingPayablesCreateButton, ElementType.Xpath);
+			logs.logging("INFO", "Create Button Is Clicked Successfully");
+			commonFunc.checkRefreshCellsDisappear();
+			if (!CreationType.equals("Single")) {
+				flag = webDB.waitForElement(CashReceiptLocators.PendingReceivablesMergeLabelInPending,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CashReceiptLocators.PendingReceivablesMergeLabelInPending, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+			flag = webDB.waitForElement(CashReceiptLocators.PendingReceivablesTypeDropDown, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByText(CashReceiptLocators.PendingReceivablesTypeDropDown, Type, ElementType.Xpath);
+				logs.logging("INFO", "Type Successfully Choosen As " + Type);
+				if (Type.equals("Bank")) {
+					flag = webDB.waitForElement(CashReceiptLocators.PendingReceivablesPayModeDropDown,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.selectDropDownByText(CashReceiptLocators.PendingReceivablesPayModeDropDown, PayMode,
+								ElementType.Xpath);
+						logs.logging("INFO", "Pay Mode Successfully Choosen As " + PayMode);
+					}
+				}
+				commonFunc.searchAndSelectValueInFilters(CashReceiptLocators.PendingReceivablesBankNameLOVBUtton,
+						BankName);
+				webDB.switchToFrame(CashReceiptLocators.BankReceiptPendingReceivablesFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(CashReceiptLocators.PendingReceivablesOkButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CashReceiptLocators.PendingReceivablesOkButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					if (Type.equals("Bank")) {
+						flag = webDB.waitForElement(CashReceiptLocators.BankReceiptScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Bank Receipt Screen");
+						}
+					} else {
+						flag = webDB.waitForElement(CashReceiptLocators.CashPaymentScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Cash Receipt Screen");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is USed To Select One Document And Convert Into Bank / Cash
+	 * Payment
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param DocumentNumber
+	 * @param Type
+	 * @param PayMode
+	 * @param BankName
+	 */
+	public void chooseDocumentNumberInPendingReceivablesScreenMPSI(ArrayList<String> DocumentNumber, String Type,
+			String PayMode, String BankName, String CreationType, String SheetName) {
+		flag = webDB.waitForElement(CashReceiptLocators.BankReceiptPendingReceivablesFrameName, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CashReceiptLocators.BankReceiptPendingReceivablesFrameName, ElementType.Xpath);
+			for (int i = 1; i <= DocumentNumber.size(); i++) {
+				commonFunc.searchAndSelectValueInFilters(
+						CashReceiptLocators.PendingReceivablesDRDocumentNumberLOVButton, DocumentNumber.get(i - 1));
+				webDB.switchToFrame(CashReceiptLocators.BankReceiptPendingReceivablesFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(CashReceiptLocators.BankReceiptPendingReceivablesSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(CashReceiptLocators.BankReceiptPendingReceivablesSearchButton,
+							ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							CashReceiptLocators.PendingReceivablesDocumentNumberField, ElementType.Xpath);
+					if (GetTextDocumentNumber.equals(DocumentNumber.get(i - 1))) {
+//						verifyPendingReceivablesSIDocumentWithDB(SheetName, DocumentNumber.get(i));
 						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, DocumentNumber.get(i - 1), i);
 //						verifyPendingReceivablesSIDocumentThroughGetDocWithDB123(SheetName, DocumentNumber.get(i - 1),
 //								i);
@@ -1235,6 +1350,55 @@ public class CashReceiptFunctions {
 		clickPendingDRDocsButton();
 		clickPendingRecivablesButtonInPendDRDocs();
 		chooseDocumentNumberInPendingReceivablesScreen(VariableHandler.getMultipleSIDocs(),
+				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"),
+				commonFunc.getDataFromTestDataSheet("BankPayMode"), CashierName, CreationType, SheetName);
+		getCashPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		for (int i = 1; i < CashReceipts.length; i++) {
+			String GLAccountDesc = CashReceipts[i][1];
+			String BaseCURCY = CashReceipts[i][13];
+			if (!GLAccountDesc.equals("")) {
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				commonFunc.hardWait(1000);
+				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+//			}
+			}
+		}
+		clickCreateJournalButtonInCR();
+		commonFunc.checkRefreshCellsDisappear();
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			VerifyCRVDocumentStatus();
+		}
+	}
+	
+	/**
+	 * This Method Is Used To Add The Document Through pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param CreationType
+	 * @param SheetName
+	 * @param Currency
+	 */
+	public void CashReceiptThroughPendingDocsMPSI(String CreationType, String SheetName, String Currency,
+			String CashierName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickPendingDRDocsButton();
+		clickPendingRecivablesButtonInPendDRDocs();
+		chooseDocumentNumberInPendingReceivablesScreenMPSI(VariableHandler.getMultipleSIDocs(),
 				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"),
 				commonFunc.getDataFromTestDataSheet("BankPayMode"), CashierName, CreationType, SheetName);
 		getCashPaymentOrReceiptDocumentNumber();
@@ -1795,7 +1959,7 @@ public class CashReceiptFunctions {
 		chooseDocumentNumberInPendingReceivablesScreen(VariableHandler.getMultipleSIDocs(),
 				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"),
 				commonFunc.getDataFromTestDataSheet("BankPayMode"), CashierName, CreationType, SheetName);
-		bankpaymentfunc.getBankPaymentOrReceiptDocumentNumber();
+		getCashPaymentOrReceiptDocumentNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		for (int i = 1; i < CashReceipts.length; i++) {
 			String GLAccountDesc = CashReceipts[i][1];
@@ -2463,7 +2627,7 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
-		CashReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		CashReceiptThroughPendingDocsMPSI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
 	}

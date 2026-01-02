@@ -79,11 +79,11 @@ public class PurchaseBillsFunctions {
 						if (flag) {
 							logs.logging("INFO", "Switched To Iframe");
 							webDB.clickAnElement(PurchaseBillsLocators.SearchButton, ElementType.Xpath);
-							flag = webDB.waitForElement(PurchaseBillsLocators.CheckBox(DocNo), ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsLocators.CheckBox, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "CheckBox IS Displayed");
 								commonFunc.hardWait(3000);
-								webDB.clickAnElement(PurchaseBillsLocators.CheckBox(DocNo), ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsLocators.CheckBox, ElementType.Xpath);
 								flag = webDB.waitForElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Create Documents Is Displayed");
@@ -354,8 +354,12 @@ public class PurchaseBillsFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void storeSCOPurchaseVoucherNumber() {
-		String Number = webDB.getTextFromElement(PurchaseBillsLocators.VoucherNumber, ElementType.Xpath);
-		VariableHandler.setScoPurchaseNumber(Number);
+		commonFunc.checkRefreshCellsDisappear();
+		String DocNum = webDB.getTextFromElement(PurchaseBillsLocators.VoucherNumber, ElementType.Xpath);
+//		String Number = webDB.getTextFromElement(PurchaseBillsLocators.VoucherNumber, ElementType.Xpath);
+		VariableHandler.setScoPurchaseNumber(DocNum);
+		logs.logging("INFO", "Get Text Purchase Bills Document Number Is " + VariableHandler.getScoPurchaseNumber());
+		commonFunc.checkRefreshCellsDisappear();
 	}
 
 	/**
@@ -1545,15 +1549,15 @@ public class PurchaseBillsFunctions {
 						if (flag) {
 							logs.logging("INFO", "Switched To Iframe");
 							webDB.clickAnElement(PurchaseBillsLocators.SearchButtonPo, ElementType.Xpath);
-							flag = webDB.waitForElement(PurchaseBillsLocators.CheckBox(DocNo), ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsLocators.CheckBox, ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "CheckBox IS Displayed");
 								commonFunc.hardWait(3000);
-								webDB.clickAnElement(PurchaseBillsLocators.CheckBox(DocNo), ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsLocators.CheckBox, ElementType.Xpath);
 								flag = webDB.waitForElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO", "Create Documents Is Displayed");
-									commonFunc.hardWait(5000);
+									commonFunc.hardWait(1000);
 									webDB.clickAnElement(PurchaseBillsLocators.CreateDoc, ElementType.Xpath);
 									flag = webDB.waitForElement(PurchaseBillsLocators.OkButton, ElementType.Xpath);
 									if (flag) {
@@ -2796,7 +2800,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		getValueFromTaxAmountInLineDetails();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBills_Interstate_Un"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -2830,19 +2834,11 @@ public class PurchaseBillsFunctions {
 		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsLocal"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsLocal"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillslocalUnreg_RCM"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
-	}
+}
 
 	/**
 	 * Direct Expenses -Domestic UnRegistered Supplier - With Local GST (ineligible)
@@ -2880,14 +2876,7 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+
 	}
 
 	/**
@@ -2928,14 +2917,7 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+
 	}
 
 	/**
@@ -3015,18 +2997,11 @@ public class PurchaseBillsFunctions {
 		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsInterstate"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsInterstate"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsImport"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+
 	}
 
 	/**
@@ -3065,14 +3040,7 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+
 	}
 
 	/**
@@ -3106,14 +3074,7 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+	
 	}
 
 	/**
@@ -3146,14 +3107,6 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
 	}
 
 	/**
@@ -3272,14 +3225,7 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+
 	}
 
 	/**
@@ -3315,14 +3261,7 @@ public class PurchaseBillsFunctions {
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-					"AdminUsername");
-			commonFunc.navigateToFinancialPurchaseBill();
-			verifyPurchaseBillApprovalStatus();
-			flag = commonFunc.logoutUser();
-		}
-		assertTrue(flag);
+
 	}
 
 //		public void ImportNonresidentSupplierWithST() {

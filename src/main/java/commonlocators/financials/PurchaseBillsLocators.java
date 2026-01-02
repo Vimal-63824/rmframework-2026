@@ -15,9 +15,8 @@ public class PurchaseBillsLocators {
 	public static final String SearchButton = "//button[@id='B1874148864248723410']";
 
 	/** @locatorType Xpath */
-	public static final String CheckBox(String GrnNo) {
-		return "//td[text()='" + GrnNo + "']/../td[12]";
-	}
+	public static final String CheckBox= "//*[@id='4695452701146094907']/tbody/tr[2]/td[13]";
+	
 
 	/** @locatorType Xpath */
 	public static final String CreateDoc = "//button[@data-testid='CreateDoc']";
@@ -42,7 +41,7 @@ public class PurchaseBillsLocators {
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String PbNo) {
-		return "//a[text()='" + PbNo + "']/../../td[13]";
+		return "//a[text()='" + PbNo + "']/../../td[14]";
 	}
 
 	/** @locatorType Xpath */
