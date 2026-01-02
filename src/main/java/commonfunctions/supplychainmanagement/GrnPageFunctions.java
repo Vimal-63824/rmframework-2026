@@ -7318,7 +7318,7 @@ public class GrnPageFunctions {
 				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 				if (flag) {
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(1000);
+					commonFunc.hardWait(3000);
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 							VariableHandler.getGrnDocNumber(), webDB.getDataFromProperties("HodEmpId"),
 							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));

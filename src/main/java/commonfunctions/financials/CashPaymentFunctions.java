@@ -832,6 +832,8 @@ public class CashPaymentFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						webDB.doubleClickAnElement(CashPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 								ElementType.Xpath);
+						commonFunc.hardWait(500);
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(
 								CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
 								ElementType.Xpath);
@@ -1387,6 +1389,7 @@ public class CashPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(CashPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(500);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							CashPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -1602,6 +1605,7 @@ public class CashPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(CashPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(500);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							CashPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -2387,8 +2391,8 @@ public class CashPaymentFunctions {
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
 		chooseDocumentNumberInPendingPayablesScreenMPMB(VariableHandler.getMultiplePBDocs(),
-				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
-				CashierName, CreationType, SheetName);
+				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"),
+				commonFunc.getDataFromTestDataSheet("BankPayMode"), CashierName, CreationType, SheetName);
 		getCashPaymentOrReceiptDocumentNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		CashPayments = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("BankPaymentMultiNewRef"));
