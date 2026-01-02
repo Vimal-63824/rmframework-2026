@@ -14504,15 +14504,18 @@ public class PurchaseOrderFunctions {
 		}
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
-		verifyWaitingForApproval();
-		flag = commonFunc.logoutUser();
-		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			verifyApproveWithDocNumberForLoaclSupplier(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
-
+//		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
+		if (!VariableHandler.getApprovalFlag()) {
+			verifyWaitingForApproval();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			String text = VariableHandler.getLastApprovalAPIHeaderText();
+			text = text.replace("Stock Transfer Sales Order Created. :", "");
+			text = text.replace("PURCHASE ORDER - STOCK TRANSFER Document is Approved.", "");
+			String text1 = text.split("/")[1];
+			System.out.println(text1.trim());
+			VariableHandler.setSalesOrdertDocNumber(text1.trim());
 		}
 		assertTrue(flag);
 	}
