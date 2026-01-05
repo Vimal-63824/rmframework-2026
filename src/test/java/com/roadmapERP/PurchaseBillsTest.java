@@ -413,10 +413,10 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("PaymentRec"));
 
 	}
-//
-////	public void DirectExpenseForRecurringJournal() {
-////		purchaseBillsFunc.DirectExpenseForRecurringJournal();
-////	}
+
+//	public void DirectExpenseForRecurringJournal() {
+//		purchaseBillsFunc.DirectExpenseForRecurringJournal();
+//	}
 	@Author("Kowshik-RMITS")
 	@Test(priority = 24, groups = { "Purchase Bills  " }, description = "Direct Expense - with Adjustments ")
 	public void DomesticRegisteredSupplierWithSEZUnitGST() {
