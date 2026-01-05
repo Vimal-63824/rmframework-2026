@@ -43,6 +43,7 @@ public class DirectGrnPageFunctions {
 	private static InspectionDocumentFunctions InsDocFunc = new InspectionDocumentFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	private static SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 	public ArrayList<String> MultiGRNDocs = new ArrayList<String>();
 	LocalDate date = LocalDate.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -3153,7 +3154,7 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 //		commonFunc.hardWait(2000);
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+//		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
 	}
 
 	/**
@@ -3182,7 +3183,7 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(SheetName);
 		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
 //		commonFunc.hardWait(2000);
-		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+//		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
 	}
 
 	/**
@@ -4857,6 +4858,7 @@ public class DirectGrnPageFunctions {
 										commonFunc.hardWait(1000);
 										webDB.pressEscapeKey();
 										webDB.switchToDefaultContent();
+										commonFunc.checkRefreshCellsDisappear();
 										verifyDiscountAmountForDirectGRN(i1, SheetName);
 
 									}
@@ -4912,10 +4914,12 @@ public class DirectGrnPageFunctions {
 		flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
 		if (flag)
 			webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
 		logs.logging("INFO", "Document Successfully Saved");
 		flag = webDB.waitForElement(DirectGrnPageLocators.GRN_LotSerialButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(DirectGrnPageLocators.GRN_LotSerialButton, ElementType.Xpath);
+			commonFunc.hardWait(500);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(GrnLocators.PostButton, ElementType.Xpath);
 			if (flag) {

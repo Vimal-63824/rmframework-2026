@@ -51,6 +51,7 @@ public class CashReceiptFunctions {
 	static BankPaymentFunctions bankpaymentfunc = new BankPaymentFunctions();
 	static SalesInvoiceFunctions salesInvoiceFunc = new SalesInvoiceFunctions();
 	static DirectGrnPageFunctions Grnfunc = new DirectGrnPageFunctions();
+	static BankReceiptFunctions bankreceiptfunc = new BankReceiptFunctions();
 
 	LocalDate date = LocalDate.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -953,7 +954,7 @@ public class CashReceiptFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This Method Is USed To Select One Document And Convert Into Bank / Cash
 	 * Payment
@@ -1271,6 +1272,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1321,6 +1323,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1371,6 +1374,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1382,7 +1386,7 @@ public class CashReceiptFunctions {
 			VerifyCRVDocumentStatus();
 		}
 	}
-	
+
 	/**
 	 * This Method Is Used To Add The Document Through pending Documents
 	 * 
@@ -1420,6 +1424,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1483,6 +1488,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1546,6 +1552,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1753,6 +1760,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -1976,6 +1984,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2044,6 +2053,8 @@ public class CashReceiptFunctions {
 //				enterRealizedAmountInBRHeader(BaseCURCY);
 		}
 		clickCreateJournalButtonInCR();
+		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2118,6 +2129,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2190,6 +2202,7 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2465,6 +2478,7 @@ public class CashReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void CRSinglePartySingleInvoiceThroughAddButton(String SheetName) {
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, "0");
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
 		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
@@ -2481,6 +2495,7 @@ public class CashReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void CRSinglePartySingleInvoiceThroughGetDocument(String SheetName) {
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, "0");
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
 		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
@@ -2497,6 +2512,7 @@ public class CashReceiptFunctions {
 	 * @param SheetName
 	 */
 	public void CRSinglePartySingleInvoiceThroughPendingDocs(String SheetName) {
+		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26, "0");
 		salesInvoiceFunc.verifyDirectSalesInvoiceBR(webDB.getDataFromProperties("BRSPSI"),
 				commonFunc.getDataFromTestDataSheet("CustomerName"));
 		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
@@ -2932,6 +2948,23 @@ public class CashReceiptFunctions {
 		CashReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+	}
+
+	/**
+	 * This Method Is Used To Clear Data In The Excel
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 */
+	public void clearDataInExcel(String SheetName) {
+		for (int i = 1; i < CashReceipts.length; i++) {
+			String GLAccountDesc = CashReceipts[i][1];
+			if (!GLAccountDesc.equals("")) {
+				for (int j = 1; j <= 2; j++) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 25 + j, "0");
+				}
+			}
+		}
 	}
 
 	/**
