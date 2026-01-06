@@ -647,6 +647,37 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 42, groups = {
+			"GRN" }, description = "218 Unregistered Supplier with Local GST (Allow IGST tax)- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
+	public void verifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 43, groups = {
+			"GRN" }, description = "219 Unregistered Supplier with Local GST (Allow IGST tax)- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
 
 
 	/**

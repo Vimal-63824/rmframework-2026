@@ -1689,6 +1689,7 @@ public class DBCommonFunctions {
 				Item, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * SCO GRN LINEWISE
 	 * 
@@ -1702,6 +1703,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * SCO GRN LINEWISE Process Tab
 	 * 
@@ -1713,6 +1715,20 @@ public class DBCommonFunctions {
 	public String SCOGRNLineWiseProcTab(String GRNSNO, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOGRNLineProcessTabQuery"),
 				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param PONO
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PurchaseOrderHeaderDetails(String PONO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("PONO"), PONO, DBHeaderColumnValue);
 		return value;
 	}
 }
