@@ -1395,7 +1395,7 @@ public class CashPaymentFunctions {
 							CashPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
 					logs.logging("INFO", "Get Text Document Number Is " + GetTextDocumentNumber);
 					if (GetTextDocumentNumber.equals(VoucherNumber.get(i - 1))) {
-						verifyPendingPayablesPBDocumentThroughGetDocMPMB(SheetName, VoucherNumber.get(i - 1), i);
+						verifyPendingPayablesPBDocumentThroughGetDoc(SheetName, VoucherNumber.get(i - 1), i);
 						flag = webDB.waitForElement(
 								CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
 								ElementType.Xpath);
@@ -2302,7 +2302,7 @@ public class CashPaymentFunctions {
 		verifyCashPaymentDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashPaymentPrefix"), Currency);
 		clickGetDocumentInBPHeader();
 		clickPendingPartyDocumentsInBP();
-		choosePartyNameAndClickSearchButtonInPendingPartyDocs(VariableHandler.getMultiplePBDocs(), SheetName);
+		choosePartyNameAndClickSearchButtonInPendingPartyDocsMPMB(VariableHandler.getMultiplePBDocs(), SheetName);
 		for (int i = 1; i < CashPayments.length; i++) {
 			String GLAccountDesc = CashPayments[i][1];
 			String BaseCURCY = CashPayments[i][13];
