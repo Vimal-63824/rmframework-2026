@@ -538,6 +538,116 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem();
 	}
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 35, groups = {
+			"GRN" }, description = "195 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 36, groups = {
+			"GRN" }, description = "197 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 37, groups = {
+			"GRN" }, description = "198 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 38, groups = {
+			"GRN" }, description = "212 Unregistered Supplier with Local GST- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 39, groups = {
+			"GRN" }, description = "213 Unregistered Supplier with Local GST- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 40, groups = {
+			"GRN" }, description = "215 Unregistered Supplier with Local GST- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
+	}
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 41, groups = {
+			"GRN" }, description = "216 Unregistered Supplier with Local GST- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
 
 	/**
 	 * This Method Is Used To Logout After Method
