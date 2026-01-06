@@ -14700,6 +14700,7 @@ public class PurchaseOrderFunctions {
 		flag = commonFunc.logoutUser();
 		return flag;
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
@@ -14749,6 +14750,7 @@ public class PurchaseOrderFunctions {
 			}
 
 		}
+//		verifyHeaderDetails(SheetName);
 		commonFunc.hardWait(1000);
 		verifyHeaderTickAndPost();
 //		waitingForApproval(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
@@ -14767,5 +14769,43 @@ public class PurchaseOrderFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Verify The Discount Amount For PO Document
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 */
+	public void verifyHeaderDetails(String SheetName) {
+		String[][] Multipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		Multipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < Multipleline.length; i++) {
+			String ITEM_ID = Multipleline[i][1];
+			String Total_Amount_BC = Multipleline[i][28];
+			String POTaxAmount = Multipleline[i][27];
+			String POMatAmount = Multipleline[i][18];
+			if (ITEM_ID.equals("")) {
+				if (!Total_Amount_BC.equals("")) {
+					verifyAssertionBothValues(dbCommonFunc.PurchaseOrderHeaderDetails(VariableHandler.getPONumber(),
+							commonFunc.getDataFromTestDataSheet("POTotalAmount")), Total_Amount_BC);
+					logs.logging("INFO",
+							"Expected Purchase Order Total Amount Is Matched With DataBase Values For This Purchase Order Document "
+									+ VariableHandler.getPONumber());
+//					verifyAssertionBothValues(dbCommonFunc.PurchaseOrderHeaderDetails(VariableHandler.getPONumber(),
+//							commonFunc.getDataFromTestDataSheet("POTaxAmount")), POTaxAmount);
+//					logs.logging("INFO",
+//							"Expected Purchase Order Tax Amount Is Matched With DataBase Values For This Purchase Order Document "
+//									+ VariableHandler.getPONumber());
+//					verifyAssertionBothValues(dbCommonFunc.PurchaseOrderHeaderDetails(VariableHandler.getPONumber(),
+//							commonFunc.getDataFromTestDataSheet("POMatAmount")), POMatAmount);
+//					logs.logging("INFO",
+//							"Expected Purchase Order Material Amount Is Matched With DataBase Values For This Purchase Order Document "
+//									+ VariableHandler.getPONumber());
+				}
+			}
+		}
+
+	}
 
 }

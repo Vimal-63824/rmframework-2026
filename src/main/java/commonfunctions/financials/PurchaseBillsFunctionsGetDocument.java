@@ -5928,4 +5928,138 @@ public class PurchaseBillsFunctionsGetDocument {
 
 	}
 
+	/**
+	 * Verify Create Direct PO Adding Parameter
+	 * 
+	 * @author PremKumar.K RMIT
+	 * @param LocationId
+	 * @param SupplierName
+	 * @param POType
+	 * @throws Exception
+	 */
+	public void VerifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem()
+			throws Exception {
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
+		grnPageFunc
+				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
+						webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
+		commonFunc.hardWait(1000);
+		ValidateHeaderDetails();
+		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		VerifyToWriteExcelValueForIgst(webDB.getDataFromProperties("StocktransferURINTR"),
+				webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("AftrerPrice");
+		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferURINTR"));
+		System.out.println("Test");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		VerifyToClickCreateJournalButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		VerifyToClickPostButton();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Create Direct PO Adding Parameter
+	 * 
+	 * @author PremKumar.K RMIT
+	 * @param LocationId
+	 * @param SupplierName
+	 * @param POType
+	 * @throws Exception
+	 */
+	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
+		grnPageFunc
+				.PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
+						webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		VerifyToCreateBillBookingDocumentFromPendingStocktransferDocument(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("LocalPurchaseBillURST"));
+		commonFunc.hardWait(1000);
+		ValidateHeaderDetails();
+		VerifyToValidateBeforePriceDeviationForLineLevel(webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		VerifyToWriteExcelValueForIgst(webDB.getDataFromProperties("StocktransferURINTR"),
+				webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		VerifytoPutPriceDeviationForStocktransferType(webDB.getDataFromProperties("StocktransferURINTR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		System.out.println("AftrerPrice");
+		VerifyToValidateAfterPriceDeviationForStockTransferType(webDB.getDataFromProperties("StocktransferURINTR"));
+		System.out.println("Test");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		VerifyToClickCreateJournalButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		VerifyToValidateRoundOffAmountForStockTransferType(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
+		VerifyToValidateRoundOffAmountForHeaderValueForStockTransferType(
+				webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		VerifyToClickPostButton();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
+		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
+		assertTrue(flag);
+	}
+
 }
