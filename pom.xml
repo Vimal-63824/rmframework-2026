@@ -10,6 +10,12 @@
 			<id>Galaxy-QA-Automation</id>
 			<url>
 				https://ezyautomate.galaxyweblinks.com/repository/Galaxy-QA-Automation/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 	<dependencies>
