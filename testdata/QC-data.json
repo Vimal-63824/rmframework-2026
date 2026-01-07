@@ -1687,13 +1687,14 @@
 	"SCOGRNDBLINESACcodeCOLUMN": "SCRP_HSN_CODE",
 	"SCOGRNDBLINEAsblValCOLUMN": "SCRP_ASSBL_VAL",
 	"UTGST_REGRD_SUPPLIER": "HARISH TRADERS",
-	"Prefix_UTGST_U3": "OS3",
 	"StockTransferUnregisterSupplierPK": "INUR",
 	"StockTransferURPK": "SI11",
 	"LocalPurchaseBillURST": "PB12",
 	"L54PK": "L54",
-	"POTotalAmount":"POH_TOTAL_AMT",
-	"POMatAmount":"POH_MAT_AMT",
-	"POTaxAmount":"POH_TAX_AMT"
-	
+	"POTotalAmount": "POH_TOTAL_AMT",
+	"POMatAmount": "POH_MAT_AMT",
+	"POTaxAmount": "POH_TAX_AMT",
+	"PBLineAmount": "SUPLN_ASSBL_VAL",
+	"PBDiscAmount": "SUPLN_INV_DISC_AMT",
+	"Prefix_UTGST": "OS3"
 }

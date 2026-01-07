@@ -1397,6 +1397,72 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UnRed_Sup"),
 				commonFunc.getDataFromTestDataSheet("bills"));
 	}
+	/**Domestic Registered Supplier - With Local Freight GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 83, groups = {
+	"Purchase Bills" }, description = "Domestic Registered Supplier - With Local Freight GST")
+	public void DomesticRegisteredSupplierWithLocalFreightGST1() {
+		purchaseBillsFunc.DomesticRegisteredSupplierWithLocalFreightGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Local_fright"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Registered Supplier - With SEZ Unit GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 84, groups = {
+	"Purchase Bills" }, description = "Domestic Registered Supplier - With SEZ Unit GST")
+	public void DomesticRegisteredSupplierWithSEZUnitGST1() {
+		purchaseBillsFunc.DomesticRegisteredSupplierWithSEZUnitGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Sez_Unit"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+		/**Domestic Registered Supplier - With SEZ Unit GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 85, groups = {
+	"Purchase Bills" }, description = "Domestic Unregistered Supplier - With Local Freight GST")
+	public void DomesticUnregisteredSupplierWithLocalFreightGST1() {
+		purchaseBillsFunc.DomesticUnregisteredSupplierWithLocalFreightGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Local_fright_Unreg"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic UnRegistered Supplier - With SEZ Unit GST
+	 * 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 86, groups = {
+	"Purchase Bills" }, description = "Domestic UnRegistered Supplier - With SEZ Unit GST")
+	public void DomesticUnRegisteredSupplierWithSEZUnitGST1() {
+		purchaseBillsFunc.DomesticUnRegisteredSupplierWithSEZUnitGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Sez_Unit"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+
 
 	/**
 	 * Verify After Method
