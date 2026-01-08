@@ -3288,7 +3288,7 @@ public class PurchaseBillsFunctionsGetDocument {
 			String TaxAmountIGST = GRNMultipleline[i][23];
 			String GSTSupply = GRNMultipleline[i][74];
 			String SeqNumber = GRNMultipleline[i][0];
-			String PBLineAmount = GRNMultipleline[i][28];
+			String PBLineAmount = GRNMultipleline[i][18];
 			String PBDiscAmount = GRNMultipleline[i][17];
 			if (!Type.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
