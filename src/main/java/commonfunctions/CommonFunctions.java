@@ -401,7 +401,7 @@ public class CommonFunctions {
 			webDB.moveToElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			checkRefreshCellsDisappear();
-			hardWait(5000);
+			checkRefreshCellsDisappear();
 			List<WebElement> elements = webDB.getDriver().findElements(By.xpath(CommonUiLocators.PendingText));
 			for (WebElement webElement : elements) {
 				hardWait(500);
@@ -3071,16 +3071,18 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
-			hardWait(4000);
-			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePrButton, ElementType.Xpath);
+//			hardWait(4000);
+			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
-			}
-			hardWait(3000);
-			webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				webDB.waitForElement(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
+				webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				}
 			}
 		}
 		Assert.assertTrue(flag);

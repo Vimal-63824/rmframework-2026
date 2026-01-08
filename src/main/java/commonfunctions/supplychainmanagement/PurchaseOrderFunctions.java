@@ -964,7 +964,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPRTable, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(5000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.checkRefreshCellsDisappear();
 			List<WebElement> CheckBox = webDB.getDriver()
 					.findElements(By.xpath(PurchaseOrderPageLocators.PendingPR_SelectAllCheckBox));
 			for (WebElement element : CheckBox) {
@@ -976,7 +977,6 @@ public class PurchaseOrderFunctions {
 							break;
 						} else {
 							element.click();
-							Thread.sleep(10000);
 							selectAllPendingPRAndClickCreatePO();
 							flag = true;
 							break;
@@ -988,9 +988,8 @@ public class PurchaseOrderFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(3000);
 			for (int i = 0; i < 60; i++) {
-				commonFunc.hardWait(1000);
+				commonFunc.hardWait(2000);
 				if (webDB.isElementEnabled(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath)) {
 					flag = true;
 					break;
@@ -1019,9 +1018,9 @@ public class PurchaseOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void selectSupplierAndCurrencyPendingPRAndClickTickIcon(String Supplier, String prefix) {
-		commonFunc.hardWait(2000);
+		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PrefixLovButton, prefix);
-		commonFunc.hardWait(2000);
+		webDB.waitForElement(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, Supplier);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
@@ -4957,16 +4956,22 @@ public class PurchaseOrderFunctions {
 			String SDAssblVal, String SDAmt, String CDAssblVal, String CDAmt) {
 		verifyAssertionBothValues(TradeAssembleVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_TRD_ASSBL_VAL")));
+		logs.logging("INFO", "Trade Assemble Value Verified");
 		verifyAssertionBothValues(TDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_TRD_DISC_AMT")));
+		logs.logging("INFO", "Trade Discount Value Verified");
 		verifyAssertionBothValues(SDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_SPL_ASSBL_VAL")));
+		logs.logging("INFO", "Special Assemble Value Verified");
 		verifyAssertionBothValues(SDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_SPL_DISC_AMT")));
+		logs.logging("INFO", "Special Discount Value Verified");
 		verifyAssertionBothValues(CDAssblVal, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_CASH_ASSBL_VAL")));
+		logs.logging("INFO", "Cash Assemble Value Verified");
 		verifyAssertionBothValues(CDAmt, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_CASH_DISC_AMT")));
+		logs.logging("INFO", "Cash Discount Value Verified");
 	}
 
 	/**
@@ -5466,14 +5471,23 @@ public class PurchaseOrderFunctions {
 		return flag;
 	}
 
+	/**
+	 * This method used to validate Line Amount in DB
+	 * 
+	 * @author Sakthi-GWL
+	 * @param GrossValue
+	 * @param Item
+	 * @param Entity
+	 */
 	public void verifyLineAmountCalculationValidation(String GrossValue, String Item, String... Entity) {
-		commonFunc.hardWait(5000);
 		if (Entity.length > 0) {
 			verifyAssertionBothValues(GrossValue, dbCommonFunc.PRLineDetailsQueryKare(VariableHandler.getPRNumber(),
 					Item, commonFunc.getDataFromTestDataSheet("Line_Amount")));
+			logs.logging("INFO", "Line Amount Verified in Database");
 		} else {
 			verifyAssertionBothValues(GrossValue, dbCommonFunc.PRLineDetailsQuery(VariableHandler.getPRNumber(), Item,
 					commonFunc.getDataFromTestDataSheet("Line_Amount")));
+			logs.logging("INFO", "Line Amount Verified in Database");
 		}
 	}
 
@@ -5961,15 +5975,14 @@ public class PurchaseOrderFunctions {
 	 * 
 	 *
 	 */
-
 	public void verifyDirectPoItemAddIconClicked() {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.ItemAddButton, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseOrderPageLocators.POPageItemTable, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Add Button SuccessFully Clicked");
-
 			}
 		}
 		assertTrue(flag);
@@ -6073,8 +6086,13 @@ public class PurchaseOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+			webDB.moveToElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+			flag = webDB.clickAnElement(PurchaseOrderPageLocators.PolinewiseSave, ElementType.Xpath);
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10);
 			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			logs.logging("INFO", "Line Is Saved Successfully");
 
 		}
@@ -8981,18 +8999,23 @@ public class PurchaseOrderFunctions {
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.LocationHeaderId, ElementType.Xpath);
 		verifyAssertionBothValues(Cgst, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_CGST_AMT")));
+		logs.logging("INFO", "CGST Amount Verified");
 		verifyAssertionBothValues(Sgst, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("PoSgstAmount")));
+		logs.logging("INFO", "SGST Amount Verified");
 		verifyAssertionBothValues(Igst, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("PoIgstAmount")));
+		logs.logging("INFO", "IGST Amount Verified");
 		verifyAssertionBothValues(Utgst, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("PoUtgstAmount")));
+		logs.logging("INFO", "UTGST Amount Verified");
 //		verifyAssertionBothValues(CessPercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_pct")));
 //		verifyAssertionBothValues(CessAmount, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 //				commonFunc.getDataFromTestDataSheet("Pol_Cess_Amt")));
 		verifyAssertionBothValues(Taxpercent, dbCommonFunc.poDetails(VariableHandler.getPONumber(), Item,
 				commonFunc.getDataFromTestDataSheet("POL_TAX_PCT")));
+		logs.logging("INFO", "Overall Tax Amount Verified");
 	}
 
 	/**
@@ -13915,13 +13938,16 @@ public class PurchaseOrderFunctions {
 				commonFunc.checkRefreshCellsDisappear();
 				verifyDirectPoItemAddIconClicked();
 				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
 						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				commonFunc.checkRefreshCellsDisappear();
 				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoUnitCostClick,
 						PurchaseOrderPageLocators.PoUnitCost, UNIT_COST);
 				if (PoType.equals(commonFunc.getDataFromTestDataSheet("ServiceValue"))) {
 					verifyPoWithGrnServiceFlagChecked();
 				}
+				commonFunc.checkRefreshCellsDisappear();
 				addHsnCode(ITEM_NAME, PurchaseOrderPageLocators.HsnCodeLovButton,
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				verifyDirectPoLineWiseSaved();
@@ -14627,6 +14653,7 @@ public class PurchaseOrderFunctions {
 			}
 		}
 		PR_Func.saveHeaderAndClickPost();
+		commonFunc.navigatePurchaseRequestPage();
 		PR_Func.searchPRAndCheckPRStatus(VariableHandler.getPRNumber(),
 				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 		commonFunc.navigatePurchaseOrderPage();
@@ -14668,6 +14695,11 @@ public class PurchaseOrderFunctions {
 						navigateToLineDetailPage(item);
 						verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 						verifyNavigateLineDetailTwo();
+						if (commonFunc.getDataFromTestDataSheet("PR_Service").equalsIgnoreCase(PRType)) {
+							commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.ServiceItemButton,
+									commonFunc.getDataFromTestDataSheet("Equip1000"));
+							switchToLineDetailFrame();
+						}
 						verifyTaxValidation(item, TaxPercent, cgst, sgst, Igst, Utgst, CessPercent, Cess);
 						verifyDiscountCalculationVerification(item, TradeAssblValue, TradeAmt, SDAssemblValue, SDAmt,
 								CDAssemblValue, CDAmt);
@@ -14806,7 +14838,6 @@ public class PurchaseOrderFunctions {
 			}
 		}
 	}
-	
 
 	/**
 	 * This Method Is Used To Verify Direct PO Domestic Supplier for Type with
