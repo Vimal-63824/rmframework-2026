@@ -1836,6 +1836,107 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	public void DirectSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable() {
 		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable();
 	}
+	/**
+	 * Standard SCO Type Changing Batch Qty And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 141, groups = { "Subcontract" }, description = "Standard SCO Type Changing Batch Qty And Post")
+	public void StandardSCOTypeChangingBatchQtyAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchQtyAndPost();
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Cost And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 142, groups = { "Subcontract" }, description = "Standard SCO Type Changing Batch Cost And Post")
+	public void StandardSCOTypeChangingBatchCostAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchCostAndPost();
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Qty, Batch Cost, SAC Code And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 143, groups = {
+			"Subcontract" }, description = "Standard SCO Type Changing Batch Qty, Batch Cost, SAC Code And Post")
+	public void StandardSCOTypeChangingBatchQtyBatchCostAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchQtyBatchCostAndPost();
+	}
+	/**
+	 * Value Addition Type Changing Batch Qty And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 144, groups = {
+			"Subcontract" }, description = "Value Addition Type Changing Batch Qty And Post")
+	public void ValueAdditionSCOTypeChangingBatchQtyAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyAndPost();
+	}
+	/**
+	 * Value Addition Type Changing Batch Cost And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 145, groups = {
+			"Subcontract" }, description = "Value Addition Type Changing Batch Cost And Post")
+	public void ValueAdditionSCOTypeChangingBatchcostAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchcostAndPost();
+	}
+	/**
+	 * SCO Value Addition Type Changing Batch Qty, Batch Cost, SAC Code And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 146, groups = {
+			"Subcontract" }, description = "SCO Value Addition Type Changing Batch Qty, Batch Cost, SAC Code And Post")
+	public void ValueAdditionSCOTypeChangingBatchQtyBatchcostAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyBatchcostAndPost();
+	}
+	/**
+	 * Standard SCO Type Changing Batch Qty, Batch Cost And CloseShort The Line
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 147, groups = {
+			"Subcontract" }, description = "Standard SCO Type Changing Batch Qty, Batch Cost And CloseShort The Line")
+	public void StandardSCOTypeChangingBatchQtyBatchCostCloseShortAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchQtyBatchCostCloseShortAndPost();
+	}
+
+	/**
+	 * SCO Value Addition Type Changing Batch Qty, Batch Cost And CloseShort The
+	 * Line
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 148, groups = {
+			"Subcontract" }, description = "SCO Value Addition Type Changing Batch Qty, Batch Cost And CloseShort The Line")
+	public void ValueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost();
+	}
+
+	/**
+	 * Cancel The Subcontract Amendment Document
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 149, groups = { "Subcontract" }, description = "Cancel The Subcontract Amendment Document")
+	public void CancelTheSCOCloseShortDocument() {
+		SubcontractFunc.cancelTheSCOCloseShortDocument();
+	}
 
 	/**
 	 * Verify After Method
