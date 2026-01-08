@@ -832,6 +832,8 @@ public class CashPaymentFunctions {
 						commonFunc.checkRefreshCellsDisappear();
 						webDB.doubleClickAnElement(CashPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 								ElementType.Xpath);
+						commonFunc.hardWait(500);
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(
 								CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
 								ElementType.Xpath);
@@ -1369,7 +1371,7 @@ public class CashPaymentFunctions {
 		System.out.println(VoucherNumber.size());
 		if (flag) {
 			for (int i = 1; i <= VoucherNumber.size(); i++) {
-				System.out.println(2);
+//				System.out.println(2);
 //				commonFunc.searchAndSelectValueInFilters(
 //						CashPaymentLocators.BankPaymentPendingPartyDocumentPartyLovButton, PartyName);
 //				webDB.switchToFrame(CashPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
@@ -1387,6 +1389,7 @@ public class CashPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(CashPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(500);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							CashPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -1602,6 +1605,7 @@ public class CashPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(CashPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(500);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							CashPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -1916,14 +1920,14 @@ public class CashPaymentFunctions {
 							commonFunc.checkRefreshCellsDisappear();
 							verifyPendingPayablesPBDocumentThroughGetDocMPMB(SheetName, VoucherNumber.get(i - 1), i);
 							webDB.clickAnElement(
-									CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i)),
+									CashPaymentLocators.BPPendingPartyDocumentSelectCheckBox(VoucherNumber.get(i - 1)),
 									ElementType.Xpath);
 							commonFunc.hardWait(6000);
 							flag = webDB.waitForElement(CashPaymentLocators.BankPendingPartyDocumentScreenOkButton,
 									ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "In Pending Party Documents This Voucher Number "
-										+ VoucherNumber.get(i) + " Is Selected Successfully");
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
 							}
 						}
 					}
@@ -1999,6 +2003,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2061,6 +2066,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2124,6 +2130,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2187,6 +2194,7 @@ public class CashPaymentFunctions {
 		}
 		clickCreateJournalButton();
 		commonFunc.checkRefreshCellsDisappear();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2259,6 +2267,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2293,7 +2302,7 @@ public class CashPaymentFunctions {
 		verifyCashPaymentDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashPaymentPrefix"), Currency);
 		clickGetDocumentInBPHeader();
 		clickPendingPartyDocumentsInBP();
-		choosePartyNameAndClickSearchButtonInPendingPartyDocs(VariableHandler.getMultiplePBDocs(), SheetName);
+		choosePartyNameAndClickSearchButtonInPendingPartyDocsMPMB(VariableHandler.getMultiplePBDocs(), SheetName);
 		for (int i = 1; i < CashPayments.length; i++) {
 			String GLAccountDesc = CashPayments[i][1];
 			String BaseCURCY = CashPayments[i][13];
@@ -2308,6 +2317,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2357,6 +2367,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2387,8 +2398,8 @@ public class CashPaymentFunctions {
 		clickPendingCRDocsButton();
 		clickPendingPayablesButtonInPendCRDocs();
 		chooseDocumentNumberInPendingPayablesScreenMPMB(VariableHandler.getMultiplePBDocs(),
-				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
-				CashierName, CreationType, SheetName);
+				commonFunc.getDataFromTestDataSheet("PaymentTypeCash"),
+				commonFunc.getDataFromTestDataSheet("BankPayMode"), CashierName, CreationType, SheetName);
 		getCashPaymentOrReceiptDocumentNumber();
 		commonFunc.checkRefreshCellsDisappear();
 		CashPayments = excelUtils.readAllDataInExcel(Filepath, webDB.getDataFromProperties("BankPaymentMultiNewRef"));
@@ -2427,6 +2438,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2473,6 +2485,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2515,6 +2528,7 @@ public class CashPaymentFunctions {
 			}
 		}
 		clickCreateJournalButton();
+		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {

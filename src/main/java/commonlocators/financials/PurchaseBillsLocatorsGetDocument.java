@@ -172,4 +172,8 @@ public class PurchaseBillsLocatorsGetDocument {
 	public static final String AllowIgstFlagEnabled = "//input[@id='P11613101001_ALOW_IGST_CSGST']";
 	/** @locatorType Xpath */
 	public static final String AllowRCMFlagEnabled = "//input[@data-testid='P11613101001_SUHD_ALOW_RCM_TAX']";
+	/** @locatorType Xpath */
+	public static final String PBGstSupplyergrid = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[25]";
+	/** @locatorType Xpath */
+	public static final String PBSupplySelect= "//select[@data-testid='SUPLN_TAX_EXMPT_FLAG']";
 }

@@ -907,7 +907,7 @@ public class OpenSalesOrderFunctions {
 			Cost = "10";
 		}
 		String MRP = String.valueOf((Integer.parseInt(Cost) + 10));
-		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_07");
+		String OpenSOPrefix = commonFunc.getDataFromTestDataSheet("Prefix_UTGST");
 		String OpenSOType = commonFunc.getDataFromTestDataSheet("Type_Standard");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 
