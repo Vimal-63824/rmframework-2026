@@ -3196,5 +3196,14 @@ public class CommonFunctions {
 		assertTrue(flag);
 		return Value;
 	}
-
+	/**
+	 * This Method Is Used To Navigate To SubCntarct Order CloseShort
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void navigateToSubcontractOrderCloseShort() {
+		navigateToSearchTab(webDB.getDataFromProperties("SubcontractCSScreen"),
+				CommonUiLocators.SubcontractCSFindAddIcon);
+	}
 }

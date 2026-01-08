@@ -1731,4 +1731,30 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PONO"), PONO, DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * SCOA Amendment Process 
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCOANO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOAmendmentProcTab(String SCOANO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOAmendmentProcessQuery"),
+				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * SCOA Amendment Line 
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCOANO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOAmendmentLine(String SCOANO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOAmendmentLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
+		return value;
+	}
 }

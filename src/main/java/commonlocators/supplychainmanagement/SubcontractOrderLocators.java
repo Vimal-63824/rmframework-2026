@@ -462,4 +462,40 @@ public class SubcontractOrderLocators {
 	public static final String SCO_GetSFcode = "//input[@data-testid='P161713106504_POL_SF_CODE']";
 	/** @Locator XPATH */
 	public static final String SCO_GetTarSFcode = "//span[@data-testid='P161713106504_POL_TARG_SF_CODE']";
+	/** @Locator XPATH */
+	public static final String SubcontractCSFindAddIcon = "//button[@id='B1162763568144715495']";
+	/** @Locator XPATH */
+	public static final String SubcontractCSBackIcon = "//button[@id='B1045111864081619701']";
+	/** @Locator XPATH */
+	public static final String SCOA_SCOPfx = "//input[@data-testid='P60_PFX']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String SubcontractCSHeaderSaveIcon = "//button[@id='B1045107532048619697']";
+	/** @Locator XPATH */
+	public static final String SubcontractCSAddSCOLine = "//button[@id='B1045105907669619694']";
+	/** @Locator XPATH */
+	public static final String SubcontractCSAddSCOLine_Iframe = "//iframe[@title='SCO Details']";
+	/** @Locator XPATH */
+	public static final String SubcontractCSAddSCOLine_SelectAll = "//*[@id=\"check_all\"]";
+	/** @Locator XPATH */
+	public static final String SubcontractCSAddSCOLine_OKButton = "//button[@id='B1']";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_ProcDetailsButton = "(//span[@class='fa fa-info-circle'])[3]";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_ProcDetails_Iframe = "//iframe[@title='Details']";
+	/** @Locator XPATH */
+	public static final String  SubcontractCS_ProcDetails_BatchQty = "//input[@id='P61_SCOAP_NEW_BATCH_QTY']";
+	/** @Locator XPATH */
+	public static final String  SubcontractCS_ProcDetails_BatchCost = "//input[@id='P61_SCOAP_NEW_BATCH_COST']";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_ProcDetails_SaveIcon = "//button[@id='B1054370510727881854']";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_PostIcon = "//button[@id='B1045107912563619697']";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_DocNO = "//input[@data-testid='P60_PAH_DOC_NO']";
+	/** @Locator XPATH */
+	public static final String  SubcontractCS_ProcDetails_SACLov = "//input[@id='P61_SCOAP_HSN_CODE']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_CloseshortButton = "//button[@id='B1']";
+	/** @Locator XPATH */
+	public static final String SubcontractCS_Closeshort_CancelButton = "//button[@id='B1045109078127619698']";
 }

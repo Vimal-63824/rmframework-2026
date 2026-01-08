@@ -1696,5 +1696,15 @@
 	"POTaxAmount": "POH_TAX_AMT",
 	"PBLineAmount": "SUPLN_ASSBL_VAL",
 	"PBDiscAmount": "SUPLN_INV_DISC_AMT",
-	"Prefix_UTGST": "OS3"
+	"Prefix_UTGST": "OS3",
+	"SCOCloseShortBatchQty":"5",
+	"SCOCloseShortBatchCost":"80",
+	"SCOASACCode": "8745501",
+	"SCOANO": "${SCOANO}",
+	"SCOADBProcessDescCOLUMN": "PROCESS_DESC",
+	"SCOADBProcessSACCOLUMN": "SCOAP_HSN_CODE",
+	"SCOADBProcBatchQtyCOLUMN": "SCOAP_BATCH_QTY",
+	"SCOADBProcBatchCostCOLUMN": "SCOAP_BATCH_COST",
+	"SCODBProcDescCOLUMN": "SCOP_PROCESS_DESC",
+	"SCODBPendQTYCOLUMN":"PALC_PEND_PO_QTY"
 }
