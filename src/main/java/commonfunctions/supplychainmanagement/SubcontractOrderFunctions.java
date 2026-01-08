@@ -57,6 +57,7 @@ public class SubcontractOrderFunctions {
 	static InspectionDocumentFunctions qcFunc = new InspectionDocumentFunctions();
 	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
 
 	/**
 	 * Verify Pending Subcontract Order
@@ -12696,7 +12697,8 @@ public class SubcontractOrderFunctions {
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -14538,6 +14540,7 @@ public class SubcontractOrderFunctions {
 		}
 
 	}
+
 	/**
 	 * This Method Used For Verify GRN SF Code Compare Excel Sheet With DataBase
 	 * 
@@ -14564,8 +14567,647 @@ public class SubcontractOrderFunctions {
 								commonFunc.getDataFromTestDataSheet("SCOGRNDBTARSFCODECOLUMN")), GRNTARSFCODE);
 				logs.logging("INFO", "SCO TAR SF CODE Matched With GRN TAR SF CODE AND MATCHED DataBase Values");
 
-
 			}
 		}
+	}
+
+	/**
+	 * This Method Used To Clicking Subcontract CS Add Icon
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingSubcontractCSAddIcon(String DocNo) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSFindAddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCSFindAddIcon, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSBackIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract CS Add Icon Clicked Successfuly");
+				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SCOA_SCOPfx, DocNo);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSHeaderSaveIcon, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractCSHeaderSaveIcon, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSBackIcon, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Subcontract CS Header Created Successfuly");
+						commonFunc.hardWait(2000);
+						String SCOAdocNo = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SubcontractCS_DocNO,
+								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+						logs.logging("INFO", "Get SCO DocNo Is: " + SCOAdocNo);
+						VariableHandler.setSCOAdocNo(SCOAdocNo);
+						commonFunc.hardWait(1000);
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Adding Subcontract Line
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void addingSubcontractLine() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSAddSCOLine, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCSAddSCOLine, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.switchToFrame(SubcontractOrderLocators.SubcontractCSAddSCOLine_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract CS Add Line Button Clicked Successfuly");
+				webDB.switchToFrame(SubcontractOrderLocators.SubcontractCSAddSCOLine_Iframe, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSAddSCOLine_SelectAll,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.SubcontractCSAddSCOLine_SelectAll, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSAddSCOLine_OKButton,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.SubcontractCSAddSCOLine_OKButton,
+								ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.switchToDefaultContent();
+						commonFunc.hardWait(3000);
+						verifySCOAmendmentProcess();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Clicking Process Details Button Changing BatchQty
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingProcessDetailsButtonChangingBatchQty(String SCOCloseShortBatchQty) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetailsButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetailsButton, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.switchToFrame(SubcontractOrderLocators.SubcontractCS_ProcDetails_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract CS Process Details Button Clicked Successfuly");
+				webDB.switchToFrame(SubcontractOrderLocators.SubcontractCS_ProcDetails_Iframe, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchQty,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchQty,
+							SCOCloseShortBatchQty, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+								ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.pressEscapeKey();
+						webDB.switchToDefaultContent();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Clicking Process Details Button Changing BatchCost
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingProcessDetailsButtonChangingBatchCost(String SCOCloseShortBatchCost) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetailsButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetailsButton, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.switchToFrame(SubcontractOrderLocators.SubcontractCS_ProcDetails_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract CS Process Details Button Clicked Successfuly");
+				webDB.switchToFrame(SubcontractOrderLocators.SubcontractCS_ProcDetails_Iframe, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
+							SCOCloseShortBatchCost, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+								ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.pressEscapeKey();
+						webDB.switchToDefaultContent();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Clicking Process Details Button Changing BatchQty And
+	 * BatchCost
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingProcessDetailsButtonChangingBatchQtyBatchCost(String SCOCloseShortBatchQty,
+			String SCOCloseShortBatchCost, String SCOASACCode) {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetailsButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetailsButton, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.switchToFrame(SubcontractOrderLocators.SubcontractCS_ProcDetails_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Subcontract CS Process Details Button Clicked Successfuly");
+				webDB.switchToFrame(SubcontractOrderLocators.SubcontractCS_ProcDetails_Iframe, ElementType.Xpath);
+				flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchQty,
+							SCOCloseShortBatchQty, ElementType.Xpath);
+					webDB.sendTextToAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_BatchCost,
+							SCOCloseShortBatchCost, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.SubcontractCS_ProcDetails_SACLov,
+							SCOASACCode);
+					flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_ProcDetails_SaveIcon,
+								ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.pressEscapeKey();
+						webDB.switchToDefaultContent();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Clicking Subcontract CS Post Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingSubcontractCSPostButton() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_PostIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_PostIcon, ElementType.Xpath);
+			flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+			logs.logging("INFO", "Post Button Is Clicked");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Clicking LineWise CloseShort Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingLineWiseCloseShortButton() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_CloseshortButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_CloseshortButton, ElementType.Xpath);
+			commonFunc.hardWait(1000);
+			if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+						ElementType.Xpath);
+				logs.logging("INFO", "CloseShort Button Clicked Successfully");
+				commonFunc.hardWait(2000);
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Used To Clicking Cancel Button
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingCancelButton() {
+		flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCS_Closeshort_CancelButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.SubcontractCS_Closeshort_CancelButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(1000);
+			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSFindAddIcon, ElementType.Xpath);
+			if(flag) {
+				logs.logging("INFO", "CloseShort Document Cancelled Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Qty And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void standardSCOTypeChangingBatchQtyAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingProcessDetailsButtonChangingBatchQty(commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchQty"));
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Cost And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void standardSCOTypeChangingBatchCostAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingProcessDetailsButtonChangingBatchCost(commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchCost"));
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Qty Batch Cost SAC Code And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void standardSCOTypeChangingBatchQtyBatchCostAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingProcessDetailsButtonChangingBatchQtyBatchCost(
+				commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchQty"),
+				commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchCost"),
+				commonFunc.getDataFromTestDataSheet("SCOASACCode"));
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * ValueAddition SCO Type Changing Batch Qty And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void valueAdditionSCOTypeChangingBatchQtyAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		ValueAdditionProcessSourceAndTargetSFcode();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingProcessDetailsButtonChangingBatchQty(commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchQty"));
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * ValueAddition SCO Type Changing Batch Cost And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void valueAdditionSCOTypeChangingBatchcostAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		ValueAdditionProcessSourceAndTargetSFcode();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingProcessDetailsButtonChangingBatchCost(commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchQty"));
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * ValueAddition SCO Type Changing Batch Qty Batch Cost SAC Code And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void valueAdditionSCOTypeChangingBatchQtyBatchcostAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		ValueAdditionProcessSourceAndTargetSFcode();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingProcessDetailsButtonChangingBatchQtyBatchCost(
+				commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchQty"),
+				commonFunc.getDataFromTestDataSheet("SCOCloseShortBatchCost"),
+				commonFunc.getDataFromTestDataSheet("SCOASACCode"));
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Qty, Batch Cost And CloseShort The Line
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void standardSCOTypeChangingBatchQtyBatchCostCloseShortAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingLineWiseCloseShortButton();
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		verifyCloseShortQty();
+	}
+	/**
+	 * ValueAddition SCO Type Changing Batch Qty Batch Cost CloseShort And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void valueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		ValueAdditionProcessSourceAndTargetSFcode();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingLineWiseCloseShortButton();
+		clickingSubcontractCSPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOAdocNo(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+	/**
+	 * Cancel The Subcontract Amendment Document
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void cancelTheSCOCloseShortDocument() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrderCloseShort();
+		clickingSubcontractCSAddIcon(VariableHandler.getSCOdocno());
+		addingSubcontractLine();
+		clickingCancelButton();
+	}
+	/**
+	 * This Method Used For Verify SCOA Amendment Process And BatchQty And Batch Cost
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifySCOAmendmentProcess() {
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBProcDescCOLUMN")),
+				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
+						commonFunc.getDataFromTestDataSheet("SCOADBProcessDescCOLUMN")));
+		logs.logging("INFO", "SCO Process And SCOA Process Verify Successfully");
+		
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")),
+				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
+						commonFunc.getDataFromTestDataSheet("SCOADBProcessSACCOLUMN")));
+		logs.logging("INFO", "SCO Process SAC And SCOA Process SAC Verify Successfully");
+		
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")),
+				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
+						commonFunc.getDataFromTestDataSheet("SCOADBProcBatchQtyCOLUMN")));
+		logs.logging("INFO", "SCO Process Batch Qty And SCOA Process Batch Qty Verify Successfully");
+		
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")),
+				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
+						commonFunc.getDataFromTestDataSheet("SCOADBProcBatchCostCOLUMN")));
+		logs.logging("INFO", "SCO Process Batch Cost And SCOA Process Batch Cost Verify Successfully");
+		commonFunc.hardWait(1000);
+	}
+	/**
+	 * This Method Used For Verify SCOA Amendment Process And BatchQty And Batch Cost
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void verifyCloseShortQty() {
+		verifyAssertionBothValues(
+				dbCommonFunc.SCOAmendmentLine(VariableHandler.getSCOAdocNo(),
+						commonFunc.getDataFromTestDataSheet("SCODBPendQTYCOLUMN")),
+				dbCommonFunc.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
+		logs.logging("INFO", "SCO CloseShort Qty And SCOA CloseShort Qty Verify Successfully");
+		commonFunc.hardWait(1000);
 	}
 }
