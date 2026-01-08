@@ -1415,11 +1415,10 @@ public class GateEntryPageFunctions {
 						logs.logging("INFO", "Document Search And Selected Successfully");
 						verifyClickSelectAllButton();
 						logs.logging("INFO", "Create Gate Entry Button shown");
-						commonFunc.hardWait(2000);
 						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
-
+							webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+							flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						}
 					}
 				}
