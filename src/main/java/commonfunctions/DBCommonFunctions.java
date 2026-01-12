@@ -1690,4 +1690,71 @@ public class DBCommonFunctions {
 		return value;
 	}
 
+	/**
+	 * SCO GRN LINEWISE
+	 * 
+	 * @author Vimal -RMITS
+	 * @param GRNSNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOGRNLINEWISE(String GRNSNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOGRNLineQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * SCO GRN LINEWISE Process Tab
+	 * 
+	 * @author Vimal -RMITS
+	 * @param GRNSNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOGRNLineWiseProcTab(String GRNSNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOGRNLineProcessTabQuery"),
+				commonFunc.getDataFromTestDataSheet("GRNSNO"), GRNSNO, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param PONO
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PurchaseOrderHeaderDetails(String PONO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POHeaderQuery"),
+				commonFunc.getDataFromTestDataSheet("PONO"), PONO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * SCOA Amendment Process 
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCOANO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOAmendmentProcTab(String SCOANO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOAmendmentProcessQuery"),
+				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * SCOA Amendment Line 
+	 * 
+	 * @author Vimal -RMITS
+	 * @param SCOANO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String SCOAmendmentLine(String SCOANO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("SCOAmendmentLineQuery"),
+				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
+		return value;
+	}
 }

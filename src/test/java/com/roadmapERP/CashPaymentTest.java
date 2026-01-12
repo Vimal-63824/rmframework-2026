@@ -280,9 +280,9 @@ public class CashPaymentTest extends RoadMapERPTest {
 	@Test(priority = 17, groups = { "Cash Payments" }, description = "Payment With Expenses Account without Gst")
 	public void CreateCashPaymentWithExpenseAndWithoutGSTAndTDS() throws IOException {
 		// TODO Covered in CreateCashPaymentWithExpenseAndWithoutGST() Method
-//		logs.logging("INFO",
-//				"This Scenario Is Already Covered In This Method CreateCashPaymentWithExpenseAndWithoutGST() ");
-//		Assert.assertTrue(flag);
+		logs.logging("INFO",
+				"This Scenario Is Already Covered In This Method CreateCashPaymentWithExpenseAndWithoutGST() ");
+		Assert.assertTrue(flag);
 	}
 
 	/**
@@ -359,7 +359,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		Assert.assertTrue(flag);
 	}
-
+//
 //	/**
 //	 * Payment Against Multi Party, Single Bill (Through Add button)
 //	 * 

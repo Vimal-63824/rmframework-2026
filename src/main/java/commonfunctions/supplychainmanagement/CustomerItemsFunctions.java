@@ -906,7 +906,7 @@ public class CustomerItemsFunctions {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateItemAssoScreen();
-		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("Unit_100"));
+		searchItemInUnitField(commonFunc.getDataFromTestDataSheet("UTGSTUnit1"));
 		searchItemInFindPage();
 		clickSearchButton();
 		searchedItem();

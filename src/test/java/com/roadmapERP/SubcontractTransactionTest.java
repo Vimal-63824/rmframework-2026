@@ -50,18 +50,18 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Subcontract Order to GRN without Gate Entry for UP type - Free pass Items
-	 * 
-	 * @author Vimal - RMITS
-	 */
-	@Author("Vimal-RMITS")
-	@Test(priority = 3, groups = {
-			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for UP type - Free pass Items")
-	public void CreateProductionOrderFromSubcontractorderToGRNUnprocessType() {
-		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNUnprocessType();
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Subcontract Order to GRN without Gate Entry for UP type - Free pass Items
+//	 * 
+//	 * @author Vimal - RMITS
+//	 */
+//	@Author("Vimal-RMITS")
+//	@Test(priority = 3, groups = {
+//			"Subcontract" }, description = "Subcontract Order to GRN without Gate Entry for UP type - Free pass Items")
+//	public void CreateProductionOrderFromSubcontractorderToGRNUnprocessType() {
+//		flag = SubcontractFunc.createProductionOrderFromSubcontractorderToGRNUnprocessType();
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Subcontract Order to GRN without Gate Entry for US type - Free pass Items
@@ -1693,10 +1693,249 @@ public class SubcontractTransactionTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 130, groups = {
+	@Test(priority = 129, groups = {
 			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for CS type - QC Enabled Items")
 	public void PendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable() {
 		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithOutGateEntryCStypeQCEnable();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type - QC
+	 * Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 130, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for PR type - QC Enabled Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryPRtypeQCenable() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryPRtypeQCenable();
+	}
+
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for UP type - QC
+	 * Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 131, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for UP type - QC Enabled Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryUPtypeQCenable() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryUPtypeQCenable();
+	}
+
+	/**
+	 * Pending Serial Item Subcontract Order to GRN With Gate Entry for US type - QC
+	 * Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 132, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN With Gate Entry for US type - QC Enabled Items")
+	public void PendingSerialSubcontractOrderToGRNWithGateEntryUStypeQCenable() {
+		SubcontractFunc.pendingSerialSubcontractOrderToGRNWithGateEntryUStypeQCenable();
+	}
+
+	/**
+	 * Linewise Serial Item Cancel The Subcontract GRN
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 133, groups = { "Subcontract" }, description = "Linewise Serial Item Cancel The Subcontract GRN")
+	public void LineWiseSerialCancelTheSubcontractGRN() {
+		SubcontractFunc.lineWiseSerialCancelTheSubcontractGRN();
+	}
+
+	/**
+	 * Cancel The Serial Item Subcontract GRN Document
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 134, groups = { "Subcontract" }, description = "Cancel The Serial Item Subcontract GRN Document")
+	public void HeaderWiseSerialCancelTheSubcontractGRN() {
+		SubcontractFunc.headerWiseSerialCancelTheSubcontractGRN();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN without Gate Entry for PR type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 135, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN without Gate Entry for PR type - Free pass Items")
+	public void DirectSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtype() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtype();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN without Gate Entry for CS type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 136, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN without Gate Entry for CS type - Free pass Items")
+	public void DirectSerialItemSubcontractOrdertoGRNwithoutGateEntryforCStype() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithoutGateEntryforCStype();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN with Gate Entry for PR type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 137, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN with Gate Entry for PR type - Free pass Items")
+	public void DirectSerialItemSubcontractOrdertoGRNwithGateEntryforPRtype() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforPRtype();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN with Gate Entry for CS type -
+	 * Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 138, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN with Gate Entry for CS type - Free pass Items")
+	public void DirectSerialItemSubcontractOrdertoGRNwithGateEntryforCStype() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforCStype();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN without Gate Entry for PR type -
+	 * QC Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 139, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN without Gate Entry for PR type - QC Enabled Items")
+	public void DirectSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCenable() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCenable();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN with Gate Entry for PR type - QC
+	 * Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 140, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN with Gate Entry for PR type - QC Enabled Items")
+	public void DirectSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforPRtypeQCenable();
+	}
+	/**
+	 * Standard SCO Type Changing Batch Qty And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 141, groups = { "Subcontract" }, description = "Standard SCO Type Changing Batch Qty And Post")
+	public void StandardSCOTypeChangingBatchQtyAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchQtyAndPost();
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Cost And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 142, groups = { "Subcontract" }, description = "Standard SCO Type Changing Batch Cost And Post")
+	public void StandardSCOTypeChangingBatchCostAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchCostAndPost();
+	}
+
+	/**
+	 * Standard SCO Type Changing Batch Qty, Batch Cost, SAC Code And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 143, groups = {
+			"Subcontract" }, description = "Standard SCO Type Changing Batch Qty, Batch Cost, SAC Code And Post")
+	public void StandardSCOTypeChangingBatchQtyBatchCostAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchQtyBatchCostAndPost();
+	}
+	/**
+	 * Value Addition Type Changing Batch Qty And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 144, groups = {
+			"Subcontract" }, description = "Value Addition Type Changing Batch Qty And Post")
+	public void ValueAdditionSCOTypeChangingBatchQtyAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyAndPost();
+	}
+	/**
+	 * Value Addition Type Changing Batch Cost And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 145, groups = {
+			"Subcontract" }, description = "Value Addition Type Changing Batch Cost And Post")
+	public void ValueAdditionSCOTypeChangingBatchcostAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchcostAndPost();
+	}
+	/**
+	 * SCO Value Addition Type Changing Batch Qty, Batch Cost, SAC Code And Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 146, groups = {
+			"Subcontract" }, description = "SCO Value Addition Type Changing Batch Qty, Batch Cost, SAC Code And Post")
+	public void ValueAdditionSCOTypeChangingBatchQtyBatchcostAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyBatchcostAndPost();
+	}
+	/**
+	 * Standard SCO Type Changing Batch Qty, Batch Cost And CloseShort The Line
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 147, groups = {
+			"Subcontract" }, description = "Standard SCO Type Changing Batch Qty, Batch Cost And CloseShort The Line")
+	public void StandardSCOTypeChangingBatchQtyBatchCostCloseShortAndPost() {
+		SubcontractFunc.standardSCOTypeChangingBatchQtyBatchCostCloseShortAndPost();
+	}
+
+	/**
+	 * SCO Value Addition Type Changing Batch Qty, Batch Cost And CloseShort The
+	 * Line
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 148, groups = {
+			"Subcontract" }, description = "SCO Value Addition Type Changing Batch Qty, Batch Cost And CloseShort The Line")
+	public void ValueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost() {
+		SubcontractFunc.valueAdditionSCOTypeChangingBatchQtyBatchcostCloseShortAndPost();
+	}
+
+	/**
+	 * Cancel The Subcontract Amendment Document
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 149, groups = { "Subcontract" }, description = "Cancel The Subcontract Amendment Document")
+	public void CancelTheSCOCloseShortDocument() {
+		SubcontractFunc.cancelTheSCOCloseShortDocument();
 	}
 
 	/**

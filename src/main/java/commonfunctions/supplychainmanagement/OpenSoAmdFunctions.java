@@ -1949,7 +1949,7 @@ public class OpenSoAmdFunctions {
 		if (Cost1.equals("00"))
 			Cost1 = "10";
 		String Mrp = String.valueOf(Integer.parseInt(Cost1) + 10);
-		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_07");
+		String OpenSOPrefix1 = commonFunc.getDataFromTestDataSheet("Prefix_UTGST");
 		String OpenSOHSN = commonFunc.getDataFromTestDataSheet("HSN2022-5%");
 		String Item = VariableHandler.getItemName();
 

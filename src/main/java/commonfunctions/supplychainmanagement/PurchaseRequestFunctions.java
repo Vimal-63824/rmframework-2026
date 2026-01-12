@@ -200,7 +200,6 @@ public class PurchaseRequestFunctions {
 		commonFunc.clickPRCreateIcon();
 		commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.PRLocationButton, Location);
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(1000);
 		selectPRType(PRType);
 		commonFunc.checkRefreshCellsDisappear();
 		selectPRPrefix(Prefix);
@@ -290,7 +289,7 @@ public class PurchaseRequestFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseRequestLocators.SaveHeaderBtn, ElementType.Xpath);
 			logs.logging("INFO", "Header Saved Successfully.");
-			commonFunc.hardWait(2000);
+			webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10);
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
@@ -302,9 +301,10 @@ public class PurchaseRequestFunctions {
 				webDB.clickAnElement(PurchaseRequestLocators.PostBtn, ElementType.Xpath);
 				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
 				if (!VariableHandler.getApprovalFlag()) {
-					approvalPageFunc
-							.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HariKrishnaValue"));
-					verifyApprovePRUsingAshokUser();
+					approvalPageFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPRNumber(),
+							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+							System.getProperty("HariUsername"));
 				}
 			}
 		}
@@ -370,18 +370,23 @@ public class PurchaseRequestFunctions {
 		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_SubClass, Item,
 				PRLineDetailsName.SUBCLASS, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("SubClassValue")));
+		logs.logging("INFO", "Sub Class Verified in Database");
 		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_Class, Item, PRLineDetailsName.CLASS,
 				dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("ClassValue")));
+		logs.logging("INFO", "Class Verified in Database");
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_Warehouse, Item,
 				PRLineDetailsName.WAREHOUSE, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("WHValue")));
+		logs.logging("INFO", "Warehouse Verified in Database");
 		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_ConventionFactor, Item,
 				PRLineDetailsName.CONVENTION_FACTOR, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("ConvValue")));
+		logs.logging("INFO", "Convention Factor Verified in Database");
 		validatePRLineDetailsWithGetText(PurchaseRequestLocators.PRLineDetails_PurchaseUOM, Item,
 				PRLineDetailsName.PURCHASE_UOM, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 						commonFunc.getDataFromTestDataSheet("UOMValue")));
+		logs.logging("INFO", "UOM Verified in Database");
 //		validatePRLineDetailsWithDomPropertyValue(PurchaseRequestLocators.PRLineDetails_GLAccNo, Item,
 //				PRLineDetailsName.GL_ACC_NO, dbCommonFunctions.PRLineDetails(VariableHandler.getPRNumber(),
 //						commonFunc.getDataFromTestDataSheet("GLValue")));
@@ -538,6 +543,7 @@ public class PurchaseRequestFunctions {
 		if (commonFunc.getDataFromTestDataSheet(Type) != null) {
 			Type = commonFunc.getDataFromTestDataSheet(Type);
 		}
+		webDB.waitForElement(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseRequestLocators.PRTypeSelect, ElementType.Xpath);
 		if (flag) {

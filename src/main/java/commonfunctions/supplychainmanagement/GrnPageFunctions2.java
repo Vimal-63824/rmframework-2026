@@ -23,6 +23,7 @@ import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.DirectGrnPageLocators;
 import commonlocators.supplychainmanagement.GrnLocators;
+import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -562,6 +563,29 @@ public class GrnPageFunctions2 {
 						logs.logging("INFO", "Import / LR Ok Button Clicked");
 					}
 				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to verify Free of Cost and update Unit Cost as 0 and Save
+	 * Lines
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyClickFOCAndSaveLines() {
+		flag = webDB.waitForElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+			webDB.clickAnElement(DirectGrnPageLocators.GrnFOCTabledata, ElementType.Xpath);
+			commonFunc.hardWait(3000);
+			flag = webDB.isElementSelected(DirectGrnPageLocators.GrnFOCTableInput, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "FOC Input Box Clicked in GRN Line Details");
+				commonFunc.checkRefreshCellsDisappear();
+				DirectGRNFunc.verifyClickingSaveLine();
+				DirectGRNFunc.closeToastIfDisplayed();
 			}
 		}
 		assertTrue(flag);

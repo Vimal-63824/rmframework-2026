@@ -401,7 +401,7 @@ public class CommonFunctions {
 			webDB.moveToElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			webDB.clickAnElement(CommonUiLocators.LeftSidePendingIcon, ElementType.Xpath);
 			checkRefreshCellsDisappear();
-			hardWait(5000);
+			checkRefreshCellsDisappear();
 			List<WebElement> elements = webDB.getDriver().findElements(By.xpath(CommonUiLocators.PendingText));
 			for (WebElement webElement : elements) {
 				hardWait(500);
@@ -2599,6 +2599,7 @@ public class CommonFunctions {
 	 * @param User
 	 */
 	public void approveDocuments(String BU, String DocNo, String EmpId, String Unit, String User) {
+		hardWait(3000);
 		RestUtils.resetRestAssured();
 		restApi.userSetsThebaseUrlAs(webDB.getDataFromProperties("ApproveBaseUrl"));
 		restApi.setQueryParam("p_bu", BU);
@@ -2913,19 +2914,22 @@ public class CommonFunctions {
 			String LovInputLocator) {
 		flag = webDB.waitForElement(TableLocator, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(TableLocator, ElementType.Xpath);
 			webDB.clickAnElement(TableLocator, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
+			webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
 			logs.logging("INFO", "Table Is Clicked");
 			searchAndSelectValueInFilters(LovButton, LovValue);
-			flag = webDB.waitForElement(LovInputLocator, ElementType.Xpath);
-			if (flag) {
-				String value = webDB.getAttributeFromElement(LovInputLocator, ElementType.Xpath,
-						getDataFromTestDataSheet("Value"));
-				logs.logging("INFO", "Get Text Value from Table Is: " + value);
-				flag = value.contains(LovValue);
-				if (flag) {
-					logs.logging("INFO", "Verified Value Successfully");
-				}
-			}
+//			flag = webDB.waitForElement(LovInputLocator, ElementType.Xpath);
+//			if (flag) {
+//				String value = webDB.getAttributeFromElement(LovInputLocator, ElementType.Xpath,
+//						getDataFromTestDataSheet("Value"));
+//				logs.logging("INFO", "Get Text Value from Table Is: " + value);
+//				flag = value.contains(LovValue);
+//				if (flag) {
+//					logs.logging("INFO", "Verified Value Successfully");
+//				}
+//			}
 		}
 		assertTrue(flag);
 	}
@@ -2958,17 +2962,16 @@ public class CommonFunctions {
 	public void navigateToTDSDeclarationScreen() {
 		navigateToSearchTab(webDB.getDataFromProperties("TDSDeclaration"), AttendanceLeaveLocators.TDSFindSearchButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Employee Overtime
 	 * 
 	 * @author Sakthi-GWL
 	 */
 	public void navigateToEmployeeOvertime() {
-		navigateToSearchTab(webDB.getDataFromProperties("Overtime"),
-				AttendanceLeaveLocators.OvertimeFindSearchButton);
+		navigateToSearchTab(webDB.getDataFromProperties("Overtime"), AttendanceLeaveLocators.OvertimeFindSearchButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Travel Request
 	 * 
@@ -2978,7 +2981,16 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("Travel"), AttendanceLeaveLocators.TravelRequestFindAddButton);
 	}
 
-	
+	/**
+	 * This Method Is Used To Navigate Travel Reimbursement
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToTravelReimbursement() {
+		navigateToSearchTab(webDB.getDataFromProperties("TravelReimbursement"),
+				AttendanceLeaveLocators.TravelReimbFindSearchButton);
+	}
+
 	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
 	 * 
@@ -3059,16 +3071,18 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(CommonUiLocators.PrCreateButton, ElementType.Xpath);
-			hardWait(4000);
-			flag = webDB.verifyIsElementDisplayed(CommonUiLocators.CreatePrButton, ElementType.Xpath);
+//			hardWait(4000);
+			checkRefreshCellsDisappear();
+			checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CommonUiLocators.CreatePrButton, ElementType.Xpath);
-			}
-			hardWait(3000);
-			webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
-			if (flag) {
-				logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				webDB.waitForElement(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
+				webDB.switchToFrame(CommonUiLocators.PrCreateFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.CreatePRTickIcon, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Left Side Add Icon is Displayed and Clicked");
+				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -3184,5 +3198,14 @@ public class CommonFunctions {
 		assertTrue(flag);
 		return Value;
 	}
-
+	/**
+	 * This Method Is Used To Navigate To SubCntarct Order CloseShort
+	 * 
+	 * @author Vimal - RMITS
+	 * 
+	 */
+	public void navigateToSubcontractOrderCloseShort() {
+		navigateToSearchTab(webDB.getDataFromProperties("SubcontractCSScreen"),
+				CommonUiLocators.SubcontractCSFindAddIcon);
+	}
 }

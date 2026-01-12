@@ -4370,12 +4370,14 @@ public class EmployeeMasterFunctions {
 	 */
 	public void postUploadedTemplateInEmployeeDetailsMigration() {
 		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
-		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
+		flag = webDB.waitForClickElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
+			webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
+			webDB.waitUntilElementToBeClickable(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 			webDB.moveToElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);

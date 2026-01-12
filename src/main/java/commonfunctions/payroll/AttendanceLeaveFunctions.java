@@ -5271,8 +5271,326 @@ public class AttendanceLeaveFunctions {
 													ElementType.Xpath);
 											if (flag) {
 												logs.logging("INFO", "Travel Request Document Is Cancelled");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.TravelDestinationCity,
+														ElementType.Xpath);
+												flag = commonFunc.logoutUser();
 											}
 										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Check Travel Reimbursement Based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelReimbursementBasedOnEmployeeWise() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelReimbursement();
+		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
+		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Travel Reimbursement Based on Forward To
+	 * Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelReimbursementBasedOnForwardToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelReimbursement();
+		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
+		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Travel Reimbursement Based on Forward To
+	 * Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckTravelReimbursementBasedOnReturnToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelRequest();
+		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
+				commonFunc.getDataFromTestDataSheet("PurposeOfTravel"));
+		EmployeeTraveldates(commonFunc.getDataFromTestDataSheet("DepartCity"),
+				commonFunc.getDataFromTestDataSheet("DestCity"));
+		EmployeeTravelExpenses(commonFunc.getDataFromTestDataSheet("Expenses"),
+				commonFunc.getDataFromTestDataSheet("ExpenseAmount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseRef"));
+		EmployeeAdditionalTravellers(commonFunc.getDataFromTestDataSheet("AddTravEmployee"));
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToTravelReimbursement();
+		TravelReimbursementDocEntry(commonFunc.getDataFromTestDataSheet("TravelCity"));
+		TravelReimbursementExpensesDetails(commonFunc.getDataFromTestDataSheet("TravelReimAmount"));
+		return flag;
+	}
+
+	/**
+	 * This method is used To Enter the Data For Travel Reimbursement
+	 * 
+	 * @author Kishore-RMITS
+	 * @param TravelCity
+	 */
+	public void TravelReimbursementDocEntry(String TravelCity) {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String tomorrowDate = myDateObj.format(myFormatObj);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbFindSearchButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Find Search Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					webDB.clickAnElement(AttendanceLeaveLocators.TravelReimbDocSelect, ElementType.CssSelector);
+					flag = webDB.waitForElement(AttendanceLeaveLocators.TravelRePlaceOfVisitAddButton,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(AttendanceLeaveLocators.TravelRePlaceOfVisitAddButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Add Button Is Clicked");
+							flag = webDB.waitForElement(AttendanceLeaveLocators.DateFromField, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(AttendanceLeaveLocators.DateFromField, ElementType.Xpath);
+								webDB.sendTextToAnElement(AttendanceLeaveLocators.DateFromField, Today,
+										ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Date From Is Selected");
+									flag = webDB.waitForElement(AttendanceLeaveLocators.DateToField, ElementType.Xpath);
+									if (flag) {
+										webDB.pressTabKey();
+										webDB.clickAnElement(AttendanceLeaveLocators.DateToField, ElementType.Xpath);
+										webDB.sendTextToAnElement(AttendanceLeaveLocators.DateToField, Today,
+												ElementType.Xpath);
+										if (flag) {
+											logs.logging("INFO", "Date To Is Selected");
+											flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimCityLOV,
+													ElementType.Xpath);
+											if (flag) {
+												webDB.pressTabKey();
+												commonFunc.hardWait(5000);
+												commonFunc.searchAndSelectValueInFilters(
+														AttendanceLeaveLocators.TravelReimCityLOV, TravelCity);
+												if (flag) {
+													logs.logging("INFO", "Travel City Was Selected");
+													webDB.pressTabKey();
+													commonFunc.hardWait(5000);
+													flag = webDB.waitForElement(
+															AttendanceLeaveLocators.PlaceOfVisitSaveButton,
+															ElementType.Xpath);
+													if (flag) {
+														webDB.clickAnElement(
+																AttendanceLeaveLocators.PlaceOfVisitSaveButton,
+																ElementType.Xpath);
+														if (flag) {
+															logs.logging("INFO", "Place Of Visit Line Is Saved");
+															commonFunc.checkSuccessToastMessageDisappear();
+															commonFunc.hardWait(5000);
+															webDB.waitForElement(
+																	AttendanceLeaveLocators.TravelReimDocNoField,
+																	ElementType.Xpath);
+															String TravelReimbursementDocNo = webDB.getTextFromElement(
+																	AttendanceLeaveLocators.TravelReimDocNoField,
+																	ElementType.Xpath);
+															VariableHandler.setTravelReimbursementDocNo(
+																	TravelReimbursementDocNo);
+															logs.logging("info", "Travel Reimbursement No is:"
+																	+ VariableHandler.getTravelReimbursementtDocNo());
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Enter the Expenses Details In Travel Reimbursement
+	 * 
+	 * @author Kishore-RMITS
+	 * @param TravelReimAmount
+	 */
+	public void TravelReimbursementExpensesDetails(String TravelReimAmount) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
+				webDB.switchToFrame(AttendanceLeaveLocators.ExpenseFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
+					logs.logging("INFO", "Expense Amount Field Is Clicked");
+					webDB.pressTabKey();
+					// webDB.clickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
+					// ElementType.Xpath);
+					// webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
+					// ElementType.Xpath);
+					webDB.clearText(AttendanceLeaveLocators.ExpenseAmountInput, ElementType.Xpath);
+					webDB.sendTextToAnElement(AttendanceLeaveLocators.ExpenseAmountInput, TravelReimAmount,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
+						webDB.pressTabKey();
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Travel Reimbursement Document Is Saved");
+								webDB.pressEscapeKey();
+								commonFunc.hardWait(3000);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimPostButton,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(1000);
+									webDB.clickAnElement(AttendanceLeaveLocators.TravelReimPostButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Travel Reimbursement Document Is Posted");
+										approvalFunc.waitingForApprovalWithFordwarder(
+												commonFunc.getDataFromTestDataSheet("HodValue"));
+										commonFunc.checkRefreshCellsDisappear();
+										commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+												VariableHandler.getTravelReimbursementtDocNo(),
+												webDB.getDataFromProperties("HodEmpId"),
+												commonFunc.getDataFromTestDataSheet("Unit_100"),
+												System.getProperty("HariUsername"));
+										flag = commonFunc.logoutUser();
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Enter the Expenses Details In Travel Reimbursement
+	 * 
+	 * @author Kishore-RMITS
+	 * @param TravelReimAmount
+	 */
+	public void TravelReimbursementExpensesDetailsReturnProcess(String TravelReimAmount) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpensesButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
+				webDB.switchToFrame(AttendanceLeaveLocators.ExpenseFrame, ElementType.Xpath);
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
+				if (flag) {
+					webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountField, ElementType.Xpath);
+					logs.logging("INFO", "Expense Amount Field Is Clicked");
+					webDB.pressTabKey();
+					// webDB.clickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
+					// ElementType.Xpath);
+					// webDB.doubleClickAnElement(AttendanceLeaveLocators.ExpenseAmountInput,
+					// ElementType.Xpath);
+					webDB.clearText(AttendanceLeaveLocators.ExpenseAmountInput, ElementType.Xpath);
+					webDB.sendTextToAnElement(AttendanceLeaveLocators.ExpenseAmountInput, TravelReimAmount,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Travel Reimbursement Expenses Button Is Clicked");
+						webDB.pressTabKey();
+						flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
+								ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(AttendanceLeaveLocators.TravelReimExpenseSaveButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "Travel Reimbursement Document Is Saved");
+								webDB.pressEscapeKey();
+								commonFunc.hardWait(3000);
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(AttendanceLeaveLocators.TravelReimPostButton,
+										ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(1000);
+									webDB.clickAnElement(AttendanceLeaveLocators.TravelReimPostButton,
+											ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Travel Reimbursement Document Is Posted");
+										approvalFunc.waitingForApprovalWithFordwarder(
+												commonFunc.getDataFromTestDataSheet("HodValue"));
+										commonFunc.checkRefreshCellsDisappear();
+										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+												VariableHandler.getTravelReimbursementtDocNo(),
+												webDB.getDataFromProperties("HodEmpId"),
+												commonFunc.getDataFromTestDataSheet("Unit_100"),
+												System.getProperty("HariUsername"),
+												webDB.getDataFromProperties("HRUSEREmpId"));
+										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+												VariableHandler.getTravelReimbursementtDocNo(),
+												webDB.getDataFromProperties("HRUSEREmpId"),
+												commonFunc.getDataFromTestDataSheet("Unit_100"),
+												System.getProperty("HrRqtUsername"),
+												webDB.getDataFromProperties("HRUSEREmpId"));
+										flag = commonFunc.logoutUser();
 									}
 								}
 							}
