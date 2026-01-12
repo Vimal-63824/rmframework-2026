@@ -6003,7 +6003,7 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
-	/**
+	/**Domestic Composition Supplier With Union Territory 
 	 * 
 	 * @author Kowshik-RMITS
 	 * @param SubvouType
