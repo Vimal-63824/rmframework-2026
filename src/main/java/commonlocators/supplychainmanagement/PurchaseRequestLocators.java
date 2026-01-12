@@ -22,7 +22,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String FindPR_PRNoButton = "//input[@data-testid='PR_FIND_PR.NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String FindSearchButton = "//button[@data-testid='Find_line']";
+	public static final String FindSearchButton = "//span[text()='Search']/../../button[1]";
 
 	/** @locatorType Xpath */
 	public static final String PRStatusBoldText(String value) {
@@ -224,6 +224,7 @@ public class PurchaseRequestLocators {
 	public static final String RequiredDateInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[9])[1]//input";
 	/** @locatorType Xpath */
 	public static final String PRAddFrame = "//iframe[@title='Purchase Request']";
+	/** @locatorType Xpath */
 	public static final String HeaderCheckbox = "//label[@for='P161513103_RADIO_GRP_HD_LN_0']";
 	/** @locatorType Xpath */
 	public static final String AddButtonPRCs = "//button[@data-testid='add']";

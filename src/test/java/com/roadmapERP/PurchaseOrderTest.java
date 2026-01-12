@@ -24,19 +24,19 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 	static WebDriverBase webDB = new WebDriverBase();
 	static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
 
-//	/**
-//	 * Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and
-//	 * Supplier UOM
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 1, groups = {
-//			"PurchaseOrder" }, description = "91 Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and Supplier UOM")
-//	public void VerifyDirectPODomesticStockTransferSimilarStockAndSupplierUOM() {
-//		flag = purchaseOrderFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheet();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and
+	 * Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 1, groups = {
+			"PurchaseOrder" }, description = "91 Direct PO - Domestic Supplier - stock Transfer Items with Similar Stock and Supplier UOM")
+	public void VerifyDirectPODomesticStockTransferSimilarStockAndSupplierUOM() {
+		flag = purchaseOrderFunc.verifyDirectPODomesticStockTransferSimilarUOMWithMultipleItemWithExcelSheet();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * How to create PO with Charges and how PO amount is calculated?
@@ -436,75 +436,75 @@ public class PurchaseOrderTest extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-//	/**
-//	 * From PR to PO - Domestic Supplier With Local Registration - Service Items
-//	 * with Similar Stock and Supplier UOM
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 21, groups = {
-//			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local Registration - Service Items with Similar Stock and Supplier UOM")
-//	public void VerifyServiceSimilarUOMFromPRtoPOWithLocalReg() {
-//		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalReg();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * From PR to PO - Domestic Supplier With Interstate Registration - Service
-//	 * Items with Similar Stock and Supplier UOM
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 22, groups = {
-//			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate Registration - Service Items with Similar Stock and Supplier UOM")
-//	public void VerifyServiceSimilarUOMFromPRtoPOWithinterstateReg() {
-//		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateReg();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * From PR to PO - Domestic Supplier With Local UnRegistration - Service Items
-//	 * with Similar Stock and Supplier UOM
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 23, groups = {
-//			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local UnRegistration - Service Items with Similar Stock and Supplier UOM")
-//	public void VerifyServiceSimilarUOMFromPRtoPOWithLocalUnReg() {
-//		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalUnReg();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * From PR to PO - Domestic Supplier With Interstate UnRegistration - Service
-//	 * Items with Similar Stock and Supplier UOM
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 24, groups = {
-//			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate UnRegistration - Service Items with Similar Stock and Supplier UOM")
-//	public void VerifyServiceSimilarUOMFromPRtoPOWithInterstateUnReg() {
-//		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateUnReg();
-//		Assert.assertTrue(flag);
-//	}
-//
-//	/**
-//	 * From PR to PO - Import Supplier - Service Items with Similar Stock and
-//	 * Supplier UOM
-//	 * 
-//	 * @author Deepan-GWL
-//	 */
-//	@Author("Deepan-GWL")
-//	@Test(priority = 25, groups = {
-//			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Similar Stock and Supplier UOM")
-//	public void VerifyServiceSimilarUOMFromPRtoPOWithImport() {
-//		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithImport();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * From PR to PO - Domestic Supplier With Local Registration - Service Items
+	 * with Similar Stock and Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 21, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local Registration - Service Items with Similar Stock and Supplier UOM")
+	public void VerifyServiceSimilarUOMFromPRtoPOWithLocalReg() {
+		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalReg();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier With Interstate Registration - Service
+	 * Items with Similar Stock and Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 22, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate Registration - Service Items with Similar Stock and Supplier UOM")
+	public void VerifyServiceSimilarUOMFromPRtoPOWithinterstateReg() {
+		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateReg();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier With Local UnRegistration - Service Items
+	 * with Similar Stock and Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 23, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Local UnRegistration - Service Items with Similar Stock and Supplier UOM")
+	public void VerifyServiceSimilarUOMFromPRtoPOWithLocalUnReg() {
+		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithLocalUnReg();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Domestic Supplier With Interstate UnRegistration - Service
+	 * Items with Similar Stock and Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 24, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Domestic Supplier With Interstate UnRegistration - Service Items with Similar Stock and Supplier UOM")
+	public void VerifyServiceSimilarUOMFromPRtoPOWithInterstateUnReg() {
+		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithInterstateUnReg();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * From PR to PO - Import Supplier - Service Items with Similar Stock and
+	 * Supplier UOM
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 25, groups = {
+			"PurchaseOrder" }, description = "From PR to PO - Import Supplier - Service Items with Similar Stock and Supplier UOM")
+	public void VerifyServiceSimilarUOMFromPRtoPOWithImport() {
+		flag = purchaseOrderFunc.verifyServiceSimilarUOMFromPRtoPOWithMultipleItemInExcelSheetWithImport();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Direct PO - Domestic Supplier With Local Registration - General Items with

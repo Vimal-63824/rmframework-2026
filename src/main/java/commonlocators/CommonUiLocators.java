@@ -428,4 +428,6 @@ public class CommonUiLocators {
 	public static final String SuccesToastCloseIcon = "//button[@title='Close' and contains(@onclick,\"Success').remove\")]";
 	/** @Locator XPATH */
 	public static final String SubcontractCSFindAddIcon = "//button[@id='B1162763568144715495']";
+	/** @locatorType Xpath */
+	public static final String SSRAddButton = "//button[@id='B2390197649305356147']";
 }
