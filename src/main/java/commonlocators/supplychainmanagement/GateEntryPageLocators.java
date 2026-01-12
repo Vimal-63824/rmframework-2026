@@ -23,19 +23,19 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static String CreateGeFromPO = "//button[@data-testid='Create_GE']";
 	/** @locatorType Xpath */
-	public static String SelectGateKeeper = "//select[@data-testid='P16151311001_GACDT_GATE_KEEPER']";
+	public static String SelectGateKeeper = "//select[contains(@data-testid,'GACDT_GATE_KEEPER')]";
 	/** @locatorType Xpath */
-	public static String DcNumberField = "//input[@data-testid='P16151311001_GACDT_DC_NO']";
+	public static String DcNumberField = "//input[contains(@data-testid,'GACDT_DC_NO')]";
 	/** @locatorType Xpath */
-	public static String SupplierBillNumber = "//input[@data-testid='P16151311001_GACDT_INV_NO']";
+	public static String SupplierBillNumber = "//input[contains(@data-testid,'GACDT_INV_NO')]";
 	/** @locatorType Xpath */
-	public static String VehicleNumber = "//input[@data-testid='P16151311001_GACDT_VEHICLE_NO']";
+	public static String VehicleNumber = "//input[contains(@data-testid,'GACDT_VEHICLE_NO')]";
 	/** @locatorType Xpath */
-	public static String DriverName = "//input[@data-testid='P16151311001_GACDT_DRIVER_NAME']";
+	public static String DriverName = "//input[contains(@data-testid,'GACDT_DRIVER_NAME')]";
 	/** @locatorType Xpath */
-	public static String ReferenceField = "//input[@data-testid='P16151311001_GACDT_REF']";
+	public static String ReferenceField = "//input[contains(@data-testid,'GACDT_REF')]";
 	/** @locatorType Xpath */
-	public static String OkButton = "//button[@data-testid='OK_ge']";
+	public static String OkButton = "//button[contains(@data-testid,'OK')]";
 	/** @locatorType Xpath */
 	public static String EwayBillNumber = "//input[@data-testid='P751310201_GEHD_EWB_BILL_NO']";
 	/** @locatorType Xpath */
@@ -223,5 +223,17 @@ public class GateEntryPageLocators {
 	public static final String SelectAll = "//input[@id='check_st']";
 	/** @locatorType Xpath */
 	public static final String StDriverName = "//input[@data-testid='P751310201_GEHD_DRIVER_NAME']";
+	/** @locatorType Xpath */
+	public static final String PendingSupplierSchedule = "//button[@data-testid=\"Pending_supplier_schedule\"]";
+	/** @locatorType Xpath */
+	public static final String IFrameSSO = "//iframe[@title='Pend. Suplr. Schd.']";
+	/** @locatorType Xpath */
+	public static final String SSODocumentLov = "//button[contains(@id,'DOC_NO_lov_btn')]";
+	/** @locatorType Xpath */
+	public static final String SSOSearchButton = "//button[@data-testid='Find']";
+	/** @locatorType Xpath */
+	public static final String CreateGEButton = "//button[@id='B1']";
+	/** @locatorType Xpath */
+	public static final String DriverNameInput = "//input[contains(@data-testid,'GEHD_DRIVER_NAME')]";
 
 }

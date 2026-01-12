@@ -5823,8 +5823,8 @@ public class PurchaseOrderFunctions {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
-		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Location02"),
-				commonFunc.getDataFromTestDataSheet("U1Supplier"),
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("L0007"),
+				commonFunc.getDataFromTestDataSheet("MagaPvtLtd"),
 				commonFunc.getDataFromTestDataSheet("StockTransferSelect"));
 		verifyCreateDirectPO();
 		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
@@ -5868,11 +5868,9 @@ public class PurchaseOrderFunctions {
 		verifyWaitingForApproval();
 		flag = commonFunc.logoutUser();
 		if (flag) {
-			commonFunc.validCommonLogin(System.getProperty("HodUsername"), System.getProperty("HodPassword"));
-			approvalFunc.navigateToApprovals();
-			approvalFunc.filterDocumentsforApproval(VariableHandler.getPONumber());
-			approvalFunc.verifyApproveWithDocNumber(VariableHandler.getPONumber());
-			flag = commonFunc.logoutUser();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
 			if (flag) {
 				commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 				commonFunc.navigatePurchaseOrderPage();

@@ -247,6 +247,8 @@ public class VariableHandler {
 	private static ThreadLocal<String> SCOSFcode = new ThreadLocal<>();
 	private static ThreadLocal<String> SCOTarSFcode = new ThreadLocal<>();
 	private static ThreadLocal<String> SCOAdocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> SSRDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> SSODocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2101,6 +2103,7 @@ public class VariableHandler {
 	public static void setTravelReimbursementDocNo(String data) {
 		TravelReimbursementDocNo.set(data);
 	}
+
 	public static String getSCOSFcode() {
 		return SCOSFcode.get();
 	}
@@ -2108,6 +2111,7 @@ public class VariableHandler {
 	public static void setSCOSFcode(String Data) {
 		SCOSFcode.set(Data);
 	}
+
 	public static String getSCOTarSFcode() {
 		return SCOTarSFcode.get();
 	}
@@ -2115,11 +2119,28 @@ public class VariableHandler {
 	public static void setSCOTarSFcode(String Data) {
 		SCOTarSFcode.set(Data);
 	}
+
 	public static String getSCOAdocNo() {
 		return SCOAdocNo.get();
 	}
 
 	public static void setSCOAdocNo(String Data) {
 		SCOAdocNo.set(Data);
+	}
+
+	public static String getSSRDocNumber() {
+		return SSRDocNo.get();
+	}
+
+	public static void setSSRDocNumber(String data) {
+		SSRDocNo.set(data);
+	}
+
+	public static String getSSODocNumber() {
+		return SSODocNo.get();
+	}
+
+	public static void setSSODocNumber(String data) {
+		SSODocNo.set(data);
 	}
 }
