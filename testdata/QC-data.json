@@ -1707,5 +1707,8 @@
 	"SCOADBProcBatchCostCOLUMN": "SCOAP_BATCH_COST",
 	"SCODBProcDescCOLUMN": "SCOP_PROCESS_DESC",
 	"SCODBPendQTYCOLUMN": "PALC_PEND_PO_QTY",
-	"Purchase_Bills_UnRegrd":"SHRI VARI TRADERS"
+	"Purchase_Bills_UnRegrd":"SHRI VARI TRADERS",
+	"GeneralReference":"General Expenses",
+	"GeneralExpense":"BreakFast G",
+	"GeneralExpAmount":"4500"
 }

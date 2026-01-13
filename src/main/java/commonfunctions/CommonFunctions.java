@@ -2990,6 +2990,16 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("TravelReimbursement"),
 				AttendanceLeaveLocators.TravelReimbFindSearchButton);
 	}
+	
+	/**
+	 * This Method Is Used To Navigate General Expense
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToGeneralExpense() {
+		navigateToSearchTab(webDB.getDataFromProperties("GeneralExpense"),
+				AttendanceLeaveLocators.GeneralExpFindAddButton);
+	}
 
 	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen
