@@ -884,7 +884,7 @@ public class PoToMRVTest extends RoadMapERPTest {
 	}
 
 	/**
-	 * PO to GRN-Material-Price List-Different Stock and Supplier UOM - With
+* PO to GRN-Material-Price List-Different Stock and Supplier UOM - With
 	 * Inspection Plan
 	 * 
 	 * @author Deepan-GWL
@@ -899,8 +899,48 @@ public class PoToMRVTest extends RoadMapERPTest {
 		}
 	}
 
+	/**
+	 * PO to GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection
+	 * Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 60, groups = {
+			"PurchaseOrder" }, description = "PO to GRN-Service-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyPoToGrnServiceImportUserDefSameUomWoInspectionPlan() {
+		grnPageFunc.poToGrnServiceImportUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry();
+	}
+
+	/**
+	 * PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection
+	 * Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 61, groups = {
+			"PurchaseOrder" }, description = "PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyPoToGrnServiceImportRateContractSameUomWoInspectionPlan() {
+		grnPageFunc.poToGrnServiceImportRateContractSameStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry();
+	}
+
+	/**
+	 * PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 62, groups = {
+			"PurchaseOrder" }, description = "PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyPoToGrnServiceImportPriceListSameUomWoInspectionPlan() {
+		grnPageFunc.poToGrnServiceImportPriceListSameStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry();
+	}
+
 	// -----------------------------------------End----------------------------------
 
+	
+	
 	/**
 	 * Verify After Method
 	 * 

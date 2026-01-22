@@ -31,13 +31,13 @@ public class SupplierScheduleOrderFunctions {
 	 * 
 	 * @author Deepan-GWL
 	 */
-	public void verifyMovePendingAndPostDocuments() {
+	public void verifyMovePendingAndPostDocuments(String Supplier) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickPendingIcon();
 		clickPendingSSRAndSearchSSRNo();
-		verifyClickCheckBox(commonFunc.getDataFromTestDataSheet("PraxairSupplier"));
+		verifyClickCheckBox(Supplier);
 		verifyStoreSSODocNumber();
 		clickHeaderSaveAndPost();
 		verifyWaitingForApproval();
