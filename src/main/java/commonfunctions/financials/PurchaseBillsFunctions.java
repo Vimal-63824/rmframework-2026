@@ -2037,7 +2037,7 @@ public class PurchaseBillsFunctions {
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
 		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Purchase_Supplier_Local_Unregrd"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UnRegrd"),
 				commonFunc.getDataFromTestDataSheet("ServiceValue"));
 		POfunc.verifyTickIconcreatePO();
 		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
@@ -3977,7 +3977,7 @@ public class PurchaseBillsFunctions {
 		addingGlaccountFromReadingExcelSheet(webDB.getDataFromProperties("PurchaseBillsUTGST_Ureq"));
 		ClickSaveButton();
 		createJvForRecord();
-		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsUTGST_Ureq"));
+		verifyLineDetailWithDbInPurchaseBills(webDB.getDataFromProperties("PurchaseBillsSez"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -4769,10 +4769,10 @@ public class PurchaseBillsFunctions {
 		clickSaveButtonHeader();
 		openExpandButtonDirect();
 		getGstClafInLocation();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PoSerPurBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		movesToInvoiceTap();
 		createJvForRecord();
-		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("PoSerPurBillsInterstate"));
+		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -4898,9 +4898,9 @@ public class PurchaseBillsFunctions {
 		ClickSaveButton();
 		openExpandButtonDirect();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PoSerPurBillsInterstate"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		createJvForRecord();
-		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("PoSerPurBillsInterstate"));
+		verifyLineDetailsWithDbValidationForAllowIGSTFlag(webDB.getDataFromProperties("POSer_Pr_Interstate"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -5156,7 +5156,7 @@ public class PurchaseBillsFunctions {
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlag(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		clickPostButton();
@@ -5489,14 +5489,14 @@ public class PurchaseBillsFunctions {
 		insertPartyInPurchaseBills(CustomerName, Bills);
 		closeExpandButtonDirect();
 		storeSCOPurchaseVoucherNumber();
-		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		ClickSaveButton();
 		openExpandButtonDirect();
 		getGstClafInLocation();
 		movesToInvoiceTap();
-		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("Purchase_Bills_In_Updated_2"));
 		createJvForRecord();
-		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
+		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		clickPostButton();
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
@@ -5685,6 +5685,411 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
+	
+	/**Domestic Composition Supplier - With Local GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCompositionSupplierWithLocalGST(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Composition Supplier - With Local Freight GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCompositionSupplierWithLocalFreightGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Composition Supplier - With Inter state GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCompositionSupplierWithInterstateGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Casual person Supplier - With Local GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCasualpersonSupplierWithLocalGST(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Casual person Supplier - With Local Freight GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCasualpersonSupplierWithLocalFreightGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Casual person Supplier - With Inter state GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCasualpersonSupplierWithInterstateGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+	/**Domestic Non-resident Supplier - With Local GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticNonresidentSupplierWithLocalGST(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+			
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Non-resident Supplier - With Local Freight GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticNonresidentSupplierWithLocalFreightGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Non-resident Supplier - With Inter state GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticNonresidentSupplierWithInterstateGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+  }
+	/**Domestic Registered Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticRegisteredSupplierWithunionTerritoryGST(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Unregistered Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticUnregisteredSupplierWithunionTerritoryGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+	/**Domestic Composition Supplier With Union Territory 
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCompositionSupplierWithunionTerritoryGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+		
+	}
+	/**Domestic Casual person Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticCasualpersonSupplierWithunionTerritoryGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	
+	}
+	/**DomesticNon-resident Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SubvouType
+	 * @param PurchaseRef
+	 * @param Location
+	 * @param Prefix
+	 * @param CustomerName
+	 * @param Bills
+	 */
+	public void DomesticNonresidentSupplierWithunionTerritoryGST1(
+			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
+		
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		createNewRecordExpensesType(SubvouType, PurchaseRef, Location, Prefix);
+		insertPartyInPurchaseBills(CustomerName, Bills);
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		addingItemFromReadingExcelSheet(webDB.getDataFromProperties("purchaseBills_GRN"));
+		ClickSaveButton();
+		createJvForRecord();
+		verifyDbValidationForGrnPurchaseWithOutExpenses(webDB.getDataFromProperties("purchaseBills_GRN"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
 
 
 

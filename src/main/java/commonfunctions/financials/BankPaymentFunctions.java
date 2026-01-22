@@ -393,6 +393,8 @@ public class BankPaymentFunctions {
 		flag = webDB.waitForElement(BankPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(BankPaymentLocators.BankHeaderCreateJournalButton, ElementType.Xpath);
+			commonFunc.hardWait(200);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(BankPaymentLocators.BankHeaderViewJournalButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Create Journal Button Is Clicked Successfully");
@@ -410,6 +412,7 @@ public class BankPaymentFunctions {
 		flag = webDB.waitForElement(BankPaymentLocators.BankPostButton, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(BankPaymentLocators.BankPostButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(BankPaymentLocators.BankWorkFlowApprovalFrame, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Post Button Is Clicked Successfully");
@@ -762,6 +765,7 @@ public class BankPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(1000);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -954,14 +958,14 @@ public class BankPaymentFunctions {
 						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
 								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
+//						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
+//							if (flag) {
+//								logs.logging("INFO", "Find Button Is clicked Successfully");
+//							}
+//						}
 					}
 				}
 				excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + i1),
@@ -1035,6 +1039,7 @@ public class BankPaymentFunctions {
 				if (flag) {
 					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
 							ElementType.Xpath);
+					commonFunc.hardWait(1000);
 					commonFunc.checkRefreshCellsDisappear();
 					String GetTextDocumentNumber = webDB.getTextFromElement(
 							BankPaymentLocators.PendingPayablesDocumentNumberField, ElementType.Xpath);
@@ -1693,14 +1698,14 @@ public class BankPaymentFunctions {
 						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
 								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
+//						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
+//							if (flag) {
+//								logs.logging("INFO", "Find Button Is clicked Successfully");
+//							}
+//						}
 					}
 				}
 				excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + (i + i1),
@@ -1915,14 +1920,14 @@ public class BankPaymentFunctions {
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 							System.getProperty("HariUsername"));
-					flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Find Button Is clicked Successfully");
-						}
-					}
+//					flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//					if (flag) {
+//						webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//						flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
+//						if (flag) {
+//							logs.logging("INFO", "Find Button Is clicked Successfully");
+//						}
+//					}
 				}
 			}
 			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + i + 1,
@@ -2109,14 +2114,14 @@ public class BankPaymentFunctions {
 					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPbNumber(),
 							webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 							System.getProperty("HariUsername"));
-					flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-					if (flag) {
-						webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Find Button Is clicked Successfully");
-						}
-					}
+//					flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//					if (flag) {
+//						webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//						flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
+//						if (flag) {
+//							logs.logging("INFO", "Find Button Is clicked Successfully");
+//						}
+//					}
 				}
 			}
 			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 25 + i + 1,
@@ -2357,14 +2362,14 @@ public class BankPaymentFunctions {
 						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
 								VariableHandler.getPbNumber(), webDB.getDataFromProperties("HodEmpId"),
 								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
-						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-						if (flag) {
-							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
-							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Find Button Is clicked Successfully");
-							}
-						}
+//						flag = webDB.waitForElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//						if (flag) {
+//							webDB.clickAnElement(BankPaymentLocators.PBFindButton, ElementType.Xpath);
+//							flag = webDB.waitForElement(BankPaymentLocators.PendingPurchaseBill, ElementType.Xpath);
+//							if (flag) {
+//								logs.logging("INFO", "Find Button Is clicked Successfully");
+//							}
+//						}
 					}
 				}
 			}

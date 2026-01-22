@@ -289,6 +289,7 @@ public class GateEntryPageFunctions {
 	public void verifygateEntryDetailsPo() {
 		flag = webDB.waitForElement(GateEntryPageLocators.SelectGateKeeper, ElementType.Xpath);
 		if (flag) {
+			webDB.doubleClickAnElement(GateEntryPageLocators.DcNumberField, ElementType.Xpath);
 			flag = webDB.selectDropDownByValue(GateEntryPageLocators.SelectGateKeeper, "0001", ElementType.Xpath);
 			logs.logging("INFO", "Gate Keeper Selected SuccessFully");
 			flag = webDB.waitForElement(GateEntryPageLocators.DcNumberField, ElementType.Xpath);
@@ -506,11 +507,11 @@ public class GateEntryPageFunctions {
 					webDB.moveToElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 					webDB.clickAnElement(GateEntryPageLocators.PostButton, ElementType.Xpath);
 					flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-					if(!VariableHandler.getApprovalFlag()) {
+					if (!VariableHandler.getApprovalFlag()) {
 						approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
-						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGateEntryNumber(),
-								webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
-								System.getProperty("HariUsername"));
+						commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+								VariableHandler.getGateEntryNumber(), webDB.getDataFromProperties("HodEmpId"),
+								commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 					}
 					logs.logging("INFO", "Gate Entry Document Posted Successfully");
 					commonFunc.checkRefreshCellsDisappear();
@@ -1516,7 +1517,6 @@ public class GateEntryPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyToCreateGateEntryFromPendingSTNumber() {
-//		VariableHandler.setPONumber("POGL3/00045/25-26");
 		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
 		if (flag)
 			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
@@ -1557,7 +1557,7 @@ public class GateEntryPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyClickSelectAllButtonForSt() {
-		commonFunc.hardWait(5000);
+		commonFunc.hardWait(7000);
 //		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 //		if (flag) {
 		webDB.moveToElement(GateEntryPageLocators.SelectAll, ElementType.Xpath);
@@ -1581,6 +1581,141 @@ public class GateEntryPageFunctions {
 				System.out.println(e);
 			}
 //			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify Create Gate Entry From Pending Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyToCreateGateEntryFromPendingSSODocNumber() {
+//		VariableHandler.setSSODocNumber("SSO3/0087/25-26");
+		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag)
+			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GateEntryPageLocators.PendingSupplierSchedule, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.PendingSupplierSchedule, ElementType.Xpath);
+			logs.logging("INFO", "PendingPOButtonLov Shown");
+			webDB.switchToFrame(GateEntryPageLocators.IFrameSSO, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.SSODocumentLov, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SSODocumentLov,
+						VariableHandler.getSSODocNumber());
+				logs.logging("INFO", "PendingPOButtonLov Clicked");
+				webDB.switchToDefaultContent();
+				webDB.switchToFrame(GateEntryPageLocators.IFrameSSO, ElementType.Xpath);
+				logs.logging("INFO", "PO Number Shown");
+				webDB.waitForElement(GateEntryPageLocators.SSOSearchButton, ElementType.Xpath);
+				if (flag) {
+					flag = webDB.clickAnElement(GateEntryPageLocators.SSOSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Document Search And Selected Successfully");
+					verifyClickSelectAllButtonForSSO();
+					logs.logging("INFO", "Create Gate Entry Button shown");
+					commonFunc.hardWait(2000);
+					webDB.waitForElement(GateEntryPageLocators.CreateGEButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GateEntryPageLocators.CreateGEButton, ElementType.Xpath);
+
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is USed To Select All Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickSelectAllButtonForSSO() {
+		commonFunc.hardWait(7000);
+//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+//		if (flag) {
+		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		List<WebElement> CheckBox = webDB.getDriver()
+				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+		for (WebElement element : CheckBox) {
+			try {
+				if (element.isDisplayed()) {
+					if (!element.isSelected()) {
+						element.click();
+						flag = true;
+						break;
+					} else {
+						element.click();
+						Thread.sleep(10000);
+						verifyClickSelectAllButtonForSt();
+						flag = true;
+						break;
+					}
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+//			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify Gate Entry Details Purchase Order
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifygateEntryDetailsPoWithSSO() {
+		flag = webDB.waitForElement(GateEntryPageLocators.SelectGateKeeper, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(GateEntryPageLocators.DcNumberField, ElementType.Xpath);
+			flag = webDB.selectDropDownByValue(GateEntryPageLocators.SelectGateKeeper, "0001", ElementType.Xpath);
+			logs.logging("INFO", "Gate Keeper Selected SuccessFully");
+			flag = webDB.waitForElement(GateEntryPageLocators.DcNumberField, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.sendTextToAnElement(GateEntryPageLocators.DcNumberField, VariableHandler.getSSODocNumber(),
+						ElementType.Xpath);
+				logs.logging("INFO", "DC Number SuccessFully Updated");
+				commonFunc.hardWait(500);
+				flag = webDB.waitForElement(GateEntryPageLocators.SupplierBillNumber, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(500);
+					webDB.sendTextToAnElement(GateEntryPageLocators.SupplierBillNumber,
+							VariableHandler.getSSODocNumber(), ElementType.Xpath);
+					logs.logging("INFO", "Supplier Bill Number Updated");
+					flag = webDB.waitForElement(GateEntryPageLocators.VehicleNumber, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(500);
+						webDB.sendTextToAnElement(GateEntryPageLocators.VehicleNumber,
+								VariableHandler.getSSODocNumber(), ElementType.Xpath);
+						logs.logging("INFO", "Vehicle Number Updated SuccessFully");
+						flag = webDB.waitForElement(GateEntryPageLocators.DriverName, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(500);
+							webDB.sendTextToAnElement(GateEntryPageLocators.DriverName,
+									commonFunc.getDataFromTestDataSheet("DriverName"), ElementType.Xpath);
+							logs.logging("INFO", "Driver Name Updated SuccessFully");
+							flag = webDB.waitForElement(GateEntryPageLocators.ReferenceField, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(500);
+								webDB.sendTextToAnElement(GateEntryPageLocators.ReferenceField,
+										commonFunc.getDataFromTestDataSheet("ReferenceField"), ElementType.Xpath);
+								logs.logging("INFO", "Reference Field Updated SuccessFully");
+								flag = webDB.waitForElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(GateEntryPageLocators.OkButton, ElementType.Xpath);
+									logs.logging("INFO", "Gate Entry Document Created Successfully");
+									webDB.switchToDefaultContent();
+									commonFunc.hardWait(500);
+									flag = webDB.waitForElement(GateEntryPageLocators.DocNumber, ElementType.Xpath);
+
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		assertTrue(flag);
 	}

@@ -1463,6 +1463,239 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("bills"));
 	}
 
+	/**Domestic Composition Supplier - With Local GST
+	 * 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 87, groups = {
+	"Purchase Bills" }, description = "Domestic Composition Supplier - With Local GST")
+	public void DomesticCompositionSupplierWithLocalGST1() {
+		purchaseBillsFunc.DomesticCompositionSupplierWithLocalGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Compostion_Local"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Composition Supplier - With Local Freight GST
+	 * 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 88, groups = {
+	"Purchase Bills" }, description = "Domestic Composition Supplier - With Local Freight GST")
+	public void DomesticCompositionSupplierWithLocalFreightGST1() {
+		purchaseBillsFunc.DomesticCompositionSupplierWithLocalFreightGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Compostion_LF"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Composition Supplier - With Inter state GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 89, groups = {
+	"Purchase Bills" }, description = "Domestic Composition Supplier - With Inter state GST")
+	public void DomesticCompositionSupplierWithInterstateGST1() {
+		purchaseBillsFunc.DomesticCompositionSupplierWithInterstateGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Compostion_LF"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Domestic Casual person Supplier - With Local GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 90, groups = {
+	"Purchase Bills" }, description = "Domestic Casual person Supplier - With Local GST")
+	public void DomesticCasualpersonSupplierWithLocalGST() {
+		purchaseBillsFunc.DomesticCasualpersonSupplierWithLocalGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_CasualPerson_LocalFright"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Casual person Supplier - With Local Freight GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 91, groups = {
+	"Purchase Bills" }, description = "Domestic Casual person Supplier - With Local Freight GST")
+	public void DomesticCasualpersonSupplierWithLocalFreightGST1() {
+		purchaseBillsFunc.DomesticCasualpersonSupplierWithLocalFreightGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_CasualPerson_LocalFright"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Casual person Supplier - With Inter state GST
+	 * 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 92, groups = {
+	"Purchase Bills" }, description = "Domestic Casual person Supplier - With Inter state GST")
+	public void DomesticCasualpersonSupplierWithInterstateGST1() {
+		purchaseBillsFunc.DomesticCasualpersonSupplierWithInterstateGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_CasualPerson_Interstate"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Non-resident Supplier - With Local GST
+	 * 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 93, groups = {
+	"Purchase Bills" }, description = "Domestic Non-resident Supplier - With Local GST")
+	public void DomesticNonresidentSupplierWithLocalGST() {
+		purchaseBillsFunc.DomesticNonresidentSupplierWithLocalGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Non_Res_Local_Fright"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+			
+		}
+	/**Domestic Non-resident Supplier - With Local Freight GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 94, groups = {
+	"Purchase Bills" }, description = "Domestic Non-resident Supplier - With Local Freight GST")
+	public void DomesticNonresidentSupplierWithLocalFreightGST1() {
+		purchaseBillsFunc.DomesticNonresidentSupplierWithLocalFreightGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Non_Res_Local_Fright"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Domestic Non-resident Supplier - With Inter state GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 95, groups = {
+	"Purchase Bills" }, description = "Domestic Non-resident Supplier - With Inter state GST")
+	public void DomesticNonresidentSupplierWithInterstateGST1() {
+		purchaseBillsFunc.DomesticNonresidentSupplierWithInterstateGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Non_Res_Interstate"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Registered Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 96, groups = {
+	"Purchase Bills" }, description = "Domestic Registered Supplier - With union Territory GST")
+	public void DomesticRegisteredSupplierWithunionTerritoryGST1() {
+		purchaseBillsFunc.DomesticRegisteredSupplierWithunionTerritoryGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("UTGST_REGRD_SUPPLIER"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Unregistered Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 97, groups = {
+	"Purchase Bills" }, description = "Domestic Unregistered Supplier - With union Territory GST")
+	public void DomesticUnregisteredSupplierWithunionTerritoryGST1() {
+		purchaseBillsFunc.DomesticUnregisteredSupplierWithunionTerritoryGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UTGST_Customer_Unreg"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Composition Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 98, groups = {
+	"Purchase Bills" }, description = "Domestic Unregistered Supplier - With union Territory GST")
+	public void DomesticCompositionSupplierWithunionTerritoryGST1() {
+		purchaseBillsFunc.DomesticCompositionSupplierWithunionTerritoryGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UTGST_Customer_Unreg"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Domestic Casual person Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 99, groups = {
+	"Purchase Bills" }, description = "Domestic Casual person Supplier - With union Territory GST")
+	public void DomesticCasualpersonSupplierWithunionTerritoryGST1() {
+		purchaseBillsFunc.DomesticCasualpersonSupplierWithunionTerritoryGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_CP_UTGST_Sup"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**DomesticNon-resident Supplier - With union Territory GST
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 100, groups = {
+	"Purchase Bills" }, description = "DomesticNon-resident Supplier - With union Territory GST")
+	public void DomesticNonresidentSupplierWithunionTerritoryGST1() {
+		purchaseBillsFunc.DomesticNonresidentSupplierWithunionTerritoryGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("UTGSTUnit1"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Non_Res_Sup"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+
+
 
 	/**
 	 * Verify After Method
