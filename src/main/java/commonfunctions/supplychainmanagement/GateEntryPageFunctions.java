@@ -1603,7 +1603,7 @@ public class GateEntryPageFunctions {
 			flag = webDB.waitForElement(GateEntryPageLocators.SSODocumentLov, ElementType.Xpath);
 			if (flag) {
 				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SSODocumentLov,
-						VariableHandler.getSsoDocNum());
+						VariableHandler.getSSODocNumber());
 				logs.logging("INFO", "PendingPOButtonLov Clicked");
 				webDB.switchToDefaultContent();
 				webDB.switchToFrame(GateEntryPageLocators.IFrameSSO, ElementType.Xpath);
