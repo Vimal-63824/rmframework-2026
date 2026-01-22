@@ -667,6 +667,230 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection
+	 * Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 48, groups = {
+			"Po to GRN" }, description = "723 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMGeneralRCWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMGeneralRCWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 49, groups = {
+			"Po to GRN" }, description = "724 PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMGeneralRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMGeneralRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 50, groups = {
+			"Po to GRN" }, description = "725 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMMaterialRCWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMMaterialRCWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 51, groups = {
+			"Po to GRN" }, description = "726 PO to GRN-Material-Rate Contract-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMMaterialRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMMaterialRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 52, groups = {
+			"Po to GRN" }, description = "744 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMGeneralRCWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMGeneralRCWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 53, groups = {
+			"Po to GRN" }, description = "745 PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMGeneralRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMGeneralRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 54, groups = {
+			"Po to GRN" }, description = "746 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMMaterialRCWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMMaterialRCWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 55, groups = {
+			"Po to GRN" }, description = "747 PO to GRN-Material-Rate Contract-Different Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMMaterialRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMMaterialRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection
+	 * Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 56, groups = {
+			"Po to GRN" }, description = "730 PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMGeneralPLWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMGeneralPLWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Price List-Same Stock and Supplier UOM - Without Inspection
+	 * Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 57, groups = {
+			"Po to GRN" }, description = "731 PO to GRN-General-Price List-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMGeneralPLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMGeneralPLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection
+	 * Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 58, groups = {
+			"Po to GRN" }, description = "732 PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMMaterialPLWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMMaterialPLWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Price List-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 59, groups = {
+			"Po to GRN" }, description = "733 PO to GRN-Material-Price List-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMMaterialPLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMMaterialPLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Price List-Different Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 60, groups = {
+			"Po to GRN" }, description = "751 PO to GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMGeneralPLWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMGeneralPLWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-General-Price List-Different Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 61, groups = {
+			"Po to GRN" }, description = "752 PO to GRN-General-Price List-Different Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMGeneralPLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMGeneralPLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Price List-Different Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 62, groups = {
+			"Po to GRN" }, description = "753 PO to GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMMaterialPLWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMMaterialPLWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Material-Price List-Different Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 63, groups = {
+			"Po to GRN" }, description = "754 PO to GRN-Material-Price List-Different Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMMaterialPLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMMaterialPLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Sakthi-GWL
