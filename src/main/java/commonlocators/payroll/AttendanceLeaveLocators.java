@@ -656,4 +656,33 @@ public class AttendanceLeaveLocators {
 	public static final String TravelReimPostButton = "//button[@id='B3610192344281546781']";
 	/** @locatorType Xpath */
 	public static final String TravelReimDocNoField = "//*[@id=\"P818210021_HTEH_DOC_NO_DISPLAY\"]";
+	
+	
+	
+	/** @locatorType Xpath */
+	public static final String GeneralExpFindAddButton = "//button[@id='B3401461745276092586']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpEmpLov = "//button[@id='P818210011_HGECH_EMP_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String GeneraalExpReference = "//input[@id='P818210011_HGECH_REF']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpSaveButton = "//button[@id='B3414782892949463476']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpLineAddButton = "//button[@id='B3415752486088327194']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpenseLOV = "//button[@id='C3414784942658463496_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpDateField = "//input[@id='C3414784661014463493_input']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpAmountField = "//*[@id=\"ig_line_gen_exp_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[4]";
+	/** @locatorType Xpath */
+	public static final String GeneralExpAmountInput = "//input[@id='C3414784688378463494']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpRemarksField = "//input[@id='C3414784809184463495']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpenseLineSaveButton = "//button[@id='B3442886046138189471']";
+	/** @locatorType Xpath */
+	public static final String GeneralExpensePostButton = "//button[@id='B3460338238404428778']";
+	/** @locatorType Xpath */
+	public static final String GeneralReimDocNoField = "//*[@id=\"P818210011_HGECH_DOC_NO_DISPLAY\"]";
 }

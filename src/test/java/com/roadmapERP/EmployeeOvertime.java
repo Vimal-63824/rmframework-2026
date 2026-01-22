@@ -218,7 +218,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		flag = attendanceLeave.CheckTravelRequestBasedOnCancellingTheTravelRequest();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To Check Travel Reimbursement Based on Employee Wise
 	 * 
@@ -307,6 +307,58 @@ public class EmployeeOvertime extends RoadMapERPTest {
 			"Travel Reimbursement" }, description = "168.To Check Travel Reimbursement Based on Return To Approval")
 	public void checkTravelReimbursementBasedOnReturnToApproval() {
 		flag = attendanceLeave.CheckTravelReimbursementBasedOnReturnToApproval();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check General Expense Based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 23, groups = {
+			"General Expenses" }, description = "177.To Check General Expense Based on Employee Wise ")
+	public void checkGeneralExpenseBasedOnEmployeeWise() {
+		flag = attendanceLeave.CheckGeneralExpenseBasedOnEmployeeWise();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check General Expense Based on the Expenses details
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 24, groups = {
+			"General Expenses" }, description = "178.To Check General Expense Based on the Expenses details")
+	public void checkGeneralExpenseBasedOnTheExpensesDetails() {
+		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check General Expense Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 25, groups = {
+			"General Expenses" }, description = "176.To Check General Expense Find page with all line wise record")
+	public void checkGeneralExpenseFindPageWithAllLineWiseRecord() {
+		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check General Expense Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 26, groups = {
+			"General Expenses" }, description = "176.To Check General Expense Based on Forward To Approval")
+	public void checkGeneralExpenseBasedOnForwardToApproval() {
+		flag = attendanceLeave.CheckGeneralExpenseBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
 	}
 
