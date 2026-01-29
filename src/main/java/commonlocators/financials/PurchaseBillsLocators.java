@@ -280,5 +280,33 @@ public class PurchaseBillsLocators {
 	public static final String AllowIgstFlag = "//input[@data-testid='P11613101001_ALOW_IGST_CSGST']";
 	/** @locatorType Xpath */
 	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
+	/** @locatorType Xpath */
+	public static final String ViewButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(9) > a";
+	/** @locatorType Xpath */
+	public static final String ViewButtonFrame = "//*[@id='apex_dialog_1']/iframe" ;
+	/** @locatorType Xpath */
+	public static final String AddButtonViewTap = "//button[@id='B1998650219607585917']";
+	/** @locatorType Xpath */
+	public static final String BillDocNo = "//input[@id='C1985848374959122172']";
+	/** @locatorType Xpath */
+	public static final String PayAmt = "//input[@id='C1985842401841122165']";
+	/** @locatorType Xpath */
+	public static final String SaveButtonView = "//button[@id='B1998650080669585916']";
+	/** @locatorType Xpath */
+	public static final String CloseButton = "//*[@id='t_PageBody']/div[10]/div[1]/button" ;
+	/** @locatorType Xpath */
+	public static final String BillDocField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String PayamountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	/** @locatorType Xpath */
+	public static final String AdjButton = "//label[text()='Adjustments']";
+	/** @locatorType Xpath */
+	public static final String LoadButton = "//button[@id='loadadj']";
+	/** @locatorType Xpath */
+	public static final String CheckBoxAdjTap = "//*[@id=\"2913808955263576083_orig\"]/tbody/tr[2]/td[11]";
+	/**@locatorType Xpath*/
+	public static final String FrameAdjTap = "//iframe[@title='Advance Adjustment ']";
+	/**@locatorType Xpath*/
+	public static final String OkbuttonAdjTap = "//button[@id='B1']";
 
 }

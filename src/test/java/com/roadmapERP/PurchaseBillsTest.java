@@ -1695,8 +1695,264 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("bills"));
 	}
 
+	/**Unregistered Supplier imported (without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 101, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier imported (without GST)")
+	public void UnregisteredSupplierimportedwithoutGST() {
+		purchaseBillsFunc.UnregisteredSupplierimportedwithoutGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("ImportSupplier"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Unregistered Supplier imported and expenses account(without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 102, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier imported and expenses account(without GST)")
+	public void UnregisteredSupplierimportedandexpensesaccountwithoutGST() {
+		purchaseBillsFunc.UnregisteredSupplierimportedandexpensesaccountwithoutGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("ImportSupplier"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Unregistered Supplier imported (without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 103, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier imported (without GST)")
+	public void UnregisteredSupplierimportedwithoutGST1() {
+	purchaseBillsFunc.UnregisteredSupplierimportedwithoutGST1(
+			commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+			commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+			commonFunc.getDataFromTestDataSheet("Loc_100"),
+			commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+			commonFunc.getDataFromTestDataSheet("ImportSupplier"),
+			commonFunc.getDataFromTestDataSheet("bills"));
 
+	}
+	/**Unregistered Supplier imported and expenses account(without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 104, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier imported and expenses account(without GST)")
+	public void UnregisteredSupplierimportedandexpensesaccountwithoutGST1() {
+		purchaseBillsFunc.UnregisteredSupplierimportedandexpensesaccountwithoutGST1(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("ImportSupplier"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Non-resident Supplier imported (without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 105, groups = {
+	"Purchase Bills" }, description = "Non-resident Supplier imported (without GST)")
+	public void UnregisteredSupplierImportWithGST() {
+		purchaseBillsFunc.UnregisteredSupplierImportWithGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_NR"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Non-resident Supplier imported and expenses account(without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 106, groups = {
+	"Purchase Bills" }, description = "Non-resident Supplier imported and expenses account(without GST)")
+	public void NonresidentSupplierimportedandexpensesaccountwithoutGST() {
+		purchaseBillsFunc.NonresidentSupplierimportedandexpensesaccountwithoutGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_NR"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Registered Supplier with Local GST- Against GRN With Deviation,Expenses Account and Adjustment (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 107, groups = {
+	"Purchase Bills" }, description = "Registered Supplier with Local GST- Purchase Direct With Expenses Account and Adjustment (Stock item ,service item And charge item )")
+	public void RegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		RegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Supplier_Local"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+		
+	}
+	/**Registered Supplier with Local GST (Allow IGST tax) - Purchase Direct and Expenses Account And Adjustment (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 108, groups = {
+	"Purchase Bills" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Purchase Direct and Expenses Account And Adjustment (Stock item ,service item And charge item )")
+	public void RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Supplier_Local"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Registered Supplier with Local GST (Allow RCM tax) - Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )
+	 * 
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 109	, groups = {
+	"Purchase Bills" }, description = "Registered Supplier with Local GST (Allow RCM tax) - Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
 
+	public void RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Supplier_Local"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Registered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 110	, groups = {
+	"Purchase Bills" }, description = "Registered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void RegisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		RegisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("CustomerName"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	/**Registered Supplier with Interstate GST (Allow RCM tax)- Purchase Direct and Expenses Account with adjustment(Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 111	, groups = {
+	"Purchase Bills" }, description = "Registered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("CustomerName"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/** Unregistered Supplier with Local GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 112	, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier with Local GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UnRed_Sup"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Unregistered Supplier with Local GST (Allow IGST tax)- Purchase Direct and Expenses Account with adjustment(Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 113	, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Purchase Direct and Expenses Account with adjustment(Stock item ,service item And charge item )")
+	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"), commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UnRed_Sup"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Unregistered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 114, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
+		purchaseBillsFunc.
+		UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_UnRed_Sup"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
+	
+	/**Unregistered Supplier imported expenses account with adjustment (without GST)
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	@Author("Kowshik-RMITS")
+	@Test(priority = 115, groups = {
+	"Purchase Bills" }, description = "Unregistered Supplier imported expenses account with adjustment (without GST)")
+	public void UnregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST() {
+		purchaseBillsFunc.
+		UnregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(
+				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
+				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
+				commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
+				commonFunc.getDataFromTestDataSheet("ImportSupplier"),
+				commonFunc.getDataFromTestDataSheet("bills"));
+	}
 	/**
 	 * Verify After Method
 	 * 
