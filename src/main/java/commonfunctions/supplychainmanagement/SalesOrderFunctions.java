@@ -63,6 +63,7 @@ public class SalesOrderFunctions {
 	String Filepath1 = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 			+ "QA Scenario - Sales STD PRICE.xlsx";
 	ArrayList<String> MultipleSO = new ArrayList<String>();
+	public ArrayList<String> MultiAdvReceiptDocumentNumber = new ArrayList<String>();
 
 	/**
 	 * This Method Is used to Verify the Domestic SOGeneral With (SimilarStock And
@@ -2564,6 +2565,8 @@ public class SalesOrderFunctions {
 		VariableHandler.setAdvReceiptDocNumber(AdvReceiptDocumentNumber);
 		logs.logging("INFO",
 				"Advance Receipt Document number In Sales Order Is:" + VariableHandler.getAdvReceiptDocNumber());
+		MultiAdvReceiptDocumentNumber.add(VariableHandler.getAdvReceiptDocNumber());
+
 	}
 
 	/**
@@ -4555,9 +4558,10 @@ public class SalesOrderFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		verifyClickAndEnterValueInTableFields(SalesOrderLocators.SoAmdQtyField(j - 3),
 				SalesOrderLocators.SoAmdNewQtyInputField, NewQty);
-		webDB.pressTabKey();
 		logs.logging("INFO", "New UnitQty Is Changed For This Item " + Item
 				+ "Against This Sales Order Amendment Document " + VariableHandler.getSOAmdNumber());
+		commonFunc.hardWait(500);
+		webDB.pressTabKey();
 		commonFunc.hardWait(500);
 		commonFunc.checkRefreshCellsDisappear();
 	}
@@ -4759,6 +4763,8 @@ public class SalesOrderFunctions {
 				changeQty(NewQty, j, ITEM_ID);
 			}
 		}
+		commonFunc.hardWait(500);
+		commonFunc.checkRefreshCellsDisappear();
 		clickSoAmdLineWiseSaveButton();
 		verifySalesOrderAmendmentLineDetailsWithDB(SOAmdSheetName);
 		verifySOATotalAmountWithExcelAndDB(SOAmdSheetName);
@@ -6628,64 +6634,67 @@ public class SalesOrderFunctions {
 			if (flag) {
 				for (int i = 0; i < MultipleSO.size(); i++) {
 					commonFunc.checkRefreshCellsDisappear();
-					flag = webDB.waitForElement(SalesOrderLocators.SearchBox, ElementType.Xpath);
+					flag = webDB.waitForElement(SalesOrderLocators.SearchBoxContainer1, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "Search Box IS Displayed");
-						webDB.clickAnElement(SalesOrderLocators.SearchBoxContainer, ElementType.Xpath);
-						flag = webDB.waitForElement(SalesOrderLocators.SearchBox, ElementType.Xpath);
+						webDB.clickAnElement(SalesOrderLocators.SearchBoxContainer1, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesOrderLocators.SearchBox1, ElementType.Xpath);
 						if (flag) {
-							webDB.clearTextField(SalesOrderLocators.SearchBox, ElementType.Xpath);
+							webDB.clearTextField(SalesOrderLocators.SearchBox1, ElementType.Xpath);
 							logs.logging("INFO", "Clear Text Search Box");
-							webDB.sendTextToAnElement(SalesOrderLocators.SearchBox,
+							webDB.sendTextToAnElement(SalesOrderLocators.SearchBox1,
 									VariableHandler.getMultipleSoDocs().get(i), ElementType.Xpath);
 							logs.logging("INFO",
 									"Entered Document Number Is: " + VariableHandler.getMultipleSoDocs().get(i));
 							commonFunc.hardWait(500);
-							flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortGOButton, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(SalesOrderLocators.MultiCloseShortGOButton, ElementType.Xpath);
+							webDB.pressTabKey();
+							commonFunc.hardWait(500);
+							webDB.pressEnterKey();
+//							flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortGOButton, ElementType.Xpath);
+//							if (flag) {
+//								webDB.clickAnElement(SalesOrderLocators.MultiCloseShortGOButton, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(1000);
+							List<WebElement> RowCount = webDB.getDriver()
+									.findElements(By.xpath(SalesOrderLocators.MultiCloseShortCheckBoxInputField));
+							for (int j = 1; j <= RowCount.size(); j++) {
+								webDB.clickAnElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+										VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
+								flag = webDB.isElementSelected(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+										VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
+								if (flag == true)
+									logs.logging("INFO",
+											"For This Sales Order Document "
+													+ VariableHandler.getMultipleSoDocs().get(i) + " Line Number " + j
+													+ " Is Selected Sucessfully ");
 								commonFunc.checkRefreshCellsDisappear();
-								commonFunc.hardWait(1000);
-								List<WebElement> RowCount = webDB.getDriver()
-										.findElements(By.xpath(SalesOrderLocators.MultiCloseShortCheckBoxInputField));
-								for (int j = 1; j <= RowCount.size(); j++) {
+								if (!flag) {
+									webDB.moveToElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
+
+											VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
 									webDB.clickAnElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
-											VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
-									flag = webDB.isElementSelected(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
-											VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
-									if (flag == true)
-										logs.logging("INFO",
-												"For This Sales Order Document "
-														+ VariableHandler.getMultipleSoDocs().get(i) + " Line Number "
-														+ j + " Is Selected Sucessfully ");
-									commonFunc.checkRefreshCellsDisappear();
-									if (!flag) {
-										webDB.moveToElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
 
-												VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
-										webDB.clickAnElement(SalesOrderLocators.selectCheckBoxInMultiCloseShort(
-
-												VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
-										commonFunc.checkRefreshCellsDisappear();
-									}
-								}
-								flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortFilterRefreshButton,
-										ElementType.Xpath);
-								if (flag) {
-									webDB.moveToElement(SalesOrderLocators.MultiCloseShortFilterRefreshButton,
-											ElementType.Xpath);
-									webDB.javaScriptClickAnElement(
-											SalesOrderLocators.MultiCloseShortFilterRefreshButton, ElementType.Xpath);
+											VariableHandler.getMultipleSoDocs().get(i), j), ElementType.Xpath);
 									commonFunc.checkRefreshCellsDisappear();
-									commonFunc.hardWait(1500);
 								}
 							}
+//								flag = webDB.waitForElement(SalesOrderLocators.MultiCloseShortFilterRefreshButton,
+//										ElementType.Xpath);
+//								if (flag) {
+//									webDB.moveToElement(SalesOrderLocators.MultiCloseShortFilterRefreshButton,
+//											ElementType.Xpath);
+//									webDB.javaScriptClickAnElement(
+//											SalesOrderLocators.MultiCloseShortFilterRefreshButton, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(1500);
 						}
 					}
 				}
 			}
 		}
 	}
+//		}
+//	}
 
 	/**
 	 * This Method Is Used To Click The Post Button In the Sales Order Multi
@@ -6734,13 +6743,15 @@ public class SalesOrderFunctions {
 		clickPostButtonInSOMultiCloseShort();
 		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
-			verifySalesOrderAmendmentDocEntryCompletedStatusWithDB();
-			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-					VariableHandler.getSOMultiCloseShortDocNo(), webDB.getDataFromProperties("HodEmpId"),
-					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.hardWait(1000);
 			flag = commonFunc.logoutUser();
+//			verifySalesOrderAmendmentMultiDocEntryCompletedStatusWithDB();
 			if (flag) {
-				verifySalesOrderAmendmentDocApprovedStatusWithDB();
+				commonFunc.hardWait(1000);
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getSOMultiCloseShortDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+//				verifySalesOrderAmendmentMultiDocApprovedStatusWithDB();
 			}
 		}
 		return flag;
@@ -7125,6 +7136,78 @@ public class SalesOrderFunctions {
 			flag = commonFunc.logoutUser();
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * This Method Is Used To Verify Sales Order Amendment Status EntryCompleted
+	 * With Database
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void verifySalesOrderAmendmentMultiDocEntryCompletedStatusWithDB() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOMultiCloseShortDocNo(),
+						commonFunc.getDataFromTestDataSheet("SOADBheaderStatusColumnName")),
+				commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"));
+		logs.logging("INFO", "Verified Sales Order Amendment Multi Document "
+				+ VariableHandler.getSOMultiCloseShortDocNo() + "Status Is Entry Completed With DataBase Values ");
+	}
+
+	/**
+	 * This Method Is Used To Verify Sales Order Amendment Status Approved With
+	 * Database
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void verifySalesOrderAmendmentMultiDocApprovedStatusWithDB() {
+		verifyAssertionBothValues(
+				dbCommonFunctions.SOAHeaderDetails(VariableHandler.getSOMultiCloseShortDocNo(),
+						commonFunc.getDataFromTestDataSheet("SOADBheaderStatusColumnName")),
+				commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+		logs.logging("INFO", "Verified Sales Order Amendment Multi Document "
+				+ VariableHandler.getSOMultiCloseShortDocNo() + "Status Is Approved With DataBase Values ");
+	}
+
+	/**
+	 * @author Harikrishna -RMITS This Method Is Used To Verify Advance Sales Order
+	 * @return boolean flag
+	 * @throws IOException
+	 */
+	public boolean advanceSalesOrder() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateSalesOrderPage();
+		checkSOMControl(webDB.getDataFromProperties("So"));
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("Customer"),
+				commonFunc.getDataFromTestDataSheet("CustomerDesc"), commonFunc.getDataFromTestDataSheet("SO_General"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		changePaymentTermInSOHeader(commonFunc.getDataFromTestDataSheet("AdvancePaymentTerm"));
+		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOAdvance"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("Customer"));
+		navigateToGeneralTab();
+		verifyIncludeAdvAmtFlagIsChecked();
+		navigateToLineTab();
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+				getAdvReceiptDocumentFromDataBase();
+//				verifyCreationOfPaymentReceiptsReceivables(VariableHandler.getAdvReceiptDocNumber(),
+//						commonFunc.getDataFromTestDataSheet("BankName"),
+//						commonFunc.getDataFromTestDataSheet("Reference Number"));
 			}
 		}
 		return flag;
