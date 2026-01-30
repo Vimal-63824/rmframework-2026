@@ -6302,7 +6302,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierimportedwithoutGST(String SubvouType, String PurchaseRef, String Location,
+	public void unregisteredSupplierimportedwithoutGST(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -6332,7 +6332,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierimportedandexpensesaccountwithoutGST(String SubvouType, String PurchaseRef,
+	public void unregisteredSupplierimportedandexpensesaccountwithoutGST2(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -6363,7 +6363,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierimportedwithoutGST1(String SubvouType, String PurchaseRef, String Location,
+	public void unregisteredSupplierimportedwithoutGST1(String SubvouType, String PurchaseRef, String Location,
 			String Prefix, String CustomerName, String Bills) {
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -6393,7 +6393,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierimportedandexpensesaccountwithoutGST1(String SubvouType, String PurchaseRef,
+	public void unregisteredSupplierimportedandexpensesaccountwithoutGST1(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -6423,7 +6423,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierImportWithGST(String SubvouType, String PurchaseRef, String Location, String Prefix,
+	public void unregisteredSupplierImportWithGST(String SubvouType, String PurchaseRef, String Location, String Prefix,
 			String CustomerName, String Bills) {
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -6454,7 +6454,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void NonresidentSupplierimportedandexpensesaccountwithoutGST(String SubvouType, String PurchaseRef,
+	public void nonresidentSupplierimportedandexpensesaccountwithoutGST(String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
@@ -6483,7 +6483,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void RegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
+	public void registeredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
@@ -6521,7 +6521,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 		
@@ -6564,7 +6564,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+	public void registeredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 		
@@ -6607,7 +6607,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void RegisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+	public void registeredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 		
@@ -6645,7 +6645,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+	public void registeredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 
@@ -6688,7 +6688,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+	public void unregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 		
@@ -6725,7 +6725,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+	public void unregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 		
@@ -6771,7 +6771,7 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+	public void unregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
 		
@@ -6813,10 +6813,10 @@ public class PurchaseBillsFunctions {
 	 * @param CustomerName
 	 * @param Bills
 	 */
-	public void UnregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(
+	public void unregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(
 			String SubvouType, String PurchaseRef,
 			String Location, String Prefix, String CustomerName, String Bills) {
-		
+	
 		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				webDB.getDataFromProperties("PurchaseBills_Import"));

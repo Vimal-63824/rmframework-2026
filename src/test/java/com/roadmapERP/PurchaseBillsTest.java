@@ -1703,7 +1703,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 101, groups = {
 	"Purchase Bills" }, description = "Unregistered Supplier imported (without GST)")
 	public void UnregisteredSupplierimportedwithoutGST() {
-		purchaseBillsFunc.UnregisteredSupplierimportedwithoutGST(
+		purchaseBillsFunc.unregisteredSupplierimportedwithoutGST(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1719,7 +1719,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 102, groups = {
 	"Purchase Bills" }, description = "Unregistered Supplier imported and expenses account(without GST)")
 	public void UnregisteredSupplierimportedandexpensesaccountwithoutGST() {
-		purchaseBillsFunc.UnregisteredSupplierimportedandexpensesaccountwithoutGST(
+		purchaseBillsFunc.unregisteredSupplierimportedandexpensesaccountwithoutGST2(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1735,7 +1735,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 103, groups = {
 	"Purchase Bills" }, description = "Unregistered Supplier imported (without GST)")
 	public void UnregisteredSupplierimportedwithoutGST1() {
-	purchaseBillsFunc.UnregisteredSupplierimportedwithoutGST1(
+	purchaseBillsFunc.unregisteredSupplierimportedwithoutGST1(
 			commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 			commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 			commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1752,7 +1752,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 104, groups = {
 	"Purchase Bills" }, description = "Unregistered Supplier imported and expenses account(without GST)")
 	public void UnregisteredSupplierimportedandexpensesaccountwithoutGST1() {
-		purchaseBillsFunc.UnregisteredSupplierimportedandexpensesaccountwithoutGST1(
+		purchaseBillsFunc.unregisteredSupplierimportedandexpensesaccountwithoutGST1(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1768,7 +1768,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 105, groups = {
 	"Purchase Bills" }, description = "Non-resident Supplier imported (without GST)")
 	public void UnregisteredSupplierImportWithGST() {
-		purchaseBillsFunc.UnregisteredSupplierImportWithGST(
+		purchaseBillsFunc.unregisteredSupplierImportWithGST(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1784,7 +1784,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	@Test(priority = 106, groups = {
 	"Purchase Bills" }, description = "Non-resident Supplier imported and expenses account(without GST)")
 	public void NonresidentSupplierimportedandexpensesaccountwithoutGST() {
-		purchaseBillsFunc.NonresidentSupplierimportedandexpensesaccountwithoutGST(
+		purchaseBillsFunc.nonresidentSupplierimportedandexpensesaccountwithoutGST(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1802,7 +1802,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Registered Supplier with Local GST- Purchase Direct With Expenses Account and Adjustment (Stock item ,service item And charge item )")
 	public void RegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		RegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
+		registeredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1820,7 +1820,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Registered Supplier with Local GST (Allow IGST tax) - Purchase Direct and Expenses Account And Adjustment (Stock item ,service item And charge item )")
 	public void RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		RegisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
+		registeredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1840,7 +1840,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 
 	public void RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		RegisteredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+		registeredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1857,7 +1857,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Registered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void RegisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		RegisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+		registeredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1874,7 +1874,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Registered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		RegisteredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+		registeredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1892,7 +1892,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Unregistered Supplier with Local GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		UnregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+		unregisteredSupplierwithLocalGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1910,7 +1910,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Purchase Direct and Expenses Account with adjustment(Stock item ,service item And charge item )")
 	public void UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		UnregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+		unregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"), commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("Prbills_Pfx"),
@@ -1927,7 +1927,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Unregistered Supplier with Interstate GST- Purchase Direct and Expenses Account with adjustment (Stock item ,service item And charge item )")
 	public void UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem() {
 		purchaseBillsFunc.
-		UnregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
+		unregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
@@ -1945,7 +1945,7 @@ public class PurchaseBillsTest extends RoadMapERPTest {
 	"Purchase Bills" }, description = "Unregistered Supplier imported expenses account with adjustment (without GST)")
 	public void UnregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST() {
 		purchaseBillsFunc.
-		UnregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(
+		unregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(
 				commonFunc.getDataFromTestDataSheet("Subvoucher_GRN"),
 				commonFunc.getDataFromTestDataSheet("PurchaseRef"),
 				commonFunc.getDataFromTestDataSheet("Loc_100"),
