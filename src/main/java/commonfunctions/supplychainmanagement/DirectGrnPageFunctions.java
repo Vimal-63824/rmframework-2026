@@ -5009,4 +5009,30 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PurchaseBillGRN"));
 	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate() throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("InterstateSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+	}
 }

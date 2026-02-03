@@ -1266,7 +1266,309 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+	/**
+	 * This Method Used To Creating Grn With Advance
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		VerifySaveLine();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyCreateJournalAndPost();
 
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		VerifySaveLine();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+//		ValidatePurchaseBillsLineDetailsAfterDevaition(webDB.getDataFromProperties("PurchaseBill"));
+		verifyCreateJournalAndPost();
+
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		VerifySaveLine();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyCreateJournalAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+		verifyCreateJournalAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+		verifyCreateJournalAndPost();
+
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyCreateJournalAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviation() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		VerifySaveLine();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+		VerifyClickingReferenceTabForRcmFlag();
+		verifyCreateJournalAndPost();
+
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationAndExpense() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		VerifySaveLine();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+		VerifyClickingReferenceTabForRcmFlag();
+		verifyCreateJournalAndPost();
+
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationExpenseAndAdjustment()
+			throws IOException {
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		VerifySaveLine();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		VerifyClickingReferenceTabForRcmFlag();
+		verifyCreateJournalAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviation() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+		VerifyClickingReferenceTabForRcmFlag();
+		verifyCreateJournalAndPost();
+
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+		VerifyClickingReferenceTabForRcmFlag();
+		verifyCreateJournalAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * This Method Used To Verify Pending Purchase Bill
+	 * 
+	 * @author Durai
+	 * @throws IOException
+	 */
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+//		VerifyCreatingPurchaseBillwithAdvance();
+//		commonFunc.logoutUser();
+		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		ValidateHeaderDetails();
+		ValidatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		VerifySaveLine();
+		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
+		VerifySaveLine();
+//		VerifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		VerifyClickingReferenceTabForRcmFlag();
+		verifyCreateJournalAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
