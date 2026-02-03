@@ -9,11 +9,13 @@
 			<class name="com.roadmapERP.GrnTest3"></class>
 			<class name="com.roadmapERP.PurchaseBillsTest"></class>
 			<class name="com.roadmapERP.SubcontractTransactionTest"></class>
+			<class name="com.roadmapERP.SubcontractTransactionTest2"></class>
 			<!--			<class name="com.roadmapERP.BankPaymentTest"></class>-->
 			<class name="com.roadmapERP.PurchaseBillGetDocumenTest"></class>
 			<!--<class name="com.roadmapERP.BankReceiptTest"></class>-->
 			<class name="com.roadmapERP.PurchaseBillTestGrn"></class>
 			<class name="com.roadmapERP.PoToMRVTest"></class>
+			<class name="com.roadmapERP.PoToMRVTest2"></class>
 			<class name="com.roadmapERP.EmployeeOvertime"></class>
 			<class name="com.roadmapERP.PurchaseFOCTest"></class>
 		</classes>
