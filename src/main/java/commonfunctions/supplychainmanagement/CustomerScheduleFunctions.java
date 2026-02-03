@@ -2232,6 +2232,8 @@ public class CustomerScheduleFunctions {
 					if (flag) {
 						webDB.javaScriptClickAnElement(CustomerScheduleLocators.CSFetchSelectCheckBox(DocNum),
 								ElementType.Xpath);
+						commonFunc.hardWait(500);
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdFetchOkButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Select Check Box IS Clicked Sucessfully");
