@@ -522,7 +522,157 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 		PurBillFunc
 				.VerifyRegisteredSupplierwithLocalGSTAllowRcmITCIneligibleAgainstGRNWithDeviationExpenseAndAdjustment();
 	}
-
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 37, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN With Deviation (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation()
+			throws IOException {
+		PurBillFunc
+				.VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 38, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense()
+			throws IOException {
+		PurBillFunc
+				.VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 39, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN With Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 40, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN Without Deviation (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 41, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 42, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST- Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 43, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN With Deviation (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviation() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 44, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 45, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN With Deviation and Expenses Account with adjustment(Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 46, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN Without Deviation (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviation() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 47, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 48, groups = {
+			"Purchase Bill" }, description = "Registered Supplier with Interstate GST (Allow RCM tax)- Against GRN Without Deviation and Expenses Account with adjustment(Stock item ,service item And charge item )")
+	public void VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment();
+	}
 	/**
 	 * This Method Is Used To Logout After Method
 	 * 

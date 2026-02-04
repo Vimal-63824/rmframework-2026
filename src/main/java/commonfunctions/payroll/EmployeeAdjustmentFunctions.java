@@ -297,6 +297,8 @@ public class EmployeeAdjustmentFunctions {
 	private void clickApproveIconForLastAddedAdjustment() {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
@@ -338,6 +340,9 @@ public class EmployeeAdjustmentFunctions {
 	 * @param ProcessType
 	 */
 	private void changeProcessTypeForLastAddedAdjustment(String ProcessType) {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
@@ -375,6 +380,7 @@ public class EmployeeAdjustmentFunctions {
 	private void clickEndAndEnterNarrationForLastAddedAdjustment(String Narration) {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableEndIcon, ElementType.Xpath);
 		if (flag) {
+			commonFunc.checkRefreshCellsDisappear();
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableEndIcon, ElementType.Xpath);

@@ -4853,8 +4853,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelRequestBasedOnCancellingTheTravelRequest() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5274,7 +5275,6 @@ public class AttendanceLeaveFunctions {
 												flag = webDB.waitForElement(
 														AttendanceLeaveLocators.TravelDestinationCity,
 														ElementType.Xpath);
-												flag = commonFunc.logoutUser();
 											}
 										}
 									}
@@ -5294,8 +5294,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnEmployeeWise() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5321,8 +5322,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnForwardToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5348,8 +5350,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckTravelReimbursementBasedOnReturnToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToTravelRequest();
 		AddTravelEmployee(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("MobileNo"), commonFunc.getDataFromTestDataSheet("EmailID"),
@@ -5510,12 +5513,18 @@ public class AttendanceLeaveFunctions {
 										approvalFunc.waitingForApprovalWithFordwarder(
 												commonFunc.getDataFromTestDataSheet("HodValue"));
 										commonFunc.checkRefreshCellsDisappear();
-										commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"),
+										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
 												VariableHandler.getTravelReimbursementtDocNo(),
 												webDB.getDataFromProperties("HodEmpId"),
 												commonFunc.getDataFromTestDataSheet("Unit_100"),
-												System.getProperty("HariUsername"));
-										flag = commonFunc.logoutUser();
+												System.getProperty("HariUsername"),
+												webDB.getDataFromProperties("HRUSEREmpId"));
+										commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+												VariableHandler.getTravelReimbursementtDocNo(),
+												webDB.getDataFromProperties("HRUSEREmpId"),
+												commonFunc.getDataFromTestDataSheet("Unit_100"),
+												System.getProperty("HrRqtUsername"),
+												webDB.getDataFromProperties("HRUSEREmpId"));
 									}
 								}
 							}

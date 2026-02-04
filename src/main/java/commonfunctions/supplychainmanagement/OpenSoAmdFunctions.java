@@ -1959,7 +1959,7 @@ public class OpenSoAmdFunctions {
 		openso.fillLocationCustomerPrefixInOpenSO(commonFunc.getDataFromTestDataSheet("UTGSTLocation"), CustomerID,
 				OpenSOPrefix1);
 		openso.clickTickIconAndSetPODateInAddOpenSOAndStoreDocNo();
-		openso.clickFetchCustomerAndSelectItemInOpenSO(Item);
+		openso.clickFetchCustomerAndSelectItemInOpenSoUpdated();
 		openso.fillPriceMRPAndHSNCodeforAddedLastItemInOpenSO(Cost1, Mrp, OpenSOHSN);
 		openso.fillDiscountAndSaveLinesforAddedLastItemInOpenSO("0");
 		openso.enterEffectiveFromAndToDate(Today, Today, Today);

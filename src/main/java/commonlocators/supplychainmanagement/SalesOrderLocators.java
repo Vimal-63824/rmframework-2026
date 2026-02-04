@@ -537,7 +537,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortFilterRefreshButton = "//button[@data-testid='MultiCloseShortFilterRefreshButton']";
 	/** @locatorType Xpath */
-	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='1538407851102796706_orig']/tbody/tr/td[14]/input";
+	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='2467036204171451671_orig']/tbody/tr/td[14]/input";
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortPostButton = "//button[@data-testid='MultiCloseShortPostButton']";
 	/** @locatorType Xpath */
@@ -576,6 +576,10 @@ public class SalesOrderLocators {
 	public static final String PaymentsReceiptModeField = "//div[@id='P341310231_BANK_TYPE_CONTAINER']";
 	/** @locatorType Xpath */
 	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
+	/** @locatorType Xpath */
+	public static final String SearchBoxContainer1 = "//table[@id='2467036204171451671']/tr/th[3]/a";
+	/** @locatorType Xpath */
+	public static final String SearchBox1 = "//input[@id='PEND_sort_widget_search_field']";
 
 	/** @locatorType Xpath */
 	public static final String selectCheckBoxInMultiCloseShort(String SONumber, int i) {
