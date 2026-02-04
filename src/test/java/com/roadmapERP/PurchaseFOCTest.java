@@ -891,6 +891,174 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 	}
 
 	/**
+	 * PO to GRN-Service-User Defined-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 64, groups = {
+			"Po to GRN" }, description = "720 PO to GRN-Service-User Defined-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMServiceUDWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMServiceUDWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 65, groups = {
+			"Po to GRN" }, description = "727 PO to GRN-Service-Rate Contract-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMServiceRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMServiceRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Service-Price List-Same Stock and Supplier UOM - Without Inspection
+	 * Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 66, groups = {
+			"Po to GRN" }, description = "727 PO to GRN-Service-Price List-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMServicePLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMServicePLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - Stock
+	 * Transfer Items with Similar Stock and Supplier UOM
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 67, groups = {
+			"Direct PO" }, description = "695 Purchase Order-With Free Of Cost - Direct PO - Domestic Supplier - Stock Transfer Items with Similar Stock and Supplier UOM")
+	public void VerifyFOCForDirectPODomesticSuplrStockTransferItemSimilarUOM() {
+		flag = purchaseFocFunc.verifyFOCForDirectPODomesticSuplrStockTransferItemSimilarUOM();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 68, groups = {
+			"Po to GRN" }, description = "722 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMStockTransferUDWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferUDWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 69, groups = {
+			"Po to GRN" }, description = "721 PO to GRN-Stock Transfer-User Defined-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMStockTransferUDWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferUDWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 70, groups = {
+			"Po to GRN" }, description = "743 PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMStockTransferUDWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferUDWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 71, groups = {
+			"Po to GRN" }, description = "742 PO to GRN-Stock Transfer-User Defined-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMStockTransferUDWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferUDWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 72, groups = {
+			"Po to GRN" }, description = "729 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMStockTransferRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 73, groups = {
+			"Po to GRN" }, description = "728 PO to GRN-Stock Transfer-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMStockTransferRCWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferRCWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 74, groups = {
+			"Po to GRN" }, description = "736 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMStockTransferPLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferPLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 75, groups = {
+			"Po to GRN" }, description = "735 PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticSameUOMStockTransferPLWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferPLWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Sakthi-GWL
