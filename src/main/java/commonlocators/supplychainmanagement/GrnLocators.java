@@ -125,7 +125,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnStockTransferCreation = "//*[@id='BTN_GRN_STS']";
 	/** @locatorType Xpath */
-	public static final String LotserialItemSelect = "//*[@id='PopupLov_161513110304_C2801832860889585854_dlg']/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
+	public static final String LotserialItemSelect = "//*[@id='PopupLov_161513110304_C3304459544488563482_dlg']/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
 	/** @locatorType Xpath */
 	public static final String PendingStockTransfer = "//button[@data-testid='Pending_ST']";
 	/** @locatorType Xpath */
@@ -148,7 +148,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//*[@id='12242177025893385969']/tbody/tr[2]/td[17]/div";
+	public static String GrnDocumentStatus = "//*[@id='12744803709492363597']/tbody/tr[2]/td[17]/div";
 	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */

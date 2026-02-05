@@ -352,7 +352,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1655732835255163754']";
 	/** @locatorType Xpath */
-	public static final String SaleOrderDrillDown = "//*[@id=\"4991739592569095786_orig\"]/tbody/tr[2]/td[9]/a";
+	public static final String SaleOrderDrillDown = "//*[@id='5491677805743070227_orig']/tbody/tr[2]/td[9]/a";
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {
@@ -446,12 +446,12 @@ public class PurchaseOrderPageLocators {
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetailForServiceItem(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[35]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[\" + i + \"]/td[37]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String PurchaseOrderLineDetail(int i) {
-		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[34]";
+		return "//*[@id='ig_po_lineitems_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[\" + i + \"]/td[36]";
 	}
 
 	/** @locatorType Xpath */
