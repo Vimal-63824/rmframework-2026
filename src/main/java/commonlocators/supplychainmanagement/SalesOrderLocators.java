@@ -339,13 +339,13 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @Locator Xpath */
-	public static final String PaymentReceiptSearchButton = "//button[@id='B2825075200891698481']";
+	public static final String PaymentReceiptSearchButton = "//button[@id='B3324083298732666620']";
 	/** @Locator Xpath */
-	public static final String PayementReceiptCreateButton = "//button[@id='B2496816294816505745']";
+	public static final String PayementReceiptCreateButton = "//button[@id='B2995824392657473884']";
 	/** @Locator Xpath */
 	public static final String BankReceiptsLovButton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @Locator Xpath */
-	public static final String BankReceiptsOkButton = "//button[@id='B2496817179888505754']";
+	public static final String BankReceiptsOkButton = "//button[@id='B2995825277729473893']";
 	/** @Locator Xpath */
 	public static final String BankReceiptpostButton = "//button[@id='POST']";
 	/** @Locator Xpath */
@@ -413,7 +413,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String PromotionalLov = "//button[@id='P191513134002_SOQ_PROMOTION_FLAG_lov_btn']";
 	/** Locator @CssSelector */
-	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(25) > a > span";
+	public static final String LineWiseDeleteButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(26) > a > span";
 	/** @Locator Xpath */
 	public static final String ShipSetFrame = "//iframe[@title='Sales Order Shipset Item']";
 	/** @Locator Xpath */
@@ -485,7 +485,7 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String SoAmdItemIDLovField = "//input[@data-testid='PRODID_REV']/following-sibling::button";
 	/** @Locator Xpath */
-	public static final String SoAmdItemField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
+	public static final String SoAmdItemField = "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]";
 	/** @Locator Xpath */
 	public static final String SoAmdChargesTab = "//label[@for='P1915131072_TAB_FILTER_1']";
 	/** @Locator Xpath */
@@ -537,7 +537,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortFilterRefreshButton = "//button[@data-testid='MultiCloseShortFilterRefreshButton']";
 	/** @locatorType Xpath */
-	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='2467036204171451671_orig']/tbody/tr/td[14]/input";
+	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='2966974417345426112_orig']/tbody/tr/td[14]/input";
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortPostButton = "//button[@data-testid='MultiCloseShortPostButton']";
 	/** @locatorType Xpath */
@@ -577,7 +577,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
-	public static final String SearchBoxContainer1 = "//table[@id='2467036204171451671']/tr/th[3]/a";
+	public static final String SearchBoxContainer1 = "//table[@id='2966974417345426112']/tr/th[3]/a";
 	/** @locatorType Xpath */
 	public static final String SearchBox1 = "//input[@id='PEND_sort_widget_search_field']";
 
@@ -668,7 +668,7 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
-		return "(//*[@id='ig_line_ig_grid_vc']/div/div/table[1])[2]/tbody/tr[" + i + "]/td[19]/a";
+		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[20]/a";
 	}
 
 	/** @Locator Xpath */
@@ -689,7 +689,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ShipSetDetails(int i) {
 		return "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[22]/a/span[contains(@style,'blue')]";
+				+ "]/td[23]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Css Selector */
@@ -715,12 +715,12 @@ public class SalesOrderLocators {
 
 	/** @locatorType Xpath */
 	public static final String SoAmdQtyField(int i) {
-		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[9]";
+		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[11]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String SoAmdUnitCostField(int i) {
-		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[11]";
+		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i + "]/td[13]";
 	}
 
 	/** @locatorType Xpath */
@@ -731,7 +731,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String SOAmdLineDetails(int i) {
 		return "//*[@id='sale_amend_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[16]/a/span[contains(@style,'blue')]	";
+				+ "]/td[18]/a/span[contains(@style,'blue')]	";
 	}
 
 	/** @locatorType Xpath */
