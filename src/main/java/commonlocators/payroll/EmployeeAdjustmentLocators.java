@@ -133,7 +133,7 @@ public class EmployeeAdjustmentLocators {
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationUploadInput = "//a-file-upload[contains(@id,'LOAD')]/input";
 	/** @locatorType Xpath */
-	public static final String EmpAllowanceMigrationUploadBtn = "//button[@id='B4374410308584209826']";
+	public static final String EmpAllowanceMigrationUploadBtn = "//span[text()='Upload']/parent::button";
 	/** @locatorType Xpath */
 	public static final String EmpAllowanceMigrationCheckExcptionBtn = "//*[normalize-space()='Check Exception']/parent::button";
 	/** @locatorType Xpath */

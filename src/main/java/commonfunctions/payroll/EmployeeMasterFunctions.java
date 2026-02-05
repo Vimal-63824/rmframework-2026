@@ -1116,14 +1116,14 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-//				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
+//				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
+//				approvalFunc.navigateToApprovals();
+//				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
 			}
 			return true;
@@ -1174,16 +1174,16 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
-				commonFunc.logoutUser();
-				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-						"HariUsername");
-				approvalFunc.navigateToApprovals();
-				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
+//				commonFunc.logoutUser();
+//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+//						"HariUsername");
+//				approvalFunc.navigateToApprovals();
+//				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+//				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("HRuserEmpId"));
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
+						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
 						webDB.getDataFromProperties("HRuserEmpId"));
-//				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
-//						webDB.getDataFromProperties("KishoreEmpId"));
 				flag = commonFunc.logoutUser();
 			}
 			return true;
