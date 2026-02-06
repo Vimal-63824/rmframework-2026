@@ -194,7 +194,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptDocNumberLovButton = "//input[@data-testid='P3413101003_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String BankReceiptPendingReceivablesSearchButton = "//button[@id='B2819920268205104394']";
+	public static final String BankReceiptPendingReceivablesSearchButton = "//span[text()='Search']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String BankReceiptPendingReceivableScreenOkButton = "//button[@id='B4']";
 	/** @locatorType Xpath */
@@ -206,7 +206,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptCreateJournalButton = "//button[@data-testid='CreateJournal']";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesDocumentNumberField = "//*[@id='2792336031640519119_orig']/tbody/tr[2]/td[19]";
+	public static final String PendingReceivablesDocumentNumberField = "//*[@id='3291344129481487258_orig']/tbody/tr[2]/td[19]";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesDRDocumentNumberLOVButton = "//button[@id='P3413101003_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */

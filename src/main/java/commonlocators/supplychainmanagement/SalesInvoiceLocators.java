@@ -427,7 +427,7 @@ public class SalesInvoiceLocators {
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
 		return "//*[@id=\'ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[19]/a/span[contains(@style,'blue')]";
+				+ "]/td[20]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Xpath */
