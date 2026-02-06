@@ -263,6 +263,34 @@ public class BankReceiptLocators {
 	public static final String BankReceiptGSTDetailsSaveButton = "//button[@title='Save2']";
 	/** @locatorType Xpath */
 	public static final String BankReceiptGSTCloseButton = "//h1[contains(text(),'GST Details')]/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String BankReceiptPendingReceivablesAdvButton = "//button[@id='pend_rec_adv']";
+	/** @locatorType Xpath */
+	public static final String BankReceiptPendingReceivablesAdvFrameName = "//iframe[@title='Pend. Receivable - Advance']";
+	/** @locatorType Xpath */
+	public static final String BankReceiptPendingReceivablesAdvPartyNameInputField = "//input[@id='P341310231_PARTY_NAME']";
+	/** @locatorType Xpath */
+	public static final String BankReceiptPendingReceivablesAdvanceDocNumberLovButton = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String BankReceiptPendingReceivablesAdvSearchButton = "//button[@id='B2825075200891698481']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceDocumentNumberField = "//*[@id='2496368078611442335_orig']/tbody/tr[2]/td[22]";
+	/** @locatorType Xpath */
+	public static final String PendingDRPendingreceivablesAdvanceButton = "//span[text()='Pending Receivable - Advance']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceCreateButton = "//button[@id='B2496816294816505745']";
+	/** @locatorType Xpath */
+	public static final String BankPendingReceivablesAdvancePartyDocumentClearButton = "//button[@id='B2559908873376486230']/following-sibling::button[@id='Clear']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceMergeLabelInPending = "//label[@for='P341310231_GLOBAL_SCREEN_1']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceTypeDropDown = "//select[@id='P341310231_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvancePayModeDropDown = "//select[@id='P341310231_BANK_TYPE']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceBankNameLOVBUtton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceOkButton = "//button[@id='B2496817179888505754']";
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
@@ -300,5 +328,10 @@ public class BankReceiptLocators {
 	public static final String BankLineGSTButton(int i) {
 		return "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(" + i
 				+ ") > td:nth-child(13) > a";
+	}
+	
+	/** @locatorType Xpath */
+	public static final String BRAdvPendingReceivablesDocumentSelectCheckBox(String VoucherNumber) {
+		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[14]/*";
 	}
 }
