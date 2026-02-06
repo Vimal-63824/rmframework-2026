@@ -246,13 +246,17 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_ClearUploadBtn = "//span[text()='Clear']/parent::button";
 	/** @locatorType XPATH */
+	public static final String AddEmp_ProfileClearIcon = "//button[@title='Clear']";
+	/** @locatorType XPATH */
+	public static final String AddEmp_ProfileUploadIcon = "//button[@title='Upload']";
+	/** @locatorType XPATH */
 	public static final String AddEmp_ProfileImg = "//div[@class='t-Card-titleWrap']//center/img";
 	/** @locatorType XPATH */
 	public static final String AddEmp_ProfileImgUploadInput = "//input[@id='P6_DM_BLOB_input']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_ProfileUploadFileNameText = "//span[@class='a-FileDrop-heading']";
 	/** @locatorType XPATH */
-	public static final String AddEmp_CloseFrameIcon = "//h1[text()='LOAD']/following-sibling::button[@title='Close']";
+	public static final String AddEmp_CloseFrameIcon = "//h1[text()='Capture Image']/following-sibling::button[@title='Close']";
 	/** @locatorType XPATH */
 	public static final String AddEmp_AdditionalInfoBtn = "//*[@data-testid='BTN_Additional_Info_empIcon']";
 	/** @locatorType XPATH */
