@@ -1882,4 +1882,5 @@ public class GrnPageFunctions2 {
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
+
 }

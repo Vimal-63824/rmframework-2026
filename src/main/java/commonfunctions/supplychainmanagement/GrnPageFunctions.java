@@ -781,6 +781,8 @@ public class GrnPageFunctions {
 									ElementType.Xpath);
 							VariableHandler.setGrnStatus(GRNSTATUS);
 							logs.logging("INFO", "GRN ProcesWise STATUS:" + VariableHandler.getGrnStatus());
+							flag = VariableHandler.getGrnStatus()
+									.equals(commonFunc.getDataFromTestDataSheet("BRVDocumentStatus"));
 							flag = commonFunc.logoutUser();
 						}
 					}
@@ -3779,7 +3781,7 @@ public class GrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 * @throws IOException
 	 */
-	public void aafterVerifyTheStatusDocumentMoveToQcOrMrv() throws IOException {
+	public void aafterVerifyTheStatusDocumentMoveToQcOrMrv() {
 		String GrnHeaderWiseStatus = dbCommonFunctions.GrnHeaderDetails(VariableHandler.getGrnDocNumber(),
 				commonFunc.getDataFromTestDataSheet("ProcessFlowStatus"));
 		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
@@ -5416,8 +5418,8 @@ public class GrnPageFunctions {
 	public void poToGrnServiceRateContractSameStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry() {
 		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
 				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
-				commonFunc.getDataFromTestDataSheet("ServiceValue"),
-				webDB.getDataFromProperties("PoToMRVWOIpRcServSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+				commonFunc.getDataFromTestDataSheet("ServiceValue"), webDB.getDataFromProperties("DGSUomWIRcSerSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigateToGateEntryDocument();
 		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
