@@ -7212,4 +7212,46 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
+	
+	/**
+	 * @author Harikrishna -RMITS This Method Is Used To Verify Advance Sales Order
+	 * @return boolean flag
+	 * @throws IOException
+	 */
+	public boolean advanceSalesOrderExport() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateSalesOrderPage();
+		checkSOMControl(webDB.getDataFromProperties("So"));
+		verifyCreationOfSalesOrderHeader(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_Export_Customer"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"), commonFunc.getDataFromTestDataSheet("SO_General"));
+		checkSOHeaderDetailsDataBaseValuesWithUIValues();
+		changePaymentTermInSOHeader(commonFunc.getDataFromTestDataSheet("AdvancePaymentTerm"));
+		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOAdvanceExp"),
+				commonFunc.getDataFromTestDataSheet("SO_General"), commonFunc.getDataFromTestDataSheet("SO_HSNCode"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
+		navigateToGeneralTab();
+		verifyIncludeAdvAmtFlagIsChecked();
+		navigateToLineTab();
+		clickPostButton();
+		flag = forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			verifySalesOrderDocumentStatusEntryCompletedWithDB();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSONumber(),
+					webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+					System.getProperty("HariUsername"));
+			if (flag) {
+				verifySalesOrderDocumentStatusApprovedWithDB();
+				getAdvReceiptDocumentFromDataBase();
+//				verifyCreationOfPaymentReceiptsReceivables(VariableHandler.getAdvReceiptDocNumber(),
+//						commonFunc.getDataFromTestDataSheet("BankName"),
+//						commonFunc.getDataFromTestDataSheet("Reference Number"));
+			}
+		}
+		return flag;
+	}
 }

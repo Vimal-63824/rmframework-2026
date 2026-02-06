@@ -30,7 +30,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String SsoPendingBtnNew = "//button[@data-testid='Create_PO']";
 	/** @locatorType Xpath */
-	public static final String PendingSso = "//button[@data-testid='ADD_SSO']";
+	public static final String PendingSso = "//span[text()='Create  SSO']";
 	
 	
 	/** @locatorType Xpath */
@@ -82,7 +82,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String FetchOPOSearchOkBtn = "//button[@id='QC_search_button']";
 	/** @locatorType Xpath */
-	public static final String FetchOPOSelectall = "//*[@id='2885698826424482223_orig']/tbody/tr[2]/td[11]";
+	public static final String FetchOPOSelectall = "//*[@id=\"3388325510023459851_orig\"]/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
 	public static final String FetchOPOOKBtn = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */

@@ -86,7 +86,7 @@ public class SubcontractOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String CheckBox(String PONumber) {
-		return "//table[@id='6864046438135183543_orig']//a[text()='" + PONumber + "']/../../td[13]";
+		return "//table[@id='7366673121734161171_orig']//a[text()='" + PONumber + "']/../../td[13]";
 	}
 
 	/** @locatorType XPATH */
@@ -433,7 +433,7 @@ public class SubcontractOrderLocators {
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_SelectAll = "//*[@id=\"check_all\"]";
 	/** @Locator XPATH */
-	public static final String Pend_SCO_GE_Select = "//*[@id=\"17946853003741197487_orig\"]/tbody/tr[2]/td[19]";
+	public static final String Pend_SCO_GE_Select = "//*[@id=\"18449977181828174731_orig\"]/tbody/tr[2]/td[19]";
 	/** @Locator XPATH */
 	public static final String Pend_SCO_GE_CreateGE = "//button[@data-testid='Create_GE']";
 	/** @Locator XPATH */

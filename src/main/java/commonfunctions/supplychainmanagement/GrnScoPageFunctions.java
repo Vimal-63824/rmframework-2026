@@ -835,4 +835,205 @@ public class GrnScoPageFunctions {
 		logs.logging("INFO", "Asbl. Value Matched With SCO And GRNSCO ");
 		commonFunc.hardWait(1000);
 	}
+	/**
+	 * This Method Is Used To Verify Rework Gen Mat Cons And Allocate
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyReworkGenMatConsAndAllocate() {
+		verifyGrnSFcodeWithExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
+		commonFunc.hardWait(2000);
+//		flag = webDB.waitForElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
+//		if (flag) {
+//			logs.logging("INFO", "Gen Lot Serial Button Is Displayed");
+//			webDB.clickAnElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
+//			commonFunc.checkRefreshCellsDisappear();
+//			commonFunc.hardWait(2000);
+//			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+//				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+//			}
+			flag = webDB.waitForElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Gen Mat Cons Button Is Displayed");
+				webDB.clickAnElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(2000);
+				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+				}
+				flag = webDB.waitForElement(GrnScoLocators.Allocate, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Allocate Button Is Displayed");
+					webDB.clickAnElement(GrnScoLocators.Allocate, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+					}
+				}
+			}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Create Pending Grn Sco Doc For SDS Type
+	 * 
+	 * @author Vimal - RMITS
+	 * @param DocNo
+	 */
+	public void createPendingGrnScoDocForSDSType(String DocNo, String QtyApplyFor0) {
+		flag = webDB.waitForElement(CommonUiLocators.GRNSCO_Pending_Icon, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Grn Button Is Displayed");
+			webDB.clickAnElement(CommonUiLocators.GRNSCO_Pending_Icon, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnScoLocators.PendingSubcontractOrder, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnScoLocators.PendingSubcontractOrder, ElementType.Xpath);
+				flag = webDB.waitForClickElement(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(GrnScoLocators.SCONoLovButton, DocNo);
+					flag = webDB.waitForClickElement(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Pending Sco Frame Is Displayed");
+						webDB.switchToFrame(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+						flag = webDB.waitForElement(GrnScoLocators.SearchButton, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GrnScoLocators.SearchButton, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(1000);
+							String CurrProcQty = webDB.getDomPropertyFromElement(GrnScoLocators.PR_Type_Field,
+									ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+							logs.logging("INFO", "Get  Proc Qty Is: " + CurrProcQty);
+							commonFunc.hardWait(1000);
+							webDB.moveToElement(GrnScoLocators.PR_Type_Field, ElementType.Xpath);
+							verifyAddTableSpecs(GrnScoLocators.PR_Type_Field, GrnScoLocators.PR_Type_Field,
+									QtyApplyFor0);
+							commonFunc.hardWait(1000);
+							webDB.moveToElement(GrnScoLocators.SDS_Type_Field, ElementType.Xpath);
+							verifyAddTableSpecs(GrnScoLocators.SDS_Type_Field, GrnScoLocators.SDS_Type_Field,
+									CurrProcQty);
+							commonFunc.hardWait(1000);
+							webDB.moveToElement(GrnScoLocators.ScoNumber(DocNo), ElementType.Xpath);
+							webDB.moveToElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
+							flag = webDB.waitForElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(2000);
+								logs.logging("INFO", "CheckBox Is Displayed");
+								webDB.clickAnElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
+								flag = webDB.waitForElement(GrnScoLocators.CreateGrnButton, ElementType.Xpath);
+								if (flag) {
+									commonFunc.hardWait(2000);
+									webDB.clickAnElement(GrnScoLocators.CreateGrnButton, ElementType.Xpath);
+									flag = webDB.waitForElement(GrnScoLocators.SupplierBillNumber, ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Supplier Bill Number Is Displayed");
+										webDB.sendTextToAnElement(GrnScoLocators.SupplierBillNumber, DocNo,
+												ElementType.Xpath);
+										webDB.sendTextToAnElement(GrnScoLocators.DCNumber, DocNo, ElementType.Xpath);
+										logs.logging("INFO", "Send Text Dc Number Is: " + DocNo);
+										flag = webDB.waitForElement(GrnScoLocators.OkButton, ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(GrnScoLocators.OkButton, ElementType.Xpath);
+											webDB.switchToDefaultContent();
+											flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Grn Number Is Displayed");
+												String GrnNumber = webDB.getDomPropertyFromElement(
+														GrnScoLocators.GrnNumber, ElementType.Xpath,
+														commonFunc.getDataFromTestDataSheet("Value"));
+												VariableHandler.setScoGrnNumber(GrnNumber);
+												logs.logging("INFO", "Get Grn Number Is: " + GrnNumber);
+												if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+														ElementType.Xpath)) {
+													webDB.clickAnElementWithoutException(
+															CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+												}
+											}
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	/**
+	 * This Method Is Used To Direct GRN SCO Fetch Button
+	 * 
+	 * @author Vimal - RMITS
+	 * @param DocNo
+	 */
+	public void directGRNSCOFetchButton(String DocNo) {
+		flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_FetchButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnScoLocators.GRN_SCO_FetchButton, ElementType.Xpath);
+			webDB.switchToFrame(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+			commonFunc.searchAndSelectValueInFilters(GrnScoLocators.SCONoLovButton, DocNo);
+			webDB.switchToFrame(GrnScoLocators.PendingScoFrame, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Sco Frame Is Displayed");
+				flag = webDB.waitForElement(GrnScoLocators.SearchButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnScoLocators.SearchButton, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.moveToElement(GrnScoLocators.ScoNumber(DocNo), ElementType.Xpath);
+					webDB.moveToElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
+					flag = webDB.waitForElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(2000);
+						logs.logging("INFO", "CheckBox Is Displayed");
+						webDB.clickAnElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
+						flag = webDB.waitForElement(GrnScoLocators.Add_Grn_Line, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(2000);
+							webDB.clickAnElement(GrnScoLocators.Add_Grn_Line, ElementType.Xpath);
+							webDB.switchToDefaultContent();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(2000);
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+								commonFunc.hardWait(3000);
+								webDB.moveToElement(GrnScoLocators.Get_GRN_SuplLotNo, ElementType.Xpath);
+								String GRNLotNo = webDB.getTextFromElement(GrnScoLocators.Get_GRN_SuplLotNo,
+										ElementType.Xpath);
+								logs.logging("INFO", "Get Supl Lot Is: " + GRNLotNo);
+								commonFunc.hardWait(2000);
+								flag = webDB.waitForElement(GrnScoLocators.GRN_Heat_No,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.scrollToAnElement(GrnScoLocators.GRN_Heat_No, ElementType.Xpath);
+									webDB.moveToElement(GrnScoLocators.GRN_Heat_No, ElementType.Xpath);
+									webDB.doubleClickAnElement(GrnScoLocators.GRN_Heat_No,
+											ElementType.Xpath);
+									webDB.sendTextToAnElement(GrnScoLocators.GRN_Heat_No_input, GRNLotNo,
+											ElementType.Xpath);
+									commonFunc.hardWait(1000);
+									webDB.pressTabKey();
+									webDB.sendTextToAnElement(GrnScoLocators.GRN_Test_No_Input, GRNLotNo,
+											ElementType.Xpath);
+									commonFunc.hardWait(1000);
+									flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_LotSerial_Save,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(GrnScoLocators.GRN_SCO_LotSerial_Save, ElementType.Xpath);
+										if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath)) {
+											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+													ElementType.Xpath);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 }

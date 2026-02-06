@@ -71,7 +71,7 @@ public class GrnScoLocators {
 
 	/** @locatorType Xpath */
 	public static final String ScoNumber(String SCONo) {
-		return "//table[@id='15846069671341467002_orig']//td[text()='" + SCONo + "']";
+		return "//table[@id='16608674800357941813_orig']//td[text()='" + SCONo + "']";
 	}
 
 	/** @locatorType Xpath */
@@ -131,5 +131,39 @@ public class GrnScoLocators {
 	public static final String Pending_CreateGateEntry = "//button[@data-testid='Create_GRN_Gate']";
 	/** @locatorType Xpath */
 	public static final String Pending_CreateGateEntry_OkButton = "//button[@data-testid='GE_OK']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_AddIcon = "//button[@data-testid='add']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_Iframe = "//iframe[@title='GRN - SCO']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_Loc_Lov = "//input[@data-testid='P193151040_PORH_PLNT_LOC_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_Supl_Lov = "//input[@data-testid='P193151040_PORH_SUPLR_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_SuplBill_Input = "//input[@data-testid='P193151040_PORH_SUPLR_DOC_N']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_DC_Date = "//*[@id=\"P193151041_PORH_DC_DATE_1_dialog\"]/div/div[3]/div/button";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_Add_DC_DateInput = "//input[@data-testid='P193151040_PORH_DC_NO_1']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_FindCreateIcon = "//button[@data-testid='CREATE']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_FetchButton = "//button[@data-testid='Fetch_Line']";
+	/** @locatorType Xpath */
+	public static final String Add_Grn_Line = "//button[@data-testid='Add_GRN_Line']";
+	/** @locatorType Xpath */
+	public static final String Get_GRN_SuplLotNo = "//*[@id=\"grn_lot_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[2]";
+	/** @locatorType Xpath */
+	public static final String GRN_Heat_No = "//*[@id=\"grn_lot_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[3]";
+	/** @locatorType Xpath */
+	public static final String GRN_Test_No = "//*[@id=\"grn_lot_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[4]";
+	/** @locatorType Xpath */
+	public static final String GRN_Heat_No_input = "//input[@data-testid='PRCLS_HEAT_NO']";
+	/** @locatorType Xpath */
+	public static final String GRN_Test_No_Input = "//input[@data-testid='PRCLS_TEST_NO']";
+	/** @locatorType Xpath */
+	public static final String GRN_SCO_LotSerial_Save = "//button[@data-testid='Save_Lot_ser']";
+	/** @locatorType Xpath */
+	public static final String SDS_Type_Field = "(//input[@type='number'])[2]";
 
 }
