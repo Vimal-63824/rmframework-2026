@@ -250,6 +250,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> SSRDocNo = new ThreadLocal<>();
 	private static ThreadLocal<String> SSODocNo = new ThreadLocal<>();
 	private static ThreadLocal<String> GeneralReimbursementDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> GRNLotNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2151,5 +2152,12 @@ public class VariableHandler {
 
 	public static void setGeneralReimbursementDocNo(String data) {
 		GeneralReimbursementDocNo.set(data);
+	}
+	public static String getGRNLotNo() {
+		return GRNLotNo.get();
+	}
+
+	public static void setGRNLotNo(String Data) {
+		GRNLotNo.set(Data);
 	}
 }
