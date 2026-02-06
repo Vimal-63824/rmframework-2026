@@ -214,7 +214,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualUploadInput = "//a-file-upload[contains(@id,'LOAD')]/input";
 	/** @locatorType Xpath */
-	public static final String LRMigrationAccrualUploadBtn = "//button[@id='B4132485794716509846']";
+	public static final String LRMigrationAccrualUploadBtn = "//span[text()='Upload']/parent::button";
 	/** @locatorType Xpath */
 	public static final String LRMigrationAccrualCheckExcptionBtn = "//*[normalize-space()='Check Exception']/parent::button";
 	/** @locatorType Xpath */
@@ -242,7 +242,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPUploadInput = "//a-file-upload[contains(@id,'LOAD')]/input";
 	/** @locatorType Xpath */
-	public static final String LRMigrationLOPUploadBtn = "//button[@id='B4132439013411501549']";
+	public static final String LRMigrationLOPUploadBtn = "//span[text()='Upload']/parent::button";
 	/** @locatorType Xpath */
 	public static final String LRMigrationLOPCheckExcptionBtn = "//*[normalize-space()='Check Exception']/parent::button";
 	/** @locatorType Xpath */
@@ -294,7 +294,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LEAttachmentChooseFileInput = "//input[@id='P37_FILE_input']";
 	/** @locatorType Xpath */
-	public static final String LEAttachmentUploadBtn = "//button[@id='B3221695662051201606']";
+	public static final String LEAttachmentUploadBtn = "//div[@aria-label='Attachment']//span[text()='Upload']/parent::button";
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDisplayedFileName = "//span[@class='a-FileDrop-heading']";
 	/** @locatorType Xpath */
@@ -366,7 +366,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationUploadInput = "//a-file-upload[contains(@id,'LOAD')]/input";
 	/** @locatorType Xpath */
-	public static final String AdjmntMigrationUploadBtn = "//button[@id='B4376597433001500882']";
+	public static final String AdjmntMigrationUploadBtn = "//div[@aria-label='Upload File']//span[text()='Upload']/parent::button";
 	/** @locatorType Xpath */
 	public static final String AdjmntMigrationCheckExceptionBtn = "//*[normalize-space()='Check Exception']/parent::button";
 	/** @locatorType Xpath */
