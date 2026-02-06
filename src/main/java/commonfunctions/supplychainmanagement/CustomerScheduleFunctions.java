@@ -476,9 +476,9 @@ public class CustomerScheduleFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}
@@ -2232,6 +2232,8 @@ public class CustomerScheduleFunctions {
 					if (flag) {
 						webDB.javaScriptClickAnElement(CustomerScheduleLocators.CSFetchSelectCheckBox(DocNum),
 								ElementType.Xpath);
+						commonFunc.hardWait(500);
+						commonFunc.checkRefreshCellsDisappear();
 						flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdFetchOkButton, ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "Select Check Box IS Clicked Sucessfully");

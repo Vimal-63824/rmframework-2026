@@ -64,7 +64,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Refindsearchok = "//*[@id=\"PLE_search_button\"]/span";
 	/** @locatorType Xpath */
-	public static final String CancellStatus = "//*[@id='2386242705686113607_orig']/tbody/tr[2]/td[22]/div";
+	public static final String CancellStatus = "//*[@id=\"2888869389285091235_orig\"]/tbody/tr[2]/td[22]/div";
 	/** @locatorType Xpath */
 	public static final String FindLocLov = "//input[@data-testid='P1615131025212_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -88,7 +88,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumsearchField = "//*[@id=\"PopupLov_1615131025212_P1615131025212_DOCP_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static final String FindDocNumDrilldown = "#\\32 386242705686113607_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
+	public static final String FindDocNumDrilldown = "#\\32 888869389285091235_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
 	/** @locatorType Xpath */
 	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
 	/** @locatorType Xpath */
@@ -135,9 +135,9 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemSearchBtn = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "#\\31 6618653128147539484_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
+	public static final String ItemDrillDownBtn = "#\\31 7121609479460517140_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
-	public static final String ItemGeneral = "//*[@id=\"P367020004_TAB\"]/div/div/div[3]/label";
+	public static final String ItemGeneral = "//label[text()='General']";
 	/** @locatorType Xpath */
 	public static final String ItemCopy = "//button[@data-testid='Copy_Item']";
 	/** @locatorType Xpath */
@@ -177,7 +177,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String PRLSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String PRLFindTable = "//*[@id='2386242705686113607_orig']/tbody/tr[2]/td[1]";
+	public static final String PRLFindTable = "//*[@id='2888869389285091235_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String ClearButton = "//button[@data-testid='Clear']";
 	/** @locatorType Xpath */

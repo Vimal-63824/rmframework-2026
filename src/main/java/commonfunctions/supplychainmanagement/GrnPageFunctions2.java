@@ -625,6 +625,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -661,6 +662,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -684,9 +686,6 @@ public class GrnPageFunctions2 {
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
 		verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDService"));
-//		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSameUDService"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -697,6 +696,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -735,6 +735,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -773,6 +774,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -798,9 +800,6 @@ public class GrnPageFunctions2 {
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameRCService"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
-//		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSameRCService"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -811,6 +810,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -848,6 +848,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -885,6 +886,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -909,9 +911,6 @@ public class GrnPageFunctions2 {
 		verifyGrnAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpSamePLService"),
 				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
-//		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
-//				webDB.getDataFromProperties("DirGRNImpSamePLService"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -922,6 +921,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -958,6 +958,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -994,6 +995,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1032,6 +1034,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1070,6 +1073,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1107,6 +1111,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1144,6 +1149,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1192,7 +1198,7 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		flag = commonFunc.logoutUser();
+		flag = commonFunc.logoutUser();assertTrue(flag);
 	}
 
 	/**
@@ -1241,6 +1247,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1276,9 +1283,6 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameUDService"),
-//				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1289,6 +1293,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1338,6 +1343,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1386,6 +1392,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1421,9 +1428,6 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSameRCService"),
-//				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1434,6 +1438,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1483,6 +1488,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1531,6 +1537,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1566,9 +1573,6 @@ public class GrnPageFunctions2 {
 		GRNFunc.clickSelectAllGEButton();
 		GRNFunc.createGrnWithGeButton();
 		GRNFunc.clickOkButton();
-//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToGRNImpSamePLService"),
-//				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-//		DirectGRNFunc.lotSerialQtyApportion();
 		clickImportLRAndfillBillNo(BillNo, Today);
 		overAllSaveAndPostForExcess();
 		if (!VariableHandler.getApprovalFlag()) {
@@ -1579,6 +1583,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1628,6 +1633,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1676,6 +1682,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1725,6 +1732,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1773,6 +1781,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1822,6 +1831,7 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 
 	/**
@@ -1870,5 +1880,6 @@ public class GrnPageFunctions2 {
 		}
 		verifyGRNDocumentApprovedStatus();
 		flag = commonFunc.logoutUser();
+		assertTrue(flag);
 	}
 }

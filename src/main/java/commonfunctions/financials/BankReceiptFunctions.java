@@ -3772,6 +3772,669 @@ public class BankReceiptFunctions {
 		BankReceiptThroughAddButtonWithCharges(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
+	
+	/**
+	 * This Method Is Used To Click The Pending Party Documents In Bank Payment
+	 * Screen
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPendingReceivablesAdvnaceInBR() {
+		flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvButton, ElementType.Xpath);
+			flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName,
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Bank Receipt Pending Receivables Advance Button Is Clicked Successfully");
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is Used To Click The pending payables Button In The Pending CR
+	 * Docs
+	 * 
+	 * @author Harikrishna - RMITS
+	 */
+	public void clickPendingRecivablesAdvanceButtonInPendDRDocs() {
+		flag = webDB.waitForElement(BankReceiptLocators.PendingDRPendingreceivablesAdvanceButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(BankReceiptLocators.PendingDRPendingreceivablesAdvanceButton, ElementType.Xpath);
+			flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Receivables Advance Button Is Clicked Successfully In The Pending CR Docs");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used to Select the Sales Invoice pending Records In the
+	 * Pending Receivables In the bank Receipt Screen
+	 * 
+	 * @author Harikrishna _ RMITS
+	 * @param PartyName
+	 * @param VoucherNumber.get(i)
+	 */
+	public void selectAdvanceDocumentInPendingReceivablesAdvance(String PartyName, ArrayList<String> VoucherNumber,
+			String SheetName) {
+		flag = webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+		if (flag) {
+			String GetTextPartyName = webDB.getDomPropertyFromElement(
+					BankReceiptLocators.BankReceiptPendingReceivablesAdvPartyNameInputField, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			if (GetTextPartyName.equals(PartyName)) {
+				for (int i = 1; i <= VoucherNumber.size(); i++) {
+					commonFunc.searchAndSelectValueInFilters(
+							BankReceiptLocators.BankReceiptPendingReceivablesAdvanceDocNumberLovButton,
+							VoucherNumber.get(i - 1));
+					webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName,
+							ElementType.Xpath);
+					flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+							ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.doubleClickAnElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+								ElementType.Xpath);
+						flag = webDB.waitForElement(BankReceiptLocators.BRAdvPendingReceivablesDocumentSelectCheckBox(
+								VoucherNumber.get(i - 1)), ElementType.Xpath);
+						// TODO
+//						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, VoucherNumber.get(i - 1), i);
+						// TODO
+						if (flag) {
+							commonFunc.checkRefreshCellsDisappear();
+							webDB.clickAnElement(BankReceiptLocators.BRAdvPendingReceivablesDocumentSelectCheckBox(
+									VoucherNumber.get(i - 1)), ElementType.Xpath);
+							commonFunc.hardWait(6000);
+							flag = webDB.waitForElement(
+									BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Receivables Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					}
+				}
+				webDB.moveToElement(BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+						ElementType.Xpath);
+				webDB.javaScriptClickAnElement(BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BankReceiptLocators.BankReceiptHeaderCreateJournalButton,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO",
+							"OK Button Is Clicked Successfully In The Bank Receipt Pending Receivables Documents");
+				}
+			} else {
+				logs.logging("INFO",
+						"Bank Receipt Line Wise Party Name And Pending Receivables Party Name Is not Getting Matched");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methos Is Used To Choose Party Name And Select The Purchase Bills In The
+	 * Pending Party Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param PartyName
+	 * @param VoucherNumber
+	 */
+	public void chooseAdvanceDocumentNumberAndClickSearchButtonInPendingReceivablesAdvance(
+			ArrayList<String> VoucherNumber, String SheetName) {
+		flag = webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+		if (flag) {
+			for (int i = 1; i <= VoucherNumber.size(); i++) {
+//				commonFunc.searchAndSelectValueInFilters(
+//						BankPaymentLocators.BankPaymentPendingPartyDocumentPartyLovButton, PartyName);
+//				webDB.switchToFrame(BankPaymentLocators.BankPendingPartyDocumentsFrameName, ElementType.Xpath);
+//				flag = webDB.waitForElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+//						ElementType.Xpath);
+//				if (flag) {
+//					webDB.clickAnElement(BankPaymentLocators.BankPaymentPendingPartyDocumentSearchButton,
+//							ElementType.Xpath);
+//					commonFunc.checkRefreshCellsDisappear();
+				commonFunc.searchAndSelectValueInFilters(
+						BankReceiptLocators.BankReceiptPendingReceivablesAdvanceDocNumberLovButton,
+						VoucherNumber.get(i - 1));
+				webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+							ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							BankReceiptLocators.PendingReceivablesAdvanceDocumentNumberField, ElementType.Xpath);
+					logs.logging("INFO", "Get Text Document Number Is " + GetTextDocumentNumber);
+					if (GetTextDocumentNumber.equals(VoucherNumber.get(i - 1))) {
+						flag = webDB.waitForElement(BankReceiptLocators.BRAdvPendingReceivablesDocumentSelectCheckBox(
+								VoucherNumber.get(i - 1)), ElementType.Xpath);
+//						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, VoucherNumber.get(i - 1), i);
+						if (flag) {
+							webDB.clickAnElement(BankReceiptLocators.BRAdvPendingReceivablesDocumentSelectCheckBox(
+									VoucherNumber.get(i - 1)), ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(
+									BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "In Pending Receivables Documents This Voucher Number "
+										+ VoucherNumber.get(i - 1) + " Is Selected Successfully");
+							}
+						}
+					} else {
+						logs.logging("INFO",
+								"Bank Receipt Pending Receivables Line Wise Document Number And Pending Receivables Documents Number Is not Getting Matched");
+					}
+				}
+			}
+			commonFunc.hardWait(1500);
+			flag = webDB.waitForElement(BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+					ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+						ElementType.Xpath);
+				webDB.javaScriptClickAnElement(BankReceiptLocators.BankReceiptGetDocPendingReceivableScreenOkButton,
+						ElementType.Xpath);
+				commonFunc.hardWait(500);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(BankReceiptLocators.BankReceiptHeaderCreateJournalButton,
+						ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Ok Button Is Clicked Successfully In The Pending Receivables Screen");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is USed To Select One Document And Convert Into Bank / Cash
+	 * Payment
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param DocumentNumber
+	 * @param Type
+	 * @param PayMode
+	 * @param BankName
+	 */
+	public void chooseAdvanceDocumentNumberInPendingReceivablesAdvScreen(ArrayList<String> DocumentNumber, String Type,
+			String PayMode, String BankName, String CreationType, String SheetName) {
+		flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+			for (int i = 1; i <= DocumentNumber.size(); i++) {
+				commonFunc.searchAndSelectValueInFilters(
+						BankReceiptLocators.BankReceiptPendingReceivablesAdvanceDocNumberLovButton, DocumentNumber.get(i - 1));
+				webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+							ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					String GetTextDocumentNumber = webDB.getTextFromElement(
+							BankReceiptLocators.PendingReceivablesAdvanceDocumentNumberField, ElementType.Xpath);
+					if (GetTextDocumentNumber.equals(DocumentNumber.get(i - 1))) {
+//						verifyPendingReceivablesSIDocumentThroughGetDocWithDB(SheetName, DocumentNumber.get(i - 1), i);
+						commonFunc.hardWait(1000);
+						webDB.clickAnElement(BankReceiptLocators.BRAdvPendingReceivablesDocumentSelectCheckBox(
+								DocumentNumber.get(i - 1)), ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(1500);
+						flag = webDB.waitForElement(BankReceiptLocators.PendingReceivablesAdvanceCreateButton, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "This Sales Invoice Document " + DocumentNumber.get(i - 1)
+									+ " Is Selected Successfully");
+							if (DocumentNumber.size() > 1) {
+								commonFunc.checkRefreshCellsDisappear();
+								webDB.clickAnElement(BankReceiptLocators.BankPendingReceivablesAdvancePartyDocumentClearButton,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(
+										BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(BankReceiptLocators.BankReceiptPendingReceivablesAdvSearchButton,
+											ElementType.Xpath);
+									commonFunc.hardWait(1500);
+									commonFunc.checkRefreshCellsDisappear();
+								}
+							}
+						}
+					} else {
+						logs.logging("INFO", "Some Other Document Is Filtered");
+					}
+				}
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			webDB.moveToElement(BankReceiptLocators.PendingReceivablesAdvanceCreateButton, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(BankReceiptLocators.PendingReceivablesAdvanceCreateButton, ElementType.Xpath);
+			logs.logging("INFO", "Create Button Is Clicked Successfully");
+			commonFunc.checkRefreshCellsDisappear();
+			if (!CreationType.equals("Single")) {
+				flag = webDB.waitForElement(BankReceiptLocators.PendingReceivablesAdvanceMergeLabelInPending,
+						ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankReceiptLocators.PendingReceivablesAdvanceMergeLabelInPending, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+			flag = webDB.waitForElement(BankReceiptLocators.PendingReceivablesAdvanceTypeDropDown, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByText(BankReceiptLocators.PendingReceivablesAdvanceTypeDropDown, Type, ElementType.Xpath);
+				logs.logging("INFO", "Type Successfully Choosen As " + Type);
+				if (Type.equals("Bank")) {
+					flag = webDB.waitForElement(BankReceiptLocators.PendingReceivablesAdvancePayModeDropDown,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.selectDropDownByText(BankReceiptLocators.PendingReceivablesAdvancePayModeDropDown, PayMode,
+								ElementType.Xpath);
+						logs.logging("INFO", "Pay Mode Successfully Choosen As " + PayMode);
+					}
+				}
+				commonFunc.searchAndSelectValueInFilters(BankReceiptLocators.PendingReceivablesAdvanceBankNameLOVBUtton,
+						BankName);
+				webDB.switchToFrame(BankReceiptLocators.BankReceiptPendingReceivablesAdvFrameName, ElementType.Xpath);
+				flag = webDB.waitForElement(BankReceiptLocators.PendingReceivablesAdvanceOkButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(BankReceiptLocators.PendingReceivablesAdvanceOkButton, ElementType.Xpath);
+					webDB.switchToDefaultContent();
+					if (Type.equals("Bank")) {
+						flag = webDB.waitForElement(BankReceiptLocators.BankReceiptScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Bank Receipt Screen");
+						}
+					} else {
+						flag = webDB.waitForElement(BankReceiptLocators.CashPaymentScreenName, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO",
+									"OK Button Is Clicked Successfully And Navigated To Cash Receipt Screen");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is used To Add The Bank Receipt Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @return
+	 */
+	public void AdvanceBankReceiptThroughAddButton(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
+		bankpaymentfunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocModeBR"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
+		bankpaymentfunc.getBankPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
+				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
+		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankReceipts.length; i++) {
+			String GLAccountDesc = BankReceipts[i][1];
+			String PartyName = BankReceipts[i][3];
+			String EntityName = BankReceipts[i][5];
+			String CPCCodeDesc = BankReceipts[i][6];
+			String BillNumber = BankReceipts[i][7];
+			String PayAmount = BankReceipts[i][8];
+			String DRCR = BankReceipts[i][9];
+			String CURCY = BankReceipts[i][10];
+			String EXRate = BankReceipts[i][11];
+			String TransCURCY = BankReceipts[i][12];
+			String BaseCURCY = BankReceipts[i][13];
+			String AssesableValue = BankReceipts[i][16];
+			if (!GLAccountDesc.equals("")) {
+				clickBRLineAddButton();
+				addBankReceiptLineDetails(GLAccountDesc, CPCCodeDesc);
+				clickBRLineWiseSaveButton();
+				clickBRLineWiseAddButton(i);
+				clickPendingReceivablesAdvnaceInBR();
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				selectAdvanceDocumentInPendingReceivablesAdvance(PartyName, VariableHandler.getMultipleAdvRecDocs(),
+						SheetName);
+//				verifyBankReceiptLineDetailsWithDB(SheetName, i);
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBRHeader("68.31");
+			}
+		}
+		clickCreateJournalButtonInBR();
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBRVAutoClearAndVerifyBRVDocumentStatus(Currency);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method is Used To Add The Document Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param Currency
+	 */
+	public void AdvanceBankReceiptThroughGetDocument(String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
+		bankpaymentfunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocModeBR"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
+		bankpaymentfunc.getBankPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		bankpaymentfunc.verifyBankPaymentDetailsWithDB(BankName,
+				commonFunc.getDataFromTestDataSheet("BankReceiptPrefix"), Currency);
+		clickGetDocumentInBRHeader();
+		clickPendingReceivablesAdvnaceInBR();
+		chooseAdvanceDocumentNumberAndClickSearchButtonInPendingReceivablesAdvance(VariableHandler.getMultipleAdvRecDocs(), SheetName);
+		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankReceipts.length; i++) {
+			String GLAccountDesc = BankReceipts[i][1];
+			String BaseCURCY = BankReceipts[i][13];
+			if (!GLAccountDesc.equals("")) {
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+//				verifyBankReceiptLineDetailsWithDB(SheetName, i);
+			}
+			if (!Currency.equals("INR") || BankName.equals("JP MORGAN CHASE")) {
+				enterRealizedAmountInBRHeader("68.31");
+			}
+		}
+		clickCreateJournalButtonInBR();
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBRVAutoClearAndVerifyBRVDocumentStatus(Currency);
+		}
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is Used To Add The Document Through pending Documents
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param CreationType
+	 * @param SheetName
+	 * @param Currency
+	 */
+	public void AdvanceBankReceiptThroughPendingDocs(String CreationType, String SheetName, String Currency, String BankName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		clickPendingDRDocsButton();
+		clickPendingRecivablesAdvanceButtonInPendDRDocs();
+		chooseAdvanceDocumentNumberInPendingReceivablesAdvScreen(VariableHandler.getMultipleAdvRecDocs(),
+				commonFunc.getDataFromTestDataSheet("PaymentType"), commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				BankName, CreationType, SheetName);
+		bankpaymentfunc.getBankPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		sendReferenceNumberInBR(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		clickBRHeaderWiseSaveButton();
+		BankReceipts = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 1; i < BankReceipts.length; i++) {
+			String GLAccountDesc = BankReceipts[i][1];
+			String BaseCURCY = BankReceipts[i][13];
+			if (!GLAccountDesc.equals("")) {
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+//				verifyBankReceiptLineDetailsWithDB(SheetName, i);
+			}
+			if (!Currency.equals("INR") || (BankName.equals("JP MORGAN CHASE"))) {
+				enterRealizedAmountInBRHeader("68.31");
+			}
+		}
+		clickCreateJournalButtonInBR();
+//		verifyOverallHeaderAmountWithDB(SheetName);
+//		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			checkGLMControlBRVAutoClearAndVerifyBRVDocumentStatus(Currency);
+		}
+	}
+
+	/**
+	 * This Method Is Used to Create BR SPSI Through Add Button
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SheetName
+	 * @throws IOException
+	 */
+	public void ABRSinglePartySingleSOThroughAddButton(String SheetName) throws IOException {
+		salesOrdFunc.advanceSalesOrder();
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+
+	/**
+	 * This Method Is Used To Create BR SPSI Through Get Document
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SheetName
+	 * @throws IOException
+	 */
+	public void ABRSinglePartySingleSOThroughGetDocument(String SheetName) throws IOException {
+		salesOrdFunc.advanceSalesOrder();
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR SPSI Through pending Docs
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartySingleSOThroughPendingDocs(String SheetName) throws IOException {
+		salesOrdFunc.advanceSalesOrder();
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used to Create BR SPSI Through Add Button
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SheetName
+	 * @throws IOException
+	 */
+	public void ABRSinglePartyMultiSOThroughAddButton(String SheetName) throws IOException {
+		for (int i = 1; i <= 2; i++) {
+			salesOrdFunc.advanceSalesOrder();
+		}
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR SPSI Through Get Document
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SheetName
+	 * @throws IOException
+	 */
+	public void ABRSinglePartyMultiSOThroughGetDocument(String SheetName) throws IOException {
+		for (int i = 1; i <= 2; i++) {
+			salesOrdFunc.advanceSalesOrder();
+		}
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR SPSI Through pending Docs
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartyMultiSOThroughPendingDocs(String SheetName) throws IOException {
+		for (int i = 1; i <= 2; i++) {
+			salesOrdFunc.advanceSalesOrder();
+		}
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR With Single Party Single Invoice
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartySingleSOThroughAddButtonUSD(String SheetName) throws IOException {
+		salesOrdFunc.advanceSalesOrderExport();
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR With Single Party Single Invoice
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartySingleSOThroughGetDocumentUSD(String SheetName) throws IOException {
+		salesOrdFunc.advanceSalesOrderExport();
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR With Single Party Single Invoice
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartySingleSOThroughPendingDocsUSD(String SheetName) throws IOException {
+		salesOrdFunc.advanceSalesOrderExport();
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR With Single Party Single Invoice
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartyMultiSOThroughAddButtonUSD(String SheetName) throws IOException {
+		for (int i = 1; i <= 2; i++) {
+		salesOrdFunc.advanceSalesOrderExport();
+		}
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR With Single Party Single Invoice
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartyMultiSOThroughGetDocumentUSD(String SheetName) throws IOException {
+		for (int i = 1; i <= 2; i++) {
+			salesOrdFunc.advanceSalesOrderExport();
+			}
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
+	
+	/**
+	 * This Method Is Used To Create BR With Single Party Single Invoice
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException 
+	 */
+	public void ABRSinglePartyMultiSOThroughPendingDocsUSD(String SheetName) throws IOException {
+		for (int i = 1; i <= 2; i++) {
+			salesOrdFunc.advanceSalesOrderExport();
+			}
+		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
+		AdvanceBankReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
+				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+				commonFunc.getDataFromTestDataSheet("BankName"));
+	}
 
 	/**
 	 * This Method Is Used to set the Variable Handler To Zero After Finishing One

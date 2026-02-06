@@ -201,7 +201,7 @@ public class RfqLocators {
 
 	/** @locatorType Xpath */
 	public static final String SobItemField(int i) {//*[@id="R756144529071251319_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[2]
-		return "//*[@id=\'R1685044066775072606_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+		return "//*[@id=\'R2187670750374050234_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
@@ -242,7 +242,7 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String PoDetailsBtn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[32]/a/span";
 	/** @locatorType Xpath */
-	public static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(34) > a";
+	static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(36) > a";
 	/** @locatorType Xpath */					
 	public static final String PoLineDetails2 = "//label[@for='P161513106045_TYPE_1']";
 	/** @locatorType Xpath */
@@ -303,9 +303,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RFQSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='10319408940172414178_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='10822035623771391806_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='1167616873603641043_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='1670243557202618671_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "(//input[@data-testid='P1615131058_RADIO_GRP']/following-sibling::label)[2]";
 	/** @locatorType Xpath */

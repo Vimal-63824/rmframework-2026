@@ -1463,9 +1463,9 @@ public class PricelistPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(PricelistPageLocators.ItemSearchBtn, ElementType.Xpath);
 			logs.logging("INFO", "Search Button is clicked");
-			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
+			flag = webDB.waitForElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.CssSelector);
+				webDB.clickAnElement(PricelistPageLocators.ItemDrillDownBtn, ElementType.Xpath);
 				logs.logging("INFO", "Drill Down item");
 			}
 		}

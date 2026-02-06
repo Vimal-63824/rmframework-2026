@@ -926,7 +926,7 @@ public class PreparePayrollFunctions {
 //		String SearchMonth = date.format(formatter);
 //		String verifyMonth = date.format(formatter1);
 		String SearchMonth = "November";
-		String verifyMonth = "November";
+		String verifyMonth = "NOV";
 		try {
 			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 					"AdminUsername");

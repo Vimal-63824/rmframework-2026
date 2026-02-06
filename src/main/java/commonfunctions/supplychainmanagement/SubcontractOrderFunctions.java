@@ -58,6 +58,7 @@ public class SubcontractOrderFunctions {
 	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
+	static SalesInvoiceFunctions salesInvoiceFunc = new SalesInvoiceFunctions();
 
 	/**
 	 * Verify Pending Subcontract Order
@@ -2083,9 +2084,6 @@ public class SubcontractOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("BOMITEMWITHSOREF"), commonFunc.getDataFromTestDataSheet("BomQty"),
 				commonFunc.getDataFromTestDataSheet("BOMSOREF"));
 		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
-		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
-				commonFunc.getDataFromTestDataSheet("ComQty"),
-				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -10155,6 +10153,48 @@ public class SubcontractOrderFunctions {
 	}
 
 	/**
+	 * This Method Used For Rework Source SF code And Tar SF code Compare Excel
+	 * Sheet With DataBase
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void reworkprocessSourceSFcodeAndTarSFcode(String Sheetname) {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheetname);
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String SFcode = itemmultiple[i][6];
+			String TarSFcode = itemmultiple[i][7];
+			if (!SFcode.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBSFCODECOLUMN")), SFcode);
+				logs.logging("INFO", "Process Sou.SFcode Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.SCOLineWiseDetails(VariableHandler.getSCOdocno(),
+								commonFunc.getDataFromTestDataSheet("SCODBTARSFCODECOLUMN")), TarSFcode);
+				logs.logging("INFO", "Process Tar.SFcode Details Matched With DataBase Values");
+				commonFunc.hardWait(1000);
+				String SCOSFcode = webDB.getDomPropertyFromElement(SubcontractOrderLocators.SCO_GetSFcode,
+						ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Process ID Is: " + SCOSFcode);
+				VariableHandler.setSCOSFcode(SCOSFcode);
+				commonFunc.hardWait(1000);
+				String SCOTarSFcode = webDB.getTextFromElement(SubcontractOrderLocators.SCO_GetTarSFcode,
+						ElementType.Xpath);
+				logs.logging("INFO", "Get Process ID Is: " + SCOTarSFcode);
+				VariableHandler.setSCOTarSFcode(SCOTarSFcode);
+				commonFunc.hardWait(1000);
+			}
+		}
+		getSFcodeandWriteInExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
+	}
+
+	/**
 	 * This Method Used For Second Source SF code And Tar SF code Compare Excel
 	 * Sheet With DataBase
 	 * 
@@ -10253,6 +10293,37 @@ public class SubcontractOrderFunctions {
 			if (flag) {
 				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
 				firstprocessSourceSFcodeAndTarSFcode(webDB.getDataFromProperties("SourceSFCode"));
+				commonFunc.hardWait(1000);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Verified Line Details Is Closed");
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Rework Process Source And Target SFcode
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void reworkProcessSourceAndTargetSFcode() {
+		webDB.moveToElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Line Details Is Displayed");
+			webDB.clickAnElement(SubcontractOrderLocators.LineDetails, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(SubcontractOrderLocators.FrameDetails, ElementType.Xpath);
+				reworkprocessSourceSFcodeAndTarSFcode(webDB.getDataFromProperties("SourceSFCode"));
 				commonFunc.hardWait(1000);
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(SubcontractOrderLocators.CloseDetails, ElementType.Xpath);
@@ -10999,6 +11070,103 @@ public class SubcontractOrderFunctions {
 			commonFunc.hardWait(1000);
 			webDB.moveToElement(GrnScoLocators.CS_Type_Field, ElementType.Xpath);
 			verifyAddTableSpecs(GrnScoLocators.CS_Type_Field, GrnScoLocators.CS_Type_Field, CurrProcQty);
+			commonFunc.hardWait(2000);
+			webDB.moveToElement(SubcontractOrderLocators.Pend_SCO_GE_SelectAll, ElementType.Xpath);
+			flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_Select, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SubcontractOrderLocators.Pend_SCO_GE_Select, ElementType.Xpath);
+				commonFunc.hardWait(4000);
+				flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_CreateGE, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SubcontractOrderLocators.Pend_SCO_GE_CreateGE, ElementType.Xpath);
+					flag = webDB.waitForElement(SubcontractOrderLocators.Select_GateKeeper, ElementType.Xpath);
+					if (flag) {
+						webDB.selectDropDownByText(SubcontractOrderLocators.Select_GateKeeper, Gatekeeper,
+								ElementType.Xpath);
+						logs.logging("INFO", "GateKeeper Type Selected Successfully");
+						flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_DCno, ElementType.Xpath);
+						if (flag) {
+							webDB.sendTextToAnElement(SubcontractOrderLocators.Pend_SCO_GE_DCno, SCOdocno,
+									ElementType.Xpath);
+							flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_InvNo, ElementType.Xpath);
+							if (flag) {
+								webDB.sendTextToAnElement(SubcontractOrderLocators.Pend_SCO_GE_InvNo, SCOdocno,
+										ElementType.Xpath);
+								flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_VechNo,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.sendTextToAnElement(SubcontractOrderLocators.Pend_SCO_GE_VechNo, SCOdocno,
+											ElementType.Xpath);
+									flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_Ref,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.sendTextToAnElement(SubcontractOrderLocators.Pend_SCO_GE_Ref, SCOdocno,
+												ElementType.Xpath);
+										flag = webDB.waitForElement(
+												SubcontractOrderLocators.Pend_SCO_GE_CreateGE_OKButton,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(SubcontractOrderLocators.Pend_SCO_GE_CreateGE_OKButton,
+													ElementType.Xpath);
+											webDB.switchToDefaultContent();
+											commonFunc.checkRefreshCellsDisappear();
+											commonFunc.hardWait(1000);
+											flag = webDB.waitForElement(
+													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+													ElementType.Xpath);
+											if (webDB.verifyIsElementDisplayed(
+													SubcontractOrderLocators.GateEntryCloseNoteAlert,
+													ElementType.Xpath)) {
+												webDB.clickAnElementWithoutException(
+														SubcontractOrderLocators.GateEntryCloseNoteAlert,
+														ElementType.Xpath);
+												commonFunc.hardWait(2000);
+												String GEdocno = webDB.getTextFromElement(
+														SalesInvoiceLocators.GE_Doc_No, ElementType.Xpath);
+												logs.logging("INFO", "Get GE DocNo Is: " + GEdocno);
+												VariableHandler.setGEdocno(GEdocno);
+												commonFunc.hardWait(1000);
+												flag = webDB.waitForElement(SalesInvoiceLocators.GE_Driver_Name,
+														ElementType.Xpath);
+												if (flag) {
+													logs.logging("INFO", "GateEnrty Document No Get Successfully");
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Create Record From Pending SDS Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void createRecordSDSTypeFromPending(String SCOdocno, String Gatekeeper, String QtyApplyFor0) {
+		webDB.switchToFrame(SubcontractOrderLocators.Pend_SCO_GE_iFrame, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.Pend_GE_SCO_No_Lov, SCOdocno);
+		webDB.switchToFrame(SubcontractOrderLocators.Pend_SCO_GE_iFrame, ElementType.Xpath);
+		flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_Search, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SubcontractOrderLocators.Pend_SCO_GE_Search, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(1000);
+			String CurrProcQty = webDB.getDomPropertyFromElement(GrnScoLocators.PR_Type_Field, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Get  Proc Qty Is: " + CurrProcQty);
+			commonFunc.hardWait(1000);
+			webDB.moveToElement(GrnScoLocators.PR_Type_Field, ElementType.Xpath);
+			verifyAddTableSpecs(GrnScoLocators.PR_Type_Field, GrnScoLocators.PR_Type_Field, QtyApplyFor0);
+			commonFunc.hardWait(1000);
+			webDB.moveToElement(GrnScoLocators.SDS_Type_Field, ElementType.Xpath);
+			verifyAddTableSpecs(GrnScoLocators.SDS_Type_Field, GrnScoLocators.SDS_Type_Field, CurrProcQty);
 			commonFunc.hardWait(2000);
 			webDB.moveToElement(SubcontractOrderLocators.Pend_SCO_GE_SelectAll, ElementType.Xpath);
 			flag = webDB.waitForElement(SubcontractOrderLocators.Pend_SCO_GE_Select, ElementType.Xpath);
@@ -14780,6 +14948,7 @@ public class SubcontractOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used To Clicking Cancel Button
 	 * 
@@ -14792,7 +14961,7 @@ public class SubcontractOrderFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(1000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractCSFindAddIcon, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "CloseShort Document Cancelled Successfully");
 			}
 		}
@@ -15088,6 +15257,7 @@ public class SubcontractOrderFunctions {
 				System.getProperty("HariUsername"));
 		verifyCloseShortQty();
 	}
+
 	/**
 	 * ValueAddition SCO Type Changing Batch Qty Batch Cost CloseShort And Post
 	 * 
@@ -15128,6 +15298,7 @@ public class SubcontractOrderFunctions {
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
 	}
+
 	/**
 	 * Cancel The Subcontract Amendment Document
 	 * 
@@ -15161,8 +15332,10 @@ public class SubcontractOrderFunctions {
 		addingSubcontractLine();
 		clickingCancelButton();
 	}
+
 	/**
-	 * This Method Used For Verify SCOA Amendment Process And BatchQty And Batch Cost
+	 * This Method Used For Verify SCOA Amendment Process And BatchQty And Batch
+	 * Cost
 	 * 
 	 * @author Vimal-RMITS
 	 */
@@ -15173,21 +15346,21 @@ public class SubcontractOrderFunctions {
 				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
 						commonFunc.getDataFromTestDataSheet("SCOADBProcessDescCOLUMN")));
 		logs.logging("INFO", "SCO Process And SCOA Process Verify Successfully");
-		
+
 		verifyAssertionBothValues(
 				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
 						commonFunc.getDataFromTestDataSheet("SCODBSACCODECOLUMN")),
 				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
 						commonFunc.getDataFromTestDataSheet("SCOADBProcessSACCOLUMN")));
 		logs.logging("INFO", "SCO Process SAC And SCOA Process SAC Verify Successfully");
-		
+
 		verifyAssertionBothValues(
 				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
 						commonFunc.getDataFromTestDataSheet("SCODBBATCHQTYCOLUMN")),
 				dbCommonFunc.SCOAmendmentProcTab(VariableHandler.getSCOAdocNo(),
 						commonFunc.getDataFromTestDataSheet("SCOADBProcBatchQtyCOLUMN")));
 		logs.logging("INFO", "SCO Process Batch Qty And SCOA Process Batch Qty Verify Successfully");
-		
+
 		verifyAssertionBothValues(
 				dbCommonFunc.SCOProcessDetails(VariableHandler.getSCOdocno(),
 						commonFunc.getDataFromTestDataSheet("SCODBBATCHCOSTCOLUMN")),
@@ -15196,8 +15369,10 @@ public class SubcontractOrderFunctions {
 		logs.logging("INFO", "SCO Process Batch Cost And SCOA Process Batch Cost Verify Successfully");
 		commonFunc.hardWait(1000);
 	}
+
 	/**
-	 * This Method Used For Verify SCOA Amendment Process And BatchQty And Batch Cost
+	 * This Method Used For Verify SCOA Amendment Process And BatchQty And Batch
+	 * Cost
 	 * 
 	 * @author Vimal-RMITS
 	 */
@@ -15209,5 +15384,1408 @@ public class SubcontractOrderFunctions {
 						commonFunc.getDataFromTestDataSheet("SCODBCSQTYCOLUMN")));
 		logs.logging("INFO", "SCO CloseShort Qty And SCOA CloseShort Qty Verify Successfully");
 		commonFunc.hardWait(1000);
+	}
+
+	/**
+	 * This Method Used For Clicking SCO GRN Add Icon
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingSCOGRNAddIcon() {
+		flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_AddIcon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnScoLocators.GRN_SCO_AddIcon, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.switchToFrame(GrnScoLocators.GRN_SCO_Add_Iframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "GRN Subcontract Add Icon Clicked Successfuly");
+				webDB.switchToDefaultContent();
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting GRN SCO Parameters
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingGRNSCOParameters(String Loc, String Supl, String SuplBill, String DCInput) {
+		webDB.switchToFrame(GrnScoLocators.GRN_SCO_Add_Iframe, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(GrnScoLocators.GRN_SCO_Add_Loc_Lov, Loc);
+		webDB.switchToFrame(GrnScoLocators.GRN_SCO_Add_Iframe, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(GrnScoLocators.GRN_SCO_Add_Supl_Lov, Supl);
+		webDB.switchToFrame(GrnScoLocators.GRN_SCO_Add_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_Add_SuplBill_Input, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnScoLocators.GRN_SCO_Add_SuplBill_Input, ElementType.Xpath);
+			webDB.sendTextToAnElement(GrnScoLocators.GRN_SCO_Add_SuplBill_Input, SuplBill, ElementType.Xpath);
+			webDB.pressTabKey();
+			commonFunc.hardWait(1000);
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_Add_DC_Date, ElementType.Xpath);
+			if (flag) {
+				webDB.javaScriptClickAnElement(GrnScoLocators.GRN_SCO_Add_DC_Date, ElementType.Xpath);
+				webDB.switchToFrame(GrnScoLocators.GRN_SCO_Add_Iframe, ElementType.Xpath);
+				webDB.pressTabKey();
+				flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_Add_DC_DateInput, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(GrnScoLocators.GRN_SCO_Add_DC_DateInput, DCInput, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_FindCreateIcon, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnScoLocators.GRN_SCO_FindCreateIcon, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(GrnScoLocators.GrnNumber, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Grn Number Is Displayed");
+							String GrnNumber = webDB.getDomPropertyFromElement(GrnScoLocators.GrnNumber,
+									ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+							VariableHandler.setScoGrnNumber(GrnNumber);
+							logs.logging("INFO", "Get Grn Number Is: " + GrnNumber);
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Get GRN Lot No
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void getGRNSuplLotNum() {
+		commonFunc.hardWait(1000);
+		String GRNLotNo = webDB.getTextFromElement(GrnScoLocators.Get_GRN_SuplLotNo, ElementType.Xpath);
+		logs.logging("INFO", "Get Supl Lot Is: " + GRNLotNo);
+		commonFunc.hardWait(1000);
+		verifyAddTableSpecs(GrnScoLocators.GRN_Heat_No, GrnScoLocators.GRN_Heat_No_input, GRNLotNo);
+		verifyAddTableSpecs(GrnScoLocators.GRN_Test_No, GrnScoLocators.GRN_Test_No_Input, GRNLotNo);
+		commonFunc.hardWait(1000);
+		flag = webDB.waitForElement(GrnScoLocators.GRN_SCO_LotSerial_Save, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnScoLocators.GRN_SCO_LotSerial_Save, ElementType.Xpath);
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Create Direct GRN With Subcontract Referance
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public void createDirectGRNWithSubcontractReferance() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		System.out.println(VariableHandler.getMRNumber());
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		clickingSCOGRNAddIcon();
+		InsertingGRNSCOParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"), VariableHandler.getSCOdocno(),
+				VariableHandler.getSCOdocno());
+		grnScoPageFunc.directGRNSCOFetchButton(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+	}
+
+	/**
+	 * Create Serial Direct GRN With Subcontract Referance
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public void createSerialDirectGRNWithSubcontractReferance() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		System.out.println(VariableHandler.getMRNumber());
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		clickingSCOGRNAddIcon();
+		InsertingGRNSCOParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"), VariableHandler.getSCOdocno(),
+				VariableHandler.getSCOdocno());
+		grnScoPageFunc.directGRNSCOFetchButton(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+	}
+
+	/**
+	 * This Method Used For clicking Rework Order Pending Subcontract
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void clickingReworkOrderPendingSubcontract() {
+		flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pending_Icon, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.Rework_Pending_Icon, ElementType.Xpath);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pend_Subcontract, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Icon Clicked Successfully");
+				flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pend_Subcontract, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.Rework_Pend_Subcontract, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Rework Subcontract Pending Icon Clicked Successfully");
+					}
+				}
+			}
+		}
+		commonFunc.checkRefreshCellsDisappear();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For Inserting Invoice No and Create Rework Subcontract
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingSCOGRNNoandCreateReworkSubcontractNo(String CNdocno, String SupplierLocalRegistered,
+			String PR_Department) {
+		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RW_Pend_GRN_Lov_Btn, CNdocno);
+		commonFunc.hardWait(2000);
+		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Search_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Search_Btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(4000);
+			String RtnQty = webDB.getTextFromElement(SalesInvoiceLocators.RW_SCO_Get_Rej_Qty, ElementType.Xpath);
+			logs.logging("INFO", "Get Reject Qty Is: " + RtnQty);
+			commonFunc.hardWait(3000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.RW_SCO_InsideOutside_Qty, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(SalesInvoiceLocators.RW_SCO_InsideOutside_Qty, ElementType.Xpath);
+				webDB.sendTextToAnElement(SalesInvoiceLocators.RW_SCO_InsideOutside_Qty_Input, RtnQty,
+						ElementType.Xpath);
+				commonFunc.hardWait(1000);
+				webDB.pressTabKey();
+				commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RW_Pend_Outside_Supl_Lov,
+						SupplierLocalRegistered);
+				webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+				commonFunc.hardWait(2000);
+				webDB.moveToElement(SalesInvoiceLocators.RW_Pend_CheckBox, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(SalesInvoiceLocators.RW_Pend_CheckBox, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Save_Btn, ElementType.Xpath);
+				if (flag) {
+					webDB.javaScriptClickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Save_Btn, ElementType.Xpath);
+//					if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+//							ElementType.Xpath)) {
+//						webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+//								ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Create_Btn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Create_Btn, ElementType.Xpath);
+//							webDB.switchToDefaultContent();
+						commonFunc.hardWait(2000);
+						commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RW_Pend_SCO_Create_Dept_Lov,
+								PR_Department);
+						webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+						flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Create_OK_Btn, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Create_OK_Btn, ElementType.Xpath);
+							webDB.switchToDefaultContent();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							if (webDB.verifyIsElementDisplayed(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+									ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(SubcontractOrderLocators.OpenSCO_NoteAlert_Close,
+										ElementType.Xpath);
+								String SCOdocno = webDB.getTextFromElement(SubcontractOrderLocators.SubcontractDocNO,
+										ElementType.Xpath);
+								logs.logging("INFO", "Get SCO DocNo Is: " + SCOdocno);
+								VariableHandler.setSCOdocno(SCOdocno);
+								commonFunc.hardWait(2000);
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Create Rework Subcontract Order For Standard Rework Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void createReworkSubcontractOrderForStandardReworkType() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingSCOGRNNoandCreateReworkSubcontractNo(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+	}
+
+	/**
+	 * Create Rework Subcontract Order For Value Addition Rework Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void createReworkSubcontractOrderForValueAdditionReworkType() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParametersForValueAdditionType(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"),
+				commonFunc.getDataFromTestDataSheet("SCOVoutype"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCO"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		ValueAdditionProcessSourceAndTargetSFcode();
+		valueAdditionTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingSCOGRNNoandCreateReworkSubcontractNo(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("PR_Department"),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		salesInvoiceFunc.ClickingReworkOrderPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToReworkOrderCompletion();
+		salesInvoiceFunc.ClickingReworkOrderCompletionPendingIcon();
+		salesInvoiceFunc.InsertingRWCompletionDocNoandCreateTheRecord(VariableHandler.getRWdocno());
+		salesInvoiceFunc.InsertingResourceUsage(VariableHandler.getRWdocno(),
+				commonFunc.getDataFromTestDataSheet("WorkCenter"), commonFunc.getDataFromTestDataSheet("Process"),
+				commonFunc.getDataFromTestDataSheet("Resource"));
+//		InsertingLocatorItem(commonFunc.getDataFromTestDataSheet("ReworkLocator"));
+		salesInvoiceFunc.ClickingReworkOrderCompletionPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWCdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * This Method Used For Inserting Invoice No and Create Rework salesRtn
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void InsertingInvoiceNoandCreateReworksalesRtn(String CNdocno) {
+		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+		commonFunc.hardWait(2000);
+//		flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_Inv_Lov_Btn, ElementType.Xpath);
+//		if (flag) {
+//			webDB.javaScriptClickAnElement(SalesInvoiceLocators.RW_Pend_Inv_Lov_Btn, ElementType.Xpath);
+		commonFunc.searchAndSelectValueInFilters(SalesInvoiceLocators.RW_Pend_GRN_Lov_Btn, CNdocno);
+		commonFunc.hardWait(2000);
+		webDB.switchToFrame(SalesInvoiceLocators.Rework_Pend_Subcontract_Iframe, ElementType.Xpath);
+		flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Search_Btn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Search_Btn, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(4000);
+			String RtnQty = webDB.getTextFromElement(SalesInvoiceLocators.RW_SCO_Get_Rej_Qty, ElementType.Xpath);
+			logs.logging("INFO", "Get Reject Qty Is: " + RtnQty);
+			commonFunc.hardWait(3000);
+			flag = webDB.waitForElement(SalesInvoiceLocators.Rw_SCO_Inside_QtyField, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(SalesInvoiceLocators.Rw_SCO_Inside_QtyField, ElementType.Xpath);
+				webDB.sendTextToAnElement(SalesInvoiceLocators.Rw_SCO_Inside_QtyField_Input, RtnQty, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				webDB.moveToElement(SalesInvoiceLocators.RW_Pend_CheckBox, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(SalesInvoiceLocators.RW_Pend_CheckBox, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(1000);
+				flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Save_Btn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Save_Btn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(1000);
+					flag = webDB.waitForElement(SalesInvoiceLocators.RW_Pend_SCO_Create_Btn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(SalesInvoiceLocators.RW_Pend_SCO_Create_Btn, ElementType.Xpath);
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(SalesInvoiceLocators.RW_SCO_Create_OK_Btn, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(SalesInvoiceLocators.RW_SCO_Create_OK_Btn, ElementType.Xpath);
+							webDB.switchToDefaultContent();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+								webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+										ElementType.Xpath);
+								commonFunc.hardWait(2000);
+								String RWdocno = webDB.getTextFromElement(SalesInvoiceLocators.RW_Doc_No,
+										ElementType.Xpath);
+								logs.logging("INFO", "Get RW DocNo Is: " + RWdocno);
+								VariableHandler.setRWdocno(RWdocno);
+								// checkReworkOrderHeaderDetailsDataBaseValuesWithUIValues();
+								commonFunc.hardWait(3000);
+								flag = webDB.waitForElement(SalesInvoiceLocators.RW_Post_btn, ElementType.Xpath);
+								if (flag) {
+									logs.logging("INFO", "Pending Sales Return Rework Order Document Created");
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * create Repair - rework order for Subcontract Primary rejection
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void createRepairreworkorderforSubcontractPrimaryrejection() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingInvoiceNoandCreateReworksalesRtn(VariableHandler.getScoGrnNumber());
+		salesInvoiceFunc.ClickingReworkOrderPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToReworkOrderCompletion();
+		salesInvoiceFunc.ClickingReworkOrderCompletionPendingIcon();
+		salesInvoiceFunc.InsertingRWCompletionDocNoandCreateTheRecord(VariableHandler.getRWdocno());
+		salesInvoiceFunc.InsertingResourceUsage(VariableHandler.getRWdocno(),
+				commonFunc.getDataFromTestDataSheet("WorkCenter"), commonFunc.getDataFromTestDataSheet("Process"),
+				commonFunc.getDataFromTestDataSheet("Resource"));
+//		InsertingLocatorItem(commonFunc.getDataFromTestDataSheet("ReworkLocator"));
+		salesInvoiceFunc.ClickingReworkOrderCompletionPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWCdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * create Scrap - rework order for Subcontract Primary rejection
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void createScrapreworkorderforSubcontractPrimaryrejection() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("ComQty"),
+				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingInvoiceNoandCreateReworksalesRtn(VariableHandler.getScoGrnNumber());
+		salesInvoiceFunc.ClickingReworkOrderPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToReworkOrderCompletion();
+		salesInvoiceFunc.ClickingReworkOrderCompletionPendingIcon();
+		salesInvoiceFunc.InsertingRWCompletionDocNoandScrapCreateTheRecord(VariableHandler.getRWdocno());
+		salesInvoiceFunc.InsertingResourceUsage(VariableHandler.getRWdocno(),
+				commonFunc.getDataFromTestDataSheet("WorkCenter"), commonFunc.getDataFromTestDataSheet("Process"),
+				commonFunc.getDataFromTestDataSheet("Resource"));
+		salesInvoiceFunc.ClickingReworkCompletionCreatejournal();
+//		InsertingLocatorItem(commonFunc.getDataFromTestDataSheet("ReworkLocator"));
+		salesInvoiceFunc.ClickingReworkOrderCompletionPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getRWCdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+	}
+
+	/**
+	 * This Method Used For Create Production Order From Subcontract order To GRN
+	 * SDS Type
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean createProductionOrderFromSubcontractorderToGRNSDSType() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+//		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+//				commonFunc.getDataFromTestDataSheet("ComQty"),
+//				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDocForSDSType(VariableHandler.getSCOdocno(),
+				commonFunc.getDataFromTestDataSheet("QtyApplyFor0"));
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingSCOGRNNoandCreateReworkSubcontractNo(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"));
+		// checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		reworkProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyReworkGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Pending Subcontract Order to GRN with Gate Entry for SDS
+	 * type
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean pendingSubcontractOrdertoGRNwithGateEntryforSDStype() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("L49ID"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix49"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BomForQCLotItem"), commonFunc.getDataFromTestDataSheet("BomQty"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+//		ProductionordertFunc.verifyProductionOrderMREventAndRestOP(commonFunc.getDataFromTestDataSheet("ComQty"),
+//				commonFunc.getDataFromTestDataSheet("ComQty"),
+//				commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateTogateEntry();
+		clickingPendingGateEntry();
+		createRecordSDSTypeFromPending(VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("Gatekeeper"),
+				commonFunc.getDataFromTestDataSheet("QtyApplyFor0"));
+		postTheGateEntryDocument(commonFunc.getDataFromTestDataSheet("DriverName"));
+		commonFunc.navigateToGrnSco();
+		pendingGRNGateEntry(VariableHandler.getGEdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingSCOGRNNoandCreateReworkSubcontractNo(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"));
+		// checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		reworkProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateTogateEntry();
+		clickingPendingGateEntry();
+		createRecordPRTypeFromPending(VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("Gatekeeper"));
+		postTheGateEntryDocument(commonFunc.getDataFromTestDataSheet("DriverName"));
+		commonFunc.navigateToGrnSco();
+		pendingGRNGateEntry(VariableHandler.getGEdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyReworkGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		return flag;
+	}
+
+	/**
+	 * This Method Used For Pending Serial Item Subcontract Order to GRN without
+	 * Gate Entry for SDS type - QC Items
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean pendingSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCItems() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BOMForSerialQCItem"),
+				commonFunc.getDataFromTestDataSheet("BOMQtyForSerialQCItem"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSerialWiseSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingSCOGRNNoandCreateReworkSubcontractNo(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"));
+		// checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		reworkProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyReworkGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		return flag;
+	}
+	/**
+	 * This Method Used For Pending Serial Subcontract Order to GRN with Gate Entry for SDS
+	 * type
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public boolean pendingSerialSubcontractOrdertoGRNwithGateEntryforSDStype() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToProductionOrderScreen();
+		ProductionordertFunc.clickAddIconInCreationProductionOrder();
+		createProdOrderAndProductionOrderParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+				commonFunc.getDataFromTestDataSheet("PROPrefix"),
+				commonFunc.getDataFromTestDataSheet("ManufactureType"),
+				commonFunc.getDataFromTestDataSheet("BOMForSerialQCItem"),
+				commonFunc.getDataFromTestDataSheet("BOMQtyForSerialQCItem"));
+		ProductionordertFunc.clickSaveIconInCreationProductionOrder();
+		ProductionordertFunc.clickHeaderSaveAndPostProdOrder();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getProductionOrderNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToSubcontractOrder();
+		verifyPendingSubcontractOrderandCreateTheRecord(VariableHandler.getProductionOrderNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"));
+		checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateTogateEntry();
+		clickingPendingGateEntry();
+		createRecordSDSTypeFromPending(VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("Gatekeeper"),
+				commonFunc.getDataFromTestDataSheet("QtyApplyFor0"));
+		postTheGateEntryDocument(commonFunc.getDataFromTestDataSheet("DriverName"));
+		commonFunc.navigateToGrnSco();
+		pendingGRNGateEntry(VariableHandler.getGEdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateInspectionDocumentsPage();
+		qcFunc.verifyPendingInspectionDocumentForSubcontractGRN(VariableHandler.getScoGrnNumber());
+		qcFunc.rejectQuanityDefect(commonFunc.getDataFromTestDataSheet("QtyApplyFor0"),
+				commonFunc.getDataFromTestDataSheet("Defect"));
+		qcFunc.clickTickAndPostIcon();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getIDNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		commonFunc.navigateToReworkOrder();
+		clickingReworkOrderPendingSubcontract();
+		InsertingSCOGRNNoandCreateReworkSubcontractNo(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("SupplierLocalRegistered"),
+				commonFunc.getDataFromTestDataSheet("PR_Department"));
+		// checkSucontractOrderHeaderDetailsDataBaseValuesWithUIValues();
+		clickLocationDetailsButtonValidationwithDataBase();
+		checkSucontractOrderLineDetailsDataBaseValuesWithUIValues();
+		storeBatchQtyAndBtachCost();
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		reworkProcessSourceAndTargetSFcode();
+		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateTogateEntry();
+		clickingPendingGateEntry();
+		createRecordPRTypeFromPending(VariableHandler.getSCOdocno(), commonFunc.getDataFromTestDataSheet("Gatekeeper"));
+		postTheGateEntryDocument(commonFunc.getDataFromTestDataSheet("DriverName"));
+		commonFunc.navigateToGrnSco();
+		pendingGRNGateEntry(VariableHandler.getGEdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyReworkGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
+		return flag;
+	}
+	/**
+	 * Create Direct Serial GRN With Subcontract Referance
+	 * 
+	 * @author Vimal - RMITS
+	 * @return boolean
+	 */
+	public void createDirectSerialGRNWithSubcontractReferance() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToSubcontractOrder();
+		clickingAddIconForSCO();
+		insertingSubcontractParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"));
+		AddingProcessLineFromExcelSheet(webDB.getDataFromProperties("DirectSCOSerial"));
+		getBatchQtyBatchCostandWriteInExcelSheet(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		processCalculationCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickLocationDetailsButtonValidationwithDataBase();
+		clickingGenMRPbutton();
+		clickingMRPDetailsTabVerificationWithBOMAgainst();
+		firstProcessSourceAndTargetSFcode();
+		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
+				webDB.getDataFromProperties("ProcCalculationInterstateUnreg"));
+		clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		clickingSCOGRNAddIcon();
+		InsertingGRNSCOParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("SubcontractSupplier"), VariableHandler.getSCOdocno(),
+				VariableHandler.getSCOdocno());
+		grnScoPageFunc.directGRNSCOFetchButton(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 	}
 }

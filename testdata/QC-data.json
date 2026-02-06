@@ -1709,6 +1709,14 @@
 	"SCODBPendQTYCOLUMN": "PALC_PEND_PO_QTY",
 	"Purchase_Bills_UnRegrd":"SHRI VARI TRADERS",
 	"GeneralReference":"General Expenses",
-	"GeneralExpense":"BreakFast G",
-	"GeneralExpAmount":"4500"
+	"GeneralExpAmount":"4500",
+	"Purchase_Bills_CP_UTGST_Sup":"VEL TRADERS",
+	"Purchase_Bills_Non_Res_Sup":"SK TRADERS",
+	"Purchase_Bills_NR":"KVS TRADERS",
+	"PayAmount1":"200",
+	"BillsBank":"234",
+	"PurchaseBills_IGST_Validation":"PurchaseBills_IGST_Validation",
+	"Purchasebills_adj_interstate":"Purchasebills_adj_interstate",
+	"RealizedAmount":"240",
+	"Year202627": "202627"
 }
