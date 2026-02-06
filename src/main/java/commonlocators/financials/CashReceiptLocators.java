@@ -188,7 +188,7 @@ public class CashReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptPendingReceivablesButton = "//button[@id='pendrec']";
 	/** @locatorType Xpath */
-	public static final String CashReceiptPendingReceivablesButton = "//button[@id='B2908150982128806598']";
+	public static final String CashReceiptPendingReceivablesButton = "//h1[text()='Create Pending Doc.']/ancestor::div/following::div[8]/button";
 	/** @locatorType Xpath */
 	public static final String BankReceiptPendingReceivablesFrameName = "//iframe[@title='Pending Receivables']";
 	/** @locatorType Xpath */
@@ -196,7 +196,7 @@ public class CashReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptDocNumberLovButton = "//input[@data-testid='P3413101003_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String BankReceiptPendingReceivablesSearchButton = "//button[@id='B2819920268205104394']";
+	public static final String BankReceiptPendingReceivablesSearchButton = "//span[text()='Search']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String BankReceiptPendingReceivableScreenOkButton = "//button[@id='B4']";
 	/** @locatorType Xpath */
@@ -208,7 +208,7 @@ public class CashReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptCreateJournalButton = "//button[@data-testid='CreateJournal']";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesDocumentNumberField = "//*[@id='2792336031640519119_orig']/tbody/tr[2]/td[19]";
+	public static final String PendingReceivablesDocumentNumberField = "//*[@id='3291344129481487258_orig']/tbody/tr[2]/td[19]";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesDRDocumentNumberLOVButton = "//button[@id='P3413101003_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
@@ -265,6 +265,40 @@ public class CashReceiptLocators {
 	public static final String BankReceiptGSTDetailsSaveButton = "//button[@title='Save2']";
 	/** @locatorType Xpath */
 	public static final String BankReceiptGSTCloseButton = "//h1[contains(text(),'GST Details')]/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String CashReceiptAdvancebutton = "//h1[text()='Create Pending']/ancestor::div/following::div[9]/button/span[text()='Pending Receivable - Advance']";
+	/** @locatorType Xpath */
+	public static final String CashReceiptAdvanceFrame = "//iframe[@title='Pend. Receivable - Advance']";
+	/** @locatorType Xpath */
+	public static final String BankReceiptAdvPendingReceivablesPartyNameInputField = "//input[@id='P341310231_PARTY_NAME']";
+	/** @locatorType Xpath */
+	public static final String AdvPendingReceivablesDocumentNumberLovButton = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String BankReceiptAdvPendingReceivablesSearchButton = "//span[text()='Search']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String CashReceiptAdvpendingReceivablesgetDocument = "//button[@id='B2908151062294806599']";
+	/** @locatorType Xpath */
+	public static final String AdvPendingReceivablesDocumentNumberField = "//*[@id='2995376176452410474_orig']/tbody/tr[2]/td[22]";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvanceButton = "//button[@id='B2908151062294806599']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivanlesAdvanceCreateButton = "//span[text()='Create']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvancePendingDRDocs = "//h1[text()='Create Pending Doc.']/ancestor::div/following::div[9]/button/span[text()='Pending Receivable - Advance']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvMergeLabelInPending = "//label[@for='P341310231_GLOBAL_SCREEN_1']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvSingleLabelInPending = "//label[@for='P341310231_GLOBAL_SCREEN_0']";
+	/** @locatorType Xpath */
+	public static final String BankPendingAdvPartyDocumentClearButton = "//button[@title='Home']/parent::div/button[@title='Clear']";
+	/** @locatorType Xpath */
+	public static final String AdvPendingReceivablesBankNameLOVBUtton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String AdvancePendingReceivablesTypeDropDown = "//select[@id='P341310231_TYPE']";
+	/** @locatorType Xpath */
+	public static final String AdvPendingReceivablesOkButton = "//span[text()='Ok']";
+	/** @locatorType Xpath */
+	public static final String PendingReceivablesAdvancePendingDRDocs1 = "//h1[text()='Create Pending']/ancestor::div/following::div[9]/button/span[text()='Pending Receivable - Advance']";
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
@@ -301,5 +335,10 @@ public class CashReceiptLocators {
 	public static final String CashLineGSTButton(int i) {
 		return "#ig_bank_recon_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(" + i
 				+ ") > td:nth-child(11) > a";
+	}
+
+	/** @locatorType Xpath */
+	public static final String BRAdvPendingReceivablesDocumentSelectCheckBox(String VoucherNumber) {
+		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[14]/*";
 	}
 }

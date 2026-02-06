@@ -427,7 +427,7 @@ public class SalesInvoiceLocators {
 	/** @locatorType Xpath */
 	public static final String LineDetails(int i) {
 		return "//*[@id=\'ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[" + i
-				+ "]/td[19]/a/span[contains(@style,'blue')]";
+				+ "]/td[20]/a/span[contains(@style,'blue')]";
 	}
 
 	/** @locatorType Xpath */
@@ -631,7 +631,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RW_Post_btn = "//button[@data-testid='RW_Post_btn']";
 	/** @Locator XPATH */
-	public static final String RW_Doc_No = "//span[@id='P1818131040_RWOHD_ORD_NO_DISPLAY']";
+	public static final String RW_Doc_No = "//span[@data-testid='RW_ORD_NO']";
 	/** @Locator XPATH */
 	public static final String ReworkOrd_Completion_Note = "//span[contains(text(),'PP & Shop Floor')]/ancestor::li/*/li[2]/*/li[3]/*/li[2]";
 	/** @Locator XPATH */
@@ -774,4 +774,34 @@ public class SalesInvoiceLocators {
 	public static final String SI_Frwd_Person = "//input[@data-testid='P236131090_FWD_PERSON']";
 	/** @Locator XPATH */
 	public static final String InvoiceDocNo = "//span[@data-testid='P191513109001_SIHD_EXC_INV_NO']";
+	/** @Locator XPATH */
+	public static final String Rework_Pend_Subcontract = "//button[@data-testid='Rework_Subcontract_btn']";
+	/** @Locator XPATH */
+	public static final String Rework_Pend_Subcontract_Iframe = "//iframe[@title='Insp .Cre Rtn / Rwk SCO']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_SCO_Search_Btn = "//button[@data-testid='RW_SCO_Search_Btn']";
+	/** @Locator XPATH */
+	public static final String RW_SCO_Get_Rej_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[4]";
+	/** @Locator XPATH */
+	public static final String RW_SCO_InsideOutside_Qty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
+	/** @Locator XPATH */
+	public static final String RW_SCO_InsideOutside_Qty_Input = "//input[@data-testid='Rework_Prim_OS_Field']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_SCO_Save_Btn = "//button[@data-testid='RW_SCO_Save_Btn']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_SCO_Create_Btn = "//button[@data-testid='RW_SCO_Create_Btn']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_SCO_Create_OK_Btn = "//button[@data-testid='RW_SCO_Depart_OK_Btn']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_SCO_Create_Dept_Lov = "//input[@id='P201713122002_DEPT']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String RW_Pend_GRN_Lov_Btn = "//input[@data-testid='RW_SCO_GRN_lov']/following-sibling::button";
+	/** @Locator XPATH */
+	public static final String Rw_SCO_Inside_QtyField = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr[1]/td[7]";
+	/** @Locator XPATH */
+	public static final String Rw_SCO_Inside_QtyField_Input = "//input[@data-testid='Rework_Prim_IS_Field']";
+	/** @Locator XPATH */
+	public static final String RW_SCO_Create_OK_Btn = "//button[@data-testid='RW_SCO_OK_Btn']";
+	/** @Locator XPATH */
+	public static final String RW_Pend_Outside_Supl_Lov = "//input[@data-testid='Rework_Prim_SUP_Lov']/following-sibling::button";
 }

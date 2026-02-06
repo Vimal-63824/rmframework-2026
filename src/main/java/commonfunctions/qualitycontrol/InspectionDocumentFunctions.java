@@ -1831,5 +1831,106 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+	/**
+	 * Verify TableSpec InputParameter
+	 * 
+	 * @author Vimal - RMITS
+	 * @param Tablespec
+	 * @param InputParameter
+	 * @param Enteredvalue
+	 */
+	public void verifyAddTableSpecs(String Tablespec, String InputParameter, String Enteredvalue) {
+		flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+		if (flag) {
+			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+			logs.logging("INFO", "Table Input Box Is Clicked");
+			webDB.clearTextField(InputParameter, ElementType.Xpath);
+			logs.logging("INFO", "Clear Text Field The Input Value");
+			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
+			if (flag) {
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
+				webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
+				logs.logging("INFO", "Entered Value Is: " + Enteredvalue);
+				String value = webDB.getDomPropertyFromElement(InputParameter, ElementType.Xpath,
+						commonFunc.getDataFromTestDataSheet("Value"));
+				logs.logging("INFO", "Get Attribute Value Is: " + value);
+				flag = value.contains(Enteredvalue);
+				if (flag) {
+					logs.logging("INFO", "Verified Entered Value With Get Attribute Value");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
 
+	/**
+	 * This Methods Is Used To Reject Quanity Defect 
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void rejectQuanityDefect(String QtyApplyFor0, String Defect) {
+		webDB.moveToElement(DirectGrnPageLocators.ID_AcptQty_Field, ElementType.Xpath);
+		verifyAddTableSpecs(DirectGrnPageLocators.ID_AcptQty_Field, DirectGrnPageLocators.ID_AcptQty_Field, QtyApplyFor0);
+		commonFunc.hardWait(1000);
+		webDB.pressTabKey();
+		flag = webDB.waitForElement(DirectGrnPageLocators.RejectQty, ElementType.Xpath);
+		if (flag) {
+			String RejectQty = webDB.getDomPropertyFromElement(DirectGrnPageLocators.RejectQty, ElementType.Xpath,
+					commonFunc.getDataFromTestDataSheet("Value"));
+			logs.logging("INFO", "Reject Quantity Is:" + RejectQty);
+				commonFunc.hardWait(2000);
+				flag = webDB.waitForElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+					logs.logging("INFO", "Overall Save Is clicked");
+					flag = webDB.waitForElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
+						logs.logging("INFO", "Defect Tab Is Clicked");
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(2000);
+						flag = webDB.waitForElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
+							logs.logging("INFO", "Add Button Is Clicked");
+							commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.DefectLov, Defect);
+							logs.logging("INFO", "Entered Defect Is:" + Defect);
+							commonFunc.hardWait(2000);
+							flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
+								if (flag) {
+									webDB.clearText(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
+									commonFunc.hardWait(1000);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.DefectQtyInput, RejectQty,
+											ElementType.Xpath);
+									logs.logging("INFO", "Reject Quantity Is Entered:" + RejectQty);
+									flag = webDB.waitForElement(DirectGrnPageLocators.DefectPrimaryQty,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.DefectPrimaryQty, ElementType.Xpath);
+										logs.logging("INFO", "Primary Reject Field Is Clicked");
+										commonFunc.hardWait(1000);
+										flag = webDB.waitForElement(DirectGrnPageLocators.DefectSave,
+												ElementType.Xpath);
+										if (flag) {
+											webDB.clickAnElement(DirectGrnPageLocators.DefectSave, ElementType.Xpath);
+											logs.logging("INFO", "Line Is Saved");
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+		} else {
+			flag = webDB.waitForClickElement(InspectionDocumentsLocators.HeaderPostIcon, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Is Verified");
+			}
+		}
+		assertTrue(flag);
+	}
 }

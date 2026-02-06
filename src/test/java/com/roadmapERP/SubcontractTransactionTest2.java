@@ -945,7 +945,118 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 	public void CancelTheSCOCloseShortDocument() {
 		SubcontractFunc.cancelTheSCOCloseShortDocument();
 	}
+	/**
+	 * Create Direct GRN With Subcontract Referance
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 150, groups = { "Subcontract" }, description = "Create Direct GRN With Subcontract Referance")
+	public void CreateDirectGRNWithSubcontractReferance() {
+		SubcontractFunc.createDirectGRNWithSubcontractReferance();
+	}
 
+	/**
+	 * Create Rework Subcontract Order For Standard Rework Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 151, groups = {
+			"Subcontract" }, description = "Create Rework Subcontract Order For Standard Rework Type")
+	public void CreateReworkSubcontractOrderForStandardReworkType() {
+		SubcontractFunc.createReworkSubcontractOrderForStandardReworkType();
+	}
+	/**
+	 * How to create Repair - rework order for Subcontract Primary rejection?
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 152, groups = {
+			"Subcontract" }, description = "How to create Repair - rework order for Subcontract Primary rejection?")
+	public void CreateRepairreworkorderforSubcontractPrimaryrejection() {
+		SubcontractFunc.createRepairreworkorderforSubcontractPrimaryrejection();
+	}
+	/**
+	 * How to create Scrap - rework order for Subcontract Primary rejection?
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 153, groups = {
+			"Subcontract" }, description = "How to create Scrap - rework order for Subcontract Primary rejection?")
+	public void CreateScrapreworkorderforSubcontractPrimaryrejection() {
+		SubcontractFunc.createScrapreworkorderforSubcontractPrimaryrejection();
+	}
+	/**
+	 * Create Rework Subcontract Order For Value Addition Rework Type
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 154, groups = {
+			"Subcontract" }, description = "Create Rework Subcontract Order For Value Addition Rework Type")
+	public void CreateReworkSubcontractOrderForValueAdditionReworkType() {
+		SubcontractFunc.createReworkSubcontractOrderForValueAdditionReworkType();
+	}
+	/**
+	 * Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 155, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass Items")
+	public void CreateProductionOrderFromSubcontractorderToGRNSDSType() {
+		SubcontractFunc.createProductionOrderFromSubcontractorderToGRNSDSType();
+	}
+	/**
+	 * Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 156, groups = {
+			"Subcontract" }, description = "Pending Subcontract Order to GRN without Gate Entry for SDS type - Free pass Items")
+	public void PendingSubcontractOrdertoGRNwithGateEntryforSDStype() {
+		SubcontractFunc.pendingSubcontractOrdertoGRNwithGateEntryforSDStype();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN without Gate Entry for SDS type
+	 * - QC Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 157, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN without Gate Entry for SDS type - QC Items")
+	public void PendingSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCItems() {
+		SubcontractFunc.pendingSerialItemSubcontractOrdertoGRNwithoutGateEntryforPRtypeQCItems();
+	}
+	/**
+	 * Pending Serial Item Subcontract Order to GRN with Gate Entry for SDS type
+	 * - QC Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 158, groups = {
+			"Subcontract" }, description = "Pending Serial Item Subcontract Order to GRN with Gate Entry for SDS type - QC Items")
+	public void PendingSerialSubcontractOrdertoGRNwithGateEntryforSDStype() {
+		SubcontractFunc.pendingSerialSubcontractOrdertoGRNwithGateEntryforSDStype();
+	}
+	/**
+	 * Create Serial Item Direct GRN With Subcontract Referance
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 159, groups = {
+			"Subcontract" }, description = "Create Serial Item Direct GRN With Subcontract Referance")
+	public void createDirectSerialGRNWithSubcontractReferance() {
+		SubcontractFunc.createDirectSerialGRNWithSubcontractReferance();
+	}
 	/**
 	 * Verify After Method
 	 * 
