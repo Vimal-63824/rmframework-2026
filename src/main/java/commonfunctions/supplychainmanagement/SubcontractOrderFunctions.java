@@ -58,6 +58,7 @@ public class SubcontractOrderFunctions {
 	SalesOrderFunctions salesOrderFunctions = new SalesOrderFunctions();
 	DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
+	static SalesInvoiceFunctions salesInvoiceFunc = new SalesInvoiceFunctions();
 
 	/**
 	 * Verify Pending Subcontract Order
