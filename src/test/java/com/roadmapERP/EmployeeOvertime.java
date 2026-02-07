@@ -363,6 +363,19 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	}
 
 	/**
+	 * To Check General Expense Based on Return To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 27, groups = {
+			"General Expenses" }, description = "181.To Check General Expense Based on Return To Approval")
+	public void checkGeneralExpenseBasedOnReturnToApproval() {
+		flag = attendanceLeave.CheckGeneralExpenseBasedOnReturnToApproval();
+		Assert.assertTrue(flag);
+	}
+
+	/**
 	 * Logout The Portal If Testcases Failed
 	 * 
 	 * @author Sakthi-GWL
