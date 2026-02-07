@@ -1,4 +1,5 @@
 package commonfunctions.supplychainmanagement;
+
 /**
  * @author Durai
  * @company Roadmap May 02, 2025
@@ -42,6 +43,7 @@ public class SsoPageFunctions {
 	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
 	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String tomorrowDate = myDateObj.format(myFormatObj);
+
 	/**
 	 * This Methods Is Used To Verify Creation Of Item
 	 * 
@@ -53,9 +55,9 @@ public class SsoPageFunctions {
 		commonFunc.navigateItemPage();
 		verifySearchOfItem(commonFunc.getDataFromTestDataSheet("SimItem_ID"));
 		waitingForApproval();
-		commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getItemName(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getItemName(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -71,9 +73,9 @@ public class SsoPageFunctions {
 		commonFunc.navigateItemPage();
 		verifySearchOfItemDis(commonFunc.getDataFromTestDataSheet("DissimItem_ID"));
 		waitingForApproval();
-		commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getItemName(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveItemIdDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getItemName(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -104,9 +106,9 @@ public class SsoPageFunctions {
 		openPurchaseOrderHeaderHsnValidation();
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOPODocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -138,9 +140,9 @@ public class SsoPageFunctions {
 		openPurchaseOrderHeaderHsnValidation();
 		verifyClickingOpoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getOPODocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getOPODocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -177,9 +179,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSsoDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -215,9 +217,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSsoDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -251,9 +253,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSsoDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -290,9 +292,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSsoDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -327,9 +329,9 @@ public class SsoPageFunctions {
 		verifySsoGenerateSchedule();
 		verifySsoPost();
 		waitingForApprovalOpo();
-		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
-				VariableHandler.getSsoDocNum(), webDB.getDataFromProperties("HodEmpId"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSsoDocNum(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
 		flag = commonFunc.logoutUser();
 		assertTrue(flag);
 	}
@@ -438,39 +440,42 @@ public class SsoPageFunctions {
 			if (flag) {
 				webDB.clickAnElement(SsoPageLocators.PendingSso, ElementType.Xpath);
 				logs.logging("INFO", "Sso Button is clicked");
-			flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
-			if (flag) {
-				webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
-				logs.logging("INFO", "Switched to Frame");
-				flag = webDB.waitForElement(SsoPageLocators.SsoLocLov, ElementType.Xpath);
+				flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
 				if (flag) {
-					commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoLocLov, Location);
-					logs.logging("INFO", "Location is Entered:" + Location);
-					flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+					webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+					logs.logging("INFO", "Switched to Frame");
+					flag = webDB.waitForElement(SsoPageLocators.SsoLocLov, ElementType.Xpath);
 					if (flag) {
-						webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
-						logs.logging("INFO", "Switched to Frame");
-						flag = webDB.waitForElement(SsoPageLocators.SsoSupplierLov, ElementType.Xpath);
+						commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoLocLov, Location);
+						logs.logging("INFO", "Location is Entered:" + Location);
+						flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
 						if (flag) {
-							commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoSupplierLov, Supplier);
-							logs.logging("INFO", "Supplier is Entered:" + Supplier);
-							flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+							webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+							logs.logging("INFO", "Switched to Frame");
+							flag = webDB.waitForElement(SsoPageLocators.SsoSupplierLov, ElementType.Xpath);
 							if (flag) {
-								webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
-								logs.logging("INFO", "Switched to Frame");
-								flag = webDB.waitForElement(SsoPageLocators.SsoDepartmentLov, ElementType.Xpath);
+								commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoSupplierLov, Supplier);
+								logs.logging("INFO", "Supplier is Entered:" + Supplier);
+								flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
 								if (flag) {
-									commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDepartmentLov, Dept);
-									logs.logging("INFO", "Department is Entered:" + Dept);
-									flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
+									webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+									logs.logging("INFO", "Switched to Frame");
+									flag = webDB.waitForElement(SsoPageLocators.SsoDepartmentLov, ElementType.Xpath);
 									if (flag) {
-										webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
-										logs.logging("INFO", "Switched to Frame");
-										flag = webDB.waitForElement(SsoPageLocators.SsoShipWHToLov, ElementType.Xpath);
+										commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDepartmentLov,
+												Dept);
+										logs.logging("INFO", "Department is Entered:" + Dept);
+										flag = webDB.waitForElement(SsoPageLocators.SsoFrame, ElementType.Xpath);
 										if (flag) {
-											commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoShipWHToLov,
-													WH);
-											logs.logging("INFO", "Wharehouse is Entered:" + WH);
+											webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
+											logs.logging("INFO", "Switched to Frame");
+											flag = webDB.waitForElement(SsoPageLocators.SsoShipWHToLov,
+													ElementType.Xpath);
+											if (flag) {
+												commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoShipWHToLov,
+														WH);
+												logs.logging("INFO", "Wharehouse is Entered:" + WH);
+											}
 										}
 									}
 								}
@@ -479,7 +484,6 @@ public class SsoPageFunctions {
 					}
 				}
 			}
-		}
 		}
 		assertTrue(flag);
 	}
@@ -495,11 +499,11 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.switchToFrame(SsoPageLocators.SsoFrame, ElementType.Xpath);
 			logs.logging("INFO", "Switched to Frame");
-		flag = webDB.waitForElement(SsoPageLocators.SsoCreate, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(SsoPageLocators.SsoCreate, ElementType.Xpath);
-			logs.logging("INFO", "SSO Doc Is Created");
-		}
+			flag = webDB.waitForElement(SsoPageLocators.SsoCreate, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(SsoPageLocators.SsoCreate, ElementType.Xpath);
+				logs.logging("INFO", "SSO Doc Is Created");
+			}
 		}
 		assertTrue(flag);
 	}
@@ -721,10 +725,11 @@ public class SsoPageFunctions {
 		if (flag) {
 			webDB.clickAnElement(SsoPageLocators.SsoHeaderCancel, ElementType.Xpath);
 			logs.logging("INFO", "Header is Cancelled");
-			flag=webDB.waitForElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
-			if(flag) {
+			flag = webDB.waitForElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
+			if (flag) {
 //				webDB.clickAnElement(SsoPageLocators.SsoDocNoLovFindPage, ElementType.Xpath);
-				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDocNoLovFindPage, VariableHandler.getSsoDocNum());
+				commonFunc.searchAndSelectValueInFilters(SsoPageLocators.SsoDocNoLovFindPage,
+						VariableHandler.getSsoDocNum());
 				logs.logging("INFO", "Document No Is Entered");
 			}
 			flag = webDB.waitForElement(SsoPageLocators.SsoFindSearchBtn, ElementType.Xpath);
@@ -877,6 +882,7 @@ public class SsoPageFunctions {
 
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To Verify Searching Item in Find Screen
 	 * 
@@ -1344,6 +1350,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("L49ID"));
 		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1356,6 +1363,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Loc_100"));
 		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1368,6 +1376,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Loc_100"));
 		logs.logging("INFO", "Header Location Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1380,6 +1389,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("ImpSupplier"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1392,6 +1402,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Opo_SupId_ID"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1404,6 +1415,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("Opo_SupId_ID"));
 		logs.logging("INFO", "Header Supplier Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1416,6 +1428,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("RAW MATERIAL WH -49-4"));
 		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1428,6 +1441,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WH_To_Id"));
 		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Supplier Schedule Order Screen Validation For Location
 	 * 
@@ -1440,6 +1454,7 @@ public class SsoPageFunctions {
 				commonFunc.getDataFromTestDataSheet("WH_To_Id"));
 		logs.logging("INFO", "Header Warehouse Details Matched With DataBase Values");
 	}
+
 	/**
 	 * Open purchase Order Screen Validation For Location
 	 * 

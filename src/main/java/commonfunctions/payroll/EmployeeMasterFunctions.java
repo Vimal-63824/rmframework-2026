@@ -1066,6 +1066,7 @@ public class EmployeeMasterFunctions {
 			clickAddSelectFieldAndSelectSequence(commonFunc.getDataFromTestDataSheet("NationalityOptionText"), "3");
 			uploadEmployeeDetailsMigrationTemplate();
 			checkExceptionAndSaveHeaderInEmpDetailsMigration();
+			commonFunc.hardWait(3000);
 			postUploadedTemplateInEmployeeDetailsMigration();
 			commonFunc.logoutUser();
 			return true;
@@ -1116,14 +1117,14 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
-//				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
-//				approvalFunc.navigateToApprovals();
-//				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-//				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
-				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
-						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+						"HariUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyApproveWithDocNumber(VariableHandler.getEmpID());
+//				commonFunc.approveDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"));
 				commonFunc.logoutUser();
 			}
 			return true;
@@ -1174,16 +1175,16 @@ public class EmployeeMasterFunctions {
 			clickPostButtonAndVerifyEmployeePosted();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(System.getProperty("HariUsername"));
-//				commonFunc.logoutUser();
-//				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
-//						"HariUsername");
-//				approvalFunc.navigateToApprovals();
-//				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
-//				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
-//						webDB.getDataFromProperties("HRuserEmpId"));
-				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
-						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
+				commonFunc.logoutUser();
+				commonFunc.validCommonLogin(System.getProperty("HariUsername"), System.getProperty("LoginPassword"),
+						"HariUsername");
+				approvalFunc.navigateToApprovals();
+				approvalFunc.filterDocumentsforApproval(VariableHandler.getEmpID());
+				approvalFunc.verifyReturnWithDocNumber(VariableHandler.getEmpID(),
 						webDB.getDataFromProperties("HRuserEmpId"));
+//				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"), VariableHandler.getEmpID(),
+//						webDB.getDataFromProperties("ROAUAdminEmpId"), null, System.getProperty("HariUsername"),
+//						webDB.getDataFromProperties("HRuserEmpId"));
 				flag = commonFunc.logoutUser();
 			}
 			return true;
@@ -2448,8 +2449,9 @@ public class EmployeeMasterFunctions {
 								ElementType.Xpath).equalsIgnoreCase(ImageName);
 						if (flag) {
 							logs.logging("INFO", ImageName + " - was uploaded and File Name Displayed");
-							webDB.waitForElement(EmployeeMasterLocators.AddEmp_UploadBtn, ElementType.Xpath);
-							webDB.clickAnElement(EmployeeMasterLocators.AddEmp_UploadBtn, ElementType.Xpath);
+							webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProfileUploadIcon, ElementType.Xpath);
+							webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProfileUploadIcon, ElementType.Xpath);
+							webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProfileUploadIcon, ElementType.Xpath);
 							flag = checkProfileImageUploadedWithClearButton();
 							if (flag) {
 								logs.logging("INFO", "Upload Button Clicked and File Uploaded SuccessFully");
@@ -2479,7 +2481,7 @@ public class EmployeeMasterFunctions {
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LoadIframe, ElementType.Xpath);
 			if (flag) {
 				webDB.switchToFrame(EmployeeMasterLocators.AddEmp_LoadIframe, ElementType.Xpath);
-				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ClearUploadBtn, ElementType.Xpath);
+				flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProfileClearIcon, ElementType.Xpath);
 				if (flag) {
 					webDB.switchToDefaultContent();
 					flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_CloseFrameIcon, ElementType.Xpath);
@@ -4347,17 +4349,17 @@ public class EmployeeMasterFunctions {
 			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "No Exception Found for Employee Details Migration");
-				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon,
-						ElementType.Xpath)) {
-					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon, ElementType.Xpath);
-				}
-				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
-				if (flag) {
-					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
-					}
-					logs.logging("INFO", "Header Saved Succesfully for Employee Details Migration");
-				}
+//				if (webDB.verifyIsElementDisplayed(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon,
+//						ElementType.Xpath)) {
+//					webDB.clickAnElement(EmployeeMasterLocators.EmpDetailsMigrationHeaderSaveIcon, ElementType.Xpath);
+//				}
+//				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+//				if (flag) {
+//					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+//						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+//					}
+//					logs.logging("INFO", "Header Saved Succesfully for Employee Details Migration");
+//				}
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4370,7 +4372,7 @@ public class EmployeeMasterFunctions {
 	 */
 	public void postUploadedTemplateInEmployeeDetailsMigration() {
 		webDB.waitUntilElementToNotBeStale(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
-		flag = webDB.waitForClickElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
+		flag = webDB.waitForElement(EmployeeMasterLocators.EmpDetailsMigrationPostBtn, ElementType.Xpath);
 		if (flag) {
 			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -4493,7 +4495,12 @@ public class EmployeeMasterFunctions {
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
 			webDB.clickAnElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
-			commonFunc.hardWait(3000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(2000);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
 			logs.logging("INFO", "Probation Completed Button Clicked");
 			flag = webDB.waitForElement(EmployeeMasterLocators.EmployeeHistoryBtn, ElementType.Xpath);
 			if (flag) {
