@@ -5617,8 +5617,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckGeneralExpenseBasedOnEmployeeWise() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
 		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
@@ -5636,6 +5637,24 @@ public class AttendanceLeaveFunctions {
 	public boolean CheckGeneralExpenseBasedOnForwardToApproval() {
 //		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 //				"HrRqtUsername");
+		commonFunc.hardWait(3000);
+		commonFunc.navigateToGeneralExpense();
+		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("GeneralReference"));
+		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
+				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
+		return flag;
+	}
+
+	/**
+	 * To Check General Expense Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckGeneralExpenseBasedOnReturnToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
 		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
