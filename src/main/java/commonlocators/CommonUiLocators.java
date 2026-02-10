@@ -152,7 +152,8 @@ public class CommonUiLocators {
 
 	/** @locatorType Xpath */
 	public static String convertListOfXPath(String text) {
-		return "//td[text()='" + text + "'] | //li[text()='" + text + "'] | //*[text()='" + text + "']/parent::*";
+		return "//*[contains(@id,'PopupLov')]//td[text()='" + text + "'] | //*[contains(@id,'PopupLov')]//li[text()='"
+				+ text + "'] | //*[contains(@id,'PopupLov')]//*[text()='" + text + "']/parent::*";
 	}
 
 	/** @locatorType Xpath */
