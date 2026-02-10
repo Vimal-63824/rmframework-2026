@@ -21,6 +21,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -311,6 +312,7 @@ public class CommonFunctions {
 					flag = false;
 				}
 				checkRefreshCellsDisappear();
+				hardWait(1000);
 				List<WebElement> Elements = webDB.getDriver()
 						.findElements(By.xpath(CommonUiLocators.convertListOfXPath(Value)));
 				for (WebElement webElement : Elements) {
@@ -318,7 +320,13 @@ public class CommonFunctions {
 						if (webElement.isDisplayed() && webElement.getText().trim().equalsIgnoreCase(Value.trim())) {
 							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
 									webElement);
-//							((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();", webElement);
+							try {
+//								((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();",
+//										webElement);
+								Actions action =new Actions(webDB.getDriver());
+								action.moveToElement(webElement).build().perform();
+							} catch (Exception e) {
+							}
 							webElement.click();
 							flag = true;
 						} else {

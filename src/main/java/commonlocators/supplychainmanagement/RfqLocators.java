@@ -242,8 +242,6 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String PoDetailsBtn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[32]/a/span";
 	/** @locatorType Xpath */
-	public static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(36) > a";
-	/** @locatorType Xpath */
 	public static final String PoLineDetails2 = "//label[@for='P161513106045_TYPE_1']";
 	/** @locatorType Xpath */
 	public static final String DetailsRfqNum = "//input[@id='P161513106045_POL_RFQ_NO']";
