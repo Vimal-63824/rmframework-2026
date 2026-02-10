@@ -107,13 +107,13 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RfqSobSave = "//button[@data-testid='Save_suplr']";
 	/** @locatorType Xpath */
-	public static final String RfqSobClose = "//*[@id=\"t_PageBody\"]/div[26]/div[1]/button/span";//*[@id="t_PageBody"]/div[26]/div[1]/button/span
+	public static final String RfqSobClose = "//*[@id=\"t_PageBody\"]/div[26]/div[1]/button/span";// *[@id="t_PageBody"]/div[26]/div[1]/button/span
 	/** @locatorType Xpath */
 	public static final String RfqSobClose1 = "//button[@class='ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close']";
 	/** @locatorType Xpath */
 	public static final String RfqPost = "//button[@data-testid='EntryCompleted']";
-	
-	//label[contains(text(),'Header')]
+
+	// label[contains(text(),'Header')]
 	/** @locatorType Xpath */
 	public static final String RfqAfterpost = "//*[@id=\"P161513105806_RFQHD_STATUS_DISPLAY\"]";
 	/** @locatorType Xpath */
@@ -158,7 +158,7 @@ public class RfqLocators {
 	public static final String OkForwardButton = "//button[@data-testid='PO_Ok_Button']";
 	/** @locatorType Xpath */
 	public static final String PORfqAdd = "//button[@data-testid='Add']";
-	
+
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
 		return "//div[@id='add_line_ig_grid_vc']/div/div/table/tbody/tr[" + i + "]/td[2]";
@@ -200,7 +200,7 @@ public class RfqLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String SobItemField(int i) {//*[@id="R756144529071251319_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[2]
+	public static final String SobItemField(int i) {// *[@id="R756144529071251319_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[2]
 		return "//*[@id=\'R2187670750374050234_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
@@ -242,8 +242,6 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String PoDetailsBtn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[32]/a/span";
 	/** @locatorType Xpath */
-	static final String PoDetailsBtnCSS = "#ig_po_lineitems_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(36) > a";
-	/** @locatorType Xpath */					
 	public static final String PoLineDetails2 = "//label[@for='P161513106045_TYPE_1']";
 	/** @locatorType Xpath */
 	public static final String DetailsRfqNum = "//input[@id='P161513106045_POL_RFQ_NO']";
@@ -263,6 +261,7 @@ public class RfqLocators {
 	public String HSNCode(String Item) {
 		return "//td[text()='" + Item + "']/../td[14]";
 	}
+
 	/** @locatorType Xpath */
 	public static final String PRWorkflowFrame = "//*[@id=\"apex_dialog_1\"]/iframe";
 	/** @locatorType Xpath */
@@ -281,7 +280,7 @@ public class RfqLocators {
 	public static final String POSuccessMsgClose = "//*[@id=\"t_Alert_Success\"]/div/div[3]/button";
 	/** @locatorType Xpath */
 	public static final String ItmworkflowOK = "//*[@id=\"B1626605845635418489\"]/span";
-	
+
 	/** @locatorType Xpath */
 	public static final String PendBTN = "//button[@data-testid='Create_RFQ']";
 	/** @locatorType Xpath */
@@ -310,15 +309,15 @@ public class RfqLocators {
 	public static final String LineCheckBox = "(//input[@data-testid='P1615131058_RADIO_GRP']/following-sibling::label)[2]";
 	/** @locatorType Xpath */
 	public static final String ClearButton = "//button[@data-testid='clear']";
-	
+
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
-		return "//table[@id='1167616873603641043_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='1167616873603641043_orig']/tbody/tr/td[" + i + "]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String AmendFindTableData(int i) {
-		return "//table[@id='10319408940172414178_orig']/tbody/tr/td["+ i +"]";
+		return "//table[@id='10319408940172414178_orig']/tbody/tr/td[" + i + "]";
 	}
 
 }

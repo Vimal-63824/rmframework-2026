@@ -135,7 +135,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemSearchBtn = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "//table[@id='17121609479460517140_orig']/tbody/tr[2]/td[2]";
+	public static final String ItemDrillDownBtn = "#\\31 7121609479460517140_orig > tbody > tr:nth-child(2) > td:nth-child(2)";
 	/** @locatorType Xpath */
 	public static final String ItemGeneral = "//label[text()='General']";
 	/** @locatorType Xpath */

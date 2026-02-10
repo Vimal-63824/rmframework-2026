@@ -4140,6 +4140,7 @@ public class AttendanceLeaveFunctions {
 					flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSFindSearchButton, ElementType.Xpath);
 					if (flag) {
 						logs.logging("INFO", "TDS Employee is Searched");
+						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDocumentSelect, ElementType.CssSelector);
 						if (flag) {
 							commonFunc.hardWait(3000);
@@ -4164,7 +4165,7 @@ public class AttendanceLeaveFunctions {
 	public void EmployeeDocumentRevise() {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(1000);
+			commonFunc.hardWait(3000);
 			flag = webDB.clickAnElement(AttendanceLeaveLocators.TDSDeclarationReviseButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "TDS Employee is Searched");
@@ -4313,6 +4314,7 @@ public class AttendanceLeaveFunctions {
 								ElementType.Xpath);
 						if (flag) {
 							logs.logging("INFO", "TDS Declaration is Saved");
+							commonFunc.hardWait(3000);
 							flag = webDB.waitForElement(AttendanceLeaveLocators.TDSDeclarationPostButton,
 									ElementType.Xpath);
 							if (flag) {
@@ -5617,8 +5619,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean CheckGeneralExpenseBasedOnEmployeeWise() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
 		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
@@ -5636,6 +5639,24 @@ public class AttendanceLeaveFunctions {
 	public boolean CheckGeneralExpenseBasedOnForwardToApproval() {
 //		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 //				"HrRqtUsername");
+		commonFunc.hardWait(3000);
+		commonFunc.navigateToGeneralExpense();
+		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("GeneralReference"));
+		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
+				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
+		return flag;
+	}
+
+	/**
+	 * To Check General Expense Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean CheckGeneralExpenseBasedOnReturnToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
 		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
