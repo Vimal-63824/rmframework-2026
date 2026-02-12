@@ -46,7 +46,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	 */
 	@Author("Prem-RMITS")
 	@Test(priority = 1, groups = { "GRN" }, description = "148  GRN Landed cost in bill booking from Get document")
-	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocument() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingFromGetDocument() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingFromGetDocument();
 	}
 
@@ -59,7 +59,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	 */
 	@Author("Prem-RMITS")
 	@Test(priority = 2, groups = { "GRN" }, description = "149  GRN Landed cost in bill booking from Get document")
-	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTds() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTds() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTds();
 	}
 
@@ -72,7 +72,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	 */
 	@Author("Prem-RMITS")
 	@Test(priority = 3, groups = { "GRN" }, description = "150  GRN Landed cost in bill booking from Get document")
-	public void verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTdsAndEsi() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTdsAndEsi() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTdsAndEsi();
 	}
 
@@ -86,7 +86,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 4, groups = {
 			"GRN" }, description = "151  GRN Landed cost in bill booking from Get document With Tax addition")
-	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithTaxAddition() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithTaxAddition() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingFromGetDocumentWithTaxAddition();
 	}
 
@@ -100,7 +100,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 5, groups = {
 			"GRN" }, description = "152  GRN Landed cost in bill booking from Get document With New Charges addition")
-	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithNewChargesAddition() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithNewChargesAddition() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithNewChargesAddition();
 	}
 
@@ -114,7 +114,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 6, groups = {
 			"GRN" }, description = "153 GRN Landed cost in bill booking from Get document With Value addition")
-	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueAddition() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueAddition() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueAddition();
 	}
 
@@ -128,7 +128,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 7, groups = {
 			"GRN" }, description = "154 GRN Landed cost in bill booking from Get document With Value Dedection")
-	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueDeduction() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueDeduction() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithValueDeduction();
 	}
 
@@ -141,7 +141,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	 */
 	@Author("Prem-RMITS")
 	@Test(priority = 8, groups = { "GRN" }, description = "156 GRN Landed cost with Deviation (Round off Var.)")
-	public void verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithDeviation() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithDeviation() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillbookingFromGetDocumentWithDeviation();
 	}
 
@@ -154,7 +154,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	 */
 	@Author("Prem-RMITS")
 	@Test(priority = 9, groups = { "GRN" }, description = "157  GRN Landed cost in bill booking from Get document")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPending() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPending() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPending();
 	}
 
@@ -168,7 +168,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 10, groups = {
 			"GRN" }, description = "158  GRN Landed cost in bill booking from Against Pending With TDS")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTds() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTds() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTds();
 	}
 
@@ -182,7 +182,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 11, groups = {
 			"GRN" }, description = "159  GRN Landed cost in bill booking from Against Pending With TDS and ESI")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTdsAndEsi() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTdsAndEsi() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTdsAndEsi();
 	}
 
@@ -196,7 +196,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 12, groups = {
 			"GRN" }, description = "160  GRN Landed cost in bill booking from Against Pending With Tax addition")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPendingTaxAddition() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPendingTaxAddition() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithTaxAddition();
 	}
 
@@ -210,7 +210,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 13, groups = {
 			"GRN" }, description = "161 GRN Landed cost in bill booking from Against Pending With New Charges addition")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithNewChargeItem() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPendingWithNewChargeItem() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithNewChargeItem();
 	}
 
@@ -237,7 +237,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 15, groups = {
 			"GRN" }, description = "162  GRN Landed cost in bill booking from Against Pending With Value addition")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithValueAddition() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPendingWithValueAddition() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithValueAddition();
 	}
 
@@ -251,7 +251,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 16, groups = {
 			"GRN" }, description = "163  GRN Landed cost in bill booking from Against Pending With Value Dedection")
-	public void verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithValueDeduction() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillBookingAgainstPendingWithValueDeduction() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillBookingAgainstPendingWithValueDeduction();
 	}
 
@@ -265,7 +265,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 17, groups = {
 			"GRN" }, description = "161 GRN Landed cost in bill booking from Against Pending With New Charges addition")
-	public void verifyToCreateGrnLandedCostInBillbookingFromAgainstPendingWithNewChargesAddition() throws IOException {
+	public void VerifyToCreateGrnLandedCostInBillbookingFromAgainstPendingWithNewChargesAddition() throws IOException {
 		purBillGetDoc.verifyToCreateGrnLandedCostInBillbookingFromAgainstPendingWithNewChargesAddition();
 	}
 
@@ -279,9 +279,9 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 18, groups = {
 			"GRN" }, description = "182 Registered Supplier with Local GST- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationForStockitem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationForStockitem()
 			throws Exception {
-		purBillGetDoc.VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitem();
+		purBillGetDoc.verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitem();
 	}
 
 	/**
@@ -294,10 +294,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 19, groups = {
 			"GRN" }, description = "183 Registered Supplier with Local GST- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpenseAccountForStockitem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpenseAccountForStockitem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpenseAccountForStockitem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpenseAccountForStockitem();
 	}
 
 	/**
@@ -310,9 +310,9 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 20, groups = {
 			"GRN" }, description = "185 Registered Supplier with Local GST- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithOutDeviationForStockitem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithOutDeviationForStockitem()
 			throws Exception {
-		purBillGetDoc.VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithOutDeviationStockitem();
+		purBillGetDoc.verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithOutDeviationStockitem();
 	}
 
 	/**
@@ -325,10 +325,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 21, groups = {
 			"GRN" }, description = "186 Registered Supplier with Local GST- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpenseAccountForStockitem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpenseAccountForStockitem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpenseAccountForStockitem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpenseAccountForStockitem();
 
 	}
 
@@ -342,10 +342,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 22, groups = {
 			"GRN" }, description = "188 Registered Supplier with Local GST (Allow IGST tax) - Against Stock Transfer With Deviation (Stock item ,service item And charge item ))")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeItemAutoCheck();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeItemAutoCheck();
 	}
 
 	/**
@@ -358,10 +358,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 23, groups = {
 			"GRN" }, description = "189 Registered Supplier with Local GST (Allow IGST tax) - Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationAndExpenseAccountStockitemserviceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationAndExpenseAccountStockitemserviceItemAndChargeItem();
 	}
 
 	/**
@@ -374,10 +374,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 24, groups = {
 			"GRN" }, description = "191 Registered Supplier with Local GST (Allow IGST tax) - Against Stock Transfer Without Deviation (Stock item ,service item And charge item ) )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationStockitemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationStockitemserviceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationStockitemserviceItemAndChargeItem();
 	}
 
 	/**
@@ -390,10 +390,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 25, groups = {
 			"GRN" }, description = "192 Registered Supplier with Local GST (Allow IGST tax) - Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationAndExpenseAccountStockitemserviceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationAndExpenseAccountStockitemserviceItemAndChargeItem();
 	}
 
 	/**
@@ -406,10 +406,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 26, groups = {
 			"GRN" }, description = "194 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem();
 	}
 
 	/**
@@ -422,9 +422,9 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 27, groups = {
 			"GRN" }, description = "200 Registered Supplier with Interstate GST- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterStateGstAgainstStockTransferWithDeviationForStockitem()
+	public void VerifyToCreateRegisteredSupplierWithInterStateGstAgainstStockTransferWithDeviationForStockitem()
 			throws Exception {
-		purBillGetDoc.VerifyToCreateRegisteredSupplierWithInterStateGstAgainstStockTransferWithDeviationForStockitem();
+		purBillGetDoc.verifyToCreateRegisteredSupplierWithInterStateGstAgainstStockTransferWithDeviationForStockitem();
 	}
 
 	/**
@@ -437,10 +437,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 28, groups = {
 			"GRN" }, description = "201 Registered Supplier with Interstate GST- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem();
 	}
 
 	/**
@@ -453,10 +453,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 29, groups = {
 			"GRN" }, description = "203 Registered Supplier with Interstate GST- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -469,10 +469,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 30, groups = {
 			"GRN" }, description = "204 Registered Supplier with Interstate GST- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceitemAndchargeitem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceitemAndchargeitem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -485,10 +485,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 31, groups = {
 			"GRN" }, description = "206 Registered Supplier with Interstate GST (Allow RCM tax)- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem();
 	}
 
 	/**
@@ -501,10 +501,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 32, groups = {
 			"GRN" }, description = "207 Registered Supplier with Interstate GST (Allow RCM tax)- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem();
 	}
 
 	/**
@@ -517,10 +517,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 33, groups = {
 			"GRN" }, description = "209 Registered Supplier with Interstate GST (Allow RCM tax)- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -533,10 +533,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 34, groups = {
 			"GRN" }, description = "210 Registered Supplier with Interstate GST (Allow RCM tax)- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
@@ -548,10 +548,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 35, groups = {
 			"GRN" }, description = "195 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem();
 	}
 
 	/**
@@ -564,10 +564,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 36, groups = {
 			"GRN" }, description = "197 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -580,10 +580,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 37, groups = {
 			"GRN" }, description = "198 Registered Supplier with Local GST (Allow RCM tax) - Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -596,10 +596,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 38, groups = {
 			"GRN" }, description = "212 Unregistered Supplier with Local GST- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem()
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem();
+				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -612,10 +612,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 39, groups = {
 			"GRN" }, description = "213 Unregistered Supplier with Local GST- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
@@ -627,10 +627,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 40, groups = {
 			"GRN" }, description = "215 Unregistered Supplier with Local GST- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
+				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
@@ -642,10 +642,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 41, groups = {
 			"GRN" }, description = "216 Unregistered Supplier with Local GST- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
@@ -657,10 +657,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 42, groups = {
 			"GRN" }, description = "218 Unregistered Supplier with Local GST (Allow IGST tax)- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
-	public void verifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem()
+	public void VerifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem();
+				.verifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem();
 	}
 
 	/**
@@ -673,10 +673,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 43, groups = {
 			"GRN" }, description = "219 Unregistered Supplier with Local GST (Allow IGST tax)- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+				.verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
@@ -688,10 +688,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 44, groups = {
 			"GRN" }, description = "221 Unregistered Supplier with Local GST (Allow IGST tax)- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
-	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
+				.verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
 	}
 
 	/**
@@ -704,10 +704,10 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 	@Author("Prem-RMITS")
 	@Test(priority = 45, groups = {
 			"GRN" }, description = "222 Unregistered Supplier with Local GST (Allow IGST tax)- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
-	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		purBillGetDoc
-				.VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+				.verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
 
 	/**
