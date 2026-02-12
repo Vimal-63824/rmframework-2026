@@ -374,6 +374,58 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		flag = attendanceLeave.CheckGeneralExpenseBasedOnReturnToApproval();
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * To Check General Expense Based on all the Required Fields
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 28, groups = {
+			"General Expenses" }, description = "174.To Check General Expense Based on all the Required Fields")
+	public void checkGeneralExpenseBasedOnAllTheRequiredFields() {
+		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * To Check General Expense fetches values correctly
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 29, groups = {
+			"General Expenses" }, description = "178.To Check General Expense fetches values correctly")
+	public void checkGeneralExpenseFetchesvaluesCorrectly() {
+		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * To Check General Expense With all the field validations and Note alerts
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 30, groups = {
+			"General Expenses" }, description = "178.To Check General Expense With all the field validations and Note alerts")
+	public void checkGeneralExpenseWithAllTheFieldValidationsAndNoteAlerts() {
+		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * To Check General Expense Based on Cancelling The Document
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 31, groups = {
+			"General Expenses" }, description = "178.To Check General Expense Based on Cancelling The Document")
+	public void checkGeneralExpenseBasedOnCancellingTheDocument() {
+		flag = attendanceLeave.CheckGeneralExpenseBasedOnCancellingTheDocument();
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Logout The Portal If Testcases Failed
