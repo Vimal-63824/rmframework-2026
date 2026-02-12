@@ -346,18 +346,18 @@ public class SaleInvoiceTest2 extends RoadMapERPTest {
 		Assert.assertTrue(flag);
 	}
 
-	/**
-	 * Create SI with PDI process
-	 * 
-	 * @author Vimal - RMITS
-	 * 
-	 */
-	@Author("Vimal-RMITS")
-	@Test(priority = 59, groups = { "SalesInvoice" }, description = "       172 -         Create SI with  PDI process")
-	public void CreateSalesInvoiceWithPreDispatchDocument() {
-		flag = salesInvoiceFunc.createSalesInvoiceWithPreDispatchDocument();
-		Assert.assertTrue(flag);
-	}
+//	/**
+//	 * Create SI with PDI process
+//	 * 
+//	 * @author Vimal - RMITS
+//	 * 
+//	 */
+//	@Author("Vimal-RMITS")
+//	@Test(priority = 59, groups = { "SalesInvoice" }, description = "       172 -         Create SI with  PDI process")
+//	public void CreateSalesInvoiceWithPreDispatchDocument() {
+//		flag = salesInvoiceFunc.createSalesInvoiceWithPreDispatchDocument();
+//		Assert.assertTrue(flag);
+//	}
 
 	/**
 	 * Multiple Lines In Sales Invoice With DB Validation

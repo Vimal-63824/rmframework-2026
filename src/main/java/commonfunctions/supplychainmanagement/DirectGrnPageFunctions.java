@@ -4759,7 +4759,7 @@ public class DirectGrnPageFunctions {
 	 * @author Durai-RMITS
 	 * @throws IOException
 	 */
-	public void verifyDirectGRNAddLineDetails(String SheetName) throws IOException {
+	public void verifyDirectGRNAddLineDetails(String SheetName) {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
 			commonFunc.hardWait(200);
@@ -5009,6 +5009,82 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PurchaseBillGRN"));
 	}
+
+	/**
+	 * This Methods Used To Verify stock Quantity For Quality Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author Deepan-GWL
+	 */
+
+	public void verifyDirectGRNStockQtyAndCostForQualityWh(String FileName, String SheetName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 3; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String WareHouse = ItemMultiple[i][44];
+			String ExpectedStockQuantity = ItemMultiple[i][50];
+			String ExpectedStockCost = ItemMultiple[i][51];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunc.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item " + ItemId + "Is : " + ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunc.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Used To Verify stock Quantity For Source Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyDirectGRNStockQtyAndCostForSourceWH(String FileName, String SheetName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String SourecWareHouse = ItemMultiple[i][63];
+			String ExpectedStockQuantity = ItemMultiple[i][67];
+			String ExpectedStockCost = ItemMultiple[i][66];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunc.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item " + ItemId + "Is : "
+						+ ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunc.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+			}
+		}
+
+	}
+
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -5035,4 +5111,1602 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyDirectGRNAddLineDetails(String FileName, String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(200);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 3; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][19];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(200);
+					verifyClickingAdd();
+					verifyClickingItemField(ITEM_NAME);
+					verifyClickingHsnField(HSN);
+					verifyClickingSuppQuantity(QTY);
+					verifyClickingReceiptQuantity(QTY);
+					verifyClickingCost(COST);
+					verifyClickingSaveLine();
+					verifyDirectGRNAddingDiscount(i, FileName, SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyDirectGRNAddingDiscount(int i1, String FileName, String SheetName) {
+
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(PRMultipleline.length);
+		for (int i = i1; i <= i1; i++) {
+
+			String ITEM_NAME = PRMultipleline[i1][1];
+			String TradeDiscount = PRMultipleline[i1][8];
+			String SpecialDiscount = PRMultipleline[i1][9];
+			String CashDiscount = PRMultipleline[i1][10];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
+					logs.logging("INFO", "Details Button Is Clicked");
+					commonFunc.hardWait(500);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					if (flag) {
+						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+						logs.logging("INFO", "Switched To Frame");
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
+									ElementType.Xpath);
+							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+							commonFunc.hardWait(1000);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+										ElementType.Xpath);
+								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+											ElementType.Xpath);
+									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+									commonFunc.hardWait(1000);
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										logs.logging("INFO", "Details Is Saved");
+										commonFunc.hardWait(1000);
+										webDB.pressEscapeKey();
+										webDB.switchToDefaultContent();
+										commonFunc.checkRefreshCellsDisappear();
+										verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
+
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify The Discount Amount For PO Document
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 *
+	 */
+
+	public void verifyDiscountAmountForDirectGRN(int i2, String FileName, String SheetName) {
+		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i2; i <= i2; i++) {
+			String ItemId = GRNMultipleline[i2][1];
+			String TradeDiscountAmount = GRNMultipleline[i2][12];
+			String SpecialDiscountAmount = GRNMultipleline[i2][14];
+			String CashDiscountAmount = GRNMultipleline[i2][16];
+			String TradeAssessbleValue = GRNMultipleline[i2][11];
+			String SpecialAssessbleValue = GRNMultipleline[i2][13];
+			String CashAssessbleValue = GRNMultipleline[i2][15];
+			String LineAmount = GRNMultipleline[i2][18];
+			String TaxAmountCGST = GRNMultipleline[i2][21];
+			String TaxAmountSGST = GRNMultipleline[i2][22];
+			String TaxAmountIGST = GRNMultipleline[i2][23];
+			if (!ItemId.equals("")) {
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNTradeAssessableValue")), TradeAssessbleValue);
+				logs.logging("INFO", "Trade Assessable Value Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialAssessableValue")),
+						SpecialAssessbleValue);
+				logs.logging("INFO", "Special Assessable Value Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNCashAssessableValue")), CashAssessbleValue);
+				logs.logging("INFO", "Cash Assessable Value Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNTradeDiscountAmount")), TradeDiscountAmount);
+				logs.logging("INFO", "Trade Discount Amount Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+								commonFunc.getDataFromTestDataSheet("GRNSpecialDiscountAmount")),
+						SpecialDiscountAmount);
+				logs.logging("INFO", "Special Discount Amount Matched With DB Values For This Item " + ItemId);
+				commonFunc.hardWait(2000);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNCashDiscountAmount")), CashDiscountAmount);
+				logs.logging("INFO", "Cash Discount Amount Matched With DB Values For This Item " + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GrnLineAmount")), LineAmount);
+				logs.logging("INFO", "Line Amount" + LineAmount + "Matched With DB Values For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNCgstAmount")), TaxAmountCGST);
+				logs.logging("INFO", "Tax Amount CGST " + TaxAmountCGST + "For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNSgstAmount")), TaxAmountSGST);
+				logs.logging("INFO", "Tax Amount SGST" + TaxAmountSGST + "For This Item" + ItemId);
+				verifyAssertionBothValues(dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ItemId,
+						commonFunc.getDataFromTestDataSheet("GRNIgstAmount")), TaxAmountIGST);
+				logs.logging("INFO", "Tax Amount IGST" + TaxAmountIGST + "For This Item" + ItemId);
+
+			}
+		}
+	}
+
+	/**
+	 * This Methods Method to handle Multiple Lot serial Item for General Type
+	 * Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void DirectGRNmultipleLotandSerialWithGeneralType(String FileName, String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Successfully Created GRN and Entered GRN Transaction Screen");
+			commonFunc.hardWait(3000);
+			webDB.clickAnElement(GrnLocators.LotSerailButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			logs.logging("INFO", "LOT/SERIAL Button Clicked");
+			flag = webDB.waitForElement(GrnLocators.LotSerialIframe, ElementType.Xpath);
+			if (flag) {
+				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
+				String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+				ExcelUtils excelUtils = new ExcelUtils();
+				String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+						+ FileName;
+				itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+				for (int i = 3; i < itemmultiple.length; i++) {
+					String ITEM_NAME = itemmultiple[i][1];
+					String LOT_SERIAL = itemmultiple[i][54];
+					String LOT_NUMBER = itemmultiple[i][55];
+					String SERIAL_NUMBER = itemmultiple[i][56];
+					System.out.println("Length" + itemmultiple.length);
+					if (!ITEM_NAME.equals("")) {
+						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Na"))) {
+							continue;
+						}
+//						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
+							commonFunc.hardWait(2000);
+//							flag = webDB.waitForElement(GrnLocators.ItemTable, ElementType.Xpath);
+//							if (flag) {
+							webDB.clickAnElement(GrnLocators.ItemTable, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+								webDB.switchToDefaultContent();
+								System.out.println("Nit");
+								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+								List<WebElement> removeFilter = webDB.getDriver()
+										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
+								for (WebElement element : removeFilter) {
+									if (element.isDisplayed()) {
+										element.sendKeys(ITEM_NAME);
+										System.out.println(1);
+										break;
+									}
+								}
+								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+							}
+//							}
+						}
+					} else {
+						break;
+					}
+
+					if (flag) {
+						if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Lot"))) {
+							inputLotNumber(ITEM_NAME, LOT_NUMBER);
+
+						} else if (LOT_SERIAL.equals(commonFunc.getDataFromTestDataSheet("Serial"))) {
+
+							inputSerialNumber(ITEM_NAME, SERIAL_NUMBER);
+						}
+
+					}
+					flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+					}
+				}
+				lotSerialQtyApportion();
+
+			}
+		}
+
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyDirectGRNExpectedStockQtAndCostyForQualityWH(String FileName, String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 3; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String WareHouse = ItemDetails[i][44];
+			String AfterExcelStockCost = ItemDetails[i][51];
+			if (!ItemId.equals("")) {
+				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After GRN Actual Stock Cost For This Item " + ItemId + "Is : " + AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO",
+						"Verified Expected Stock Cost For This Item " + ItemId + " With Database Values After MRV");
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Source
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(String FileName,
+			String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String SourecWareHouse = ItemDetails[i][63];
+			String AfterExcelStockQuantity = ItemDetails[i][67];
+			String AfterExcelStockCost = ItemDetails[i][66];
+			if (!ItemId.equals("")) {
+
+				String AfterStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+						+ AfterStockQty);
+
+				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item " + ItemId
+						+ " With Database Values After MRV");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				String AfterStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+						+ AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item " + ItemId
+						+ " With Database Values After MRV");
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomMaterialTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomRateContractGeneralTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyDirectGRNAddLineDetailsOtherThanUserDefined(String FileName, String SheetName, String Supplier) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 3; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][19];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(3000);
+					verifyClickingAdd();
+					verifyClickingItemField(ITEM_NAME);
+					verifyClickingHsnField(HSN);
+//					verifyClickingSuppQuantity(QTY);
+//					verifyClickingReceiptQuantity(QTY);
+//					verifyClickingCost(COST);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineSupQty,
+							DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
+					commonFunc.verifyAddTableSpecs(DirectGrnPageLocators.GrnLineRcpQty,
+							DirectGrnPageLocators.GrnLineRcpQtyInput, QTY);
+					verifyClickingSaveLine();
+					verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(i, FileName, SheetName, Supplier);
+					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, FileName,
+							SheetName);
+					otherThanUserdefinedDiscountAmountForDirectGRN(i, FileName, SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Unit Cost and Discount Percentage Write In
+	 * Excel UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 */
+
+	public void verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(int i1, String FileName,
+			String SheetName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Unit Cost For This Item");
+		for (int i = i1; i <= i1; i++) {
+			String ITEM_NAME = ItemMultiple[i1][1];
+			if (!ITEM_NAME.equals("")) {
+				String Cost = dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+						commonFunc.getDataFromTestDataSheet("GRNUnitCost"));
+				logs.logging("INFO", "Rate Contract Price For This Item " + ITEM_NAME + "Is : " + Cost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i1, 6, Cost);
+				String TradeDiscountPct = dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+						commonFunc.getDataFromTestDataSheet("GRNDiscPct"));
+				logs.logging("INFO", "Rate Contract Price For This Item " + ITEM_NAME + "Is : " + TradeDiscountPct);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i1, 8, TradeDiscountPct);
+
+			}
+		}
+	}
+
+	/**
+	 * This Method Is Used To Entered Other Than User Defined Item To Give Discount
+	 * Amount
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 *
+	 */
+
+	private void otherThanUserdefinedDiscountAmountForDirectGRN(int i1, String FileName, String SheetName) {
+
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(PRMultipleline.length);
+		for (int i = i1; i <= i1; i++) {
+			String ITEM_NAME = PRMultipleline[i1][1];
+
+			String SpecialDiscount = PRMultipleline[i1][9];
+			String CashDiscount = PRMultipleline[i1][10];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+//				String Type = webDB.getTextFromElement(PurchaseOrderPageLocators.POType, ElementType.Xpath);
+//				logs.logging("INFO", "PO Type is:" + Type);
+//				if (Type.equals(commonFunc.getDataFromTestDataSheet("ServiceType"))) {
+//					commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(2000);
+//					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderLineDetailForServiceItem(i - 21),
+//							ElementType.Xpath);
+//					webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderLineDetailForServiceItem(i - 21),
+//							ElementType.Xpath);
+//					logs.logging("INFO", "Service Item");
+//				} else {
+//					commonFunc.checkRefreshCellsDisappear();
+//					commonFunc.hardWait(2000);
+//					flag = webDB.waitForElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i - 21),
+//							ElementType.Xpath);
+//					webDB.clickAnElement(PurchaseOrderPageLocators.PurchaseOrderLineDetail(i - 21), ElementType.Xpath);
+//					logs.logging("INFO", "Non Service Item");
+//				}
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
+					logs.logging("INFO", "Details Button Is Clicked");
+					commonFunc.hardWait(4000);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					if (flag) {
+						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+						logs.logging("INFO", "Switched To Frame");
+						commonFunc.hardWait(3000);
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+									ElementType.Xpath);
+							webDB.pressEnterKey();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(3000);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+										ElementType.Xpath);
+								webDB.pressEnterKey();
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(3000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+										ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									commonFunc.checkRefreshCellsDisappear();
+									commonFunc.hardWait(3000);
+									verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
+									commonFunc.hardWait(4000);
+									webDB.pressEscapeKey();
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Method Is Used To Verify Unit Cost and Discount Amount For Rate Contract
+	 * Item UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 */
+
+	public void verifyUnitcostAndDiscountAmountForOpenPoItemForDirectGRN(int i1, String FileName, String SheetName,
+			String RateContractSupplier) {
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ITEM_NAME = PRMultipleline[i1][1];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(
+						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("OpenPoUnitCost")),
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
+				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ITEM_NAME);
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(
+						dbCommonFunc.OpenPoDetails(RateContractSupplier, ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("OpenPoDiscPct")),
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("GRNDiscPct")));
+				logs.logging("INFO", "Open PO And  PO Discount % Matched For This " + ITEM_NAME);
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomRateContractMaterialTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIRcImpSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(String FileName, String SheetName,
+			String Supplier) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(3000);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 3; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][19];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(3000);
+					verifyClickingAdd();
+					verifyClickingItemField(ITEM_NAME);
+					verifyClickingHsnField(HSN);
+					verifyClickingSuppQuantity(QTY);
+					verifyClickingReceiptQuantity(QTY);
+					verifyClickingCost(COST);
+					verifyClickingSaveLine();
+					verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(i, FileName, SheetName, Supplier);
+					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, FileName,
+							SheetName);
+					otherThanUserdefinedDiscountAmountForDirectGRN(i, FileName, SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Unit Cost and Discount Amount For Rate Contract
+	 * Item UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * 
+	 */
+
+	public void verifyUnitcostAndDiscountAmountForPriceListItemForDirectGRN(int i1, String FileName, String SheetName,
+			String PriceListSupplier) {
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = i1; i <= i1; i++) {
+			String ITEM_NAME = PRMultipleline[i1][1];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.hardWait(2000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(
+						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("PriceListUnitCost")),
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("GRNUnitCost")));
+				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ITEM_NAME);
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				verifyAssertionBothValues(
+						dbCommonFunc.priceListDetails(PriceListSupplier, ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("PriceListDiscPct")),
+						dbCommonFunc.StockQuery4(VariableHandler.getGrnDocNumber(), ITEM_NAME,
+								commonFunc.getDataFromTestDataSheet("GRNDiscPct")));
+				logs.logging("INFO", "Open PO And  PO Discount % Matched For This " + ITEM_NAME);
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIPlImpSheet"));
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomServiceTypeImportWithoutInspectionD() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPS"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsForService(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISerSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyDirectGRNAddLineDetailsForService(String FileName, String SheetName) {
+
+		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 3; i < GRNMultipleline.length; i++) {
+			String ITEM_NAME = GRNMultipleline[i][1];
+			String HSN = GRNMultipleline[i][19];
+			String QTY = GRNMultipleline[i][5];
+			String COST = GRNMultipleline[i][6];
+
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.hardWait(3000);
+				verifyClickingAdd();
+				verifyClickingItemField(ITEM_NAME);
+				verifyClickingHsnField(HSN);
+				verifyClickingSuppQuantity(QTY);
+				verifyClickingReceiptQuantity(QTY);
+				verifyClickingCost(COST);
+				verifyClickingSaveLine();
+				verifyDirectGRNAddingDiscountService(i, FileName, SheetName);
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyDirectGRNAddingDiscountService(int i1, String FileName, String SheetName) {
+
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(PRMultipleline.length);
+		for (int i = i1; i <= i1; i++) {
+
+			String ITEM_NAME = PRMultipleline[i1][1];
+			String TradeDiscount = PRMultipleline[i1][8];
+			String SpecialDiscount = PRMultipleline[i1][9];
+			String CashDiscount = PRMultipleline[i1][10];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 2), ElementType.Xpath);
+					logs.logging("INFO", "Details Button Is Clicked");
+					commonFunc.hardWait(4000);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					if (flag) {
+						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+						logs.logging("INFO", "Switched To Frame");
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
+									ElementType.Xpath);
+							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+										ElementType.Xpath);
+								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+											ElementType.Xpath);
+									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										logs.logging("INFO", "Details Is Saved");
+										commonFunc.hardWait(4000);
+										webDB.pressEscapeKey();
+										webDB.switchToDefaultContent();
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct GRN With Service Rate
+	 * Contract
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeImportWithInspectionD() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPS"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIRcSerSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionD() throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPS"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIPlSerSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct Grn Material Type
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnDifferentUomRateContractGeneralTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnDifferentUomRateContractMaterialTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIRcImpSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct Grn PriceList Different UOM
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct Grn PriceList Different UOM
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionD() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"), commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWIPlImpSheet"));
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeImportWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Direct GRN WithOut Quality
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWoQWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Direct GRN WithOut Quality
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomMaterialTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWoQWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomRateContractGeneralTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomRateContractMaterialTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIWoQRcImpSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct Grn
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListSameUomGeneralTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct Grn
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListSameUomMaterialTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGSUomWIWoQPlImpSheet"));
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomServiceTypeImportWithoutInspectionWithOutQuality() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPS"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsForService(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWISerSheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of Direct GRN With Service Rate
+	 * Contract
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnRateContractSameUomServiceTypeImportWithInspectionWithOutQuality()
+			throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPS"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQRcWISerSheet"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionWithOutQuality()
+			throws IOException {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPS"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefinedPriceList(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGSUomWoQWIPlSerSheet"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnDifferentUomGeneralTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWoQWISheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR Material RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnDifferentUomMaterialTypeImportWithInspectionWithOutQuality() {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("GRNPM"),
+				commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetails(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+//		GRNFunc.multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("DGSUomWISheet"),
+//				webDB.getDataFromProperties("DirectGrnSheet"));
+//		GRNFunc.lotSerialQtyApportion();
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		GRNFunc.verifyImportLrBillNumber();
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirectGrnSheet"),
+				webDB.getDataFromProperties("DGDUomWoQWISheet"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWoQWISheet"));
+	}
+
 }

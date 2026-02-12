@@ -1058,6 +1058,30 @@ public class SubcontractTransactionTest2 extends RoadMapERPTest {
 		SubcontractFunc.createDirectSerialGRNWithSubcontractReferance();
 	}
 	/**
+	 * Direct Subcontract Order to GRN without Gate Entry for SDS type - QC Item
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 160, groups = {
+			"Subcontract" }, description = "Direct Subcontract Order to GRN without Gate Entry for SDS type - QC Item")
+	public void DirectSubcontractOrdertoGRNwithoutGateEntryforSDStypeQCItem() {
+		SubcontractFunc.directSubcontractOrdertoGRNwithoutGateEntryforSDStypeQCItem();
+	}
+
+	/**
+	 * Direct Serial Item Subcontract Order to GRN With Gate Entry for SDS type - QC
+	 * Enabled Items
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 161, groups = {
+			"Subcontract" }, description = "Direct Serial Item Subcontract Order to GRN With Gate Entry for SDS type - QC Enabled Items")
+	public void directSerialItemSubcontractOrdertoGRNwithGateEntryforSDStypeQCenable() {
+		SubcontractFunc.directSerialItemSubcontractOrdertoGRNwithGateEntryforSDStypeQCenable();
+	}
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL

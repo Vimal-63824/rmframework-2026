@@ -299,7 +299,7 @@ public class GrnLocators {
 	public static final String GrnLineWiseDeleteButton = "//span[@title='Delete']";
 	// span[@title="Delete"]
 	/** @locatorType Xpath */
-	public static final String GrnLineWiseStatus = "//*[@id='7777951085516291315_orig']/tbody/tr[2]/td[92]/div";
+	public static final String GrnLineWiseStatus = "//*[@id=\"8280577769115268943_orig\"]/tbody/tr[2]/td[92]";
 	/** @locatorType Xpath */
 	public static final String GrnDocumentwiseCancelButton = "//button[@data-testid='Cancel_GRN']";
 	/** @locatorType Xpath */
@@ -328,12 +328,14 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLandedGstSupplyergrid = "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[16]";
 	/** @locatorType Xpath */
-	public static final String ImportLrButton = "//button[@id='B1062354301155046715']";
+	public static final String ImportLrButton = "//button[@id='B1564980984754024343']";
 	/** @locatorType Xpath */
 	public static final String BillNumber = "//input[contains(@id,'PID_BOE_NO')]";
 	/** @locatorType Xpath */
 	public static final String BillDate = "//input[contains(@id,'PID_BOE_DATE')]";
 	/** @locatorType Xpath */
 	public static final String BillOkButton = "//button[@data-testid='OK_import_LR']";
-	
+	/** @locatorType Xpath */
+	public static final String ItemTable = "//div[@aria-label='Lot/Serial ']/div[3]/div[3]/table/tbody/tr/td[1]";
+
 }

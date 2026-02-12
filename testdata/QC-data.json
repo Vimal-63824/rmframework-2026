@@ -1189,7 +1189,7 @@
 	"RawmaterialItem": "VR-RM-LOT-FIFO-BATCH-4001",
 	"ProductionItem": "FG-Automation-001",
 	"SelectTypeSIP": "Supplier + Item + Process",
-	"OpenPriceItem": "Vj-FIFO-LOT-BATCH-50001(FG)",
+	"OpenPriceItem": "FG20001",
 	"OpenPriceSupplier": "ACT ON FINISHING (P) LTD",
 	"OpenPriceTodateInput": "30-09-2029",
 	"SelectTypeIP": "Item + Process",

@@ -135,7 +135,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String fetchButtonGoButton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */
-		public static final String SelectItem = "//*[@id='7788732405652705160_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelectItem = "//*[@id='8288670618826679601_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String Gobutton = "//button[@id='QC_search_button']" ;
 		/** @locatorType Xpath */

@@ -118,7 +118,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String Select_Type_field = "//select[@data-testid='P193151010_SPRCHD_LVL_TYPE']";
 	/** @locatorType XPATH */
-	public static final String OpenSCO_ItemID_Input = "//input[@data-testid='P193151010_SPRCHD_PROD_ID']/following-sibling::button";
+	public static final String OpenSCO_ItemID_Input = "//input[@id='P193151011_PROD']/following-sibling::button";
 	/** @locatorType XPATH */
 	public static final String OpenSCO_Supl_Input = "//input[@data-testid='P193151010_SPRCHD_SUPLR_ID']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -128,7 +128,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String Open_SCO_ToDATE_input = "//input[@id='P193151011_SPRCHD_EFF_TO_input']";
 	/** @locatorType XPATH */
-	public static final String OpenScoCreate_TickIcon = "//button[@data-testid='Create']";
+	public static final String OpenScoCreate_TickIcon = "//button[@title='Create']";
 	/** @locatorType XPATH */
 	public static final String OpenSCO_NoteAlert_Close = "(//button[@title='Close'])[1]";
 	/** @locatorType XPATH */
@@ -152,7 +152,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Find_Search_Btn = "//button[@data-testid='Find']";
 	/** @locatorType XPATH */
-	public static final String OP_DrillDown = "//*[@id=\"2405795063194951027_orig\"]/tbody/tr[2]/td[5]/a";
+	public static final String OP_DrillDown = "//*[@id=\"2908421746793928655_orig\"]/tbody/tr[2]/td[5]/a";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_Btn = "//button[@data-testid='REVERSE']";
 	/** @locatorType XPATH */
@@ -164,7 +164,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate_input = "(//button[@class='a-Button a-DatePicker--today'])[3]";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_OK_Btn = "//button[@data-testid='OK']";
+	public static final String OP_Reverse_OK_Btn = "//button[@id='B2923981252519400360']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */
