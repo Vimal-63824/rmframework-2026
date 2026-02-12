@@ -1057,6 +1057,62 @@ public class PurchaseFOCTest extends RoadMapERPTest {
 		flag = purchaseFocFunc.verifyPoToGRNDomesticSameUOMStockTransferPLWithInspectionGEFOC();
 		assertTrue(flag);
 	}
+	
+	/**
+	 * PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 76, groups = {
+			"Po to GRN" }, description = "750 PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMStockTransferRCWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferRCWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+
+	/**
+	 * PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 77, groups = {
+			"Po to GRN" }, description = "749 PO to GRN-Stock Transfer-Rate Contract-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMStockTransferRCWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferRCWithInspectionGEFOC();
+		assertTrue(flag);
+	}
+	
+	/**
+	 * PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - Without
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 78, groups = {
+	"Po to GRN" }, description = "756 PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - Without Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMStockTransferPLWithoutInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferPLWithoutInspectionGEFOC();
+		assertTrue(flag);
+	}
+	
+	/**
+	 * PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - With
+	 * Inspection Plan - FOC
+	 *
+	 * @author Sakthi-GWL
+	 */
+	@Author("Sakthi-GWL")
+	@Test(priority = 79, groups = {
+	"Po to GRN" }, description = "757 PO to GRN-Stock Transfer-Price List-Diff Stock and Supplier UOM - With Inspection Plan - FOC")
+	public void VerifyPoToGRNDomesticDiffUOMStockTransferPLWithInspectionGEFOC() {
+		flag = purchaseFocFunc.verifyPoToGRNDomesticDiffUOMStockTransferPLWithInspectionGEFOC();
+		assertTrue(flag);
+	}
 
 	/**
 	 * Verify After Method
