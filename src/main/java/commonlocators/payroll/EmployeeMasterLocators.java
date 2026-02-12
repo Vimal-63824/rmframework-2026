@@ -136,6 +136,10 @@ public class EmployeeMasterLocators {
 	/** @locatorType XPATH */
 	public static final String AddEmp_ESI_ElegibleInputBox = "//*[@data-testid=' AddEmp_ESI_ElegibleInputBox']";
 	/** @locatorType XPATH */
+	public static final String AddEmp_PT_ElegibleLabel = "//*[contains(@id,'PT_ELGBL_FLAG')]/following-sibling::label";
+	/** @locatorType XPATH */
+	public static final String AddEmp_PT_ElegibleInputBox = "//input[@aria-label='PT Eligible']";
+	/** @locatorType XPATH */
 	public static final String AddEmp_OT_ElegibleLabel = "//*[@data-testid=' AddEmp_OT_ElegibleLabel']/following-sibling::label";
 	/** @locatorType XPATH */
 	public static final String AddEmp_LoadAllowanceBtn = "//*[@data-testid=' AddEmp_LoadAllowanceBtn']";
