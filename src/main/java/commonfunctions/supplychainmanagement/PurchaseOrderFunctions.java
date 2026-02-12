@@ -8982,8 +8982,9 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyTaxValidation(String Item, String Taxpercent, String Cgst, String Sgst, String Igst, String Utgst,
 			String CessPercent, String CessAmount) {
-		if (webDB.waitForElementUntilGivenTime(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath, 10)) {
-			webDB.clickAnElement(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		if (webDB.verifyIsElementDisplayed(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath)) {
+			webDB.clickAnElementWithoutException(PurchaseOrderPageLocators.TickButtonLineOne, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 		}
 		webDB.switchToDefaultContent();
