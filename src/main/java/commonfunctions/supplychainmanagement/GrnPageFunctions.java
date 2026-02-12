@@ -5083,6 +5083,33 @@ public class GrnPageFunctions {
 			}
 		}
 	}
+	
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
+	 * WareHouse
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyExpectedStockQtyAndCostQtyForQualityWH(String SheetName, String FileName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String WareHouse = ItemDetails[i][44];
+			String AfterExcelStockCost = ItemDetails[i][51];
+			if (!ItemId.equals("")) {
+				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO",
+						"Verified Expected Stock Cost For This Item '" + ItemId + "' With Database Values After MRV");
+			}
+		}
+	}
 
 	/**
 	 * This Methods Used To Verify stock Quantity For Quality Warehouse
@@ -5097,6 +5124,43 @@ public class GrnPageFunctions {
 		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
 		logs.logging("INFO", "Before Stock Qty For This Item ");
 		for (int i = 3; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String WareHouse = ItemMultiple[i][44];
+			String ExpectedStockQuantity = ItemMultiple[i][50];
+			String ExpectedStockCost = ItemMultiple[i][51];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+			}
+		}
+
+	}
+	
+	/**
+	 * This Methods Used To Verify stock Quantity For Quality Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyStockQtyAndCostQtyForQualityWH(String SheetName, String FileName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
 			String ItemId = ItemMultiple[i][1];
 			String WareHouse = ItemMultiple[i][44];
 			String ExpectedStockQuantity = ItemMultiple[i][50];
@@ -5156,6 +5220,83 @@ public class GrnPageFunctions {
 			}
 		}
 
+	}
+	
+	/**
+	 * This Methods Used To Verify stock Quantity For Source Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyStockQtyAndCostQtyForSourceWH(String SheetName, String FileName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 22; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String SourecWareHouse = ItemMultiple[i][63];
+			String ExpectedStockQuantity = ItemMultiple[i][67];
+			String ExpectedStockCost = ItemMultiple[i][66];
+			if (!ItemId.equals("")) {
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+			}
+		}
+
+	}
+	
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Source
+	 * WareHouse
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(String SheetName, String FileName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String SourecWareHouse = ItemDetails[i][63];
+			String AfterExcelStockQuantity = ItemDetails[i][67];
+			String AfterExcelStockCost = ItemDetails[i][66];
+			if (!ItemId.equals("")) {
+				
+				String AfterStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
+						+ AfterStockQty);
+				
+				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item '" + ItemId
+						+ "' With Database Values After MRV");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				String AfterStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
+						+ AfterStockCost);
+				
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item '" + ItemId
+						+ "' With Database Values After MRV");
+			}
+		}
 	}
 
 	/**

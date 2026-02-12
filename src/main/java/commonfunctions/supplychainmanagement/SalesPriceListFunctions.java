@@ -1,5 +1,12 @@
 package commonfunctions.supplychainmanagement;
 
+import static org.testng.Assert.assertTrue;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks May 20, 2025
@@ -7,41 +14,11 @@ package commonfunctions.supplychainmanagement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
-import utils.ReportLoger;
-import utils.WebDriverBase;
-
-import static org.testng.Assert.assertTrue;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.awt.Checkbox;
-import java.io.File;
-import java.util.List;
-
-import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
-import javax.xml.xpath.XPathEvaluationResult.XPathResultType;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import commonfunctions.CommonFunctions;
-import commonfunctions.DBCommonFunctions;
-import commonfunctions.ItemDetailsHandler;
-import commonfunctions.ItemDetailsHandler.OpenSOHeaderDetailsName;
-import commonfunctions.payroll.CommonPayrollFunctions;
 import commonfunctions.VariableHandler;
+import commonfunctions.payroll.CommonPayrollFunctions;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
-import commonlocators.supplychainmanagement.PricelistPageLocators;
-import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
-import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesPriceListLocators;
-import groovyjarjarantlr4.v4.parse.ANTLRParser.element_return;
-import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
-import net.bytebuddy.utility.RandomString;
-import commonlocators.*;
-import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
 import utils.WebDriverBase.ElementType;
@@ -858,6 +835,7 @@ public class SalesPriceListFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * Search Record Find Page Document
 	 * 
@@ -871,8 +849,8 @@ public class SalesPriceListFunctions {
 			flag = webDB.waitForElement(SalesPriceListLocators.SearchBoxFind, ElementType.Xpath);
 			if (flag) {
 				commonFunc.checkRefreshCellsDisappear();
-				webDB.javaScriptSendTextToAnElement(SalesPriceListLocators.SearchBoxFind, VariableHandler.getPriceListDocno(),
-						ElementType.Xpath);
+				webDB.javaScriptSendTextToAnElement(SalesPriceListLocators.SearchBoxFind,
+						VariableHandler.getPriceListDocno(), ElementType.Xpath);
 				flag = webDB.waitForElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Successfully Passed a Price List Document Number");
@@ -882,7 +860,7 @@ public class SalesPriceListFunctions {
 						webDB.javaScriptClickAnElement(SalesPriceListLocators.GoButton, ElementType.Xpath);
 						logs.logging("INFO", "Successfully Populated a Cancelled Stage Document ");
 						flag = webDB.waitForElement(SalesPriceListLocators.SearchButtoninFindPage, ElementType.Xpath);
-						if(flag) {
+						if (flag) {
 							logs.logging("Info", "Sales Price List Cancelled Document Is Verified ");
 						}
 					}
