@@ -511,11 +511,11 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String GE_Pend_Curr_Qty_Column = "//*[@id='LS_GE_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C3159000284553408153']";
+	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C3662124462640385397']";
 	/** @Locator XPATH */
 	public static final String GE_LS_Iframe = "//iframe[@title='Lot /Serial']";
 	/** @Locator XPATH */
-	public static final String GE_LS_Save_Icon = "//button[@id='B3182691454134389222']";
+	public static final String GE_LS_Save_Icon = "//button[@title='Save']";
 	/** @Locator XPATH */
 	public static final String Create_GE = "//button[@data-testid='CREATE_GE']";
 	/** @Locator XPATH */
@@ -553,7 +553,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Reverse_Iframe = "//iframe[@title='Doc. Reversal']";
 	/** @Locator XPATH */
-	public static final String SI_Reverse_OK_Btn = "//button[@id='B2899126698435215755']";
+	public static final String SI_Reverse_OK_Btn = "//button[@id='B3398980956745190129']";
 	/** @Locator XPATH */
 	public static final String SI_Reverse_ForwardApproval = "//button[@id='B4309236229308293975']";
 	/** @Locator XPATH */
@@ -765,7 +765,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Header_Date = "//button[@class='a-Button a-DatePicker--today']";
 	/** @Locator XPATH */
-	public static final String SI_DocNo_DrillDown = "//*[@id=\"15765895287379286932_orig\"]/tbody/tr[2]/td[12]/a";
+	public static final String SI_DocNo_DrillDown = "//*[@id=\"16265833500553261373_orig\"]/tbody/tr[2]/td[12]/a";
 	/** @Locator XPATH */
 	public static final String SI_Location_Field = "//INPUT[@data-testid='P1915131343_SIHD_PLNT_LOC_ID']";
 	/** @Locator XPATH */

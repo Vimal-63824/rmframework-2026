@@ -5618,14 +5618,14 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnEmployeeWise() {
+	public boolean checkGeneralExpenseBasedOnEmployeeWise() {
 //		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 //				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5636,14 +5636,14 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnForwardToApproval() {
+	public boolean checkGeneralExpenseBasedOnForwardToApproval() {
 //		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 //				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5654,13 +5654,30 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnReturnToApproval() {
+	public boolean checkGeneralExpenseBasedOnReturnToApproval() {
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
+				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
+		return flag;
+	}
+
+	/**
+	 * To Check General Expense Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean checkGeneralExpenseBasedOnCancellingTheDocument() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.navigateToGeneralExpense();
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+				commonFunc.getDataFromTestDataSheet("GeneralReference"));
+		genaralExpenseAddLineDataWithCancelling(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5673,7 +5690,7 @@ public class AttendanceLeaveFunctions {
 	 * @param EmployeeDurai
 	 * @param GeneralReference
 	 */
-	public void GenaralExpenseAddingData(String EmployeeDurai, String GeneralReference) {
+	public void genaralExpenseAddingData(String EmployeeDurai, String GeneralReference) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
@@ -5721,7 +5738,7 @@ public class AttendanceLeaveFunctions {
 	 * @param GeneralExpAmount
 	 * @param Today
 	 */
-	public void GenaralExpenseAddLineData(String GeneralExpense, String ExpenseDate, String GeneralExpAmount) {
+	public void genaralExpenseAddLineData(String GeneralExpense, String ExpenseDate, String GeneralExpAmount) {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
@@ -5795,6 +5812,92 @@ public class AttendanceLeaveFunctions {
 															System.getProperty("HariUsername"));
 												}
 											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Add General Expense Line Data
+	 * 
+	 * @author Kishore-RMITS
+	 * @param GeneralExpense
+	 * @param ExpenseDate
+	 * @param GeneralExpAmount
+	 * @param Today
+	 */
+	public void genaralExpenseAddLineDataWithCancelling(String GeneralExpense, String ExpenseDate,
+			String GeneralExpAmount) {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String Today = date.format(formatter);
+		LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String tomorrowDate = myDateObj.format(myFormatObj);
+		flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(5000);
+			flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpLineAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "General Expense Line Data Add Button");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpenseLOV, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(2000);
+					commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.GeneralExpenseLOV, GeneralExpense);
+					if (flag) {
+						logs.logging("INFO", "General Expense Is Selected");
+						webDB.pressTabKey();
+						flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
+							webDB.moveToElement(AttendanceLeaveLocators.GeneralExpDateField, ElementType.Xpath);
+							flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneralExpDateField, Today,
+									ElementType.Xpath);
+							if (flag) {
+								logs.logging("INFO", "General Expense Date Is Selected");
+								webDB.pressTabKey();
+								flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpAmountField,
+										ElementType.Xpath);
+								commonFunc.hardWait(2000);
+
+								webDB.clearTextField(AttendanceLeaveLocators.GeneralExpAmountField, ElementType.Xpath);
+//								webDB.moveToElement(AttendanceLeaveLocators.GeneralExpAmountField, ElementType.Xpath);
+//								flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.GeneralExpAmountField,
+//										GeneralExpAmount, ElementType.Xpath);
+								commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpAmountField,
+										AttendanceLeaveLocators.GeneralExpAmountInput, GeneralExpAmount);
+								if (flag) {
+									logs.logging("INFO", "General Expense Amount Is Entered");
+									webDB.pressTabKey();
+									flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpRemarksField,
+											ElementType.Xpath);
+									commonFunc.verifyAddTableSpecs(AttendanceLeaveLocators.GeneralExpRemarksField,
+											AttendanceLeaveLocators.GeneralExpRemarksField, GeneralExpense);
+									if (flag) {
+										logs.logging("INFO", "General Expense Remarks Entered");
+										webDB.pressTabKey();
+										commonFunc.hardWait(5000);
+										flag = webDB.waitForElement(
+												AttendanceLeaveLocators.GeneralExpenseLineSaveButton,
+												ElementType.Xpath);
+										webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseLineSaveButton,
+												ElementType.Xpath);
+										if (flag) {
+											logs.logging("INFO", "General Expense line Saved Successfully");
+											commonFunc.hardWait(5000);
+											flag = webDB.waitForElement(
+													AttendanceLeaveLocators.GeneralExpenseCancelButton,
+													ElementType.Xpath);
+											webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpenseCancelButton,
+													ElementType.Xpath);
 										}
 									}
 								}
