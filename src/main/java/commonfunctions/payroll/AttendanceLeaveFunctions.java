@@ -5618,7 +5618,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnEmployeeWise() {
+	public boolean checkGeneralExpenseBasedOnEmployeeWise() {
 //		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 //				"HrRqtUsername");
 		commonFunc.hardWait(3000);
@@ -5636,7 +5636,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnForwardToApproval() {
+	public boolean checkGeneralExpenseBasedOnForwardToApproval() {
 //		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 //				"HrRqtUsername");
 		commonFunc.hardWait(3000);
@@ -5654,7 +5654,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnReturnToApproval() {
+	public boolean checkGeneralExpenseBasedOnReturnToApproval() {
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
@@ -5671,7 +5671,7 @@ public class AttendanceLeaveFunctions {
 	 * 
 	 * @author Kishore-RMITS
 	 */
-	public boolean CheckGeneralExpenseBasedOnCancellingTheDocument() {
+	public boolean checkGeneralExpenseBasedOnCancellingTheDocument() {
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();

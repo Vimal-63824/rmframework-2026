@@ -318,8 +318,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 23, groups = {
 			"General Expenses" }, description = "177.To Check General Expense Based on Employee Wise ")
-	public void checkGeneralExpenseBasedOnEmployeeWise() {
-		flag = attendanceLeave.CheckGeneralExpenseBasedOnEmployeeWise();
+	public void CheckGeneralExpenseBasedOnEmployeeWise() {
+		flag = attendanceLeave.checkGeneralExpenseBasedOnEmployeeWise();
 		Assert.assertTrue(flag);
 	}
 
@@ -331,8 +331,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 24, groups = {
 			"General Expenses" }, description = "178.To Check General Expense Based on the Expenses details")
-	public void checkGeneralExpenseBasedOnTheExpensesDetails() {
-		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
+	public void CheckGeneralExpenseBasedOnTheExpensesDetails() {
+		// TODO Covered in checkGeneralExpenseBasedOnEmployeeWise() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -344,8 +344,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 25, groups = {
 			"General Expenses" }, description = "176.To Check General Expense Find page with all line wise record")
-	public void checkGeneralExpenseFindPageWithAllLineWiseRecord() {
-		// TODO Covered in CheckGeneralExpenseBasedOnEmployeeWise() Method
+	public void CheckGeneralExpenseFindPageWithAllLineWiseRecord() {
+		// TODO Covered in checkGeneralExpenseBasedOnEmployeeWise() Method
 		Assert.assertTrue(flag);
 	}
 
@@ -357,8 +357,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 26, groups = {
 			"General Expenses" }, description = "176.To Check General Expense Based on Forward To Approval")
-	public void checkGeneralExpenseBasedOnForwardToApproval() {
-		flag = attendanceLeave.CheckGeneralExpenseBasedOnForwardToApproval();
+	public void CheckGeneralExpenseBasedOnForwardToApproval() {
+		flag = attendanceLeave.checkGeneralExpenseBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
 	}
 
@@ -370,8 +370,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 27, groups = {
 			"General Expenses" }, description = "181.To Check General Expense Based on Return To Approval")
-	public void checkGeneralExpenseBasedOnReturnToApproval() {
-		flag = attendanceLeave.CheckGeneralExpenseBasedOnReturnToApproval();
+	public void CheckGeneralExpenseBasedOnReturnToApproval() {
+		flag = attendanceLeave.checkGeneralExpenseBasedOnReturnToApproval();
 		Assert.assertTrue(flag);
 	}
 	
@@ -383,8 +383,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 28, groups = {
 			"General Expenses" }, description = "174.To Check General Expense Based on all the Required Fields")
-	public void checkGeneralExpenseBasedOnAllTheRequiredFields() {
-		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
+	public void CheckGeneralExpenseBasedOnAllTheRequiredFields() {
+		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
 	
@@ -396,8 +396,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 29, groups = {
 			"General Expenses" }, description = "178.To Check General Expense fetches values correctly")
-	public void checkGeneralExpenseFetchesvaluesCorrectly() {
-		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
+	public void CheckGeneralExpenseFetchesvaluesCorrectly() {
+		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
 	
@@ -409,8 +409,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 30, groups = {
 			"General Expenses" }, description = "178.To Check General Expense With all the field validations and Note alerts")
-	public void checkGeneralExpenseWithAllTheFieldValidationsAndNoteAlerts() {
-		// TODO Covered in CheckGeneralExpenseBasedOnReturnToApproval() Method
+	public void CheckGeneralExpenseWithAllTheFieldValidationsAndNoteAlerts() {
+		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
 	
@@ -422,8 +422,8 @@ public class EmployeeOvertime extends RoadMapERPTest {
 	@Author("Kishore-RMITS")
 	@Test(priority = 31, groups = {
 			"General Expenses" }, description = "178.To Check General Expense Based on Cancelling The Document")
-	public void checkGeneralExpenseBasedOnCancellingTheDocument() {
-		flag = attendanceLeave.CheckGeneralExpenseBasedOnCancellingTheDocument();
+	public void CheckGeneralExpenseBasedOnCancellingTheDocument() {
+		flag = attendanceLeave.checkGeneralExpenseBasedOnCancellingTheDocument();
 		Assert.assertTrue(flag);
 	}
 
