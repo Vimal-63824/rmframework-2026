@@ -5075,11 +5075,11 @@ public class GrnPageFunctions {
 			if (!ItemId.equals("")) {
 				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
-				logs.logging("INFO", "After GRN Actual Stock Cost For This Item " + ItemId + "Is : " + AfterStockCost);
+				logs.logging("INFO", "After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
 
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO",
-						"Verified Expected Stock Cost For This Item " + ItemId + " With Database Values After MRV");
+						"Verified Expected Stock Cost For This Item '" + ItemId + "' With Database Values After MRV");
 			}
 		}
 	}
@@ -5105,15 +5105,15 @@ public class GrnPageFunctions {
 				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO",
-						"Before InspectionWH Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
+						"Before InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
 				logs.logging("INFO",
-						"Expected InspectionWH Stock Qty For This Item " + ItemId + "Is : " + ExpectedStockQuantity);
+						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
 				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
-						"Before InspectionWH Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+						"Before InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
 				logs.logging("INFO",
-						"Expected InspectionWH Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
 			}
@@ -5142,15 +5142,15 @@ public class GrnPageFunctions {
 				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO",
-						"Before Source WareHouse Stock Qty For This Item " + ItemId + "Is : " + BeforeStockQty);
-				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item " + ItemId + "Is : "
+						"Before Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
 						+ ExpectedStockQuantity);
 				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
-						"Before Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + BeforeStockCost);
+						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
 				logs.logging("INFO",
-						"Expected Source WareHouse Stock Cost For This Item " + ItemId + "Is : " + ExpectedStockCost);
+						"Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
 			}
@@ -5178,22 +5178,22 @@ public class GrnPageFunctions {
 
 				String AfterStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
-				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
 						+ AfterStockQty);
 
 				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
-				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item " + ItemId
-						+ " With Database Values After MRV");
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item '" + ItemId
+						+ "' With Database Values After MRV");
 				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
 				String AfterStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
-				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
 						+ AfterStockCost);
 
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
-				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item " + ItemId
-						+ " With Database Values After MRV");
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item '" + ItemId
+						+ "' With Database Values After MRV");
 			}
 		}
 	}
