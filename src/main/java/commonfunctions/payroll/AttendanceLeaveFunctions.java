@@ -5623,9 +5623,9 @@ public class AttendanceLeaveFunctions {
 //				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5641,9 +5641,9 @@ public class AttendanceLeaveFunctions {
 //				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5658,9 +5658,9 @@ public class AttendanceLeaveFunctions {
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineData(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5675,9 +5675,9 @@ public class AttendanceLeaveFunctions {
 		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
 				"HrRqtUsername");
 		commonFunc.navigateToGeneralExpense();
-		GenaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
+		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
-		GenaralExpenseAddLineDataWithCancelling(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
+		genaralExpenseAddLineDataWithCancelling(commonFunc.getDataFromTestDataSheet("GeneralExpense"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"),
 				commonFunc.getDataFromTestDataSheet("GeneralExpAmount"));
 		return flag;
@@ -5690,7 +5690,7 @@ public class AttendanceLeaveFunctions {
 	 * @param EmployeeDurai
 	 * @param GeneralReference
 	 */
-	public void GenaralExpenseAddingData(String EmployeeDurai, String GeneralReference) {
+	public void genaralExpenseAddingData(String EmployeeDurai, String GeneralReference) {
 		flag = webDB.waitForElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
 		if (flag) {
 			flag = webDB.clickAnElement(AttendanceLeaveLocators.GeneralExpFindAddButton, ElementType.Xpath);
@@ -5738,7 +5738,7 @@ public class AttendanceLeaveFunctions {
 	 * @param GeneralExpAmount
 	 * @param Today
 	 */
-	public void GenaralExpenseAddLineData(String GeneralExpense, String ExpenseDate, String GeneralExpAmount) {
+	public void genaralExpenseAddLineData(String GeneralExpense, String ExpenseDate, String GeneralExpAmount) {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String Today = date.format(formatter);
@@ -5833,7 +5833,7 @@ public class AttendanceLeaveFunctions {
 	 * @param GeneralExpAmount
 	 * @param Today
 	 */
-	public void GenaralExpenseAddLineDataWithCancelling(String GeneralExpense, String ExpenseDate,
+	public void genaralExpenseAddLineDataWithCancelling(String GeneralExpense, String ExpenseDate,
 			String GeneralExpAmount) {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
