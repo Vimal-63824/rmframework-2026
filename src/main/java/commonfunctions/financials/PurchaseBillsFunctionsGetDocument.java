@@ -2798,7 +2798,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -2980,7 +2980,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpenseAccountForStockitem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpenseAccountForStockitem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -3111,7 +3111,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithOutDeviationStockitem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithOutDeviationStockitem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -3203,7 +3203,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpenseAccountForStockitem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpenseAccountForStockitem()
 			throws Exception {
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StockTransferGenLocalItemandExp"));
@@ -3497,7 +3497,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeItemAutoCheck()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeItemAutoCheck()
 			throws Exception {
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StockTransferGenLocalItemType"));
@@ -3979,7 +3979,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StockTransferGenLocalItemandExp"));
@@ -4108,7 +4108,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationStockitemserviceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StockTransferGenLocalItemType"));
@@ -4235,7 +4235,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowIgsttaxAgainstStockTransferWithOutDeviationAndExpenseAccountStockitemserviceItemAndChargeItem()
 			throws Exception {
 
 //		try {
@@ -4415,7 +4415,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
 //				webDB.getDataFromProperties("StockTransferGenLocalItemType"));
@@ -4497,7 +4497,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterStateGstAgainstStockTransferWithDeviationForStockitem()
+	public void verifyToCreateRegisteredSupplierWithInterStateGstAgainstStockTransferWithDeviationForStockitem()
 			throws Exception {
 //		try {
 //			grnPageFunc
@@ -4573,7 +4573,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @author PremKumar.K-RM ITS
 	 * 
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockitemServiceitemAndChargeItem()
 			throws Exception {
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferInterstate"));
@@ -4626,7 +4626,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @author PremKumar.K-RM ITS
 	 * 
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		grnPageFunc.PoToGrnStockTransferRateContractSameUomWithAndWithoutInspectionForLocalPurchaseBill(
 				webDB.getDataFromProperties("StocktransferInterstate"));
@@ -4672,7 +4672,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @author PremKumar.K-RM ITS
 	 * 
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithDeviationStockitemserviceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
@@ -4744,7 +4744,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @author PremKumar.K-RM ITS
 	 * 
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemserviceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
@@ -4813,7 +4813,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @author PremKumar.K-RM ITS
 	 * 
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
@@ -4871,7 +4871,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @author PremKumar.K-RM ITS
 	 * 
 	 */
-	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StocktransferISForRCM"));
 		VerifyToAfterWriteTheExcelValueInNumberRcmField(webDB.getDataFromProperties("StockTransferAddIterstateEXWRCM"));
@@ -5276,7 +5276,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem()
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationStockitemServiceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -5371,7 +5371,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithDeviationandExpensesAccountStockItemServiceItemAndchargeItem()
 			throws Exception {
 
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
@@ -5456,7 +5456,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationStockitemServiceItemAndChargeItem()
 			throws Exception {
 
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
@@ -5540,7 +5540,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 
 //		grnPageFunc.PoToGrnStockTransferUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplier(
@@ -5650,7 +5650,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -5744,7 +5744,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -5835,7 +5835,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 //		grnPageFunc.poToGRNStockTransferUserDefinedSameStockandSupplierUOMWithAndWithoutInspection();
 //		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("TvsPassword"),
@@ -5953,7 +5953,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem()
+	public void verifyToCreateUnregisteredSupplierWithLocalGSTAllowIgstTaxAgainstStockTransferWithDeviationStockItemServiceItemAndChargeitem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
@@ -6020,7 +6020,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
@@ -6087,7 +6087,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
+	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
@@ -6145,7 +6145,7 @@ public class PurchaseBillsFunctionsGetDocument {
 	 * @param POType
 	 * @throws Exception
 	 */
-	public void VerifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+	public void verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
 			throws Exception {
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StockTransferAddLocalEXURITR"));
 		VerifyToAfterWriteTheExcelValueInNumberIgstField(webDB.getDataFromProperties("StocktransferURINTR"));
