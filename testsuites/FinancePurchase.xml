@@ -17,6 +17,8 @@
 			<class name="com.roadmapERP.PoToMRVTest2"></class>
 			<class name="com.roadmapERP.EmployeeOvertime"></class>
 			<class name="com.roadmapERP.PurchaseFOCTest"></class>
+			<class name="com.roadmapERP.DirectGRNFOCTest"></class>
+			<class name="com.roadmapERP.PoToGRNFOCTest"></class>
 		</classes>
 	</test>
 	<test name="Road Map Test - 2">

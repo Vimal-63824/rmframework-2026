@@ -1233,6 +1233,7 @@ public class EmployeeMasterFunctions {
 			enablePFAdjustmentFlagsInSalaryDetails();
 			enableESIAdjustmentFlagsInSalaryDetails();
 			clickPostButtonAndVerifyEmployeePosted();
+			enablePTAdjustmentFlagsInSalaryDetails();
 			clickProbationCompleteAndCheckProbationStatus();
 			flag = commonFunc.logoutUser();
 			return flag;
@@ -1890,6 +1891,25 @@ public class EmployeeMasterFunctions {
 						break;
 					}
 				}
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * This Method used To Enable PT Adjustment Flag in Salary Details in Add
+	 * Employee
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void enablePTAdjustmentFlagsInSalaryDetails() {
+		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_PT_ElegibleLabel, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(EmployeeMasterLocators.AddEmp_PT_ElegibleLabel, ElementType.Xpath);
+			flag = webDB.clickAnElement(EmployeeMasterLocators.AddEmp_PT_ElegibleLabel, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (flag) {
+				logs.logging("INFO", "PT flag Enabled Successfully");
 			}
 		}
 		Assert.assertTrue(flag);
@@ -4491,6 +4511,8 @@ public class EmployeeMasterFunctions {
 	 * @author Sakthi-GWL
 	 */
 	public void clickProbationCompleteAndCheckProbationStatus() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkSuccessToastMessageDisappear();
 		flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeMasterLocators.AddEmp_ProbationCompleteBtn, ElementType.Xpath);

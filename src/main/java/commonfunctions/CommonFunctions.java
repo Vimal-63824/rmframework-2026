@@ -3143,8 +3143,10 @@ public class CommonFunctions {
 	 */
 	public void enterAuthorNamesInExtentReport(Method method) {
 		Author author = method.getAnnotation(Author.class);
+		String ClassName = method.getDeclaringClass().getSimpleName();
 		if (author != null) {
 			Listener.test.get().assignAuthor(author.value());
+			Listener.test.get().assignCategory(ClassName);
 		}
 	}
 

@@ -495,8 +495,7 @@ public class AttendanceLeaveLocators {
 	public static final String LoanCreateLoanPaymentSaveOption = "//*[@id=\"B4694495258079169917\"]";
 	/** @locatorType Xpath */
 	public static final String LoanPaymentReverseButton = "//button[@data-testid='ELP_REVERSE_Button']";
-	
-	
+
 	public static final String TDSFindSearchButton = "//button[@data-testid='TDS_FindSearch_Btn']";
 	/** @locatorType Xpath */
 	public static final String TDSDeclFindEmpLOV = "//button[@data-testid='EMP_ID_lov_btn']";
@@ -518,8 +517,7 @@ public class AttendanceLeaveLocators {
 	public static final String TDSDeclarationSectionWiseField = "//input[@id='P1013_HTDLD_SEC10_13A_H']";
 	/** @locatorType Xpath */
 	public static final String TDSDeclarationSaveButton = "//button[@data-testid='Save_Btn']";
-	
-	
+
 	/** @locatorType Xpath */
 	public static final String OvertimeFindSearchButton = "//button[@data-testid='prmn_goreport_btn']";
 	/** @locatorType Xpath */
@@ -611,8 +609,8 @@ public class AttendanceLeaveLocators {
 	public static final String TravelAttTraAddButton = "//button[@id='B4117262840574189452']";
 	/** @locatorType Xpath */
 	public static final String TravelAttTraEMPLOV = "//button[@id='C3759475808274487956_lov_btn']";
-	/** @locatorType Xpath */ 
-	public static final String TravelAttTraSaveButton = "//button[@id='B4117262913503189453']";  
+	/** @locatorType Xpath */
+	public static final String TravelAttTraSaveButton = "//button[@id='B4117262913503189453']";
 	/** @locatorType Xpath */
 	public static final String TravelAttTraCloseButton = "//*[@id=\"wwvFlowForm\"]/div[5]/div[1]/button/span";
 	/** @locatorType Xpath */
@@ -681,4 +679,6 @@ public class AttendanceLeaveLocators {
 	public static final String GeneralExpensePostButton = "//button[@id='B3960885653613405762']";
 	/** @locatorType Xpath */
 	public static final String GeneralReimDocNoField = "//*[@id=\"P818210011_HGECH_DOC_NO_DISPLAY\"]";
+	/** @locatorType Xpath */
+	public static final String GeneralExpenseCancelButton = "//button[@id='B1520559629502955552']";
 }

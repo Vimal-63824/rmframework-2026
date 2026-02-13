@@ -348,7 +348,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	 * @throws IOException
 	 */
 	@Author("Harikrishna-RMITS")
-	@Test(priority = -1, groups = {
+	@Test(priority = 24, groups = {
 			"Cash Receipt" }, description = "Advance against SO single Sales order (Through Add button)")
 	public void CreateAdvanceAgainstSOThroughAddButton() throws IOException {
 		cashReceiptFunc.CRAdvanceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
