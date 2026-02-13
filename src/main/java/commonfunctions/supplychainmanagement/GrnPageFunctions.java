@@ -15,6 +15,7 @@ import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -6920,10 +6921,12 @@ public class GrnPageFunctions {
 			for (WebElement element : CheckBox) {
 				try {
 					if (element.isDisplayed()) {
+						new Actions(webDB.getDriver()).moveToElement(element);
 						if (!element.isSelected()) {
 							element.click();
 							flag = true;
 						} else {
+							new Actions(webDB.getDriver()).moveToElement(element);
 							element.click();
 							Thread.sleep(10000);
 							clickSelectAllGEButton();
@@ -7095,7 +7098,7 @@ public class GrnPageFunctions {
 				commonFunc.getDataFromTestDataSheet("StockTransferSelect"),
 				webDB.getDataFromProperties("StPoToMRVWOIpDUSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
 		verifyToStockTransferSaleOrderDocumentPost();
-		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		flag = commonFunc.logoutUser();
 		stockTransferAfterForwardToApproval();
 		verifyToPostStockTransferDocumentForSalesInvoice();

@@ -194,6 +194,7 @@ public class CommonFunctions {
 		if (flag) {
 			flag = webDB.waitForElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
 			if (flag) {
+				checkRefreshCellsDisappear();
 				webDB.clickAnElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
 				flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 				if (flag) {
@@ -323,7 +324,7 @@ public class CommonFunctions {
 							try {
 //								((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();",
 //										webElement);
-								Actions action =new Actions(webDB.getDriver());
+								Actions action = new Actions(webDB.getDriver());
 								action.moveToElement(webElement).build().perform();
 							} catch (Exception e) {
 							}
@@ -2998,7 +2999,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("TravelReimbursement"),
 				AttendanceLeaveLocators.TravelReimbFindSearchButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate General Expense
 	 * 
@@ -3218,6 +3219,7 @@ public class CommonFunctions {
 		assertTrue(flag);
 		return Value;
 	}
+
 	/**
 	 * This Method Is Used To Navigate To SubCntarct Order CloseShort
 	 * 

@@ -488,6 +488,7 @@ public class GateEntryPageFunctions {
 		VariableHandler.setGateEntryNumber(GateEntryNumber);
 		logs.logging("INFO", "Gate EntryNumber Is :" + VariableHandler.getGateEntryNumber());
 		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.GateKeeperSso, "VIMAL");
+		webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput, "Vimal", ElementType.Xpath);
 		flag = webDB.waitForElement(GateEntryPageLocators.EwayBillNumber, ElementType.Xpath);
 		if (flag) {
 			webDB.sendTextToAnElement(GateEntryPageLocators.EwayBillNumber,
