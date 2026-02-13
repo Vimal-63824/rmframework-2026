@@ -1757,4 +1757,34 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
 		return value;
 	}
+	
+	/**
+	 * Bank Payment Header details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SONo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String bankReceiptPendingReceivablesAdvanceDetails(String SONo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BankReceipPendingAdvanceQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * CS Line Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SOANo
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String applicationJournalViewDetails(String BRNo, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("JournalQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), BRNo, commonFunc.getDataFromTestDataSheet("PONO"), SeqNo,
+				DBHeaderColumnValue);
+		return value;
+	}
 }

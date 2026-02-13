@@ -62,7 +62,7 @@ public class SalesOrderFunctions {
 	String[][] SOMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 	String Filepath1 = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
 			+ "QA Scenario - Sales STD PRICE.xlsx";
-	ArrayList<String> MultipleSO = new ArrayList<String>();
+	public ArrayList<String> MultipleSO = new ArrayList<String>();
 	public ArrayList<String> MultiAdvReceiptDocumentNumber = new ArrayList<String>();
 
 	/**
