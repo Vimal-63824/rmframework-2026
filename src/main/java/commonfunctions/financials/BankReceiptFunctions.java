@@ -1736,7 +1736,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughGetDocumentMPMI(String SheetName, String Currency, String BankName) {
+	public void bankReceiptThroughGetDocumentMPMI(String SheetName, String Currency, String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
@@ -1810,7 +1810,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughGetDocumentMPMIUSD(String SheetName, String Currency, String BankName) {
+	public void bankReceiptThroughGetDocumentMPMIUSD(String SheetName, String Currency, String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
@@ -1888,7 +1888,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughPendingDocsMPMIUSD(String CreationType, String SheetName, String Currency,
+	public void bankReceiptThroughPendingDocsMPMIUSD(String CreationType, String SheetName, String Currency,
 			String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
@@ -1961,7 +1961,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughPendingDocsMPMI(String CreationType, String SheetName, String Currency,
+	public void bankReceiptThroughPendingDocsMPMI(String CreationType, String SheetName, String Currency,
 			String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
@@ -2031,7 +2031,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughGetDocumentWithNewRef(String SheetName, String Currency, String BankName) {
+	public void bankReceiptThroughGetDocumentWithNewRef(String SheetName, String Currency, String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
@@ -2128,7 +2128,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughGetDocumentWithNewRefUSD(String SheetName, String Currency, String BankName) {
+	public void bankReceiptThroughGetDocumentWithNewRefUSD(String SheetName, String Currency, String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
 		commonFunc.navigateToFinancialPaymentReceipt();
@@ -2229,7 +2229,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughPendingDocsWithNewRef(String CreationType, String SheetName, String Currency,
+	public void bankReceiptThroughPendingDocsWithNewRef(String CreationType, String SheetName, String Currency,
 			String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
@@ -2322,7 +2322,7 @@ public class BankReceiptFunctions {
 	 * @param SheetName
 	 * @param Currency
 	 */
-	public void BankReceiptThroughPendingDocsWithNewRefUSD(String CreationType, String SheetName, String Currency,
+	public void bankReceiptThroughPendingDocsWithNewRefUSD(String CreationType, String SheetName, String Currency,
 			String BankName) {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				System.getProperty("AdminUsername"));
@@ -2614,7 +2614,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughGetDocumentMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+		bankReceiptThroughGetDocumentMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
@@ -2633,7 +2633,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		bankReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
@@ -2671,7 +2671,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughGetDocumentWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+		bankReceiptThroughGetDocumentWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
@@ -2690,7 +2690,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughPendingDocsWithNewRef(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		bankReceiptThroughPendingDocsWithNewRef(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"), commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
@@ -3536,7 +3536,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceExportBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughGetDocumentMPMIUSD(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+		bankReceiptThroughGetDocumentMPMIUSD(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
@@ -3555,7 +3555,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceExportBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughPendingDocsMPMIUSD(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		bankReceiptThroughPendingDocsMPMIUSD(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
@@ -3594,7 +3594,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughGetDocumentWithNewRefUSD(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
+		bankReceiptThroughGetDocumentWithNewRefUSD(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
@@ -3613,7 +3613,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughPendingDocsWithNewRefUSD(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		bankReceiptThroughPendingDocsWithNewRefUSD(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
@@ -4442,7 +4442,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughGetDocumentMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+		bankReceiptThroughGetDocumentMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
 
@@ -4461,7 +4461,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		bankReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
@@ -4500,7 +4500,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughGetDocumentWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+		bankReceiptThroughGetDocumentWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
 
@@ -4519,7 +4519,7 @@ public class BankReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
-		BankReceiptThroughPendingDocsWithNewRef(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
+		bankReceiptThroughPendingDocsWithNewRef(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
@@ -5067,35 +5067,35 @@ public class BankReceiptFunctions {
 			if (!Unit.equals("")) {
 				String SeqNo = String.valueOf(i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.ApplicationJournalViewDetails(
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.applicationJournalViewDetails(
 						VariableHandler.getBankPaymentOrReceiptDocNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("AJDBUnitColumnName")), Unit);
 				logs.logging("INFO",
 						" In The View Journal Screen Unit Id Is Matched With Database Values Against This Document Number"
 								+ VariableHandler.getBankPaymentOrReceiptDocNumber() + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.ApplicationJournalViewDetails(
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.applicationJournalViewDetails(
 						VariableHandler.getBankPaymentOrReceiptDocNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("AJDBGLAccountColumnName")), GLAccountNumber);
 				logs.logging("INFO",
 						" In The View Journal Screen GL Account Number Is Matched With Database Values Against This Document Number"
 								+ VariableHandler.getBankPaymentOrReceiptDocNumber() + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.ApplicationJournalViewDetails(
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.applicationJournalViewDetails(
 						VariableHandler.getBankPaymentOrReceiptDocNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("AJDBGLAccountDescColumnName")), GLAccountDesc);
 				logs.logging("INFO",
 						" In The View Journal Screen GL Account Number Description Is Matched With Database Values Against This Document Number"
 								+ VariableHandler.getBankPaymentOrReceiptDocNumber() + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.ApplicationJournalViewDetails(
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.applicationJournalViewDetails(
 						VariableHandler.getBankPaymentOrReceiptDocNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("AJDBDebitAmountColumnName")), Debit);
 				logs.logging("INFO",
 						" In The View Journal Screen Debit Amount Is Matched With Database Values Against This Document Number"
 								+ VariableHandler.getBankPaymentOrReceiptDocNumber() + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.ApplicationJournalViewDetails(
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunctions.applicationJournalViewDetails(
 						VariableHandler.getBankPaymentOrReceiptDocNumber(), SeqNo,
 						commonFunc.getDataFromTestDataSheet("AJDBCreditAmountColumnName")), Credit);
 				logs.logging("INFO",
@@ -5273,7 +5273,7 @@ public class BankReceiptFunctions {
 			String DrCr = BankReceipts[i][25];
 			if (!PartyID.equals("")) {
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvSONumberColumnName")),
 						dbCommonFunctions.SOHeaderDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SODBDocNumberColumnName")));
@@ -5281,7 +5281,7 @@ public class BankReceiptFunctions {
 						+ " Sales Order Number Is getting Matched With DB");
 
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvPartyColumnName")),
 						dbCommonFunctions.SOHeaderDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SoDBCustomerIDColumnName")));
@@ -5289,7 +5289,7 @@ public class BankReceiptFunctions {
 						+ " Customer ID Is getting Matched With DB");
 
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvCPCColumnName")),
 						dbCommonFunctions.SOHeaderDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SODBCpcCodeIDColumnName")));
@@ -5297,7 +5297,7 @@ public class BankReceiptFunctions {
 						+ " CPC ID Is getting Matched With DB");
 
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvCurrencyColumnName")),
 						dbCommonFunctions.SOHeaderDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SoDBCusrrencyColumnName")));
@@ -5305,7 +5305,7 @@ public class BankReceiptFunctions {
 						+ " Currency Is getting Matched With DB");
 
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvPercentageColumnName")),
 						dbCommonFunctions.SOAdvanceDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SODBAdvPercentageColumnName")));
@@ -5313,7 +5313,7 @@ public class BankReceiptFunctions {
 						+ " Advance Percentage Is getting Matched With DB");
 
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvAmountColumnName")),
 						dbCommonFunctions.SOAdvanceDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SODBAdvToBeReceivedColumnName")));
@@ -5321,7 +5321,7 @@ public class BankReceiptFunctions {
 						+ " Advance Amount Is getting Matched With DB");
 
 				salesOrdFunc.verifyAssertionBothValues(
-						dbCommonFunctions.BankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
+						dbCommonFunctions.bankReceiptPendingReceivablesAdvanceDetails(VoucherNumber,
 								commonFunc.getDataFromTestDataSheet("BRDBAdvUnitColumnName")),
 						dbCommonFunctions.SOHeaderDetails(SalesOrder,
 								commonFunc.getDataFromTestDataSheet("SoDBUnitColumnName")));
