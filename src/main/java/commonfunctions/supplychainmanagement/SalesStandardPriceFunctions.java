@@ -1,5 +1,13 @@
 package commonfunctions.supplychainmanagement;
 
+import static org.testng.Assert.assertTrue;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks May 20, 2025
@@ -7,43 +15,12 @@ package commonfunctions.supplychainmanagement;
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
-import utils.ReportLoger;
-import utils.WebDriverBase;
-
-import static org.testng.Assert.assertTrue;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.awt.Checkbox;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
-import javax.xml.xpath.XPathEvaluationResult.XPathResultType;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import commonfunctions.CommonFunctions;
-import commonfunctions.DBCommonFunctions;
-import commonfunctions.ItemDetailsHandler;
-import commonfunctions.ItemDetailsHandler.OpenSOHeaderDetailsName;
-import commonfunctions.payroll.CommonPayrollFunctions;
 import commonfunctions.VariableHandler;
-import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
-import commonlocators.supplychainmanagement.OpenSoAmdLocators;
+import commonfunctions.payroll.CommonPayrollFunctions;
+import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.PricelistPageLocators;
-import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
-import commonlocators.supplychainmanagement.SalesOrderLocators;
 import commonlocators.supplychainmanagement.SalesPriceListLocators;
 import commonlocators.supplychainmanagement.SalesStandardPriceLocators;
-import groovyjarjarantlr4.v4.parse.ANTLRParser.element_return;
-import groovyjarjarantlr4.v4.runtime.tree.xpath.XPath;
-import net.bytebuddy.utility.RandomString;
-import commonlocators.*;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
@@ -355,23 +332,26 @@ public class SalesStandardPriceFunctions {
 		}
 		assertTrue(flag);
 	}
-	/**Click a Search Button In Std Price 
+
+	/**
+	 * Click a Search Button In Std Price
 	 * 
 	 * @author Kowshik-RMITS
 	 */
 	public void clickSearchInStandardPrice() {
-		flag =webDB.waitForElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
-		if(flag) {
+		flag = webDB.waitForElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
+		if (flag) {
 			webDB.moveToElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
 			webDB.javaScriptClickAnElement(SalesStandardPriceLocators.SearchButton, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				logs.logging("INFO", "Sucessfully Clicked a Search Button");
 			}
 		}
 		assertTrue(flag);
 	}
-	
-	/**Taken Standard Price Item In Find Page
+
+	/**
+	 * Taken Standard Price Item In Find Page
 	 * 
 	 * @author Kowshik-RMITS
 	 */
@@ -380,19 +360,19 @@ public class SalesStandardPriceFunctions {
 		if (flag) {
 			webDB.clickAnElement(SalesPriceListLocators.PriceListFlagFindPage, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				webDB.clickAnElement(SalesPriceListLocators.CatalogueFlagFindPage, ElementType.Xpath);
 				flag = webDB.waitForElement(SalesStandardPriceLocators.ItemInputField, ElementType.Xpath);
-				if(flag) {
-					webDB.sendTextToAnElement(SalesStandardPriceLocators.ItemInputField,
-							VariableHandler.getItemName() , ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(SalesStandardPriceLocators.ItemInputField, VariableHandler.getItemName(),
+							ElementType.Xpath);
 					flag = webDB.waitForElement(SalesStandardPriceLocators.SearchFindPage, ElementType.Xpath);
-					if(flag) {
+					if (flag) {
 						webDB.clickAnElement(SalesStandardPriceLocators.SearchFindPage, ElementType.Xpath);
 					}
 				}
 			}
-			
+
 		}
 		assertTrue(flag);
 	}
@@ -603,7 +583,7 @@ public class SalesStandardPriceFunctions {
 			webDB.doubleClickAnElement(SalesStandardPriceLocators.MaxDiscField, ElementType.Xpath);
 			flag = webDB.waitForElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
 			if (flag) {
-				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);			
+				webDB.moveToElement(SalesStandardPriceLocators.MaxDiscInput, ElementType.Xpath);
 				verifyClickAndEnterValueInTableFields(SalesStandardPriceLocators.MaxDiscField,
 						SalesStandardPriceLocators.MaxDiscInput, Max_Disc_Value);
 				if (flag) {
@@ -669,7 +649,6 @@ public class SalesStandardPriceFunctions {
 		assertTrue(flag);
 	}
 
-
 	/**
 	 * Verify Search Button Clicking
 	 * 
@@ -708,7 +687,6 @@ public class SalesStandardPriceFunctions {
 
 		assertTrue(flag);
 	}
-	
 
 	/**
 	 * Verify Genrate Item
@@ -1021,7 +999,7 @@ public class SalesStandardPriceFunctions {
 						commonFunc.logoutUser();
 						commonFunc.hardWait(2000);
 						commonFunc.checkRefreshCellsDisappear();
-						
+
 					}
 				}
 			}

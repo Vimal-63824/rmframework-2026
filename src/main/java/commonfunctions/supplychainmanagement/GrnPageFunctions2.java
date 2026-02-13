@@ -602,9 +602,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -627,10 +627,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -649,9 +649,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -674,10 +674,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -696,9 +696,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameUDService"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDService"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameUDService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -718,10 +718,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDService"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameUDService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -740,9 +740,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -767,10 +767,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -789,9 +789,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -816,10 +816,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -838,9 +838,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameRCService"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCService"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSameRCService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -862,10 +862,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCService"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameRCService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSameRCService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -884,9 +884,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -910,10 +910,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -932,9 +932,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -958,10 +958,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -980,9 +980,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSamePLService"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLService"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpSamePLService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1003,10 +1003,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLService"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSamePLService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpSamePLService"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -1025,9 +1025,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1050,10 +1050,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -1072,9 +1072,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1097,10 +1097,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffUDRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -1119,9 +1119,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1146,10 +1146,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -1168,9 +1168,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1195,10 +1195,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffRCRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -1217,9 +1217,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpSameUDGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1243,10 +1243,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLGeneral"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();
@@ -1265,9 +1265,9 @@ public class GrnPageFunctions2 {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 		String Today = date.format(formatter);
-		GRNFunc.verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
-		GRNFunc.verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
+		GRNFunc.verifyStockQtyAndCostQtyForSourceWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -1291,10 +1291,10 @@ public class GrnPageFunctions2 {
 					System.getProperty("HariUsername"));
 		}
 		verifyGRNDocumentApprovedStatus();
-		GRNFunc.verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
+		GRNFunc.verifyExpectedStockQtyAndCostQtyForQualityWH(webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		GRNFunc.afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
-		GRNFunc.verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+		GRNFunc.verifyExpectedStockQtyAndCostQtyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirGRNImpDiffPLRawMat"),
 				webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"));
 		flag = commonFunc.logoutUser();

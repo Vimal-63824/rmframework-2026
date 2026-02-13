@@ -2574,7 +2574,7 @@ public class CommonFunctions {
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 //			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
-			webDB.clearText(InputParameter, ElementType.Xpath);
+			webDB.clearTextField(InputParameter, ElementType.Xpath);
 //			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
@@ -3143,8 +3143,10 @@ public class CommonFunctions {
 	 */
 	public void enterAuthorNamesInExtentReport(Method method) {
 		Author author = method.getAnnotation(Author.class);
+		String ClassName = method.getDeclaringClass().getSimpleName();
 		if (author != null) {
 			Listener.test.get().assignAuthor(author.value());
+			Listener.test.get().assignCategory(ClassName);
 		}
 	}
 

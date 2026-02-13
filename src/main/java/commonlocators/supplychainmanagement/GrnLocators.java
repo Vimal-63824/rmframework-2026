@@ -319,11 +319,12 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String FindGELovButton = "//input[@name='P1615131100_GE_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String OkButton = "//button[@id='B2822766296923629715']";
+	public static final String OkButton = "//h1[text()='GRN Date']/../..//span[text()='OK']/parent::button";
 	/** @locatorType Xpath */
 	public static final String CreateGeButton = "//button[@id='BTN_GE']";
 	/** @locatorType Xpath */
 	public static final String GRN_LotSerialButton = "//button[@data-testid='GRNP_GEN_LOT_SER_BTN']";
+	/** @locatorType Xpath */
 	public static final String GstSupplySelect = "//select[@data-testid='PRLC_GST_EXEMPT_TYPE']";
 	/** @locatorType Xpath */
 	public static final String GrnLandedGstSupplyergrid = "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[16]";
