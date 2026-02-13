@@ -2574,7 +2574,7 @@ public class CommonFunctions {
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 //			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
-			webDB.clearTextField(InputParameter, ElementType.Xpath);
+			webDB.clearText(InputParameter, ElementType.Xpath);
 //			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
