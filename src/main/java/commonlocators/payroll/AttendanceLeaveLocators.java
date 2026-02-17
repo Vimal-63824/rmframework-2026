@@ -681,4 +681,36 @@ public class AttendanceLeaveLocators {
 	public static final String GeneralReimDocNoField = "//*[@id=\"P818210011_HGECH_DOC_NO_DISPLAY\"]";
 	/** @locatorType Xpath */
 	public static final String GeneralExpenseCancelButton = "//button[@id='B1520559629502955552']";
+	/** @locatorType Xpath */
+	public static final String ResigRequestFindAddButton = "//button[@id='B1592754182645032762']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtDocDate = "//input[@id='P8186120501_EMPREL_DOC_DATE_input']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtEmployeeLOV = "//button[@id='P8186120501_EMPREL_EMP_ID_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtReferenceField = "//input[@id='P8186120501_EMPREL_REFERENCE']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtEntrySaveButton = "//button[@id='B4793378069217108466']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtEntryPostButton = "//button[@id='B4693895738041935427']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtDocNoField = "//input[@id='P8186120501_EMPREL_DOC_NO']";
+	/** @locatorType Xpath */
+	public static final String FFSFindPendingForFNF = "//button[@id='B2699027812235802156']";
+	/** @locatorType Xpath */
+	public static final String FFSFindPendingForFNFScrollBy = "//*[@id=\"R2_data_panel\"]/div[1]/div/div[3]";
+	/** @locatorType Xpath */
+	public static final String FFSFindPendingForFNFReverseButton = "#\\39 006561326705192134_orig > tbody > tr:nth-child(2) > td:nth-child(13) > a";
+	/** @locatorType Xpath */
+	public static final String PendingForFNFFrame = "//iframe[contains(@title,'Pending For FNF')]";
+	/** @locatorType Xpath */
+	public static final String FFSFindPendingForFNFReverseOk = "(//div[@class='ui-dialog-buttonset']//button)[2]";
+	/** @locatorType Xpath */
+	public static final String FFSFindPendingForFNFClose = "//*[@id=\"t_PageBody\"]/div[7]/div[1]/button";
+	/** @locatorType Xpath */
+	public static final String ResignRequestFindSearchButton = "//button[@id='B1592754553151032766']";
+	/** @locatorType Xpath */
+	public static final String ResignRequestFindDocSelect = "#\\36 043216600885500164_orig > tbody > tr:nth-child(2) > td:nth-child(3) > a";
+	/** @locatorType Xpath */
+	public static final String ResignRequestDocCancel = "//button[@id='B4693895826952935428']";
 }
