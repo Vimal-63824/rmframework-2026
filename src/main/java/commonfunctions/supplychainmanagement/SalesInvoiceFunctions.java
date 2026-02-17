@@ -7380,7 +7380,7 @@ public class SalesInvoiceFunctions {
 							if (flag) {
 								webDB.clickAnElement(SalesInvoiceLocators.RWC_Line_save_Icon, ElementType.Xpath);
 								commonFunc.checkRefreshCellsDisappear();
-								flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
+								flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn, ElementType.Xpath);
 								if (flag) {
 									logs.logging("INFO",
 											"Resource Usage Inserting Workcenter, Process, Resource Updated");
@@ -7470,17 +7470,11 @@ public class SalesInvoiceFunctions {
 			commonFunc.hardWait(2000);
 			GetUIScrapItemAndwriteScrapItemColumnInExcelSheet(webDB.getDataFromProperties("LocalCustomer"));
 			commonFunc.hardWait(3000);
-			flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(SalesInvoiceLocators.RWC_CreJournal_Btn, ElementType.Xpath);
-				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
 				flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Cre.Journal Clicked Sucessfully");
 				}
 			}
-		}
 		assertTrue(flag);
 	}
 
