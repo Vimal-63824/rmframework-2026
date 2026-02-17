@@ -3009,6 +3009,26 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("GeneralExpense"),
 				AttendanceLeaveLocators.GeneralExpFindAddButton);
 	}
+	
+	/**
+	 * This Method Is Used To Navigate Resignation Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToResignationRequest() {
+		navigateToSearchTab(webDB.getDataFromProperties("ResignationRequest"),
+				AttendanceLeaveLocators.ResigRequestFindAddButton);
+	}
+	
+	/**
+	 * This Method Is Used To Navigate Resignation Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToFullAndFinalSettlement() {
+		navigateToSearchTab(webDB.getDataFromProperties("FullAndFinalSettlement"),
+				AttendanceLeaveLocators.FFSFindPendingForFNF);
+	}
 
 	/**
 	 * This Method Is Used To Navigate To Setup Leave Loan Screen

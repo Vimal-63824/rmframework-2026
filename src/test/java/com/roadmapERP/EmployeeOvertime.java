@@ -374,7 +374,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		flag = attendanceLeave.checkGeneralExpenseBasedOnReturnToApproval();
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To Check General Expense Based on all the Required Fields
 	 * 
@@ -387,7 +387,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To Check General Expense fetches values correctly
 	 * 
@@ -400,7 +400,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To Check General Expense With all the field validations and Note alerts
 	 * 
@@ -413,7 +413,7 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		// TODO Covered in checkGeneralExpenseBasedOnReturnToApproval() Method
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * To Check General Expense Based on Cancelling The Document
 	 * 
@@ -424,6 +424,58 @@ public class EmployeeOvertime extends RoadMapERPTest {
 			"General Expenses" }, description = "178.To Check General Expense Based on Cancelling The Document")
 	public void CheckGeneralExpenseBasedOnCancellingTheDocument() {
 		flag = attendanceLeave.checkGeneralExpenseBasedOnCancellingTheDocument();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Request Date
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 32, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Request Date")
+	public void CheckResignTerminationRequestBasedOnRequestDate() {
+		flag = attendanceLeave.checkResignTerminationRequestBasedOnRequestDate();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Employee Wise
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 33, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Employee Wise ")
+	public void CheckResignTerminationRequestBasedOnEmployeeWise() {
+		// TODO Covered in checkResignTerminationRequestBasedOnRequestDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Find page with all line wise record
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 34, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Find page with all line wise record")
+	public void CheckResignTerminationRequesFindpagewithAllLineWiseRecord() {
+		// TODO Covered in checkResignTerminationRequestBasedOnRequestDate() Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Forward To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 35, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Forward To Approval")
+	public void CheckResignTerminationRequestBasedOnForwardToApproval() {
+		flag = attendanceLeave.checkResignTerminationRequestBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
 	}
 
