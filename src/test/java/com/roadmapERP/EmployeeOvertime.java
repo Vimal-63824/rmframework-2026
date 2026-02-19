@@ -478,6 +478,87 @@ public class EmployeeOvertime extends RoadMapERPTest {
 		flag = attendanceLeave.checkResignTerminationRequestBasedOnForwardToApproval();
 		Assert.assertTrue(flag);
 	}
+	
+	/**
+	 * To Check Resign/Termination Request Based on Employee Pay
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 36, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Employee Pay")
+	public void CheckResignTerminationRequestBasedOnEmployeePay() {
+		flag = attendanceLeave.checkResignTerminationRequestBasedOnEmployeePay();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Adjust Encash Leave
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 37, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Adjust Encash Leave")
+	public void CheckResignTerminationRequestBasedOnAdjustEncashLeave() {
+		flag = attendanceLeave.checkResignTerminationRequestBasedOnAdjustEncashLeave();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Planned Date & Optional date
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 38, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Planned Date & Optional date")
+	public void CheckResignTerminationRequestBasedOnPlannedDateOptionalDate() {
+		// TODO Covered in checkResignTerminationRequestBasedOnAdjustEncashLeave()
+		// Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Reverse the Resignation Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 39, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Reverse the Resignation Request")
+	public void CheckResignTerminationRequestBasedOnReverseTheResignationRequest() {
+		// TODO Covered in checkResignTerminationRequestBasedOnAdjustEncashLeave()
+		// Method
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Return To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 40, groups = {
+			"Resignation Request" }, description = "178.To Check Resign/Termination Request Based on Return To Approval")
+	public void CheckResignTerminationRequestBasedOnReturnToApproval() {
+		flag = attendanceLeave.checkResignTerminationRequestBasedOnReturnToApproval();
+		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * To Check Resign/Termination Request With all the field validations and Note
+	 * alerts
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	@Author("Kishore-RMITS")
+	@Test(priority = 41, groups = {
+			"Resignation Request" }, description = "179.To Check Resign/Termination Request With all the field validations and Note alerts")
+	public void CheckResignTerminationRequestWithAllTheFieldValidationsAndNoteAlerts() {
+		// TODO Covered in CheckResignTerminationRequestBasedOnReturnToApproval()
+		Assert.assertTrue(flag);
+	}
 
 	/**
 	 * Logout The Portal If Testcases Failed
