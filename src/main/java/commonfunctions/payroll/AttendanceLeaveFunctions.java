@@ -5909,7 +5909,7 @@ public class AttendanceLeaveFunctions {
 		}
 		assertTrue(flag);
 	}
-	
+
 	/**
 	 * This method is used To Check Resign/Termination Request Based on Request Date
 	 * 
@@ -5948,6 +5948,67 @@ public class AttendanceLeaveFunctions {
 		commonFunc.navigateToFullAndFinalSettlement();
 		pendingForFNFReverseProcess();
 		commonFunc.navigateToResignationRequest();
+		resignationRequestCancel();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Resign/Termination Request Based on Adjust
+	 * Encash Leave
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean checkResignTerminationRequestBasedOnAdjustEncashLeave() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.hardWait(3000);
+		commonFunc.navigateToResignationRequest();
+		resignRequestAddingEmployeewithAdjustEncashLeave(commonFunc.getDataFromTestDataSheet("ResignDate"),
+				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
+				commonFunc.getDataFromTestDataSheet("ResignReference"));
+		resignRequestEmployeepost();
+		commonFunc.navigateToFullAndFinalSettlement();
+		pendingForFNFReverseProcess();
+		commonFunc.navigateToResignationRequest();
+		resignationRequestCancel();
+		return flag;
+	}
+
+	/**
+	 * This method is used To Check Resign/Termination Request Based on Employee Pay
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean checkResignTerminationRequestBasedOnEmployeePay() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.hardWait(3000);
+		commonFunc.navigateToResignationRequest();
+		resignRequestAddingEmployeeWithEmployeePay(commonFunc.getDataFromTestDataSheet("ResignDate"),
+				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
+				commonFunc.getDataFromTestDataSheet("ResignReference"));
+		resignRequestEmployeepost();
+		commonFunc.navigateToFullAndFinalSettlement();
+		pendingForFNFReverseProcess();
+		commonFunc.navigateToResignationRequest();
+		resignationRequestCancel();
+		return flag;
+	}
+
+	/**
+	 * To Check Resign/Termination Request Based on Return To Approval
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public boolean checkResignTerminationRequestBasedOnReturnToApproval() {
+		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+				"HrRqtUsername");
+		commonFunc.hardWait(3000);
+		commonFunc.navigateToResignationRequest();
+		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"),
+				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
+				commonFunc.getDataFromTestDataSheet("ResignReference"));
+		resignRequestEmployeeReverset();
 		resignationRequestCancel();
 		return flag;
 	}
@@ -6102,6 +6163,206 @@ public class AttendanceLeaveFunctions {
 						}
 					}
 				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Add Resignation Request Adjust Encash Leave
+	 * 
+	 * @author Kishore-RMITS
+	 * @param ResignDate
+	 * @param ResignEmployee
+	 * @param ResignReference
+	 */
+	public void resignRequestAddingEmployeewithAdjustEncashLeave(String ResignDate, String ResignEmployee,
+			String ResignReference) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Resign Request Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+				if (flag) {
+					webDB.clearText(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtDocDate, ResignDate,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Resign Request Doc Date is Entered");
+						webDB.pressTabKey();
+						webDB.pressTabKey();
+						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV,
+									ResignEmployee);
+							if (flag) {
+								logs.logging("INFO", "Resign Request Employee is Selected");
+								webDB.pressTabKey();
+								flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtReferenceField,
+										ElementType.Xpath);
+								if (flag) {
+									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtReferenceField,
+											ResignReference, ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Resign Request Reference is Entered");
+										webDB.pressTabKey();
+										flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave,
+												ElementType.Xpath);
+										commonFunc.hardWait(2000);
+										if (flag) {
+											webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtAdjustEncashLeave,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Adjust Encash Leave Flag is Checked");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.ResignRqtEntrySaveButton,
+														ElementType.Xpath);
+												if (flag) {
+													webDB.clickAnElement(
+															AttendanceLeaveLocators.ResignRqtEntrySaveButton,
+															ElementType.Xpath);
+													if (flag) {
+														logs.logging("INFO", "Resign Request Document is Saved");
+														commonFunc.checkSuccessToastMessageDisappear();
+														commonFunc.hardWait(4000);
+														webDB.waitForElement(
+																AttendanceLeaveLocators.ResignRqtDocNoField,
+																ElementType.Xpath);
+														String ResignationRequestDocNo = webDB
+																.getDomPropertyFromElement(
+																		AttendanceLeaveLocators.ResignRqtDocNoField,
+																		ElementType.Xpath,
+																		commonFunc.getDataFromTestDataSheet("Value"));
+														VariableHandler
+																.setResignationRequestDocNo(ResignationRequestDocNo);
+														logs.logging("info", "Resignation Requst No is:"
+																+ VariableHandler.getResignationRequestDocNo());
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Add Resignation Request
+	 * 
+	 * @author Kishore-RMITS
+	 * @param ResignDate
+	 * @param ResignEmployee
+	 * @param ResignReference
+	 */
+	public void resignRequestAddingEmployeeWithEmployeePay(String ResignDate, String ResignEmployee,
+			String ResignReference) {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Resign Request Add Button Is Clicked");
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+				if (flag) {
+					webDB.clearText(AttendanceLeaveLocators.ResignRqtDocDate, ElementType.Xpath);
+					commonFunc.hardWait(1000);
+					flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtDocDate, ResignDate,
+							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Resign Request Doc Date is Entered");
+						webDB.pressTabKey();
+						webDB.pressTabKey();
+						flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeeLOV, ElementType.Xpath);
+						if (flag) {
+							commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.ResignRqtEmployeeLOV,
+									ResignEmployee);
+							if (flag) {
+								logs.logging("INFO", "Resign Request Employee is Selected");
+								webDB.pressTabKey();
+								flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtReferenceField,
+										ElementType.Xpath);
+								if (flag) {
+									flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.ResignRqtReferenceField,
+											ResignReference, ElementType.Xpath);
+									if (flag) {
+										logs.logging("INFO", "Resign Request Reference is Entered");
+										webDB.pressTabKey();
+										flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEmployeePay,
+												ElementType.Xpath);
+										commonFunc.hardWait(2000);
+										if (flag) {
+											webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEmployeePay,
+													ElementType.Xpath);
+											if (flag) {
+												logs.logging("INFO", "Adjust Encash Leave Flag is Checked");
+												flag = webDB.waitForElement(
+														AttendanceLeaveLocators.ResignRqtEntrySaveButton,
+														ElementType.Xpath);
+												if (flag) {
+													webDB.clickAnElement(
+															AttendanceLeaveLocators.ResignRqtEntrySaveButton,
+															ElementType.Xpath);
+													if (flag) {
+														logs.logging("INFO", "Resign Request Document is Saved");
+														commonFunc.checkSuccessToastMessageDisappear();
+														commonFunc.hardWait(4000);
+														webDB.waitForElement(
+																AttendanceLeaveLocators.ResignRqtDocNoField,
+																ElementType.Xpath);
+														String ResignationRequestDocNo = webDB
+																.getDomPropertyFromElement(
+																		AttendanceLeaveLocators.ResignRqtDocNoField,
+																		ElementType.Xpath,
+																		commonFunc.getDataFromTestDataSheet("Value"));
+														VariableHandler
+																.setResignationRequestDocNo(ResignationRequestDocNo);
+														logs.logging("info", "Resignation Requst No is:"
+																+ VariableHandler.getResignationRequestDocNo());
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method is used To Post the Resign Request Employee
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void resignRequestEmployeeReverset() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(4000);
+			webDB.clickAnElement(AttendanceLeaveLocators.ResignRqtEntryPostButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Resign Request Document is Posted");
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"),
+						webDB.getDataFromProperties("HRUSEREmpId"));
+				commonFunc.returnDocuments(webDB.getDataFromProperties("ROAU-BU"),
+						VariableHandler.getResignationRequestDocNo(), webDB.getDataFromProperties("HRUSEREmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HrRqtUsername"),
+						webDB.getDataFromProperties("HRUSEREmpId"));
+				flag = webDB.waitForElement(AttendanceLeaveLocators.ResigRequestFindAddButton, ElementType.Xpath);
 			}
 		}
 		assertTrue(flag);

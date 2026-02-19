@@ -713,4 +713,8 @@ public class AttendanceLeaveLocators {
 	public static final String ResignRequestFindDocSelect = "#\\36 043216600885500164_orig > tbody > tr:nth-child(2) > td:nth-child(3) > a";
 	/** @locatorType Xpath */
 	public static final String ResignRequestDocCancel = "//button[@id='B4693895826952935428']";
+	/** @locatorType Xpath */
+	public static final String ResignRqtAdjustEncashLeave = "//*[@id=\"P8186120501_EMPREL_ADJUST_EL_LABEL\"]";
+	/** @locatorType Xpath */
+	public static final String ResignRqtEmployeePay = "//*[@id=\"P8186120501_EMPREL_PAY_NOTICE_LABEL\"]";
 }
