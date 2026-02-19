@@ -1730,5 +1730,8 @@
 	"AJDBGLAccountColumnName": "AJ_GL_ACCT",
 	"AJDBGLAccountDescColumnName": "AJ_GL_ACCT_DESC",
 	"AJDBDebitAmountColumnName": "DB_AMT",
-	"AJDBCreditAmountColumnName": "CR_AMT"
+	"AJDBCreditAmountColumnName": "CR_AMT",
+	"ResignDate":"10-12-2025",
+	"ResignEmployee":"GWP0053",
+	"ResignReference":"Resignation"
 }
