@@ -5672,8 +5672,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkGeneralExpenseBasedOnCancellingTheDocument() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToGeneralExpense();
 		genaralExpenseAddingData(commonFunc.getDataFromTestDataSheet("EmployeeDurai"),
 				commonFunc.getDataFromTestDataSheet("GeneralReference"));
@@ -5916,8 +5917,9 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnRequestDate() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
+		commonFunc.hardWait(3000);
 		commonFunc.navigateToResignationRequest();
 		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"),
 				commonFunc.getDataFromTestDataSheet("ResignEmployee"),
@@ -5959,8 +5961,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnAdjustEncashLeave() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToResignationRequest();
 		resignRequestAddingEmployeewithAdjustEncashLeave(commonFunc.getDataFromTestDataSheet("ResignDate"),
@@ -5980,8 +5982,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnEmployeePay() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToResignationRequest();
 		resignRequestAddingEmployeeWithEmployeePay(commonFunc.getDataFromTestDataSheet("ResignDate"),
@@ -6001,8 +6003,8 @@ public class AttendanceLeaveFunctions {
 	 * @author Kishore-RMITS
 	 */
 	public boolean checkResignTerminationRequestBasedOnReturnToApproval() {
-		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
-				"HrRqtUsername");
+//		commonFunc.validCommonLogin(System.getProperty("HrRqtUsername"), System.getProperty("LoginPassword"),
+//				"HrRqtUsername");
 		commonFunc.hardWait(3000);
 		commonFunc.navigateToResignationRequest();
 		resignRequestAddingEmployee(commonFunc.getDataFromTestDataSheet("ResignDate"),
