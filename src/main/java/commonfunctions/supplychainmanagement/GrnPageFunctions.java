@@ -5076,7 +5076,8 @@ public class GrnPageFunctions {
 			if (!ItemId.equals("")) {
 				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
-				logs.logging("INFO", "After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
+				logs.logging("INFO",
+						"After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
 
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO",
@@ -5084,7 +5085,7 @@ public class GrnPageFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
 	 * WareHouse
@@ -5096,14 +5097,15 @@ public class GrnPageFunctions {
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = 22; i < ItemDetails.length; i++) {
+		for (int i = 3; i < ItemDetails.length; i++) {
 			String ItemId = ItemDetails[i][1];
 			String WareHouse = ItemDetails[i][44];
 			String AfterExcelStockCost = ItemDetails[i][51];
 			if (!ItemId.equals("")) {
 				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
-				logs.logging("INFO", "After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
+				logs.logging("INFO",
+						"After GRN Actual Stock Cost For This Item '" + ItemId + "' Is : " + AfterStockCost);
 
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO",
@@ -5148,7 +5150,7 @@ public class GrnPageFunctions {
 		}
 
 	}
-	
+
 	/**
 	 * This Methods Used To Verify stock Quantity For Quality Warehouse
 	 * Document(Single Item)
@@ -5214,15 +5216,15 @@ public class GrnPageFunctions {
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
-				logs.logging("INFO",
-						"Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
+				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
 			}
 		}
 
 	}
-	
+
 	/**
 	 * This Methods Used To Verify stock Quantity For Source Warehouse
 	 * Document(Single Item)
@@ -5251,15 +5253,15 @@ public class GrnPageFunctions {
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO",
 						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
-				logs.logging("INFO",
-						"Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
+				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
 			}
 		}
 
 	}
-	
+
 	/**
 	 * This Methods Is Used To verify Expected stock Qty And Cost For Source
 	 * WareHouse
@@ -5277,12 +5279,12 @@ public class GrnPageFunctions {
 			String AfterExcelStockQuantity = ItemDetails[i][67];
 			String AfterExcelStockCost = ItemDetails[i][66];
 			if (!ItemId.equals("")) {
-				
+
 				String AfterStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
 						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
 				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
 						+ AfterStockQty);
-				
+
 				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
 				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item '" + ItemId
 						+ "' With Database Values After MRV");
@@ -5292,7 +5294,7 @@ public class GrnPageFunctions {
 						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
 				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item '" + ItemId + "' Is : "
 						+ AfterStockCost);
-				
+
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item '" + ItemId
 						+ "' With Database Values After MRV");
@@ -9902,5 +9904,182 @@ public class GrnPageFunctions {
 				webDB.getDataFromProperties("PoToMrvSheet"));
 		waitingForApproval();
 		verifyReturnToGrnPageHeaderStatus();
+	}
+
+	/**
+	 * This Methods PO to GRN-Stock Transfer-User Defined-Different Stock and
+	 * Supplier UOM - WO Inspection Plan
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnStockTransferRateContractDifferentStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
+				commonFunc.getDataFromTestDataSheet("L0007"), commonFunc.getDataFromTestDataSheet("MagaPvtLtd"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"),
+				webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyToStockTransferSaleOrderDocumentPost();
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		flag = commonFunc.logoutUser();
+		stockTransferAfterForwardToApproval();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentWithPrefix();
+		stockTransferAfterForwardToApprovalForInvoiceDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingSTNumber();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput,
+				commonFunc.getDataFromTestDataSheet("GateKeeperName"), ElementType.Xpath);
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButtonWithSt();
+		createGrnWithGeButton();
+		clickOkButton();
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransfer();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("StPoToMRVWOIpDURcSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+	}
+
+	/**
+	 * This Methods PO to GRN-Stock Transfer-Price List-Different Stock and Supplier
+	 * UOM - WO Inspection Plan
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnStockTransferPriceListDifferentStockAndSupplierUomWithAndWithoutInspectionPlanWithGateEntry() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForPriceListItem(
+				commonFunc.getDataFromTestDataSheet("L0007"), commonFunc.getDataFromTestDataSheet("MagaPvtLtd"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"),
+				webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyToStockTransferSaleOrderDocumentPost();
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		flag = commonFunc.logoutUser();
+		stockTransferAfterForwardToApproval();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentWithPrefix();
+		stockTransferAfterForwardToApprovalForInvoiceDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingSTNumber();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput,
+				commonFunc.getDataFromTestDataSheet("GateKeeperName"), ElementType.Xpath);
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButtonWithSt();
+		createGrnWithGeButton();
+		clickOkButton();
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransfer();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("StPoToMRVWOIpDUPlSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+	}
+
+	/**
+	 * This Methods PO to GRN-Stock Transfer-Price List-Same Stock and Supplier UOM
+	 * - WO Inspection Plan
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnStockTransferRateContractDifferentStockAndSupplierUomWithFreePassWithGateEntry() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("StPoToMRVWFDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("StPoToMRVWFDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
+				commonFunc.getDataFromTestDataSheet("L0007"), commonFunc.getDataFromTestDataSheet("MagaPvtLtd"),
+				commonFunc.getDataFromTestDataSheet("StockTransferSelect"),
+				webDB.getDataFromProperties("StPoToMRVWFDURcSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyToStockTransferSaleOrderDocumentPost();
+		saleOrderFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		flag = commonFunc.logoutUser();
+		stockTransferAfterForwardToApproval();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentWithPrefix();
+		stockTransferAfterForwardToApprovalForInvoiceDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingSTNumber();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.sendTextToAnElement(GateEntryPageLocators.DriverNameInput,
+				commonFunc.getDataFromTestDataSheet("GateKeeperName"), ElementType.Xpath);
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButtonWithSt();
+		createGrnWithGeButton();
+		clickOkButton();
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("StPoToMRVWFDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("StPoToMRVWFDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("StPoToMRVWFDURcSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransfer();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("StPoToMRVWFDURcSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
 	}
 }
