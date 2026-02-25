@@ -240,7 +240,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(),commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(),commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -248,8 +249,8 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyCreateJournal();
-//		commonFunc.checkRefreshCellsDisappear();
-//		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(1000);
 //		verifyJournalAmountWithDB(webDB.getDataFromProperties("PurchaseBillGRN"),VariableHandler.getPbNumber());
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -266,7 +267,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -296,7 +298,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNT"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -316,7 +319,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -342,7 +346,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -373,7 +378,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -397,7 +403,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -423,7 +430,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -455,7 +463,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -484,7 +493,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -506,7 +516,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -533,7 +544,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -560,7 +572,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -582,7 +595,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -609,7 +623,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -634,7 +649,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -660,7 +676,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -692,7 +709,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -721,7 +739,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -750,7 +769,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -785,7 +805,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -817,7 +838,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySelectTypeForIneligible(commonFunc.getDataFromTestDataSheet("PBITCInEligibleType"),
@@ -842,7 +864,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySelectTypeForIneligible(commonFunc.getDataFromTestDataSheet("PBITCInEligibleType"),
@@ -873,7 +896,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySelectTypeForIneligible(commonFunc.getDataFromTestDataSheet("PBITCInEligibleType"),
@@ -901,7 +925,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -932,7 +957,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -968,7 +994,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1002,7 +1029,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySaveLine();
@@ -1030,7 +1058,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySelectTypeForIneligible(commonFunc.getDataFromTestDataSheet("PBITCInEligibleType"),
@@ -1061,7 +1090,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1092,7 +1122,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySelectTypeForIneligible(commonFunc.getDataFromTestDataSheet("PBITCInEligibleType"),
@@ -1117,7 +1148,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifySelectTypeForIneligible(commonFunc.getDataFromTestDataSheet("PBITCInEligibleType"),
@@ -1148,7 +1180,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1181,7 +1214,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1212,7 +1246,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1248,7 +1283,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1280,7 +1316,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1302,7 +1339,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1333,7 +1371,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1360,7 +1399,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -1379,7 +1419,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1405,7 +1446,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1428,7 +1470,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1453,7 +1496,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1484,7 +1528,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1512,7 +1557,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -1533,7 +1579,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1559,7 +1606,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1583,7 +1631,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1606,7 +1655,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1637,7 +1687,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1664,7 +1715,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -1683,7 +1735,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1709,7 +1762,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1732,7 +1786,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1757,7 +1812,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1788,7 +1844,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1816,7 +1873,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
@@ -1837,7 +1895,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -1863,7 +1922,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -1889,7 +1949,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1907,7 +1968,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @author Deepan-GWL
 	 * @param DocNo
 	 */
-	public void verifyPendingPurchaseBill(String DocNo , String TdsNo) {
+	public void verifyPendingPurchaseBill(String DocNo , String TdsNo ,String Pending) {
 		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PendingPurchaseBill, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Pending Purchase Bill Is Displayed");
@@ -1929,7 +1990,7 @@ public class PurchaseBillsFunctionsGrn {
 							logs.logging("INFO", "Switched To Iframe");
 							webDB.clickAnElement(PurchaseBillsGrnLocators.SearchButton, ElementType.Xpath);
 							validatePurchaseBillsPendingGRNDetails();
-							validatePurchaseBillsPendingGRNItemDetailsIGST(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+							validatePurchaseBillsPendingGRNItemDetailsIGST(Pending);
 							flag = webDB.waitForElement(PurchaseBillsGrnLocators.CheckBox(DocNo), ElementType.Xpath);
 							if (flag) {
 								logs.logging("INFO", "CheckBox IS Displayed");
@@ -2059,7 +2120,8 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("TvsUsername"), System.getProperty("LoginPassword"),
 				"Sathi Ganesh");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyCreateJournalAndPost();
 		verifyWaitingForApproval();
 		commonFunc.logoutUser();
