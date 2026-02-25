@@ -1787,4 +1787,19 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * CS Line Details
+	 * 
+	 * @author Harikrishna -RMITS
+	 * @param SOANo
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String ApplicationJournalViewDetails(String BRNo, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("JournalQuery"),
+				commonFunc.getDataFromTestDataSheet("SONO"), BRNo, commonFunc.getDataFromTestDataSheet("PONO"), SeqNo,
+				DBHeaderColumnValue);
+		return value;
+	}
 }
