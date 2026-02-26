@@ -55,7 +55,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String GlAccDescField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[6]" ;
 	/** @locatorType Xpath */
-	public static final String GlAccLov = "//button[@id='C2691931750024847071_lov_btn']" ;
+	public static final String GlAccLov = "//input[@data-testid='SUPLN_ACCT_DESC']/following-sibling::button" ;
 	/** @locatorType Xpath */
 	public static final String PBAddOverallSave = "//button[@data-testid='SAVEHD']" ;
 	/** @locatorType Xpath */

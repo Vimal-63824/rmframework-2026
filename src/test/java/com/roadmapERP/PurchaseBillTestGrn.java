@@ -674,6 +674,168 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 		PurBillFunc.verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationExpenseAndAdjustment();
 	}
 	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 49, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST- Against GRN With Deviation (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 50, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationAndExpense();
+	}
+
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 51, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST- Against GRN With Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 52, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST- Against GRN Without Deviation (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 53, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 54, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST- Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 55, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN With Deviation (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 56, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 57, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN With Deviation and Expenses Account with adjustment(Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 58, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN Without Deviation (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 59, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 60, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 61, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Interstate GST- Against GRN With Deviation (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation()
+			throws IOException {
+		PurBillFunc
+				.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
+	}
+	/**
 	 * This Method Is Used To Logout After Method
 	 * 
 	 * @author Deepan-GWL

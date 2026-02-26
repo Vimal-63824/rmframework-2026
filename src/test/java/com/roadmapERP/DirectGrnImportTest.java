@@ -573,6 +573,19 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 		directGrnFunc.verifyCreationOfDirectGrnRateContractSameUomServiceTypeImportWithInspectionWithOutQuality();
 	}
 
+	/**
+	 * This Methods Is Used To Create Direct GRN Document With Service & Import
+	 * PriceList withOut Inspection Plan
+	 * 
+	 * @author Durai-RMITS
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 38, groups = {
+			"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionWithOutQuality()
+			throws IOException {
+		directGrnFunc.verifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionWithOutQuality();
+	}
 
 	/**
 	 * Create Direct GRN Different UOM General Type With Inspection Plan
@@ -627,20 +640,114 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 			Assert.fail();
 		}
 	}
-	
-//	/**
-//	 * This Methods Is Used To Create Direct GRN Document With Service & Import
-//	 * PriceList withOut Inspection Plan
-//	 * 
-//	 * @author Durai-RMITS
-//	 */
-//	@Author("Durai-RMITS")
-//	@Test(priority = 38, groups = {
-//			"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
-//	public void VerifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionWithOutQuality()
-//			throws IOException {
-//		directGrnFunc.verifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionWithOutQuality();
-//	}
+
+	/**
+	 * Create Direct GRN Different UOM General Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 43, groups = {
+			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
+	public void VerifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeImportWithInspectionWithOutQuality() {
+		directGrnFunc.verifyCreationOfDirectGrnDifferentUomRateContractGeneralTypeImportWithInspectionWithOutQuality();
+	}
+
+	/**
+	 * Create Direct GRN Different UOM General Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 44, groups = {
+			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeimportWithOutInspectionWithOutQuality() {
+		logs.logging("INFO", "PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Create Direct GRN Different UOM General Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 45, groups = {
+			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
+	public void VerifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeImportWithInspectionWithOutQuality() {
+		directGrnFunc.verifyCreationOfDirectGrnDifferentUomRateContractMaterialTypeImportWithInspectionWithOutQuality();
+	}
+
+	/**
+	 * Create Direct GRN Different UOM General Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 46, groups = {
+			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeimportWithOutInspectionWithOutQuality() {
+		logs.logging("INFO", "PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Create Direct GRN Different UOM General Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 47, groups = {
+			"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
+	public void VerifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithInspectionWithOutQuality() {
+		directGrnFunc.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithInspectionWithOutQuality();
+	}
+
+	/**
+	 * Create Direct GRN Same UOM General Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 48, groups = {
+			"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithOutInspectionWithOutQuality() {
+		logs.logging("INFO", "PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Create Direct GRN Different UOM Material Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 49, groups = {
+			"GRN" }, description = "Direct GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
+	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionWithOutQuality() {
+		directGrnFunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionWithOutQuality();
+	}
+
+	/**
+	 * Create Direct GRN Same UOM Material Type With Inspection Plan
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 50, groups = {
+			"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
+	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithOutInspectionWithOutQuality() {
+		logs.logging("INFO", "PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan");
+		if (previousStatus != ITestResult.SUCCESS) {
+			Assert.fail();
+		}
+	}
 
 	/**
 	 * Verify After Method

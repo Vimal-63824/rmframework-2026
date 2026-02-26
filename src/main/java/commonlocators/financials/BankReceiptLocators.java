@@ -144,7 +144,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankPartyDocNumberLovButton = "//button[@id='P3413101001_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String BankPendingPartyDocumentClearButton = "//button[@id='B2559908873376486230']/following-sibling::button[@id='Clear']";
+	public static final String BankPendingPartyDocumentClearButton = "//button[@title='Cancel']/parent::div/button[@title='Clear']";
 	/** @locatorType Xpath */
 	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
 	/** @locatorType Xpath */
@@ -272,15 +272,15 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptPendingReceivablesAdvanceDocNumberLovButton = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String BankReceiptPendingReceivablesAdvSearchButton = "//button[@id='B2825075200891698481']";
+	public static final String BankReceiptPendingReceivablesAdvSearchButton = "//span[text()='Search']/ancestor::button";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesAdvanceDocumentNumberField = "//*[@id='2496368078611442335_orig']/tbody/tr[2]/td[22]";
+	public static final String PendingReceivablesAdvanceDocumentNumberField = "//*[@id='2995376176452410474_orig']/tbody/tr[2]/td[22]";
 	/** @locatorType Xpath */
 	public static final String PendingDRPendingreceivablesAdvanceButton = "//span[text()='Pending Receivable - Advance']/ancestor::button";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesAdvanceCreateButton = "//button[@id='B2496816294816505745']";
+	public static final String PendingReceivablesAdvanceCreateButton = "//SPAN[text()='Create']/ancestor::button";
 	/** @locatorType Xpath */
-	public static final String BankPendingReceivablesAdvancePartyDocumentClearButton = "//button[@id='B2559908873376486230']/following-sibling::button[@id='Clear']";
+	public static final String BankPendingReceivablesAdvancePartyDocumentClearButton = "//button[@title='Home']/parent::div/button[@title='Clear']";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesAdvanceMergeLabelInPending = "//label[@for='P341310231_GLOBAL_SCREEN_1']";
 	/** @locatorType Xpath */
@@ -290,7 +290,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesAdvanceBankNameLOVBUtton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesAdvanceOkButton = "//button[@id='B2496817179888505754']";
+	public static final String PendingReceivablesAdvanceOkButton = "//span[text()='Ok']/ancestor::button";
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {

@@ -194,6 +194,7 @@ public class CommonFunctions {
 		if (flag) {
 			flag = webDB.waitForElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
 			if (flag) {
+				checkRefreshCellsDisappear();
 				webDB.clickAnElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
 				flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 				if (flag) {
@@ -323,7 +324,7 @@ public class CommonFunctions {
 							try {
 //								((JavascriptExecutor) webDB.getDriver()).executeScript("arguments[0].click();",
 //										webElement);
-								Actions action =new Actions(webDB.getDriver());
+								Actions action = new Actions(webDB.getDriver());
 								action.moveToElement(webElement).build().perform();
 							} catch (Exception e) {
 							}
@@ -2574,7 +2575,7 @@ public class CommonFunctions {
 			webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 //			logs.logging("INFO", "Table Input Box Is Clicked");
 			webDB.waitForElement(InputParameter, ElementType.Xpath);
-			webDB.clearTextField(InputParameter, ElementType.Xpath);
+			webDB.clearText(InputParameter, ElementType.Xpath);
 //			logs.logging("INFO", "Clear Text Field The Input Value");
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
@@ -2998,7 +2999,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("TravelReimbursement"),
 				AttendanceLeaveLocators.TravelReimbFindSearchButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate General Expense
 	 * 
@@ -3007,6 +3008,26 @@ public class CommonFunctions {
 	public void navigateToGeneralExpense() {
 		navigateToSearchTab(webDB.getDataFromProperties("GeneralExpense"),
 				AttendanceLeaveLocators.GeneralExpFindAddButton);
+	}
+	
+	/**
+	 * This Method Is Used To Navigate Resignation Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToResignationRequest() {
+		navigateToSearchTab(webDB.getDataFromProperties("ResignationRequest"),
+				AttendanceLeaveLocators.ResigRequestFindAddButton);
+	}
+	
+	/**
+	 * This Method Is Used To Navigate Resignation Request
+	 * 
+	 * @author Kishore-RMITS
+	 */
+	public void navigateToFullAndFinalSettlement() {
+		navigateToSearchTab(webDB.getDataFromProperties("FullAndFinalSettlement"),
+				AttendanceLeaveLocators.FFSFindPendingForFNF);
 	}
 
 	/**
@@ -3218,6 +3239,7 @@ public class CommonFunctions {
 		assertTrue(flag);
 		return Value;
 	}
+
 	/**
 	 * This Method Is Used To Navigate To SubCntarct Order CloseShort
 	 * 

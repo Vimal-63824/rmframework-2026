@@ -28,18 +28,18 @@ public class BankReceiptTest extends RoadMapERPTest {
 	static WebDriverBase webDB = new WebDriverBase();
 	static BankReceiptFunctions bankReceiptFunc = new BankReceiptFunctions();
 
-//	/**
-//	 * Receipt Against single Party, Single invoice(Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 1, groups = {
-//			"Bank Receipts" }, description = "Receipt Against single Party, Single invoice(Through Add button)")
-//	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButton() throws IOException {
-//		bankReceiptFunc.BRSinglePartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
-//	}
+	/**
+	 * Receipt Against single Party, Single invoice(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 1, groups = {
+			"Bank Receipts" }, description = "Receipt Against single Party, Single invoice(Through Add button)")
+	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButton() throws IOException {
+		bankReceiptFunc.BRSinglePartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
+	}
 
 	/**
 	 * Receipt Against single Party, Single Invoice (Get document )
@@ -67,18 +67,18 @@ public class BankReceiptTest extends RoadMapERPTest {
 		bankReceiptFunc.BRSinglePartySingleInvoiceThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
 	}
 
-//	/**
-//	 * Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 4, groups = {
-//			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button)")
-//	public void CreateBankReceiptSinglePartyMultiInvoiceThroughAddButton() throws IOException {
-//		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
-//	}
+	/**
+	 * Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 4, groups = {
+			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button)")
+	public void CreateBankReceiptSinglePartyMultiInvoiceThroughAddButton() throws IOException {
+		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
+	}
 
 	/**
 	 * Receipt Against single Party, Multi Invoice (Dr/Cr) (Get document)
@@ -106,18 +106,18 @@ public class BankReceiptTest extends RoadMapERPTest {
 		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
 	}
 
-//	/**
-//	 * Receipt Against Multi Party, Single Invoice (Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 7, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button)")
-//	public void CreateBankReceiptMultiPartySingleInvoiceThroughAddButton() throws IOException {
-//		bankReceiptFunc.BRMultiPartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceiptMulti"));
-//	}
+	/**
+	 * Receipt Against Multi Party, Single Invoice (Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 7, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button)")
+	public void CreateBankReceiptMultiPartySingleInvoiceThroughAddButton() throws IOException {
+		bankReceiptFunc.BRMultiPartySingleInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceiptMulti"));
+	}
 
 	/**
 	 * Receipt Against Multi Party, Single Invoice (Get document)
@@ -145,18 +145,18 @@ public class BankReceiptTest extends RoadMapERPTest {
 		bankReceiptFunc.BRMultiPartySingleInvoiceThroughPendingDocs(webDB.getDataFromProperties("BankReceiptMulti"));
 	}
 
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 10, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButton() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceiptMulti"));
-//	}
+	/**
+	 * Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 10, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButton() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButton(webDB.getDataFromProperties("BankReceiptMulti"));
+	}
 
 	/**
 	 * Receipt Against Multi Party, Multi Invoice (Dr/Cr) (Get document)
@@ -184,65 +184,64 @@ public class BankReceiptTest extends RoadMapERPTest {
 		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocs(webDB.getDataFromProperties("BankReceiptMulti"));
 	}
 
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through
-//	 * Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 13, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through Add button)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonWithNewRef() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonWithNewRef(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get
-//	 * document)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 14, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRef() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughGetDocumentWithNewref(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference
-//	 * (Dr/Cr)(Pending)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 15, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRef() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRef(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Party, Single
-//	 * invoice(Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 16, groups = {
-//			"Bank Receipt" }, description = "Receipt Against single Party, Single invoice(Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButtonUSD() throws IOException {
-//		bankReceiptFunc.BRSinglePartySingleInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptUSD"));
-//	}
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through
+	 * Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 13, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through Add button)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonWithNewRef() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonWithNewRef(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get
+	 * document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 14, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRef() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughGetDocumentWithNewref(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference
+	 * (Dr/Cr)(Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 15, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRef() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRef(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Party, Single
+	 * invoice(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 16, groups = {
+			"Bank Receipt" }, description = "Receipt Against single Party, Single invoice(Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButtonUSD() throws IOException {
+		bankReceiptFunc.BRSinglePartySingleInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptUSD"));
+	}
 
 	/**
 	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against single
@@ -272,19 +271,19 @@ public class BankReceiptTest extends RoadMapERPTest {
 		bankReceiptFunc.BRSinglePartySingleInvoiceThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptUSD"));
 	}
 
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Party, Multi Invoice
-//	 * (Dr/Cr) (Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 19, groups = {
-//			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptSinglePartyMultiInvoiceThroughAddButtonUSD() throws IOException {
-//		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptUSD"));
-//	}
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Party, Multi Invoice
+	 * (Dr/Cr) (Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 19, groups = {
+			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptSinglePartyMultiInvoiceThroughAddButtonUSD() throws IOException {
+		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptUSD"));
+	}
 
 	/**
 	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against single
@@ -311,23 +310,23 @@ public class BankReceiptTest extends RoadMapERPTest {
 	@Test(priority = 21, groups = {
 			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Pending) - Receipt - Bank, Customer and Base Currency: Same (USD)")
 	public void CreateBankReceiptSinglePartyMultiInvoiceThroughPendingDocsUSD() throws IOException {
-		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughGetDocumentUSD(webDB.getDataFromProperties("BankReceiptUSD"));
+		bankReceiptFunc.BRSinglePartyMultiInvoiceThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptUSD"));
 	}
 
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
-//	 * Party, Single Invoice (Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 22, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptMultiPartySingleInvoiceThroughAddButtonUSD() throws IOException {
-//		bankReceiptFunc
-//				.BRMultiPartySingleInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptMultiUSD"));
-//	}
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
+	 * Party, Single Invoice (Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 22, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptMultiPartySingleInvoiceThroughAddButtonUSD() throws IOException {
+		bankReceiptFunc
+				.BRMultiPartySingleInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptMultiUSD"));
+	}
 
 	/**
 	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
@@ -359,19 +358,19 @@ public class BankReceiptTest extends RoadMapERPTest {
 				.BRMultiPartySingleInvoiceThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptMultiUSD"));
 	}
 
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
-//	 * Party, Multi Invoice (Dr/Cr)(Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 25, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptMultiUSD"));
-//	}
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
+	 * Party, Multi Invoice (Dr/Cr)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 25, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonUSD(webDB.getDataFromProperties("BankReceiptMultiUSD"));
+	}
 
 	/**
 	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
@@ -403,50 +402,50 @@ public class BankReceiptTest extends RoadMapERPTest {
 				.BRMultiPartyMultiInvoiceThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptMultiUSD"));
 	}
 
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
-//	 * Party, Multi Invoice with New reference (Dr/Cr)(Through Add button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 28, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonWithNewRefUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonWithNewRefUSD(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRefUSD"));
-//	}
-//
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
-//	 * Party, Multi Invoice with New reference (Dr/Cr)(Get document)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 29, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRefUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughGetDocumentWithNewrefUSD(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRefUSD"));
-//	}
-//
-//	/**
-//	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
-//	 * Party, Multi Invoice with New reference (Dr/Cr)(Pending)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 30, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending) - Receipt - Bank, Customer and Base Currency: Same (USD)")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRefUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRefUSD(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRefUSD"));
-//	}
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
+	 * Party, Multi Invoice with New reference (Dr/Cr)(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 28, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through Add button) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonWithNewRefUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonWithNewRefUSD(
+				webDB.getDataFromProperties("BankReceiptMultiNewRefUSD"));
+	}
+
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
+	 * Party, Multi Invoice with New reference (Dr/Cr)(Get document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 29, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRefUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughGetDocumentWithNewrefUSD(
+				webDB.getDataFromProperties("BankReceiptMultiNewRefUSD"));
+	}
+
+	/**
+	 * Receipt - Bank, Customer and Base Currency: Same (USD) Receipt Against Multi
+	 * Party, Multi Invoice with New reference (Dr/Cr)(Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 30, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending) - Receipt - Bank, Customer and Base Currency: Same (USD)")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRefUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRefUSD(
+				webDB.getDataFromProperties("BankReceiptMultiNewRefUSD"));
+	}
 
 	/**
 	 * Bank receipt With Post Dated Cheque
@@ -514,32 +513,32 @@ public class BankReceiptTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("BankName"));
 	}
 
-//	/**
-//	 * Bank receipt With Charges - USD
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 36, groups = { "Bank Receipt" }, description = "Bank receipt With Charges - USD")
-//	public void CreateBankReceiptWithChargesUSD() throws IOException {
-//		bankReceiptFunc.BankReceiptSIWithChargesUSD(webDB.getDataFromProperties("BankReceiptChargesUSD"));
-//	}
-//
-//	/**
-//	 * Receipt Against single Party, Single invoice(Through Add button) - Receipt -
-//	 * Bank foreign Customer INR and Base Currency INR: Difference
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 37, groups = {
-//			"Bank Receipts" }, description = "Receipt Against single Party, Single invoice(Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
-//		bankReceiptFunc
-//				.BRSinglePartySingleInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceipt"));
-//	}
+	/**
+	 * Bank receipt With Charges - USD
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 36, groups = { "Bank Receipt" }, description = "Bank receipt With Charges - USD")
+	public void CreateBankReceiptWithChargesUSD() throws IOException {
+		bankReceiptFunc.BankReceiptSIWithChargesUSD(webDB.getDataFromProperties("BankReceiptChargesUSD"));
+	}
+
+	/**
+	 * Receipt Against single Party, Single invoice(Through Add button) - Receipt -
+	 * Bank foreign Customer INR and Base Currency INR: Difference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 37, groups = {
+			"Bank Receipts" }, description = "Receipt Against single Party, Single invoice(Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptSinglePartySingleInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
+		bankReceiptFunc
+				.BRSinglePartySingleInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceipt"));
+	}
 
 	/**
 	 * Receipt Against single Party, Single Invoice (Get document ) - Receipt - Bank
@@ -571,20 +570,20 @@ public class BankReceiptTest extends RoadMapERPTest {
 				.BRSinglePartySingleInvoiceThroughPendingDocsBankCurcyUSD(webDB.getDataFromProperties("BankReceipt"));
 	}
 
-//	/**
-//	 * Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button) -
-//	 * Receipt - Bank foreign Customer INR and Base Currency INR: Difference
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 40, groups = {
-//			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptSinglePartyMultiInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
-//		bankReceiptFunc
-//				.BRSinglePartyMultiInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceipt"));
-//	}
+	/**
+	 * Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button) -
+	 * Receipt - Bank foreign Customer INR and Base Currency INR: Difference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 40, groups = {
+			"Bank Receipt" }, description = "Receipt Against single Party, Multi Invoice (Dr/Cr) (Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptSinglePartyMultiInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
+		bankReceiptFunc
+				.BRSinglePartyMultiInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceipt"));
+	}
 
 	/**
 	 * Receipt Against single Party, Multi Invoice (Dr/Cr) (Get document) - Receipt
@@ -616,20 +615,20 @@ public class BankReceiptTest extends RoadMapERPTest {
 				.BRSinglePartyMultiInvoiceThroughPendingDocsBankCurcyUSD(webDB.getDataFromProperties("BankReceipt"));
 	}
 
-//	/**
-//	 * Receipt Against Multi Party, Single Invoice (Through Add button) - Receipt -
-//	 * Bank foreign Customer INR and Base Currency INR: Difference
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 43, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptMultiPartySingleInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
-//		bankReceiptFunc
-//				.BRMultiPartySingleInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceiptMulti"));
-//	}
+	/**
+	 * Receipt Against Multi Party, Single Invoice (Through Add button) - Receipt -
+	 * Bank foreign Customer INR and Base Currency INR: Difference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 43, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Single Invoice (Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptMultiPartySingleInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
+		bankReceiptFunc
+				.BRMultiPartySingleInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceiptMulti"));
+	}
 
 	/**
 	 * Receipt Against Multi Party, Single Invoice (Get document) - Receipt - Bank
@@ -661,20 +660,20 @@ public class BankReceiptTest extends RoadMapERPTest {
 				webDB.getDataFromProperties("BankReceiptMulti"));
 	}
 
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button) -
-//	 * Receipt - Bank foreign Customer INR and Base Currency INR: Difference
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 46, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
-//		bankReceiptFunc
-//				.BRMultiPartyMultiInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceiptMulti"));
-//	}
+	/**
+	 * Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button) -
+	 * Receipt - Bank foreign Customer INR and Base Currency INR: Difference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 46, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice (Dr/Cr)(Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonBankCurcyUSD() throws IOException {
+		bankReceiptFunc
+				.BRMultiPartyMultiInvoiceThroughAddButtonBankCurcyUSD(webDB.getDataFromProperties("BankReceiptMulti"));
+	}
 
 	/**
 	 * Receipt Against Multi Party, Multi Invoice (Dr/Cr) (Get document) - Receipt -
@@ -706,66 +705,66 @@ public class BankReceiptTest extends RoadMapERPTest {
 				webDB.getDataFromProperties("BankReceiptMulti"));
 	}
 
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through
-//	 * - Receipt - Bank foreign Customer INR and Base Currency INR: Difference Add
-//	 * button)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 49, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonWithNewRefBankCurcyUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonWithNewRefBankCurcyUSD(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get
-//	 * document) - Receipt - Bank foreign Customer INR and Base Currency INR:
-//	 * Difference
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 50, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRefBankCurcyUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughGetDocumentWithNewrefBankCurcyUSD(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference - Receipt -
-//	 * Bank foreign Customer INR and Base Currency INR: Difference (Dr/Cr)(Pending)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 51, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRefBankCurcyUSD() throws IOException {
-//		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRefBankCurcyUSD(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//	/**
-//	 * Bank receipt With Charges - Receipt - Bank foreign Customer INR and Base
-//	 * Currency INR: Difference
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 52, groups = {
-//			"Bank Receipt" }, description = "Bank receipt With Charges - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
-//	public void CreateBankReceiptWithChargesBankCurcyUSD() throws IOException {
-//		bankReceiptFunc.BankReceiptSIWithChargesBankCurcyUSD(webDB.getDataFromProperties("BankReceiptCharges"));
-//	}
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through
+	 * - Receipt - Bank foreign Customer INR and Base Currency INR: Difference Add
+	 * button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 49, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Through Add button) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughAddButtonWithNewRefBankCurcyUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughAddButtonWithNewRefBankCurcyUSD(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get
+	 * document) - Receipt - Bank foreign Customer INR and Base Currency INR:
+	 * Difference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 50, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRefBankCurcyUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughGetDocumentWithNewrefBankCurcyUSD(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference - Receipt -
+	 * Bank foreign Customer INR and Base Currency INR: Difference (Dr/Cr)(Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 51, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending) - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRefBankCurcyUSD() throws IOException {
+		bankReceiptFunc.BRMultiPartyMultiInvoiceThroughPendingDocsWithNewRefBankCurcyUSD(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Bank receipt With Charges - Receipt - Bank foreign Customer INR and Base
+	 * Currency INR: Difference
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 52, groups = {
+			"Bank Receipt" }, description = "Bank receipt With Charges - Receipt - Bank foreign Customer INR and Base Currency INR: Difference")
+	public void CreateBankReceiptWithChargesBankCurcyUSD() throws IOException {
+		bankReceiptFunc.BankReceiptSIWithChargesBankCurcyUSD(webDB.getDataFromProperties("BankReceiptCharges"));
+	}
 
 	/**
 	 * Receipt With Expenses/Revenue Account without Gst
@@ -780,7 +779,7 @@ public class BankReceiptTest extends RoadMapERPTest {
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("BankNameUSD"));
 	}
-	
+
 	/**
 	 * Receipt Against single Party, Single invoice(Through Add button)
 	 * 
@@ -817,9 +816,9 @@ public class BankReceiptTest extends RoadMapERPTest {
 	@Test(priority = 56, groups = {
 			"Bank Receipt" }, description = "Receipt Against single Party, Single Invoice (Pending )")
 	public void CreateAdvanceBankReceiptSinglePartySingleSOThroughPendingDocs() throws IOException {
-		bankReceiptFunc.ABRSinglePartySingleSOThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
+		bankReceiptFunc.ABRSinglePartySingleSOThroughPendingDocs(webDB.getDataFromProperties("BankReceiptAdv"));
 	}
-	
+
 	/**
 	 * Receipt Against single Party, Single invoice(Through Add button)
 	 * 
@@ -856,9 +855,9 @@ public class BankReceiptTest extends RoadMapERPTest {
 	@Test(priority = 59, groups = {
 			"Bank Receipt" }, description = "Receipt Against single Party, Single Invoice (Pending )")
 	public void CreateAdvanceBankReceiptSinglePartyMultipleSOThroughPendingDocs() throws IOException {
-		bankReceiptFunc.ABRSinglePartyMultiSOThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
+		bankReceiptFunc.ABRSinglePartyMultiSOThroughPendingDocs(webDB.getDataFromProperties("BankReceiptAdv"));
 	}
-	
+
 	/**
 	 * Receipt - Bank, Customer and Base Currency: Same (USD) Party, Single
 	 * invoice(Through Add button)
@@ -900,7 +899,7 @@ public class BankReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceBankReceiptSinglePartySingleSOThroughPendingDocsUSD() throws IOException {
 		bankReceiptFunc.ABRSinglePartySingleSOThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptUSD"));
 	}
-	
+
 	/**
 	 * Receipt - Bank, Customer and Base Currency: Same (USD) Party, Single
 	 * invoice(Through Add button)

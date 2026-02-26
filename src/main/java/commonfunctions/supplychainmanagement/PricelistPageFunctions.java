@@ -1671,10 +1671,12 @@ public class PricelistPageFunctions {
 					commonFunc.hardWait(2000);
 					webDB.switchToFrame(PricelistPageLocators.PRLFrame, ElementType.Xpath);
 					logs.logging("INFO", "Switched To WorkFlow Frame");
+					commonFunc.checkRefreshCellsDisappear();
 					flag = webDB.waitForElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(PricelistPageLocators.PRLForwardOkBtn, ElementType.Xpath);
 						commonFunc.hardWait(2000);
+						commonFunc.checkRefreshCellsDisappear();
 						webDB.switchToDefaultContent();
 //						commonFunc.logoutUser();
 //						commonFunc.validCommonLogin(System.getProperty("HariUsername"),

@@ -252,6 +252,7 @@ public class VariableHandler {
 	private static ThreadLocal<String> GeneralReimbursementDocNo = new ThreadLocal<>();
 	private static ThreadLocal<String> GRNLotNo = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultipleAdvRecDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> ResignationRequestDocNo = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2168,5 +2169,13 @@ public class VariableHandler {
 
 	public static void setMultipleAdvRecDocs(ArrayList<String> data) {
 		MultipleAdvRecDocs.set(data);
+	}
+	
+	public static String getResignationRequestDocNo() {
+		return ResignationRequestDocNo.get();
+	}
+
+	public static void setResignationRequestDocNo(String data) {
+		ResignationRequestDocNo.set(data);
 	}
 }
