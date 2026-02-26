@@ -516,7 +516,7 @@ public class GateEntryPageFunctions {
 					}
 					logs.logging("INFO", "Gate Entry Document Posted Successfully");
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.logoutUser();
+//					commonFunc.logoutUser();
 				}
 			}
 		}
@@ -1414,6 +1414,7 @@ public class GateEntryPageFunctions {
 					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 					if (flag) {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
 						verifyClickSelectAllButton();
 						logs.logging("INFO", "Create Gate Entry Button shown");
@@ -1435,31 +1436,32 @@ public class GateEntryPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyClickSelectAllButton() {
-		commonFunc.hardWait(5000);
-//		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-//		if (flag) {
-		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
-		List<WebElement> CheckBox = webDB.getDriver()
-				.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
-		for (WebElement element : CheckBox) {
-			try {
-				if (element.isDisplayed()) {
-					if (!element.isSelected()) {
-						element.click();
-						flag = true;
-						break;
-					} else {
-						element.click();
-						Thread.sleep(10000);
-						verifyClickSelectAllButton();
-						flag = true;
-						break;
+		commonFunc.hardWait(3000);
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+		if (flag) {
+//		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						if (!element.isSelected()) {
+							element.click();
+							flag = true;
+							break;
+						} else {
+							element.click();
+//						Thread.sleep(10000);
+							verifyClickSelectAllButton();
+							flag = true;
+							break;
+						}
 					}
+				} catch (Exception e) {
 				}
-			} catch (Exception e) {
 			}
 		}
-//		}
 		assertTrue(flag);
 	}
 

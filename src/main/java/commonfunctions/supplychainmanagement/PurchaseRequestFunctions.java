@@ -269,8 +269,11 @@ public class PurchaseRequestFunctions {
 			}
 		}
 		searchAndSelectItems(Item);
+		webDB.pressEscapeKey();
 		enterQuantityForLastItem(Qnty);
+		webDB.pressEscapeKey();
 		enterCostForLastItem(Cost);
+		webDB.pressEscapeKey();
 		saveLinesEntry();
 		checkLineCostAmount(Cost, Qnty, Item);
 		clickLineDetailsIconForLastitem(Item);
@@ -436,30 +439,41 @@ public class PurchaseRequestFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
-			flag = webDB.waitForElementUntilGivenTime(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath, 60);
-			if (flag) {
-				webDB.clickAnElement(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath);
-				flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataPopupSearchBox, ElementType.Xpath);
-				if (flag) {
-					commonFunc.checkRefreshCellsDisappear();
-					webDB.clearTextField(PurchaseRequestLocators.ItemDataPopupSearchBox, ElementType.Xpath);
-					webDB.sendTextToAnElement(PurchaseRequestLocators.ItemDataPopupSearchBox, Item, ElementType.Xpath);
-					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.convertXPath(Item), ElementType.Xpath,
-							60);
-					if (flag) {
-						commonFunc.checkRefreshCellsDisappear();
-						webDB.clickAnElement(CommonUiLocators.convertXPath(Item), ElementType.Xpath);
-						String value = webDB.getAttributeFromElement(PurchaseRequestLocators.ItemDataLastRowInput,
-								ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-						logs.logging("INFO", "Get Text Item Name Value from Table Is: " + value);
-						flag = value.contains(Item);
-						if (flag) {
-							logs.logging("INFO", Item + "- Item Searched and Selected");
-						}
-					}
-				}
+			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+			if (!webDB.verifyIsElementDisplayed(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 			}
+			commonFunc.searchAndSelectValueInFilters(PurchaseRequestLocators.ItemDataListIcon, Item);
+//			flag = webDB.waitForElementUntilGivenTime(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath, 60);
+//			if (flag) {
+//				webDB.clickAnElement(PurchaseRequestLocators.ItemDataListIcon, ElementType.Xpath);
+//				flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataPopupSearchBox, ElementType.Xpath);
+//				if (flag) {
+//					commonFunc.checkRefreshCellsDisappear();
+//					webDB.clearTextField(PurchaseRequestLocators.ItemDataPopupSearchBox, ElementType.Xpath);
+//					webDB.sendTextToAnElement(PurchaseRequestLocators.ItemDataPopupSearchBox, Item, ElementType.Xpath);
+//					flag = webDB.waitForElementUntilGivenTime(CommonUiLocators.convertXPath(Item), ElementType.Xpath,
+//							60);
+//					if (flag) {
+//						commonFunc.checkRefreshCellsDisappear();
+//						webDB.clickAnElement(CommonUiLocators.convertXPath(Item), ElementType.Xpath);
+//						commonFunc.hardWait(2000);
+//						webDB.pressEscapeKey();
+//						flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+//						if (flag) {
+//							webDB.doubleClickAnElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
+//							String value = webDB.getAttributeFromElement(PurchaseRequestLocators.ItemDataLastRowInput,
+//									ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+//							logs.logging("INFO", "Get Text Item Name Value from Table Is: " + value);
+//							flag = value.contains(Item);
+//							if (flag) {
+//								logs.logging("INFO", Item + "- Item Searched and Selected");
+//							}
+//						}
+//					}
+//				}
+//			}
 		}
 		Assert.assertTrue(flag);
 	}
@@ -473,28 +487,37 @@ public class PurchaseRequestFunctions {
 	 */
 	private void enterQuantityForLastItem(String Quantity) {
 		commonFunc.checkRefreshCellsDisappear();
-		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
 		if (flag) {
-			webDB.scrollToAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
-			webDB.clickAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseRequestLocators.QuantityDataLastRowInput, ElementType.Xpath);
-			if (flag) {
-				WebElement element = webDB.getDriver()
-						.findElement(By.xpath(PurchaseRequestLocators.QuantityDataLastRowInput));
-				try {
-					js.executeScript("arguments[0].value='" + Quantity + "';", element);
-					String value = webDB.getAttributeFromElement(PurchaseRequestLocators.QuantityDataLastRowInput,
-							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-					logs.logging("INFO", "Get Text Quantity Name Value from Table Is: " + value);
-					flag = value.contains(Quantity);
-					if (flag) {
-						logs.logging("INFO", "Quantity Entered: " + Quantity);
-					}
-				} catch (Exception e) {
-					flag = false;
-				}
+			webDB.moveToElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+			if (!webDB.verifyIsElementDisplayed(PurchaseRequestLocators.QuantityDataLastRowInput, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
 			}
+			commonFunc.verifyAddTableSpecs(PurchaseRequestLocators.QuantityDataLastRowInput,
+					PurchaseRequestLocators.QuantityDataLastRowInput, Quantity);
+//		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+//		flag = webDB.waitForClickElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+//		if (flag) {
+//			webDB.scrollToAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+//			webDB.clickAnElement(PurchaseRequestLocators.QuantityDataLastRow, ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseRequestLocators.QuantityDataLastRowInput, ElementType.Xpath);
+//			if (flag) {
+//				WebElement element = webDB.getDriver()
+//						.findElement(By.xpath(PurchaseRequestLocators.QuantityDataLastRowInput));
+//				try {
+//					js.executeScript("arguments[0].value='" + Quantity + "';", element);
+//					String value = webDB.getAttributeFromElement(PurchaseRequestLocators.QuantityDataLastRowInput,
+//							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+//					logs.logging("INFO", "Get Text Quantity Name Value from Table Is: " + value);
+//					flag = value.contains(Quantity);
+//					if (flag) {
+//						logs.logging("INFO", "Quantity Entered: " + Quantity);
+//					}
+//				} catch (Exception e) {
+//					flag = false;
+//				}
+//			}
 		}
 		Assert.assertTrue(flag);
 	}
@@ -508,27 +531,36 @@ public class PurchaseRequestFunctions {
 	 */
 	private void enterCostForLastItem(String Cost) {
 		commonFunc.checkRefreshCellsDisappear();
-		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
-		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+		flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
-			flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRowInput, ElementType.Xpath);
-			if (flag) {
-				WebElement element1 = webDB.getDriver()
-						.findElement(By.xpath(PurchaseRequestLocators.UnitCostDataLastRowInput));
-				try {
-					js.executeScript("arguments[0].value='" + Cost + "';", element1);
-					String value = webDB.getAttributeFromElement(PurchaseRequestLocators.UnitCostDataLastRowInput,
-							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
-					logs.logging("INFO", "Get Text Cost Name Value from Table Is: " + value);
-					flag = value.contains(Cost);
-					if (flag) {
-						logs.logging("INFO", "Cost Entered: " + Cost);
-					}
-				} catch (Exception e) {
-					flag = false;
-				}
+			webDB.moveToElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+			webDB.doubleClickAnElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+			if (!webDB.verifyIsElementDisplayed(PurchaseRequestLocators.UnitCostDataLastRowInput, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
 			}
+			commonFunc.verifyAddTableSpecs(PurchaseRequestLocators.UnitCostDataLastRowInput,
+					PurchaseRequestLocators.UnitCostDataLastRowInput, Cost);
+//		JavascriptExecutor js = (JavascriptExecutor) webDB.getDriver();
+//		flag = webDB.waitForClickElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(PurchaseRequestLocators.UnitCostDataLastRow, ElementType.Xpath);
+//			flag = webDB.waitForElement(PurchaseRequestLocators.UnitCostDataLastRowInput, ElementType.Xpath);
+//			if (flag) {
+//				WebElement element1 = webDB.getDriver()
+//						.findElement(By.xpath(PurchaseRequestLocators.UnitCostDataLastRowInput));
+//				try {
+//					js.executeScript("arguments[0].value='" + Cost + "';", element1);
+//					String value = webDB.getAttributeFromElement(PurchaseRequestLocators.UnitCostDataLastRowInput,
+//							ElementType.Xpath, commonFunc.getDataFromTestDataSheet("Value"));
+//					logs.logging("INFO", "Get Text Cost Name Value from Table Is: " + value);
+//					flag = value.contains(Cost);
+//					if (flag) {
+//						logs.logging("INFO", "Cost Entered: " + Cost);
+//					}
+//				} catch (Exception e) {
+//					flag = false;
+//				}
+//			}
 		}
 		Assert.assertTrue(flag);
 	}

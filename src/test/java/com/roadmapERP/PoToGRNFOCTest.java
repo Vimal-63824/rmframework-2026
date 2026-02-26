@@ -8,16 +8,13 @@ import static org.testng.Assert.assertTrue;
 
 import java.lang.reflect.Method;
 
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import commonfunctions.Author;
 import commonfunctions.CommonFunctions;
-import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonfunctions.supplychainmanagement.Purchase_GRN_FOCFunctions;
-import utils.ReportLoger;
 
 public class PoToGRNFOCTest extends RoadMapERPTest {
 	private boolean flag = false;
