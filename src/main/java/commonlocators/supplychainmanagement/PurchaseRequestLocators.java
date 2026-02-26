@@ -52,7 +52,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String UnitCostDataLastRowInput = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[7])[1]/div//input";
 	/** @locatorType Xpath */
-	public static final String ItemDataListIcon = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]//span[@class='a-Icon icon-popup-lov'][1]";
+	public static final String ItemDataListIcon = "(//table//tbody/tr[contains(@class,'a-GV-row')]/td[2])[1]//button";
 	/** @locatorType Xpath */
 	public static final String ItemDataPopupSearchBox = "//input[contains(@class,'a-PopupLOV-search')]";
 	/** @locatorType Xpath */
