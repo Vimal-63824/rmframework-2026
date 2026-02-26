@@ -272,6 +272,8 @@ public class CommonFunctions {
 			if (flag) {
 				webDB.switchToDefaultContent();
 				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
+				checkRefreshCellsDisappear();
 				List<WebElement> searchBar = webDB.getDriver().findElements(By.xpath(CommonUiLocators.searchBar));
 				a: for (int i = 0; i < searchBar.size(); i++) {
 					WebElement element = searchBar.get(i);
@@ -2580,9 +2582,9 @@ public class CommonFunctions {
 			flag = webDB.waitForElement(Tablespec, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(Tablespec, ElementType.Xpath);
-				webDB.clickAnElement(Tablespec, ElementType.Xpath);
-				webDB.waitForElement(InputParameter, ElementType.Xpath);
+				webDB.doubleClickAnElement(Tablespec, ElementType.Xpath);
 				checkRefreshCellsDisappear();
+				webDB.waitForElement(InputParameter, ElementType.Xpath);
 				flag = webDB.sendTextToAnElement(InputParameter, Enteredvalue, ElementType.Xpath);
 				logs.logging("INFO", "Entered Value Is: " + Enteredvalue + " in 'verifyAddTableSpecs'");
 //				String value = webDB.getAttributeFromElement(InputParameter, ElementType.Xpath,
@@ -2924,11 +2926,15 @@ public class CommonFunctions {
 		flag = webDB.waitForElement(TableLocator, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(TableLocator, ElementType.Xpath);
-			webDB.clickAnElement(TableLocator, ElementType.Xpath);
+			webDB.doubleClickAnElement(TableLocator, ElementType.Xpath);
 			webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
-			webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
+			if (!webDB.verifyIsElementDisplayed(LovButton, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
+				webDB.clickAnElementWithoutException(TableLocator, ElementType.Xpath);
+			}
 			logs.logging("INFO", "Table Is Clicked");
 			searchAndSelectValueInFilters(LovButton, LovValue);
+			webDB.pressEscapeKey();
 //			flag = webDB.waitForElement(LovInputLocator, ElementType.Xpath);
 //			if (flag) {
 //				String value = webDB.getAttributeFromElement(LovInputLocator, ElementType.Xpath,
