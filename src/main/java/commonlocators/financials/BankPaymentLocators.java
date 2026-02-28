@@ -66,9 +66,9 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankViewFrame = "(//h1[contains(text(),'Payment Details')]/ancestor::div/following-sibling::div)//iframe";
 	/** @locatorType Xpath */
-	public static final String BankBillNumberInputField = "//input[@id='C1985848374959122172']";
+	public static final String BankBillNumberInputField = "//input[@id='C2702639806405966555']";
 	/** @locatorType Xpath */
-	public static final String BankPayAmountInputField = "//input[@id='C1985842401841122165']";
+	public static final String BankPayAmountInputField = "//input[@id='C2702633833287966548']";
 	/** @locatorType Xpath */
 	public static final String BankAgainstRefFieldName = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
