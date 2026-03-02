@@ -14156,6 +14156,12 @@ public class PurchaseOrderFunctions {
 	 */
 	public void verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
 			String Loc, String Supplier, String PoType, String SheetName, String FileName) {
+		String Unit = null;
+		if (Loc.equals(commonFunc.getDataFromTestDataSheet("L49"))) {
+			Unit = "L-3";
+		} else if (Loc.equals(commonFunc.getDataFromTestDataSheet("L0007"))) {
+			Unit = "U-7";
+		}
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
 		commonFunc.navigatePurchaseOrderPage();
 		commonFunc.clickCreateIcon();
@@ -14193,8 +14199,8 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
-//				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName, Supplier, FileName);
-//				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName, Supplier, Unit, FileName);
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
@@ -14219,7 +14225,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyUnitcostAndDiscountAmountForOpenPoItem(int i1, String SheetName, String RateContractSupplier,
-			String FileName) {
+			String Unit, String FileName) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -14230,14 +14236,14 @@ public class PurchaseOrderFunctions {
 				System.out.println("tradevalueup");
 				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(
-						dbCommonFunc.OpenPoDetails(RateContractSupplier, ItemId,
+						dbCommonFunc.OpenPoDetails(RateContractSupplier, ItemId, Unit,
 								commonFunc.getDataFromTestDataSheet("OpenPoUnitCost")),
 						dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("PoUnitCost")));
 				logs.logging("INFO", "Open PO And  PO unit Cost Matched For This " + ItemId);
 				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(
-						dbCommonFunc.OpenPoDetails(RateContractSupplier, ItemId,
+						dbCommonFunc.OpenPoDetails(RateContractSupplier, ItemId, Unit,
 								commonFunc.getDataFromTestDataSheet("OpenPoDiscPct")),
 						dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("TradeDiscountPct")));
@@ -14353,7 +14359,7 @@ public class PurchaseOrderFunctions {
 	 * 
 	 */
 	public void verifyUnitcostAndDiscountAmountForPriceListItem(int i1, String SheetName, String PriceListSupplier,
-			String FileName) {
+			String LocId, String FileName) {
 		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -14363,14 +14369,14 @@ public class PurchaseOrderFunctions {
 			if (!ItemId.equals("")) {
 				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(
-						dbCommonFunc.priceListDetails(PriceListSupplier, ItemId,
+						dbCommonFunc.priceListDetails(PriceListSupplier, ItemId, LocId,
 								commonFunc.getDataFromTestDataSheet("PriceListUnitCost")),
 						dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("PoUnitCost")));
 				logs.logging("INFO", "PriceList And PO unit Cost Matched For This " + ItemId);
 				commonFunc.checkRefreshCellsDisappear();
 				verifyAssertionBothValues(
-						dbCommonFunc.priceListDetails(PriceListSupplier, ItemId,
+						dbCommonFunc.priceListDetails(PriceListSupplier, ItemId, LocId,
 								commonFunc.getDataFromTestDataSheet("PriceListDiscPct")),
 						dbCommonFunc.poDetails(VariableHandler.getPONumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("TradeDiscountPct")));
@@ -14426,8 +14432,8 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				webDB.pressEscapeKey();
 				verifyDirectPoLineWiseSaved();
-//				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName, Supplier, FileName);
-//				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
+				verifyUnitcostAndDiscountAmountForPriceListItem(i, SheetName, Supplier, Loc, FileName);
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName, FileName);
 				otherThanUserdefinedDiscountAmount(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
