@@ -2301,7 +2301,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @param SheetName
 	 * @author Durai
 	 */
-	private void verifyChangeCostForDeviation(String SheetName) {
+	public void verifyChangeCostForDeviation(String SheetName) {
 //		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 //		ExcelUtils excelUtils = new ExcelUtils();
 //		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
@@ -3397,5 +3397,54 @@ public class PurchaseBillsFunctionsGrn {
 //		}
 		assertTrue(flag);
 	}
+	/**
+	 * This Method Used To Verify Pending Subcontract Against Purchase Bill Header
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void pendingSubcontractAgainstvalidateHeaderDetails() {
 
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderLocation")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderLocation")));
+		logs.logging("INFO", "Location Is Matched For GRN and PB ");
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderUnit")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderUnit")));
+		logs.logging("INFO", "Unit Is Matched For GRN and PB ");
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderSupplierID")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderSupplierID")));
+		logs.logging("INFO", "Supplier ID Is Matched For GRN and PB ");
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderDCNO")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderDCNO")));
+		logs.logging("INFO", "DC No Is Matched For GRN and PB ");
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderDCDate")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderDCDate")));
+		logs.logging("INFO", "DC Date Is Matched For GRN and PB ");
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderGrnDate")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderGrnDate")));
+		logs.logging("INFO", "GRN Date Is Matched For GRN and PB ");
+		verifyAssertionBothValues(
+				dbCommonFunc.GRNPBHeaderQuery(VariableHandler.getScoGrnNumber(),
+						commonFunc.getDataFromTestDataSheet("GRNHeaderGrnNo")),
+				dbCommonFunc.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBHeaderGrnNo")));
+		logs.logging("INFO", "GRN No Is Matched For GRN and PB ");
+	}
 }

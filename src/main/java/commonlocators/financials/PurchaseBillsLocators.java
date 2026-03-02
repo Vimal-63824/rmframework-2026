@@ -49,7 +49,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String TDSU_S = "//div[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[27]";
 	/** @locatorType Xpath */
-	public static final String TDSLovButton = "//button[@id='tds_lov_btn']";
+	public static final String TDSLovButton = "//input[@data-testid='SUPLN_TDS_US_ID']/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String ExpandButton = "//button[@id='t_Button_rightControlButton'][@aria-expanded='true']";
 	/** @locatorType Xpath */

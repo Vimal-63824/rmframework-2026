@@ -102,7 +102,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLineDetailsFrame = "//iframe[@title='GRN Line']";
 	/** @locatorType Xpath */
-	public static final String GrnLineDetailsSave = "//button[@id='B1505162842318138381']";
+	public static final String GrnLineDetailsSave = "//button[@title='Btn Save']";
 
 	/** @locatorType Xpath */
 	public static final String StdOperatorType(int i) {

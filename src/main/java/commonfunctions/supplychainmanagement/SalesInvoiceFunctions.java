@@ -7242,7 +7242,7 @@ public class SalesInvoiceFunctions {
 									commonFunc.hardWait(2000);
 									checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues();
 									commonFunc.hardWait(2000);
-									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn,
 											ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Rework Order Completion Record Created From Pending");
@@ -7317,7 +7317,7 @@ public class SalesInvoiceFunctions {
 									commonFunc.hardWait(2000);
 									checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues();
 									commonFunc.hardWait(2000);
-									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn,
 											ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Rework Order Completion Record Created From Pending");
