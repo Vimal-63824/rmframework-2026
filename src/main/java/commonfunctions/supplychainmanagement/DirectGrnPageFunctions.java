@@ -539,10 +539,11 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingItemField(String ITEM_NAME) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
 		if (flag) {
-			webDB.clickAnElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
+			flag = webDB.doubleClickAnElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
 			logs.logging("INFO", "Item Lov Is Clicked");
 			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
-			logs.logging("INFO", "Entered Item Is:" + ITEM_NAME);
+			logs.logging("INFO", "Entered Item Is: " + ITEM_NAME);
+			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkRefreshCellsDisappear();
 		}
 		assertTrue(flag);
@@ -559,7 +560,7 @@ public class DirectGrnPageFunctions {
 		if (flag) {
 			String GetTextHSN = webDB.getTextFromElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
 			if (!GetTextHSN.equals(HSN)) {
-				webDB.clickAnElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
+				webDB.doubleClickAnElement(DirectGrnPageLocators.GrnLineHsnField, ElementType.Xpath);
 				logs.logging("INFO", "HSN Field Is Clicked");
 				commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineHsnLov, HSN);
 				logs.logging("INFO", "Entered HSN Code Is:" + HSN);
@@ -631,7 +632,8 @@ public class DirectGrnPageFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			closeToastIfDisplayed();
 			closeToastIfDisplayed();
-//			commonFunc.hardWait(4000);
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(4000);
 		}
 		assertTrue(flag);
 	}
@@ -903,7 +905,7 @@ public class DirectGrnPageFunctions {
 		logs.logging("INFO", "Expected Value Is: " + Expected);
 		flag = Actual.equals(Expected);
 		if (flag) {
-			logs.logging("INFO", "Verified Actual DataBase Value 8: " + Actual + " And Expected Values : " + Expected);
+			logs.logging("INFO", "Verified Actual DataBase Value : " + Actual + " And Expected Values : " + Expected);
 		} else {
 			logs.logging("INFO",
 					"Mismatch With Actual DataBase Value : " + Actual + " And Expected Values " + Expected);
@@ -1284,21 +1286,27 @@ public class DirectGrnPageFunctions {
 	public void overAllSaveAndPost() {
 		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(3000);
 			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
 			VariableHandler.setGrnDocNumber(GrnNumber);
 			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
 			flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
-			if (flag)
-				webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
-			logs.logging("INFO", "Document Successfully Saved");
-			commonFunc.hardWait(2000);
-			flag = webDB.waitForClickElement(GrnLocators.PostButton, ElementType.Xpath);
 			if (flag) {
-				webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
-				logs.logging("INFO", "Document Successfully posted");
-				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+				webDB.moveToElement(GrnLocators.OverAllSave, ElementType.Xpath);
+				webDB.clickAnElement(GrnLocators.OverAllSave, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Document Successfully Saved");
+					flag = webDB.waitForClickElement(GrnLocators.PostButton, ElementType.Xpath);
+					if (flag) {
+						if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+							webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+						}
+						commonFunc.checkSuccessToastMessageDisappear();
+						webDB.moveToElement(GrnLocators.PostButton, ElementType.Xpath);
+						webDB.clickAnElement(GrnLocators.PostButton, ElementType.Xpath);
+						flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
+					}
+				}
 			}
 		}
 		assertTrue(flag);
@@ -5111,7 +5119,37 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 	}
-
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier()
+			throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PurchaseBillGRN"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PurchaseBillGRN"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"),
+				commonFunc.getDataFromTestDataSheet("UnRegisteredSupplierID"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("PurchaseBillGRN"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("PurchaseBillGRN"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+//		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		String GrnHeaderWiseStatus = dbCommonFunctions.GrnHeaderDetails(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("ProcessFlowStatus"));
+		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PurchaseBillGRN"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PurchaseBillGRN"));
+	}
 	/**
 	 * This Methods Is Used To Verify Creation Of PR General RFQ
 	 * 
@@ -6845,5 +6883,34 @@ public class DirectGrnPageFunctions {
 		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("DirectGrnSheet"), webDB.getDataFromProperties("DGDUomWoQWIPlImpSheet"));
 
+	}
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	public void verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate() throws IOException {
+		verifyDirectGRNStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyDirectGRNStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyGrnAdd();
+		verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("InterstateSupplier"),
+				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
+		verifyDirectGRNAddLineDetailsOtherThanUserDefined(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		DirectGRNmultipleLotandSerialWithGeneralType(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		GRNFunc.overAllSaveAndPost();
+		GRNFunc.waitingForApproval();
+//		GRNFunc.verifyReturnToGrnPageHeaderStatus();
+		String GrnHeaderWiseStatus = dbCommonFunctions.GrnHeaderDetails(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("ProcessFlowStatus"));
+		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		GRNFunc.aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 	}
 }

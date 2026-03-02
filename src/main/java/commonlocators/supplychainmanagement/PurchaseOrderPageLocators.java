@@ -157,7 +157,11 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String GLAccDesc = "//tbody/tr[@data-id='t1000']/td[18]";
 	/** @locatorType Xpath */
-	public static final String GlAccDescButton = "//tbody/tr[@data-id='t1000']/td[18]//button";
+	public static final String GlAccDescButton = "//table/tbody/tr/td[18]//input[@data-testid='CHARGE_PUR_ACT']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String SACTableData = "//tbody/tr[@data-id='t1000']/td[8]";
+	/** @locatorType Xpath */
+	public static final String SACTableButton = "//table/tbody/tr/td[8]//input[@data-testid='CHARGE_SAC_CODE']/following-sibling::button";
 
 	/** @locatorType Xpath */
 	public static final String ItemName(int i) {
@@ -346,13 +350,13 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PolinewiseSave = "//button[@data-testid='PO_Item_Tick_Icon']";
 	/** @locatorType Xpath */
-	public static final String PoServiceWithGrn = "//*[@id=\"ig_po_lineitems_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[32]";
+	public static final String PoServiceWithGrn = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[32]";
 	/** @locatorType Xpath */
-	public static final String PoseriviceWithGrnSelectedValues = "//select[@data-testid='GRN_RQRD_FLAG']";
+	public static final String PoseriviceWithGrnSelectedValues = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[32]//select[@data-testid='GRN_RQRD_FLAG']";
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1655732835255163754']";
 	/** @locatorType Xpath */
-	public static final String SaleOrderDrillDown = "//*[@id='5491677805743070227_orig']/tbody/tr[2]/td[9]/a";
+	public static final String SaleOrderDrillDown = "//table[@id='5708533482053943747_orig']/tbody[1]/tr[2]/td[9]";
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {

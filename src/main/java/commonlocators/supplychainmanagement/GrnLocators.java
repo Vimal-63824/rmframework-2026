@@ -125,7 +125,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnStockTransferCreation = "//*[@id='BTN_GRN_STS']";
 	/** @locatorType Xpath */
-	public static final String LotserialItemSelect = "//*[@id='PopupLov_161513110304_C3304459544488563482_dlg']/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
+	public static final String LotserialItemSelect = "//*[@id='PopupLov_161513110304_C3518633558037426032_dlg']/div[2]/div[2]/div[3]/table/tbody/tr/td[1]/span";
 	/** @locatorType Xpath */
 	public static final String PendingStockTransfer = "//button[@data-testid='Pending_ST']";
 	/** @locatorType Xpath */
@@ -148,7 +148,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//*[@id='12744803709492363597']/tbody/tr[2]/td[17]/div";
+	public static String GrnDocumentStatus = "//table[@id='12958977723041226147']/tbody/tr[2]/td[17]";
 	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */
@@ -299,7 +299,7 @@ public class GrnLocators {
 	public static final String GrnLineWiseDeleteButton = "//span[@title='Delete']";
 	// span[@title="Delete"]
 	/** @locatorType Xpath */
-	public static final String GrnLineWiseStatus = "//*[@id=\"8280577769115268943_orig\"]/tbody/tr[2]/td[92]";
+	public static final String GrnLineWiseStatus = "//table[@id='8494751782664131493_orig']/tbody[1]/tr[2]/td[92]";
 	/** @locatorType Xpath */
 	public static final String GrnDocumentwiseCancelButton = "//button[@data-testid='Cancel_GRN']";
 	/** @locatorType Xpath */

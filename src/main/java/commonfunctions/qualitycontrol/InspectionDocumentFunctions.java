@@ -1167,7 +1167,6 @@ public class InspectionDocumentFunctions {
 			String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
 					ElementType.Xpath);
 			VariableHandler.setIDAlertMessage(IDAlertMessage);
-			;
 			logs.logging("INFO", "Get Text From Note Alert Is(ID Alert Message:" + IDAlertMessage);
 			flag = webDB.waitForElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg, ElementType.Xpath);
 			String InspectionDocumentNumber = webDB

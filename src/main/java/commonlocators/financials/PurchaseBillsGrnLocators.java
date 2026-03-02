@@ -69,9 +69,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//*[@id=\"1985325153421018015_orig\"]/tbody/tr[2]/td[11]" ;
+	public static final String PBAdjustDocSelect = "//*[@id=\"3630600386710420466_orig\"]/tbody/tr[2]/td[11]" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterField = "//*[@id=\"1985325153421018015_orig\"]/tbody/tr[2]/td[10]";
+	public static final String PBAdjustValueEnterField = "//*[@id=\"3630600386710420466_orig\"]/tbody/tr[2]/td[10]";
 	/** @locatorType Xpath */
 	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]" ;
 	/** @locatorType Xpath */
@@ -145,8 +145,24 @@ public class PurchaseBillsGrnLocators {
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[13]/*";
 	}
-	
-	
-	
-	
+	/** @locatorType Xpath */
+	public static final String PB_PendSCOField = "//button[@data-testid='PendingSCO']";
+	/** @locatorType Xpath */
+	public static final String SCO_SearchButton = "//button[@data-testid='SearchSCO']";
+	/** @locatorType Xpath */
+	public static final String SCONoField = "//input[@data-testid='P116131006_GRN_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String SCO_CheckBox ="(//input[@id='check_all'])[1]";
+	/** @locatorType Xpath */
+	public static final String PB_LineProcess_Button ="(//span[@class='fa fa-info'])[1]";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']" ;
+	/** @locatorType Xpath */
+	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]" ;
+	/** @locatorType Xpath */
+	public static final String ProcessTDSLovButton = "//input[@data-testid='SDPLH_TDS_US_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PB_Process_Save = "//button[@title='Save']";
+	/** @locatorType Xpath */
+	public static final String PB_Process_Close = "//button[@id='B3618647795423895330']";
 }

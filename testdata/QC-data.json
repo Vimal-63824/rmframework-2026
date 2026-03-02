@@ -1733,5 +1733,11 @@
 	"AJDBCreditAmountColumnName": "CR_AMT",
 	"ResignDate":"10-12-2025",
 	"ResignEmployee":"GWP0053",
-	"ResignReference":"Resignation"
+	"ResignReference":"Resignation",
+	"InterstateSupplier":"DURAI TRADERS",
+	"UnRegisteredSupplierID":"SUP-24",
+	"UnRegisteredSupplier":"SRI BALAJI ENTRPRISES",
+	"IgstUnRegisteredSupplierID":"SUP-500",
+	"IgstUnRegisteredSupplier":"MONA TRADERS",
+	"SupplierForTDS":"PSV INDUSTRIES"
 }
