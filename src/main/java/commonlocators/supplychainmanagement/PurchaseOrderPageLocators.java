@@ -356,7 +356,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1655732835255163754']";
 	/** @locatorType Xpath */
-	public static final String SaleOrderDrillDown = "//*[@id='5491677805743070227_orig']/tbody/tr[2]/td[9]/a";
+	public static final String SaleOrderDrillDown = "//table[@id='5708533482053943747_orig']/tbody[1]/tr[2]/td[9]";
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {
