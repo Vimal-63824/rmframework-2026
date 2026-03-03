@@ -614,6 +614,20 @@ public class DBCommonFunctions {
 	 * @author PremKumar.K-RMITS
 	 * 
 	 */
+	public String OpenPoDetails(String SupplierId, String Item, String PlntId, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("OpenPoQuery1"),
+				commonFunc.getDataFromTestDataSheet("SupplierID"), SupplierId,
+				commonFunc.getDataFromTestDataSheet("OpenPoId"), Item, commonFunc.getDataFromTestDataSheet("PlntId"),
+				PlntId, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Methods Is Used To Validate Open PO Details
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * 
+	 */
 	public String OpenPoDetails(String SupplierId, String Item, String DBHeaderColumnValue) {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("OpenPoQuery"),
 				commonFunc.getDataFromTestDataSheet("SupplierID"), SupplierId,
@@ -631,6 +645,20 @@ public class DBCommonFunctions {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PriceListQuery"),
 				commonFunc.getDataFromTestDataSheet("PriceListSupplierID"), SupplierId,
 				commonFunc.getDataFromTestDataSheet("PriceListItemID"), Item, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * This Methods Is Used To Validate Price List Details
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * 
+	 */
+	public String priceListDetails(String SupplierId, String Item, String LocId, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("PriceListQuery1"),
+				commonFunc.getDataFromTestDataSheet("PriceListSupplierID"), SupplierId,
+				commonFunc.getDataFromTestDataSheet("PriceListItemID"), Item,
+				commonFunc.getDataFromTestDataSheet("LocId"), LocId, DBHeaderColumnValue);
 		return value;
 	}
 
@@ -725,6 +753,7 @@ public class DBCommonFunctions {
 			}
 			Query = Query.replace(Replacechar, Replacedchar).replace(Replacechar1, Replacedchar1).replace(Replacechar2,
 					Replacedchar2);
+			System.out.println("query " + Query);
 			Statement statement = getConnection().createStatement();
 			ResultSet resultSet = statement.executeQuery(Query);
 			while (resultSet.next()) {
@@ -1731,8 +1760,9 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PONO"), PONO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
-	 * SCOA Amendment Process 
+	 * SCOA Amendment Process
 	 * 
 	 * @author Vimal -RMITS
 	 * @param SCOANO
@@ -1744,8 +1774,9 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
-	 * SCOA Amendment Line 
+	 * SCOA Amendment Line
 	 * 
 	 * @author Vimal -RMITS
 	 * @param SCOANO
@@ -1757,7 +1788,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SCOANO"), SCOANO, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * Bank Payment Header details
 	 * 
@@ -1771,7 +1802,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * CS Line Details
 	 * 
