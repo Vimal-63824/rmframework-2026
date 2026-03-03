@@ -537,7 +537,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortFilterRefreshButton = "//button[@data-testid='MultiCloseShortFilterRefreshButton']";
 	/** @locatorType Xpath */
-	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='2966974417345426112_orig']/tbody/tr/td[14]/input";
+	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='3183830093656299632_orig']/tbody/tr/td[14]/input";
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortPostButton = "//button[@data-testid='MultiCloseShortPostButton']";
 	/** @locatorType Xpath */
@@ -577,7 +577,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
-	public static final String SearchBoxContainer1 = "//table[@id='2966974417345426112']/tr/th[3]/a";
+	public static final String SearchBoxContainer1 = "//table[@id='3183830093656299632']/tr/th[3]/a";
 	/** @locatorType Xpath */
 	public static final String SearchBox1 = "//input[@id='PEND_sort_widget_search_field']";
 

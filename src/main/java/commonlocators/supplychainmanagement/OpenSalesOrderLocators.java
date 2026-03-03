@@ -141,7 +141,7 @@ public class OpenSalesOrderLocators {
 		/** @locatorType Xpath */
 		public static final String SearchInputField = "//input[@id='QC_search_field']";
 		/** @locatorType Xpath */
-		public static final String SelecCheckBox = "//table[@id='8288670618826679601_orig']/tbody/tr[2]/td[9]" ;
+		public static final String SelecCheckBox = "//table[@id='8505526295137553121_orig']/tbody/tr[2]/td[9]" ;
 		/** @locatorType Xpath */
 		public static final String HeaderStatus = "//span[@data-testid='P191513101301_SRCHD_STATUS']" ;
 		

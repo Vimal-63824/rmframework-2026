@@ -381,7 +381,7 @@ public class CustomerScheduleFunctions {
 				addQtyUnitAndMrpCost(FIRM_QTY, FIRM_PRICE, FIRM_PRICE, DISC_PCT, Today, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
-//				commonFunc.hardWait(6000);
+				commonFunc.hardWait(1500);
 				getCSLineWiseDocumentNumber(i);
 				verifyCustomerScheduleLineWiseDetailsWithDB(SheetName, i);
 			}
@@ -722,7 +722,7 @@ public class CustomerScheduleFunctions {
 				addQtyInCS(FIRM_QTY, FIRM_TO_DATE, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
-//				commonFunc.hardWait(5000);
+				commonFunc.hardWait(1500);
 			}
 		}
 		clickGenerateScheduleButton();
@@ -1099,7 +1099,7 @@ public class CustomerScheduleFunctions {
 				addQtyInCS(FIRM_QTY, FIRM_TO_DATE, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
-//				commonFunc.hardWait(7000);
+				commonFunc.hardWait(1500);
 			}
 		}
 		clickGenerateScheduleButton();
@@ -1532,7 +1532,7 @@ public class CustomerScheduleFunctions {
 				addQtyInCS(FIRM_QTY, Today, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
-//				commonFunc.hardWait(7000);
+				commonFunc.hardWait(1500);
 			}
 		}
 		clickGenerateScheduleButton();
@@ -1902,7 +1902,7 @@ public class CustomerScheduleFunctions {
 				addQtyInCS(FIRM_QTY, Today, BKT_TYPE);
 				chooseHSNCodeInCS(HSN_CODE);
 				clickLineWiseSaveButton();
-//				commonFunc.hardWait(7000);
+				commonFunc.hardWait(1500);
 			}
 		}
 		clickGenerateScheduleButton();
@@ -2331,6 +2331,7 @@ public class CustomerScheduleFunctions {
 			flag = webDB.waitForElement(CustomerScheduleLocators.CSAmdLineWiseSaveButton, ElementType.Xpath);
 			if (flag) {
 				webDB.clickAnElement(CustomerScheduleLocators.CSAmdLineWiseSaveButton, ElementType.Xpath);
+				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Line WIse Save Button Is Clicked Sucessfully");
 			}
