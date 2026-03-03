@@ -152,7 +152,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Find_Search_Btn = "//button[@data-testid='Find']";
 	/** @locatorType XPATH */
-	public static final String OP_DrillDown = "//*[@id=\"2908421746793928655_orig\"]/tbody/tr[2]/td[5]/a";
+	public static final String OP_DrillDown = "//*[@id=\"3122595760342791205_orig\"]/tbody/tr[2]/td[5]/a";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_Btn = "//button[@data-testid='REVERSE']";
 	/** @locatorType XPATH */
@@ -164,7 +164,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate_input = "(//button[@class='a-Button a-DatePicker--today'])[3]";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_OK_Btn = "//button[@id='B2923981252519400360']";
+	public static final String OP_Reverse_OK_Btn = "//button[@id='B3138155266068262910']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */

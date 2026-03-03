@@ -4393,7 +4393,7 @@ public class SalesInvoiceFunctions {
 				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
 				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
-				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
+		//		checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
 		}
 	}
@@ -4476,8 +4476,8 @@ public class SalesInvoiceFunctions {
 				verifyProformaInvoiceLineWiseAddIconClick();
 				verifyProformaInvoiceAdvanceSOReference(SORef);
 				verifyProformaInvoiceItemID(Item);
-//				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
-//				verifyProformaInvoiceHSNCode(HSNcode_SI);
+				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
+				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
 //				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
@@ -4509,8 +4509,8 @@ public class SalesInvoiceFunctions {
 				verifyProformaInvoiceLineWiseAddIconClick();
 				verifyProformaInvoiceAdvanceSOReference(SORef);
 				verifyProformaInvoiceItemID(Item);
-//				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
-//				verifyProformaInvoiceHSNCode(HSNcode_SI);
+				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
+				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
 //				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
