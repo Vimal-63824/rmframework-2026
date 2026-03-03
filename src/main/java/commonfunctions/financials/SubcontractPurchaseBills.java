@@ -1,4 +1,5 @@
 package commonfunctions.financials;
+
 /**
  * @author Vimal - RMITS
  * @company RoadMap IT Solutions Feb 10, 2026
@@ -36,6 +37,7 @@ public class SubcontractPurchaseBills {
 	static BankPaymentFunctions BPFunc = new BankPaymentFunctions();
 	static SubcontractOrderFunctions SubcontractFunc = new SubcontractOrderFunctions();
 	static PurchaseBillsFunctionsGrn PurBillFunc = new PurchaseBillsFunctionsGrn();
+	static PurchaseBillsFunctions purchaseBillsFunc = new PurchaseBillsFunctions();
 
 	/**
 	 * This Method Used To Verify Pending SCO Purchase Bill
@@ -102,10 +104,14 @@ public class SubcontractPurchaseBills {
 		assertTrue(flag);
 	}
 
-	public void subcontractOrderToPurchaseBill() {
+	/**
+	 * This Method used For Registered Supplier with Local GST- Against Subcontract
+	 * With Deviation and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount() {
 		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
-//		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
 				commonFunc.getDataFromTestDataSheet("TDSValue"));
@@ -188,5 +194,43 @@ public class SubcontractPurchaseBills {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Method used For Registered Supplier with Local GST- Against Subcontract
+	 * Without Deviation
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAgainstSubcontractWithoutDeviation() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
+		PurBillFunc.pendingSubcontractAgainstvalidateHeaderDetails();
+//		PurBillFunc.validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
+//		PurBillFunc.verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
+//		PurBillFunc.verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRN"));
+//		PurBillFunc.verifySaveLine();
+//		PurBillFunc.validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
+		PurBillFunc.verifyCreateJournalAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Registered Supplier with Local GST- Against Subcontract Without Deviation and
+	 * Expenses Account And adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAgainstSubcontractWithoutDeviationandExpensesAccountAndadjustment() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		purchaseBillsFunc.verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				webDB.getDataFromProperties("BankPaymentSingle"));
+		purchaseBillsFunc.addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		purchaseBillsFunc.clickPostButtonApprovalRecordBankPayments();	
 	}
 }

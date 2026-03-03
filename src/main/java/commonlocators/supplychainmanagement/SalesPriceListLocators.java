@@ -29,9 +29,9 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String SalesDiscPercent = " //input[@data-testid='CPL_DISC_PCT']";
 	/** @locatorType Xpath */
-	public static final String EffiticeFrom = "//input[@id='C8356084495847502937_input']";
+	public static final String EffiticeFrom = "//input[@id='C8572940172158376457_input']";
 	/** @locatorType Xpath */
-	public static final String EffiticeTo = "//input[@id='C8356085524364502937_input']";
+	public static final String EffiticeTo = "//input[@id='C8572941200675376457_input']";
 	/** @locatorType Xpath */
 	public static final String SalesPriceFields(int i) {
 		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[11] ";

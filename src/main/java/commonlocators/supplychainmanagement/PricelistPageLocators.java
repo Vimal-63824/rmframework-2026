@@ -64,7 +64,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String Refindsearchok = "//*[@id=\"PLE_search_button\"]/span";
 	/** @locatorType Xpath */
-	public static final String CancellStatus = "//*[@id=\\\"3103043402833953785_orig\\\"]/tbody/tr[2]/td[22]/div";
+	public static final String CancellStatus = "//*[@id=\'3103043402833953785_orig\']/tbody/tr[2]/td[22]/div";
 	/** @locatorType Xpath */
 	public static final String FindLocLov = "//input[@data-testid='P1615131025212_LOCATION']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -88,7 +88,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String FindDocNumsearchField = "//*[@id=\"PopupLov_1615131025212_P1615131025212_DOCP_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static final String FindDocNumDrilldown = "#\\32 888869389285091235_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
+	public static final String FindDocNumDrilldown = "#\\33 103043402833953785_orig > tbody > tr:nth-child(2) > td:nth-child(6) > a";
 	/** @locatorType Xpath */
 	public static final String AmendmentButton = "//*[@id=\"price_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[18]/a/span";
 	/** @locatorType Xpath */

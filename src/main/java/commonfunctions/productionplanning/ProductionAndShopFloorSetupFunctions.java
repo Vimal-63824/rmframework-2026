@@ -225,7 +225,7 @@ public class ProductionAndShopFloorSetupFunctions {
 			webDB.sendTextToAnElement(ProductionAndShopFloorSetupLocator.ProcessID_Input, ProcessID, ElementType.Xpath);
 			commonFunc.hardWait(1000);
 			webDB.pressTabKey();
-			String ProcessNameSeqNo = RandomStringUtils.randomNumeric(4);
+			String ProcessNameSeqNo = RandomStringUtils.randomNumeric(5);
 			if (ProcessNameSeqNo.equals("000")) {
 				ProcessNameSeqNo = "10";
 			}
@@ -304,7 +304,7 @@ public class ProductionAndShopFloorSetupFunctions {
 			webDB.sendTextToAnElement(ProductionAndShopFloorSetupLocator.ProcessID_Input, ProcessID, ElementType.Xpath);
 			commonFunc.hardWait(1000);
 			webDB.pressTabKey();
-			String ProcessNameSeqNo = RandomStringUtils.randomNumeric(4);
+			String ProcessNameSeqNo = RandomStringUtils.randomNumeric(5);
 			if (ProcessNameSeqNo.equals("000")) {
 				ProcessNameSeqNo = "10";
 			}
@@ -427,7 +427,7 @@ public class ProductionAndShopFloorSetupFunctions {
 			webDB.sendTextToAnElement(ProductionAndShopFloorSetupLocator.ProcessID_Input, ProcessID, ElementType.Xpath);
 			commonFunc.hardWait(1000);
 			webDB.pressTabKey();
-			String ProcessNameSeqNo = RandomStringUtils.randomNumeric(4);
+			String ProcessNameSeqNo = RandomStringUtils.randomNumeric(5);
 			if (ProcessNameSeqNo.equals("000")) {
 				ProcessNameSeqNo = "10";
 			}

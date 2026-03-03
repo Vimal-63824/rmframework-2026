@@ -1,4 +1,5 @@
 package com.roadmapERP;
+
 /**
  * @author Vimal - RMITS
  * @company RoadMap IT Solutions Feb 10, 2026
@@ -12,24 +13,36 @@ import commonfunctions.financials.SubcontractPurchaseBills;
 import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import utils.WebDriverBase;
 
-public class SubcontractPurchaseBillsTest extends RoadMapERPTest{
-	
+public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
+
 	boolean flag = false;
 	static CommonFunctions commonFunc = new CommonFunctions();
 	static WebDriverBase webDB = new WebDriverBase();
 	static SubcontractPurchaseBills SubcontractPurchasebillFunc = new SubcontractPurchaseBills();
 
+//	/**
+//	 * Registered Supplier with Local GST- Against Subcontract With Deviation and
+//	 * Expenses Account
+//	 * 
+//	 * @author Vimal - RMITS
+//	 */
+//	@Author("Vimal-RMITS")
+//	@Test(priority = 1, groups = {
+//			"Subcontract" }, description = "Registered Supplier with Local GST- Against Subcontract With Deviation and Expenses Account")
+//	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount() {
+//		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount();
+//		Assert.assertTrue(flag);
+//	}
 	/**
-	 * Direct Subcontract Order With BOM For Standard Type -
-	 * Interstate(Unregistered)
+	 * Registered Supplier with Local GST- Against Subcontract Without Deviation
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 1, groups = {
-			"Subcontract" }, description = "Direct Subcontract Order With BOM For Standard Type - Interstate(Unregistered)")
-	public void SubcontractOrderToPurchaseBill() {
-		 SubcontractPurchasebillFunc.subcontractOrderToPurchaseBill();
+	@Test(priority = 2, groups = {
+			"Subcontract" }, description = "Registered Supplier with Local GST- Against Subcontract Without Deviation")
+	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithoutDeviation() {
+		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAgainstSubcontractWithoutDeviation();
 		Assert.assertTrue(flag);
 	}
 
