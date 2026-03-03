@@ -15,7 +15,7 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static String SearchAndSelectValue = "//*[@id=\"PopupLov_16151311001_P16151311001_PO_NO_dlg\"]/div[1]/input";
 	/** @locatorType Xpath */
-	public static String PendingPOGIframe = "//iframe[@title='Pending PO']";
+	public static String PendingPOGIframe = "//iframe[@title='Pending ']";
 	/** @locatorType Xpath */
 	public static String GateEntryPoSearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
@@ -179,9 +179,9 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GENSearchBtn = "//button[@data-testid='Find_header']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='23767496631801695840_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='23981175841177554931_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='2551107912540966353_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='2764787121916825444_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
 
