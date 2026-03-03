@@ -1741,5 +1741,6 @@
 	"IgstUnRegisteredSupplier": "MONA TRADERS",
 	"SupplierForTDS": "PSV INDUSTRIES",
 	"PlntId": "${PlntId}",
-	"LocId": "${LocId}"
+	"LocId": "${LocId}",
+	"DOB": "02-DEC-1998"
 }

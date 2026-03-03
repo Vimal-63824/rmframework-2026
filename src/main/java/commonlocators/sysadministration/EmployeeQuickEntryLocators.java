@@ -24,4 +24,7 @@ public class EmployeeQuickEntryLocators {
 	public static final String TickButton = "//button[@title='Create']";
 	/** @locatorType XPATH */
 	public static final String EmpId = "//input[@data-testid='EMP_quk_enry_empid']";
+	/** @locatorType XPATH */
+	public static final String Dob = "//input[contains(@id,'EMP_DOB_input')]";
+
 }
