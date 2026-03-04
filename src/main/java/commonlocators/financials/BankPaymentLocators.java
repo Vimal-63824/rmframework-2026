@@ -62,7 +62,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankLineWiseViewButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(9) > a";
 	/** @locatorType Xpath */
-	public static final String BankViewAddButton = "//button[@id='B1998650219607585917']";
+	public static final String BankViewAddButton = "//button[@title='Add']";
 	/** @locatorType Xpath */
 	public static final String BankViewFrame = "(//h1[contains(text(),'Payment Details')]/ancestor::div/following-sibling::div)//iframe";
 	/** @locatorType Xpath */
@@ -76,7 +76,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPayAmountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String BankViewSaveButton = "//button[@id='B1998650080669585916']";
+	public static final String BankViewSaveButton = "//button[@id='B2715441512116430299']";
 	/** @locatorType Xpath */
 	public static final String BankViewDeleteButton = "#ig_line1_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(27) > a";
 	/** @locatorType Xpath */
