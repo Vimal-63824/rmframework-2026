@@ -29,7 +29,7 @@ public class ApprovedSupplierPOLocators {
 
 	/** @locatorType XPATH */
 	public static final String ApprovedStatus(String DocNo) {
-		return "//td[text()='" + DocNo + "']/../td[last()]/div[contains(@style,color)]";
+		return "//td[text()='" + DocNo + "']/../td[last()-1]/div[contains(@style,color)]";
 	}
 
 	/** @locatorType XPATH */
