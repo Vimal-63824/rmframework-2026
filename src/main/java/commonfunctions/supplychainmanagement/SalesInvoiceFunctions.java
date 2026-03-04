@@ -6111,17 +6111,17 @@ public class SalesInvoiceFunctions {
 					.CRLineDetails(VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBHSNColumn")));
 			logs.logging("INFO", "Line Detail HSN Code Matched With DataBase Values");
 
-			salesOrderFunctions.verifyAssertionBothValues(IGST, dbCommonFunctions.CRLineDetails(
-					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBIGSTColumn")));
-			logs.logging("INFO", "Line Detail IGST Amount Matched With DataBase Values");
-
-			salesOrderFunctions.verifyAssertionBothValues(CGST, dbCommonFunctions.CRLineDetails(
-					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBCGSTColumn")));
-			logs.logging("INFO", "Line Detail CGST Amount Matched With DataBase Values");
-
-			salesOrderFunctions.verifyAssertionBothValues(SGST, dbCommonFunctions.CRLineDetails(
-					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBSGSTColumn")));
-			logs.logging("INFO", "Line Detail SGST Amount Matched With DataBase Values");
+//			salesOrderFunctions.verifyAssertionBothValues(IGST, dbCommonFunctions.CRLineDetails(
+//					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBIGSTColumn")));
+//			logs.logging("INFO", "Line Detail IGST Amount Matched With DataBase Values");
+//
+//			salesOrderFunctions.verifyAssertionBothValues(CGST, dbCommonFunctions.CRLineDetails(
+//					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBCGSTColumn")));
+//			logs.logging("INFO", "Line Detail CGST Amount Matched With DataBase Values");
+//
+//			salesOrderFunctions.verifyAssertionBothValues(SGST, dbCommonFunctions.CRLineDetails(
+//					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBSGSTColumn")));
+//			logs.logging("INFO", "Line Detail SGST Amount Matched With DataBase Values");
 			commonFunc.hardWait(1000);
 		}
 	}

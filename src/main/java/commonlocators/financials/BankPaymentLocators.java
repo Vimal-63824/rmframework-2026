@@ -62,7 +62,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankLineWiseViewButton = "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(9) > a";
 	/** @locatorType Xpath */
-	public static final String BankViewAddButton = "//button[@id='B1998650219607585917']";
+	public static final String BankViewAddButton = "//button[@title='Add']";
 	/** @locatorType Xpath */
 	public static final String BankViewFrame = "(//h1[contains(text(),'Payment Details')]/ancestor::div/following-sibling::div)//iframe";
 	/** @locatorType Xpath */

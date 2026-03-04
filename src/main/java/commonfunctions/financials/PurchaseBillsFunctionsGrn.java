@@ -121,13 +121,18 @@ public class PurchaseBillsFunctionsGrn {
 						if (flag) {
 							webDB.clickAnElement(PurchaseBillsGrnLocators.PendingPayablesSearchBtn, ElementType.Xpath);
 							logs.logging("INFO", "Search Button Is Clicked");
-
-							flag = webDB.waitForElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
-									VariableHandler.getPbNumber()), ElementType.Xpath);
+							flag = webDB.waitForElement(PurchaseBillsGrnLocators.PendingPayableSelectAll,
+									ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
-										VariableHandler.getPbNumber()), ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsGrnLocators.PendingPayableSelectAll, ElementType.Xpath);
 								logs.logging("INFO", "Document Is Selected");
+
+//							flag = webDB.waitForElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
+//									VariableHandler.getPbNumber()), ElementType.Xpath);
+//							if (flag) {
+//								webDB.clickAnElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
+//										VariableHandler.getPbNumber()), ElementType.Xpath);
+//								logs.logging("INFO", "Document Is Selected");
 								commonFunc.checkRefreshCellsDisappear();
 								commonFunc.hardWait(1500);
 								flag = webDB.waitForElement(PurchaseBillsGrnLocators.PendingPayableCreateBtn,

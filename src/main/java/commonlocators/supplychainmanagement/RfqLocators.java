@@ -304,9 +304,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RFQSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='10822035623771391806_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='11036209637320254356_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='1670243557202618671_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='1884417570751481221_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "(//input[@data-testid='P1615131058_RADIO_GRP']/following-sibling::label)[2]";
 	/** @locatorType Xpath */
