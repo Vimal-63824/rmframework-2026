@@ -145,7 +145,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String AddHeaderFrame = "//iframe[@title='GRN - Purchase']";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='8280577769115268943_orig']/tbody/tr[2]/td[2]";
+	public static final String AmendLineFindTable = "//*[@id='8494751782664131493_orig']/tbody/tr[2]/td[2]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
@@ -166,7 +166,7 @@ public class DirectGrnPageLocators {
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='12744803709492363597']/tbody/tr[2]/td[2]";
+	public static final String AmendFindTable = "//*[@id='12958977723041226147']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String GRN_Status = "//select[@id='P1615131103_STATUS']";
 	/** @locatorType Xpath */
