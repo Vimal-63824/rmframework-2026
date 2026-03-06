@@ -329,7 +329,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLandedGstSupplyergrid = "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[16]";
 	/** @locatorType Xpath */
-	public static final String ImportLrButton = "//button[@id='B1564980984754024343']";
+	public static final String ImportLrButton = "//button[@id='B1779154998302886893']";
 	/** @locatorType Xpath */
 	public static final String BillNumber = "//input[contains(@id,'PID_BOE_NO')]";
 	/** @locatorType Xpath */
