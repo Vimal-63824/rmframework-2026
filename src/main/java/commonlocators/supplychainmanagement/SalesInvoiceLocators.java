@@ -553,7 +553,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Reverse_Iframe = "//iframe[@title='Doc. Reversal']";
 	/** @Locator XPATH */
-	public static final String SI_Reverse_OK_Btn = "//button[@id='B3398980956745190129']";
+	public static final String SI_Reverse_OK_Btn = "//button[@id='B3615920151953064479']";
 	/** @Locator XPATH */
 	public static final String SI_Reverse_ForwardApproval = "//button[@id='B4809090487618268349']";
 	/** @Locator XPATH */

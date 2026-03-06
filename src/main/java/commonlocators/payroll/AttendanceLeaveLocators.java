@@ -52,7 +52,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String PermissionFindEmployeeColumn = "//*[@id='C1249623153083282334']/a";
 	/** @locatorType Xpath */
-	public static final String PermissionFindDocumentNoClick = "#\\32 681749501617706681_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
+	public static final String PermissionFindDocumentNoClick = "#\\32 897998431109575675_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String PermissionReverse = "//button[@data-testid='PER_REVER']";
 	/** @locatorType Xpath */
@@ -82,7 +82,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String EncashmentDocNumber = "//Input[@data-testid='P41_LR_REQ_NO']";
 	/** @locatorType Xpath */
-	public static final String EncashmentFindDocSelect = "#\\32 685906048835355591_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
+	public static final String EncashmentFindDocSelect = "#\\32 902154978327224585_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String EncashmentPostButton = "//button[@data-testid='ENCAH_POST_BTN']";
 	/** @locatorType Xpath */
@@ -442,7 +442,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String LoanRequestDocNoField = "//Input[@data-testid='LOAN_REQ_NO']";
 	/** @locatorType Xpath */
-	public static final String LoanRequestFindDocNoClick = "#\\35 771332706703640386_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
+	public static final String LoanRequestFindDocNoClick = "#\\35 987581636195509380_orig > tbody > tr:nth-child(2) > td:nth-child(2) > a";
 	/** @locatorType Xpath */
 	public static final String LoanRequestFindSearch = "//button[@data-testid='LOAN_REQ_SEARCH_BUTTON']";
 	/** @locatorType Xpath */
@@ -500,7 +500,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String TDSDeclFindEmpLOV = "//button[@data-testid='EMP_ID_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String TDSDocumentSelect = "#\\31 7608864153377629448_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	public static final String TDSDocumentSelect = "#\\31 7825113082869498442_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 	/** @locatorType Xpath */
 	public static final String TDSDeclarationDocNoToPost = "//*[@id=\"P1013_HTDH_DOC_NO\"]";
 	/** @locatorType Xpath */
