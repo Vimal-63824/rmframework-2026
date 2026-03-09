@@ -200,36 +200,36 @@ public class CashReceiptTest extends RoadMapERPTest {
 //				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
 //	}
 //
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get
-//	 * document)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 14, groups = {
-//			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document)")
-//	public void CreateCashReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRef() throws IOException {
-//		cashReceiptFunc.CRMultiPartyMultiInvoiceThroughGetDocumentWithNewref(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
-//	/**
-//	 * Receipt Against Multi Party, Multi Invoice with New reference
-//	 * (Dr/Cr)(Pending)
-//	 * 
-//	 * @author Harikrishna - RMITS
-//	 * @throws IOException
-//	 */
-//	@Author("Harikrishna-RMITS")
-//	@Test(priority = 15, groups = {
-//			"Cash Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending)")
-//	public void CreateCashReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRef() throws IOException {
-//		cashReceiptFunc.CRMultiPartyMultiInvoiceThroughPendingDocsWithNewRef(
-//				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
-//	}
-//
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get
+	 * document)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 14, groups = {
+			"Bank Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Get document)")
+	public void CreateCashReceiptMultiPartyMultiInvoiceThroughGetDocumentWithNewRef() throws IOException {
+		cashReceiptFunc.CRMultiPartyMultiInvoiceThroughGetDocumentWithNewref(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
+	/**
+	 * Receipt Against Multi Party, Multi Invoice with New reference
+	 * (Dr/Cr)(Pending)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 15, groups = {
+			"Cash Receipt" }, description = "Receipt Against Multi Party, Multi Invoice with New reference (Dr/Cr)(Pending)")
+	public void CreateCashReceiptMultiPartyMultiInvoiceThroughPendingDocsWithNewRef() throws IOException {
+		cashReceiptFunc.CRMultiPartyMultiInvoiceThroughPendingDocsWithNewRef(
+				webDB.getDataFromProperties("BankReceiptMultiNewRef"));
+	}
+
 	/**
 	 * Receipt With Expenses/Revenue Account without Gst
 	 * 
@@ -340,7 +340,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 		cashReceiptFunc
 				.CRMultiPartyMultiInvoiceThroughPendingDocsMultiUnits(webDB.getDataFromProperties("BankReceiptMulti"));
 	}
-	
+
 	/**
 	 * Advance against SO single Sales order (Through Add button)
 	 * 
@@ -366,7 +366,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceAgainstSOThroughGetDocument() throws IOException {
 		cashReceiptFunc.CRAdvanceThroughGetDocument(webDB.getDataFromProperties("BankReceipt"));
 	}
-	
+
 	/**
 	 * Advance against SO single Sales order (Through Add button)
 	 * 
@@ -379,7 +379,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceAgainstSOThroughPendingDocs() throws IOException {
 		cashReceiptFunc.CRAdvanceThroughPendingDocs(webDB.getDataFromProperties("BankReceipt"));
 	}
-	
+
 	/**
 	 * Advance against SO single Sales order (Through Add button)
 	 * 
@@ -392,7 +392,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceAgainstMultiSOThroughAddButton() throws IOException {
 		cashReceiptFunc.CRAdvanceMultiSOThroughAddButton(webDB.getDataFromProperties("BankReceipt"));
 	}
-	
+
 	/**
 	 * Advance against SO single Sales order (Through Add button)
 	 * 
@@ -405,7 +405,7 @@ public class CashReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceAgainstMultiSOThroughGetDocument() throws IOException {
 		cashReceiptFunc.CRAdvanceMultiSOThroughGetDocument(webDB.getDataFromProperties("BankReceipt"));
 	}
-	
+
 	/**
 	 * Advance against SO single Sales order (Through Add button)
 	 * 

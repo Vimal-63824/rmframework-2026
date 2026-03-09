@@ -206,7 +206,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptCreateJournalButton = "//button[@data-testid='CreateJournal']";
 	/** @locatorType Xpath */
-	public static final String PendingReceivablesDocumentNumberField = "//*[@id='3291344129481487258_orig']/tbody/tr[2]/td[19]";
+	public static final String PendingReceivablesDocumentNumberField = "//*[@id='3509127463087363502_orig']/tbody/tr[2]/td[19]";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesDRDocumentNumberLOVButton = "//button[@id='P3413101003_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
@@ -222,7 +222,7 @@ public class BankReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankReceiptChargesFlag = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
-	public static final String BankReceiptChargesInputFlag = "//INPUT[@id='C3749913169207752357']";
+	public static final String BankReceiptChargesInputFlag = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]/div/input";
 	/** @locatorType Xpath */
 	public static final String BankReceiptAmountInTcInputField = "//input[@data-testid='BTDLN_DIST_AMT']";
 	/** @locatorType Xpath */
@@ -291,6 +291,13 @@ public class BankReceiptLocators {
 	public static final String PendingReceivablesAdvanceBankNameLOVBUtton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @locatorType Xpath */
 	public static final String PendingReceivablesAdvanceOkButton = "//span[text()='Ok']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String ReceivedFromRequiredInputField = "//input[@data-testid='ReceivedFrom']";
+	/** @locatorType Xpath */
+	public static final String BankNameLovButtonInHeader = "//input[@data-testid=' BankName']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String BankNameInputField = "//input[@data-testid=' BankName']";
+	
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
@@ -329,7 +336,7 @@ public class BankReceiptLocators {
 		return "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(" + i
 				+ ") > td:nth-child(13) > a";
 	}
-	
+
 	/** @locatorType Xpath */
 	public static final String BRAdvPendingReceivablesDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[14]/*";

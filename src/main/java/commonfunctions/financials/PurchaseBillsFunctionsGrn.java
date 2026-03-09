@@ -3224,31 +3224,31 @@ public class PurchaseBillsFunctionsGrn {
 			if (!Unit.equals("")) {
 				String SeqNo = String.valueOf(i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.ApplicationJournalViewDetails(DocumentNumber,
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
 						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBUnitColumnName")), Unit);
 				logs.logging("INFO",
 						" In The View Journal Screen Unit Id Is Matched With Database Values Against This Document Number "
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.ApplicationJournalViewDetails(DocumentNumber,
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
 						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBGLAccountColumnName")), GLAccountNumber);
 				logs.logging("INFO",
 						" In The View Journal Screen GL Account Number Is Matched With Database Values Against This Document Number "
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.ApplicationJournalViewDetails(DocumentNumber,
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
 						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBGLAccountDescColumnName")), GLAccountDesc);
 				logs.logging("INFO",
 						" In The View Journal Screen GL Account Number Description Is Matched With Database Values Against This Document Number "
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.ApplicationJournalViewDetails(DocumentNumber,
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
 						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBDebitAmountColumnName")), Debit);
 				logs.logging("INFO",
 						" In The View Journal Screen Debit Amount Is Matched With Database Values Against This Document Number"
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.ApplicationJournalViewDetails(DocumentNumber,
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
 						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBCreditAmountColumnName")), Credit);
 				logs.logging("INFO",
 						" In The View Journal Screen Credit Amount Is Matched With Database Values Against This Document Number"
