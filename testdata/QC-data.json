@@ -1156,8 +1156,8 @@
 	"PriceBasisOpenSo": "Open SO",
 	"WorkCenterInput": "MOULDING AREA -",
 	"DepartmentInput": "PRODUCTION  100",
-	"ProcessIDinput": "Proc- ",
-	"ProcessNameInput": "Slicing- ",
+	"ProcessIDinput": "PC- ",
+	"ProcessNameInput": "Moulding- ",
 	"Proc_UOM": "NUMBERS",
 	"Proc_Inside_Type": "I",
 	"Proc_Suffix_input": "Process",
@@ -1783,5 +1783,12 @@
 	"PDCOrdNoColumnName": "BTRANS_ORD_NO",
 	"PDCPayModeColumnName": "BTRANS_PAY_MODE",
 	"PDCChequeNoColumnName": "BTRANS_TRANS_REF_NO",
-	"GRNSupplier": "HK1609"
+	"GRNSupplier": "HK1609",
+	"BPGLAccount":"PSV INDUSTRIES (AP)",
+	"PBDBREFMATCHEDAMTCOLUMN":"MATCHED_AMT",
+	"PBDBREFGRNAMTCOLUMN":"GRN_AMT",
+	"PBDBREFDEVIATIONAMTCOLUMN":"DEV_AMT",
+	"PBDBProcQtyCOLUMN":"SDPL_PROC_QTY",
+	"PBDBProcCostCOLUMN":"SDPL_PROC_COST",
+	"PBProcessQtyInput":"17"
 }

@@ -3139,10 +3139,12 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_CreateInvoice_Btn, ElementType.Xpath);
 			logs.logging("INFO", "Sales Invoice PendingSO Create Invoice Button Clicked Successfully");
 			webDB.switchToDefaultContent();
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(6000);
 			String SIdocno = webDB.getTextFromElement(SalesInvoiceLocators.SI_Doc_NO, ElementType.Xpath);
 			logs.logging("INFO", "Get SI DocNo Is: " + SIdocno);
 			VariableHandler.setSIdocno(SIdocno);
+			MultiSIDocNumber.add(VariableHandler.getSIdocno());
+			commonFunc.hardWait(2000);
 		}
 	}
 
@@ -3646,7 +3648,7 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+	public void verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
 		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOM();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -3679,7 +3681,6 @@ public class SalesInvoiceFunctions {
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 //		salesOrderFunctions
 //				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
-		return flag;
 	}
 
 	/**

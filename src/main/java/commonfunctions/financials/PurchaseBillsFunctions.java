@@ -1348,7 +1348,7 @@ public class PurchaseBillsFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	private void verifyAddTheItemBasedOnTypeForStockTransfer(String SheetName) {
+	void verifyAddTheItemBasedOnTypeForStockTransfer(String SheetName) {
 		String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DBfin.xlsx";
@@ -2684,36 +2684,44 @@ public class PurchaseBillsFunctions {
 		assertTrue(flag);
 	}
 
-	/**Loaded Adjustment Supplier To Added In Party
+	/**
+	 * Loaded Adjustment Supplier To Added In Party
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void loadAdjustmentForSupplierToAddedInParty() {
+	public void loadAdjustmentForSupplierToAddedInParty(String BankpaymentNo) {
 		flag = webDB.waitForElement(PurchaseBillsLocators.AdjButton, ElementType.Xpath);
-		if(flag) {
+		if (flag) {
 			webDB.clickAnElement(PurchaseBillsLocators.AdjButton, ElementType.Xpath);
 			logs.logging("INFO", "Successfully Moves To Adjustmnet Tap");
 			flag = webDB.waitForElement(PurchaseBillsLocators.LoadButton, ElementType.Xpath);
-			if(flag) {
+			if (flag) {
 				webDB.clickAnElement(PurchaseBillsLocators.LoadButton, ElementType.Xpath);
 				logs.logging("INFO", "Successfully Click a Load Button");
 				flag = webDB.waitForElement(PurchaseBillsLocators.FrameAdjTap, ElementType.Xpath);
-				if(flag) {
+				if (flag) {
 					webDB.switchToFrame(PurchaseBillsLocators.FrameAdjTap, ElementType.Xpath);
 					logs.logging("INFO", "Successfully Moves To Frame");
-					flag = webDB.waitForElement(PurchaseBillsLocators.CheckBoxAdjTap, ElementType.Xpath);
-					if(flag) {
-						webDB.clickAnElement(PurchaseBillsLocators.CheckBoxAdjTap, ElementType.Xpath);
-						logs.logging("INFO", "Successfully Clicked a CheckBox Of Adjustment ");
-						webDB.waitForElement(PurchaseBillsLocators.OkbuttonAdjTap, ElementType.Xpath);
-						if(flag) {
-							commonFunc.hardWait(500);
-							webDB.clickAnElement(PurchaseBillsLocators.OkbuttonAdjTap, ElementType.Xpath);
-							logs.logging("INFO", "Successfully Clicked Ok Button");
-							webDB.switchToDefaultContent();
+					flag = webDB.waitForElement(PurchaseBillsLocators.PB_Adj_InputField_Btn, ElementType.Xpath);
+					if (flag) {
+						webDB.sendTextToAnElement(PurchaseBillsLocators.PB_Adj_InputField_Btn, BankpaymentNo, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						webDB.clickAnElement(PurchaseBillsLocators.PB_Adj_InputGO_Btn, ElementType.Xpath);
+						commonFunc.hardWait(1000);
+						flag = webDB.waitForElement(PurchaseBillsLocators.CheckBoxAdjTap, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PurchaseBillsLocators.CheckBoxAdjTap, ElementType.Xpath);
+							logs.logging("INFO", "Successfully Clicked a CheckBox Of Adjustment ");
+							webDB.waitForElement(PurchaseBillsLocators.OkbuttonAdjTap, ElementType.Xpath);
+							if (flag) {
+								commonFunc.hardWait(500);
+								webDB.clickAnElement(PurchaseBillsLocators.OkbuttonAdjTap, ElementType.Xpath);
+								logs.logging("INFO", "Successfully Clicked Ok Button");
+								webDB.switchToDefaultContent();
+								commonFunc.checkRefreshCellsDisappear();
+							}
 						}
 					}
-									
 				}
 			}
 		}
@@ -6502,7 +6510,7 @@ public class PurchaseBillsFunctions {
 		storeSCOPurchaseVoucherNumber();
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		ClickSaveButton();		
-		loadAdjustmentForSupplierToAddedInParty();		
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());	
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		clickPostButton();
@@ -6545,7 +6553,7 @@ public class PurchaseBillsFunctions {
 		getGstClafInLocation();
 		movesToInvoiceTap();
 		clickValidateAllowIgstFlag(webDB.getDataFromProperties("PurchaseBills_IGST_Validation"));
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		clickPostButton();
@@ -6589,7 +6597,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		clickValidateAllowRcmFlag();
 		movesToInvoiceTap();
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
 		clickPostButton();
@@ -6626,7 +6634,7 @@ public class PurchaseBillsFunctions {
 		storeSCOPurchaseVoucherNumber();
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		ClickSaveButton();
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
 		clickPostButton();
@@ -6670,7 +6678,7 @@ public class PurchaseBillsFunctions {
 		movesToInvoiceTap();
 		clickValidateAllowRcmFlag();
 		movesToInvoiceTap();		
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
 		clickPostButton();
@@ -6708,7 +6716,7 @@ public class PurchaseBillsFunctions {
 		storeSCOPurchaseVoucherNumber();
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_ExAcc"));
 		ClickSaveButton();
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
 		clickPostButton();
@@ -6750,7 +6758,7 @@ public class PurchaseBillsFunctions {
 		getGstClafInLocation();
 		movesToInvoiceTap();
 		clickValidateAllowIgstFlagUpdated(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		clickPostButton();
@@ -6793,8 +6801,7 @@ public class PurchaseBillsFunctions {
 		storeSCOPurchaseVoucherNumber();
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		ClickSaveButton();
-		loadAdjustmentForSupplierToAddedInParty();
-
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		clickPostButton();
@@ -6834,7 +6841,7 @@ public class PurchaseBillsFunctions {
 		storeSCOPurchaseVoucherNumber();
 		verifyAddTheItemBasedOnTypeForStockTransfer(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		ClickSaveButton();
-		loadAdjustmentForSupplierToAddedInParty();
+		loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		createJvForRecord();
 		verifyLineDetailsWithDBvalidationInGrnPurchaseType(webDB.getDataFromProperties("PurchaseBills_Un_Regrd_Iter"));
 		clickPostButton();

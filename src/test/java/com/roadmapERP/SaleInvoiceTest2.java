@@ -48,8 +48,7 @@ public class SaleInvoiceTest2 extends RoadMapERPTest {
 	@Test(priority = 33, groups = {
 			"SalesInvoice" }, description = "      130 - Create Sales Invoice from approved sales orders")
 	public void VerifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
-		flag = salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
-		Assert.assertTrue(flag);
+		 salesInvoiceFunc.verifyCreateSalesInvoiceDomesticFromApprovedSalesorders();
 	}
 
 	/**

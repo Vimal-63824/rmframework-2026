@@ -1916,4 +1916,30 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * PurchaseBills Reference Query
+	 * 
+	 * @author Vimal -RMITS
+	 * @param PBNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PBReferenceQuery(String PBNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsReferenceQuery"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNO, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * PurchaseBills Process Query
+	 * 
+	 * @author Vimal -RMITS
+	 * @param PBNO
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PBProcessQuery(String PBNO, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("PurchaseBillsProcessQuery"),
+				commonFunc.getDataFromTestDataSheet("PBNO"), PBNO, DBHeaderColumnValue);
+		return value;
+	}
 }
