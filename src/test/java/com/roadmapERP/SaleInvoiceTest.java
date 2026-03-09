@@ -273,7 +273,7 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 18, groups = {
+	@Test(priority = 63, groups = {
 			"SalesInvoice" }, description = "    156 -  create direct Export Sales Invoice for the customer - price basis Catalog Price- Similar Stock and Customer UOM")
 	public void VerifyDirectSalesInvoiceCatalogPriceExportWithsimilarUOM() {
 		flag = salesInvoiceFunc.verifyDirectSalesInvoiceCatalogPriceExportWithsimilarUOM();
@@ -287,7 +287,7 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 19, groups = {
+	@Test(priority = 64, groups = {
 			"SalesInvoice" }, description = "     143 -   create direct Domestic Sales Invoice for the customer - price basis Catalog Price- Disimilar Stock and Customer UOM")
 	public void VerifyDirectSalesInvoiceCatalogPriceDomesticWithDisimilarUOM() {
 		flag = salesInvoiceFunc.verifyDirectSalesInvoiceCatalogPriceDomesticWithDisimilarUOM();
@@ -301,7 +301,7 @@ public class SaleInvoiceTest extends RoadMapERPTest {
 	 * @author Vimal - RMITS
 	 */
 	@Author("Vimal-RMITS")
-	@Test(priority = 20, groups = {
+	@Test(priority = 65, groups = {
 			"SalesInvoice" }, description = "      157 -    create direct Export Sales Invoice for the customer - price basis Catalog Price- Disimilar Stock and Customer UOM")
 	public void VerifyDirectSalesInvoiceCatalogPriceExportWithDisimilarUOM() {
 		flag = salesInvoiceFunc.verifyDirectSalesInvoiceCatalogPriceExportWithDisimilarUOM();
