@@ -253,6 +253,11 @@ public class VariableHandler {
 	private static ThreadLocal<String> GRNLotNo = new ThreadLocal<>();
 	private static ThreadLocal<ArrayList<String>> MultipleAdvRecDocs = ThreadLocal.withInitial(() -> null);
 	private static ThreadLocal<String> ResignationRequestDocNo = new ThreadLocal<>();
+	private static ThreadLocal<String> MatchedAmt = new ThreadLocal<>();
+	private static ThreadLocal<String> GRNAmt = new ThreadLocal<>();
+	private static ThreadLocal<String> deviationAmt = new ThreadLocal<>();
+	private static ThreadLocal<String> PBProcQty = new ThreadLocal<>();
+	private static ThreadLocal<String> PBUnitcost = new ThreadLocal<>();
 
 	public static String getPONumber() {
 		return PONumber.get();
@@ -2177,5 +2182,40 @@ public class VariableHandler {
 
 	public static void setResignationRequestDocNo(String data) {
 		ResignationRequestDocNo.set(data);
+	}
+	public static String getMatchedAmt() {
+		return MatchedAmt.get();
+	}
+
+	public static void setMatchedAmt(String Data) {
+		MatchedAmt.set(Data);
+	}
+	public static String getGRNAmt() {
+		return GRNAmt.get();
+	}
+
+	public static void setGRNAmt(String Data) {
+		GRNAmt.set(Data);
+	}
+	public static String getdeviationAmt() {
+		return deviationAmt.get();
+	}
+
+	public static void setdeviationAmt(String Data) {
+		deviationAmt.set(Data);
+	}
+	public static String getPBProcQty() {
+		return PBProcQty.get();
+	}
+
+	public static void setPBProcQty(String Data) {
+		PBProcQty.set(Data);
+	}
+	public static String getPBUnitcost() {
+		return PBUnitcost.get();
+	}
+
+	public static void setPBUnitcost(String Data) {
+		PBUnitcost.set(Data);
 	}
 }

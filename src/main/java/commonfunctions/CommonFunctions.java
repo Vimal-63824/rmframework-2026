@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
+import commonlocators.financials.BankPaymentLocators;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.CommonPayrollLocators;
@@ -3255,5 +3256,15 @@ public class CommonFunctions {
 	public void navigateToSubcontractOrderCloseShort() {
 		navigateToSearchTab(webDB.getDataFromProperties("SubcontractCSScreen"),
 				CommonUiLocators.SubcontractCSFindAddIcon);
+	}
+	
+	/**
+	 * Navigate To Financial Payment Receipt
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToPostDatedCheque() {
+		navigateToSearchTab(webDB.getDataFromProperties("PostDatedCheque"),
+				BankPaymentLocators.PDCVoucherNumberLovButton);
 	}
 }

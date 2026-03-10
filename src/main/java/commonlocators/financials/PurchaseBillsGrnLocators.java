@@ -164,7 +164,23 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B3618647795423895330']";
-	/** @locatorType Xpath */
 	public static final String PendingPayableSelectAll = "//input[@id='check_all']" ;
+	/** @locatorType Xpath */
+	public static final String PB_Process_Close = "//button[@id='B3836431129029771574']";
+	/** @locatorType Xpath */
+	public static final String PB_Reference_MatchedAmt = "//input[@id='P11613101001_SUPHD_BILL_AMT']";
+	/** @locatorType Xpath */
+	public static final String PB_Reference_GRNAmt = "//input[@id='P11613101001_SUPHD_SC_GRN_TOT_']";
+	/** @locatorType Xpath */
+	public static final String PB_Reference_DeviationAmt = "//input[@id='P11613101001_GRN_BAL_AMT']";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessTab_ProcQty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessTab_UnitCost = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessTab_procQtyField = "//input[@data-testid='SDPL_PROC_QTY']";
+	/** @locatorType Xpath */
+	public static final String PB_ReferenceTab = "//label[@for='P11613101001_TABS_3']";
+	/** @locatorType Xpath */
+	public static final String PB_InvoiceTab = "//label[@for='P11613101001_TABS_0']";
 }

@@ -1319,10 +1319,24 @@ public class CashReceiptFunctions {
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 				}
 				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 1, 5 + j,
+							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 2, 5 + j,
+							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				}
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournal"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 2, 5 + j, "0");
+		}
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -1368,12 +1382,24 @@ public class CashReceiptFunctions {
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 				}
 				commonFunc.hardWait(1000);
-				verifyCashReceiptLineDetailsWithDB(SheetName, i);
-//			}
+				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 1, 5 + j,
+							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 2, 5 + j,
+							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				}
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournal"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournal"), 2, 5 + j, "0");
+		}
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -1385,6 +1411,71 @@ public class CashReceiptFunctions {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 			VerifyCRVDocumentStatus();
 		}
+	}
+
+	/**
+	 * This Method is Used To Add The Document Through Get Document
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @param Currency
+	 */
+	public void CashReceiptThroughGetDocumentMPSI(String SheetName, String Currency, String CashierName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymentfunc.clickAddButtonInPaymentsRecipts();
+		createCashReceiptEntry(commonFunc.getDataFromTestDataSheet("CashDocModeCR"), CashierName, Today,
+				commonFunc.getDataFromTestDataSheet("CashReceiptPrefix"));
+		getCashPaymentOrReceiptDocumentNumber();
+		bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		verifyCashReceiptDetailsWithDB(CashierName, commonFunc.getDataFromTestDataSheet("CashReceiptPrefix"), Currency);
+		clickGetDocumentInCRHeader();
+		clickPendingReceivablesInGetDocumentCR();
+		chooseDocumentNumberAndClickSearchButtonInPendingReceivables(VariableHandler.getMultipleSIDocs(), SheetName);
+		for (int i = 1; i < CashReceipts.length; i++) {
+			String GLAccountDesc = CashReceipts[i][1];
+			String BaseCURCY = CashReceipts[i][13];
+			if (!GLAccountDesc.equals("")) {
+				if (!Currency.equals("INR")) {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, dbCommonFunctions.ExchangeRateDetails(
+							Currency, commonFunc.getDataFromTestDataSheet("ExportSalesEXRateColumnName")));
+				} else {
+					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
+				}
+				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), 1, 5 + i,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), j + 1, 6,
+							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				}
+			}
+		}
+		clickCreateJournalButtonInCR();
+		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalMulti"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), j + 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), j + 1, 6, "0");
+		}
+		clearDataInExcel(SheetName);
+		clickPostButton();
+		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			bankpaymentfunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("EntryCompletedStatus"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber());
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getCashPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			VerifyCRVDocumentStatus();
+		}
+		assertTrue(flag);
 	}
 
 	/**
@@ -1419,11 +1510,25 @@ public class CashReceiptFunctions {
 				}
 				commonFunc.hardWait(1000);
 				verifyCashReceiptLineDetailsWithDB(SheetName, i);
-//			}
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), 1, 5 + i,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(i - 1),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+					excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), j + 1, 6,
+							dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(j - 1),
+									commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				}
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalMulti"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		for (int j = 1; j <= VariableHandler.getMultipleSIDocs().size(); j++) {
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), 1, 5 + j, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), j + 1, 6, "0");
+			excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMulti"), j + 1, 6, "0");
+		}
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -1756,10 +1861,28 @@ public class CashReceiptFunctions {
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 				}
 				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 6,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 7,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 6,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 7,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalMPMI"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 7, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 7, "0");
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -1980,10 +2103,28 @@ public class CashReceiptFunctions {
 					excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 				}
 				verifyCashReceiptLineDetailsWithDB(SheetName, i);
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 6,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 7,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 6,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+				excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 7,
+						dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
+								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalMPMI"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 2, 7, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalMPMI"), 3, 7, "0");
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -2123,12 +2264,30 @@ public class CashReceiptFunctions {
 							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 						}
 						verifyCashReceiptLineDetailsWithDB(SheetName, i);
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 6,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 7,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 6,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 7,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 					}
 				}
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalNR"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 7, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 7, "0");
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -2196,12 +2355,30 @@ public class CashReceiptFunctions {
 							excelUtils.writeDataInExcel(Filepath, SheetName, i, 11, "1");
 						}
 						verifyCashReceiptLineDetailsWithDB(SheetName, i);
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 6,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 7,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 6,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(2),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+						excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 7,
+								dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(3),
+										commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 					}
 				}
 			}
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalNR"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 2, 7, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 6, "0");
+		excelUtils.writeDataInExcel(Filepath, webDB.getDataFromProperties("CRJournalNR"), 3, 7, "0");
 		clearDataInExcel(SheetName);
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
@@ -2271,6 +2448,8 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalREV"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2346,6 +2525,8 @@ public class CashReceiptFunctions {
 		}
 		clickCreateJournalButtonInCR();
 		commonFunc.checkRefreshCellsDisappear();
+		bankreceiptfunc.verifyJournalAmountWithDB(webDB.getDataFromProperties("CRJournalREVGST"),
+				VariableHandler.getCashPaymentOrReceiptDocNumber());
 		clickPostButton();
 		flag = bankpaymentfunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2501,8 +2682,10 @@ public class CashReceiptFunctions {
 		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2518,9 +2701,11 @@ public class CashReceiptFunctions {
 		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 26,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(0),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2538,8 +2723,10 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2557,8 +2744,10 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2576,9 +2765,11 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2599,8 +2790,10 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		BankReceiptThroughAddButtonMPSI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2621,8 +2814,10 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
-		CashReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
+		CashReceiptThroughGetDocumentMPSI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2643,9 +2838,11 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocsMPSI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2663,8 +2860,10 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughAddButtonMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2682,8 +2881,10 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughGetDocumentMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2701,9 +2902,11 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2721,8 +2924,10 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughAddButtonMPMIWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2740,8 +2945,10 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughGetDocumentWithNewRef(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2759,9 +2966,11 @@ public class CashReceiptFunctions {
 				salesInvoiceFunc.verifyDirectSalesInvoiceBRMulti(Customer, SISheetName, SheetName, i);
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocsWithNewRef(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2786,8 +2995,10 @@ public class CashReceiptFunctions {
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughAddButton(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2812,8 +3023,11 @@ public class CashReceiptFunctions {
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughGetDocument(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
+
 	}
 
 	/**
@@ -2837,10 +3051,11 @@ public class CashReceiptFunctions {
 		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 27,
 				dbCommonFunctions.SIHeaderDetails(VariableHandler.getMultipleSIDocs().get(1),
 						commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
-
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocs(commonFunc.getDataFromTestDataSheet("CreationTypeSingle"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2873,8 +3088,10 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughAddButtonMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2908,9 +3125,10 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
-
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughGetDocumentMPMI(SheetName, commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2944,10 +3162,11 @@ public class CashReceiptFunctions {
 								commonFunc.getDataFromTestDataSheet("SalesInvoiceDBTotalAmount")));
 			}
 		}
-
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterSI(VariableHandler.getMultipleSIDocs());
 		CashReceiptThroughPendingDocsMPMI(commonFunc.getDataFromTestDataSheet("CreationTypeMerge"), SheetName,
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				commonFunc.getDataFromTestDataSheet("CashierName"));
+		bankreceiptfunc.verifyCustomerDocumentWithDBAfterBRV(VariableHandler.getCashPaymentOrReceiptDocNumber());
 	}
 
 	/**
@@ -2966,7 +3185,7 @@ public class CashReceiptFunctions {
 			}
 		}
 	}
-	
+
 	/**
 	 * This Method Is Used To Click The Pending Party Documents In Bank Payment
 	 * Screen
@@ -3218,7 +3437,8 @@ public class CashReceiptFunctions {
 										CashReceiptLocators.BankReceiptAdvPendingReceivablesSearchButton,
 										ElementType.Xpath);
 								if (flag) {
-									webDB.clickAnElement(CashReceiptLocators.BankReceiptAdvPendingReceivablesSearchButton,
+									webDB.clickAnElement(
+											CashReceiptLocators.BankReceiptAdvPendingReceivablesSearchButton,
 											ElementType.Xpath);
 									commonFunc.hardWait(1500);
 									commonFunc.checkRefreshCellsDisappear();
@@ -3241,7 +3461,8 @@ public class CashReceiptFunctions {
 				flag = webDB.waitForElement(CashReceiptLocators.PendingReceivablesAdvMergeLabelInPending,
 						ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(CashReceiptLocators.PendingReceivablesAdvMergeLabelInPending, ElementType.Xpath);
+					webDB.clickAnElement(CashReceiptLocators.PendingReceivablesAdvMergeLabelInPending,
+							ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
 				}
 			}
@@ -3455,6 +3676,13 @@ public class CashReceiptFunctions {
 		}
 	}
 
+	/**
+	 * This Method Is Used To Create Advance Document Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException
+	 */
 	public void CRAdvanceThroughAddButton(String SheetName) throws IOException {
 		salesOrdFunc.advanceSalesOrder();
 		VariableHandler.setMultipleAdvRecDocs(salesOrdFunc.MultiAdvReceiptDocumentNumber);
@@ -3492,6 +3720,13 @@ public class CashReceiptFunctions {
 				commonFunc.getDataFromTestDataSheet("CashierName"));
 	}
 
+	/**
+	 * This Method Is Used To Create Advance Document Through Add Button
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @param SheetName
+	 * @throws IOException
+	 */
 	public void CRAdvanceMultiSOThroughAddButton(String SheetName) throws IOException {
 		for (int i = 1; i <= 2; i++) {
 			salesOrdFunc.advanceSalesOrder();

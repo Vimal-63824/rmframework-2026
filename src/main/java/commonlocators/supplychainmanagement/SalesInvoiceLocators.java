@@ -65,7 +65,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String UnitCost_Input = "//input[@data-testid='SILN_PRICE1']";
 	/** @Locator XPATH */
-	public static final String SI_Doc_NO = "//span[@id='P191513109001_SIHD_DOC_NO_DISPLAY']";
+	public static final String SI_Doc_NO = "//span[@data-testid='P191513109001_SIHD_DOC_NO']";
 	/** @Locator XPATH */
 	public static final String Header_Tick_Icon = "//button[@data-testid='SAVE']";
 	/** @Locator XPATH */
@@ -555,7 +555,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Reverse_OK_Btn = "//button[@id='B3615920151953064479']";
 	/** @Locator XPATH */
-	public static final String SI_Reverse_ForwardApproval = "//button[@id='B4809090487618268349']";
+	public static final String SI_Reverse_ForwardApproval = "//button[@id='B5026029682826142699']";
 	/** @Locator XPATH */
 	public static final String SI_Charges_Tab = "//label[@for='P191513109001_TAB_LINE_1']";
 	/** @Locator XPATH */

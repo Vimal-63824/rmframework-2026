@@ -66,17 +66,19 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankViewFrame = "(//h1[contains(text(),'Payment Details')]/ancestor::div/following-sibling::div)//iframe";
 	/** @locatorType Xpath */
-	public static final String BankBillNumberInputField = "//input[@id='C2702639806405966555']";
+	public static final String BankBillNumberInputField = "//input[@id='C2484856472800090311']";
 	/** @locatorType Xpath */
-	public static final String BankPayAmountInputField = "//input[@id='C2702633833287966548']";
+	public static final String BankPayAmountInputField = "//input[@id='C2484850499682090304']";
 	/** @locatorType Xpath */
 	public static final String BankAgainstRefFieldName = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
 	public static final String BankBillDocField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType Xpath */
+	public static final String BankBillDateField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[3]";
+	/** @locatorType Xpath */
 	public static final String BankPayAmountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String BankViewSaveButton = "//button[@id='B2715441512116430299']";
+	public static final String BankViewSaveButton = "//button[@id='B2497658178510554055']";
 	/** @locatorType Xpath */
 	public static final String BankViewDeleteButton = "#ig_line1_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(27) > a";
 	/** @locatorType Xpath */
@@ -108,7 +110,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPaymentPendingPartyDocumentPartyLovButton = "//button[@id='P3413101001_PART_NAME_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String BankPaymentPendingPartyDocumentSearchButton = "//button[@data-testid='Search1']";
+	public static final String BankPaymentPendingPartyDocumentSearchButton = "//span[text()='Search']/ancestor::button";
 	/** @locatorType Xpath */
 	public static final String BankPaymentPendingPartyNameColumnNameField = "//*[@id='2550108912065853115_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
@@ -118,7 +120,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String PendingPayablesDocNumberLovButton = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String PendingPayablesDocumentNumberField = "//*[@id='3478592713908411183_orig']/tbody/tr[2]/td[21]";
+	public static final String PendingPayablesDocumentNumberField = "//*[@id='3977600811749379322_orig']/tbody/tr[2]/td[21]";
 	/** @locatorType Xpath */
 	public static final String PendingPayablesCreateButton = "//button[@data-testid='Create']";
 	/** @locatorType Xpath */
@@ -144,7 +146,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPartyDocNumberLovButton = "//input[@data-testid='P3413101001_DOC_NO']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String BankPendingPartyDocumentClearButton = "//button[@data-testid='Clear12']";
+	public static final String BankPendingPartyDocumentClearButton = "//button[@title='Home']/parent::div/button[@title='Clear']";
 	/** @locatorType Xpath */
 	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
 	/** @locatorType Xpath */
@@ -201,9 +203,9 @@ public class BankPaymentLocators {
 	public static final String BankReceiptHeaderCreateJournalButton = "//button[@data-testid='CreateJournal']";
 	/** @locatorType Xpath */
 	public static final String BankReceiptLineWiseAddButton = "//button[@id='B1217119641398022948']";
-
+	/** @locatorType Xpath */
 	public static final String PendingPayablesMergeLabelInPending = "//label[@for='P3413101001_TYPE_1']";
-
+	/** @locatorType Xpath */
 	public static final String FrwdPersonField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
 	public static final String BankReceiptPDCFlag = "//INPUT[@data-testid='PDC']";
@@ -225,18 +227,27 @@ public class BankPaymentLocators {
 	public static final String BankPaymentChargesFlag = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[14]";
 	/** @locatorType Xpath */
 	public static final String BankPaymentChargesInputFlag = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[12]/div/input";
-
+	/** @locatorType Xpath */
 	public static final String BankPaymentTDSField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[27]";
-
-	public static final String BankPaymentTDSLovButton = "//button[@id='C1962804712135500649_lov_btn']";
-
+	/** @locatorType Xpath */
+	public static final String BankPaymentTDSLovButton = "//button[@id='C2461812809976468788_lov_btn']";
+	/** @locatorType Xpath */
 	public static final String BankPaymentApplyDeduction = "//button[@data-testid='ApplyDeduction']";
-	
+	/** @locatorType Xpath */
 	public static final String BankPaymentSourcePartyField = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[35]";
-	
-	public static final String BankPaymentSourcePartyLovButton = "//button[@id='C3028935927866405175_lov_btn']";
-	
+	/** @locatorType Xpath */
+	public static final String BankPaymentSourcePartyLovButton = "//button[@id='C3527944025707373314_lov_btn']";
+	/** @locatorType Xpath */
 	public static final String BankPayment2ndLine = "//*[@id='ig_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[1]";
+	/** @locatorType Xpath */
+	public static final String BankBillDateInputField = "//input[@id='C2484857470317090315_input']";
+	/** @locatorType Xpath */
+	public static final String PDCVoucherNumberLovButton = "//button[@id='P34131031_VOU_NO_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String PDCSearchButton = "//span[text()='Search']/ancestor::button";
+	/** @locatorType Xpath */
+	public static final String PDCPOstButton = "//span[text()='Post']/ancestor::button";
+	
 
 	/** @locatorType Xpath */
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
@@ -274,6 +285,11 @@ public class BankPaymentLocators {
 	public static final String BankLineGSTButton(int i) {
 		return "#ig_line_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr:nth-child(" + i
 				+ ") > td:nth-child(16) > a";
+	}
+
+	/** @locatorType Xpath */
+	public static final String PDCSelectCheckBox(String PDCNo) {
+		return "//td[text()='" + PDCNo + "']/../td[10]";
 	}
 
 }

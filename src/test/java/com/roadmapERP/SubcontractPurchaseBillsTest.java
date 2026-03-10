@@ -20,19 +20,20 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	static WebDriverBase webDB = new WebDriverBase();
 	static SubcontractPurchaseBills SubcontractPurchasebillFunc = new SubcontractPurchaseBills();
 
-//	/**
-//	 * Registered Supplier with Local GST- Against Subcontract With Deviation and
-//	 * Expenses Account
-//	 * 
-//	 * @author Vimal - RMITS
-//	 */
-//	@Author("Vimal-RMITS")
-//	@Test(priority = 1, groups = {
-//			"Subcontract" }, description = "Registered Supplier with Local GST- Against Subcontract With Deviation and Expenses Account")
-//	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount() {
-//		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount();
-//		Assert.assertTrue(flag);
-//	}
+	/**
+	 * Registered Supplier with Local GST- Against Subcontract With Deviation and
+	 * Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 1, groups = {
+			"Subcontract" }, description = "Registered Supplier with Local GST- Against Subcontract With Deviation and Expenses Account")
+	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount() {
+		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccount();
+		Assert.assertTrue(flag);
+	}
+
 	/**
 	 * Registered Supplier with Local GST- Against Subcontract Without Deviation
 	 * 
@@ -44,6 +45,32 @@ public class SubcontractPurchaseBillsTest extends RoadMapERPTest {
 	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithoutDeviation() {
 		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAgainstSubcontractWithoutDeviation();
 		Assert.assertTrue(flag);
+	}
+
+	/**
+	 * Registered Supplier with Local GST- Against Subcontract Without Deviation and
+	 * Expenses Account And adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 3, groups = {
+			"Subcontract" }, description = "Registered Supplier with Local GST- Against Subcontract Without Deviation and Expenses Account And adjustment")
+	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithoutDeviationandExpensesAccountAndadjustment() {
+		SubcontractPurchasebillFunc
+				.registeredSupplierwithLocalGSTAgainstSubcontractWithoutDeviationandExpensesAccountAndadjustment();
+	}
+
+	/**
+	 * Registered Supplier with Local GST- Against Subcontract With Deviation
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	@Author("Vimal-RMITS")
+	@Test(priority = 4, groups = {
+			"Subcontract" }, description = "Registered Supplier with Local GST- Against Subcontract With Deviation")
+	public void RegisteredSupplierwithLocalGSTAgainstSubcontractWithDeviation() {
+		SubcontractPurchasebillFunc.registeredSupplierwithLocalGSTAgainstSubcontractWithDeviation();
 	}
 
 }
