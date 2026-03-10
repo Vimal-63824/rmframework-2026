@@ -364,6 +364,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS
 	 * @throws IOException
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 23, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Through Add button)")
 	public void CreateCashPaymentThroughAddButtonMultiPartyMultiBillWithMultiUnits() throws IOException {
@@ -378,6 +379,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS
 	 * @throws IOException
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 24, groups = {
 			"Cash Payments" }, description = "Payment Against Multi Party, Single Bill (Get document)")
 	public void CreateCashPaymentThroughGetDocumentMultiPartyMultiBillMultiUnits() throws IOException {
@@ -392,6 +394,7 @@ public class CashPaymentTest extends RoadMapERPTest {
 	 * @author Harikrishna - RMITS
 	 * @throws IOException
 	 */
+	@Author("Harikrishna-RMITS")
 	@Test(priority = 25, groups = {
 			"Cash Payments" }, description = " Payment Against Multi Party, Single Bill (Pending)")
 	public void CreateCashPaymentThroughPendingDocsMultiPartyMultiBillMultiUnits() throws IOException {
