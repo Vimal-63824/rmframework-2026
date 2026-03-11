@@ -1939,7 +1939,7 @@ public class InspectionDocumentFunctions {
 	 * 
 	 * @author PremKumar.K-RMITS
 	 */
-	public void InspectionDocumentWithInspectionPlanForDifferentLoc() {
+	public void inspectionDocumentWithInspectionPlanForDifferentLoc() {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateInspectionDocumentsPage();

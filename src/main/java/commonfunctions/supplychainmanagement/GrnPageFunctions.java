@@ -10223,7 +10223,7 @@ public class GrnPageFunctions {
 		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
 
 		if (GrnHeaderWiseStatus.equals(commonFunc.getDataFromTestDataSheet("QualityEnabled"))) {
-			qcFunc.InspectionDocumentWithInspectionPlanForDifferentLoc();
+			qcFunc.inspectionDocumentWithInspectionPlanForDifferentLoc();
 		} else {
 			verifyTocreateMrvDocumentBasedOnAplicationControl();
 			assertTrue(flag);
