@@ -1,5 +1,9 @@
 package com.roadmapERP;
 
+/**
+ * @author Deepan-GWL, Sakthi-GWL
+ * @company Galaxy Weblinks January 17, 2025
+ */
 import java.io.IOException;
 import java.lang.reflect.Method;
 import org.testng.Assert;
@@ -363,7 +367,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 24, groups = {
+	@Test(priority = 26, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionD() {
 		directGrnFunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionD();
@@ -375,7 +379,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 25, groups = {
+	@Test(priority = 27, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithOutInspectionD() {
 		logs.logging("INFO", "PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan");
@@ -390,7 +394,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 26, groups = {
+	@Test(priority = 28, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionWithoutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnSameUomGeneralTypeImportWithInspectionWithOutQuality();
@@ -402,7 +406,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 2, groups = {
+	@Test(priority = 29, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnSameUomGeneralTypeWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-User Defined-Same Stock and Supplier UOM - With Inspection Plan");
@@ -417,7 +421,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 26, groups = {
+	@Test(priority = 30, groups = {
 			"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnSameUomMaterialTypeWithInspectionWithoutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnSameUomMaterialTypeImportWithInspectionWithOutQuality();
@@ -429,7 +433,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 27, groups = {
+	@Test(priority = 31, groups = {
 			"GRN" }, description = "Direct GRN-Material-User Defined-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnSameUomMaterialTypeWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-Material-User Defined-Same Stock and Supplier UOM - With Inspection Plan");
@@ -444,7 +448,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 28, groups = {
+	@Test(priority = 32, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnSameUomRateContractGeneralTypeImportWithInspectionWithOutQuality();
@@ -456,7 +460,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 29, groups = {
+	@Test(priority = 33, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractSameUomGeneralTypeWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan");
@@ -471,7 +475,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 30, groups = {
+	@Test(priority = 34, groups = {
 			"GRN" }, description = "Direct GRN-Material-Rate Contract-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnSameUomRateContractMaterialTypeImportWithInspectionWithOutQuality();
@@ -483,7 +487,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 31, groups = {
+	@Test(priority = 35, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractSameUomMaterialTypeWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan");
@@ -498,7 +502,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 32, groups = {
+	@Test(priority = 36, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListSameUomGeneralTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnPriceListSameUomGeneralTypeImportWithInspectionWithOutQuality();
@@ -510,7 +514,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 33, groups = {
+	@Test(priority = 37, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListSameUomGeneralTypeImportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan");
@@ -525,7 +529,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 34, groups = {
+	@Test(priority = 38, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListSameUomMaterialTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnPriceListSameUomMaterialTypeImportWithInspectionWithOutQuality();
@@ -537,7 +541,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 35, groups = {
+	@Test(priority = 39, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListSameUomMaterialTypeImportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan");
@@ -552,7 +556,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 36, groups = {
+	@Test(priority = 40, groups = {
 			"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WithOut Inspection Plan")
 	public void VerifyCreationOfDirectGrnUserDefSameUomServiceTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnSameUomServiceTypeImportWithoutInspectionWithOutQuality();
@@ -566,7 +570,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 37, groups = {
+	@Test(priority = 41, groups = {
 			"GRN" }, description = "Direct GRN-Service-Rate Contract-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractSameUomServiceTypeImportWithInspectionWithOutQuality()
 			throws IOException {
@@ -580,7 +584,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Durai-RMITS
 	 */
 	@Author("Durai-RMITS")
-	@Test(priority = 38, groups = {
+	@Test(priority = 42, groups = {
 			"GRN" }, description = "Direct GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListSameUomServiceTypeImportWithInspectionWithOutQuality()
 			throws IOException {
@@ -593,7 +597,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 39, groups = {
+	@Test(priority = 43, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnDifferentUomGeneralTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnDifferentUomGeneralTypeImportWithInspectionWithOutQuality();
@@ -605,7 +609,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 40, groups = {
+	@Test(priority = 44, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnDifferentUomGeneralTypeImportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan");
@@ -620,7 +624,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 41, groups = {
+	@Test(priority = 45, groups = {
 			"GRN" }, description = "Direct GRN-Material-User Defined-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnDifferentUomMaterialTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnDifferentUomMaterialTypeImportWithInspectionWithOutQuality();
@@ -632,7 +636,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 42, groups = {
+	@Test(priority = 46, groups = {
 			"GRN" }, description = "Direct GRN-General-User Defined-Different Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnDifferentUomMaterialTypeImportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-User Defined-Different Stock and Supplier UOM - With Inspection Plan");
@@ -647,7 +651,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 43, groups = {
+	@Test(priority = 47, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnDifferentUomRateContractGeneralTypeImportWithInspectionWithOutQuality();
@@ -659,7 +663,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 44, groups = {
+	@Test(priority = 48, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractDifferentUomGeneralTypeimportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan");
@@ -674,7 +678,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 45, groups = {
+	@Test(priority = 49, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnDifferentUomRateContractMaterialTypeImportWithInspectionWithOutQuality();
@@ -686,7 +690,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 46, groups = {
+	@Test(priority = 50, groups = {
 			"GRN" }, description = "Direct GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnRateContractDifferentUomMaterialTypeimportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-Rate Contract-Different Stock and Supplier UOM - WO Inspection Plan");
@@ -701,7 +705,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 47, groups = {
+	@Test(priority = 51, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithInspectionWithOutQuality();
@@ -713,7 +717,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 48, groups = {
+	@Test(priority = 52, groups = {
 			"GRN" }, description = "Direct GRN-General-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomGeneralTypeImportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-General-Price List-Same Stock and Supplier UOM - With Inspection Plan");
@@ -728,7 +732,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 49, groups = {
+	@Test(priority = 53, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Different Stock and Supplier UOM - With Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionWithOutQuality() {
 		directGrnFunc.verifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithInspectionWithOutQuality();
@@ -740,7 +744,7 @@ public class DirectGrnImportTest extends RoadMapERPTest {
 	 * @author Deepan-GWL
 	 */
 	@Author("Deepan-GWL")
-	@Test(priority = 50, groups = {
+	@Test(priority = 54, groups = {
 			"GRN" }, description = "Direct GRN-Material-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyCreationOfDirectGrnPriceListDifferentUomMaterialTypeImportWithOutInspectionWithOutQuality() {
 		logs.logging("INFO", "PO to GRN-Material-Price List-Same Stock and Supplier UOM - With Inspection Plan");

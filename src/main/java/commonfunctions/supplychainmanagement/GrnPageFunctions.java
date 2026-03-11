@@ -10209,4 +10209,25 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
 				webDB.getDataFromProperties("StPoToMRVWFDURcSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
 	}
+
+	/**
+	 * This Method to handle After Approve the Status Document Move to QC or MRV
+	 * Screen
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	public void aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc() {
+		String GrnHeaderWiseStatus = dbCommonFunctions.GrnHeaderDetails(VariableHandler.getGrnDocNumber(),
+				commonFunc.getDataFromTestDataSheet("ProcessFlowStatus"));
+		logs.logging("INFO", "GRN Document ProcessFlow Status Is " + GrnHeaderWiseStatus);
+
+		if (GrnHeaderWiseStatus.equals(commonFunc.getDataFromTestDataSheet("QualityEnabled"))) {
+			qcFunc.InspectionDocumentWithInspectionPlanForDifferentLoc();
+		} else {
+			verifyTocreateMrvDocumentBasedOnAplicationControl();
+			assertTrue(flag);
+		}
+
+	}
 }

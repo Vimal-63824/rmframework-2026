@@ -1932,4 +1932,99 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void InspectionDocumentWithInspectionPlanForDifferentLoc() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument();
+		getInspectionDocumentNumberFromToastMessageForDifferentLocDirectGrn();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		} else {
+			enterObservationValue();
+		}
+		clickTickAndPostIconForGrnDocument();
+		waitingForApproval();
+		String alertText = VariableHandler.getIDAlertMessage();
+		logs.logging("INFO", "Alert text: " + alertText);
+		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
+		if (alertText.matches(".*" + pattern + ".*")) {
+			documentSearchAndSelectLovForFindPage();
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Specific alert found, proceeding with the process.");
+		} else {
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Other alert detected, no action taken.");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Get Inspection Document Number from Toast Message
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void getInspectionDocumentNumberFromToastMessageForDifferentLocDirectGrn() {
+		String alertText = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+				ElementType.Xpath);
+		String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+				ElementType.Xpath);
+		VariableHandler.setIDAlertMessage(IDAlertMessage);
+		// Regex: capture patterns like ID100/12345/25-26 or IDC/00020/25-26
+		String regex = "([A-Za-z0-9]+)-([0-9]{4})-([0-9]{4})";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(alertText);
+
+		ArrayList<String> matchedDocs = new ArrayList<>();
+
+		while (matcher.find()) {
+			matchedDocs.add(matcher.group()); // Full document string
+		}
+
+		if (matchedDocs.size() == 2) {
+
+			String fromDoc = matchedDocs.get(0);
+			String toDoc = matchedDocs.get(1);
+
+			logs.logging("INFO", "From Document: " + fromDoc);
+			logs.logging("INFO", "To Document: " + toDoc);
+
+			// Extract the numeric portion only
+			String fromNum = fromDoc.split("-")[2];
+			String toNum = toDoc.split("-")[2];
+
+			System.out.println(fromNum + " from " + toNum);
+
+			int startNum = Integer.parseInt(fromNum);
+			int endNum = Integer.parseInt(toNum);
+
+			ArrayList<String> generatedList = new ArrayList<>();
+			String prefix = fromDoc.split("-")[0];
+			String session = fromDoc.split("-")[1];
+
+			System.out.println(prefix + " prefix " + session);
+
+			// Generate complete range
+			for (int i = startNum; i <= endNum; i++) {
+				generatedList.add(prefix + "-" + session + "-" + String.format("%04d", i));
+			}
+
+			VariableHandler.setAllDocumentNumber(generatedList);
+
+			logs.logging("INFO", "Generated Document Numbers:");
+			for (String num : generatedList) {
+				System.out.println(num);
+			}
+
+		} else {
+			logs.logging("INFO", "Unable to extract valid From-to format from alert text.");
+		}
+	}
 }
