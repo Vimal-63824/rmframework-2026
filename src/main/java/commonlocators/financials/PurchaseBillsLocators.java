@@ -285,13 +285,13 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String ViewButtonFrame = "//*[@id='apex_dialog_1']/iframe" ;
 	/** @locatorType Xpath */
-	public static final String AddButtonViewTap = "//button[@id='B2497658317448554056']";
+	public static final String AddButtonViewTap = "//button[@title='Add']";
 	/** @locatorType Xpath */
-	public static final String BillDocNo = "//input[@id='C2484856472800090311']";
+	public static final String BillDocNo = "//input[@id='C2702639806405966555']";
 	/** @locatorType Xpath */
-	public static final String PayAmt = "//input[@id='C2484850499682090304']";
+	public static final String PayAmt = "//input[@id='C2702633833287966548']";
 	/** @locatorType Xpath */
-	public static final String SaveButtonView = "//button[@id='B2497658178510554055']";
+	public static final String SaveButtonView = "//button[@title='Save']";
 	/** @locatorType Xpath */
 	public static final String CloseButton = "//*[@id='t_PageBody']/div[10]/div[1]/button" ;
 	/** @locatorType Xpath */
@@ -303,10 +303,14 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String LoadButton = "//button[@id='loadadj']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxAdjTap = "//*[@id='3412817053104544222_orig']/tbody/tr[2]/td[11]";
+	public static final String CheckBoxAdjTap = "//*[@id=\"3630600386710420466_orig\"]/tbody/tr[2]/td[11]";
 	/**@locatorType Xpath*/
 	public static final String FrameAdjTap = "//iframe[@title='Advance Adjustment ']";
 	/**@locatorType Xpath*/
 	public static final String OkbuttonAdjTap = "//button[@id='B1']";
+	/**@locatorType Xpath*/
+	public static final String PB_Adj_InputGO_Btn = "//button[@id='PEND_search_button']";
+	/**@locatorType Xpath*/
+	public static final String PB_Adj_InputField_Btn = "//input[@id='PEND_search_field']";
 
 }

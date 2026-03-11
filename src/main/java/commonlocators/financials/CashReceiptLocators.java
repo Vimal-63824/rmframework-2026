@@ -144,7 +144,7 @@ public class CashReceiptLocators {
 	/** @locatorType Xpath */
 	public static final String BankPartyDocNumberLovButton = "//button[@id='P3413101001_DOC_NO_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String BankPendingPartyDocumentClearButton = "//button[@id='B2559908873376486230']/following-sibling::button[@id='Clear']";
+	public static final String BankPendingPartyDocumentClearButton = "//button[@title='Cancel']/parent::div/button[@title='Clear']";
 	/** @locatorType Xpath */
 	public static final String PendingPurchaseBill = "//button[@data-testid='PendingBills']";
 	/** @locatorType Xpath */

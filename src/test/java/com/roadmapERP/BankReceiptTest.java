@@ -941,6 +941,84 @@ public class BankReceiptTest extends RoadMapERPTest {
 	public void CreateAdvanceBankReceiptSinglePartyMultiSOThroughPendingDocsUSD() throws IOException {
 		bankReceiptFunc.ABRSinglePartyMultiSOThroughPendingDocsUSD(webDB.getDataFromProperties("BankReceiptUSD"));
 	}
+	
+	/**
+	 * Receipt Against single Party, Single invoice(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 66, groups = {
+			"Bank Receipts" }, description = "Advance against SO single Sales order (Through Add button)")
+	public void CreateAdvanceBankReceiptSinglePartySingleSOThroughAddButtonBankUSD() throws IOException {
+		bankReceiptFunc.ABRSinglePartySingleSOThroughAddButtonBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
+
+	/**
+	 * Receipt Against single Party, Single Invoice (Get document )
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 67, groups = {
+			"Bank Receipt" }, description = "Advance against SO single Sales order (Get document)")
+	public void CreateAdvanceBankReceiptSinglePartySingleSOThroughGetDocumentBankUSD() throws IOException {
+		bankReceiptFunc.ABRSinglePartySingleSOThroughGetDocumentBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
+
+	/**
+	 * Receipt Against single Party, Single Invoice (Pending )
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 68, groups = {
+			"Bank Receipt" }, description = "Advance against SO single Sales order (Pending)")
+	public void CreateAdvanceBankReceiptSinglePartySingleSOThroughPendingDocsBankUSD() throws IOException {
+		bankReceiptFunc.ABRSinglePartySingleSOThroughPendingDocsBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
+	
+	/**
+	 * Receipt Against single Party, Single invoice(Through Add button)
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 69, groups = {
+			"Bank Receipts" }, description = "Receipt Against single Party, Single invoice(Through Add button)")
+	public void CreateAdvanceBankReceiptSinglePartyMultipleSOThroughAddButtonBankUSD() throws IOException {
+		bankReceiptFunc.ABRSinglePartyMultiSOThroughAddButtonBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
+
+	/**
+	 * Receipt Against single Party, Single Invoice (Get document )
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 70, groups = {
+			"Bank Receipt" }, description = "Receipt Against single Party, Single Invoice (Get document )")
+	public void CreateAdvanceBankReceiptSinglePartyMultipleSOThroughGetDocumentBankUSD() throws IOException {
+		bankReceiptFunc.ABRSinglePartyMultiSOThroughGetDocumentBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
+
+	/**
+	 * Receipt Against single Party, Single Invoice (Pending )
+	 * 
+	 * @author Harikrishna - RMITS
+	 * @throws IOException
+	 */
+	@Author("Harikrishna-RMITS")
+	@Test(priority = 71, groups = {
+			"Bank Receipt" }, description = "Receipt Against single Party, Single Invoice (Pending )")
+	public void CreateAdvanceBankReceiptSinglePartyMultipleSOThroughPendingDocsBankUSD() throws IOException {
+		bankReceiptFunc.ABRSinglePartyMultiSOThroughPendingDocsBankUSD(webDB.getDataFromProperties("BankReceiptAdv"));
+	}
 
 	/**
 	 * This Is Used to set the Variable Handler To Zero After Finishing One Test
