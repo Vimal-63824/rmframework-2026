@@ -164,9 +164,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PendingPayableSelectAll = "//input[@id='check_all']" ;
+	public static final String PB_Process_Close = "//button[@id='B3618647795423895330']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B3836431129029771574']";
+	public static final String PendingPayableSelectAll = "//input[@id='check_all']" ;
 	/** @locatorType Xpath */
 	public static final String PB_Reference_MatchedAmt = "//input[@id='P11613101001_SUPHD_BILL_AMT']";
 	/** @locatorType Xpath */
@@ -183,4 +183,11 @@ public class PurchaseBillsGrnLocators {
 	public static final String PB_ReferenceTab = "//label[@for='P11613101001_TABS_3']";
 	/** @locatorType Xpath */
 	public static final String PB_InvoiceTab = "//label[@for='P11613101001_TABS_0']";
+	/** @locatorType Xpath */
+	public static final String PBQty = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
+	/** @locatorType Xpath */
+	public static final String PBUnitCost = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
+	
+	
+	
 }

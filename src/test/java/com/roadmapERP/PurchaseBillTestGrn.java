@@ -836,6 +836,68 @@ public class PurchaseBillTestGrn extends RoadMapERPTest {
 				.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviation();
 	}
 	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 62, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Interstate GST- Against GRN With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 63, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Interstate GST- Against GRN With Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 64, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Interstate GST- Against GRN Without Deviation (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviation();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 65, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Interstate GST- Against GRN Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense();
+	}
+	/**
+	 * Create Purchase Bills Against GRN
+	 * 
+	 * @author Durai-RMITS
+	 * @throws IOException
+	 */
+	@Author("Durai-RMITS")
+	@Test(priority = 66, groups = {
+			"Purchase Bill" }, description = "Unregistered Supplier with Local GST (Allow IGST tax)- Against GRN Without Deviation and Expenses Account with adjustment (Stock item ,service item And charge item )")
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment()
+			throws IOException {
+		PurBillFunc.VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationExpenseAndAdjustment();
+	}
+	/**
 	 * This Method Is Used To Logout After Method
 	 * 
 	 * @author Deepan-GWL
