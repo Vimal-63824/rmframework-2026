@@ -1942,4 +1942,77 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PBNO"), PBNO, DBHeaderColumnValue);
 		return value;
 	}
+	/**
+	 * StockQuery
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PbJournalQueryPK(String PBVoucherNumber, String GLDesc, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PBJournalQueryPK"),
+				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
+				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
+		return value;
+	}
+	/**
+	 * StockQuery
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public List<String> PbJournalViewDetailsQueryPK(String PBVoucherNumber, String GLDesc, String DBHeaderColumnValue) {
+		List<String> value = getDataFromDBUsingQuery2(getDataFromDBTestDataSheet("PBJournalDetailsViewPK"),
+				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
+				commonFunc.getDataFromTestDataSheet("PBVoucherLN"), GLDesc, DBHeaderColumnValue);
+		System.out.println("value check " + value);
+		return value;
+	}
+	public List<String> getDataFromDBUsingQuery2(String Query, String Replacechar, String Replacedchar,
+			String Replacechar1, String Replacedchar1, String ExpectedData) {
+		String returnname = null;
+		List<String> results = new ArrayList<>();
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			if (getConnection() == null) {
+				establishDBConnection();
+			}
+			Query = Query.replace(Replacechar, Replacedchar).replace(Replacechar1, Replacedchar1);
+//			System.out.println("Query " + Query);
+			Statement statement = getConnection().createStatement();
+//			System.out.println("Ststement" + statement);
+			ResultSet resultSet = statement.executeQuery(Query);
+//			System.out.println("resultSet" + resultSet.toString().toString());
+			while (resultSet.next()) {
+//				System.out.println("Db Value" + resultSet);
+				returnname = resultSet.getString(ExpectedData); // Adjust column name
+//				System.out.println("Data Is: " + returnname);
+				results.add(returnname);
+			}
+			resultSet.close();
+			statement.close();
+//			closeDB();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+	/**
+	 * StockQuery
+	 * 
+	 * @author PremKumar.K -RMITS
+	 * @param AdvReceiptDocNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String PbJournalDetailPartForAccuralAccount(String PBVoucherNumber, String GLDesc,
+			String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PBJournalDetailsQueryPK"),
+				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
+				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
+		return value;
+	}
 }

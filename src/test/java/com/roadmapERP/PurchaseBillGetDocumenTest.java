@@ -538,6 +538,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockitemServiceItemAndChargeItem();
 	}
+
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
 	 * document
@@ -617,6 +618,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
+
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
 	 * document
@@ -632,6 +634,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationStockItemServiceItemAndChargeItem();
 	}
+
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
 	 * document
@@ -647,6 +650,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.verifyToCreateUnregisteredSupplierWithLocalGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
+
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
 	 * document
@@ -678,6 +682,7 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 		purBillGetDoc
 				.verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
 	}
+
 	/**
 	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
 	 * document
@@ -708,6 +713,582 @@ public class PurchaseBillGetDocumenTest extends RoadMapERPTest {
 			throws Exception {
 		purBillGetDoc
 				.verifyToUnregisteredSupplierWithLocalGstAllowIgstTaxAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 46, groups = {
+			"GRN" }, description = "224 Unregistered Supplier with Interstate GST- Against Stock Transfer With Deviation (Stock item ,service item And charge item )")
+	public void VerifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.verifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationStockItemserviceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 47, groups = {
+			"GRN" }, description = "225 Unregistered Supplier with Interstate GST- Against Stock Transfer With Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.verifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 48, groups = {
+			"GRN" }, description = "227 Unregistered Supplier with Interstate GST- Against Stock Transfer Without Deviation (Stock item ,service item And charge item )")
+	public void VerifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationtockItemserviceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.verifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationtockItemserviceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 49, groups = {
+			"GRN" }, description = "228 Unregistered Supplier with Interstate GST- Against Stock Transfer Without Deviation and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws Exception {
+		purBillGetDoc
+				.verifyToUnregisteredSupplierWithInterstateGstAgainstStockTransferWithoutDeviationAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 50, groups = { "GRN" }, description = "104 DomesticRegisteredSupplierWithLocalFreightGst")
+	public void VerifyToDomesticRegisteredSupplierWithLocalFreightGst() throws Exception {
+		purBillGetDoc.verifyToDomesticRegisteredSupplierWithLocalFreightGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 51, groups = { "GRN" }, description = "105 Domestic Registered Supplier - With SEZ Unit GST")
+	public void VerifyToDomesticRegisteredSupplierWithSezUnitGst() throws Exception {
+		purBillGetDoc.verifyToDomesticRegisteredSupplierWithSezUnitGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 52, groups = {
+			"GRN" }, description = "106 Domestic Unregistered Supplier - With Local Freight GST")
+	public void VerifyToCreateDomesticUnregisteredSupplierWithLocalFreightGST() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticUnregisteredSupplierWithLocalFreightGST();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 53, groups = { "GRN" }, description = "107 Domestic UnRegistered Supplier - With SEZ Unit GST")
+	public void VerifyToCreateDomesticUnRegisteredSupplierWithSezUnitGst() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticUnRegisteredSupplierWithSezUnitGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 54, groups = {
+			"GRN" }, description = "108 Domestic Unregistered Supplier - With union Territory GST")
+	public void VerifyToCreateDomesticUnregisteredSupplierWithUnionTerritoryGstSt() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticUnregisteredSupplierWithUnionTerritoryGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 55, groups = { "GRN" }, description = "109 Domestic Composition Supplier - With Local Freight GST")
+	public void VerifyToCreateDomesticCompositionSupplierWithLocalFreightGst() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticCompositionSupplierWithLocalFreightGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 56, groups = { "GRN" }, description = "110 Domestic Composition Supplier - With Local GST")
+	public void VerifyToDomesticCompositionSupplierWithLocalGst() throws Exception {
+		purBillGetDoc.verifyToDomesticCompositionSupplierWithLocalGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 57, groups = { "GRN" }, description = "111 Domestic Composition Supplier - With Inter state GST")
+	public void VerifyToDomesticCompositionSupplierWithInterStateGst() throws Exception {
+		purBillGetDoc.verifyToDomesticCompositionSupplierWithInterStateGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 58, groups = {
+			"GRN" }, description = "112 Domestic Composition Supplier - With union Territory GST")
+	public void VerifyToDomesticCompositionSupplierWithUnionTerritoryGst() throws Exception {
+		purBillGetDoc.verifyToDomesticCompositionSupplierWithUnionTerritoryGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 59, groups = { "GRN" }, description = "113 Domestic Casual person Supplier - With Local GST")
+	public void VerifyToDomesticCasualPersonSupplierWithLocalGst() throws Exception {
+		purBillGetDoc.verifyToDomesticCasualPersonSupplierWithLocalGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 60, groups = {
+			"GRN" }, description = "114 Domestic Casual person Supplier - With Local Freight GST")
+	public void VerifyToCreateDomesticCasualPersonSupplierWithLocalFreightGst() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticCasualPersonSupplierWithLocalFreightGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 61, groups = {
+			"GRN" }, description = "115 Domestic Casual person Supplier - With union Territory GST")
+	public void VerifyToCreateDomesticCasualPersonSupplierWithUnionTerritoryGST() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticCasualPersonSupplierWithUnionTerritoryGST();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 62, groups = {
+			"GRN" }, description = "116 Domestic Non-resident Supplier - With Local Freight GST")
+	public void VerifyToCreateDomesticNonResidentSupplierWithLocalFreightGst() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticNonResidentSupplierWithLocalFreightGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 63, groups = {
+			"GRN" }, description = "117 Domestic Non-resident Supplier - With union Territory GST")
+	public void VerifyToCreateDomesticNonResidentSupplierWithUnionTerritoryGst() throws Exception {
+		purBillGetDoc.verifyToCreateDomesticNonResidentSupplierWithUnionTerritoryGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 64, groups = {
+			"GRN" }, description = "153 Registered Supplier with Local GST- Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithLocalGstStockTransferDirectStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithLocalGstStockTransferDirectStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 65, groups = {
+			"GRN" }, description = "154 Registered Supplier with Local GST- Stock Transfer Direct With Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithLocalGstStockTransferDirectWithExpensesAccountStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithLocalGstStockTransferDirectWithExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 66, groups = {
+			"GRN" }, description = "156 Registered Supplier with Local GST (Allow IGST tax) - Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 67, groups = {
+			"GRN" }, description = "157 Registered Supplier with Local GST (Allow IGST tax) - Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 68, groups = {
+			"GRN" }, description = "158 Registered Supplier with Local GST (Allow RCM tax) - Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxStockTransferDirectStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowRcmtaxStockTransferDirectStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 69, groups = {
+			"GRN" }, description = "159 Registered Supplier with Local GST (Allow RCM tax) - Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithLocalGstAllowRcmTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 70, groups = {
+			"GRN" }, description = "160 Registered Supplier with Interstate GST- Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstStockTransferDirectStockItemserviceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithInterstateGstStockTransferDirectStockItemserviceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 71, groups = {
+			"GRN" }, description = "160 Registered Supplier with Interstate GST- Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithInterstateGstStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 72, groups = {
+			"GRN" }, description = "161 Registered Supplier with Interstate GST (Allow RCM tax)- Stock Transfer Direct (Stock item ,service item And charge item ) )")
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxStockTransferDirectStockItemServiceitemAndchargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRCMTaxStockTransferDirectStockItemServiceitemAndchargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 73, groups = {
+			"GRN" }, description = "161 Registered Supplier with Interstate GST (Allow RCM tax)- Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateRegisteredSupplierWithInterstateGstAllowRcmTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 74, groups = {
+			"GRN" }, description = "162 Unregistered Supplier with Local GST- Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateUnregisteredSupplierwithLocalGstStockTransferDirectStockItemserviceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateUnregisteredSupplierwithLocalGstStockTransferDirectStockItemserviceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 75, groups = {
+			"GRN" }, description = "163 Unregistered Supplier with Local GST- Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstStockTransferDirectAndExpensesAccountStockItemserviceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateUnregisteredSupplierWithLocalGstStockTransferDirectAndExpensesAccountStockItemserviceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 76, groups = {
+			"GRN" }, description = "164 Unregistered Supplier with Local GST (Allow IGST tax)- Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstAllowIgsttTaxStockTransferDirectStockItemServiceItemAndchargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateUnregisteredSupplierWithLocalGstAllowIgsttTaxStockTransferDirectStockItemServiceItemAndchargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 77, groups = {
+			"GRN" }, description = "165 Unregistered Supplier with Local GST (Allow IGST tax)- Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateUnregisteredSupplierWithLocalGstAllowIGSTTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndchargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateUnregisteredSupplierWithLocalGstAllowIgstTaxStockTransferDirectAndExpensesAccountStockItemServiceItemAndchargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 78, groups = {
+			"GRN" }, description = "165 Unregistered Supplier with Interstate GST- Stock Transfer Direct (Stock item ,service item And charge item )")
+	public void VerifyToCreateUnregisteredSupplierWithInterstateGstStockTransferDirectStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateUnregisteredSupplierWithInterstateGstStockTransferDirectStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 79, groups = {
+			"GRN" }, description = "165 Unregistered Supplier with Interstate GST- Stock Transfer Direct and Expenses Account (Stock item ,service item And charge item )")
+	public void VerifyToCreateUnregisteredSupplierWithInterstateGstStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem()
+			throws IOException {
+		purBillGetDoc
+				.verifyToCreateUnregisteredSupplierWithInterstateGstStockTransferDirectAndExpensesAccountStockItemServiceItemAndChargeItem();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 80, groups = { "GRN" }, description = "165 Domestic Registered Supplier - With Local Freight GST")
+	public void VerifyToCreateDomesticRegisteredSupplierWithLocalFreightGst() throws IOException {
+		purBillGetDoc.verifyToCreateDomesticRegisteredSupplierWithLocalFreightGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 81, groups = { "GRN" }, description = "165 Domestic Registered Supplier - With SEZ Unit GST")
+	public void VerifyToCreateDomesticRegisteredSupplierWithSezUnitGst() throws IOException {
+		purBillGetDoc.verifyToCreateDomesticRegisteredSupplierWithSezUnitGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 82, groups = {
+			"GRN" }, description = "165 Domestic Registered Supplier - With union Territory GST")
+	public void VerifyToCreateDomesticRegisteredSupplierWithUnionTerritoryGst() throws IOException {
+		purBillGetDoc.verifyToCreateDomesticRegisteredSupplierWithUnionTerritoryGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 83, groups = {
+			"GRN" }, description = "165 Domestic Unregistered Supplier - With Local Freight GST")
+	public void VerifyToCreateDomesticUnregisteredSupplierWithLocalFreightGst() throws IOException {
+		purBillGetDoc.verifyToCreateDomesticUnregisteredSupplierWithLocalFreightGst();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Landed cost in bill booking from Get
+	 * document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 84, groups = { "GRN" }, description = "165 Domestic UnRegistered Supplier - With SEZ Unit GST")
+	public void VerifyToCreateDomesticUnRegisteredSupplierWithSezUnitGST() throws IOException {
+		purBillGetDoc.verifyToCreateDomesticUnRegisteredSupplierWithSezUnitGST();
 	}
 
 	/**
