@@ -36,7 +36,7 @@ import commonlocators.financials.PurchaseBillsLocators;
 import commonlocators.financials.PurchaseBillsLocatorsGetDocument;
 import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
-import junit.framework.Assert;
+import org.testng.Assert;
 import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.WebDriverBase;
