@@ -164,9 +164,9 @@ public class MaterialReceiptVoucherLocators {
 	/** @locatorType Xpath */
 	public static final String MRVdateTo = "//input[@id='P93131177_DATE_TO_input']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='12958977723041226147']/tbody/tr[2]/td[2]";
+	public static final String AmendFindTable = "//*[@id='12961277905512999678']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='8494751782664131493_orig']/tbody/tr[2]/td[2]";
+	public static final String AmendLineFindTable = "//*[@id='8497051965135905024_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SourceVoucher = "//input[@id='P93131177_SOURCE_VOU_NO']";
 

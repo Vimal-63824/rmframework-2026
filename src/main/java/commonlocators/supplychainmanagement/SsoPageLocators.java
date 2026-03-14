@@ -82,7 +82,7 @@ public class SsoPageLocators {
 	/** @locatorType Xpath */
 	public static final String FetchOPOSearchOkBtn = "//button[@id='QC_search_button']";
 	/** @locatorType Xpath */
-	public static final String FetchOPOSelectall = "//*[@id=\"3602499523572322401_orig\"]/tbody/tr[2]/td[11]";
+	public static final String FetchOPOSelectall = "//*[@id=\"3604799706044095932_orig\"]/tbody/tr[2]/td[11]";
 	/** @locatorType Xpath */
 	public static final String FetchOPOOKBtn = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
