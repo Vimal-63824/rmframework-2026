@@ -236,6 +236,7 @@ public class EmployeeAdjustmentFunctions {
 			webDB.doubleClickAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodData, ElementType.Xpath);
 			flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
 			if (flag) {
+				webDB.clearText(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput, ElementType.Xpath);
 				flag = webDB.sendTextToAnElement(EmployeeAdjustmentLocators.AdjustmentTableTotalPeriodInput,
 						TotalPeriod, ElementType.Xpath);
 				if (flag) {
@@ -248,6 +249,8 @@ public class EmployeeAdjustmentFunctions {
 						flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
 								ElementType.Xpath);
 						if (flag) {
+							webDB.clearText(EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput,
+									ElementType.Xpath);
 							flag = webDB.sendTextToAnElement(
 									EmployeeAdjustmentLocators.AdjustmentTablePeriodicAmntInput, Amount,
 									ElementType.Xpath);
@@ -298,7 +301,8 @@ public class EmployeeAdjustmentFunctions {
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableApproveIcon, ElementType.Xpath);
 		if (flag) {
 			commonFunc.checkRefreshCellsDisappear();
-			webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData, ElementType.Xpath);
+			webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData,
+					ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableAdjustmentNoData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTablePeriodData, ElementType.Xpath);
 			webDB.scrollToAnElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
@@ -342,7 +346,8 @@ public class EmployeeAdjustmentFunctions {
 	private void changeProcessTypeForLastAddedAdjustment(String ProcessType) {
 		commonFunc.checkRefreshCellsDisappear();
 		commonFunc.checkRefreshCellsDisappear();
-		webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
+		webDB.waitUntilElementToNotBeStale(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData,
+				ElementType.Xpath);
 		flag = webDB.waitForElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(EmployeeAdjustmentLocators.AdjustmentTableProcessHoldData, ElementType.Xpath);

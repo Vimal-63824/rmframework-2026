@@ -486,7 +486,11 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String GE_SelectAllCheckBox = "//table[@id='14874362016501290896_orig']/tbody/tr/td/input[@type='checkbox']";
+	public static final String GE_SelectAllCheckBox = "//table[@id='15088536030050153446_orig']/tbody/tr/td/input[@type='checkbox']";
 	/** @locatorType Xpath */
 	public static final String ForwardEmployeefield = "//input[@data-testid='P236131090_FWD_PERSON']";
+	/** @locatorType Xpath */
+	public static final String SelectFirstCheckBox = "((//table[contains(@aria-label,'GATEENTRY')])[2]/tbody/tr/td/input[@type='checkbox'])[1]";
+	/** @locatorType Xpath */
+	public static final String SelectFirstItem = "((//table[contains(@aria-label,'GATEENTRY')])[2]/tbody/tr/td)[9]";
 }
