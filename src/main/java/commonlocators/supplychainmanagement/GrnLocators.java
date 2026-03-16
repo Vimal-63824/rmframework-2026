@@ -338,5 +338,11 @@ public class GrnLocators {
 	public static final String BillOkButton = "//button[@data-testid='OK_import_LR']";
 	/** @locatorType Xpath */
 	public static final String ItemTable = "//div[@aria-label='Lot/Serial ']/div[3]/div[3]/table/tbody/tr/td[1]";
+	/** @locatorType Xpath */
+	public static final String AddLineButton = "//span[text()='Add Line']/..";
+	/** @locatorType Xpath */
+	public static final String CreateGeOneButton = "//button[@id='BTN_GE1']";
+	/** @locatorType Xpath */
+	public static final String GrnSecondItem = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[3]";
 
 }
