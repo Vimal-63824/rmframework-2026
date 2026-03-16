@@ -86,7 +86,7 @@ public class SubcontractOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String CheckBox(String PONumber) {
-		return "//table[@id='7366673121734161171_orig']//a[text()='" + PONumber + "']/../../td[13]";
+		return "//table[@id='7580847135283023721_orig']//a[text()='" + PONumber + "']/../../td[13]";
 	}
 
 	/** @locatorType XPATH */
