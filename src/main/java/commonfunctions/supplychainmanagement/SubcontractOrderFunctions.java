@@ -4427,6 +4427,31 @@ public class SubcontractOrderFunctions {
 		approveSCODocsAndStoreMRNumber(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSCOdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
 				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialRequestScreen();
+		materialRequestFunc.verifyCreateMaterialRequestDocument(VariableHandler.getMRNumber());
+		materialRequestFunc.verifyNavigateToLineDetail(VariableHandler.getSCOdocno());
+		materialRequestFunc.headerSaveAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getMRNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		commonFunc.navigateToMaterialIssuanceVoucher();
+		materialIssuanceVoucherFunc.CreateThePendingMIVDocumentFromMaterialRequest(VariableHandler.getMRNumber());
+		materialIssuanceVoucherFunc.headerTickAndPostIcon();
+		commonFunc.navigateToGrnSco();
+		grnScoPageFunc.createPendingGrnScoDoc(VariableHandler.getSCOdocno());
+//			grnScoPageFunc.checkConsumptionBeforeGenerationMat();
+		grnScoPageFunc.verifyGenMatConsAndAllocate();
+//			grnScoPageFunc.checkConsumptionAfterGenerationMat();
+//			grnScoPageFunc.verifyViewLineDetails();
+		grnScoPageFunc.saveHeaderAndPost();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getScoGrnNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
 

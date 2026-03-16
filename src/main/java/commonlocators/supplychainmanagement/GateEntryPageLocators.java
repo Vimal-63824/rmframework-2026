@@ -179,9 +179,9 @@ public class GateEntryPageLocators {
 	/** @locatorType Xpath */
 	public static final String GENSearchBtn = "//button[@data-testid='Find_header']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='23981175841177554931_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='23983558549531427270_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='2764787121916825444_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='2767169830270697783_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String GENPendBtn = "//button[@data-testid='Create_GE']";
 

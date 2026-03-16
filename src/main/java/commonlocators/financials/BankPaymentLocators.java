@@ -66,9 +66,9 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankViewFrame = "(//h1[contains(text(),'Payment Details')]/ancestor::div/following-sibling::div)//iframe";
 	/** @locatorType Xpath */
-	public static final String BankBillNumberInputField = "//input[@id='C2484856472800090311']";
+	public static final String BankBillNumberInputField = "//input[@id='C2704515064031309570']";
 	/** @locatorType Xpath */
-	public static final String BankPayAmountInputField = "//input[@id='C2484850499682090304']";
+	public static final String BankPayAmountInputField = "//input[@id='C2704509090913309563']";
 	/** @locatorType Xpath */
 	public static final String BankAgainstRefFieldName = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[1]";
 	/** @locatorType Xpath */
@@ -78,7 +78,7 @@ public class BankPaymentLocators {
 	/** @locatorType Xpath */
 	public static final String BankPayAmountField = "//*[@id='ig_line1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[4]";
 	/** @locatorType Xpath */
-	public static final String BankViewSaveButton = "//button[@id='B2497658178510554055']";
+	public static final String BankViewSaveButton = "//button[@id='B2717316769741773314']";
 	/** @locatorType Xpath */
 	public static final String BankViewDeleteButton = "#ig_line1_ig_grid_vc > div.a-GV-bdy > div.a-GV-w-scroll > table > tbody > tr > td:nth-child(27) > a";
 	/** @locatorType Xpath */

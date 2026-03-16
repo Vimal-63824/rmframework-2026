@@ -161,7 +161,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String StockTransferHsnLov = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String AllowIgstFlag = "//input[@id='P11613101001_ALOW_IGST_CSGST']/following-sibling::label";
+	public static final String AllowIgstFlag = "//input[@data-testid='P11613101001_ALOW_IGST_CSGST']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String OverAllSaveBtn = "//button[@data-testid='SAVEHD']";
 	/** @locatorType Xpath */

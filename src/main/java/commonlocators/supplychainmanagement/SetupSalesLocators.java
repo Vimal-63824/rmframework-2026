@@ -11,7 +11,7 @@ public class SetupSalesLocators {
 	/** Locator Xpath */
 	public static final String SalesRegionField = "//input[@data-testid='SalesRegionField']" ;
 	/** Locator Xpath */
-	public static final String ManagerLovButton = "//button[@id='C8542823614002983006_lov_btn']" ;
+	public static final String ManagerLovButton = "//button[@id='C8544846005884481738_lov_btn']" ;
 	/** Locator Xpath */
 	public static final String SaveButton = "//button[@data-testid='SaveButton']" ;	
 	/** Locator Xpath */
@@ -24,10 +24,10 @@ public class SetupSalesLocators {
 	public static final String SalesZoneField = "//input[@data-testid='SalesZoneField']" ;
 	/** Locator Xpath */
 	public static final String SalesZoneFieldDoc = "//*[@id='ig_line_1_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[1]" ;
+	/** Locator Xpath */											
+	public static final String SalesRegionLovSZTab = "//button[@id='C7710781698153418968_lov_btn']" ;
 	/** Locator Xpath */
-	public static final String SalesRegionLovSZTab = "//button[@id='C7708759306271920236_lov_btn']" ;
-	/** Locator Xpath */
-	public static final String SalesZoneManagerLovSZTab = "//button[@id='C7708759471821920237_lov_btn']" ;
+	public static final String SalesZoneManagerLovSZTab = "//button[@id='C7710781863703418969_lov_btn']" ;
 	/** Locator Xpath */
 	public static final String SaveButtonSalesZoneTab ="//button[@data-testid='SaveButtonSalesZoneTab']" ;
 	/** Locator Xpath */
@@ -37,9 +37,9 @@ public class SetupSalesLocators {
 	/** Locator Xpath */
 	public static final String SubTerritoryField = "//*[@id='ig_line_2_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[1]/td[1]" ;
 	/** Locator Xpath */
-	public static final String SalesZoneLovSubTerritoryField = "//button[@id='C7709978206846359926_lov_btn']" ;
+	public static final String SalesZoneLovSubTerritoryField = "//button[@id='C7712000598727858658_lov_btn']" ;
 	/** Locator Xpath */
-	public static final String SubTerritoryManagerLov= "//button[@id='C7709978569292359929_lov_btn']" ;
+	public static final String SubTerritoryManagerLov= "//button[@id='C7493122892981486409_lov_btn']" ;
 	/** Locator Xpath */
 	public static final String SaveButtonInSubTerritory = "//button[@data-testid='SaveButtonInSubTerritory']" ;
 

@@ -323,7 +323,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButton = "//button[@data-testid='Find']";
 	/** @locatorType Xpath */
-	public static final String SearchedItemDrillDown = "//*[@id='13427985159885103187_orig']/tbody/tr[2]/td[2]";
+	public static final String SearchedItemDrillDown = "//table[@id='13430333998759940102_orig']/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String SalesTab = "//*[@id='P36719401_TYPE_ASSO']/div/div/div[4]/label";
 	/** @locatorType Xpath */
