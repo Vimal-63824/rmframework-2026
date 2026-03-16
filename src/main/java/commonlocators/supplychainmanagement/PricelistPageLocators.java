@@ -135,7 +135,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemSearchBtn = "//button[@data-testid='Search1']";
 	/** @locatorType Xpath */
-	public static final String ItemDrillDownBtn = "//table[@id='17337804263530214671_orig']/tbody/tr[2]/td[2]";
+	public static final String ItemDrillDownBtn = "//table[contains(@aria-label,'Report')]/tbody/tr[2]/td[2]";
 	/** @locatorType Xpath */
 	public static final String ItemGeneral = "//label[text()='General']";
 	/** @locatorType Xpath */
@@ -151,7 +151,7 @@ public class PricelistPageLocators {
 	/** @locatorType Xpath */
 	public static final String ItemFindBtn = "//*[@id=\"B215430562028062028\"]/span";
 	/** @locatorType Xpath */
-	public static final String ItemGetText = "//input[@id='P367020004_PROD_ID']";
+	public static final String ItemGetText = "//input[@data-testid='P367020004_PROD_ID']";
 	/** @locatorType Xpath */
 	public static final String ItemPostSucessMsg = "//*[@id='t_Alert_Success']/div/div[2]/div/h6";
 	/** @locatorType Xpath */
