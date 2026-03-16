@@ -148,7 +148,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//table[@id='12958977723041226147']/tbody/tr[2]/td[17]";
+	public static String GrnDocumentStatus = "//table[@id='12961277905512999678']/tbody/tr[2]/td[17]";
 	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */
