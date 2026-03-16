@@ -577,7 +577,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
-	public static final String SearchBoxContainer1 = "//table[@id='3183830093656299632']/tr/th[3]/a";
+	public static final String SearchBoxContainer1 = "//table[@id='3185852485537798364']/tr/th[3]/a";
 	/** @locatorType Xpath */
 	public static final String SearchBox1 = "//input[@id='PEND_sort_widget_search_field']";
 
