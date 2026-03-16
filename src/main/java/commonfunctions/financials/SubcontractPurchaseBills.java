@@ -7,6 +7,14 @@ package commonfunctions.financials;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
@@ -19,6 +27,7 @@ import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.PurchaseBillsGrnLocators;
 import commonlocators.financials.PurchaseBillsLocators;
+import commonlocators.financials.PurchaseBillsLocatorsGetDocument;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.SubcontractOrderLocators;
 import utils.ExcelUtils;
@@ -123,16 +132,13 @@ public class SubcontractPurchaseBills {
 		commonFunc.navigateToFinancialPurchaseBill();
 		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
 				commonFunc.getDataFromTestDataSheet("TDSValue"));
-		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
-		PurBillFunc.pendingSubcontractAgainstvalidateHeaderDetails();
-//		PurBillFunc.validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
-//		PurBillFunc.verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
-//		PurBillFunc.verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRN"));
-//		PurBillFunc.verifySaveLine();
-//		PurBillFunc.validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
-		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("PurchaseBillDeviationandExp"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
 				commonFunc.getDataFromTestDataSheet("ExpenseType"));
-		PurBillFunc.verifyCreateJournalAndPost();
+		verifyCreateJournalAndVerifyDeviationAndExpAmtAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
 
@@ -155,6 +161,8 @@ public class SubcontractPurchaseBills {
 			if (flag) {
 				webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Save, ElementType.Xpath);
 				commonFunc.hardWait(3000);
+				storePurchaseBillProcesTabProcessQtyAndUnitCost();
+				commonFunc.hardWait(1000);
 				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PurchaseBillsGrnLocators.PB_Process_Close, ElementType.Xpath);
@@ -217,11 +225,6 @@ public class SubcontractPurchaseBills {
 				commonFunc.getDataFromTestDataSheet("TDSValue"));
 		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
 		PurBillFunc.pendingSubcontractAgainstvalidateHeaderDetails();
-//		PurBillFunc.validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
-//		PurBillFunc.verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRN"));
-//		PurBillFunc.verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRN"));
-//		PurBillFunc.verifySaveLine();
-//		PurBillFunc.validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		PurBillFunc.verifyCreateJournalAndPost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -255,7 +258,6 @@ public class SubcontractPurchaseBills {
 		purchaseBillsFunc.ClickSaveButton();
 		purchaseBillsFunc.loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		purchaseBillsFunc.createJvForRecord();
-//		purchaseBillsFunc.verifyLineDetailsWithDBvalidationInGrnPurchaseType("PurchaseBills_ExAcc");
 		PurBillFunc.verifyCreatePost();
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
@@ -426,6 +428,51 @@ public class SubcontractPurchaseBills {
 	}
 
 	/**
+	 * This Method Used For Process Calculation Compare Excel Sheet With DataBase
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void deviationWithTaxCalculationCompareExcelSheetWithDataBase(String Sheetname) {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheetname);
+		System.out.println(itemmultiple.length);
+		for (int i = 4; i < itemmultiple.length; i++) {
+			String MatchedAmt = itemmultiple[i][14];
+			String GRNAmt = itemmultiple[i][1];
+			String deviationAmt = itemmultiple[i][5];
+			String NetAmt = itemmultiple[i][14];
+			System.out.println(MatchedAmt);
+			if (!MatchedAmt.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.PBReferenceQuery(VariableHandler.getPbNumber(),
+								commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN")), MatchedAmt);
+				System.out.println(commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN"));
+				logs.logging("INFO", "MatchedAmt Details Matched With DataBase Values");
+
+//				salesOrderFunctions
+//						.verifyAssertionBothValues(dbCommonFunctions.PBReferenceQuery(VariableHandler.getPbNumber(),
+//								commonFunc.getDataFromTestDataSheet("PBDBREFGRNAMTCOLUMN")), GRNAmt);
+//				logs.logging("INFO", "GRNAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(
+								dbCommonFunctions.PBReferenceQuery(VariableHandler.getPbNumber(),
+										commonFunc.getDataFromTestDataSheet("PBDBREFDEVIATIONAMTCOLUMN")),
+								deviationAmt);
+				logs.logging("INFO", "Devaiation Amt Details Matched With DataBase Values");
+
+				salesOrderFunctions.verifyAssertionBothValues(dbCommonFunctions.PBQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBDBNetAmountCOLUMN")), NetAmt);
+				logs.logging("INFO", "Net Amount Matched With DataBase Values");
+				commonFunc.hardWait(2000);
+			}
+		}
+	}
+
+	/**
 	 * Verify TableSpec InputParameter
 	 * 
 	 * @author Vimal - RMITS
@@ -546,6 +593,35 @@ public class SubcontractPurchaseBills {
 	}
 
 	/**
+	 * This Method Used To Verify To Create Journal And Verify Deviation Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(String Sheetname) {
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.CreateJournal, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseBillsGrnLocators.CreateJournal, ElementType.Xpath);
+			logs.logging("INFO", "Create Journal Button Is Displayed");
+			webDB.clickAnElement(PurchaseBillsGrnLocators.CreateJournal, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(5000);
+			deviationWithTaxCalculationCompareExcelSheetWithDataBase(Sheetname);
+			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Is Displayed");
+				webDB.clickAnElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * This Method used For Registered Supplier with Local GST- Against Subcontract
 	 * With Deviation
 	 * 
@@ -556,12 +632,548 @@ public class SubcontractPurchaseBills {
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingSCOPurchaseBill("GRNS-2526-1552", commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
 		clickingReferenceTabAndValidating();
 		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
 				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
 		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("PurchaseBillDeviation"));
 		verifyCreateJournalAndVerifyDeviationAmtAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * This Methods Used To Get UnitCost In Excel Sheet
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void getUnitcostInExcelSheet(String Sheetname) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, Sheetname);
+		for (int i = 5; i < ItemMultiple.length; i++) {
+			String Unitcost = ItemMultiple[i][2];
+			if (!Unitcost.equals("")) {
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBCostField, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseBillsGrnLocators.PBCostField, ElementType.Xpath);
+					webDB.clearText(PurchaseBillsGrnLocators.PBCostInput, ElementType.Xpath);
+					webDB.sendTextToAnElement(PurchaseBillsGrnLocators.PBCostInput, Unitcost, ElementType.Xpath);
+					logs.logging("INFO", "Entered Deviation Cost Is:" + Unitcost);
+					commonFunc.hardWait(3000);
+					webDB.pressTabKey();
+				}
+			}
+		}
+	}
+
+	/**
+	 * This Method Used To Verify Expense Type in Purchase Bill
+	 * 
+	 * @param GLAccount
+	 * @param Type
+	 * @author Vimal - RMITS
+	 */
+	public void verifyAddExpenseTypeUnitcostinExcelSheet(String GLAccount, String Type) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBAddLine, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PBAddLine, ElementType.Xpath);
+			logs.logging("INFO", "Add Button is Clicked");
+			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBAddTypeExp, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseBillsGrnLocators.PBAddTypeExp, ElementType.Xpath);
+				webDB.selectDropDownByValue(PurchaseBillsGrnLocators.PBAddTypeExp, Type, ElementType.Xpath);
+				logs.logging("INFO", "Field Is Clicked");
+				flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
+					logs.logging("INFO", "Field Is Clicked");
+					flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccLov, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.GlAccLov, GLAccount);
+						logs.logging("INFO", "GL Account Is Entered:" + GLAccount);
+						PurBillFunc.verifyClickingHSNCode(commonFunc.getDataFromTestDataSheet("Hsn_code"));
+						getUnitcostInExcelSheet(webDB.getDataFromProperties("PurchaseBillDeviationandExp"));
+						PurBillFunc.verifySaveLine();
+						commonFunc.checkRefreshCellsDisappear();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used To Verify To Create Journal And Verify Deviation And Exp
+	 * Post
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void verifyCreateJournalAndVerifyDeviationAndExpAmtAndPost() {
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.CreateJournal, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseBillsGrnLocators.CreateJournal, ElementType.Xpath);
+			logs.logging("INFO", "Create Journal Button Is Displayed");
+			webDB.clickAnElement(PurchaseBillsGrnLocators.CreateJournal, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			commonFunc.checkRefreshCellsDisappear();
+			commonFunc.hardWait(5000);
+			deviationAndExpCalculationCompareExcelSheetWithDataBase(
+					webDB.getDataFromProperties("PurchaseBillDeviationandExp"));
+			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Post Button Is Displayed");
+				webDB.clickAnElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
+				flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+						|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Used For deviation And Exp Calculation Compare Excel Sheet With
+	 * DataBase
+	 * 
+	 * @author Vimal-RMITS
+	 */
+	public void deviationAndExpCalculationCompareExcelSheetWithDataBase(String Sheetname) {
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, Sheetname);
+		System.out.println(itemmultiple.length);
+		for (int i = 6; i < itemmultiple.length; i++) {
+			String MatchedAmt = itemmultiple[i][4];
+			String GRNAmt = itemmultiple[i][1];
+			String deviationAmt = itemmultiple[i][5];
+			System.out.println(MatchedAmt);
+			if (!MatchedAmt.equals("")) {
+				salesOrderFunctions
+						.verifyAssertionBothValues(dbCommonFunctions.PBReferenceQuery(VariableHandler.getPbNumber(),
+								commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN")), MatchedAmt);
+				System.out.println(commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN"));
+				logs.logging("INFO", "MatchedAmt Details Matched With DataBase Values");
+
+//				salesOrderFunctions
+//						.verifyAssertionBothValues(dbCommonFunctions.PBReferenceQuery(VariableHandler.getPbNumber(),
+//								commonFunc.getDataFromTestDataSheet("PBDBREFGRNAMTCOLUMN")), GRNAmt);
+//				logs.logging("INFO", "GRNAmt Details Matched With DataBase Values");
+
+				salesOrderFunctions
+						.verifyAssertionBothValues(
+								dbCommonFunctions.PBReferenceQuery(VariableHandler.getPbNumber(),
+										commonFunc.getDataFromTestDataSheet("PBDBREFDEVIATIONAMTCOLUMN")),
+								deviationAmt);
+				logs.logging("INFO", "PBUnitcost Details Matched With DataBase Values");
+				commonFunc.hardWait(2000);
+			}
+		}
+	}
+
+	/**
+	 * Registered Supplier with Local GST- Against Subcontract With Deviation and
+	 * Expenses Account And adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAgainstSubcontractWithDeviationandExpensesAccountAndadjustment() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		purchaseBillsFunc.verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(
+				commonFunc.getDataFromTestDataSheet("BankName"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				webDB.getDataFromProperties("BankRecptGlAcct"));
+		purchaseBillsFunc.addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		BPFunc.clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("PurchaseBillDeviationandExp"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		purchaseBillsFunc.ClickSaveButton();
+		purchaseBillsFunc.loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyCreateJournalAndVerifyDeviationAndExpAmtAndPost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * This Method used For Registered Supplier with Local GST- Against Subcontract
+	 * Without Deviation and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAgainstSubcontractWithoutDeviationandExpensesAccount() {
+		SubcontractFunc.directSubcontractorderToGRNTypePRWithTDS();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		PurBillFunc.verifyCreatePost();
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Navigate To Reference Tab And Validating RCM Flag
+	 * 
+	 * @author Vimal - RMITS
+	 * @param LocationId
+	 * @param SupplierName
+	 * @param POType
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean VerifyToClickReferenceFieldAndClickRcmFlag(String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.ReferenceTab, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Grn Is Displayed");
+			webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.ReferenceTab, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.AllowRcmflag, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "RCM Flag Displayed");
+
+				webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.AllowRcmflag, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.OverAllSaveBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "RCMt Flag Successfully Clicked");
+					validAllowRcmCheckToWriteExcelValue(SheetName);
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.OverAllSaveBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.InvoiceLineTab, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "OverAll Save Button Successfully Clicked");
+
+						webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.InvoiceLineTab, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.PBAddLine, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Invoice Tab Successfully Clicked");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+		return flag;
+	}
+
+	/**
+	 * Navigate To Reference Tab And Validating IGST Flag
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public boolean VerifyToClickReferenceFieldAndClickIGSTFlag(String SheetName) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.ReferenceTab, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Pending Grn Is Displayed");
+			webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.ReferenceTab, ElementType.Xpath);
+			flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.AllowIgstFlag, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "RCM Flag Displayed");
+
+				webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.AllowIgstFlag, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.OverAllSaveBtn, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "IGST Flag Successfully Clicked");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					validAllowIGSTCheckToWriteExcelValue(SheetName);
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.OverAllSaveBtn, ElementType.Xpath);
+					commonFunc.checkRefreshCellsDisappear();
+					flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.InvoiceLineTab, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "OverAll Save Button Successfully Clicked");
+						webDB.clickAnElement(PurchaseBillsLocatorsGetDocument.InvoiceLineTab, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.PBAddLine, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Invoice Tab Successfully Clicked");
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+		return flag;
+	}
+
+	/**
+	 * Valid Allow RCM Check To Write Excel Value
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void validAllowRcmCheckToWriteExcelValue(String SheetName) {
+		flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.AllowRcmflag, ElementType.Xpath);
+		if (flag) {
+			boolean isIgstChecked = webDB.isElementSelected(PurchaseBillsLocatorsGetDocument.AllowRCMFlagEnabled,
+					ElementType.Xpath);
+			if (isIgstChecked) {
+				logs.logging("INFO", "IGST checkbox is checked");
+				VerifyToWriteExcelValueInNumberRcmField(SheetName);
+				logs.logging("INFO", "SucessFully Written");
+			} else {
+				logs.logging("INFO", "Tax Amount" + "Not Checked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Valid Allow IGST Check To Write Excel Value
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void validAllowIGSTCheckToWriteExcelValue(String SheetName) {
+		flag = webDB.waitForElement(PurchaseBillsLocatorsGetDocument.AllowIgstFlag, ElementType.Xpath);
+		if (flag) {
+			boolean isIgstChecked = webDB.isElementSelected(PurchaseBillsLocatorsGetDocument.AllowIgstFlagEnabled,
+					ElementType.Xpath);
+			if (isIgstChecked) {
+				logs.logging("INFO", "IGST checkbox is checked");
+				VerifyToWriteExcelValueInNumberRcmField(SheetName);
+				logs.logging("INFO", "SucessFully Written");
+			} else {
+				logs.logging("INFO", "Tax Amount" + "Not Checked");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify To Write Excel Value In Number Rcm Field
+	 * 
+	 * @author Vimal - RMITS
+	 */
+
+	public void VerifyToWriteExcelValueInNumberRcmField(String SheetName) {
+//		ExcelUtils excelUtils = new ExcelUtils();
+//		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+//				+ "DBSales.xlsx";
+//		excelUtils.writeDataInExcel(Filepath, SheetName, 1, 3, "2");
+		String filePath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBSales.xlsx";
+
+		writeDataAndForceExcelRecalc(filePath, SheetName, 1, 3, 2);
+	}
+
+	/**
+	 * Verify Create Direct PO Adding Parameter
+	 * 
+	 * @author PremKumar.K RMIT
+	 * @param LocationId
+	 * @param SupplierName
+	 * @param POType
+	 * @throws Exception
+	 */
+
+	public void writeDataAndForceExcelRecalc(String filePath, String sheetName, int rowNum, int colNum, double value) {
+		try {
+			FileInputStream fis = new FileInputStream(filePath);
+			Workbook workbook = WorkbookFactory.create(fis);
+			Sheet sheet = workbook.getSheet(sheetName);
+
+			Row row = sheet.getRow(rowNum);
+			if (row == null)
+				row = sheet.createRow(rowNum);
+
+			Cell cell = row.getCell(colNum);
+			if (cell == null)
+				cell = row.createCell(colNum);
+
+			cell.setCellValue(value);
+
+			workbook.setForceFormulaRecalculation(true);
+
+			fis.close();
+
+			FileOutputStream fos = new FileOutputStream(filePath);
+			workbook.write(fos);
+			fos.close();
+			workbook.close();
+
+			System.out.println("Successfully written and marked for recalculation");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Registered Supplier with Local GST (Allow IGST tax) - Against Subcontract
+	 * With Deviation
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithDeviation() {
+		SubcontractFunc.createProductionOrderFromPendingSubcontractorderLocalRegistered();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickIGSTFlag(webDB.getDataFromProperties("DevTaxCalculation"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("DevTaxCalculation"));
+		verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(
+				webDB.getDataFromProperties("DevTaxCalculation"));
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Registered Supplier with Local GST (Allow IGST tax) - Against Subcontract
+	 * With Deviation and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithDeviationandExpensesAccount() {
+		SubcontractFunc.createProductionOrderFromPendingSubcontractorderLocalRegistered();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickIGSTFlag(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(
+				webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Registered Supplier with Local GST (Allow IGST tax) - Against Subcontract
+	 * With Deviation and Expenses Account And Adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithDeviationandExpensesAccountAndAdjustment() {
+		SubcontractFunc.createProductionOrderFromPendingSubcontractorderLocalRegistered();
+		purchaseBillsFunc.verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(
+				commonFunc.getDataFromTestDataSheet("BankName"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				webDB.getDataFromProperties("BankRecptGlAcct"));
+		purchaseBillsFunc.addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		BPFunc.clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickIGSTFlag(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetailsChangingQtyandUnitcost(commonFunc.getDataFromTestDataSheet("TDSValue"),
+				commonFunc.getDataFromTestDataSheet("PBProcessQtyInput"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		purchaseBillsFunc.ClickSaveButton();
+		purchaseBillsFunc.loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(
+				webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Registered Supplier with Local GST (Allow IGST tax) - Against Subcontract
+	 * Without Deviation
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithoutDeviation() {
+		SubcontractFunc.createProductionOrderFromPendingSubcontractorderLocalRegistered();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickIGSTFlag(webDB.getDataFromProperties("DevTaxCalculation"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("DevTaxCalculation"));
+		verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(
+				webDB.getDataFromProperties("DevTaxCalculation"));
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+
+	/**
+	 * Registered Supplier with Local GST (Allow IGST tax) - Against Subcontract
+	 * Without Deviation and Expenses Account
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithoutDeviationandExpensesAccount() {
+		SubcontractFunc.createProductionOrderFromPendingSubcontractorderLocalRegistered();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickIGSTFlag(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(
+				webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+	}
+	/**
+	 * Registered Supplier with Local GST (Allow IGST tax) - Against Subcontract
+	 * Without Deviation and Expenses Account And Adjustment
+	 * 
+	 * @author Vimal - RMITS
+	 */
+	public void registeredSupplierwithLocalGSTAllowIGSTtaxAgainstSubcontractWithoutDeviationandExpensesAccountAndAdjustment() {
+		SubcontractFunc.createProductionOrderFromPendingSubcontractorderLocalRegistered();
+		purchaseBillsFunc.verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(
+				commonFunc.getDataFromTestDataSheet("BankName"), commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
+				webDB.getDataFromProperties("BankRecptGlAcct"));
+		purchaseBillsFunc.addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		BPFunc.clickPostButton();
+		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+				commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingSCOPurchaseBill(VariableHandler.getScoGrnNumber(),
+				commonFunc.getDataFromTestDataSheet("TDSValue"));
+		VerifyToClickReferenceFieldAndClickIGSTFlag(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		clickingReferenceTabAndValidating();
+		clickingLinewiseProcessDetails(commonFunc.getDataFromTestDataSheet("TDSValue"));
+		getMatchedAmtAndGRNAmtandWriteInExcelSheet(webDB.getDataFromProperties("DevandExpTaxCalculation"));
+		verifyAddExpenseTypeUnitcostinExcelSheet(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
+				commonFunc.getDataFromTestDataSheet("ExpenseType"));
+		purchaseBillsFunc.ClickSaveButton();
+		purchaseBillsFunc.loadAdjustmentForSupplierToAddedInParty(VariableHandler.getBankPaymentOrReceiptDocNumber());
+		verifyCreateJournalAndVerifyDeviationAmtWithTaxCalculationAndPost(
+				webDB.getDataFromProperties("DevandExpTaxCalculation"));
 		PurBillFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
 }

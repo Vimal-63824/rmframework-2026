@@ -511,7 +511,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String GE_Pend_Curr_Qty_Column = "//*[@id='LS_GE_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[7]";
 	/** @Locator XPATH */
-	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C3875803672016244488']";
+	public static final String GE_Pend_Entering_Curr_Qty = "//input[@id='C3878186380370116827']";
 	/** @Locator XPATH */
 	public static final String GE_LS_Iframe = "//iframe[@title='Lot /Serial']";
 	/** @Locator XPATH */
@@ -765,7 +765,7 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String SI_Header_Date = "//button[@class='a-Button a-DatePicker--today']";
 	/** @Locator XPATH */
-	public static final String SI_DocNo_DrillDown = "//*[@id=\"16482689176864134893_orig\"]/tbody/tr[2]/td[12]/a";
+	public static final String SI_DocNo_DrillDown = "//*[@id=\"16484711568745633625_orig\"]/tbody/tr[2]/td[12]/a";
 	/** @Locator XPATH */
 	public static final String SI_Location_Field = "//INPUT[@data-testid='P1915131343_SIHD_PLNT_LOC_ID']";
 	/** @Locator XPATH */

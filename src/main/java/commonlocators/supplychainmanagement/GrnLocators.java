@@ -148,7 +148,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static String GrnHeaderRadioBtn = "//label[contains(text(),'Header')]";
 	/** @locatorType Xpath */
-	public static String GrnDocumentStatus = "//table[@id='12958977723041226147']/tbody/tr[2]/td[17]";
+	public static String GrnDocumentStatus = "//table[@id='12961277905512999678']/tbody/tr[2]/td[17]";
 	/** @locatorType Xpath */
 	public static String GrnChargesBtn = "//button[@data-testid='Charges']";
 	/** @locatorType Xpath */
@@ -299,7 +299,7 @@ public class GrnLocators {
 	public static final String GrnLineWiseDeleteButton = "//span[@title='Delete']";
 	// span[@title="Delete"]
 	/** @locatorType Xpath */
-	public static final String GrnLineWiseStatus = "//table[@id='8494751782664131493_orig']/tbody[1]/tr[2]/td[92]";
+	public static final String GrnLineWiseStatus = "//table[@id='8497051965135905024_orig']/tbody[1]/tr[2]/td[92]";
 	/** @locatorType Xpath */
 	public static final String GrnDocumentwiseCancelButton = "//button[@data-testid='Cancel_GRN']";
 	/** @locatorType Xpath */

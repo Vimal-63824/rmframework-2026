@@ -10230,4 +10230,272 @@ public class GrnPageFunctions {
 		}
 
 	}
+
+	/**
+	 * This Method to handle Create the GRN Document For Stock Transfer Type With
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForInterstateSupplier(
+			String SheetName) throws Exception {
+		verifyStockQtyAndCostForQualityWh(SheetName);
+		verifyStockQtyAndCostForSourceWH(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSameStockandSupplierUomWithAndWithoutInspectionForInterstateSupplier(
+				SheetName);
+		verifyToStockTransferSaleOrderDocumentPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentForLocalSupplier(commonFunc.getDataFromTestDataSheet("StockTransferInterURPK"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		createGrnDocumentforwithandwithoutInspectionStockTransferType(SheetName);
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Method to handle Create the GRN Document For Stock Transfer Type With
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplierWithSezUnit(
+			String SheetName) throws Exception {
+		verifyStockQtyAndCostForQualityWh(SheetName);
+		verifyStockQtyAndCostForSourceWH(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSameStockandSupplierUomWithAndWithoutInspectionForLocalSupplierWithSezUnit(
+				SheetName);
+		verifyToStockTransferSaleOrderDocumentPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentForLocalSupplierWithSezUnit(
+				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplierSezUnitSIPK"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		createGrnDocumentforwithandwithoutInspectionStockTransferType(SheetName);
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		assertTrue(flag);
+
+	}
+
+	/**
+	 * This Method to handle verify To Post Sales Invoice Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyToPostSalesInvoiceDocumentForLocalSupplierWithSezUnit(String InvoicePrefix) {
+		saleInvoiceFunc.verifyAllocLSbatch();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		saleInvoiceFunc.verifyLUTNO(commonFunc.getDataFromTestDataSheet("LUT_No_PK"));
+		saleInvoiceFunc.verifyHeaderTickIcon();
+		saleInvoiceFunc.verifyPickButton();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyInvoicePfxForStockTransferDocument(InvoicePrefix);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		verifyCreateInvoiceNoForStockTransferSupplier();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(2000);
+		saleInvoiceFunc.clickPostButton();
+//		saleInvoiceFunc.forwardForApproval();
+//		commonFunc.logoutUser();
+	}
+	/**
+	 * This Method to handle Create the GRN Document For Stock Transfer Type With
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void PoToGrnStockTransferRateContractUnregisterSupplierSameStockAndSupplierUomWithAndWithoutInspectionForLocalSupplierWithLocalFright(
+			String SheetName) throws Exception {
+		verifyStockQtyAndCostForQualityWh(SheetName);
+		verifyStockQtyAndCostForSourceWH(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSameStockandSupplierUomWithAndWithoutInspectionForLocalSupplierWithLocalFright(
+				SheetName);
+		verifyToStockTransferSaleOrderDocumentPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentForLocalSupplier(
+				commonFunc.getDataFromTestDataSheet("StockTransferLocalSupplierWFSIPK"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		createGrnDocumentforwithandwithoutInspectionStockTransferType(SheetName);
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		assertTrue(flag);
+
+	}
+	/**
+	 * This Method to handle Create the GRN Document For Stock Transfer Type With
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void PoToGrnStockTransferRateContractSupplierForRegisterAndUnregister(String SheetName) throws Exception {
+		verifyStockQtyAndCostForQualityWh(SheetName);
+		verifyStockQtyAndCostForSourceWH(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSuppliers(SheetName,
+				commonFunc.getDataFromTestDataSheet("L63PK"), commonFunc.getDataFromTestDataSheet("STLURSPK"),
+				commonFunc.getDataFromTestDataSheet("StockTransferValue"));
+		verifyToStockTransferSaleOrderDocumentPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentForLocalSupplier(commonFunc.getDataFromTestDataSheet("STSIPK"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		createGrnDocumentforwithandwithoutInspectionStockTransferType(SheetName);
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		assertTrue(flag);
+
+	}
+	/**
+	 * This Method to handle Create the GRN Document For Stock Transfer Type With
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void PoToGrnStockTransferRateContractSupplierForRegisterAndUnregisterSezUnit(String SheetName)
+			throws Exception {
+		verifyStockQtyAndCostForQualityWh(SheetName);
+		verifyStockQtyAndCostForSourceWH(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSuppliers(SheetName,
+				commonFunc.getDataFromTestDataSheet("L65PK"), commonFunc.getDataFromTestDataSheet("STLURSEZPK"),
+				commonFunc.getDataFromTestDataSheet("StockTransferValue"));
+		verifyToStockTransferSaleOrderDocumentPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentForLocalSupplierWithSezUnit(
+				commonFunc.getDataFromTestDataSheet("StockTransferLSSezUnitSIPK"));
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		createGrnDocumentforwithandwithoutInspectionStockTransferType(SheetName);
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		assertTrue(flag);
+
+	}
+	/**
+	 * This Method to handle Create the GRN Document For Stock Transfer Type With
+	 * Rate Contract Item
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void PoToGrnStockTransferRateContractSupplierForRegisterAndUnregisterForCommon(String SheetName,
+			String LocationId, String SupplierName, String POType,String SalesInvoicePfx) throws Exception {
+		verifyStockQtyAndCostForQualityWh(SheetName);
+		verifyStockQtyAndCostForSourceWH(SheetName);
+		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSuppliers(SheetName, LocationId, SupplierName,
+				POType);
+//		commonFunc.getDataFromTestDataSheet("L63PK"), commonFunc.getDataFromTestDataSheet("STLURSPK"),
+//		commonFunc.getDataFromTestDataSheet("StockTransferValue")
+		verifyToStockTransferSaleOrderDocumentPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSalesOrdertDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyToPostStockTransferDocumentForSalesInvoice();
+		selectAllPendingSOAndClickCreateSIForHodUser();
+		verifyToPostSalesInvoiceDocumentForLocalSupplier(SalesInvoicePfx);
+		//commonFunc.getDataFromTestDataSheet("STSIPK")
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		createGrnDocumentforwithandwithoutInspectionStockTransferType(SheetName);
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		verifyExpectedStockQtAndCostyForQualityWH(SheetName);
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForStockTransferType();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
+		assertTrue(flag);
+
+	}
 }
