@@ -1,4 +1,5 @@
 package commonlocators.supplychainmanagement;
+
 /**
  * @author Sakthi-GWL, Deepan-GWL
  * @company Galaxy Weblinks December 23, 2025
@@ -28,13 +29,13 @@ public class SupplierScheduleOrderLocators {
 	/** @locatorType XPATH */
 	public static final String HeaderPostButton = "//button[@data-testid='Post']";
 	/** @locatorType XPATH */
-	public static final String CheckBox = "//table[@id='2828593042646703440_orig']/tbody/tr/td[14]/input";
+	public static final String CheckBox = "//table[@id='3545393739794543618_orig']/tbody/tr/td[14]/input";
 	/** @locatorType XPATH */
 	public static final String SSODocNumber = "//input[@data-testid='P1615131028_SSHD_DOC_NO']";
 	/** @locatorType XPATH */
 	public static final String AddSSOButton = "//button[@data-testid='Add']";
 	/** @locatorType XPATH */
-	public static final String SSOLovButton = "//button[contains(@id,'DOC_NO_lov_btn')]";
+	public static final String SSOLovButton = "//button[contains(@id,'PO_SSO_NO_lov_btn')]";
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String SSONumber) {

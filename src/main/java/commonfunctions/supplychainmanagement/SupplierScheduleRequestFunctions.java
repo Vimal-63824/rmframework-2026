@@ -286,7 +286,7 @@ public class SupplierScheduleRequestFunctions {
 				webDB.clickAnElement(PurchaseOrderPageLocators.OkButtonForward, ElementType.Xpath);
 				logs.logging("INFO", "Ok Button Is Clicked");
 				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(CommonUiLocators.SSRAddButton, ElementType.Xpath);
+				flag = webDB.waitForElement(CommonUiLocators.PurchaseRequestAddIcon, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Verified Navigate To PO Home Page");
 				}

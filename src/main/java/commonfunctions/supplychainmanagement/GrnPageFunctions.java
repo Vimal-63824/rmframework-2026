@@ -3587,11 +3587,33 @@ public class GrnPageFunctions {
 	 */
 	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQty()
 			throws Exception {
-		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(
-				webDB.getDataFromProperties("ToleranceQty"));
+		String Item = null;
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"),
+				webDB.getDataFromProperties("PoToMRVWoQSUomRCSheet"), webDB.getDataFromProperties("PoToMrvSheet2"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENoAndItemWise(Item);
+
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+
 		clickPendingPoAndSearchPoNoAndItemWise();
 		verifyToEnteredToleranceQty();
 		clickSelectAllButtonForExcessQty();
@@ -10336,6 +10358,7 @@ public class GrnPageFunctions {
 //		saleInvoiceFunc.forwardForApproval();
 //		commonFunc.logoutUser();
 	}
+
 	/**
 	 * This Method to handle Create the GRN Document For Stock Transfer Type With
 	 * Rate Contract Item
@@ -10376,6 +10399,7 @@ public class GrnPageFunctions {
 		assertTrue(flag);
 
 	}
+
 	/**
 	 * This Method to handle Create the GRN Document For Stock Transfer Type With
 	 * Rate Contract Item
@@ -10415,6 +10439,7 @@ public class GrnPageFunctions {
 		assertTrue(flag);
 
 	}
+
 	/**
 	 * This Method to handle Create the GRN Document For Stock Transfer Type With
 	 * Rate Contract Item
@@ -10456,6 +10481,7 @@ public class GrnPageFunctions {
 		assertTrue(flag);
 
 	}
+
 	/**
 	 * This Method to handle Create the GRN Document For Stock Transfer Type With
 	 * Rate Contract Item
@@ -10464,7 +10490,7 @@ public class GrnPageFunctions {
 	 * @throws Exception
 	 */
 	public void PoToGrnStockTransferRateContractSupplierForRegisterAndUnregisterForCommon(String SheetName,
-			String LocationId, String SupplierName, String POType,String SalesInvoicePfx) throws Exception {
+			String LocationId, String SupplierName, String POType, String SalesInvoicePfx) throws Exception {
 		verifyStockQtyAndCostForQualityWh(SheetName);
 		verifyStockQtyAndCostForSourceWH(SheetName);
 		POfunc.verifyToCreatePoForStockTransferRateContractUnregisterSuppliers(SheetName, LocationId, SupplierName,
@@ -10480,7 +10506,7 @@ public class GrnPageFunctions {
 		verifyToPostStockTransferDocumentForSalesInvoice();
 		selectAllPendingSOAndClickCreateSIForHodUser();
 		verifyToPostSalesInvoiceDocumentForLocalSupplier(SalesInvoicePfx);
-		//commonFunc.getDataFromTestDataSheet("STSIPK")
+		// commonFunc.getDataFromTestDataSheet("STSIPK")
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getSIdocno(),
 				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
@@ -10497,5 +10523,221 @@ public class GrnPageFunctions {
 		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(SheetName);
 		assertTrue(flag);
 
+	}
+
+	/**
+	 * Verify Add Line In Grn
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyAddLineInGRN() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForPriceListItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"),
+				webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectFirstGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+		verifyClickAddButton();
+		String ItemName = verifyItemName();
+		clickSelectFirstGEButton();
+		createGrnWithGeOneButton();
+		verifyItemNameInGrn(ItemName);
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		lotSerialQtyApportion();
+		verifyImportLrBillNumber();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToMRVWOIpDUomPlImpSheet"), webDB.getDataFromProperties("PoToMrvSheet"));
+	}
+
+	/**
+	 * This Methods Is Used To Click Fully selected
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void clickSelectFirstGEButton() {
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+			List<WebElement> CheckBox = webDB.getDriver()
+					.findElements(By.xpath(PurchaseOrderPageLocators.SelectFirstCheckBox));
+			for (WebElement element : CheckBox) {
+				try {
+					if (element.isDisplayed()) {
+						if (!element.isSelected()) {
+							element.click();
+							flag = true;
+							break;
+						} else {
+							element.click();
+							Thread.sleep(3000);
+							clickSelectFirstGEButton();
+						}
+					}
+				} catch (Exception e) {
+				}
+			}
+			webDB.switchToDefaultContent();
+			flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", " Document Selected And Create GRN Button Shown");
+			} else {
+				logs.logging("INFO", " Document Not Selected And Create GRN Button Not Shown");
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Click Add Button
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyClickAddButton() {
+		flag = webDB.waitForElement(GrnLocators.AddLineButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.AddLineButton, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used After select the document to create GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void createGrnWithGeOneButton() {
+		flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.CreateGeOneButton, ElementType.Xpath);
+			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.moveToElement(GrnLocators.CreateGeOneButton, ElementType.Xpath);
+				webDB.clickAnElement(GrnLocators.CreateGeOneButton, ElementType.Xpath);
+				logs.logging("INFO", "GRN Document Created");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GrnLocators.OverAllSave, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Supplier Bill Number And DC Field Shown");
+				} else {
+					logs.logging("INFO", "Supplier Bill Number And DC Field Not Shown");
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Store Item Name
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public String verifyItemName() {
+		String ItemName = null;
+		commonFunc.checkRefreshCellsDisappear();
+		webDB.switchToDefaultContent();
+		flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+			ItemName = webDB.getTextFromElement(PurchaseOrderPageLocators.SelectFirstItem, ElementType.Xpath);
+		}
+		assertTrue(flag);
+		return ItemName;
+	}
+
+	/**
+	 * This Methods Is Used To verify Item Name
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyItemNameInGrn(String ExpItemName) {
+		flag = webDB.waitForElement(GrnLocators.GrnSecondItem, ElementType.Xpath);
+		if (flag) {
+			String ItemName = webDB.getTextFromElement(GrnLocators.GrnSecondItem, ElementType.Xpath);
+			flag = ItemName.equals(ExpItemName);
+			System.out.println("item " + ItemName + " expitem " + ExpItemName);
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Click Pending PO and Search PO Number in Header
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+
+	public void clickPendingGEAndSearchGENoAndItemWise(String Item) {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			logs.logging("INFO", "Pending Button Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.PendingGE, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.PendingGE, ElementType.Xpath);
+				logs.logging("INFO", "Pending PO Button Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.searchAndSelectValueInFilters(GrnLocators.FindGELovButton,
+							VariableHandler.getGateEntryNumber());
+					logs.logging("INFO", "PO Number Succesfully search and Selected");
+					webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+					commonFunc.hardWait(2000);
+					commonFunc.searchAndSelectValueInFilters(GrnLocators.PendingPOItemWiseSearch, Item);
+					webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+
+					flag = webDB.waitForElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
+						logs.logging("INFO", "Document Searched successfully");
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Able Select the Document");
+						} else {
+							logs.logging("INFO", "Not Able Select the Document");
+						}
+					}
+
+				}
+			}
+		}
+		assertTrue(flag);
 	}
 }
