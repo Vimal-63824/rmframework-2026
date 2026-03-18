@@ -29,7 +29,7 @@ public class SupplierScheduleOrderLocators {
 	/** @locatorType XPATH */
 	public static final String HeaderPostButton = "//button[@data-testid='Post']";
 	/** @locatorType XPATH */
-	public static final String CheckBox = "//table[@id='3545393739794543618_orig']/tbody/tr/td[14]/input";
+	public static final String CheckBox = "//table[@id='3547693922266317149_orig']/tbody/tr/td[14]/input";
 	/** @locatorType XPATH */
 	public static final String SSODocNumber = "//input[@data-testid='P1615131028_SSHD_DOC_NO']";
 	/** @locatorType XPATH */
