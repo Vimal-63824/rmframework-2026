@@ -15,7 +15,7 @@ public class PurchaseBillsLocators {
 	public static final String SearchButton = "//button[@id='B1874148864248723410']";
 
 	/** @locatorType Xpath */
-	public static final String CheckBox= "//*[@id='5194460798987063046']/tbody/tr[2]/td[13]";
+	public static final String CheckBox= "//*[@id='5414119390218282305']/tbody/tr[2]/td[13]";
 	
 
 	/** @locatorType Xpath */
@@ -117,7 +117,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String WfOkButtton = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
-	public static final String gstClafField = "//*[@id='report_3835175030289496754_catch']/dl/dd[12]";
+	public static final String gstClafField = "//*[@id='report_4054833621520716013_catch']/dl/dd[12]";
 	/** @locatorType Xpath */
 	public static final String SideScroll = "//button[@id='t_Button_rightControlButton']";
 	/** @locatorType Xpath */
@@ -229,7 +229,7 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String SearchButtonGetDoc = "//button[@data-testid='SearchPO']";
 	/** @locatorType Xpath */
-	public static final String CheckBoxPendingPo = "//table[@id='5194460798987063046']/tbody/tr/td[13]";
+	public static final String CheckBoxPendingPo = "//*[@id='5414119390218282305']/tbody/tr[2]/td[13]";
 	/** @locatorType Xpath */
 	public static final String OkButtonPendingPO = "//button[@data-testid='OK']";
 	/** @locatorType Xpath */
@@ -285,13 +285,13 @@ public class PurchaseBillsLocators {
 	/** @locatorType Xpath */
 	public static final String ViewButtonFrame = "//*[@id='apex_dialog_1']/iframe" ;
 	/** @locatorType Xpath */
-	public static final String AddButtonViewTap = "//button[@title='Add']";
+	public static final String AddButtonViewTap = "//button[@id='B2717316908679773315']";
 	/** @locatorType Xpath */
-	public static final String BillDocNo = "//input[@id='C2702639806405966555']";
+	public static final String BillDocNo = "//input[@id='C2704515064031309570']";
 	/** @locatorType Xpath */
-	public static final String PayAmt = "//input[@id='C2702633833287966548']";
+	public static final String PayAmt = "//input[@id='C2704509090913309563']";
 	/** @locatorType Xpath */
-	public static final String SaveButtonView = "//button[@title='Save']";
+	public static final String SaveButtonView = "//button[@id='B2717316769741773314']";
 	/** @locatorType Xpath */
 	public static final String CloseButton = "//*[@id='t_PageBody']/div[10]/div[1]/button" ;
 	/** @locatorType Xpath */
