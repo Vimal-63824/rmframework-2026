@@ -788,6 +788,7 @@ public class DirectGrnPageFunctions {
 	public void inputLotNumber(String ITEM_NAME, String LOT_NUMBER) {
 		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
 			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
 			if (flag) {

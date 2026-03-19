@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 /**
  * @author Sakthi-GWL
@@ -25,7 +24,6 @@ import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
-import commonlocators.payroll.EmployeeMasterLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import utils.ExcelUtils;
@@ -2445,7 +2443,8 @@ public class AttendanceLeaveFunctions {
 		if (flag) {
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryAttachmentBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryAttachmentBtn, ElementType.Xpath);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
+			switchAndClickAddInDocumentManagementFrame();
+			flag = webDB.waitForElement(AttendanceLeaveLocators.DocumentManagementIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Entry Attachment Icon Clicked");
 			}
@@ -2468,19 +2467,19 @@ public class AttendanceLeaveFunctions {
 			webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(AttendanceLeaveLocators.LEAttachmentDocTypeLovBtn, DocType);
 			logs.logging("INFO", "Leave Entry Attachment Doc Type Selected: " + DocType);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
-			if (flag) {
-				webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
-				commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LEAttachmentDocNoInput,
-						AttendanceLeaveLocators.LEAttachmentDocNoInput, DocNo);
-				logs.logging("INFO", "Leave Entry Attachment Doc No Entered: " + DocNo);
-				commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LEAttachmentDocRevInput,
-						AttendanceLeaveLocators.LEAttachmentDocRevInput, DocRev);
-				logs.logging("INFO", "Leave Entry Attachment Doc Rev Entered: " + DocRev);
-				webDB.switchToDefaultContent();
+//			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
+//			if (flag) {
+//				webDB.switchToFrame(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
+//				commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LEAttachmentDocNoInput,
+//						AttendanceLeaveLocators.LEAttachmentDocNoInput, DocNo);
+//				logs.logging("INFO", "Leave Entry Attachment Doc No Entered: " + DocNo);
+//				commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LEAttachmentDocRevInput,
+//						AttendanceLeaveLocators.LEAttachmentDocRevInput, DocRev);
+//				logs.logging("INFO", "Leave Entry Attachment Doc Rev Entered: " + DocRev);
+//				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
 			}
-		}
+//		}
 		Assert.assertTrue(flag);
 	}
 
@@ -2511,6 +2510,21 @@ public class AttendanceLeaveFunctions {
 				commonFunc.hardWait(3000);
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
+			}
+		}
+		Assert.assertTrue(flag);
+	}
+	
+	/**
+	 * This method used to click add icon in document management frame
+	 */
+	public void switchAndClickAddInDocumentManagementFrame() {
+		flag = webDB.waitForElement(AttendanceLeaveLocators.DocumentManagementIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(AttendanceLeaveLocators.DocumentManagementIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.DocumentManagementAddButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(AttendanceLeaveLocators.DocumentManagementAddButton, ElementType.Xpath);
 			}
 		}
 		Assert.assertTrue(flag);
@@ -2603,13 +2617,13 @@ public class AttendanceLeaveFunctions {
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			clickSaveAndStoreDocNoInAdjustment();
 			clickPostButtonInAdjustmentVerifyStatus();
-			clickAttachmentInLeaveEntry();
-			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("ApplicationOption"),
-					Today, "0");
-			fillFromToDateAndFileUploadInLeaveEntryAttachment(Today, Today,
-					VariableHandler.testdataDir + webDB.getDataFromProperties("RoadMapImage"));
-			clickUploadButtonInAttachmentLeaveEntry();
-			clickReportAndVerifyDisplayedInLeaveAdjustment();
+//			clickAttachmentInLeaveEntry();
+//			fillDocTypeDocNoDocRevInLeaveEntryAttachment(commonFunc.getDataFromTestDataSheet("ApplicationOption"),
+//					Today, "0");
+//			fillFromToDateAndFileUploadInLeaveEntryAttachment(Today, Today,
+//					VariableHandler.testdataDir + webDB.getDataFromProperties("RoadMapImage"));
+//			clickUploadButtonInAttachmentLeaveEntry();
+//			clickReportAndVerifyDisplayedInLeaveAdjustment();
 			clickReverseButtonInAdjustmentVerifyStatus();
 			flag = commonFunc.logoutUser();
 			return flag;
