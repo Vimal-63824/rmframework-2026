@@ -685,9 +685,9 @@ public class SalesInvoiceLocators {
 	/** @Locator XPATH */
 	public static final String RWC_ToDate_Next = "//td[@class='is-current']/following::td[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Today = "//*[@id=\"C15884247954519741957_dialog\"]/div/div[3]/div[2]/button[1]";
+	public static final String RWC_ToDate_Today = "//*[@id=\"C15886462193726423094_dialog\"]/div/div[3]/div[2]/button[1]";
 	/** @Locator XPATH */
-	public static final String RWC_ToDate_Done = "//*[@id=\"C15884247954519741957_dialog\"]/div/div[3]/div[2]/button[2]";
+	public static final String RWC_ToDate_Done = "//*[@id=\"C15886462193726423094_dialog\"]/div/div[3]/div[2]/button[2]";
 	/** @Locator XPATH */
 	public static final String RWC_Line_save_Icon = "//button[@data-testid='RWC_Res_Save_btn']";
 	/** @Locator XPATH */
