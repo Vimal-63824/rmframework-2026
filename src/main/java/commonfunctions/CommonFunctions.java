@@ -2437,7 +2437,7 @@ public class CommonFunctions {
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
-			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
+			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName.toUpperCase(), ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
 			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
@@ -3016,7 +3016,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("GeneralExpense"),
 				AttendanceLeaveLocators.GeneralExpFindAddButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Resignation Request
 	 * 
@@ -3026,7 +3026,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("ResignationRequest"),
 				AttendanceLeaveLocators.ResigRequestFindAddButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Resignation Request
 	 * 
@@ -3257,7 +3257,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("SubcontractCSScreen"),
 				CommonUiLocators.SubcontractCSFindAddIcon);
 	}
-	
+
 	/**
 	 * Navigate To Financial Payment Receipt
 	 * 
