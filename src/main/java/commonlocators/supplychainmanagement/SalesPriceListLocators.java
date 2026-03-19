@@ -31,7 +31,7 @@ public class SalesPriceListLocators {
 	/** @locatorType Xpath */
 	public static final String EffiticeFrom = "//input[@id='C8574962564039875189_input']";
 	/** @locatorType Xpath */
-	public static final String EffiticeTo = "//input[@id='C8574962564039875189_input']";
+	public static final String EffiticeTo = "//input[@id='C8574963592556875189_input']";
 	/** @locatorType Xpath */
 	public static final String SalesPriceFields(int i) {
 		return "//*[@id='SO_ig_grid_vc']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[11] ";
