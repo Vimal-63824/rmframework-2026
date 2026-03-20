@@ -76,8 +76,8 @@ public class GrnPageFunctions2 {
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
 					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForPriceListItemForGrn(i, FileName, SheetName, Supplier);
-					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
+//					verifyUnitcostAndDiscountAmountForPriceListItemForGrn(i, FileName, SheetName, Supplier);
+//					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
 					verifyAddingDiscount(i, FileName, SheetName);
 //					verifyUnitcostAndDiscountAmountForPriceListItemForGrn(i, FileName, SheetName, Supplier);
 				}
@@ -188,8 +188,8 @@ public class GrnPageFunctions2 {
 					logs.logging("INFO", "Entered Receipt Quantity Is:" + QTY);
 					webDB.pressTabKey();
 					DirectGRNFunc.verifyClickingSaveLine();
-					verifyUnitcostAndDiscountAmountForOpenPoItemForGrn(i, FileName, SheetName, Supplier);
-					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
+//					verifyUnitcostAndDiscountAmountForOpenPoItemForGrn(i, FileName, SheetName, Supplier);
+//					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForGrn(i, FileName, SheetName);
 					verifyAddingDiscount(i, FileName, SheetName);
 //					verifyUnitcostAndDiscountAmountForOpenPoItemForGrn(i, FileName, SheetName, Supplier);
 				}

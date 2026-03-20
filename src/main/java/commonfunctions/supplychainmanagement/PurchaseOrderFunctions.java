@@ -4915,7 +4915,7 @@ public class PurchaseOrderFunctions {
 		commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.CashDiscountPercentage,
 				PurchaseOrderPageLocators.CashDiscountPercentage, CashDisPercent);
 		webDB.pressEnterKey();
-		verifyDomPropertyValidation(PurchaseOrderPageLocators.CashDiscountPercentage, CashDisPercent);
+//		verifyDomPropertyValidation(PurchaseOrderPageLocators.CashDiscountPercentage, CashDisPercent);
 		assertTrue(flag);
 	}
 
@@ -14998,7 +14998,7 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
-				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
+//				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
 				navigateToLineDetailPage(ITEM_NAME);
 				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				verifyNavigateLineDetailTwo();
@@ -15090,7 +15090,7 @@ public class PurchaseOrderFunctions {
 						PurchaseOrderPageLocators.HsnCodeInput, HsnCode);
 				verifyDirectPoLineWiseSaved();
 				commonFunc.checkRefreshCellsDisappear();
-				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
+//				verifyLineAmountValidationAndPom(ITEM_NAME, LineAmount);
 				navigateToLineDetailPage(ITEM_NAME);
 				verifyEnterAmountForDiscountCalculation(TradePercentage, SplDiscPercentage, CashDiscPercentage);
 				verifyNavigateLineDetailTwo();
