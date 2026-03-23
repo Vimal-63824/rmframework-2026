@@ -86,7 +86,7 @@ public class SubcontractOrderLocators {
 
 	/** @locatorType XPATH */
 	public static final String CheckBox(String PONumber) {
-		return "//table[@id='7580847135283023721_orig']//a[text()='" + PONumber + "']/../../td[13]";
+		return "//table[@id='7583147317754797252_orig']//a[text()='" + PONumber + "']/../../td[13]";
 	}
 
 	/** @locatorType XPATH */
@@ -164,7 +164,7 @@ public class SubcontractOrderLocators {
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate_input = "(//button[@class='a-Button a-DatePicker--today'])[3]";
 	/** @locatorType XPATH */
-	public static final String OP_Reverse_OK_Btn = "//button[@id='B3138155266068262910']";
+	public static final String OP_Reverse_OK_Btn = "//button[@id='B3140455448540036441']";
 	/** @locatorType XPATH */
 	public static final String OP_Reverse_ToDate = "//input[@ID='P1931510101_EFF_TO_input']";
 	/** @locatorType XPATH */
