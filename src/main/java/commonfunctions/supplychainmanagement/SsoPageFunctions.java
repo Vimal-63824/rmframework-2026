@@ -971,7 +971,7 @@ public class SsoPageFunctions {
 	 */
 	public void verifyGenerateItemSim(String Itm) {
 		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
-		if (ItemSeqNo.equals("000")) {
+		if (ItemSeqNo.equals("0000")) {
 			ItemSeqNo = "10";
 		}
 		String SimItemId = Itm + ItemSeqNo;

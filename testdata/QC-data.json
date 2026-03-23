@@ -1888,5 +1888,8 @@
 	"SEZ_UNIT": "SEZ_UNIT",
 	"STTypePK": "GRN - STOCK TRANSFER",
 	"L55PK": "L55",
-	"PBDBNetAmountCOLUMN":"SUPHD_SC_TOT_AMT"
+	"PBDBNetAmountCOLUMN":"SUPHD_SC_TOT_AMT",
+	"PBDBNetAmountCOLUMN":"SUPHD_SC_TOT_AMT",
+	"SuncontractInterstateSupplier" : "SNV INDUSTRIES",
+	"SupplierImportedUnRegistered":"WALMART"
 }

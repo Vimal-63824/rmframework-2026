@@ -69,7 +69,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//*[@id=\"3630600386710420466_orig\"]/tbody/tr[2]/td[11]" ;
+	public static final String PBAdjustDocSelect = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[11]" ;
 	/** @locatorType Xpath */
 	public static final String PBAdjustValueEnterField = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[10]";
 	/** @locatorType Xpath */
@@ -164,7 +164,7 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PB_Process_Save = "//button[@title='Save']";
 	/** @locatorType Xpath */
-	public static final String PB_Process_Close = "//button[@id='B3618647795423895330']";
+	public static final String PB_Process_Close = "//button[@id='B3838306386655114589']";
 	/** @locatorType Xpath */
 	public static final String PendingPayableSelectAll = "//input[@id='check_all']" ;
 	/** @locatorType Xpath */
