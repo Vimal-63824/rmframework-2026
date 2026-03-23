@@ -409,9 +409,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PO_Status = "//select[@data-testid='P1615132060_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='4072476510540957423_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='4074776693012730954_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='9743971988257254122_orig']/tbody/tr[2]/td[3]";
+	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='9746272170729027653_orig']/tbody/tr[2]/td[3]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
