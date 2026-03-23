@@ -2436,6 +2436,8 @@ public class CommonFunctions {
 		if (flag) {
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
+			hardWait(500);
+			checkRefreshCellsDisappear();
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName.toUpperCase(), ElementType.Xpath);
 			checkRefreshCellsDisappear();
