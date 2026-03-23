@@ -2439,6 +2439,7 @@ public class CommonFunctions {
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName.toUpperCase(), ElementType.Xpath);
 			checkRefreshCellsDisappear();
+			webDB.pressEnterKey();
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
 			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
 			if (flag) {
