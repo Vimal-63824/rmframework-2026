@@ -211,7 +211,7 @@ public class PurchaseRequestLocators {
 	/** @locatorType Xpath */
 	public static final String GlAccountNoLovButton = "//button[@id='P161513103003_PRL_PUR_ACCT_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String LineDetailSaveButton = "//button[@id='B3146775281157761807']";
+	public static final String LineDetailSaveButton = "//button[@id='B3149075463629535338']";
 
 	/** @locatorType Xpath */
 	public static final String LineDetailsButton(String Item) {
