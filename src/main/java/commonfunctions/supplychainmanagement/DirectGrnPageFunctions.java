@@ -376,23 +376,23 @@ public class DirectGrnPageFunctions {
 						flag = webDB.waitForElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 						if (flag) {
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
-							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-								webDB.switchToDefaultContent();
-								System.out.println("Nit");
-								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-								List<WebElement> removeFilter = webDB.getDriver()
-										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
-								for (WebElement element : removeFilter) {
-									if (element.isDisplayed()) {
-										element.sendKeys(ITEM_NAME);
-										System.out.println(1);
-										break;
-									}
-								}
-								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-							}
+//							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//							if (flag) {
+//								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//								webDB.switchToDefaultContent();
+//								System.out.println("Nit");
+//								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//								List<WebElement> removeFilter = webDB.getDriver()
+//										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
+//								for (WebElement element : removeFilter) {
+//									if (element.isDisplayed()) {
+//										element.sendKeys(ITEM_NAME);
+//										System.out.println(1);
+//										break;
+//									}
+//								}
+//								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//							}
 						}
 					}
 
@@ -786,15 +786,16 @@ public class DirectGrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void inputLotNumber(String ITEM_NAME, String LOT_NUMBER) {
-		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-		if (flag) {
-			webDB.moveToElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+//		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//		if (flag) {
+//			webDB.moveToElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+//			if (flag) {
+//				webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Item Successfully Added");
+				commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
 				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
 				commonFunc.verifyAddTableSpecs(GrnLocators.LotclickInput, GrnLocators.LotNumberInput, LOT_NUMBER);
 				logs.logging("INFO", "LOT_NUMBER Entered :" + LOT_NUMBER);
@@ -816,8 +817,8 @@ public class DirectGrnPageFunctions {
 					closeToastIfDisplayed();
 					closeToastIfDisplayed();
 				}
-			}
-		}
+//			}
+//		}
 		assertTrue(flag);
 	}
 
@@ -827,14 +828,15 @@ public class DirectGrnPageFunctions {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void inputSerialNumber(String ITEM_NAME, String SERIAL_NUMBER) {
-		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-		if (flag) {
-			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
-			if (flag) {
-				webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+//		flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//		if (flag) {
+//			webDB.clickAnElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//			flag = webDB.waitForElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
+//			if (flag) {
+//				webDB.clickAnElement(GrnLocators.LotserialItemSelect, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "item Successfully Added");
+				commonFunc.searchAndSelectValueInFilters(GrnLocators.LotSerialItemLov, ITEM_NAME);
 				webDB.switchToFrame(GrnLocators.LotSerialIframe, ElementType.Xpath);
 				commonFunc.verifyAddTableSpecs(GrnLocators.SerialClickInput, GrnLocators.SerialNumberInput,
 						SERIAL_NUMBER);
@@ -855,8 +857,8 @@ public class DirectGrnPageFunctions {
 					closeToastIfDisplayed();
 					closeToastIfDisplayed();
 				}
-			}
-		}
+//			}
+//		}
 		assertTrue(flag);
 	}
 
@@ -4620,23 +4622,23 @@ public class DirectGrnPageFunctions {
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 //							commonFunc.checkRefreshCellsDisappear();
 //							commonFunc.hardWait(3000);
-							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-								webDB.switchToDefaultContent();
-								System.out.println("Nit");
-								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-								List<WebElement> removeFilter = webDB.getDriver()
-										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
-								for (WebElement element : removeFilter) {
-									if (element.isDisplayed()) {
-										element.sendKeys(ITEM_NAME);
-										System.out.println(1);
-										break;
-									}
-								}
-								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-							}
+//							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//							if (flag) {
+//								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//								webDB.switchToDefaultContent();
+//								System.out.println("Nit");
+//								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//								List<WebElement> removeFilter = webDB.getDriver()
+//										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
+//								for (WebElement element : removeFilter) {
+//									if (element.isDisplayed()) {
+//										element.sendKeys(ITEM_NAME);
+//										System.out.println(1);
+//										break;
+//									}
+//								}
+//								webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//							}
 						}
 					}
 
