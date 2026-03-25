@@ -2015,4 +2015,46 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
 		return value;
 	}
+	
+	/**PO  Against Advance 
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PONO
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String POAdvanceDetails(String PONO1, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POadvanceQuery"),
+				commonFunc.getDataFromTestDataSheet("PONO1"), PONO1, DBHeaderColumnValue);
+		return value;
+	}
+	
+	/**
+	 * PR Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PendingSubtotalForPendingPayables(String ADV01, String HeaderValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("pendingPayablesQuary"),
+				commonFunc.getDataFromTestDataSheet("ADV01"), ADV01, HeaderValue);
+		return value;
+	}
+	/**Purchase Bills Tds DB
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PurchaseBillsEx
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String PurchaseBillsDB(String PurchaseBillsEx, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsDocOrderBy"),
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx,
+				commonFunc.getDataFromTestDataSheet("SeqNo"), SeqNo, DBHeaderColumnValue);
+		return value;
+		
+	}
 }

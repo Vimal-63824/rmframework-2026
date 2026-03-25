@@ -10,6 +10,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -17,6 +18,7 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
+import commonfunctions.supplychainmanagement.GrnPageFunctions;
 import commonfunctions.supplychainmanagement.OpenSoAmdFunctions;
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
 import commonfunctions.supplychainmanagement.SalesInvoiceFunctions;
@@ -24,6 +26,7 @@ import commonfunctions.supplychainmanagement.SalesOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.financials.BankReceiptLocators;
 import commonlocators.financials.PurchaseBillsLocators;
+import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenSalesOrderLocators;
 import commonlocators.supplychainmanagement.OpenSoAmdLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
@@ -46,7 +49,9 @@ public class PurchaseBillsFunctions {
 	private String GetTextLocationValue;
 	static PurchaseOrderFunctions POfunc = new PurchaseOrderFunctions();
 	static BankPaymentFunctions BPFunc = new BankPaymentFunctions();
-
+	static BankPaymentFunctions bankpaymntFunc = new BankPaymentFunctions();
+	static GrnPageFunctions grnFunc = new GrnPageFunctions();
+	
 	LocalDate date = LocalDate.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	String Today = date.format(formatter);
@@ -2682,7 +2687,7 @@ public class PurchaseBillsFunctions {
 	 * 
 	 * @author Kowshik-RMITS
 	 */
-	public void clickPostButtonApprovalRecordBankPayments() {
+	public void clickPostButtonApprovalRecordBankPayments1() {
 		BPFunc.clickPostButton();
 		BPFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
 		if (flag) {
@@ -2759,6 +2764,1178 @@ public class PurchaseBillsFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	// TO DO KOWSHIK
+	/**
+	 * Click Post Button Approval Record
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickPostButtonApprovalRecordBankPayments() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(200);
+		BPFunc.clickPostButton();
+		BPFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.logoutUser();
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+		}
+		commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Loaded Adjustment Supplier To Added In Party
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void loadAdjustmentForSupplierToAddedInParty() {
+		flag = webDB.waitForElement(PurchaseBillsLocators.AdjButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsLocators.AdjButton, ElementType.Xpath);
+			logs.logging("INFO", "Successfully Moves To Adjustmnet Tap");
+			flag = webDB.waitForElement(PurchaseBillsLocators.LoadButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseBillsLocators.LoadButton, ElementType.Xpath);
+				logs.logging("INFO", "Successfully Click a Load Button");
+				flag = webDB.waitForElement(PurchaseBillsLocators.FrameAdjTap, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(PurchaseBillsLocators.FrameAdjTap, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Moves To Frame");
+					flag = webDB.waitForElement(PurchaseBillsLocators.CheckBoxAdjTap, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseBillsLocators.CheckBoxAdjTap, ElementType.Xpath);
+						logs.logging("INFO", "Successfully Clicked a CheckBox Of Adjustment ");
+						webDB.waitForElement(PurchaseBillsLocators.OkbuttonAdjTap, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(500);
+							webDB.clickAnElement(PurchaseBillsLocators.OkbuttonAdjTap, ElementType.Xpath);
+							logs.logging("INFO", "Successfully Clicked Ok Button");
+							webDB.switchToDefaultContent();
+						}
+					}
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Get Advance Paymnet From DB
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void getAdvPaymentDocumentFromDatabase() {
+		String poAdvanceDetails = dbCommonFunc.POAdvanceDetails(VariableHandler.getPONumber(),
+				commonFunc.getDataFromTestDataSheet("POAdvDBColumnDocument"));
+		VariableHandler.setAdvPaymentDocumentno(poAdvanceDetails);
+		logs.logging("INFO",
+				"PO against to the Advance Document is Created " + VariableHandler.getAdvPaymentDocumentno());
+	}
+	/**To Validate Advance Amount From Pending Screen
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param Sheetname
+	 */
+	public void toValidatePendingAmountValueForPurchaseOrder(String Sheetname) {
+		PurchaseBills = excelUtils.readAllDataInExcel(KowshikFin, Sheetname);
+		for (int i = 1; i <= PurchaseBills.length; i++) {
+			String AdvanceAmount = PurchaseBills[i][4];
+			if (!AdvanceAmount.equals("")) {
+				commonFunc.hardWait(3000);
+//				verifyAssertionBothValues(dbCommonFunc
+//						.PendingSubtotalForPendingPayables(VariableHandler.getAdvPaymentDocumentno(), AdvanceAmount),
+//						commonFunc.getDataFromTestDataSheet("AdvancePayAmt");
+				verifyAssertionBothValues(dbCommonFunc.PendingSubtotalForPendingPayables(VariableHandler.getAdvPaymentDocumentno(),
+						commonFunc.getDataFromTestDataSheet("AdvancePayAmt")), AdvanceAmount);
+
+			}
+		}
+		assertTrue(flag);
+	}
+	
+	public void verifyLineDetailsDbValidationWithTDSsupply(String Sheetname) {
+		PurchaseBills = excelUtils.readAllDataInExcel(KowshikFin, Sheetname);
+		for(int i = 22; i < PurchaseBills.length ; i++ ){
+			String SeqNumber = Integer.toString(i - 21);
+			String ItemID = PurchaseBills[i][1];
+			String OrdQty = PurchaseBills[i][6];
+			String UnitPrice = PurchaseBills[i][7];
+			String Glaccount = PurchaseBills[i][3];
+			if(!ItemID.equals("")){
+				verifyAssertionBothValues(
+						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
+								commonFunc.getDataFromTestDataSheet("PurchaseBillsItemID")),
+						ItemID);
+				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + ItemID);
+				
+				verifyAssertionBothValues(
+						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
+								commonFunc.getDataFromTestDataSheet("PurchaseBillsInvQty")),
+						OrdQty);
+				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + OrdQty);
+				
+				verifyAssertionBothValues(
+						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
+								commonFunc.getDataFromTestDataSheet("PurchaseBillsUnitCost")),
+						UnitPrice);
+				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + UnitPrice);
+				
+				verifyAssertionBothValues(
+						dbCommonFunc.PurchaseBillsDB(VariableHandler.getScoPurchaseNumber(), SeqNumber,
+								commonFunc.getDataFromTestDataSheet("PurchaseBillsGlAccount")),
+						Glaccount);
+				logs.logging("INFO", "ItemID IS Matched With DB Values For This Item " + Glaccount);
+			}
+
+		}
+	}
+
+	/**
+	 * Click Pending Payables Advance Buttons
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickPendingpayablesAdvance() {
+		flag = webDB.waitForElement(PurchaseBillsLocators.pendigPayableAdv, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsLocators.pendigPayableAdv, ElementType.Xpath);
+			logs.logging("INFO", "Click a Pending Payables Adv Button");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Selecting Documnet From Pending Payables for Advance Against to the Party
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void selectDocumentFromPendingPayablesAdv() {
+		flag = webDB.waitForElement(PurchaseBillsLocators.framePendingPayablesBP, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(PurchaseBillsLocators.framePendingPayablesBP, ElementType.Xpath);
+			logs.logging("INFO", "Successfully Naviagtes a Frame");
+			flag = webDB.waitForElement(PurchaseBillsLocators.SearchButton1, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(PurchaseBillsLocators.SearchButton1, ElementType.Xpath);
+				logs.logging("INFO", "Sucessfully Clicked a Search Button");
+				flag = webDB.waitForElement(PurchaseBillsLocators.DocNoInput, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(PurchaseBillsLocators.DocNoInput,
+							VariableHandler.getAdvPaymentDocumentno(), ElementType.Xpath);
+					// VariableHandler.getAdvPaymentDocumentno()
+					logs.logging("INFO", "Successfully Passed a Advance Document No");
+					flag = webDB.waitForElement(PurchaseBillsLocators.SearchButton1, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseBillsLocators.SearchButton1, ElementType.Xpath);
+						logs.logging("INFO", "Sucessfully Clicked a Search Button");
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(PurchaseBillsLocators.SelectAllFlag, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PurchaseBillsLocators.SelectAllFlag, ElementType.Xpath);
+							logs.logging("INFO", "Document is Selected ");
+							flag = webDB.waitForElement(PurchaseBillsLocators.CreateButton, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(PurchaseBillsLocators.CreateButton, ElementType.Xpath);
+								logs.logging("info", "Successfully Created a Document From Pending Screen");
+								// webDB.switchToDefaultContent();
+							}
+						}
+					}
+				}
+			}
+
+		}
+		assertTrue(flag);
+	}
+
+	public void clickCreateButtonForPendingBp() {
+		flag = webDB.waitForElement(PurchaseBillsLocators.CreateButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsLocators.CreateButton, ElementType.Xpath);
+			logs.logging("info", "Successfully Created a Document From Pending Screen");
+		}
+		assertTrue(flag);
+	}
+
+	public void selectBankModeOfPayment(String BankDesc, String neftSelect, String BankName) {
+		flag = webDB.waitForElement(PurchaseBillsLocators.VouSelect, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByValue(PurchaseBillsLocators.VouSelect, BankDesc, ElementType.Xpath);
+			logs.logging("INFO", "Successully Selected a Bank ");
+			flag = webDB.waitForElement(PurchaseBillsLocators.ModeSelect, ElementType.Xpath);
+			if (flag) {
+				webDB.selectDropDownByValue(PurchaseBillsLocators.ModeSelect, neftSelect, ElementType.Xpath);
+				logs.logging("INFO", "Successfully Selected a Mode");
+				flag = webDB.waitForElement(PurchaseBillsLocators.BankLov, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.BankLov, BankName);
+					logs.logging("INFO", "Successfully Inserted a Bank Name " + BankName);
+					// flag = webDB.waitForElement(PurchaseBillsLocators.VouSelect,
+					// ElementType.Xpath);
+					// if(flag) {
+					// webDB.clickAnElement(PurchaseBillsLocators.VouSelect, ElementType.Xpath);
+					webDB.switchToFrame(PurchaseBillsLocators.framePendingPayablesBP, ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseBillsLocators.Okbuttonbankpay, ElementType.Xpath);
+					if (flag) {
+						// webDB.switchToFrame(PurchaseBillsLocators.framePendingPayablesBP,
+						// ElementType.Xpath);
+						webDB.clickAnElement(PurchaseBillsLocators.Okbuttonbankpay, ElementType.Xpath);
+						logs.logging("info", "Successfully Created a Bank Payment Document");
+
+						// }
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	public void bankPaymentRecordOfAgainstPo() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymntFunc.clickPendingCRDocsButton();
+		clickPendingpayablesAdvance();
+		selectDocumentFromPendingPayablesAdv();
+		selectBankModeOfPayment(commonFunc.getDataFromTestDataSheet("BankDesc"),
+				commonFunc.getDataFromTestDataSheet("neftSelect"), commonFunc.getDataFromTestDataSheet("BankName"));
+		bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		webDB.pressTabKey();
+		bankpaymntFunc.getBankPaymentOrReceiptDocumentNumber();
+		bankpaymntFunc.clickCreateJournalButton();
+		bankpaymntFunc.clickPostButton();
+		flag = bankpaymntFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * Bank Payment for Advance Amount With New Ref
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+
+	public void bankPaymentRecordOfAgainstPoWithAddedNewRef() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymntFunc.clickPendingCRDocsButton();
+		clickPendingpayablesAdvance();
+		selectDocumentFromPendingPayablesAdv();
+		selectBankModeOfPayment(commonFunc.getDataFromTestDataSheet("BankDesc"),
+				commonFunc.getDataFromTestDataSheet("neftSelect"), commonFunc.getDataFromTestDataSheet("BankName"));
+		// bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference
+		// Number"));
+		webDB.pressTabKey();
+		bankpaymntFunc.getBankPaymentOrReceiptDocumentNumber();
+		clickViewButton();
+		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		bankpaymntFunc.clickCreateJournalButton();
+		bankpaymntFunc.clickPostButton();
+		flag = bankpaymntFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * Bank Payment for Advance Amount With New Ref
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+
+	public void bankPaymentRecordOfAgainstPoWithAddedNewRefWithMultiRef() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymntFunc.clickPendingCRDocsButton();
+		clickPendingpayablesAdvance();
+		selectDocumentFromPendingPayablesAdv();
+		selectBankModeOfPayment(commonFunc.getDataFromTestDataSheet("BankDesc"),
+				commonFunc.getDataFromTestDataSheet("neftSelect"), commonFunc.getDataFromTestDataSheet("BankName"));
+		// bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference
+		// Number"));
+		webDB.pressTabKey();
+		bankpaymntFunc.getBankPaymentOrReceiptDocumentNumber();
+		clickViewButton();
+		multiNewRefForAnBankPayment(webDB.getDataFromProperties("BankPayment_Multi_New"));
+		bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		bankpaymntFunc.clickCreateJournalButton();
+		bankpaymntFunc.clickPostButton();
+		flag = bankpaymntFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * Bank Payment For Against to the Multiple PO Creation
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void bankPaymentRecordOfAgainstWithMutiPo() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymntFunc.clickPendingCRDocsButton();
+		clickPendingpayablesAdvance();
+		selectMultiplePoDocForAnPaymentInPendingPayablesAdvance(VariableHandler.getMultiplePoDocs());
+		clickCreateButtonForPendingBp();
+		selectBankModeOfPayment(commonFunc.getDataFromTestDataSheet("BankDesc"),
+				commonFunc.getDataFromTestDataSheet("neftSelect"), commonFunc.getDataFromTestDataSheet("BankName"));
+		webDB.pressTabKey();
+		bankpaymntFunc.getBankPaymentOrReceiptDocumentNumber();
+		bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		bankpaymntFunc.clickCreateJournalButton();
+		bankpaymntFunc.clickPostButton();
+		flag = bankpaymntFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * Bank Payment For Against to the Multiple PO Creation Against to the Single
+	 * Ref
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void bankPaymentRecordOfAgainstWithMutiPoSingleNewRef() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymntFunc.clickPendingCRDocsButton();
+		clickPendingpayablesAdvance();
+		selectMultiplePoDocForAnPaymentInPendingPayablesAdvance(VariableHandler.getMultiplePoDocs());
+		clickCreateButtonForPendingBp();
+		selectBankModeOfPayment(commonFunc.getDataFromTestDataSheet("BankDesc"),
+				commonFunc.getDataFromTestDataSheet("neftSelect"), commonFunc.getDataFromTestDataSheet("BankName"));
+		webDB.pressTabKey();
+		bankpaymntFunc.getBankPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		clickViewButton();
+		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
+				commonFunc.getDataFromTestDataSheet("PayAmount1"));
+		bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		bankpaymntFunc.clickCreateJournalButton();
+		bankpaymntFunc.clickPostButton();
+		flag = bankpaymntFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * Bank Paymnet Record Against With Multi Po Multi New Ref
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void bankPaymentRecordOfAgainstwithMultiPoMultiNewRef() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPaymentReceipt();
+		bankpaymntFunc.clickPendingCRDocsButton();
+		clickPendingpayablesAdvance();
+		selectMultiplePoDocForAnPaymentInPendingPayablesAdvance(VariableHandler.getMultiplePoDocs());
+		clickCreateButtonForPendingBp();
+		selectBankModeOfPayment(commonFunc.getDataFromTestDataSheet("BankDesc"),
+				commonFunc.getDataFromTestDataSheet("neftSelect"), commonFunc.getDataFromTestDataSheet("BankName"));
+		webDB.pressTabKey();
+		bankpaymntFunc.getBankPaymentOrReceiptDocumentNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		clickViewButton();
+		multiNewRefForAnBankPayment(webDB.getDataFromProperties("BankPayment_Multi_New"));
+		bankpaymntFunc.sendReferenceNumberInBP(commonFunc.getDataFromTestDataSheet("Reference Number"));
+		bankpaymntFunc.clickCreateJournalButton();
+		bankpaymntFunc.clickPostButton();
+		flag = bankpaymntFunc.forwardForApproval(commonFunc.getDataFromTestDataSheet("SO_HOD_Value"));
+		if (flag) {
+			commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+					VariableHandler.getBankPaymentOrReceiptDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			commonFunc.logoutUser();
+		}
+	}
+
+	/**
+	 * Verify Purchase Bills Against For Adjustment
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param BankName
+	 * @param Currency
+	 * @param SheetName
+	 */
+	public void verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(String BankName, String Currency,
+			String SheetName) {
+
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				System.getProperty("AdminUsername"));
+		commonFunc.navigateToFinancialPaymentReceipt();
+		BPFunc.clickAddButtonInPaymentsRecipts();
+		BPFunc.createBankPaymentEntry(commonFunc.getDataFromTestDataSheet("BankDocMode"), BankName, Today,
+				commonFunc.getDataFromTestDataSheet("BankPayMode"),
+				commonFunc.getDataFromTestDataSheet("BankRefNumber"), Today,
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BPFunc.getBankPaymentOrReceiptDocumentNumber();
+		BPFunc.checkBPDocumentStatusWithDB(commonFunc.getDataFromTestDataSheet("Draft"),
+				VariableHandler.getBankPaymentOrReceiptDocNumber());
+		BPFunc.verifyBankPaymentHeaderDetailsWithUI(BankName, commonFunc.getDataFromTestDataSheet("BankPrefix"), Today,
+				Today);
+		BPFunc.verifyBankPaymentDetailsWithDB(commonFunc.getDataFromTestDataSheet("BankName"),
+				commonFunc.getDataFromTestDataSheet("BankPrefix"), Currency);
+		BankPayments = excelUtils.readAllDataInExcel(KowshikFin, SheetName);
+		for (int i = 1; i < BankPayments.length; i++) {
+			String GLAccountDesc = BankPayments[i][1];
+			String PartyName = BankPayments[i][3];
+			String EntityName = BankPayments[i][5];
+			String CPCCodeDesc = BankPayments[i][6];
+			String BillNumber = BankPayments[i][7];
+			String PayAmount = BankPayments[i][8];
+			String DRCR = BankPayments[i][9];
+			String CURCY = BankPayments[i][10];
+			String EXRate = BankPayments[i][11];
+			String TransCURCY = BankPayments[i][12];
+			String BaseCURCY = BankPayments[i][13];
+			String AssesableValue = BankPayments[i][16];
+			if (!GLAccountDesc.equals("")) {
+				BPFunc.clickBPLineAddButton();
+				BPFunc.addBankPaymentLineDetails(GLAccountDesc, CPCCodeDesc);
+				BPFunc.clickLineWiseSaveButton();
+				clickViewButton();
+
+			}
+
+		}
+
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForUnregrd() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterK(
+				webDB.getDataFromProperties("po_Unregrd_kowshik"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("po_Unregrd_kowshik"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("po_Unregrd_kowshik"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrd() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvance() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		bankPaymentRecordOfAgainstPo();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRef() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		bankPaymentRecordOfAgainstPoWithAddedNewRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefinMultiRef() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		bankPaymentRecordOfAgainstPoWithAddedNewRefWithMultiRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefMultiTds() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		bankPaymentRecordOfAgainstPoWithAddedNewRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForUnRegrdForAdvanceWithNewRefMultiTds() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		bankPaymentRecordOfAgainstPoWithAddedNewRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrd() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		bankPaymentRecordOfAgainstPo();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrdWithNewRefSingleSection() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		bankPaymentRecordOfAgainstPoWithAddedNewRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		// flag = commonFunc.logoutUser();
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForUnRegrdForAdvanceForUnregrdWithNewMultiRefSingleSection()
+			throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		bankPaymentRecordOfAgainstPoWithAddedNewRefWithMultiRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		// flag = commonFunc.logoutUser();
+	}
+
+	public void selectMultipleDocumentInPendingGrn(String SheetName) {
+		ExcelUtils excelUtils = new ExcelUtils();
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DBfin.xlsx";
+		flag = webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+
+		itemMultiples = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		flag = webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		for (int i = 1; i < itemMultiples.length; i++) {
+			String PoDocs = itemMultiples[i][3];
+
+			if (!PoDocs.equals("")) {
+				flag = webDB.waitForElement(PurchaseBillsLocators.PendingPoSearchInputField, ElementType.Xpath);
+				if (flag) {
+					webDB.sendTextToAnElement(PurchaseBillsLocators.PendingPoSearchInputField, PoDocs,
+							ElementType.Xpath);
+					logs.logging("Info", "Po Document Gets " + PoDocs);
+					flag = webDB.waitForElement(PurchaseBillsLocators.SearchButtonInPendingGrn, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(PurchaseBillsLocators.SearchButtonInPendingGrn, ElementType.Xpath);
+						logs.logging("INFO", "Search Button is Clicked ");
+						flag = webDB.waitForElement(PurchaseBillsLocators.SelectCheckboxAgainstPO(PoDocs),
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(PurchaseBillsLocators.SelectCheckboxAgainstPO(PoDocs),
+									ElementType.Xpath);
+							logs.logging("INFO", "CheckBox Is Selected ");
+							flag = webDB.waitForElement(PurchaseBillsLocators.CreateGrnButton, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(PurchaseBillsLocators.CreateGrnButton, ElementType.Xpath);
+								logs.logging("INFO", "Successfully Creats a Grn Doc from  Pending screen ");
+							}
+						}
+
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void clickPendingPo() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			logs.logging("INFO", "Pending Button Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.PendingPO, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.PendingPO, ElementType.Xpath);
+				logs.logging("INFO", "Pending PO Button Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	public void creationGrnDocAgainstToTheMultiplePo() throws Exception {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.naviagteGrnPage();
+		POfunc.selectFromPendingPoDocusClickPendingPo();
+		POfunc.selectMultiplePoDocFromPendingGrnKowshik(VariableHandler.getMultiplePoDocs());
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+
+	}
+
+	/**
+	 * Purchase to GRN Entries With Auto MRV
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnProccedWithPurchaseBillsForRegrdForAdvanceforMultiSection() throws Exception {
+		POfunc.verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+				webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		bankPaymentRecordOfAgainstPo();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		grnFunc.clickPendingPoAndSearchPoNo();
+		grnFunc.clickSelectAllButton();
+		grnFunc.createGrn();
+		grnFunc.supplierBillNumberAndDcNumber();
+		grnFunc.multipleLotAndSerialItem(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.lotSerialQtyApportion();
+		grnFunc.overAllSaveAndPost(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		grnFunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * Multiple Po Creation With Advance Payment for Unregrd
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void multiPoCreationWithApprovalForUnRegrdParty() {
+		List<String> poList = new ArrayList<>();
+		for (int i = 0; i < 2; i++) {
+			System.out.println("Loop Running: " + i);
+			POfunc.verifyDirectPoWithRateContractItemWithGeneralTypeForUnregisterKForAdvanceForMultiPo(
+					webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"), (ArrayList<String>) poList);
+		}
+		System.out.println(poList);
+	}
+
+	public void getMultiPoDocumentAfterExcution() {
+		List<String> poList = new ArrayList<>();
+		String poNumberValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + poNumberValue);
+		poList.add(poNumberValue);
+		VariableHandler.setMultiplePoDocs(null);
+
+	}
+
+	/**
+	 * Multiple Po Creation With Advance Payment for Regrd Party
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void multiPoCreationWithAdvancePaymentDocumnetForRegrdParty() {
+		List<String> poList = new ArrayList<>();
+		for (int i = 0; i < 2; i++) {
+			POfunc.verifyDirectPoWithRateContractItemWithGeneralTypeForRegisterKForAdvanceForMultiPo(
+					webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"), (ArrayList<String>) poList);
+		}
+		System.out.println(poList);
+	}
+
+	/**
+	 * Select the Multi Purchase Order For Payment Payables
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param poList
+	 */
+	public void selectMultiplePoDocForAnPaymentInPendingPayablesAdvance(ArrayList<String> poList) {
+		flag = webDB.switchToFrame(PurchaseBillsLocators.framePendingPayablesBP, ElementType.Xpath);
+		if (flag) {
+			for (int i = 1; i <= poList.size(); i++) {
+				System.out.println(poList.size());
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				webDB.sendTextToAnElement(PurchaseBillsLocators.PaymentAdvancePoSearchField, poList.get(i - 1),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseBillsLocators.SearchButton1, ElementType.Xpath);
+				if (flag) {
+					commonFunc.hardWait(3000);
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.clickAnElement(PurchaseBillsLocators.SearchButton1, ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseBillsLocators.SelectAllFlag, ElementType.Xpath);
+					if (flag) {
+						commonFunc.hardWait(3000);
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.clickAnElement(PurchaseBillsLocators.SelectAllFlag, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						commonFunc.hardWait(3000);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(PurchaseBillsLocators.EraseButton, ElementType.Xpath);
+						if (flag) {
+							commonFunc.hardWait(3000);
+							commonFunc.checkRefreshCellsDisappear();
+							flag = webDB.clickAnElement(PurchaseBillsLocators.EraseButton, ElementType.Xpath);
+//							logs.logging("INFO", "Successfully Select a Record ");
+//							if(flag) {
+//								logs.logging("INFO", "Able to Select a Document");
+//							}else {
+//								logs.logging("INFO", "Not Able to Select a Document");
+							
+						}
+					}
+				}
+			}
+
+		}
+//		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
+	 * UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
+	 * 
+	 */
+	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralType(String SheetName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		POfunc.verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		POfunc.verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				POfunc.verifyDirectPoItemAddIconClicked();
+				POfunc.verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				// verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				POfunc.verifyDirectPoHsnSelectedFromLov(HSN);
+				POfunc.verifyDirectPoLineWiseSaved();
+				POfunc.verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
+				POfunc.verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				POfunc.otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		POfunc.verifyHeaderTickAndPost();
+		POfunc.waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+	/**
+	 * Click Validate TDS Exempt
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void clickValidateTDSExempt() {
+		commonFunc.checkRefreshCellsDisappear();
+		flag = webDB.waitForElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
+			webDB.javaScriptClickAnElement(PurchaseBillsLocators.ReferenceField, ElementType.Xpath);
+			logs.logging("INFO", "Reference Tap Moved ");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(PurchaseBillsLocators.TdsExemptedFlag, ElementType.Xpath);
+			if (flag) {
+				webDB.moveToElement(PurchaseBillsLocators.TdsExemptedFlag, ElementType.Xpath);
+				webDB.javaScriptClickAnElement(PurchaseBillsLocators.TdsExemptedFlag, ElementType.Xpath);
+				// webDB.clickAnElement(PurchaseBillsLocators.AllowRcmFlag, ElementType.Xpath);
+				logs.logging("INFO ", "Allows RCM Check Box Is Clicked ");
+				commonFunc.hardWait(500);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(PurchaseBillsLocators.SaveButtonHeader, ElementType.Xpath);
+				if (flag) {
+					webDB.javaScriptClickAnElement(PurchaseBillsLocators.SaveButtonHeader, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Clicked Save Headers");
+					commonFunc.checkRefreshCellsDisappear();
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * To Inserted a TDS Section
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param TDSvalue
+	 */
+	public void tdsSectionLineWise(String TDSvalue) {
+		flag = webDB.waitForElement(PurchaseBillsLocators.TdsSectioninput, ElementType.Xpath);
+		if (flag) {
+			commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.TdsSectioninput, TDSvalue);
+			logs.logging("INFO", "Successfully Inserted a TDS Section");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Insert TDS Section Line Wise Excel
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SheetName
+	 */
+	public void insertTdsSectionLinesWiseExcel(String SheetName) {
+//		ArrayList<String> ArrayList = new ArrayList<String>();
+		ExcelUtils excelUtils = new ExcelUtils();
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+
+		itemMultiples = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 22; i < itemMultiples.length; i++) {
+			String ITEM_NAME = itemMultiples[i][1];
+			String TDSSection = itemMultiples[i][69];
+
+			if (!ITEM_NAME.equals("")) {
+				flag = webDB.waitForElement(PurchaseBillsLocators.TdsSectionFieldk(i - 21), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(PurchaseBillsLocators.TdsSectionFieldk(i - 21), ElementType.Xpath);
+					flag = webDB.waitForElement(PurchaseBillsLocators.TdsSectioninput, ElementType.Xpath);
+					if (flag) {
+						commonFunc.searchAndSelectValueInFilters(PurchaseBillsLocators.TdsSectioninput, TDSSection);
+						logs.logging("INFO", "Successfully Inserted a TDS Section");
+						webDB.pressTabKey();
+						ClickSaveButton();
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Multi New Reference in Bank Payment Against to the Po
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SheetName
+	 */
+	public void multiNewRefForAnBankPayment(String SheetName) {
+		ExcelUtils excelUtils = new ExcelUtils();
+		String[][] itemMultiples = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DBfin.xlsx";
+		itemMultiples = excelUtils.readAllDataInExcel(Filepath, SheetName);
+
+		for (int i = 1; i < itemMultiples.length; i++) {
+			String BillDocNo = itemMultiples[i][1];
+			String Amount = itemMultiples[i][2];
+
+			if (!BillDocNo.equals("")) {
+				flag = webDB.waitForElement(PurchaseBillsLocators.ViewButtonFrame, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(PurchaseBillsLocators.ViewButtonFrame, ElementType.Xpath);
+					logs.logging("INFO", "Successfully Navigates Frame");
+
+					flag = webDB.waitForElement(PurchaseBillsLocators.AddButtonViewTap, ElementType.Xpath);
+					if (flag) {
+						commonFunc.checkRefreshCellsDisappear();
+						webDB.clickAnElement(PurchaseBillsLocators.AddButtonViewTap, ElementType.Xpath);
+						logs.logging("INFO", "Successfully Clicked a Add Button");
+						flag = webDB.waitForElement(PurchaseBillsLocators.BillDocField, ElementType.Xpath);
+						if (flag) {
+//							webDB.pressTabKey();
+							commonFunc.checkRefreshCellsDisappear();
+							commonFunc.hardWait(1000);
+							// SalesordFunc.verifyClickAndEnterValueInTableFields(PurchaseBillsLocators.BillDocField,
+							// PurchaseBillsLocators.BillDocNo, BillDocNo);
+							webDB.doubleClickAnElement(PurchaseBillsLocators.BillDocField, ElementType.Xpath);
+							webDB.clearTextField(PurchaseBillsLocators.BillDocNo, ElementType.Xpath);
+							webDB.sendTextToAnElement(PurchaseBillsLocators.BillDocNo, BillDocNo, ElementType.Xpath);
+							commonFunc.checkRefreshCellsDisappear();
+//							logs.logging("INFO",
+//									"Successfully Inserted a Bills Number Against To The Banks" + BillDocNo);
+							flag = webDB.waitForElement(PurchaseBillsLocators.PayamountField, ElementType.Xpath);
+							if (flag) {
+								commonFunc.checkRefreshCellsDisappear();
+								SalesordFunc.verifyClickAndEnterValueInTableFields(PurchaseBillsLocators.PayamountField,
+										PurchaseBillsLocators.PayAmt, Amount);
+//								webDB.doubleClickAnElement(PurchaseBillsLocators.PayamountField, ElementType.Xpath);
+//								commonFunc.hardWait(1000);
+//								webDB.clearTextField(PurchaseBillsLocators.PayAmt, ElementType.Xpath);
+//								webDB.sendTextToAnElement(PurchaseBillsLocators.PayAmt, Amount, ElementType.Xpath);
+								logs.logging("INFO", "Successfully Inserted a Adjustment Amount");
+								flag = webDB.waitForElement(PurchaseBillsLocators.SaveButtonView, ElementType.Xpath);
+								if (flag) {
+									commonFunc.checkRefreshCellsDisappear();
+									webDB.clickAnElement(PurchaseBillsLocators.SaveButtonView, ElementType.Xpath);
+									webDB.switchToDefaultContent();
+									commonFunc.hardWait(500);
+//									if (flag) {
+//										webDB.clickAnElement(PurchaseBillsLocators.CloseButton, ElementType.Xpath);
+//										logs.logging("INFO", "Successfully Clicked a Close Button");
+//										commonFunc.hardWait(1000);
+
+//									}
+								}
+//							}
+
+							}
+						}
+
+					}
+				}
+			}
+		}
+		closeBankPaymnetNewRef();
+		assertTrue(flag);
+	}
+
+	public void closeBankPaymnetNewRef() {
+		flag = webDB.waitForElement(PurchaseBillsLocators.CloseButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(PurchaseBillsLocators.CloseButton, ElementType.Xpath);
+			logs.logging("INFO", "Successfully Clicked a Close Button");
+			commonFunc.hardWait(1000);
+		}
+		assertTrue(flag);
+	}
+
+//	System.out.println(itemMultiples.length);
+//	for (int i = 22; i < itemMultiples.length; i++) {
+//		String TDSSection = itemMultiples[i][71];
 
 	/**
 	 * verify Domestic Registered Supplier With LocalGST
@@ -6570,12 +7747,12 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithLocalGSTAgainstGRNWithDeviationExpensesAccountandAdjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6609,12 +7786,12 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountAndAdjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -6653,12 +7830,12 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithLocalGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("BankPaymentSingle"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -6698,12 +7875,12 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_adj_interstate"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
@@ -6736,7 +7913,7 @@ public class PurchaseBillsFunctions {
 	public void registeredSupplierwithInterstateGSTAllowRCMtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_adj_interstate"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
@@ -6785,7 +7962,7 @@ public class PurchaseBillsFunctions {
 				webDB.getDataFromProperties("Purchasebills_Adj_unregrd"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -6818,12 +7995,12 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierwithLocalGSTAllowIGSTtaxPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_Adj_unregrd"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -6861,12 +8038,12 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierwithInterstateGSTPurchaseDirectandExpensesAccountwithadjustmentStockitemserviceitemAndchargeitem(
 			String SubvouType, String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcy"),
 				webDB.getDataFromProperties("Purchasebills_Adj_unregrd"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -6900,13 +8077,13 @@ public class PurchaseBillsFunctions {
 	public void unregisteredSupplierimportedexpensesaccountwithadjustmentwithoutGST(String SubvouType,
 			String PurchaseRef, String Location, String Prefix, String CustomerName, String Bills) {
 
-		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment(commonFunc.getDataFromTestDataSheet("BankName"),
+		verifyPurchaseBillsAgainstPurchaseBillsForAdjustment1(commonFunc.getDataFromTestDataSheet("BankName"),
 				commonFunc.getDataFromTestDataSheet("BankTransCurcyUSD"),
 				webDB.getDataFromProperties("PurchaseBills_Import"));
 		addNewRefPaymentsAgainstTotheParty(commonFunc.getDataFromTestDataSheet("BillsBank"),
 				commonFunc.getDataFromTestDataSheet("PayAmount1"));
 		enterRealizedAmountInHeader(commonFunc.getDataFromTestDataSheet("RealizedAmount"));
-		clickPostButtonApprovalRecordBankPayments();
+		clickPostButtonApprovalRecordBankPayments1();
 
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -6924,5 +8101,750 @@ public class PurchaseBillsFunctions {
 		verifyWaitingForApprovalForPurchaseBills();
 		commonFunc.logoutUser();
 	}
+	
+	/**
+	 * Domestic Regrd Supplier with TDS Ex
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithTDSExemptedwithTdsApplyonBillQty() throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		clickValidateTDSExempt();
+		movesToInvoiceTap();
+		ClickSaveButton();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**
+	 * Domestic Unregistered supplier - With TDS (Exempted)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithTDSExemptedwithApplyBillQty() throws Exception {
+		poToGrnProccedWithPurchaseBillsForUnregrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		clickValidateTDSExempt();
+		movesToInvoiceTap();
+		ClickSaveButton();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**
+	 * Domestic Regrd Supplier With TDS Single Under Section
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithTDSSingleUndersection() throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForRegrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("po_regrd_kowshik"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**Domestic Unregistered Supplier With Tds Single Under Section
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithTDSSingleUndersection() throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForUnregrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("po_Unregrd_kowshik"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+	
+	/**
+	 * Domestic Registered Supplier - With TDS Multi Under section
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithTDSMultiUndersection() throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForRegrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	/**Domestic Unregistered Supplier With TDS Multi Under Section
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithTDSMultiUndersection() throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForUnregrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+	
+	/**Domestic Registered Supplier With Advance TDS Single Under Section Single Po
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePO() throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvance();
+		// bankPaymentRecordOfAgainstPo();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+	
+	/**
+	 * Domestic Registered Supplier - With Advance TDS Multi under section (Single
+	 * PO)SSS
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionSinglePO() throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceforMultiSection();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS single under section
+	 * (Single PO)
+	 * 
+	 * @author Kowshikan
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleundersectionSinglePO() throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Single
+	 * PO)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionSinglePO() throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrd();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Single
+	 * PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOwithSingleNewreference()
+			throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS Multi under section (Single
+	 * PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionSinglePOwithSingleNewreference()
+			throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefMultiTds();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS single under section
+	 * (Single PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleundersectionSinglePOwithSingleNewreference()
+			throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceForUnregrdWithNewRefSingleSection();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Single
+	 * PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionSinglePOwithSingleNewreference()
+			throws Exception {
+		poToGrnProccedWithPurchaseBillsForUnRegrdForAdvanceWithNewRefMultiTds();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Single
+	 * PO with multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionSinglePOwithmultiNewreference()
+			throws Exception {
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefinMultiRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Single_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS Multi under section (Single
+	 * PO with multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionSinglePOwithmultiNewreference()
+			throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForRegrdForAdvanceWithNewRefinMultiRef();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS single under section
+	 * (Single PO with multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleunderectionSinglePOwithmultiNewreference()
+			throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForUnRegrdForAdvanceForUnregrdWithNewMultiRefSingleSection();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_UnRegrd_Single_Tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Single
+	 * PO with multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionSinglePOwithmultiNewreference()
+			throws Exception {
+
+		poToGrnProccedWithPurchaseBillsForUnRegrdForAdvanceForUnregrdWithNewMultiRefSingleSection();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Multi
+	 * PO)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnRegisteredSupplierWithAdvanceTDSsingleundersectionMultiPO() throws Exception {
+		multiPoCreationWithApprovalForUnRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPo();
+//		String PONumbervalue = "PCOD-2526-19615";
+//		String PONumbervalue1 = "PCOD-2526-19616";
+//		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+//		List<String> poList = new ArrayList<>();
+//		VariableHandler.setPONumber(PONumbervalue);
+//		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue1);
+//		poList.add(PONumbervalue1);
+//		poList.add(PONumbervalue);
+//		System.out.println(poList);
+//		VariableHandler.setMultiplePoDocs((ArrayList) poList);
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Regrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Multi
+	 * PO)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionMultiPO() throws Exception {
+		multiPoCreationWithAdvancePaymentDocumnetForRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPo();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Regrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered supplier - With Advance TDS single under section (Multi
+	 * PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionMultiPOwithSingleNewreference()
+			throws Exception {
+		multiPoCreationWithAdvancePaymentDocumnetForRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPoSingleNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Regrd_Multi_tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Regrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS single under section (Multi
+	 * PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleundersectionMultiPOwithSingleNewreference()
+			throws Exception {
+		multiPoCreationWithApprovalForUnRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPoSingleNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS single under section (Multi
+	 * PO with Multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSsingleundersectionMultiPOwithMultiNewreference()
+			throws Exception {
+		multiPoCreationWithAdvancePaymentDocumnetForRegrdParty();
+		bankPaymentRecordOfAgainstwithMultiPoMultiNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS single under section (Multi
+	 * PO with Multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSsingleundersectionMultiPOwithMultiNewreference()
+			throws Exception {
+		multiPoCreationWithApprovalForUnRegrdParty();
+		bankPaymentRecordOfAgainstwithMultiPoMultiNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS Multi under section (Multi
+	 * PO)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionMultiPO() throws Exception {
+		multiPoCreationWithAdvancePaymentDocumnetForRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPoSingleNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS Multi under section (Multi PO
+	 * with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionMultiPOwithSingleNewreference()
+			throws Exception {
+		multiPoCreationWithAdvancePaymentDocumnetForRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPoSingleNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Registered Supplier - With Advance TDS Multi under section (Multi PO
+	 * with Multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticRegisteredSupplierWithAdvanceTDSMultiundersectionMultiPOwithMultiNewreference()
+			throws Exception {
+		multiPoCreationWithAdvancePaymentDocumnetForRegrdParty();
+		bankPaymentRecordOfAgainstwithMultiPoMultiNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Multi
+	 * PO)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionMultiPO() throws Exception {
+		multiPoCreationWithApprovalForUnRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPo();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Multi
+	 * PO with Single New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionMultiPOwithSingleNewreference()
+			throws Exception {
+		multiPoCreationWithApprovalForUnRegrdParty();
+		bankPaymentRecordOfAgainstWithMutiPoSingleNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
+	/**
+	 * Domestic Unregistered supplier - With Advance TDS Multi under section (Multi
+	 * PO with Multi New reference)
+	 * 
+	 * @author Kowshik-RMITS
+	 * @throws Exception
+	 */
+	public void DomesticUnregisteredsupplierWithAdvanceTDSMultiundersectionMultiPOwithMultiNewreference()
+			throws Exception {
+		multiPoCreationWithApprovalForUnRegrdParty();
+		bankPaymentRecordOfAgainstwithMultiPoMultiNewRef();
+		creationGrnDocAgainstToTheMultiplePo();
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.navigateToFinancialPurchaseBill();
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber());
+		closeExpandButtonDirect();
+		storeSCOPurchaseVoucherNumber();
+		insertTdsSectionLinesWiseExcel(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1"));
+		clickSaveButtonHeader();
+		createJvForRecord();
+		verifyLineDetailsDbValidationWithTDSsupply(webDB.getDataFromProperties("potoGrn_Unregrd_Multi_Tds_1db"));
+		clickPostButton();
+		verifyWaitingForApprovalForPurchaseBills();
+		commonFunc.logoutUser();
+	}
+
 
 }

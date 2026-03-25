@@ -312,5 +312,57 @@ public class PurchaseBillsLocators {
 	public static final String PB_Adj_InputGO_Btn = "//button[@id='PEND_search_button']";
 	/**@locatorType Xpath*/
 	public static final String PB_Adj_InputField_Btn = "//input[@id='PEND_search_field']";
+	/**@locatorType Xpath*/
+	public static final String TdsExemptedFlag = "//label[@id='P11613101001_SUPHD_TDS_EXMP_FL_LABEL']";
+	/**@locatorType Xpath*/
+	public static final String checkboxall = "//*[@id='C3519425619083125876']";
+	/**@locatorType Xpath*/
+	public static final String TdsSectioninput = "//input[@data-testid='SUPLN_TDS_US_ID']/following-sibling::button";
+	/**@locatorType Xpath*/
+	public static final String TdsSectionField = "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[27]";
+
+	/** @locatorType Xpath */
+	public static final String TdsSectionFieldk(int i) {
+		return "//*[@id='IN_ig_grid_vc']/div[2]/div[3]/table/tbody/tr["+ i +"]/td[27]";
+
+	}
+	/** @locatorType Xpath */
+	public static final String pendigPayableAdv = "//span[text()='Pending  Payables - Advance']" ;
+	/** @locatorType Xpath */
+	public static final String framePendingPayablesBP = "//iframe[@title='Pend. Payables Advance']" ;
+	/** @locatorType Xpath */
+	public static final String SearchButton1 = "//button[@id='B3540088164584403664']";
+	/** @locatorType Xpath */
+	public static final String DocNoInput = "//input[@data-testid='DocNo']" ;
+	/** @locatorType Xpath */
+	public static final String SelectAllFlag = "//input[@id='check_all']" ;
+	/** @locatorType Xpath */
+	public static final String CreateButton = "//button[@id='B1']" ;
+	/** @locatorType Xpath */
+	public static final String VouSelect = "//select[@id='P34131022_BCV_DOC_TYPE']";
+	/** @locatorType Xpath */
+	public static final String ModeSelect = "//select[@id='P34131022_BCV_PAY_TYPE']" ;
+	/** @locatorType Xpath */
+	public static final String BankLov = "//BUTTON[@ID='P34131022_BCV_BC_ID_lov_btn']" ;
+	/** @locatorType Xpath */
+	public static final String Okbuttonbankpay = "//button[@id='B3245068807575221734']" ;
+	/** @locatorType Xpath */
+	public static final String PaymentAdvancePoSearchField = "//input[@data-testid='PONo']" ;
+	/** @locatorType Xpath */
+	public static final String SelectBPPendingPayablesAdvCheckBox(String poList) {
+		return "//td[contains(text(),' " + poList + " ' )]/../td[13]/";			
+	}
+	/** @locatorType Xpath */
+	public static final String EraseButton = "(//button[@id='Clear'])[1]" ;
+	/** @locatorType Xpath */
+	public static final String PendingPoSearchInputField = "//input[@id='P1615131100_PO_NO']" ;
+	/** @locatorType Xpath */
+	public static final String SearchButtonInPendingGrn = "//button[@data-testid='Search']";
+	/** @locatorType Xpath */
+	public static final String SelectCheckboxAgainstPO(String PoDocs) {
+	    return "//td[normalize-space(text())='" + PoDocs + "']/ancestor::tr//input[@type='checkbox']";
+	}
+	/** @locatorType Xpath */
+	public static final String CreateGrnButton = "//button[@data-testid='GRNP_PEND_PUR_CRT_GRN']" ;
 
 }
