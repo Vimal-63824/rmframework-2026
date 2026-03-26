@@ -339,13 +339,13 @@ public class SalesOrderLocators {
 	/** @Locator Xpath */
 	public static final String DocumentNumberLov = "//button[@id='P341310231_DOC_NO_FND_lov_btn']";
 	/** @Locator Xpath */
-	public static final String PaymentReceiptSearchButton = "//button[@id='B3324083298732666620']";
+	public static final String PaymentReceiptSearchButton = "//button[@id='B3543741889963885879']";
 	/** @Locator Xpath */
-	public static final String PayementReceiptCreateButton = "//button[@id='B2995824392657473884']";
+	public static final String PayementReceiptCreateButton = "//span[text()='Create']/ancestor::button";
 	/** @Locator Xpath */
 	public static final String BankReceiptsLovButton = "//button[@id='P341310231_BANK_DESC_lov_btn']";
 	/** @Locator Xpath */
-	public static final String BankReceiptsOkButton = "//button[@id='B2995825277729473893']";
+	public static final String BankReceiptsOkButton = "//span[text()='Ok']";
 	/** @Locator Xpath */
 	public static final String BankReceiptpostButton = "//button[@id='POST']";
 	/** @Locator Xpath */
@@ -537,7 +537,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortFilterRefreshButton = "//button[@data-testid='MultiCloseShortFilterRefreshButton']";
 	/** @locatorType Xpath */
-	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='2966974417345426112_orig']/tbody/tr/td[14]/input";
+	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='3185852485537798364_orig']/tbody/tr/td[14]/input";
 	/** @locatorType Xpath */
 	public static final String MultiCloseShortPostButton = "//button[@data-testid='MultiCloseShortPostButton']";
 	/** @locatorType Xpath */
@@ -577,7 +577,7 @@ public class SalesOrderLocators {
 	/** @locatorType Xpath */
 	public static final String ForwardEmpInputField = "//input[@id='P236131090_FWD_PERSON']";
 	/** @locatorType Xpath */
-	public static final String SearchBoxContainer1 = "//table[@id='2966974417345426112']/tr/th[3]/a";
+	public static final String SearchBoxContainer1 = "//table[@id='3185852485537798364']/tr/th[3]/a";
 	/** @locatorType Xpath */
 	public static final String SearchBox1 = "//input[@id='PEND_sort_widget_search_field']";
 

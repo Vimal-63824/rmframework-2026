@@ -2428,6 +2428,7 @@ public class SalesOrderFunctions {
 					System.getProperty("HariUsername"));
 			if (flag) {
 				verifySalesOrderDocumentStatusApprovedWithDB();
+				commonFunc.hardWait(1000);
 				getAdvReceiptDocumentFromDataBase();
 //				verifyExpectedAdvanceReceiptWithDataBaseValues(commonFunc.getDataFromTestDataSheet("Unit_100"),
 //						commonFunc.getDataFromTestDataSheet("Customer"));
@@ -7212,7 +7213,7 @@ public class SalesOrderFunctions {
 		}
 		return flag;
 	}
-	
+
 	/**
 	 * @author Harikrishna -RMITS This Method Is Used To Verify Advance Sales Order
 	 * @return boolean flag
@@ -7227,8 +7228,10 @@ public class SalesOrderFunctions {
 				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_General"),
 				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"));
 		salesOrderDBHeaderValidation(commonFunc.getDataFromTestDataSheet("Loc_100"),
-				commonFunc.getDataFromTestDataSheet("Unit_100"), commonFunc.getDataFromTestDataSheet("SO_Export_Customer"),
-				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"), commonFunc.getDataFromTestDataSheet("SO_General"));
+				commonFunc.getDataFromTestDataSheet("Unit_100"),
+				commonFunc.getDataFromTestDataSheet("SO_Export_Customer"),
+				commonFunc.getDataFromTestDataSheet("Export_Customer_Name"),
+				commonFunc.getDataFromTestDataSheet("SO_General"));
 		checkSOHeaderDetailsDataBaseValuesWithUIValues();
 		changePaymentTermInSOHeader(commonFunc.getDataFromTestDataSheet("AdvancePaymentTerm"));
 		addSalesOrderLineThroughExcelUD(webDB.getDataFromProperties("SOAdvanceExp"),

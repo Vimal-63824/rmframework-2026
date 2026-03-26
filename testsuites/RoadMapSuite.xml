@@ -5,8 +5,7 @@
 		<!-- <listener class-name="utils.RetryListener"></listener> -->
 		<listener class-name="utils.Listener"></listener>
 	</listeners>
-	<test name="Road Map Test" parallel="classes" thread-count="5"
-		preserve-order="true">
+	<test name="Road Map Test" parallel="classes" thread-count="5">
 		<classes>
 			<class name="com.roadmapERP.POAmendmentTest" />
 			<class name="com.roadmapERP.SaleInvoiceTest" />
@@ -43,6 +42,7 @@
 			<class name="com.roadmapERP.SalesStandardPriceTest" />
 			<class name="com.roadmapERP.SetupSalesTest" />
 			<class name="com.roadmapERP.SubcontractSetUpTest" />
+			<!--<class name="com.roadmapERP.SubcontractPurchaseBillsTest" />-->
 			<!--<class name="com.roadmapERP.SubcontractTransactionTest" /> -->
 			<!-- <class name="com.roadmapERP.ProductionAndShopFloorSetupTest" /> -->
 

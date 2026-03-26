@@ -356,7 +356,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String OkButtonFwdForQcDocument = "//button[@id='B1655732835255163754']";
 	/** @locatorType Xpath */
-	public static final String SaleOrderDrillDown = "//*[@id='5491677805743070227_orig']/tbody/tr[2]/td[9]/a";
+	public static final String SaleOrderDrillDown = "//table[@id='5710555873935442479_orig']/tbody[1]/tr[2]/td[9]";
 
 	/** @locatorType Xpath */
 	public static final String CsQty(int i) {
@@ -409,9 +409,9 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PO_Status = "//select[@data-testid='P1615132060_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='3858302496992094873_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='4074776693012730954_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='9529797974708391572_orig']/tbody/tr[2]/td[3]";
+	public static final String AmendLineFindTable = "//table[@class='a-IRR-table' and @id='9746272170729027653_orig']/tbody/tr[2]/td[3]";
 
 	/** @locatorType Xpath */
 	public static final String AmendLineFindTableData(int i) {
@@ -486,7 +486,34 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
-	public static final String GE_SelectAllCheckBox = "//table[@id='14874362016501290896_orig']/tbody/tr/td/input[@type='checkbox']";
+	public static final String GE_SelectAllCheckBox = "//table[@id='15090836212521926977_orig']/tbody/tr/td/input[@type='checkbox']";
 	/** @locatorType Xpath */
 	public static final String ForwardEmployeefield = "//input[@data-testid='P236131090_FWD_PERSON']";
+	/** @locatorType Xpath */
+	public static final String SelectFirstCheckBox = "((//table[contains(@aria-label,'GATEENTRY')])[2]/tbody/tr/td/input[@type='checkbox'])[1]";
+	/** @locatorType Xpath */
+	public static final String SelectFirstItem = "((//table[contains(@aria-label,'GATEENTRY')])[2]/tbody/tr/td)[9]";
+	
+	/** @locatorType Xpath */
+	public static final String POpaymentTerms = "//select[@data-testid='P161513106041_POH_TERM_ID']";
+	/** @locatorType Xpath */
+	public static final String SelectCheckboxKow = "//*[@id=\"15090192687695006742\"]/tbody/tr[2]/td[15]";
+	/** @locatorType Xpath */
+	public static final String MultiCloseShortCheckBoxInputField = "//table[@id='15090192687695006742']/tbody/tr/td[15]/input";
+
+	/** @locatorType Xpath */
+	public static final String selectCheckBoxInMultiCloseShort(String PONumber, int i) {
+		return "(//td[contains(text(),'" + PONumber + "')]/../td[15]/input)[" + i + "]";
+
+	}
+
+	/** @locatorType Xpath */
+	public static final String SelectCheckboxAgainstPO(int i) {
+		return "//*[@id='15090192687695006742']/tbody/tr[" + i + "]/td[15]";
+	}
+
+	/** @locatorType Xpath */
+	public static final String GRNPendingPOSelectCheckBox(String VoucherNumber) {
+		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[15]/*";
+	}
 }

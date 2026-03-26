@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import commonfunctions.supplychainmanagement.PurchaseOrderFunctions;
+import commonlocators.financials.BankPaymentLocators;
 import commonlocators.CommonUiLocators;
 import commonlocators.payroll.AttendanceLeaveLocators;
 import commonlocators.payroll.CommonPayrollLocators;
@@ -2431,12 +2432,17 @@ public class CommonFunctions {
 	 * @param PageLocators
 	 */
 	public void navigateToSearchTab(String TabName, String PageLocators) {
+		//TODO will comment the hard script lines once loading issue resolved
+		webDB.waitForElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+		webDB.clickAnElement("//a[@class='t-Header-logo-link']", ElementType.Xpath);
+		checkRefreshCellsDisappear();
+		webDB.waitForElement("//button[@id='INFO']", ElementType.Xpath);
 		flag = webDB.waitForElement(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 		if (flag) {
 			webDB.waitUntilElementToBeClickable(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.waitUntilElementToNotBeStale(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
 			webDB.clearTextField(CommonUiLocators.BusFunctionSearchBox, ElementType.Xpath);
-			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName, ElementType.Xpath);
+			webDB.sendTextToAnElement(CommonUiLocators.BusFunctionSearchBox, TabName.toUpperCase(), ElementType.Xpath);
 			checkRefreshCellsDisappear();
 			webDB.verifyIsElementDisplayed(PageLocators, ElementType.Xpath);
 			flag = webDB.waitForElementUntilGivenTime(PageLocators, ElementType.Xpath, 15);
@@ -3015,7 +3021,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("GeneralExpense"),
 				AttendanceLeaveLocators.GeneralExpFindAddButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Resignation Request
 	 * 
@@ -3025,7 +3031,7 @@ public class CommonFunctions {
 		navigateToSearchTab(webDB.getDataFromProperties("ResignationRequest"),
 				AttendanceLeaveLocators.ResigRequestFindAddButton);
 	}
-	
+
 	/**
 	 * This Method Is Used To Navigate Resignation Request
 	 * 
@@ -3255,5 +3261,15 @@ public class CommonFunctions {
 	public void navigateToSubcontractOrderCloseShort() {
 		navigateToSearchTab(webDB.getDataFromProperties("SubcontractCSScreen"),
 				CommonUiLocators.SubcontractCSFindAddIcon);
+	}
+
+	/**
+	 * Navigate To Financial Payment Receipt
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void navigateToPostDatedCheque() {
+		navigateToSearchTab(webDB.getDataFromProperties("PostDatedCheque"),
+				BankPaymentLocators.PDCVoucherNumberLovButton);
 	}
 }

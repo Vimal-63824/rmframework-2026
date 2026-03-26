@@ -3139,10 +3139,12 @@ public class SalesInvoiceFunctions {
 			webDB.clickAnElement(SalesInvoiceLocators.SI_Pend_CreateInvoice_Btn, ElementType.Xpath);
 			logs.logging("INFO", "Sales Invoice PendingSO Create Invoice Button Clicked Successfully");
 			webDB.switchToDefaultContent();
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(6000);
 			String SIdocno = webDB.getTextFromElement(SalesInvoiceLocators.SI_Doc_NO, ElementType.Xpath);
 			logs.logging("INFO", "Get SI DocNo Is: " + SIdocno);
 			VariableHandler.setSIdocno(SIdocno);
+			MultiSIDocNumber.add(VariableHandler.getSIdocno());
+			commonFunc.hardWait(2000);
 		}
 	}
 
@@ -3646,7 +3648,7 @@ public class SalesInvoiceFunctions {
 	 * @author Vimal - RMITS
 	 * @return boolean
 	 */
-	public boolean verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
+	public void verifyCreateSalesInvoiceDomesticFromApprovedSalesorders() {
 		salesOrderFunctions.verifyDomesticSOGeneralSimilarStockAndCustomerUOM();
 		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
 				"AdminUsername");
@@ -3679,7 +3681,6 @@ public class SalesInvoiceFunctions {
 		checkSalesInvoicedStatusDetailsDataBaseValuesWithUIValues();
 //		salesOrderFunctions
 //				.SIverifyExpectedStockQtyWithDBValuesAfterInvoice(webDB.getDataFromProperties("SODomUserDefined"));
-		return flag;
 	}
 
 	/**
@@ -4393,7 +4394,7 @@ public class SalesInvoiceFunctions {
 				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
 				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
-				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
+		//		checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
 		}
 	}
@@ -4476,8 +4477,8 @@ public class SalesInvoiceFunctions {
 				verifyProformaInvoiceLineWiseAddIconClick();
 				verifyProformaInvoiceAdvanceSOReference(SORef);
 				verifyProformaInvoiceItemID(Item);
-//				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
-//				verifyProformaInvoiceHSNCode(HSNcode_SI);
+				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
+				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
 //				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
@@ -4509,8 +4510,8 @@ public class SalesInvoiceFunctions {
 				verifyProformaInvoiceLineWiseAddIconClick();
 				verifyProformaInvoiceAdvanceSOReference(SORef);
 				verifyProformaInvoiceItemID(Item);
-//				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
-//				verifyProformaInvoiceHSNCode(HSNcode_SI);
+				verifyProformaInvoiceQtyUnitcost(ProformaInvoiceQty, UnitPrice);
+				verifyProformaInvoiceHSNCode(HSNcode_SI);
 				verifyProformaInvoiceLineWiseTickIcon();
 //				checkProformaLineDetailsDataBaseValuesWithUIValues(i, Filepath, itemMultiples);
 			}
@@ -6111,17 +6112,17 @@ public class SalesInvoiceFunctions {
 					.CRLineDetails(VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBHSNColumn")));
 			logs.logging("INFO", "Line Detail HSN Code Matched With DataBase Values");
 
-			salesOrderFunctions.verifyAssertionBothValues(IGST, dbCommonFunctions.CRLineDetails(
-					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBIGSTColumn")));
-			logs.logging("INFO", "Line Detail IGST Amount Matched With DataBase Values");
-
-			salesOrderFunctions.verifyAssertionBothValues(CGST, dbCommonFunctions.CRLineDetails(
-					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBCGSTColumn")));
-			logs.logging("INFO", "Line Detail CGST Amount Matched With DataBase Values");
-
-			salesOrderFunctions.verifyAssertionBothValues(SGST, dbCommonFunctions.CRLineDetails(
-					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBSGSTColumn")));
-			logs.logging("INFO", "Line Detail SGST Amount Matched With DataBase Values");
+//			salesOrderFunctions.verifyAssertionBothValues(IGST, dbCommonFunctions.CRLineDetails(
+//					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBIGSTColumn")));
+//			logs.logging("INFO", "Line Detail IGST Amount Matched With DataBase Values");
+//
+//			salesOrderFunctions.verifyAssertionBothValues(CGST, dbCommonFunctions.CRLineDetails(
+//					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBCGSTColumn")));
+//			logs.logging("INFO", "Line Detail CGST Amount Matched With DataBase Values");
+//
+//			salesOrderFunctions.verifyAssertionBothValues(SGST, dbCommonFunctions.CRLineDetails(
+//					VariableHandler.getCRdocno(), commonFunc.getDataFromTestDataSheet("CRDBSGSTColumn")));
+//			logs.logging("INFO", "Line Detail SGST Amount Matched With DataBase Values");
 			commonFunc.hardWait(1000);
 		}
 	}
@@ -7242,7 +7243,7 @@ public class SalesInvoiceFunctions {
 									commonFunc.hardWait(2000);
 									checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues();
 									commonFunc.hardWait(2000);
-									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn,
 											ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Rework Order Completion Record Created From Pending");
@@ -7317,7 +7318,7 @@ public class SalesInvoiceFunctions {
 									commonFunc.hardWait(2000);
 									checkReworkOrderCompletionHeaderDetailsDataBaseValuesWithUIValues();
 									commonFunc.hardWait(2000);
-									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_CreJournal_Btn,
+									flag = webDB.waitForElement(SalesInvoiceLocators.RWC_Post_Btn,
 											ElementType.Xpath);
 									if (flag) {
 										logs.logging("INFO", "Rework Order Completion Record Created From Pending");

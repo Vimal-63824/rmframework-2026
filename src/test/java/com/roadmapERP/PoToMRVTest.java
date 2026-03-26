@@ -1002,6 +1002,17 @@ public class PoToMRVTest extends RoadMapERPTest {
 	// -----------------------------------------End----------------------------------
 
 	/**
+	 * Verify Add Line In Grn Documents
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 67, groups = { "PoToGrn" }, description = "Verify Add Line In Grn Documents")
+	public void VerifyAddLineInGrn() {
+		grnPageFunc.verifyAddLineInGRN();
+	}
+
+	/**
 	 * Verify After Method
 	 * 
 	 * @author Deepan-GWL

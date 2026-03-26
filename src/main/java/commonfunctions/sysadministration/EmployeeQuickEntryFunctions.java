@@ -41,6 +41,7 @@ public class EmployeeQuickEntryFunctions {
 					webDB.sendTextToAnElement(EmployeeQuickEntryLocators.EmpId, EmpId, ElementType.Xpath);
 					webDB.sendTextToAnElement(EmployeeQuickEntryLocators.EmpName, EmployeeName, ElementType.Xpath);
 					logs.logging("INFO", "Send Text Employee Name Is: " + EmployeeName);
+					webDB.sendTextToAnElement(EmployeeQuickEntryLocators.Dob, commonFunc.getDataFromTestDataSheet("DOB"), ElementType.Xpath);
 					commonFunc.searchAndSelectValueInFilters(EmployeeQuickEntryLocators.Designation, Designation);
 					webDB.switchToFrame(EmployeeQuickEntryLocators.EmployeeQuickEntryIframe, ElementType.Xpath);
 					commonFunc.searchAndSelectValueInFilters(EmployeeQuickEntryLocators.Department, Department);

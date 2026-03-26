@@ -236,7 +236,7 @@ public class InspectionDocumentFunctions {
 		waitingForApproval();
 		String alertText = VariableHandler.getIDAlertMessage();
 		logs.logging("INFO", "Alert text: " + alertText);
-		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*to\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
+		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}\\s*~\\s*[A-Za-z0-9]+/\\d{5}/\\d{2}-\\d{2}";
 		if (alertText.matches(".*" + pattern + ".*")) {
 			documentSearchAndSelectLovForFindPage();
 			commonFunc.logoutUser();
@@ -802,7 +802,7 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDU2-\\d{4}-\\d{5}\\s*to\\s*IDU2-\\d{4}-\\d{5}";
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*IDU2-\\d{4}-\\d{5}\\s*~\\s*IDU2-\\d{4}-\\d{5}";
 
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
@@ -1230,7 +1230,7 @@ public class InspectionDocumentFunctions {
 		try {
 			String alertText = VariableHandler.getIDAlertMessage();
 			logs.logging("INFO", "Alert text: " + alertText);
-			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*INDP-\\d{4}-\\d{4}\\s*to\\s*INDP-\\d{4}-\\d{4}";
+			String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*INDP-\\d{4}-\\d{4}\\s*~\\s*INDP-\\d{4}-\\d{4}";
 			if (alertText.matches(".*" + pattern + ".*")) {
 				documentSearchAndSelectLovForFindPage();
 				commonFunc.logoutUser();
@@ -1830,6 +1830,7 @@ public class InspectionDocumentFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * Verify TableSpec InputParameter
 	 * 
@@ -1863,13 +1864,14 @@ public class InspectionDocumentFunctions {
 	}
 
 	/**
-	 * This Methods Is Used To Reject Quanity Defect 
+	 * This Methods Is Used To Reject Quanity Defect
 	 * 
 	 * @author Vimal - RMITS
 	 */
 	public void rejectQuanityDefect(String QtyApplyFor0, String Defect) {
 		webDB.moveToElement(DirectGrnPageLocators.ID_AcptQty_Field, ElementType.Xpath);
-		verifyAddTableSpecs(DirectGrnPageLocators.ID_AcptQty_Field, DirectGrnPageLocators.ID_AcptQty_Field, QtyApplyFor0);
+		verifyAddTableSpecs(DirectGrnPageLocators.ID_AcptQty_Field, DirectGrnPageLocators.ID_AcptQty_Field,
+				QtyApplyFor0);
 		commonFunc.hardWait(1000);
 		webDB.pressTabKey();
 		flag = webDB.waitForElement(DirectGrnPageLocators.RejectQty, ElementType.Xpath);
@@ -1877,53 +1879,51 @@ public class InspectionDocumentFunctions {
 			String RejectQty = webDB.getDomPropertyFromElement(DirectGrnPageLocators.RejectQty, ElementType.Xpath,
 					commonFunc.getDataFromTestDataSheet("Value"));
 			logs.logging("INFO", "Reject Quantity Is:" + RejectQty);
-				commonFunc.hardWait(2000);
-				flag = webDB.waitForElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+			commonFunc.hardWait(2000);
+			flag = webDB.waitForElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
+				logs.logging("INFO", "Overall Save Is clicked");
+				flag = webDB.waitForElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
 				if (flag) {
-					webDB.clickAnElement(DirectGrnPageLocators.DefectOverallSave, ElementType.Xpath);
-					logs.logging("INFO", "Overall Save Is clicked");
-					flag = webDB.waitForElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
+					webDB.clickAnElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
+					logs.logging("INFO", "Defect Tab Is Clicked");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.hardWait(2000);
+					flag = webDB.waitForElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
 					if (flag) {
-						webDB.clickAnElement(DirectGrnPageLocators.DefectTab, ElementType.Xpath);
-						logs.logging("INFO", "Defect Tab Is Clicked");
-						commonFunc.checkRefreshCellsDisappear();
+						webDB.clickAnElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
+						logs.logging("INFO", "Add Button Is Clicked");
+						commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.DefectLov, Defect);
+						logs.logging("INFO", "Entered Defect Is:" + Defect);
 						commonFunc.hardWait(2000);
-						flag = webDB.waitForElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
+						flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
 						if (flag) {
-							webDB.clickAnElement(DirectGrnPageLocators.DefectTabAdd, ElementType.Xpath);
-							logs.logging("INFO", "Add Button Is Clicked");
-							commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.DefectLov, Defect);
-							logs.logging("INFO", "Entered Defect Is:" + Defect);
-							commonFunc.hardWait(2000);
-							flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
+							webDB.clickAnElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
+							commonFunc.hardWait(1000);
+							flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(DirectGrnPageLocators.DefectQtyField, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
 								commonFunc.hardWait(1000);
-								flag = webDB.waitForElement(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.DefectQtyInput, RejectQty,
+										ElementType.Xpath);
+								logs.logging("INFO", "Reject Quantity Is Entered:" + RejectQty);
+								flag = webDB.waitForElement(DirectGrnPageLocators.DefectPrimaryQty, ElementType.Xpath);
 								if (flag) {
-									webDB.clearText(DirectGrnPageLocators.DefectQtyInput, ElementType.Xpath);
+									webDB.clickAnElement(DirectGrnPageLocators.DefectPrimaryQty, ElementType.Xpath);
+									logs.logging("INFO", "Primary Reject Field Is Clicked");
 									commonFunc.hardWait(1000);
-									webDB.sendTextToAnElement(DirectGrnPageLocators.DefectQtyInput, RejectQty,
-											ElementType.Xpath);
-									logs.logging("INFO", "Reject Quantity Is Entered:" + RejectQty);
-									flag = webDB.waitForElement(DirectGrnPageLocators.DefectPrimaryQty,
-											ElementType.Xpath);
+									flag = webDB.waitForElement(DirectGrnPageLocators.DefectSave, ElementType.Xpath);
 									if (flag) {
-										webDB.clickAnElement(DirectGrnPageLocators.DefectPrimaryQty, ElementType.Xpath);
-										logs.logging("INFO", "Primary Reject Field Is Clicked");
-										commonFunc.hardWait(1000);
-										flag = webDB.waitForElement(DirectGrnPageLocators.DefectSave,
-												ElementType.Xpath);
-										if (flag) {
-											webDB.clickAnElement(DirectGrnPageLocators.DefectSave, ElementType.Xpath);
-											logs.logging("INFO", "Line Is Saved");
-										}
+										webDB.clickAnElement(DirectGrnPageLocators.DefectSave, ElementType.Xpath);
+										logs.logging("INFO", "Line Is Saved");
 									}
 								}
 							}
 						}
 					}
 				}
+			}
 		} else {
 			flag = webDB.waitForClickElement(InspectionDocumentsLocators.HeaderPostIcon, ElementType.Xpath);
 			if (flag) {
@@ -1931,5 +1931,100 @@ public class InspectionDocumentFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Create Inspection Document With inspection Plan From
+	 * GRN
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void inspectionDocumentWithInspectionPlanForDifferentLoc() {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.navigateInspectionDocumentsPage();
+		pendingInspectionRequestDocumentToCreateInspectionDocument();
+		getInspectionDocumentNumberFromToastMessageForDifferentLocDirectGrn();
+		inspectionPlanNumberCheckingInInspectionDocument();
+		if (VariableHandler.getInspectionPlanNumber().equals("")) {
+		} else {
+			enterObservationValue();
+		}
+		clickTickAndPostIconForGrnDocument();
+		waitingForApproval();
+		String alertText = VariableHandler.getIDAlertMessage();
+		logs.logging("INFO", "Alert text: " + alertText);
+		String pattern = "Pend\\. Inspection Request Moved\\s*-\\s*[A-Za-z]+-\\d{4}-\\d{4}\\s*~\\s*[A-Za-z]+-\\d{4}-\\d{4}";
+		if (alertText.matches(".*" + pattern + ".*")) {
+			documentSearchAndSelectLovForFindPage();
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Specific alert found, proceeding with the process.");
+		} else {
+			commonFunc.logoutUser();
+			logs.logging("INFO", "Other alert detected, no action taken.");
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Get Inspection Document Number from Toast Message
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void getInspectionDocumentNumberFromToastMessageForDifferentLocDirectGrn() {
+		String alertText = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+				ElementType.Xpath);
+		String IDAlertMessage = webDB.getTextFromElement(InspectionDocumentsLocators.InspectionDocumentSuccessMsg,
+				ElementType.Xpath);
+		VariableHandler.setIDAlertMessage(IDAlertMessage);
+		// Regex: capture patterns like ID100/12345/25-26 or IDC/00020/25-26
+		String regex = "([A-Za-z0-9]+)-([0-9]{4})-([0-9]{4})";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(alertText);
+
+		ArrayList<String> matchedDocs = new ArrayList<>();
+
+		while (matcher.find()) {
+			matchedDocs.add(matcher.group()); // Full document string
+		}
+
+		if (matchedDocs.size() == 2) {
+
+			String fromDoc = matchedDocs.get(0);
+			String toDoc = matchedDocs.get(1);
+
+			logs.logging("INFO", "From Document: " + fromDoc);
+			logs.logging("INFO", "To Document: " + toDoc);
+
+			// Extract the numeric portion only
+			String fromNum = fromDoc.split("-")[2];
+			String toNum = toDoc.split("-")[2];
+
+			System.out.println(fromNum + " from " + toNum);
+
+			int startNum = Integer.parseInt(fromNum);
+			int endNum = Integer.parseInt(toNum);
+
+			ArrayList<String> generatedList = new ArrayList<>();
+			String prefix = fromDoc.split("-")[0];
+			String session = fromDoc.split("-")[1];
+
+			System.out.println(prefix + " prefix " + session);
+
+			// Generate complete range
+			for (int i = startNum; i <= endNum; i++) {
+				generatedList.add(prefix + "-" + session + "-" + String.format("%04d", i));
+			}
+
+			VariableHandler.setAllDocumentNumber(generatedList);
+
+			logs.logging("INFO", "Generated Document Numbers:");
+			for (String num : generatedList) {
+				System.out.println(num);
+			}
+
+		} else {
+			logs.logging("INFO", "Unable to extract valid From-to format from alert text.");
+		}
 	}
 }

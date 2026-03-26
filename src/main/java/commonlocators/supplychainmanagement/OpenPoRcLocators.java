@@ -65,7 +65,7 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String HeaderCancelButton = "//button[@data-testid='CANCEL']";
 	/** @locatorType Xpath */
-	public static final String OpenPOTable = "//table[@id='3378806935016740275_orig']/tbody/tr[2]/td[1]";
+	public static final String OpenPOTable = "//table[@id='3595281131037376356_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String FindLocationButton = "//input[@data-testid='P1615131025_LOC_NAME']/following-sibling::button";
 	/** @locatorType Xpath */
@@ -225,9 +225,9 @@ public class OpenPoRcLocators {
 	/** @locatorType Xpath */
 	public static final String AmendSelectStatus = "//select[@data-testid='P1615131021_STATUS']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//table[@id='3385503134005426364_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//table[@id='3601977330026062445_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//table[@id='1822198273644748281_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//table[@id='2038672469665384362_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "//label[text()='Line(s)']";
 

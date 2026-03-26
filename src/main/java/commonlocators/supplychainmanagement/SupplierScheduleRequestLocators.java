@@ -17,11 +17,11 @@ public class SupplierScheduleRequestLocators {
 	/** @locatorType XPATH */
 	public static final String SSRIframe = "//iframe[@title='Supplier Schedule Request']";
 	/** @locatorType XPATH */
-	public static final String TickIcon = "//button[@title='Create' and @id='B1847436968555721619']";
+	public static final String TickIcon = "//button[@title='Create' and @id='B2566537848175335328']";
 	/** @locatorType XPATH */
 	public static final String RefInput = "//input[@id='P16151310322_SSRH_REF']";
 	/** @locatorType XPATH */
-	public static final String AddItemButton = "//button[@id='B2002381515804887452']";
+	public static final String AddItemButton = "//button[@title='Add'  and @onclick=\"add_row('LN')\"]";
 	/** @locatorType XPATH */
 	public static final String ItemTable = "//div[@id='LN_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[2]";
 	/** @locatorType XPATH */
@@ -43,17 +43,17 @@ public class SupplierScheduleRequestLocators {
 	/** @locatorType XPATH */
 	public static final String HeaderSaveButton = "//button[contains(@onclick,\"request:'SAVE'\")]";
 	/** @locatorType XPATH */
-	public static final String HeaderPostButton = "//button[@id='B2002530640807087622']";
+	public static final String HeaderPostButton = "//span[text()='Post']/..";
 	/** @locatorType XPATH */
 	public static final String SSRDocumentNumber = "//span[contains(@id,'SSRH_RQST_NO_DISPLAY')]";
 	/** @locatorType XPATH */
-	public static final String SSRLovButton = "//button[@id='P16151310321_DOC_NO_lov_btn']";
+	public static final String SSRLovButton = "//button[contains(@id,'DOC_NO_lov_btn')]";
 	/** @locatorType XPATH */
 	public static final String HeaderCheckBox = "//label[text()='Header']";
 
 	/** @locatorType Xpath */
 	public static final String ApprovedStatus(String SSRNumber) {
-		return "//a[text()='" + SSRNumber + "']/../../td/div[contains(@style,'color:GREEN')]";
+		return "//a[text()='" + SSRNumber + "']/../../td/div[contains(@style,'COLOR:GREEN')]";
 	}
 
 }

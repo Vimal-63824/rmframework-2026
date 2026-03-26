@@ -200,8 +200,8 @@ public class RfqLocators {
 	}
 
 	/** @locatorType Xpath */
-	public static final String SobItemField(int i) {// *[@id="R756144529071251319_ig_grid_vc"]/div[3]/div[3]/table/tbody/tr[1]/td[2]
-		return "//*[@id=\'R2187670750374050234_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
+	public static final String SobItemField(int i) {
+		return "//*[@id=\'R2404144946394686315_ig_grid_vc\']/div[3]/div[3]/table/tbody/tr[" + i + "]/td[2]";
 	}
 
 	/** @locatorType Xpath */
@@ -304,9 +304,9 @@ public class RfqLocators {
 	/** @locatorType Xpath */
 	public static final String RFQSearchButton = "//button[@data-testid='Line']";
 	/** @locatorType Xpath */
-	public static final String AmendFindTable = "//*[@id='10822035623771391806_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendFindTable = "//*[@id='11038509819792027887_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
-	public static final String AmendLineFindTable = "//*[@id='1670243557202618671_orig']/tbody/tr[2]/td[1]";
+	public static final String AmendLineFindTable = "//*[@id='1886717753223254752_orig']/tbody/tr[2]/td[1]";
 	/** @locatorType Xpath */
 	public static final String LineCheckBox = "(//input[@data-testid='P1615131058_RADIO_GRP']/following-sibling::label)[2]";
 	/** @locatorType Xpath */

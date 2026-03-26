@@ -6,14 +6,17 @@ package commonfunctions.supplychainmanagement;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
 import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
@@ -36,13 +39,26 @@ public class SsoPageFunctions {
 	private static PricelistPageFunctions PrlFunc = new PricelistPageFunctions();
 	public ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
+	String Today = null;
+	String tomorrowDate = null;
 
-	LocalDate date = LocalDate.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	String Today = date.format(formatter);
-	LocalDateTime myDateObj = LocalDateTime.now().plusDays(1);
-	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	String tomorrowDate = myDateObj.format(myFormatObj);
+	public SsoPageFunctions() {
+		LocalDate date = LocalDate.now();
+		LocalDateTime date2 = LocalDateTime.now().plusDays(1);
+		DayOfWeek day = date.getDayOfWeek();
+		if (day == DayOfWeek.SATURDAY) {
+			date = date.minusDays(2);
+			date2 = date2.minusDays(1);
+		} else if (day == DayOfWeek.SUNDAY) {
+			date = date.minusDays(3);
+			date2 = date2.minusDays(3);
+		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		Today = date.format(formatter).toUpperCase();
+		tomorrowDate = date2.format(formatter).toUpperCase();
+		System.out.println("Today Date: " + Today);
+		System.out.println("Tomorrow Date: " + tomorrowDate);
+	}
 
 	/**
 	 * This Methods Is Used To Verify Creation Of Item
@@ -955,7 +971,7 @@ public class SsoPageFunctions {
 	 */
 	public void verifyGenerateItemSim(String Itm) {
 		String ItemSeqNo = RandomStringUtils.randomNumeric(6);
-		if (ItemSeqNo.equals("000")) {
+		if (ItemSeqNo.equals("0000")) {
 			ItemSeqNo = "10";
 		}
 		String SimItemId = Itm + ItemSeqNo;

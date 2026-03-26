@@ -69,9 +69,9 @@ public class PurchaseBillsGrnLocators {
 	/** @locatorType Xpath */
 	public static final String PBAdjustmentFrame = "//iframe[@title='Advance Adjustment ']" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustDocSelect = "//*[@id=\"1985325153421018015_orig\"]/tbody/tr[2]/td[11]" ;
+	public static final String PBAdjustDocSelect = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[11]" ;
 	/** @locatorType Xpath */
-	public static final String PBAdjustValueEnterField = "//*[@id=\"1985325153421018015_orig\"]/tbody/tr[2]/td[10]";
+	public static final String PBAdjustValueEnterField = "//*[@id=\"3632475644335763481_orig\"]/tbody/tr[2]/td[10]";
 	/** @locatorType Xpath */
 	public static final String PBAdjustValueEnterInput = "//input[@type=\"number\"]" ;
 	/** @locatorType Xpath */
@@ -145,7 +145,48 @@ public class PurchaseBillsGrnLocators {
 	public static final String BPPendingPartyDocumentSelectCheckBox(String VoucherNumber) {
 		return "//td[contains(text(),'" + VoucherNumber + "')]/../td[13]/*";
 	}
-	
+	/** @locatorType Xpath */
+	public static final String PB_PendSCOField = "//button[@data-testid='PendingSCO']";
+	/** @locatorType Xpath */
+	public static final String SCO_SearchButton = "//button[@data-testid='SearchSCO']";
+	/** @locatorType Xpath */
+	public static final String SCONoField = "//input[@data-testid='P116131006_GRN_NO']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String SCO_CheckBox ="(//input[@id='check_all'])[1]";
+	/** @locatorType Xpath */
+	public static final String PB_LineProcess_Button ="(//span[@class='fa fa-info'])[1]";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessFrame = "//iframe[@title='Supplier Bill - Process']" ;
+	/** @locatorType Xpath */
+	public static final String PB_Process_TDS_Lov = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[28]" ;
+	/** @locatorType Xpath */
+	public static final String ProcessTDSLovButton = "//input[@data-testid='SDPLH_TDS_US_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PB_Process_Save = "//button[@title='Save']";
+	/** @locatorType Xpath */
+	public static final String PB_Process_Close = "//button[@id='B3838306386655114589']";
+	/** @locatorType Xpath */
+	public static final String PendingPayableSelectAll = "//input[@id='check_all']" ;
+	/** @locatorType Xpath */
+	public static final String PB_Reference_MatchedAmt = "//input[@id='P11613101001_SUPHD_BILL_AMT']";
+	/** @locatorType Xpath */
+	public static final String PB_Reference_GRNAmt = "//input[@id='P11613101001_SUPHD_SC_GRN_TOT_']";
+	/** @locatorType Xpath */
+	public static final String PB_Reference_DeviationAmt = "//input[@id='P11613101001_GRN_BAL_AMT']";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessTab_ProcQty = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessTab_UnitCost = "//*[@id=\"ig_line_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String PB_ProcessTab_procQtyField = "//input[@data-testid='SDPL_PROC_QTY']";
+	/** @locatorType Xpath */
+	public static final String PB_ReferenceTab = "//label[@for='P11613101001_TABS_3']";
+	/** @locatorType Xpath */
+	public static final String PB_InvoiceTab = "//label[@for='P11613101001_TABS_0']";
+	/** @locatorType Xpath */
+	public static final String PBQty = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[9]";
+	/** @locatorType Xpath */
+	public static final String PBUnitCost = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[10]";
 	
 	
 	

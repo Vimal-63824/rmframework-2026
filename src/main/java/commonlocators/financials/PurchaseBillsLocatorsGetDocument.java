@@ -161,7 +161,7 @@ public class PurchaseBillsLocatorsGetDocument {
 	/** @locatorType Xpath */
 	public static final String StockTransferHsnLov = "//input[@data-testid='SUPLN_HSN_CODE']/following-sibling::button";
 	/** @locatorType Xpath */
-	public static final String AllowIgstFlag = "//input[@id='P11613101001_ALOW_IGST_CSGST']/following-sibling::label";
+	public static final String AllowIgstFlag = "//input[@data-testid='P11613101001_ALOW_IGST_CSGST']/following-sibling::label";
 	/** @locatorType Xpath */
 	public static final String OverAllSaveBtn = "//button[@data-testid='SAVEHD']";
 	/** @locatorType Xpath */
@@ -176,4 +176,6 @@ public class PurchaseBillsLocatorsGetDocument {
 	public static final String PBGstSupplyergrid = "//*[@id=\"IN_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr[1]/td[25]";
 	/** @locatorType Xpath */
 	public static final String PBSupplySelect= "//select[@data-testid='SUPLN_TAX_EXMPT_FLAG']";
+	/** @locatorType Xpath */
+	public static final String PBRefType= "//select[@data-testid='Ref']";
 }
