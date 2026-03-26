@@ -2444,7 +2444,7 @@ public class AttendanceLeaveFunctions {
 			webDB.moveToElement(AttendanceLeaveLocators.LeaveEntryAttachmentBtn, ElementType.Xpath);
 			webDB.clickAnElement(AttendanceLeaveLocators.LeaveEntryAttachmentBtn, ElementType.Xpath);
 			switchAndClickAddInDocumentManagementFrame();
-			flag = webDB.waitForElement(AttendanceLeaveLocators.DocumentManagementIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Leave Entry Attachment Icon Clicked");
 			}

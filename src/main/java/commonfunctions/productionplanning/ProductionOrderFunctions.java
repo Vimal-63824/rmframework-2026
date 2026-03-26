@@ -6,6 +6,7 @@ package commonfunctions.productionplanning;
  */
 import static org.testng.Assert.assertTrue;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +21,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
@@ -34,6 +36,7 @@ import commonfunctions.supplychainmanagement.SubcontractOrderFunctions;
 import commonlocators.CommonUiLocators;
 import commonlocators.productionplanning.ProductionOrderLocators;
 import commonlocators.supplychainmanagement.SalesOrderLocators;
+import utils.ExcelUtils;
 import utils.ReportLoger;
 import utils.RestUtils;
 import utils.WebDriverBase;
@@ -56,6 +59,7 @@ public class ProductionOrderFunctions {
 	private static MRPFunctions mrpFunc = new MRPFunctions();
 	private static SalesOrderFunctions saleOrderFunc = new SalesOrderFunctions();
 	private static StockTransactionPageFunctions stockTransactionPageFunc = new StockTransactionPageFunctions();
+	private static DBCommonFunctions dbFunction = new DBCommonFunctions();
 
 	/**
 	 * This Method used to verify Status of Production Order with MRP Number
@@ -993,28 +997,28 @@ public class ProductionOrderFunctions {
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
 			if (flag) {
-				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
+//				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
 				flag = webDB.selectDropDownByText(ProductionOrderLocators.ProcessMoveType, MoveType, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Move Type Is Selected: " + MoveType);
-					flag = webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect, FirstOpr,
-							ElementType.Xpath);
+//					flag = webDB.selectDropDownByText(ProductionOrderLocators.FirstOprSelect, FirstOpr,
+//							ElementType.Xpath);
+//					if (flag) {
+//						logs.logging("INFO", "First Opr Select Is: " + FirstOpr);
+//						flag = webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect, RestOpr,
+//								ElementType.Xpath);
+//						if (flag) {
+//							logs.logging("INFO", "Rest Opr Select Is: " + RestOpr);
+					flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "First Opr Select Is: " + FirstOpr);
-						flag = webDB.selectDropDownByText(ProductionOrderLocators.RestOprSelect, RestOpr,
-								ElementType.Xpath);
-						if (flag) {
-							logs.logging("INFO", "Rest Opr Select Is: " + RestOpr);
-							flag = webDB.waitForElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-							if (flag) {
-								logs.logging("INFO", "Show Less Button Is Displayed");
-								webDB.moveToElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-								webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
-								flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
-							}
-						}
+						logs.logging("INFO", "Show Less Button Is Displayed");
+						webDB.moveToElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+						webDB.clickAnElement(ProductionOrderLocators.ShowLess, ElementType.Xpath);
+						flag = webDB.waitForElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 					}
 				}
+//					}
+//				}
 			}
 		}
 		assertTrue(flag);
@@ -3516,6 +3520,12 @@ public class ProductionOrderFunctions {
 	 * @author Sakthi-GWL
 	 */
 	private void orderReleaseOperationsProcessesInsideType() {
+		commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+		completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+		completionProductionOrderFunc
+				.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
+		completionProductionOrderFunc
+				.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToInventoryMaterialRequest();
 		materialRequestFunc.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 		commonFunc.navigateToMaterialIssuanceVoucherTab();
@@ -3757,8 +3767,8 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("BomAllInside"),
 					commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
 			clickSaveIconInCreationProductionOrder();
-			verifyProductionOrderMREventAndRestOP(FirstOpr, RestOpr,
-					commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+//			verifyProductionOrderMREventAndRestOP(FirstOpr, RestOpr,
+//					commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
 					commonFunc.getDataFromTestDataSheet("InsideType"));
 			verifyStoreProcessAndRawMaterial();
@@ -3791,6 +3801,7 @@ public class ProductionOrderFunctions {
 				logs.logging("INFO", "Operation Type for Process: " + Operation);
 				logs.logging("INFO", "RecipientWH: " + RecipientWH);
 				logs.logging("INFO", "ConsumptionWH: " + ConsumptionWH);
+//				VariableHandler.setProductionOrderNumber("PROD-2526-1707");
 				if (ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("InsideType"))
 						|| ProcessType.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("BothType"))) {
 					if (Operation.equalsIgnoreCase(commonFunc.getDataFromTestDataSheet("Orderreleases"))) {
@@ -3800,6 +3811,7 @@ public class ProductionOrderFunctions {
 						}
 						commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 						completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+						completionProductionOrderFunc.clickPendingCompletionInsideProcess();
 						completionProductionOrderFunc.selectComplProdOrderDocUsingProdNoInPending(
 								commonFunc.getDataFromTestDataSheet("Loc_100"),
 								VariableHandler.getProductionOrderNumber());
@@ -7353,6 +7365,342 @@ public class ProductionOrderFunctions {
 					"Exception occurs while executing 'verifyManualProdOrderWithSOFirstOutsideRestBothCQCQMoveTypeSingle': "
 							+ e);
 			return false;
+		}
+	}
+
+	// -------------------- New Scenarios -----------------------
+
+	/**
+	 * This method used to Manual Production order with Move Type - Single
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeSingle() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName"));
+			clickAddIconInCreationProductionOrder();
+			createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+					commonFunc.getDataFromTestDataSheet("PROPrefix"),
+					commonFunc.getDataFromTestDataSheet("ManufactureType"),
+					commonFunc.getDataFromTestDataSheet("BomAllInside"),
+					commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+			clickSaveIconInCreationProductionOrder();
+			// TODO verifying DB Steps
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyStoreProcessAndRawMaterial();
+			// TODO verifying DB Steps
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndexSheet = 0;
+			for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				String RecipientWH = VariableHandler.getProcessAndWarehousesBOM()[i][1];
+				String ConsumptionWH = VariableHandler.getProcessAndWarehousesBOM()[i][2];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				logs.logging("INFO", "RecipientWH: " + RecipientWH);
+				logs.logging("INFO", "ConsumptionWH: " + ConsumptionWH);
+				StartIndexSheet = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc
+						.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc
+						.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
+				// TODO verifying DB steps
+				materialRequestFunc.verifyHeaderValidationInMaterialRequestWithDB(
+						webDB.getDataFromProperties("PMFFileName"), webDB.getDataFromProperties("AllInsideSheetName"),
+						StartIndexSheet);
+				commonFunc.navigateToMaterialIssuanceVoucherTab();
+				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMaterialRequestNo());
+				materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+				commonFunc.navigateToMaterialIssuanceVoucherTab();
+				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				// TODO verifying DB steps
+				materialIssuanceVoucherFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(
+						webDB.getDataFromProperties("PMFFileName"), webDB.getDataFromProperties("AllInsideSheetName"),
+						StartIndexSheet);
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+				if (!VariableHandler.getAutoPostMRVFlag()) {
+					commonFunc.navigateToMaterialReceiptVoucher();
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					}
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
+							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				}
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc.selectComplProdOrderDocUsingProdNoInPending(
+						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+				// TODO verifying DB Steps
+				completionProductionOrderFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(
+						webDB.getDataFromProperties("PMFFileName"), webDB.getDataFromProperties("AllInsideSheetName"),
+						StartIndexSheet);
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.verifyCompletionProductionOrdeNumberWithDesiredStatus(
+						VariableHandler.getProductionCompletionOrderNo(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
+				if (!VariableHandler.getAutoPostMRVFlag()) {
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyPendingMRV(VariableHandler.getProductionCompletionOrderNo());
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
+							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occurs while executing 'verifyProdOrderWithoutSOAllInsideOperORCQMoveTypeSingle': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to validate the Header Details in Production Order
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Unit
+	 * @param OrderType
+	 * @param BOMType
+	 * @param FGItem
+	 * @param BOMNo
+	 * @param OrderQnty
+	 */
+	public void verifyHeaderValidationInProductionOrderWithDB(String FileName, String SheetName) {
+		logs.logging("INFO", "****Production DB Validation - Header****");
+		String Unit, OrderType, BOMType, FGItem, BOMNo, OrderQnty = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		Unit = TotalData[2][1];
+		OrderType = TotalData[2][2];
+		BOMType = TotalData[2][3];
+		BOMNo = TotalData[2][4];
+		FGItem = TotalData[2][5];
+		OrderQnty = TotalData[2][7];
+		commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderHeaderDetails(
+				commonFunc.getDataFromTestDataSheet("ProductionHeaderUnit")), Unit);
+		logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
+		BOMType = String.valueOf(BOMType.charAt(0)).toUpperCase();
+		OrderType = String.valueOf(OrderType.charAt(0)).toUpperCase();
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
+						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderBomType")))),
+				BOMType);
+		logs.logging("INFO", "Verified BOMType and DB Value Matched: " + BOMType);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
+						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderOrderType")))),
+				OrderType);
+		logs.logging("INFO", "Verified OrderType and DB Value Matched: " + OrderType);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
+						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderFGItem")))),
+				FGItem);
+		logs.logging("INFO", "Verified FGItem and DB Value Matched: " + FGItem);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
+						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderBOMNo")))),
+				BOMNo);
+		logs.logging("INFO", "Verified BOMNo and DB Value Matched: " + BOMNo);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
+						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderReqQnty")))),
+				OrderQnty);
+		logs.logging("INFO", "Verified OrderQnty and DB Value Matched: " + OrderQnty);
+	}
+
+	/**
+	 * This method used to validate the Routing Details in Production Order
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyRoutingValidationInProductionOrderWithDB(String FileName, String SheetName) {
+		logs.logging("INFO", "****Production DB Validation - Routing****");
+		String SeqNo, OprnNo, Process, Type, WorkCenter, ConsWHId, ConsWHDesc, RcptWHId, RcptWHDesc, TSAFlag = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 5; i <= 7; i++) {
+			SeqNo = TotalData[i][0];
+			OprnNo = TotalData[i][1];
+			Process = TotalData[i][2];
+			Type = TotalData[i][4];
+			WorkCenter = TotalData[i][5];
+			ConsWHId = TotalData[i][7];
+			ConsWHDesc = TotalData[i][8];
+			RcptWHId = TotalData[i][9];
+			RcptWHDesc = TotalData[i][10];
+			TSAFlag = TotalData[i][11];
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingSeqNo")), SeqNo);
+			logs.logging("INFO", "Verified SeqNo and DB Value Matched: " + SeqNo);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingOprnNo")), OprnNo);
+			logs.logging("INFO", "Verified OprnNo and DB Value Matched: " + OprnNo);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingProcess")), Process);
+			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingSrcType")), Type);
+			logs.logging("INFO", "Verified Type and DB Value Matched: " + Type);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingConsWH")), ConsWHId);
+			logs.logging("INFO", "Verified ConsWHId and DB Value Matched: " + ConsWHId);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingConsWHDesc")), ConsWHDesc);
+			logs.logging("INFO", "Verified ConsWHDesc and DB Value Matched: " + ConsWHDesc);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingTSAFlag")), TSAFlag);
+			logs.logging("INFO", "Verified TSAFlag and DB Value Matched: " + TSAFlag);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingRcptWH")), RcptWHId);
+			logs.logging("INFO", "Verified RcptWHId and DB Value Matched: " + RcptWHId);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingRcptWHDesc")), RcptWHDesc);
+			logs.logging("INFO", "Verified RcptWHDesc and DB Value Matched: " + RcptWHDesc);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProductionRoutingWorkCenter")), WorkCenter);
+			logs.logging("INFO", "Verified WorkCenter and DB Value Matched: " + WorkCenter);
+		}
+	}
+
+	/**
+	 * This method used to validate the Raw Material Details in Production Order
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyRawMaterialsValidationInProductionOrderWithDB(String FileName, String SheetName) {
+		logs.logging("INFO", "****Production DB Validation - Raw Materials****");
+		String SeqNo, ConsNo, Process, RMName, UOM, SourceWH, BOMQnty, ReqQnty = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 10; i <= 30; i++) {
+			SeqNo = TotalData[i][0];
+			ConsNo = TotalData[i][1];
+			Process = TotalData[i][2];
+			RMName = TotalData[i][4];
+			UOM = TotalData[i][5];
+			SourceWH = TotalData[i][6];
+			BOMQnty = TotalData[i][10];
+			ReqQnty = TotalData[i][11];
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialSeqNo")), SeqNo);
+			logs.logging("INFO", "Verified SeqNo and DB Value Matched: " + SeqNo);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialConsNo")), ConsNo);
+			logs.logging("INFO", "Verified ConsNo and DB Value Matched: " + ConsNo);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialProcess")), Process);
+			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialRMName")), RMName);
+			logs.logging("INFO", "Verified RMName and DB Value Matched: " + RMName);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialUOM")), UOM);
+			logs.logging("INFO", "Verified UOM and DB Value Matched: " + UOM);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialSourceWH")), SourceWH);
+			logs.logging("INFO", "Verified SourceWH and DB Value Matched: " + SourceWH);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialBOMQnty")), BOMQnty);
+			logs.logging("INFO", "Verified BOMQnty and DB Value Matched: " + BOMQnty);
+			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderMaterialDetails(SeqNo, ConsNo,
+					commonFunc.getDataFromTestDataSheet("ProductionMaterialReqQnty")), ReqQnty);
+			logs.logging("INFO", "Verified ReqQnty and DB Value Matched: " + ReqQnty);
+		}
+	}
+
+	/**
+	 * This method used to update stock quantity and cost in test data sheet
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyWriteBeforeStockForFGAndRawMaterials(String FileName, String SheetName) {
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		String FGItem = TotalData[2][5];
+		String FGWH = commonFunc.getDataFromTestDataSheet("FG WH");
+
+		String StockQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(FGItem, FGWH,
+				commonFunc.getDataFromTestDataSheet("StockQtyHandDBHeader"));
+		logs.logging("INFO", "For FGItem: " + FGItem + " Stock Quanity Before = " + StockQuantity);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 2, 8, StockQuantity);
+
+		String StockCost = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(FGItem, FGWH,
+				commonFunc.getDataFromTestDataSheet("StockUpdCostDBHeader"));
+		logs.logging("INFO", "For FGItem: " + FGItem + " Stock Quanity Before = " + StockCost);
+		excelUtils.writeDataInExcel(Filepath, SheetName, 2, 10, StockCost);
+
+		for (int i = 10; i <= 16; i++) {
+			String RMItem = TotalData[i][4];
+			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
+			StockQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(RMItem, RMWH,
+					commonFunc.getDataFromTestDataSheet("StockQtyHandDBHeader"));
+			logs.logging("INFO", "For RMItem: " + FGItem + " Stock Quanity Before = " + StockQuantity);
+			excelUtils.writeDataInExcel(Filepath, SheetName, i, 7, StockQuantity);
 		}
 	}
 }

@@ -259,10 +259,14 @@ public class PurchaseRequestFunctions {
 	 * @param addIcon
 	 */
 	public void fillItemsQuantityCostAndSaveLine(String Item, String Qnty, String Cost, boolean... addIcon) {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		if (addIcon != null) {
 			flag = webDB.waitForElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
 			if (flag) {
-				flag = webDB.clickAnElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+				webDB.moveToElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+				webDB.clickAnElement(PurchaseRequestLocators.AddLineIcon, ElementType.Xpath);
+				flag = webDB.waitForElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Add Lines Icon Clicked.");
 				}

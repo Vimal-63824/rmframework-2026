@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonfunctions.payroll.CommonPayrollFunctions;
 import commonfunctions.supplychainmanagement.ApprovalPageFunctions;
@@ -31,6 +32,7 @@ public class BillOfMaterialsFunctions {
 	private static CommonPayrollFunctions commonPayrollFunc = new CommonPayrollFunctions();
 	private static ApprovalPageFunctions approvalFunc = new ApprovalPageFunctions();
 	private static PricelistPageFunctions priceListFunc = new PricelistPageFunctions();
+	private static DBCommonFunctions dbFunction = new DBCommonFunctions();
 
 	/**
 	 * This Method used to search BOM Number and verify Status with Expected Status
@@ -1273,6 +1275,97 @@ public class BillOfMaterialsFunctions {
 	}
 
 	/**
+	 * Validation of Routing Details in BOM with Data Base
+	 * 
+	 * @author Sakthi-GWL
+	 * @param i
+	 * @param Process
+	 * @param ProcessType
+	 * @param WorkCenter
+	 * @param ConsWarehouse
+	 * @param ReceiptWarehouse
+	 */
+	public void validateRoutingDetailsWithDB(String i, String Process, String ProcessType, String WorkCenter,
+			String ConsWarehouse, String ReceiptWarehouse) {
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMRoutingDetails(i, commonFunc.getDataFromTestDataSheet("BOMRoutingProcess")),
+				Process);
+		logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+		ProcessType = String.valueOf(ProcessType.charAt(0)).toUpperCase();
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMRoutingDetails(i, commonFunc.getDataFromTestDataSheet("BOMRoutingSourceType")),
+				ProcessType);
+		logs.logging("INFO", "Verified ProcessType and DB Value Matched: " + ProcessType);
+//		commonFunc.verifyAssertionBothValues(
+//				dbFunction.validateBOMRoutingDetails(i, commonFunc.getDataFromTestDataSheet("BOMRoutingOprnId")),
+//				WorkCenter);
+//		logs.logging("INFO", "Verified WorkCenter and DB Value Matched: " + WorkCenter);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMRoutingDetails(i, commonFunc.getDataFromTestDataSheet("BOMRoutingConsWH")),
+				ConsWarehouse);
+		logs.logging("INFO", "Verified ConsWarehouse and DB Value Matched: " + ConsWarehouse);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMRoutingDetails(i, commonFunc.getDataFromTestDataSheet("BOMRoutingRcptWH")),
+				ReceiptWarehouse);
+		logs.logging("INFO", "Verified ReceiptWarehouse and DB Value Matched: " + ReceiptWarehouse);
+	}
+
+	/**
+	 * Validation of Header Details in BOM with Data Base
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param BOMName
+	 * @param EffFrom
+	 * @param EffTo
+	 */
+	public void validateHeaderDetailsWithDB(String Item, String BOMName, String EffFrom, String EffTo) {
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderItem")), Item);
+		logs.logging("INFO", "Verified Item and DB Value Matched: " + Item);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderName")), BOMName);
+		logs.logging("INFO", "Verified BOMName and DB Value Matched: " + BOMName);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderEffFrom")), EffFrom);
+		logs.logging("INFO", "Verified Effective From Date and DB Value Matched: " + EffFrom);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderEffTo")), EffTo);
+		logs.logging("INFO", "Verified Effective To Date and DB Value Matched: " + EffTo);
+	}
+
+	/**
+	 * Validation of Lines Raw Material Details in BOM with Data Base
+	 * 
+	 * @author Sakthi-GWL
+	 * @param OprnNo
+	 * @param i
+	 * @param Process
+	 * @param RawMaterial
+	 * @param SourceWH
+	 * @param UOM
+	 */
+	public void validateLineDetailsWithDB(String OprnNo, String i, String Process, String RawMaterial, String SourceWH,
+			String UOM) {
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMLinesDetails(OprnNo, i, commonFunc.getDataFromTestDataSheet("BOMMatProcess")),
+				Process);
+		logs.logging("INFO", "Verified Raw Material Process and DB Value Matched: " + Process);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMLinesDetails(OprnNo, i, commonFunc.getDataFromTestDataSheet("BOMMatRMName")),
+				RawMaterial);
+		logs.logging("INFO", "Verified Raw Material and DB Value Matched: " + RawMaterial);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMLinesDetails(OprnNo, i, commonFunc.getDataFromTestDataSheet("BOMMatSourceWH")),
+				SourceWH);
+		logs.logging("INFO", "Verified Raw Material SourceWH and DB Value Matched: " + SourceWH);
+		commonFunc.verifyAssertionBothValues(
+				dbFunction.validateBOMLinesDetails(OprnNo, i, commonFunc.getDataFromTestDataSheet("BOMMaterialUOM")),
+				UOM);
+		logs.logging("INFO", "Verified Raw Material UOM and DB Value Matched: " + UOM);
+	}
+
+	/**
 	 * This method used to How to do BOM Migration?
 	 * 
 	 * @author Sakthi-GWL
@@ -1316,12 +1409,11 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1331,12 +1423,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
 			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1385,12 +1484,11 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1400,17 +1498,26 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem1,
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("FinishedGoodWH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "2", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem2,
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
 			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1459,12 +1566,11 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1474,12 +1580,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
 			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1501,6 +1614,7 @@ public class BillOfMaterialsFunctions {
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName2,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName2, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1510,12 +1624,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
 			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1564,12 +1685,11 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1579,12 +1699,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1641,6 +1768,7 @@ public class BillOfMaterialsFunctions {
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1650,12 +1778,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1669,7 +1804,15 @@ public class BillOfMaterialsFunctions {
 			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
 			navigateToOtherDetailsSubTab();
 			clickAndVerifyCopyBOMOption(commonFunc.getDataFromTestDataSheet("BomItem-2244"), Today, Today, BOMName2);
+			validateHeaderDetailsWithDB(commonFunc.getDataFromTestDataSheet("BomItem-2244"), BOMName2, Today, Today);
 			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Draft"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1708,12 +1851,11 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1723,12 +1865,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1742,6 +1891,7 @@ public class BillOfMaterialsFunctions {
 			navigateToBOMBySearchAndClickBOMNo(VariableHandler.getBOMNumber());
 			navigateToOtherDetailsSubTab();
 			clickAndVerifyRevisionBOMOption(commonFunc.getDataFromTestDataSheet("RefText_Test"), Today, Tomorrow);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Tomorrow);
 			checkDisplayStatusInsideBOM(commonFunc.getDataFromTestDataSheet("Draft"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
@@ -1779,12 +1929,11 @@ public class BillOfMaterialsFunctions {
 			commonFunc.navigateItemPage();
 			priceListFunc.searchItemAndCopyWithName(commonFunc.getDataFromTestDataSheet("GwlBomItem1001"),
 					"GWL - BOM ITEM - ");
-//			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
-//					"AdminUsername");
 			commonFunc.navigateToBillOfMaterialsPage();
 			clickAddIconAndFillUnitBOMNameAndItem(commonFunc.getDataFromTestDataSheet("Unit_100"), BOMName,
 					VariableHandler.getItemName());
 			enterEffFromToDateAndSaveHeader(Today, Today);
+			validateHeaderDetailsWithDB(VariableHandler.getItemName(), BOMName, Today, Today);
 			navigateToRoutingSubTab();
 			clickAddLineIconInRoutingTab();
 			fillProcSeqNoOprnNoAndProcessIdInRouting("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
@@ -1794,12 +1943,19 @@ public class BillOfMaterialsFunctions {
 			clickDetailsForAddedProcessInBOM(commonFunc.getDataFromTestDataSheet("GwlProcess1"));
 			chooseConsumptionAndReceiptWHInViewDetails(commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
+			validateRoutingDetailsWithDB("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"),
+					commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("GwlAutomationArea"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"),
+					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
 			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
+			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));

@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.CompletionProductionOrderLocators;
@@ -28,6 +29,7 @@ public class CompletionProductionOrderFunctions {
 	private static WebDriverBase webDB = new WebDriverBase();
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Method used to switch to Pending Production Order Iframe
@@ -267,11 +269,10 @@ public class CompletionProductionOrderFunctions {
 	public void clickPendingIconInCompletionProcess() {
 		flag = webDB.waitForClickElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon,
 				ElementType.Xpath);
-		commonFunc.hardWait(2000);
 		if (flag) {
 			webDB.moveToElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon, ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.CompletionProcessPendingIcon, ElementType.Xpath);
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_MRCreateBtn, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Production Planning - Pending Icon Clicked Successfully");
 			}
@@ -943,97 +944,105 @@ public class CompletionProductionOrderFunctions {
 	 * @param ProdNo
 	 */
 	public void selectComplProdOrderDocUsingProdNoInPending(String Location, String ProdNo) {
-		switchToPendingProdOrderIframe();
-		webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
-		webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
 		commonFunc.checkRefreshCellsDisappear();
-		commonFunc.hardWait(3000);
-		flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
-				ElementType.Xpath);
-		if (!flag) {
-			logs.logging("INFO", "No Data Selected Container not displayed");
-			webDB.waitForElementUntilGivenTime(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
-					ElementType.Xpath, 5);
-			if (webDB.isElementSelected(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
-					ElementType.Xpath)) {
-				logs.logging("INFO", "Check all selected");
-				webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
-						ElementType.Xpath);
-				webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
-						ElementType.Xpath);
-			}
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			switchToPendingProdOrderIframe();
+			webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(3000);
-			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
 					ElementType.Xpath);
-		}
-		if (flag) {
-			logs.logging("INFO", "No Data Selected Container displayed");
-			webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtnClicked,
-					ElementType.Xpath);
-			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtnClicked,
-					ElementType.Xpath);
-			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.clearFiltersInFindPage();
-			commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.Pend_ProdOrderLovBtn, ProdNo);
-			switchToPendingProdOrderIframe();
-			commonFunc.checkRefreshCellsDisappear();
-			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
-			if (flag) {
-				webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
-				webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
-				flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
-						ElementType.Xpath);
-				if (flag) {
-					logs.logging("INFO", "Pending Prod no Searched");
+			if (!flag) {
+				logs.logging("INFO", "No Data Selected Container not displayed");
+				webDB.waitForElementUntilGivenTime(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
+						ElementType.Xpath, 5);
+				if (webDB.isElementSelected(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
+						ElementType.Xpath)) {
+					logs.logging("INFO", "Check all selected");
 					webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 							ElementType.Xpath);
 					webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 							ElementType.Xpath);
-					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
+				}
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
+						ElementType.Xpath);
+			}
+			if (flag) {
+				logs.logging("INFO", "No Data Selected Container displayed");
+				webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtnClicked,
+						ElementType.Xpath);
+				webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtnClicked,
+						ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.clearFiltersInFindPage();
+				commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.Pend_ProdOrderLovBtn,
+						ProdNo);
+				switchToPendingProdOrderIframe();
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.moveToElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+					webDB.clickAnElement(CompletionProductionOrderLocators.PendingSearchBtn, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 							ElementType.Xpath);
 					if (flag) {
-						logs.logging("INFO", "Pending Prod No Checkbox Clicked");
-						webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
+						logs.logging("INFO", "Pending Prod no Searched");
+						webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 								ElementType.Xpath);
-						webDB.doubleClickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
+						webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 								ElementType.Xpath);
-						commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.SingleLocId,
-								Location);
-						switchToPendingProdOrderIframe();
-						flag = webDB.waitForClickElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+						flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 								ElementType.Xpath);
 						if (flag) {
-							commonFunc.checkRefreshCellsDisappear();
-							logs.logging("INFO", "Create Completion Process Button Clicked");
-							webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+							logs.logging("INFO", "Pending Prod No Checkbox Clicked");
+							webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 									ElementType.Xpath);
-							webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+							webDB.doubleClickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 									ElementType.Xpath);
-							commonFunc.checkRefreshCellsDisappear();
-							commonFunc.hardWait(3000);
-							if (webDB.verifyIsElementDisplayed(
-									CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn, ElementType.Xpath)) {
-								flag = webDB.clickAnElement(
-										CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
-										ElementType.Xpath);
-								logs.logging("INFO", "Create Completion Process clicked with all process No");
-							}
-							webDB.switchToDefaultContent();
-							flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
-									ElementType.Xpath);
+							commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.SingleLocId,
+									Location);
+							switchToPendingProdOrderIframe();
+							flag = webDB.waitForClickElement(
+									CompletionProductionOrderLocators.CreateCompletionProcessOkBtn, ElementType.Xpath);
 							if (flag) {
-								String ProdComplNo = webDB.getTextFromElement(
-										CompletionProductionOrderLocators.ComplProdOrderDisplayCompletionProdOrderNo,
+								commonFunc.checkRefreshCellsDisappear();
+								logs.logging("INFO", "Create Completion Process Button Clicked");
+								webDB.moveToElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
 										ElementType.Xpath);
-								VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
-								logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
-								logs.logging("INFO", "Create Completion Process Ok Button Clicked");
-								if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+								webDB.clickAnElement(CompletionProductionOrderLocators.CreateCompletionProcessOkBtn,
+										ElementType.Xpath);
+								commonFunc.checkRefreshCellsDisappear();
+								commonFunc.hardWait(3000);
+								if (webDB.verifyIsElementDisplayed(
+										CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
 										ElementType.Xpath)) {
-									webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+									flag = webDB.clickAnElement(
+											CompletionProductionOrderLocators.MultipleProceedRestOprNoBtn,
 											ElementType.Xpath);
+									logs.logging("INFO", "Create Completion Process clicked with all process No");
+								}
+								webDB.switchToDefaultContent();
+								flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderShiftLovBtn,
+										ElementType.Xpath);
+								if (flag) {
+									String ProdComplNo = webDB.getTextFromElement(
+											CompletionProductionOrderLocators.ComplProdOrderDisplayCompletionProdOrderNo,
+											ElementType.Xpath);
+									VariableHandler.setProductionCompletionOrderNo(ProdComplNo);
+									logs.logging("INFO", "Production Completion Order Number Is: " + ProdComplNo);
+									logs.logging("INFO", "Create Completion Process Ok Button Clicked");
+									if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath)) {
+										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
+												ElementType.Xpath);
+									}
 								}
 							}
 						}
@@ -1075,4 +1084,181 @@ public class CompletionProductionOrderFunctions {
 		assertTrue(flag);
 	}
 
+	/**
+	 * This Method Is Used To Verify click Create MR
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProdNumber
+	 */
+	public void clickMaterialRequestCreationAndSearchProdNo(String ProdNumber) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_MRCreateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(CompletionProductionOrderLocators.Pending_MRCreateBtn, ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_MRCreateBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Creation Clicked");
+				webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+				commonFunc.clearFiltersInFindPage();
+				commonFunc.searchAndSelectValueInFilters(CompletionProductionOrderLocators.PendingMRFindProdNoLov,
+						ProdNumber);
+				logs.logging("INFO", "Production Number Entered: " + ProdNumber);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+				if (flag) {
+					webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRFindSearchBtn,
+							ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRFindSearchBtn,
+								ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+						flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Pending MR Find Search Button Clicked and Result Found");
+						}
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify click Pending Inside Completion
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickPendingCompletionInsideProcess() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_InsideProcCreateBtn, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingProdOrderIframe, ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending Process Inside Button Clicked");
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to click select all and create MR
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickCheckBoxTableAndCreateAndStoreMRNo(String ProdNumber) {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+		if (flag) {
+			webDB.switchToFrame(CompletionProductionOrderLocators.PendingMRCreateIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+					ElementType.Xpath);
+			if (flag) {
+				logs.logging("INFO", "Pending MR Iframe Switched");
+				webDB.clickAnElement(CompletionProductionOrderLocators.PendingMRSelectAllBtn(ProdNumber),
+						ElementType.Xpath);
+				flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+				if (flag) {
+					logs.logging("INFO", "Pending MR Select All Button Clicked");
+					webDB.clickAnElement(CompletionProductionOrderLocators.CreateMRButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Create MR Button Clicked");
+						webDB.clickAnElement(CompletionProductionOrderLocators.CreateMROkButton, ElementType.Xpath);
+						webDB.switchToDefaultContent();
+						flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Material Request Created Successfully");
+							String Message = webDB.getTextFromElement(CommonUiLocators.PostToastMessage,
+									ElementType.Xpath);
+							logs.logging("INFO", "Success Message: " + Message);
+							Message = Message.replace("Material Request Created-", "").trim();
+							logs.logging("INFO", "After Split MR No: " + Message);
+							VariableHandler.setMaterialRequestNo(Message);
+							VariableHandler.setMRNumber(Message);
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate the Header and Lines Details in Material
+	 * Issuance Voucher
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 * @param StartIndex
+	 */
+	public void verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(String FileName, String SheetName,
+			int StartIndex) {
+		logs.logging("INFO", "****Completion Production Order DB Validation - Lines & Headers****");
+		String SeqNo, Shift, Process, Unit, ProcessDesc, RMName, UOM, SourceWH, ReceiverWH, RqrdQnty, TotalConsQnty,
+				AllocQnty, TargetSFCode = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = StartIndex; i < TotalData.length; i++) {
+			Unit = TotalData[2][1];
+			Shift = TotalData[2][1];
+			SeqNo = TotalData[i][0];
+			Process = TotalData[i][1];
+			ProcessDesc = TotalData[i][2];
+			RMName = TotalData[i][3];
+			UOM = TotalData[i][4];
+			SourceWH = TotalData[i][5];
+			ReceiverWH = TotalData[i][6];
+			RqrdQnty = TotalData[i][7];
+			TotalConsQnty = TotalData[i][8];
+			AllocQnty = TotalData[i][9];
+			TargetSFCode = TotalData[i + 1][12];
+			if (ProcessDesc.equals("")) {
+				break;
+			}
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails("Unit"),
+					Unit);
+			logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions
+					.validateCompProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet("Shift")), Shift);
+			logs.logging("INFO", "Verified Shift and DB Value Matched: " + Shift);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions
+					.validateCompProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet("Process")), Process);
+			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+					commonFunc.getDataFromTestDataSheet("ReceiverWH")), ReceiverWH);
+			logs.logging("INFO", "Verified ReceiverWH and DB Value Matched: " + ReceiverWH);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("SeqNo")), SeqNo);
+			logs.logging("INFO", "Verified SeqNo and DB Value Matched: " + SeqNo);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("ProcessDesc")), ProcessDesc);
+			logs.logging("INFO", "Verified ProcessDesc and DB Value Matched: " + ProcessDesc);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("RMName")), RMName);
+			logs.logging("INFO", "Verified RMName and DB Value Matched: " + RMName);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("UOM")), UOM);
+			logs.logging("INFO", "Verified UOM and DB Value Matched: " + UOM);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("SourceWH")), SourceWH);
+			logs.logging("INFO", "Verified SourceWH and DB Value Matched: " + SourceWH);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("RqrdQnty")), RqrdQnty);
+			logs.logging("INFO", "Verified RqrdQnty and DB Value Matched: " + RqrdQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("TotalConsQnty")), TotalConsQnty);
+			logs.logging("INFO", "Verified TotalConsQnty and DB Value Matched: " + TotalConsQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("AllocQnty")), AllocQnty);
+			logs.logging("INFO", "Verified AllocQnty and DB Value Matched: " + AllocQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("TargetSFCode")), TargetSFCode);
+			logs.logging("INFO", "Verified TargetSFCode and DB Value Matched: " + TargetSFCode);
+		}
+	}
 }
