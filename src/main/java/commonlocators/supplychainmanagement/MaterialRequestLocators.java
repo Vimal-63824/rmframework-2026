@@ -23,32 +23,32 @@ public class MaterialRequestLocators {
 
 	/** @locatorType Xpath */
 	public static final String Find_Status_TableData(String Text) {
-		return "//table[@id='2732461713738534821_orig']//*[contains(text(),'" + Text + "')]/../td/div";
+		return "//table[contains(@id,'orig')]//*[contains(text(),'" + Text + "')]/../td/div";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_MRNo_TableData(String Text) {
-		return "//table[@id='2732461713738534821_orig']//*[contains(text(),'" + Text + "')]/../td[5]/a";
+		return "//table[contains(@id,'orig')]//*[contains(text(),'" + Text + "')]/../td[5]/a";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_RequestQnty_TableData(String Text) {
-		return "//table[@id='2732461713738534821_orig']//*[contains(text(),'" + Text + "')]/../td[18]";
+		return "//table[contains(@id,'orig')]//*[contains(text(),'" + Text + "')]/../td[18]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_RequesterName_TableData(String Text) {
-		return "//table[@id='2732461713738534821_orig']//*[contains(text(),'" + Text + "')]/../td[9]";
+		return "//table[contains(@id,'orig')]//*[contains(text(),'" + Text + "')]/../td[9]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_Warehouse_TableData(String Text) {
-		return "//table[@id='2732461713738534821_orig']//*[contains(text(),'" + Text + "')]/../td[12]";
+		return "//table[contains(@id,'orig')]//*[contains(text(),'" + Text + "')]/../td[12]";
 	}
 
 	/** @locatorType Xpath */
 	public static final String Find_Item_TableData(String Text) {
-		return "//table[@id='2732461713738534821_orig']//*[contains(text(),'" + Text + "')]/../td[13]";
+		return "//table[contains(@id,'orig')]//*[contains(text(),'" + Text + "')]/../td[13]";
 	}
 
 	public static final String HeaderLocationId = "//span[@id='P9313101001_IMRHD_PLNT_LOC_ID_DISPLAY']";

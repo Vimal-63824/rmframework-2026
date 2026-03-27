@@ -1118,4 +1118,64 @@ public class MaterialRequestFunctions {
 		}
 		Assert.assertTrue(flag);
 	}
+
+	/**
+	 * This method used to validate the Header and Lines Details in Material Request
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 * @param StartIndex
+	 */
+	public void verifyHeaderValidationInMaterialRequestWithDB(String FileName, String SheetName, int StartIndex) {
+		logs.logging("INFO", "****Material Request DB Validation - Raw Materials & Headers****");
+		String LineNo, SeqNo, Process, Unit, ProcessDesc, RMName, UOM, SourceWH, ReceiverWH, ReqQnty = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = StartIndex; i < TotalData.length; i++) {
+			Unit = TotalData[2][1];
+			LineNo = TotalData[i][0];
+			SeqNo = TotalData[i][1];
+			Process = TotalData[i][2];
+			ProcessDesc = TotalData[i][3];
+			RMName = TotalData[i][4];
+			UOM = TotalData[i][5];
+			SourceWH = TotalData[i][6];
+			ReceiverWH = TotalData[i][7];
+			ReqQnty = TotalData[i][10];
+			if (ProcessDesc.equals("")) {
+				break;
+			}
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestUnit")), Unit);
+			logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestProcess")), ReceiverWH);
+			logs.logging("INFO", "Verified ReceiverWH and DB Value Matched: " + ReceiverWH);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestSeqNo")), SeqNo);
+			logs.logging("INFO", "Verified SeqNo and DB Value Matched: " + SeqNo);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestProcess")), Process);
+			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestRMName")), RMName);
+			logs.logging("INFO", "Verified RMName and DB Value Matched: " + RMName);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestUOM")), UOM);
+			logs.logging("INFO", "Verified UOM and DB Value Matched: " + UOM);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestSourceWH")), SourceWH);
+			logs.logging("INFO", "Verified SourceWH and DB Value Matched: " + SourceWH);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestReqQnty")), ReqQnty);
+			logs.logging("INFO", "Verified ReqQnty and DB Value Matched: " + ReqQnty);
+			String ProdOrderNo = VariableHandler.getProductionOrderNumber();
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
+					commonFunc.getDataFromTestDataSheet("MaterialRequestProdNo")), ProdOrderNo);
+			logs.logging("INFO", "Verified ProdOrderNo and DB Value Matched: " + ProdOrderNo);
+		}
+	}
 }

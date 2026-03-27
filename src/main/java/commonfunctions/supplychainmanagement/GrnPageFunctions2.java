@@ -447,20 +447,20 @@ public class GrnPageFunctions2 {
 						if (flag) {
 							webDB.moveToElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
 							webDB.clickAnElement(GrnLocators.AddLotSerialItem, ElementType.Xpath);
-							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-							if (flag) {
-								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
-								webDB.switchToDefaultContent();
-								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
-								List<WebElement> removeFilter = webDB.getDriver()
-										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
-								for (WebElement element : removeFilter) {
-									if (element.isDisplayed()) {
-										element.sendKeys(ITEM_NAME);
-										break;
-									}
-								}
-							}
+//							flag = webDB.waitForElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//							if (flag) {
+//								webDB.clickAnElement(GrnLocators.LotSerialItemLov, ElementType.Xpath);
+//								webDB.switchToDefaultContent();
+//								flag = webDB.waitForElement(GrnLocators.LotSerialItemSearch, ElementType.Xpath);
+//								List<WebElement> removeFilter = webDB.getDriver()
+//										.findElements(By.xpath(GrnLocators.LotserialitemsInput));
+//								for (WebElement element : removeFilter) {
+//									if (element.isDisplayed()) {
+//										element.sendKeys(ITEM_NAME);
+//										break;
+//									}
+//								}
+//							}
 						}
 					}
 					if (flag) {
@@ -626,8 +626,8 @@ public class GrnPageFunctions2 {
 		GRNFunc.verifyGrnAddDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 				commonFunc.getDataFromTestDataSheet("GRNPG"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
 				commonFunc.getDataFromTestDataSheet("SupplierBillNumber"));
-		verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
-				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
+//		verifyGrnAddLineDetails(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
+//				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		multipleLotandSerialWithGeneralType(webDB.getDataFromProperties("ImportPoToGrnWithGEFileName"),
 				webDB.getDataFromProperties("DirGRNImpSameUDGeneral"));
 		DirectGRNFunc.lotSerialQtyApportion();

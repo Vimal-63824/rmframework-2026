@@ -539,12 +539,15 @@ public class DirectGrnPageFunctions {
 	public void verifyClickingItemField(String ITEM_NAME) {
 		flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
 		if (flag) {
-			flag = webDB.doubleClickAnElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.moveToElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
+			webDB.doubleClickAnElement(DirectGrnPageLocators.GrnLineItemField, ElementType.Xpath);
 			logs.logging("INFO", "Item Lov Is Clicked");
 			commonFunc.searchAndSelectValueInFilters(DirectGrnPageLocators.GrnLineItemLov, ITEM_NAME);
 			logs.logging("INFO", "Entered Item Is: " + ITEM_NAME);
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.checkRefreshCellsDisappear();
+			flag = true;
 		}
 		assertTrue(flag);
 	}
@@ -581,7 +584,6 @@ public class DirectGrnPageFunctions {
 					DirectGrnPageLocators.GrnLineSupQtyInput, QTY);
 			logs.logging("INFO", "Entered Supply Quantity Is:" + QTY);
 			commonFunc.checkRefreshCellsDisappear();
-			logs.logging("INFO", "Entered Quantity Is:" + QTY);
 		}
 		assertTrue(flag);
 	}

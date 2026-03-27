@@ -859,7 +859,7 @@ public class PurchaseOrderFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 			webDB.moveToElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -1011,7 +1011,9 @@ public class PurchaseOrderFunctions {
 				}
 			}
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Select All CheckBox Clicked in Pending PR and Create PO Enabled");
+				webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, ElementType.Xpath);
 				if (flag) {
@@ -1039,11 +1041,15 @@ public class PurchaseOrderFunctions {
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, Supplier);
 		webDB.waitForElement(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Create PO - 'Ok' Button Clicked");
