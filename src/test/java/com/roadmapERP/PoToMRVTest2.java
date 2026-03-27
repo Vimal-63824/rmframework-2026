@@ -1,5 +1,6 @@
 package com.roadmapERP;
 
+import java.io.IOException;
 /**
  * @author Deepan-GWL, Sakthi-GWL
  * @company Galaxy Weblinks December 17, 2025
@@ -745,61 +746,6 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 		}
 	}
 
-	/**
-	 * Check the process of GRN with Tolerance Quantity
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 1, groups = { "PurchaseOrder" }, description = "Check  the process of GRN with Tolerance Quantity")
-	public void VerifyGRNToleranceQuantity() {
-		// Check the process of GRN with Tolerance Quantity
-	}
-
-	/**
-	 * Check the process of GRN with ExcessQuantity
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 2, groups = { "PurchaseOrder" }, description = " Check  the process of GRN with ExcessQuantity")
-	public void VerifyGRNExcessQuantity() {
-		// Check the process of GRN with ExcessQuantity
-	}
-
-	/**
-	 * Inward GRN with Landed cost and other charges
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 3, groups = { "PurchaseOrder" }, description = " Inward GRN with Landed cost and other charges")
-	public void VerifyInwardGrnWithLandedCostAndOtherCharges() {
-		// Inward GRN with Landed cost and other charges
-	}
-
-	/**
-	 * cancel the GRN lines
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 4, groups = { "PurchaseOrder" }, description = " cancel the GRN lines")
-	public void VerifyCancelTheGRNLines() {
-		// cancel the GRN lines
-	}
-
-	/**
-	 * Cancel GRN Document
-	 * 
-	 * @author Deepan-GWL
-	 */
-	@Author("Deepan-GWL")
-	@Test(priority = 5, groups = { "PurchaseOrder" }, description = "Cancel GRN Document")
-	public void VerifyCancelTheGRNDocuments() {
-		// Cancel GRN Document
-	}
-
 	// ------------------PO to GRN -Without Quality Enabled (Import Supplier)-With
 	// Gate Entry---------------------
 
@@ -1171,6 +1117,131 @@ public class PoToMRVTest2 extends RoadMapERPTest {
 			"PurchaseOrder" }, description = "PO to GRN-Service-Price List-Same Stock and Supplier UOM - WO Inspection Plan")
 	public void VerifyPoToGrnServiceImportPriceListSameUomWithOutQualityWithOutInspectionPlan() {
 		grnPageFunc.poToGrnServiceImportPriceListSameStockAndSupplierUomWithOutQualityWithGateEntry();
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type Without Quality Enabled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 79, groups = { "GRN" }, description = "332 Check  the process of GRN with Tolerance Quantity")
+	public void PotoGrnMateriallPriceListDifferentStockAndSupplierUOMWithInspectionPlanWithoutQualityEnabledAndToleranceQty()
+			throws Exception {
+		grnPageFunc
+				.poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQtyAndExcessQty();
+	}
+
+	/**
+	 * Check the process of GRN with Tolerance Quantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 80, groups = {
+			"PurchaseOrder" }, description = "Check  the process of GRN with Tolerance Quantity")
+	public void VerifyGRNToleranceQuantity() {
+		// Check the process of GRN with Tolerance Quantity
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type Without Quality Line wise Cancelled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 81, groups = { "GRN" }, description = "335  cancel the GRN lines")
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanLinewiseCancelled()
+			throws IOException {
+
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithLinewiseCancelled();
+	}
+
+	/**
+	 * cancel the GRN lines
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 82, groups = { "PurchaseOrder" }, description = " cancel the GRN lines")
+	public void VerifyCancelTheGRNLines() {
+		// cancel the GRN lines
+	}
+
+	/**
+	 * This Methods Is Used To Create GRN Document from PO with Inspection PriceList
+	 * Document for Material Type Without Quality Document wise cancelled
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws IOException
+	 */
+	@Author("Prem-RMITS")
+	@Test(priority = 83, groups = { "GRN" }, description = "336  Cancel GRN Document")
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanDocumentwiseCancelled()
+			throws IOException {
+
+		grnPageFunc
+				.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithAndWithoutInspectionPlanWithDocumentwiseCancelled();
+	}
+
+	/**
+	 * Cancel GRN Document
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 84, groups = { "PurchaseOrder" }, description = "Cancel GRN Document")
+	public void VerifyCancelTheGRNDocuments() {
+		// Cancel GRN Document
+	}
+
+	/**
+	 * Check the process of GRN with ExcessQuantity
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 85, groups = { "PurchaseOrder" }, description = " Check  the process of GRN with ExcessQuantity")
+	public void VerifyGRNExcessQuantity() {
+		// Check the process of GRN with ExcessQuantity
+	}
+
+	/**
+	 * Inward GRN with Landed cost and other charges
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 86, groups = { "PurchaseOrder" }, description = " Inward GRN with Landed cost and other charges")
+	public void VerifyInwardGrnWithLandedCostAndOtherCharges() {
+		// Inward GRN with Landed cost and other charges
+	}
+
+	/**
+	 * Verify Grn Reverse With Domestic Supplier
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 87, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Domestic Supplier")
+	public void VerifyGrnReverseWithDomesticSupplier() {
+		grnPageFunc.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReverse();
+	}
+
+	/**
+	 * Verify Grn Reverse With Import Supplier
+	 * 
+	 * @author Deepan-GWL
+	 */
+	@Author("Deepan-GWL")
+	@Test(priority = 88, groups = { "PurchaseOrder" }, description = "Verify Grn Reverse With Import Supplier")
+	public void VerifyGrnReverseWithImportcSupplier() {
+		grnPageFunc
+				.poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReverseWithImportSupplier();
 	}
 
 	/**

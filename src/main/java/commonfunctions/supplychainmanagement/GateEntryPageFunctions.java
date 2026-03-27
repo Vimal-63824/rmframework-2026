@@ -1414,8 +1414,10 @@ public class GateEntryPageFunctions {
 					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
 					if (flag) {
 						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
-						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
+								ElementType.Xpath);
 						logs.logging("INFO", "Document Search And Selected Successfully");
+
 						verifyClickSelectAllButton();
 						logs.logging("INFO", "Create Gate Entry Button shown");
 						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
@@ -1440,7 +1442,7 @@ public class GateEntryPageFunctions {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 		if (flag) {
-//		webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
+			webDB.moveToElement(GateEntryPageLocators.GateEntryPendingPoSelectAll, ElementType.Xpath);
 			List<WebElement> CheckBox = webDB.getDriver()
 					.findElements(By.xpath(GateEntryPageLocators.GateEntryPendingPoSelectAll));
 			for (WebElement element : CheckBox) {
@@ -1715,6 +1717,57 @@ public class GateEntryPageFunctions {
 
 								}
 							}
+						}
+					}
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify Create Gate Entry From Pending Purchase Order
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyToCreateGateEntryFromPendingPoNumberWithQty() {
+//		VariableHandler.setPONumber("POGL3/00045/25-26");
+		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag)
+			webDB.clickAnElement(GateEntryPageLocators.ClickPendingButton, ElementType.Xpath);
+		flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButton, ElementType.Xpath);
+			logs.logging("INFO", "PendingPOButtonLov Shown");
+			webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
+			if (flag) {
+				flag = webDB.clickAnElement(GateEntryPageLocators.ClickPendingPoButtonLov, ElementType.Xpath);
+				logs.logging("INFO", "PendingPOButtonLov Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GateEntryPageLocators.SearchAndSelectValue, ElementType.Xpath);
+				if (flag) {
+					commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.SearchAndSelectValue,
+							VariableHandler.getPONumber());
+					webDB.switchToFrame(GateEntryPageLocators.PendingPOGIframe, ElementType.Xpath);
+					logs.logging("INFO", "PO Number Shown");
+					webDB.waitForElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+					if (flag) {
+						flag = webDB.clickAnElement(GateEntryPageLocators.GateEntryPoSearchButton, ElementType.Xpath);
+						webDB.waitUntilElementToNotBeStale(GateEntryPageLocators.GateEntryPendingPoSelectAll,
+								ElementType.Xpath);
+						logs.logging("INFO", "Document Search And Selected Successfully");
+						webDB.clearText(GateEntryPageLocators.QtyValue, ElementType.Xpath);
+						webDB.sendTextToAnElement(GateEntryPageLocators.QtyValue,
+								commonFunc.getDataFromTestDataSheet("QuantityExcess"), ElementType.Xpath);
+						webDB.clickAnElement(GateEntryPageLocators.FirstCheckBox, ElementType.Xpath);
+						commonFunc.checkRefreshCellsDisappear();
+//						verifyClickSelectAllButton();
+						logs.logging("INFO", "Create Gate Entry Button shown");
+						webDB.waitForElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+						if (flag) {
+							webDB.moveToElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
+							flag = webDB.clickAnElement(GateEntryPageLocators.CreateGeFromPO, ElementType.Xpath);
 						}
 					}
 				}

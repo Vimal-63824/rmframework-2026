@@ -4895,6 +4895,8 @@ public class GrnPageFunctions {
 								}
 							}
 						}
+					} else {
+						break;
 					}
 				}
 			}
@@ -4982,6 +4984,8 @@ public class GrnPageFunctions {
 						dbCommonFunctions.StockQuery3(VariableHandler.getGrnDocNumber(), ItemId,
 								commonFunc.getDataFromTestDataSheet("GrnCessAmount")));
 				logs.logging("INFO", "UTGST  Tax Amount Matched For PO and GRN " + ItemId);
+			} else {
+				break;
 			}
 		}
 	}
@@ -5107,6 +5111,8 @@ public class GrnPageFunctions {
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO",
 						"Verified Expected Stock Cost For This Item '" + ItemId + "' With Database Values After MRV");
+			} else {
+				break;
 			}
 		}
 	}
@@ -5173,6 +5179,8 @@ public class GrnPageFunctions {
 						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+			} else {
+				break;
 			}
 		}
 
@@ -5330,6 +5338,8 @@ public class GrnPageFunctions {
 						+ ExpectedStockCost);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
 				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+			} else {
+				break;
 			}
 		}
 
@@ -5487,6 +5497,8 @@ public class GrnPageFunctions {
 				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
 				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item '" + ItemId
 						+ "' With Database Values After MRV");
+			} else {
+				break;
 			}
 		}
 	}
@@ -10740,4 +10752,469 @@ public class GrnPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Methods Method to handle Create GRN Document from PO With and Without
+	 * Inspection for Contract Item(General Type)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 * @throws Exception
+	 */
+	public void poToGrnGeneralRateContractSameStockAndSupplierUOMWithAndWithoutInspectionGeneralTypeCheckingWithToleranceQtyAndExcessQty() {
+		String Item = null;
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForRateContractItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("UnregisterSupplier"),
+				commonFunc.getDataFromTestDataSheet("MaterialValue"),
+				webDB.getDataFromProperties("PoToMRVExcessToleranceqtySheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumberWithQty();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+//		verifyImportLrBillNumber();
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVExcessToleranceqtySheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		lotSerialQtyApportion();
+		overAllSaveAndPostForExcess(webDB.getDataFromProperties("ToleranceQty"));
+		waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		aafterVerifyTheStatusDocumentMoveToQcOrMrv();
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods PO to GRN-General-User Defined-Same Stock and Supplier UOM
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReverse() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		verifyStockQtyAndCostForQualityWhWithReverse(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		verifyStockQtyAndCostForSourceWHWithReverse(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("PraxairSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		lotSerialQtyApportion();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyOpenGrnDocuments();
+		verifyReverseDocNo();
+		waitingForApprovalForReversalGrn();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.naviagteGrnPage();
+		verifyOpenGrnDocuments();
+		DirectGrnFunc.verifyDirectGRNAddLineDetailsWithReverseDoc(webDB.getDataFromProperties("PoToMrvSheet2"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
+
+		DirectGrnFunc.overAllSaveAndPost();
+		DirectGrnFunc.waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet2"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
+		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToMrvSheet2"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseSheet"));
+	}
+
+	/**
+	 * Verify Open Grn Documents
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyOpenGrnDocuments() {
+		flag = webDB.waitForElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.FindPageGrnNoLov, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.GrnNumberInput, ElementType.Xpath);
+			if (flag) {
+				commonFunc.searchAndSelectValueInFilters(GrnLocators.GrnNumberInput, VariableHandler.getGrnDocNumber());
+				logs.logging("INFO", "Document Number Search And Selected Successfully");
+				flag = webDB.waitForElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.GrnHeaderRadioBtn, ElementType.Xpath);
+					logs.logging("INFO", "Header Button Clicked");
+					flag = webDB.waitForElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+					if (flag) {
+						webDB.clickAnElement(GrnLocators.GrnSearchButton, ElementType.Xpath);
+						logs.logging("INFO", "Document Searched SuccessFully");
+						flag = webDB.waitForElement(GrnLocators.GrnDocNo(VariableHandler.getGrnDocNumber()),
+								ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(GrnLocators.GrnDocNo(VariableHandler.getGrnDocNumber()),
+									ElementType.Xpath);
+							flag = webDB.waitForElement(GrnLocators.WfLog, ElementType.Xpath);
+
+						}
+
+					}
+				}
+			}
+
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * Verify Reverse Grn Doc No
+	 * 
+	 * @author Deepan-GWL
+	 */
+	public void verifyReverseDocNo() {
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(3000);
+		flag = webDB.waitForElement(GrnLocators.RevGrnButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.RevGrnButton, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			webDB.switchToFrame(GrnLocators.ReverseIframe, ElementType.Xpath);
+			flag = webDB.waitForElement(GrnLocators.OkayButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.OkayButton, ElementType.Xpath);
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForElement(GrnLocators.RevGrnButton, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Quality
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyDirectGRNExpectedStockQtAndCostyForQualityWH(String FileName, String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 6; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String WareHouse = ItemDetails[i][44];
+			String AfterExcelStockCost = ItemDetails[i][51];
+			if (!ItemId.equals("")) {
+				String AfterStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After GRN Actual Stock Cost For This Item " + ItemId + "Is : " + AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO",
+						"Verified Expected Stock Cost For This Item " + ItemId + " With Database Values After MRV");
+			} else {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * This Methods Is Used To verify Expected stock Qty And Cost For Source
+	 * WareHouse
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(String FileName,
+			String SheetName) {
+		String[][] ItemDetails = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemDetails = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = 6; i < ItemDetails.length; i++) {
+			String ItemId = ItemDetails[i][1];
+			String SourecWareHouse = ItemDetails[i][63];
+			String AfterExcelStockQuantity = ItemDetails[i][67];
+			String AfterExcelStockCost = ItemDetails[i][66];
+			if (!ItemId.equals("")) {
+
+				String AfterStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+						+ AfterStockQty);
+
+				verifyAssertionBothValues(AfterStockQty, AfterExcelStockQuantity);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Qty For This Item " + ItemId
+						+ " With Database Values After MRV");
+				commonFunc.hardWait(1000);
+				commonFunc.checkRefreshCellsDisappear();
+				String AfterStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO", "After MRV Source WareHouse Actual Stock Qty For This Item " + ItemId + "Is : "
+						+ AfterStockCost);
+
+				verifyAssertionBothValues(AfterStockCost, AfterExcelStockCost);
+				logs.logging("INFO", "Verified Expected Source WareHouse Stock Cost For This Item " + ItemId
+						+ " With Database Values After MRV");
+			} else {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * This Methods Used To Verify stock Quantity For Quality Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyStockQtyAndCostForQualityWhWithReverse(String SheetName, String FileName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 6; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String WareHouse = ItemMultiple[i][44];
+			String ExpectedStockQuantity = ItemMultiple[i][50];
+			String ExpectedStockCost = ItemMultiple[i][51];
+			if (!ItemId.equals("")) {
+				logs.logging("INFO", "Inspection Warehouse: " + WareHouse);
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Qty For This Item '" + ItemId + "' Is : " + ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(WareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
+				logs.logging("INFO",
+						"Expected InspectionWH Stock Cost For This Item '" + ItemId + "' Is : " + ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 46, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 47, BeforeStockCost);
+			} else {
+				break;
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Used To Verify stock Quantity For Source Warehouse
+	 * Document(Single Item)
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void verifyStockQtyAndCostForSourceWHWithReverse(String SheetName, String FileName) {
+		String[][] ItemMultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		ItemMultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		logs.logging("INFO", "Before Stock Qty For This Item ");
+		for (int i = 6; i < ItemMultiple.length; i++) {
+			String ItemId = ItemMultiple[i][1];
+			String SourecWareHouse = ItemMultiple[i][63];
+			String ExpectedStockQuantity = ItemMultiple[i][67];
+			String ExpectedStockCost = ItemMultiple[i][66];
+			if (!ItemId.equals("")) {
+				logs.logging("INFO", "Source Warehouse: " + SourecWareHouse);
+				String BeforeStockQty = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockQtyDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : " + BeforeStockQty);
+				logs.logging("INFO", "Expected Source WareHouse Stock Qty For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockQuantity);
+				String BeforeStockCost = dbCommonFunctions.StockQuery1(SourecWareHouse, ItemId,
+						commonFunc.getDataFromTestDataSheet("StockCostDBColumnName"));
+				logs.logging("INFO",
+						"Before Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : " + BeforeStockCost);
+				logs.logging("INFO", "Expected Source WareHouse Stock Cost For This Item '" + ItemId + "' Is : "
+						+ ExpectedStockCost);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 65, BeforeStockQty);
+				excelUtils.writeDataInExcel(Filepath, SheetName, i, 64, BeforeStockCost);
+			} else {
+				break;
+			}
+		}
+
+	}
+
+	/**
+	 * This Methods Is Used for Approve the Document
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void waitingForApprovalForReversalGrn() {
+		commonFunc.hardWait(3000);
+		if (webDB.verifyIsElementDisplayed(GrnLocators.ReverseIframe, ElementType.Xpath)) {
+			flag = true;
+			VariableHandler.setApprovalFlag(flag);
+			webDB.switchToFrame(GrnLocators.ReverseIframe, ElementType.Xpath);
+			logs.logging("INFO", "Switched To Workflow Frame");
+			commonFunc.searchAndSelectValueInFilters(GrnLocators.ForawardPerson,
+					commonFunc.getDataFromTestDataSheet("HodValue"));
+			commonFunc.hardWait(2000);
+			webDB.switchToFrame(GrnLocators.ReverseIframe, ElementType.Xpath);
+			logs.logging("INFO", "Switched To WorkFlow Frame");
+			flag = webDB.waitForElement(GrnLocators.OkButtonEntry, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.OkButtonEntry, ElementType.Xpath);
+				logs.logging("INFO", "Ok Button Is Clicked");
+				webDB.switchToDefaultContent();
+				flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
+				commonFunc.hardWait(3000);
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getGrnDocNumber(),
+						webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+						System.getProperty("HariUsername"));
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used for Change Lot
+	 * 
+	 * @author PremKumar.K-RMITS
+	 */
+	public void ChangeLotSerialQty(String Qty) {
+		webDB.moveToElement(GrnLocators.LotSerialTable, ElementType.Xpath);
+		webDB.moveToElement(GrnLocators.LotSerialRecptQtyTable, ElementType.Xpath);
+		commonFunc.verifyAddTableSpecs(GrnLocators.LotSerialRecptQtyTable, GrnLocators.ReceptInput, Qty);
+		flag = webDB.waitForElement(GrnLocators.LineSaveButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GrnLocators.LineSaveButton, ElementType.Xpath);
+			flag = webDB.waitForClickElement(CommonUiLocators.ToastMessagePopup, ElementType.Xpath);
+		}
+	}
+
+	/**
+	 * This Methods PO to GRN-General-User Defined-Same Stock and Supplier UOM
+	 * 
+	 * 
+	 * @author Deepan-GWL
+	 * @throws Exception
+	 */
+	public void poToGrnGeneralUserDefinedSameStockAndSupplierUomWithFreePassWithGateEntryWithReverseWithImportSupplier() {
+		verifyStockQtyAndCostForQualityWh(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		verifyStockQtyAndCostForSourceWH(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		verifyStockQtyAndCostForQualityWhWithReverse(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		verifyStockQtyAndCostForSourceWHWithReverse(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		POfunc.verifyDirectPODomesticCustomizeTypeSimilarUOMwithAndWithoutInspectionMaterialTypeForUserDefinedItem(
+				commonFunc.getDataFromTestDataSheet("L49"), commonFunc.getDataFromTestDataSheet("WalmartSupId"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.verifyToCreateGateEntryFromPendingPoNumber();
+		gateEntryPageFunc.verifygateEntryDetailsPo();
+		gateEntryPageFunc.verifyCreatingGetextForGateEntryDocNumber();
+		commonFunc.checkRefreshCellsDisappear();
+		gateEntryPageFunc.verifyToOverAllSaveAndPostTheGateEntryDocument();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigateToGateEntryDocument();
+		gateEntryPageFunc.searchAndVerifyStatusOfGENo(VariableHandler.getGateEntryNumber(),
+				commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+		commonFunc.logoutUser();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		clickPendingGEAndSearchGENo();
+		clickSelectAllGEButton();
+		createGrnWithGeButton();
+		clickOkButton();
+
+//		validateLocationInGrnHeader(commonFunc.getDataFromTestDataSheet("L49"));
+
+		multipleLotAndSerialItemWithPoToMrvSheet(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		lotSerialQtyApportion();
+		verifyImportLrBillNumber();
+		overAllSaveAndPost(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		waitingForApproval();
+		verifyExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		afterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"),
+				webDB.getDataFromProperties("PoToMrvSheet2"));
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+				"AdminUsername");
+		commonFunc.naviagteGrnPage();
+		verifyOpenGrnDocuments();
+		verifyReverseDocNo();
+		waitingForApprovalForReversalGrn();
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.naviagteGrnPage();
+		verifyOpenGrnDocuments();
+		DirectGrnFunc.verifyDirectGRNAddLineDetailsWithReverseDoc(webDB.getDataFromProperties("PoToMrvSheet2"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"));
+		verifyImportLrBillNumber();
+		DirectGrnFunc.overAllSaveAndPost();
+		DirectGrnFunc.waitingForApproval();
+		verifyReturnToGrnPageHeaderStatus();
+		verifyDirectGRNExpectedStockQtAndCostyForQualityWH(webDB.getDataFromProperties("PoToMrvSheet2"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"));
+		aafterVerifyTheStatusDocumentMoveToQcOrMrvForDifferentLoc();
+		verifyDirectGRNExpectedStockQtAndCostyWithDBValuesAfterMRVForSourceWH(
+				webDB.getDataFromProperties("PoToMrvSheet2"),
+				webDB.getDataFromProperties("PoToMRVWFSUomWithReverseImpSheet"));
+	}
+
 }

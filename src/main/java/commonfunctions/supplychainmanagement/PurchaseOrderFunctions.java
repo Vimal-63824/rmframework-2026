@@ -13988,6 +13988,8 @@ public class PurchaseOrderFunctions {
 				discountFromPrToGrnDocument(i, SheetName, FileName);
 				webDB.switchToDefaultContent();
 				commonFunc.checkRefreshCellsDisappear();
+			} else {
+				break;
 			}
 		}
 		verifyHeaderTickAndPost();
@@ -15199,6 +15201,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
@@ -15266,6 +15269,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection
@@ -15333,6 +15337,7 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Is Used To verify To Create PO For Stock Transfer RateContract
 	 * Same Stock And Supplier UOM With And WithoutInspection

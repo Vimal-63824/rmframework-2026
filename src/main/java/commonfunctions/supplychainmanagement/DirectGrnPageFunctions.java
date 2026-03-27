@@ -2701,16 +2701,11 @@ public class DirectGrnPageFunctions {
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForClickElement(CommonUiLocators.LogoutIcon, ElementType.Xpath);
 				if (flag) {
-					commonFunc.hardWait(3000);
 					commonFunc.logoutUser();
-					commonFunc.validCommonLogin(System.getProperty("AshokUsername"),
-							System.getProperty("AshokPassword"));
-					approvalFunc.navigateToApprovals();
-					approvalFunc.filterDocumentsforApproval(VariableHandler.getIDNumber());
-					approvalFunc.verifyApproveWithDocNumber(VariableHandler.getIDNumber());
+					commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+							VariableHandler.getGrnDocNumber(), webDB.getDataFromProperties("HodEmpId"),
+							commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 					commonFunc.hardWait(3000);
-					logs.logging("INFO", "PASSED");
-					flag = commonFunc.logoutUser();
 				}
 			}
 		}
@@ -7099,6 +7094,120 @@ public class DirectGrnPageFunctions {
 					verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralTypeForDirectGrn(i, FileName,
 							SheetName);
 					otherThanUserdefinedDiscountAmountForDirectGRN(i, FileName, SheetName);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Deepan-GWL
+	 * @throws IOException
+	 */
+	public void verifyDirectGRNAddLineDetailsWithReverseDoc(String FileName, String SheetName) {
+		flag = webDB.waitForElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+		if (flag) {
+			commonFunc.hardWait(200);
+			String GrnNumber = webDB.getTextFromElement(GrnLocators.GrnDocNumber, ElementType.Xpath);
+			VariableHandler.setGrnDocNumber(GrnNumber);
+			logs.logging("INFO", "GrnNumber Is :" + VariableHandler.getGrnDocNumber());
+			MultiGRNDocs.add(VariableHandler.getGrnDocNumber());// TODO
+
+			String[][] GRNMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+			ExcelUtils excelUtils = new ExcelUtils();
+			String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+			GRNMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+			for (int i = 6; i < GRNMultipleline.length; i++) {
+				String ITEM_NAME = GRNMultipleline[i][1];
+				String HSN = GRNMultipleline[i][19];
+				String QTY = GRNMultipleline[i][5];
+				String COST = GRNMultipleline[i][6];
+
+				if (!ITEM_NAME.equals("")) {
+					commonFunc.hardWait(200);
+					verifyClickingSuppQuantity(QTY);
+					verifyClickingReceiptQuantity(QTY);
+					verifyClickingCost(COST);
+					verifyClickingSaveLine();
+					GRNFunc.ChangeLotSerialQty(QTY);
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Methods Is Used To Verify Creation Of PR General RFQ
+	 * 
+	 * @author Durai-RMITS
+	 */
+	public void verifyDirectGRNAddingDiscountWithReverse(int i1, String FileName, String SheetName) {
+
+		String[][] PRMultipleline = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		PRMultipleline = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(PRMultipleline.length);
+		for (int i = i1; i <= i1; i++) {
+
+			String ITEM_NAME = PRMultipleline[i1][1];
+			String TradeDiscount = PRMultipleline[i1][8];
+			String SpecialDiscount = PRMultipleline[i1][9];
+			String CashDiscount = PRMultipleline[i1][10];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(DirectGrnPageLocators.GrnDetailsBtn(i - 5), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(DirectGrnPageLocators.GrnDetailsBtn(i - 5), ElementType.Xpath);
+					logs.logging("INFO", "Details Button Is Clicked");
+					commonFunc.hardWait(500);
+					flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+					if (flag) {
+						webDB.switchToFrame(DirectGrnPageLocators.GrnLineDetailsFrame, ElementType.Xpath);
+						logs.logging("INFO", "Switched To Frame");
+						flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+						if (flag) {
+							webDB.clickAnElement(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.clearText(DirectGrnPageLocators.GrnLineTrdDisc, ElementType.Xpath);
+							webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineTrdDisc, TradeDiscount,
+									ElementType.Xpath);
+							logs.logging("INFO", "Entered Trade Discount Is:" + TradeDiscount);
+							commonFunc.hardWait(1000);
+							flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+							if (flag) {
+								webDB.clickAnElement(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.clearText(DirectGrnPageLocators.GrnLineSpclDisc, ElementType.Xpath);
+								webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineSpclDisc, SpecialDiscount,
+										ElementType.Xpath);
+								logs.logging("INFO", "Entered Trade Discount Is:" + SpecialDiscount);
+								commonFunc.hardWait(1000);
+								flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+								if (flag) {
+									webDB.clickAnElement(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.clearText(DirectGrnPageLocators.GrnLineCashDisc, ElementType.Xpath);
+									webDB.sendTextToAnElement(DirectGrnPageLocators.GrnLineCashDisc, CashDiscount,
+											ElementType.Xpath);
+									logs.logging("INFO", "Entered Trade Discount Is:" + CashDiscount);
+									commonFunc.hardWait(1000);
+									flag = webDB.waitForElement(DirectGrnPageLocators.GrnLineDetailsSave,
+											ElementType.Xpath);
+									if (flag) {
+										webDB.clickAnElement(DirectGrnPageLocators.GrnLineDetailsSave,
+												ElementType.Xpath);
+										logs.logging("INFO", "Details Is Saved");
+										commonFunc.hardWait(1000);
+										webDB.pressEscapeKey();
+										webDB.switchToDefaultContent();
+										commonFunc.checkRefreshCellsDisappear();
+										verifyDiscountAmountForDirectGRN(i1, FileName, SheetName);
+
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
