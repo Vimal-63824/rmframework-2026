@@ -354,7 +354,7 @@ public class PurchaseOrderPageLocators {
 	/** @locatorType Xpath */
 	public static final String PoseriviceWithGrnSelectedValues = "//*[@id='ig_po_lineitems_ig_grid_vc']//table/tbody/tr/td[32]//select[@data-testid='GRN_RQRD_FLAG']";
 	/** @locatorType Xpath */
-	public static final String OkButtonFwdForQcDocument = "//button[@id='B1655732835255163754']";
+	public static final String OkButtonFwdForQcDocument = "//button[@data-testid='Entry']";
 	/** @locatorType Xpath */
 	public static final String SaleOrderDrillDown = "//table[@id='5710555873935442479_orig']/tbody[1]/tr[2]/td[9]";
 
