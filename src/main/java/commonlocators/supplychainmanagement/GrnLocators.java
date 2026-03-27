@@ -343,5 +343,7 @@ public class GrnLocators {
 	public static final String CreateGeOneButton = "//button[@id='BTN_GE1']";
 	/** @locatorType Xpath */
 	public static final String GrnSecondItem = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[3]";
+	/** @locatorType Xpath */
+	public static final String PoInputField = "//input[@id='P1615131100_PO_NO']" ;
 
 }

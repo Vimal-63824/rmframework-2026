@@ -258,7 +258,8 @@ public class VariableHandler {
 	private static ThreadLocal<String> deviationAmt = new ThreadLocal<>();
 	private static ThreadLocal<String> PBProcQty = new ThreadLocal<>();
 	private static ThreadLocal<String> PBUnitcost = new ThreadLocal<>();
-
+	private static ThreadLocal<ArrayList<String>> MultiplePoDocs = ThreadLocal.withInitial(() -> null);
+	private static ThreadLocal<String> PoAdvPaymentDocumentNO = new ThreadLocal<>();
 	public static String getPONumber() {
 		return PONumber.get();
 	}
@@ -2217,5 +2218,18 @@ public class VariableHandler {
 
 	public static void setPBUnitcost(String Data) {
 		PBUnitcost.set(Data);
+	}
+	public static String getAdvPaymentDocumentno() {
+		return PoAdvPaymentDocumentNO.get();
+	}
+	public static void setAdvPaymentDocumentno(String Data) {
+		PoAdvPaymentDocumentNO.set(Data);
+	}
+	public static ArrayList<String> getMultiplePoDocs() {
+		return MultiplePoDocs.get();
+	}
+
+	public static void setMultiplePoDocs(ArrayList<String> data) {
+		MultiplePoDocs.set(data);
 	}
 }

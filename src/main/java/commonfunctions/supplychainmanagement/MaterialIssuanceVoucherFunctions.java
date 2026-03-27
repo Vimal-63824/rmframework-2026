@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import commonfunctions.CommonFunctions;
+import commonfunctions.DBCommonFunctions;
 import commonfunctions.VariableHandler;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.MaterialIssuanceVoucherLocators;
@@ -27,6 +28,7 @@ public class MaterialIssuanceVoucherFunctions {
 	private static ReportLoger logs = new ReportLoger();
 	private static CommonFunctions commonFunc = new CommonFunctions();
 	private static PurchaseOrderFunctions purchaseOrderFunc = new PurchaseOrderFunctions();
+	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
 	 * This Method used to switch Material Request Lines Frame
@@ -160,6 +162,7 @@ public class MaterialIssuanceVoucherFunctions {
 	 */
 	public void clickSaveHeaderAndPostBtnInMIV() {
 		commonFunc.checkSuccessToastMessageDisappear();
+		// TODO Adding DB Steps
 		flag = webDB.waitForClickElement(MaterialIssuanceVoucherLocators.SaveHeaderIcon, ElementType.Xpath);
 		if (flag) {
 			webDB.moveToElement(MaterialIssuanceVoucherLocators.SaveHeaderIcon, ElementType.Xpath);
@@ -264,7 +267,7 @@ public class MaterialIssuanceVoucherFunctions {
 						flag = DebitValue.equals(CreditValue);
 						if (flag) {
 							logs.logging("INFO", "Verfied Credit Value With Debit Value");
-							String Credit = CreditValue.replace(",", "");
+							String Credit = CreditValue.replace(",", commonFunc.getDataFromTestDataSheet(""));
 							flag = Credit.contains(VariableHandler.getTotalLineAmount().toString());
 							if (flag) {
 								logs.logging("INFO", "Verified Credit Value With Amount Calculated");
@@ -695,5 +698,73 @@ public class MaterialIssuanceVoucherFunctions {
 			}
 		}
 		assertTrue(flag);
+	}
+
+	/**
+	 * This method used to validate the Header and Lines Details in Material
+	 * Issuance Voucher
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 * @param StartIndex
+	 */
+	public void verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(String FileName, String SheetName,
+			int StartIndex) {
+		logs.logging("INFO", "****Material Issuance Voucher DB Validation - Raw Materials & Headers****");
+		String SeqNo, Process, RMName, UOM, SourceWH, IssnceQnty, StockQnty, ReqQnty, UnitCost = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = StartIndex; i < TotalData.length; i++) {
+			SeqNo = TotalData[i][0];
+			Process = TotalData[i][1];
+			RMName = TotalData[i][3];
+			UOM = TotalData[i][4];
+			SourceWH = TotalData[i][5];
+			IssnceQnty = TotalData[i][7];
+			StockQnty = TotalData[i][8];
+			ReqQnty = TotalData[i][9];
+			UnitCost = TotalData[i][10];
+			if (SeqNo.equals(commonFunc.getDataFromTestDataSheet(""))) {
+				break;
+			}
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherSeqNo")), SeqNo);
+			logs.logging("INFO", "Verified SeqNo and DB Value Matched: " + SeqNo);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherProcess")), Process);
+			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherRMName")), RMName);
+			logs.logging("INFO", "Verified RMName and DB Value Matched: " + RMName);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherUOM")), UOM);
+			logs.logging("INFO", "Verified UOM and DB Value Matched: " + UOM);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherSourceWH")), SourceWH);
+			logs.logging("INFO", "Verified SourceWH and DB Value Matched: " + SourceWH);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherAllocQnty")), IssnceQnty);
+			logs.logging("INFO", "Verified IssnceQnty and DB Value Matched: " + IssnceQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherAcceptQnty")), StockQnty);
+			logs.logging("INFO", "Verified StockQnty and DB Value Matched: " + StockQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherRqstQnty")), ReqQnty);
+			logs.logging("INFO", "Verified ReqQnty and DB Value Matched: " + ReqQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherUnitCost")), UnitCost);
+			logs.logging("INFO", "Verified UnitCost and DB Value Matched: " + UnitCost);
+			String ProdNo = VariableHandler.getProductionOrderNumber();
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherProdNo")), ProdNo);
+			logs.logging("INFO", "Verified ProdNo and DB Value Matched: " + ProdNo);
+			String MRNo = VariableHandler.getMaterialRequestNo();
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialIssuanceVoucherLinesDetails(SeqNo,
+					commonFunc.getDataFromTestDataSheet("MaterialIssVoucherMRNo")), MRNo);
+			logs.logging("INFO", "Verified Material Request and DB Value Matched: " + MRNo);
+		}
 	}
 }

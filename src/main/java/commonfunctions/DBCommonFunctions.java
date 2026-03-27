@@ -1233,48 +1233,6 @@ public class DBCommonFunctions {
 	}
 
 	/**
-	 * BOM Header Details
-	 * 
-	 * @author Sakthi-GWL
-	 * @param BOMNo
-	 * @param HeaderValue
-	 * @return String Value
-	 */
-	public String BOMHeaderDetails(String BOMNo, String DBHeaderColumnValue) {
-		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BOMHeaderQuery"),
-				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
-		return value;
-	}
-
-	/**
-	 * BOM Routing Details
-	 * 
-	 * @author Sakthi-GWL
-	 * @param BOMNo
-	 * @param HeaderValue
-	 * @return String Value
-	 */
-	public String BOMRoutingDetails(String BOMNo, String DBHeaderColumnValue) {
-		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BOMRoutingQuery"),
-				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
-		return value;
-	}
-
-	/**
-	 * BOM Lines Details
-	 * 
-	 * @author Sakthi-GWL
-	 * @param BOMNo
-	 * @param HeaderValue
-	 * @return String Value
-	 */
-	public String BOMLinesDetails(String BOMNo, String DBHeaderColumnValue) {
-		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("BOMLineDetailsQuery"),
-				commonFunc.getDataFromTestDataSheet("BOMNO"), BOMNo, DBHeaderColumnValue);
-		return value;
-	}
-
-	/**
 	 * Overtime Lines Details
 	 * 
 	 * @author Kishore-RMITS
@@ -1802,7 +1760,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * CS Line Details
 	 * 
@@ -1818,7 +1776,7 @@ public class DBCommonFunctions {
 				DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * ARM Control
 	 * 
@@ -1832,7 +1790,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * ARM Control
 	 * 
@@ -1846,7 +1804,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * ARM Control
 	 * 
@@ -1860,7 +1818,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * ARM Control
 	 * 
@@ -1874,7 +1832,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * ARM Control
 	 * 
@@ -1888,7 +1846,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * PDC Query
 	 * 
@@ -1902,7 +1860,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
-	
+
 	/**
 	 * PDC Query
 	 * 
@@ -1916,6 +1874,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("SONO"), SONo, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * PurchaseBills Reference Query
 	 * 
@@ -1929,6 +1888,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PBNO"), PBNO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * PurchaseBills Process Query
 	 * 
@@ -1942,6 +1902,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PBNO"), PBNO, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * StockQuery
 	 * 
@@ -1956,6 +1917,7 @@ public class DBCommonFunctions {
 				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
 		return value;
 	}
+
 	/**
 	 * StockQuery
 	 * 
@@ -1971,6 +1933,7 @@ public class DBCommonFunctions {
 		System.out.println("value check " + value);
 		return value;
 	}
+
 	public List<String> getDataFromDBUsingQuery2(String Query, String Replacechar, String Replacedchar,
 			String Replacechar1, String Replacedchar1, String ExpectedData) {
 		String returnname = null;
@@ -2000,6 +1963,7 @@ public class DBCommonFunctions {
 		}
 		return results;
 	}
+
 	/**
 	 * StockQuery
 	 * 
@@ -2013,6 +1977,246 @@ public class DBCommonFunctions {
 		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PBJournalDetailsQueryPK"),
 				commonFunc.getDataFromTestDataSheet("PBVouNum"), PBVoucherNumber,
 				commonFunc.getDataFromTestDataSheet("PBGL"), GLDesc, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * PO Against Advance
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PONO
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String POAdvanceDetails(String PONO1, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("POadvanceQuery"),
+				commonFunc.getDataFromTestDataSheet("PONO1"), PONO1, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * PR Line Details
+	 * 
+	 * @author Deepan-GWL
+	 * @param PrNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String PendingSubtotalForPendingPayables(String ADV01, String HeaderValue) {
+		String value = getDataFromDBUsingQuery(getDataFromDBTestDataSheet("pendingPayablesQuary"),
+				commonFunc.getDataFromTestDataSheet("ADV01"), ADV01, HeaderValue);
+		return value;
+	}
+
+	/**
+	 * Purchase Bills Tds DB
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param PurchaseBillsEx
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return
+	 */
+	public String PurchaseBillsDB(String PurchaseBillsEx, String SeqNo, String DBHeaderColumnValue) {
+		String value = getDataFromDBUsingQuery1(getDataFromDBTestDataSheet("PurchaseBillsDocOrderBy"),
+				commonFunc.getDataFromTestDataSheet("PurchaseBillsExNO"), PurchaseBillsEx,
+				commonFunc.getDataFromTestDataSheet("SeqNo"), SeqNo, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * BOM Header Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BOMNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String validateBOMHeaderDetails(String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("BOMHeaderQuery");
+		String value = getDataFromDBUsingQuery(Query, "${BOMNO}", VariableHandler.getBOMNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * BOM Routing Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BOMNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String validateBOMRoutingDetails(String i, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("BOMRoutingQuery").replace("${SeqNo}", i);
+		String value = getDataFromDBUsingQuery(Query, "${BOMNO}", VariableHandler.getBOMNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * BOM Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param BOMNo
+	 * @param HeaderValue
+	 * @return String Value
+	 */
+	public String validateBOMLinesDetails(String OprnNo, String i, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("$OprnSeqNo}", OprnNo).replace("${SeqNo}", i);
+		String value = getDataFromDBUsingQuery(Query, "${BOMNO}", VariableHandler.getBOMNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Production Order Header Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param ProductionOrderNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateProductionOrderHeaderDetails(String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("ProductionOrderHeaderQuery");
+		String value = getDataFromDBUsingQuery(Query, "${ProductionOrderNo}",
+				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Production Order Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param SeqNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateProductionOrderRoutingDetails(String SeqNo, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("ProductionOrderRoutingQuery").replace("${SeqNo}", SeqNo);
+		String value = getDataFromDBUsingQuery(Query, "${ProductionOrderNo}",
+				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Production Order Material Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param SeqNo
+	 * @param ConsNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateProductionOrderMaterialDetails(String SeqNo, String ConsNo, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("ProductionOrderMaterialQuery").replace("${SeqNo}", SeqNo)
+				.replace("${ConsNo}", ConsNo);
+		String value = getDataFromDBUsingQuery(Query, "${ProductionOrderNo}",
+				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Completion Production Order Header Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param CompProductionOrderNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateCompProductionOrderHeaderDetails(String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("CompProductionOrderHeaderQuery");
+		String value = getDataFromDBUsingQuery(Query, "${CompProductionOrderNo}",
+				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Completion Production Order Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param CompProductionOrderNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateCompProductionOrderLinesDetails(String i, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("CompProductionOrderLinesQuery").replace("${SeqNo}", i);
+		String value = getDataFromDBUsingQuery(Query, "${CompProductionOrderNo}",
+				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Material Request Header Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param MaterialRequestNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateMaterialRequestHeaderDetails(String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("MaterialRequestHeaderQuery");
+		String value = getDataFromDBUsingQuery(Query, "${MaterialRequestNo}", VariableHandler.getMaterialRequestNo(),
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Material Request Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param MaterialRequestNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateMaterialRequestLinesDetails(String i, String LineNo, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("MaterialRequestLinesQuery").replace("${SeqNo}", i)
+				.replace("${LineNo}", LineNo);
+		String value = getDataFromDBUsingQuery(Query, "${MaterialRequestNo}", VariableHandler.getMaterialRequestNo(),
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Material Issuance Voucher Header Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param MaterialIssuanceVoucherNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateMaterialIssuanceVoucherHeaderDetails(String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("MaterialIssuanceVoucherHeaderQuery");
+		String value = getDataFromDBUsingQuery(Query, "${MaterialIssuanceVoucherNo}", VariableHandler.getMIVNumber(),
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Material Issuance Voucher Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param MaterialIssuanceVoucherNo
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateMaterialIssuanceVoucherLinesDetails(String i, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("MaterialIssuanceVoucherLinesQuery").replace("${SeqNo}", i);
+		String value = getDataFromDBUsingQuery(Query, "${MaterialIssuanceVoucherNo}", VariableHandler.getMIVNumber(),
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Material Issuance Voucher Lines Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param Warehouse
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateStockCostAndStockQuantityWithItemWarehouse(String Item, String Warehouse,
+			String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("StockCheckQuery").replace("${Item}", Item);
+		String value = getDataFromDBUsingQuery(Query, "${Warehouse}", Warehouse, DBHeaderColumnValue);
 		return value;
 	}
 }

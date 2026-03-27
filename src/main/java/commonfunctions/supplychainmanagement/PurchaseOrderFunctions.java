@@ -1,5 +1,6 @@
 package commonfunctions.supplychainmanagement;
 
+import java.util.ArrayList;
 /**
  * @author Deepan-GWL, Sakthi
  * @company Galaxy Weblinks January 15, 2025
@@ -8,6 +9,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,9 +28,11 @@ import commonfunctions.CommonFunctions;
 import commonfunctions.DBCommonFunctions;
 import commonfunctions.ItemDetailsHandler;
 import commonfunctions.VariableHandler;
+import commonfunctions.financials.PurchaseBillsFunctions;
 import commonfunctions.ItemDetailsHandler.POLineDetailsName;
 import commonlocators.CommonUiLocators;
 import commonlocators.supplychainmanagement.ApprovalPageLocators;
+import commonlocators.supplychainmanagement.GrnLocators;
 import commonlocators.supplychainmanagement.OpenPoRcLocators;
 import commonlocators.supplychainmanagement.PurchaseOrderPageLocators;
 import commonlocators.supplychainmanagement.PurchaseRequestLocators;
@@ -47,7 +51,7 @@ public class PurchaseOrderFunctions {
 	private static PurchaseRequestFunctions PR_Func = new PurchaseRequestFunctions();
 	private static ItemDetailsHandler itemDetailHandler = new ItemDetailsHandler();
 	private static DBCommonFunctions dbCommonFunc = new DBCommonFunctions();
-
+	private static PurchaseBillsFunctions PRfunck = new PurchaseBillsFunctions();
 	/**
 	 * Verify Create Direct PO Adding Parameter
 	 * 
@@ -855,7 +859,7 @@ public class PurchaseOrderFunctions {
 			webDB.moveToElement(PurchaseRequestLocators.ItemDataLastRow, ElementType.Xpath);
 			webDB.moveToElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.DeleteLineItemPO(DataValue), ElementType.Xpath);
-			flag = webDB.waitForElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Toast Message Displayed, Line Deleted Successfully with value: " + DataValue);
 				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
@@ -1007,7 +1011,9 @@ public class PurchaseOrderFunctions {
 				}
 			}
 			if (flag) {
+				commonFunc.checkRefreshCellsDisappear();
 				logs.logging("INFO", "Select All CheckBox Clicked in Pending PR and Create PO Enabled");
+				webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 				webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_CreatePO_Btn, ElementType.Xpath);
 				flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, ElementType.Xpath);
 				if (flag) {
@@ -1035,11 +1041,15 @@ public class PurchaseOrderFunctions {
 		commonFunc.searchAndSelectValueInFilters(PurchaseOrderPageLocators.PendingPR_SupplierSelectBtn, Supplier);
 		webDB.waitForElement(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
 		webDB.switchToFrame(PurchaseOrderPageLocators.PendingPRiframe, ElementType.Xpath);
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
 		if (flag) {
+			webDB.moveToElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
 			webDB.clickAnElement(PurchaseOrderPageLocators.PendingPR_OkBtn, ElementType.Xpath);
 			webDB.switchToDefaultContent();
 			commonFunc.checkRefreshCellsDisappear();
+			webDB.waitUntilElementToNotBeStale(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			flag = webDB.waitForElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Create PO - 'Ok' Button Clicked");
@@ -6439,7 +6449,7 @@ public class PurchaseOrderFunctions {
 	 *
 	 */
 
-	private void otherThanUserdefinedDiscountAmount(int i1, String SheetName) {
+	public void otherThanUserdefinedDiscountAmount(int i1, String SheetName) {
 		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
 				commonFunc.getDataFromTestDataSheet("Value"));
 		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
@@ -15390,4 +15400,437 @@ public class PurchaseOrderFunctions {
 		}
 		assertTrue(flag);
 	}
+	
+	/**
+	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
+	 * UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
+	 * 
+	 */
+	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterK(String SheetName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Tds"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				// verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		verifyHeaderTickAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+	
+	
+	
+	
+	/**
+	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
+	 * UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
+	 * 
+	 */
+	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForRegisterAndUnregisterKForAdvance(
+			String SheetName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				// verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		toChangePaymentTermOfPO(commonFunc.getDataFromTestDataSheet("POpaymentTerms"));
+		verifyHeaderTickAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		PRfunck.getAdvPaymentDocumentFromDatabase();
+		flag = commonFunc.logoutUser();
+
+		assertTrue(flag);
+	}
+	
+	/**
+	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
+	 * UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
+	 * 
+	 */
+	public void verifyDirectPoWithRateContractItemWithAndWithoutInspectionGeneralTypeForUnregisterKForAdvance(
+			String SheetName) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Tds"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				// verifyDirectPoQtyEntered(QUANTITY);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		toChangePaymentTermOfPO(commonFunc.getDataFromTestDataSheet("POpaymentTerms"));
+		verifyHeaderTickAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		// flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+
+	/**Select From Pending Po Documents
+	 * 
+	 * @author Kowshik-RMITS
+	 */
+	public void selectFromPendingPoDocusClickPendingPo() {
+		flag = webDB.waitForElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+		if (flag) {
+			webDB.moveToElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			webDB.clickAnElement(GrnLocators.ClickPendingButton, ElementType.Xpath);
+			logs.logging("INFO", "Pending Button Clicked");
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GrnLocators.PendingPO, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GrnLocators.PendingPO, ElementType.Xpath);
+				logs.logging("INFO", "Pending PO Button Clicked");
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+			}
+		}
+		assertTrue(flag);
+	}
+	/**Select Multiple Po Document From Pending Grn 
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param poList
+	 */
+	public void selectMultiplePoDocFromPendingGrnKowshik(ArrayList<String> poList) {
+		webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+		flag = webDB.waitForElement(GrnLocators.PoInputField, ElementType.Xpath);
+		if (flag) {
+			System.out.println(poList.size());
+			for (int i = 0; i < poList.size(); i++) {
+				commonFunc.searchAndSelectValueInFilters(GrnLocators.PoInputField + "/following-sibling::button",
+						poList.get(i).toString());
+				webDB.waitForElement(GrnLocators.PendingPOIframe, ElementType.Xpath);
+				webDB.switchToFrame(GrnLocators.PendingPOIframe, ElementType.Xpath);
+				logs.logging("INFO", "PO Number Succesfully search and Selected");
+				flag = webDB.waitForElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GrnLocators.PendingPOHeaderSearchButton, ElementType.Xpath);
+					logs.logging("INFO", "Document Searched successfully");
+					commonFunc.checkRefreshCellsDisappear();
+					commonFunc.checkRefreshCellsDisappear();
+					webDB.waitForElement(PurchaseOrderPageLocators.MultiCloseShortCheckBoxInputField,
+							ElementType.Xpath);
+					List<WebElement> elements = webDB.getDriver()
+							.findElements(By.xpath(PurchaseOrderPageLocators.MultiCloseShortCheckBoxInputField));
+					System.out.println(elements.size());
+					for (int j = 0; j < elements.size(); j++) {
+						WebElement element = elements.get(j);
+						commonFunc.hardWait(500);
+						try {
+							Actions act = new Actions(webDB.getDriver());
+							act.moveToElement(element).click(element).build().perform();
+							logs.logging("INFO", "Able Select the Document");
+						} catch (Exception e) {
+							logs.logging("INFO", "Not Able Select the Document - Exception Occured " + e);
+						}
+					}
+				}
+			}
+		}
+		webDB.switchToDefaultContent();
+		assertTrue(flag);
+	}
+//		}
+//		assertTrue(flag);								
+//	}
+
+	/**
+	 * This Method Is Used To Verify Direct PO with RateContract Item for Similar
+	 * UOM(General)
+	 * 
+	 * @author PremKumar.K-RM ITS
+	 * @throws IOException
+	 * 
+	 */
+	public void verifyDirectPoWithRateContractItemWithGeneralTypeForUnregisterKForAdvanceForMultiPo(String SheetName,
+			ArrayList<String> poList) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("Purchase_Bills_Tds"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String poNumberValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + poNumberValue);
+		poList.add(poNumberValue);
+		System.out.println(poList);
+		VariableHandler.setMultiplePoDocs(poList);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+				VariableHandler.getMultiplePoDocs();
+				logs.logging("INFO", "DOC NO IS" + VariableHandler.getMultiplePoDocs());
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		toChangePaymentTermOfPO(commonFunc.getDataFromTestDataSheet("POpaymentTerms"));
+		verifyHeaderTickAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		PRfunck.getAdvPaymentDocumentFromDatabase();
+		verifyAfterGetDocumentFromUIWriteInExcelSheet(webDB.getDataFromProperties("BankPayment_Multi_New"), poList);
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+	
+	/**Verify PO Creation With Advance Document
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SheetName
+	 * @param poList
+	 */
+	public void verifyDirectPoWithRateContractItemWithGeneralTypeForRegisterKForAdvanceForMultiPo(String SheetName,
+			ArrayList<String> poList) {
+		commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"));
+		commonFunc.navigatePurchaseOrderPage();
+		commonFunc.clickCreateIcon();
+		verifyCreateDirectPOAddingParameters(commonFunc.getDataFromTestDataSheet("Loc_100"),
+				commonFunc.getDataFromTestDataSheet("OpenPOSupplier"),
+				commonFunc.getDataFromTestDataSheet("GeneralValue"));
+		verifyTickIconcreatePO();
+		String PONumbervalue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + PONumbervalue);
+		VariableHandler.setPONumber(PONumbervalue);
+		String poNumberValue = webDB.getDomPropertyFromElement(PurchaseOrderPageLocators.PONumber, ElementType.Xpath,
+				commonFunc.getDataFromTestDataSheet("Value"));
+		logs.logging("INFO", "Get PO Number Is: " + poNumberValue);
+		poList.add(poNumberValue);
+		System.out.println(poList);
+		VariableHandler.setMultiplePoDocs(poList);
+		String[][] itemmultiple = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator
+				+ "DBDETAILS.xlsx";
+		itemmultiple = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		System.out.println(itemmultiple.length);
+		for (int i = 22; i < itemmultiple.length; i++) {
+			String ITEM_NAME = itemmultiple[i][1];
+			String QUANTITY = itemmultiple[i][5];
+			String HSN = itemmultiple[i][68];
+			if (!ITEM_NAME.equals("")) {
+				commonFunc.checkRefreshCellsDisappear();
+				commonFunc.hardWait(3000);
+				verifyDirectPoItemAddIconClicked();
+				verifyDirectPoItemSelectedFromLov(ITEM_NAME);
+				commonFunc.verifyAddTableSpecs(PurchaseOrderPageLocators.PoQtyFieldClick,
+						PurchaseOrderPageLocators.PoQtyInput, QUANTITY);
+				verifyDirectPoHsnSelectedFromLov(HSN);
+				verifyDirectPoLineWiseSaved();
+				verifyUnitcostAndDiscountAmountForOpenPoItem(i, SheetName,
+						commonFunc.getDataFromTestDataSheet("OpenPOSupplier"));
+				verifyRateContractItemUnitCostAndDiscPctWriteInExcelForGeneralType(i, SheetName);
+				otherThanUserdefinedDiscountAmount(i, SheetName);
+				webDB.switchToDefaultContent();
+				commonFunc.checkRefreshCellsDisappear();
+				VariableHandler.getMultiplePoDocs();
+				logs.logging("INFO", "DOC NO IS" + VariableHandler.getMultiplePoDocs());
+			}
+
+		}
+		commonFunc.hardWait(1000);
+		commonFunc.checkRefreshCellsDisappear();
+		toChangePaymentTermOfPO(commonFunc.getDataFromTestDataSheet("POpaymentTerms"));
+		verifyHeaderTickAndPost();
+		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
+		commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"), VariableHandler.getPONumber(),
+				webDB.getDataFromProperties("HodEmpId"), commonFunc.getDataFromTestDataSheet("Unit_100"),
+				System.getProperty("HariUsername"));
+		verifyAfterGetDocumentFromUIWriteInExcelSheet(webDB.getDataFromProperties("BankPayment_Multi_New"), poList);
+		flag = commonFunc.logoutUser();
+		assertTrue(flag);
+	}
+
+
+	/**
+	 * To Changing Advance Related Payment Terms
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param POpaymentTerms
+	 */
+	public void toChangePaymentTermOfPO(String POpaymentTerms) {
+		flag = webDB.waitForElement(PurchaseOrderPageLocators.POpaymentTerms, ElementType.Xpath);
+		if (flag) {
+			webDB.selectDropDownByValue(PurchaseOrderPageLocators.POpaymentTerms, POpaymentTerms, ElementType.Xpath);
+			logs.logging("INFO", "Successfully Changed a Payment Terms ");
+		}
+		assertTrue(flag);
+	}
+	
+	/**Verity After Get Document Write In Excel Sheet
+	 * 
+	 * @author Kowshik-RMITS
+	 * @param SheetName
+	 * @param poList
+	 */
+	public void verifyAfterGetDocumentFromUIWriteInExcelSheet(String SheetName, List<String> poList) {
+		ExcelUtils excelUtils = new ExcelUtils();
+
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + "DBfin.xlsx";
+		for (int i = 0; i < poList.size(); i++) {
+			excelUtils.writeDataInExcel(Filepath, SheetName, i + 1, 3, poList.get(i));
+		}
+		assertTrue(flag);
+	}
+
 }
