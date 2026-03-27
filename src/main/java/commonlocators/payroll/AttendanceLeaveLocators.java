@@ -504,7 +504,7 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String TDSDeclFindEmpLOV = "//button[@data-testid='EMP_ID_lov_btn']";
 	/** @locatorType Xpath */
-	public static final String TDSDocumentSelect = "#\\31 7608864153377629448_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
+	public static final String TDSDocumentSelect = "#\\31 7827237916442109813_orig > tbody > tr:nth-child(2) > td:nth-child(1) > a";
 	/** @locatorType Xpath */
 	public static final String TDSDeclarationDocNoToPost = "//*[@id=\"P1013_HTDH_DOC_NO\"]";
 	/** @locatorType Xpath */
