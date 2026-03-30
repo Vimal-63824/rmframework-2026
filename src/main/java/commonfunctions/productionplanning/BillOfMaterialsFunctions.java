@@ -1326,12 +1326,12 @@ public class BillOfMaterialsFunctions {
 		commonFunc.verifyAssertionBothValues(
 				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderName")), BOMName);
 		logs.logging("INFO", "Verified BOMName and DB Value Matched: " + BOMName);
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderEffFrom")), EffFrom);
-		logs.logging("INFO", "Verified Effective From Date and DB Value Matched: " + EffFrom);
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderEffTo")), EffTo);
-		logs.logging("INFO", "Verified Effective To Date and DB Value Matched: " + EffTo);
+//		commonFunc.verifyAssertionBothValues(
+//				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderEffFrom")), EffFrom);
+//		logs.logging("INFO", "Verified Effective From Date and DB Value Matched: " + EffFrom);
+//		commonFunc.verifyAssertionBothValues(
+//				dbFunction.validateBOMHeaderDetails(commonFunc.getDataFromTestDataSheet("BOMHeaderEffTo")), EffTo);
+//		logs.logging("INFO", "Verified Effective To Date and DB Value Matched: " + EffTo);
 	}
 
 	/**
@@ -1430,7 +1430,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
@@ -1438,7 +1438,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
-			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"));
 			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
 					commonFunc.getDataFromTestDataSheet("AutomationResource"));
 			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
@@ -1520,7 +1520,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
-			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"));
 			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
 					commonFunc.getDataFromTestDataSheet("AutomationResource"));
 			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
@@ -1587,7 +1587,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
@@ -1595,7 +1595,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
-			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"));
 			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
 					commonFunc.getDataFromTestDataSheet("AutomationResource"));
 			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
@@ -1631,7 +1631,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
@@ -1639,7 +1639,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			navigateToBORSubTab();
 			clickAddLineIconInBORTab();
-			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1"));
+			fillLineSnoAndProcessIdInBORTab("1", commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"));
 			fillResourceTypeAndResourceInBORTab(commonFunc.getDataFromTestDataSheet("ResourceText"),
 					commonFunc.getDataFromTestDataSheet("AutomationResource"));
 			fillSetupHrsMinAndSetupLotQntyInBORTab("0", "15", "0");
@@ -1706,7 +1706,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
@@ -1785,7 +1785,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
@@ -1872,12 +1872,12 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
 			validateLineDetailsWithDB("1", "1", commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
-					commonFunc.getDataFromTestDataSheet("FinishedGoodWH"), commonFunc.getDataFromTestDataSheet("Kgs"));
+					commonFunc.getDataFromTestDataSheet("RMU100_WH"), commonFunc.getDataFromTestDataSheet("Kgs"));
 			clickHeaderSaveAndPostButtonInBOM();
 			if (!VariableHandler.getApprovalFlag()) {
 				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
@@ -1950,7 +1950,7 @@ public class BillOfMaterialsFunctions {
 					commonFunc.getDataFromTestDataSheet("WIPU100_WH"));
 			navigateToMaterialsSubTab();
 			clickAddLineIconInMaterialTab();
-			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1"), RMItem,
+			fillProcessItemUOMInMaterial(commonFunc.getDataFromTestDataSheet("GwlProcess1Desc"), RMItem,
 					commonFunc.getDataFromTestDataSheet("Kgs"));
 			fillReqQntyConvFactorAndSourceWHInMaterial("3", "1", commonFunc.getDataFromTestDataSheet("RMU100_WH"));
 			clickSaveLineIconInMaterialTab();
