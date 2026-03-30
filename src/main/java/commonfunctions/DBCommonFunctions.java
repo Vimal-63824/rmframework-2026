@@ -2076,9 +2076,8 @@ public class DBCommonFunctions {
 	 */
 	public String validateProductionOrderHeaderDetails(String DBHeaderColumnValue) {
 		String Query = getDataFromDBTestDataSheet("ProductionOrderHeaderQuery");
-		String value = getDataFromDBUsingQuery(Query, "${ProductionOrderNo}",
-		String value = getDataFromDBUsingQuery(Query, "${ProdctionOrderNo}",
-				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		String value = getDataFromDBUsingQuery(Query, "${ProdctionOrderNo}", VariableHandler.getProductionOrderNumber(),
+				DBHeaderColumnValue);
 		return value;
 	}
 
