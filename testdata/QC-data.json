@@ -1888,9 +1888,9 @@
 	"SEZ_UNIT": "SEZ_UNIT",
 	"STTypePK": "GRN - STOCK TRANSFER",
 	"L55PK": "L55",
-	"PBDBNetAmountCOLUMN":"SUPHD_SC_TOT_AMT",
-	"SuncontractInterstateSupplier" : "SNV INDUSTRIES",
-	"SupplierImportedUnRegistered":"WALMART",
+	"PBDBNetAmountCOLUMN": "SUPHD_SC_TOT_AMT",
+	"SuncontractInterstateSupplier": "SNV INDUSTRIES",
+	"SupplierImportedUnRegistered": "WALMART",
 	"FG WH": "FG WH",
 	"RM WH": "RM WH",
 	"BOMHeaderName": "BOMHD_BOM_NAME",
@@ -1955,5 +1955,6 @@
 	"MaterialIssVoucherRqstQnty": "ISTLNH_RQST_QTY",
 	"MaterialIssVoucherAllocQnty": "ISTLNH_TRANS_QTY",
 	"MaterialIssVoucherAcceptQnty": "ISTLNH_ACCEPTED_QTY",
-	"MaterialIssVoucherUnitCost": "ISTLNH_UNIT_COST"
+	"MaterialIssVoucherUnitCost": "ISTLNH_UNIT_COST",
+	"QuantityExcess": "105"
 }

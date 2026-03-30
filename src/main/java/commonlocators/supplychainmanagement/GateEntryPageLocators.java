@@ -235,5 +235,9 @@ public class GateEntryPageLocators {
 	public static final String CreateGEButton = "//button[@id='B1']";
 	/** @locatorType Xpath */
 	public static final String DriverNameInput = "//input[contains(@data-testid,'GEHD_DRIVER_NAME')]";
+	/** @locatorType Xpath */
+	public static final String QtyValue = "(//input[@type='number'])[1]";
+	/** @locatorType Xpath */
+	public static final String FirstCheckBox = "(//input[@type='number']/../../td[14]/input)[1]";
 
 }

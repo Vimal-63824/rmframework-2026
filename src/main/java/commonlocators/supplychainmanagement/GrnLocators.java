@@ -328,7 +328,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnLandedGstSupplyergrid = "//*[@id=\"grn_lc_ig_grid_vc\"]/div[3]/div[3]/table/tbody/tr/td[16]";
 	/** @locatorType Xpath */
-	public static final String ImportLrButton = "//button[@id='B1779154998302886893']";
+	public static final String ImportLrButton = "//span[text()='Import/LR']/..";
 	/** @locatorType Xpath */
 	public static final String BillNumber = "//input[contains(@id,'PID_BOE_NO')]";
 	/** @locatorType Xpath */
@@ -344,6 +344,32 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnSecondItem = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr[2]/td[3]";
 	/** @locatorType Xpath */
-	public static final String PoInputField = "//input[@id='P1615131100_PO_NO']" ;
+	public static final String PoInputField = "//input[@id='P1615131100_PO_NO']";
+	/** @locatorType Xpath */
+	public static final String RevGrnButton = "//span[text()='Rev. GRN']/..";
+	/** @locatorType Xpath */
+	public static final String OkayButton = "//span[text()='OK']/..";
+	/** @locatorType Xpath */
+	public static final String ReverseIframe = "//iframe[@title='Doc. Reversal']";
+	/** @locatorType Xpath */
+	public static final String ForawardPerson = "//button[@id='P236131090_FWD_PERSON_lov_btn']";
+	/** @locatorType Xpath */
+	public static final String OkButtonEntry = "//button[contains(@onclick,'Entry')]";
+	/** @locatorType Xpath */
+	public static final String WfLog = "//span[text()='WF Log']";
+	/** @locatorType Xpath */
+	public static final String LotSerialTable = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[1]";
+	/** @locatorType Xpath */
+	public static final String LotSerialRecptQtyTable = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String ReceptInput = "//input[@id='C4768865118094179423']";
+	/** @locatorType Xpath */
+	public static final String LineSaveButton = "//button[@id='B4802463974728134482']";
+
+	/** @locatorType Xpath */
+	public static final String GrnDocNo(String DocNo) {
+		return "//a[text()='" + DocNo + "']";
+
+	}
 
 }
