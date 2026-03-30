@@ -2061,7 +2061,7 @@ public class DBCommonFunctions {
 	 * @return String Value
 	 */
 	public String validateBOMLinesDetails(String OprnNo, String i, String DBHeaderColumnValue) {
-		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("$OprnSeqNo}", OprnNo).replace("${SeqNo}", i);
+		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("${OprnSeqNo}", OprnNo).replace("${SeqNo}", i);
 		String value = getDataFromDBUsingQuery(Query, "${BOMNO}", VariableHandler.getBOMNumber(), DBHeaderColumnValue);
 		return value;
 	}
