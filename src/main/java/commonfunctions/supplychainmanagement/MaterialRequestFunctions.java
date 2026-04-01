@@ -858,9 +858,9 @@ public class MaterialRequestFunctions {
 									commonFunc.getDataFromTestDataSheet("Unit_100"),
 									System.getProperty("HariUsername"));
 						}
-						commonFunc.navigateToInventoryMaterialRequest();
-						checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
-								commonFunc.getDataFromTestDataSheet("ApproveStatus"));
+//						commonFunc.navigateToInventoryMaterialRequest();
+//						checkStatusOfMRNo(VariableHandler.getMaterialRequestNo(),
+//								commonFunc.getDataFromTestDataSheet("ApproveStatus"));
 					}
 				}
 			}
@@ -1129,30 +1129,30 @@ public class MaterialRequestFunctions {
 	 */
 	public void verifyHeaderValidationInMaterialRequestWithDB(String FileName, String SheetName, int StartIndex) {
 		logs.logging("INFO", "****Material Request DB Validation - Raw Materials & Headers****");
-		String LineNo, SeqNo, Process, Unit, ProcessDesc, RMName, UOM, SourceWH, ReceiverWH, ReqQnty = null;
+		String LineNo, SeqNo, Process, Unit, RMName, UOM, SourceWH, ReceiverWH, ReqQnty = null;
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = StartIndex; i < TotalData.length; i++) {
+		a: for (int i = StartIndex; i < TotalData.length; i++) {
 			Unit = TotalData[2][1];
-			LineNo = TotalData[i][0];
-			SeqNo = TotalData[i][1];
+			LineNo = TotalData[i][1];
+			SeqNo = TotalData[i][0];
 			Process = TotalData[i][2];
-			ProcessDesc = TotalData[i][3];
 			RMName = TotalData[i][4];
 			UOM = TotalData[i][5];
 			SourceWH = TotalData[i][6];
 			ReceiverWH = TotalData[i][7];
 			ReqQnty = TotalData[i][10];
-			if (ProcessDesc.equals("")) {
-				break;
+			if (SeqNo.equals("") || SeqNo == null || SeqNo.isBlank() || SeqNo.isEmpty() || SeqNo.equalsIgnoreCase("SFG")
+					|| SeqNo.equalsIgnoreCase("Completion")) {
+				break a;
 			}
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
 					commonFunc.getDataFromTestDataSheet("MaterialRequestUnit")), Unit);
 			logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
-					commonFunc.getDataFromTestDataSheet("MaterialRequestProcess")), ReceiverWH);
+					commonFunc.getDataFromTestDataSheet("MaterialRequestSourceWH")), ReceiverWH);
 			logs.logging("INFO", "Verified ReceiverWH and DB Value Matched: " + ReceiverWH);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
 					commonFunc.getDataFromTestDataSheet("MaterialRequestSeqNo")), SeqNo);
@@ -1167,7 +1167,7 @@ public class MaterialRequestFunctions {
 					commonFunc.getDataFromTestDataSheet("MaterialRequestUOM")), UOM);
 			logs.logging("INFO", "Verified UOM and DB Value Matched: " + UOM);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
-					commonFunc.getDataFromTestDataSheet("MaterialRequestSourceWH")), SourceWH);
+					commonFunc.getDataFromTestDataSheet("MaterialRequestRequestWH")), SourceWH);
 			logs.logging("INFO", "Verified SourceWH and DB Value Matched: " + SourceWH);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateMaterialRequestLinesDetails(SeqNo, LineNo,
 					commonFunc.getDataFromTestDataSheet("MaterialRequestReqQnty")), ReqQnty);

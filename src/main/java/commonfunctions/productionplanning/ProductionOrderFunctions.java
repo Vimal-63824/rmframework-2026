@@ -995,7 +995,7 @@ public class ProductionOrderFunctions {
 			logs.logging("INFO", "Show More Button Is Displayed");
 			webDB.moveToElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
 			webDB.clickAnElement(ProductionOrderLocators.ShowMore, ElementType.Xpath);
-			flag = webDB.waitForElement(ProductionOrderLocators.FirstOprSelect, ElementType.Xpath);
+			flag = webDB.waitForElement(ProductionOrderLocators.ProcessMoveType, ElementType.Xpath);
 			if (flag) {
 //				logs.logging("INFO", "First Opr Select DropDown Is Displayed");
 				flag = webDB.selectDropDownByText(ProductionOrderLocators.ProcessMoveType, MoveType, ElementType.Xpath);
@@ -2742,7 +2742,6 @@ public class ProductionOrderFunctions {
 							Value = Value.replace("Material Request Created. : ", "").trim();
 							Value = Value.replace("SUBCONTRACT ORDER Document is Approved.", "").trim();
 							VariableHandler.setMRNumber(Value);
-							System.out.println(VariableHandler.getMRNumber());
 						}
 						commonFunc.navigateToSubcontractOrder();
 						subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
@@ -3575,7 +3574,6 @@ public class ProductionOrderFunctions {
 			Value = Value.replace("Material Request Created. : ", "").trim();
 			Value = Value.replace("SUBCONTRACT ORDER Document is Approved.", "").trim();
 			VariableHandler.setMRNumber(Value);
-			System.out.println(VariableHandler.getMRNumber());
 		}
 		commonFunc.navigateToSubcontractOrder();
 		subContractOrderFunc.verifyValidateSubContractDocumentsStatus(VariableHandler.getScoNumber(),
@@ -7382,7 +7380,7 @@ public class ProductionOrderFunctions {
 					"AdminUsername");
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
-					webDB.getDataFromProperties("AllInsideSheetName"));
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
 			clickAddIconInCreationProductionOrder();
 			createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
 					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
@@ -7393,16 +7391,16 @@ public class ProductionOrderFunctions {
 			clickSaveIconInCreationProductionOrder();
 			// TODO verifying DB Steps
 			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
-					webDB.getDataFromProperties("AllInsideSheetName"));
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
 			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("Emp_MaritalStatus"));
 			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
 					commonFunc.getDataFromTestDataSheet("InsideType"));
 			verifyStoreProcessAndRawMaterial();
 			// TODO verifying DB Steps
 			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
-					webDB.getDataFromProperties("AllInsideSheetName"));
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
 			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
-					webDB.getDataFromProperties("AllInsideSheetName"));
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
 			navigateToRoutingSubTab();
 			storeRoutingProcessAndProcessType();
 			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
@@ -7417,6 +7415,7 @@ public class ProductionOrderFunctions {
 			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("Inprogress"));
 			int StartIndexSheet = 0;
+			int AllocStartIndex = 0;
 			for (int i = 0; i < VariableHandler.getProcessAndWarehousesBOM().length; i++) {
 				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
 				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
@@ -7427,6 +7426,7 @@ public class ProductionOrderFunctions {
 				logs.logging("INFO", "RecipientWH: " + RecipientWH);
 				logs.logging("INFO", "ConsumptionWH: " + ConsumptionWH);
 				StartIndexSheet = (i == 0) ? 35 : (i == 1) ? 45 : (i == 2) ? 56 : 0;
+				AllocStartIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc
@@ -7438,18 +7438,27 @@ public class ProductionOrderFunctions {
 						.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
 				// TODO verifying DB steps
 				materialRequestFunc.verifyHeaderValidationInMaterialRequestWithDB(
-						webDB.getDataFromProperties("PMFFileName"), webDB.getDataFromProperties("AllInsideSheetName"),
-						StartIndexSheet);
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
 				commonFunc.navigateToMaterialIssuanceVoucherTab();
 				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMaterialRequestNo());
+				materialIssuanceVoucherFunc.clickheaderSaveIconInMIV();
+				verifyWriteAllocateStockForRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), AllocStartIndex);
 				materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
 				commonFunc.navigateToMaterialIssuanceVoucherTab();
 				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
 						commonFunc.getDataFromTestDataSheet("PostedStatus"));
 				// TODO verifying DB steps
 				materialIssuanceVoucherFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(
-						webDB.getDataFromProperties("PMFFileName"), webDB.getDataFromProperties("AllInsideSheetName"),
-						StartIndexSheet);
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
 				commonFunc.navigateSetupInventoryPage();
 				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
 				if (!VariableHandler.getAutoPostMRVFlag()) {
@@ -7466,17 +7475,32 @@ public class ProductionOrderFunctions {
 					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
 							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
 				}
+				// TODO verifying DB steps
+				materialIssuanceVoucherFunc.verifyAfterLotQuantityInLotSerialValidationForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
 				completionProductionOrderFunc.selectComplProdOrderDocUsingProdNoInPending(
 						commonFunc.getDataFromTestDataSheet("Loc_100"), VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.clickAllocateDeallocateButtonInHeader();
 				completionProductionOrderFunc
 						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				// TODO verifying DB Steps
+				completionProductionOrderFunc.verifyLinesWithRMValidationInCompletionProcessWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
 				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
 				// TODO verifying DB Steps
-				completionProductionOrderFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(
-						webDB.getDataFromProperties("PMFFileName"), webDB.getDataFromProperties("AllInsideSheetName"),
-						StartIndexSheet);
+				completionProductionOrderFunc.verifyHeaderAndLinesValidationInCompletionProcessWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
+				completionProductionOrderFunc.verifyStockTransactionValidationInCompletionForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Single"), StartIndexSheet);
 				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
 				completionProductionOrderFunc.verifyCompletionProductionOrdeNumberWithDesiredStatus(
 						VariableHandler.getProductionCompletionOrderNo(),
@@ -7496,6 +7520,8 @@ public class ProductionOrderFunctions {
 			commonFunc.navigateToProductionOrderInProdPlanning();
 			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
 					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Single"));
 			flag = commonFunc.logoutUser();
 			return flag;
 		} catch (Exception e) {
@@ -7534,30 +7560,20 @@ public class ProductionOrderFunctions {
 		logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
 		BOMType = String.valueOf(BOMType.charAt(0)).toUpperCase();
 		OrderType = String.valueOf(OrderType.charAt(0)).toUpperCase();
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
-						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderBomType")))),
-				BOMType);
+		commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderHeaderDetails(
+				commonFunc.getDataFromTestDataSheet("ProductionHeaderBomType")), BOMType);
 		logs.logging("INFO", "Verified BOMType and DB Value Matched: " + BOMType);
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
-						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderOrderType")))),
-				OrderType);
+		commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderHeaderDetails(
+				commonFunc.getDataFromTestDataSheet("ProductionHeaderOrderType")), OrderType);
 		logs.logging("INFO", "Verified OrderType and DB Value Matched: " + OrderType);
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
-						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderFGItem")))),
-				FGItem);
+		commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderHeaderDetails(
+				commonFunc.getDataFromTestDataSheet("ProductionHeaderFGItem")), FGItem);
 		logs.logging("INFO", "Verified FGItem and DB Value Matched: " + FGItem);
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
-						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderBOMNo")))),
-				BOMNo);
+		commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderHeaderDetails(
+				commonFunc.getDataFromTestDataSheet("ProductionHeaderBOMNo")), BOMNo);
 		logs.logging("INFO", "Verified BOMNo and DB Value Matched: " + BOMNo);
-		commonFunc.verifyAssertionBothValues(
-				dbFunction.validateProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet(commonFunc
-						.getDataFromTestDataSheet(commonFunc.getDataFromTestDataSheet("ProductionHeaderReqQnty")))),
-				OrderQnty);
+		commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderHeaderDetails(
+				commonFunc.getDataFromTestDataSheet("ProductionHeaderReqQnty")), OrderQnty);
 		logs.logging("INFO", "Verified OrderQnty and DB Value Matched: " + OrderQnty);
 	}
 
@@ -7595,6 +7611,7 @@ public class ProductionOrderFunctions {
 			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
 					commonFunc.getDataFromTestDataSheet("ProductionRoutingProcess")), Process);
 			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
+			Type = String.valueOf(Type.charAt(0)).toUpperCase();
 			commonFunc.verifyAssertionBothValues(dbFunction.validateProductionOrderRoutingDetails(SeqNo,
 					commonFunc.getDataFromTestDataSheet("ProductionRoutingSrcType")), Type);
 			logs.logging("INFO", "Verified Type and DB Value Matched: " + Type);
@@ -7677,6 +7694,7 @@ public class ProductionOrderFunctions {
 	 * @param SheetName
 	 */
 	public void verifyWriteBeforeStockForFGAndRawMaterials(String FileName, String SheetName) {
+		logs.logging("INFO", "****Writing Before Stock Unit Cost And  Stock Quantity DB Validation For RM and FG****");
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
@@ -7701,6 +7719,394 @@ public class ProductionOrderFunctions {
 					commonFunc.getDataFromTestDataSheet("StockQtyHandDBHeader"));
 			logs.logging("INFO", "For RMItem: " + FGItem + " Stock Quanity Before = " + StockQuantity);
 			excelUtils.writeDataInExcel(Filepath, SheetName, i, 7, StockQuantity);
+
+			String AllocQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(RMItem, RMWH,
+					commonFunc.getDataFromTestDataSheet("StockUpdAllocQtyDBHeader"));
+			logs.logging("INFO", "For RGItem: " + FGItem + " Stock Allocate Quanity Before = " + AllocQuantity);
+			excelUtils.writeDataInExcel(Filepath, SheetName, i, 8, AllocQuantity);
+		}
+	}
+
+	/**
+	 * This method used to update allocate stock quantity in test data sheet
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyWriteAllocateStockForRawMaterials(String FileName, String SheetName, int StartIndex) {
+		logs.logging("INFO", "****Writing Before Allocate Stock Quantity DB Validation****");
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+
+		for (int i = StartIndex; i <= (StartIndex + 6); i++) {
+			String RMItem = TotalData[i][4];
+			String RMWH = commonFunc.getDataFromTestDataSheet("RM WH");
+			String AllocQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(RMItem, RMWH,
+					commonFunc.getDataFromTestDataSheet("StockUpdAllocQtyDBHeader"));
+			logs.logging("INFO", "For RMItem: " + RMItem + " Stock Allocate Quanity Before = " + AllocQuantity);
+			excelUtils.writeDataInExcel(Filepath, SheetName, i, 8, AllocQuantity);
+		}
+	}
+
+	/**
+	 * This method used to validate unit cost and quantity after update in FG Item
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(String FileName, String SheetName) {
+		logs.logging("INFO", "****After Completed FG Item Quantity And UnitCost DB Validation****");
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		String AfterCost = TotalData[2][11];
+		String AfterStockQty = TotalData[2][9];
+		String FGItem = TotalData[2][5];
+		String FGWH = commonFunc.getDataFromTestDataSheet("FG WH");
+
+		String StockQuantity = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(FGItem, FGWH,
+				commonFunc.getDataFromTestDataSheet("StockQtyHandDBHeader"));
+		commonFunc.verifyAssertionBothValues(StockQuantity, AfterStockQty);
+		logs.logging("INFO", "For FGItem: " + FGItem + " Stock Quanity After = " + StockQuantity);
+
+		String StockCost = dbFunction.validateStockCostAndStockQuantityWithItemWarehouse(FGItem, FGWH,
+				commonFunc.getDataFromTestDataSheet("StockUpdCostDBHeader"));
+		commonFunc.verifyAssertionBothValues(StockCost, AfterCost);
+		logs.logging("INFO", "For FGItem: " + FGItem + " Stock Quanity After = " + StockCost);
+	}
+
+	/**
+	 * This method used to Manual Production order with Move Type - Multiple
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeMultiple() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			clickAddIconInCreationProductionOrder();
+			createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+					commonFunc.getDataFromTestDataSheet("PROPrefix"),
+					commonFunc.getDataFromTestDataSheet("ManufactureType"),
+					commonFunc.getDataFromTestDataSheet("BomAllInside"),
+					commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+			clickSaveIconInCreationProductionOrder();
+			// TODO verifying DB Steps
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("MutlipleType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyStoreProcessAndRawMaterial();
+			// TODO verifying DB Steps
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndexSheet = 0;
+			int AllocStartIndex = 0;
+			for (int i = 0; i < 2; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				String RecipientWH = VariableHandler.getProcessAndWarehousesBOM()[i][1];
+				String ConsumptionWH = VariableHandler.getProcessAndWarehousesBOM()[i][2];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				logs.logging("INFO", "RecipientWH: " + RecipientWH);
+				logs.logging("INFO", "ConsumptionWH: " + ConsumptionWH);
+				StartIndexSheet = (i == 0) ? 35 : (i == 1) ? 45 : 0;
+				AllocStartIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc
+						.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc
+						.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
+				// TODO verifying DB steps
+				materialRequestFunc.verifyHeaderValidationInMaterialRequestWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				commonFunc.navigateToMaterialIssuanceVoucherTab();
+				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMaterialRequestNo());
+				materialIssuanceVoucherFunc.clickheaderSaveIconInMIV();
+				verifyWriteAllocateStockForRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), AllocStartIndex);
+				materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+				commonFunc.navigateToMaterialIssuanceVoucherTab();
+				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				// TODO verifying DB steps
+				materialIssuanceVoucherFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+				if (!VariableHandler.getAutoPostMRVFlag()) {
+					commonFunc.navigateToMaterialReceiptVoucher();
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					}
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
+							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				}
+				// TODO verifying DB steps
+				materialIssuanceVoucherFunc.verifyAfterLotQuantityInLotSerialValidationForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+
+				commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionMultiProcess();
+				completionProductionOrderFunc
+						.searchMultipleProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcess(
+						VariableHandler.getProductionOrderNumber());
+//				commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
+//				completionProductionOrderFunc.verifySearchMultipleProductionOrdeNumberAndOpenDesiredStatus(
+//						VariableHandler.getProductionCompletionOrderNo(), commonFunc.getDataFromTestDataSheet("Draft"));
+				completionProductionOrderFunc.selectShiftAndSaveHeaderInCompletionMultiProcess(
+						commonFunc.getDataFromTestDataSheet("Shift_100"));
+				completionProductionOrderFunc.clickPostButtonInCompletionMultiProcess();
+				// TODO verifying DB Steps
+				completionProductionOrderFunc.verifyLinesWithRMValidationInCompletionProcessWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+				// TODO verifying DB Steps
+				completionProductionOrderFunc.verifyHeaderAndLinesValidationInCompletionProcessWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				completionProductionOrderFunc.verifyStockTransactionValidationInCompletionForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Multiple"), StartIndexSheet);
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
+				if (!VariableHandler.getAutoPostMRVFlag()) {
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyPendingMRV(VariableHandler.getProductionCompletionOrderNo());
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
+							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Multiple"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occurs while executing 'verifyProdOrderWithoutSOAllInsideOperORCQMoveTypeSingle': " + e);
+			return false;
+		}
+	}
+
+	/**
+	 * This method used to Manual Production order with Move Type - Item
+	 * 
+	 * @author Sakthi-GWL
+	 * @return boolean flag
+	 */
+	public boolean verifyProdOrderWithoutSOAllInsideMoveTypeItem() {
+		try {
+			commonFunc.validCommonLogin(System.getProperty("AdminUsername"), System.getProperty("LoginPassword"),
+					"AdminUsername");
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			verifyWriteBeforeStockForFGAndRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			clickAddIconInCreationProductionOrder();
+			createProdOrderAndFillFormDetails(commonFunc.getDataFromTestDataSheet("Loc_100"),
+					commonFunc.getDataFromTestDataSheet("ProdOrderStandard"),
+					commonFunc.getDataFromTestDataSheet("PROPrefix"),
+					commonFunc.getDataFromTestDataSheet("ManufactureType"),
+					commonFunc.getDataFromTestDataSheet("BomAllInside"),
+					commonFunc.getDataFromTestDataSheet("AmdDisc_Value"));
+			clickSaveIconInCreationProductionOrder();
+			// TODO verifying DB Steps
+			verifyHeaderValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			verifyProductionOrderMREventAndRestOP(null, null, commonFunc.getDataFromTestDataSheet("ItemType"));
+			verifyProcessType(commonFunc.getDataFromTestDataSheet("InsideType"),
+					commonFunc.getDataFromTestDataSheet("InsideType"));
+			verifyStoreProcessAndRawMaterial();
+			// TODO verifying DB Steps
+			verifyRoutingValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			verifyRawMaterialsValidationInProductionOrderWithDB(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			navigateToRoutingSubTab();
+			storeRoutingProcessAndProcessType();
+			storeRoutingProcessAndConsumptionAndRecipientWareHouse();
+			clickHeaderSaveAndPostProdOrder();
+			if (!VariableHandler.getApprovalFlag()) {
+				approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
+				commonFunc.approveDocuments(webDB.getDataFromProperties("TvsA-BU"),
+						VariableHandler.getProductionOrderNumber(), webDB.getDataFromProperties("HodEmpId"),
+						commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("Inprogress"));
+			int StartIndexSheet = 0;
+			int AllocStartIndex = 0;
+			for (int i = 0; i < 1; i++) {
+				String ProcessName = VariableHandler.getProcessAndProcessType()[i][0];
+				String ProcessType = VariableHandler.getProcessAndProcessType()[i][1];
+				String RecipientWH = VariableHandler.getProcessAndWarehousesBOM()[i][1];
+				String ConsumptionWH = VariableHandler.getProcessAndWarehousesBOM()[i][2];
+				logs.logging("INFO", "Executing Process: " + (i + 1) + ". " + ProcessName);
+				logs.logging("INFO", "ProcessType: " + ProcessType);
+				logs.logging("INFO", "RecipientWH: " + RecipientWH);
+				logs.logging("INFO", "ConsumptionWH: " + ConsumptionWH);
+				StartIndexSheet = (i == 0) ? 35 : 0;
+				AllocStartIndex = (i == 0) ? 10 : (i == 1) ? 17 : (i == 2) ? 24 : 0;
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionProcess();
+				completionProductionOrderFunc
+						.clickMaterialRequestCreationAndSearchProdNo(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.clickCheckBoxTableAndCreateAndStoreMRNo(VariableHandler.getProductionOrderNumber());
+				commonFunc.navigateToInventoryMaterialRequest();
+				materialRequestFunc
+						.storeMRNoAndCheckStatusDraftAndPostWithProdNo(VariableHandler.getProductionOrderNumber());
+				// TODO verifying DB steps
+				materialRequestFunc.verifyHeaderValidationInMaterialRequestWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyWriteBeforeLotQuantityInLotForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				commonFunc.navigateToMaterialIssuanceVoucherTab();
+				materialIssuanceVoucherFunc.CreatePendingMIVDocument(VariableHandler.getMaterialRequestNo());
+				materialIssuanceVoucherFunc.clickheaderSaveIconInMIV();
+				verifyWriteAllocateStockForRawMaterials(webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), AllocStartIndex);
+				materialIssuanceVoucherFunc.clickSaveHeaderAndPostBtnInMIV();
+				commonFunc.navigateToMaterialIssuanceVoucherTab();
+				materialIssuanceVoucherFunc.checkStatusOfMaterialIssuanceVoucher(VariableHandler.getMIVNumber(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				// TODO verifying DB steps
+				materialIssuanceVoucherFunc.verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoCreateMRVCheckboxIsSelected();
+				if (!VariableHandler.getAutoPostMRVFlag()) {
+					commonFunc.navigateToMaterialReceiptVoucher();
+					if (flag) {
+						materialReceiptFunctions.verifyOpenAlreadyCreatedMRVDocumentsWithProdNo(
+								VariableHandler.getProductionOrderNumber());
+					} else {
+						materialReceiptFunctions.verifyPendingMRVUsingMIV(VariableHandler.getMIVNumber());
+					}
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
+							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				}
+				// TODO verifying DB steps
+				materialIssuanceVoucherFunc.verifyAfterLotQuantityInLotSerialValidationForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				materialIssuanceVoucherFunc.verifyStockTransactionValidationInMIVForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+
+				commonFunc.navigateToCompletionProductionOrderMultipleProcessInProdPlanning();
+				completionProductionOrderFunc.clickPendingIconInCompletionMultiProcess();
+				completionProductionOrderFunc
+						.searchMultipleProductionOrderNoAndVerifyFilter(VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc.selectPendingMultipleProdOrderAndClickCreateCompletionProcess(
+						VariableHandler.getProductionOrderNumber());
+				completionProductionOrderFunc
+						.selectShiftAndSaveHeaderInCompletion(commonFunc.getDataFromTestDataSheet("Shift_100"));
+				// TODO verifying DB Steps
+				completionProductionOrderFunc.verifyLinesWithRMValidationInCompletionProcessWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				completionProductionOrderFunc.clickPostButtonInCompletionProcess();
+				// TODO verifying DB Steps
+				completionProductionOrderFunc.verifyHeaderAndLinesValidationInCompletionProcessWithDB(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				completionProductionOrderFunc.verifyStockTransactionValidationInCompletionForRawMaterials(
+						webDB.getDataFromProperties("PMFFileName"),
+						webDB.getDataFromProperties("AllInsideSheetName-Item"), StartIndexSheet);
+				commonFunc.navigateToCompletionProductionOrderInProdPlanning();
+				completionProductionOrderFunc.verifyCompletionProductionOrdeNumberWithDesiredStatus(
+						VariableHandler.getProductionCompletionOrderNo(),
+						commonFunc.getDataFromTestDataSheet("PostedStatus"));
+				commonFunc.navigateSetupInventoryPage();
+				flag = materialReceiptFunctions.autoPostMRVCheckboxIsSelected();
+				if (!VariableHandler.getAutoPostMRVFlag()) {
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyPendingMRV(VariableHandler.getProductionCompletionOrderNo());
+					materialReceiptFunctions.verifyReceiptLocatorsAndPutAway();
+					materialReceiptFunctions.clickTickAndPostIcon();
+					commonFunc.navigateToMaterialReceiptVoucher();
+					materialReceiptFunctions.verifyValidateMaterialReceiptDocumentsStatus(
+							VariableHandler.getMrvNumber(), commonFunc.getDataFromTestDataSheet("IssuedStatus"));
+				}
+			}
+			commonFunc.navigateToProductionOrderInProdPlanning();
+			searchAndVerifyStatusOfPONo(VariableHandler.getProductionOrderNumber(),
+					commonFunc.getDataFromTestDataSheet("CompletedStatus"));
+			verifyValidationOfAfterStockUnitCostAndQuantityInFGItem(webDB.getDataFromProperties("PMFFileName"),
+					webDB.getDataFromProperties("AllInsideSheetName-Item"));
+			flag = commonFunc.logoutUser();
+			return flag;
+		} catch (Exception e) {
+			logs.logging("INFO",
+					"Exception occurs while executing 'verifyProdOrderWithoutSOAllInsideOperORCQMoveTypeSingle': " + e);
+			return false;
 		}
 	}
 }
