@@ -32,6 +32,27 @@ public class CompletionProductionOrderFunctions {
 	private static DBCommonFunctions dbCommonFunctions = new DBCommonFunctions();
 
 	/**
+	 * This Method used to click Allocate Deallocate Button in Header
+	 * 
+	 * @author Sakthi-GWL
+	 */
+	public void clickAllocateDeallocateButtonInHeader() {
+		flag = webDB.waitForElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
+				ElementType.Xpath);
+		if (flag) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
+			}
+			webDB.moveToElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
+					ElementType.Xpath);
+			webDB.clickAnElement(CompletionProductionOrderLocators.ComplProdOrderAllocateDeAllocateBtn,
+					ElementType.Xpath);
+			flag = webDB.waitForElement(CommonUiLocators.PostToastMessage, ElementType.Xpath);
+		}
+		assertTrue(flag);
+	}
+
+	/**
 	 * This Method used to switch to Pending Production Order Iframe
 	 * 
 	 * @author Sakthi-GWL
@@ -716,7 +737,6 @@ public class CompletionProductionOrderFunctions {
 				webDB.switchToDefaultContent();
 				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.MultipleProceedRestOprYesBtn,
 						ElementType.Xpath);
-				System.out.println(flag);
 				if (flag) {
 					webDB.clickAnElement(CompletionProductionOrderLocators.MultipleProceedRestOprYesBtn,
 							ElementType.Xpath);
@@ -953,7 +973,7 @@ public class CompletionProductionOrderFunctions {
 			webDB.moveToElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
 			webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableShowMyRecordBtn, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(3000);
+			commonFunc.hardWait(2000);
 			flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
 					ElementType.Xpath);
 			if (!flag) {
@@ -969,7 +989,7 @@ public class CompletionProductionOrderFunctions {
 							ElementType.Xpath);
 				}
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(3000);
+				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.verifyIsElementDisplayed(CompletionProductionOrderLocators.Pending_TableNoDataSelected,
 						ElementType.Xpath);
@@ -998,6 +1018,7 @@ public class CompletionProductionOrderFunctions {
 								ElementType.Xpath);
 						webDB.clickAnElement(CompletionProductionOrderLocators.Pending_TableSelectAllCheckBox,
 								ElementType.Xpath);
+						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(CompletionProductionOrderLocators.CreateCompletionProcessBtn,
 								ElementType.Xpath);
 						if (flag) {
@@ -1186,79 +1207,188 @@ public class CompletionProductionOrderFunctions {
 	}
 
 	/**
-	 * This method used to validate the Header and Lines Details in Material
-	 * Issuance Voucher
+	 * This method used to validate the Lines Details with Raw material in
+	 * Completion Process
 	 * 
 	 * @author Sakthi-GWL
 	 * @param FileName
 	 * @param SheetName
 	 * @param StartIndex
 	 */
-	public void verifyHeaderAndLinesValidationInMaterialIssuanceVoucherWithDB(String FileName, String SheetName,
+	public void verifyLinesWithRMValidationInCompletionProcessWithDB(String FileName, String SheetName,
 			int StartIndex) {
-		logs.logging("INFO", "****Completion Production Order DB Validation - Lines & Headers****");
-		String SeqNo, Shift, Process, Unit, ProcessDesc, RMName, UOM, SourceWH, ReceiverWH, RqrdQnty, TotalConsQnty,
-				AllocQnty, TargetSFCode = null;
+		logs.logging("INFO", "****Completion Production Order DB Validation - Lines & RM Details****");
+		String SeqNo, OprnNo, Unit, RMName, UOM, UnitCost, ReceiverWH, ItemCost, RqrdQnty, TotalConsQnty, AcceptQnty,
+				ProcessId, ProdOrderNo, AllocQnty = null;
 		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
 		ExcelUtils excelUtils = new ExcelUtils();
 		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
 		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
-		for (int i = StartIndex; i < TotalData.length; i++) {
+		a: for (int i = StartIndex; i < TotalData.length; i++) {
+			SeqNo = TotalData[i][1];
+			OprnNo = TotalData[i][0];
 			Unit = TotalData[2][1];
-			Shift = TotalData[2][1];
-			SeqNo = TotalData[i][0];
-			Process = TotalData[i][1];
-			ProcessDesc = TotalData[i][2];
-			RMName = TotalData[i][3];
-			UOM = TotalData[i][4];
-			SourceWH = TotalData[i][5];
-			ReceiverWH = TotalData[i][6];
-			RqrdQnty = TotalData[i][7];
-			TotalConsQnty = TotalData[i][8];
-			AllocQnty = TotalData[i][9];
-			TargetSFCode = TotalData[i + 1][12];
-			if (ProcessDesc.equals("")) {
-				break;
+			ProcessId = TotalData[i][2];
+			ReceiverWH = TotalData[i][7];
+			RMName = TotalData[i][4];
+			UOM = TotalData[i][5];
+			UnitCost = TotalData[i][11];
+			ItemCost = TotalData[i][12];
+			AllocQnty = TotalData[i][13];
+			RqrdQnty = TotalData[i][8];
+			TotalConsQnty = TotalData[i][9];
+			AcceptQnty = TotalData[i][10];
+			ProdOrderNo = VariableHandler.getProductionOrderNumber();
+			if (OprnNo.equals("") || OprnNo == null || OprnNo.isBlank() || OprnNo.isEmpty()
+					|| OprnNo.equalsIgnoreCase("Completion") || OprnNo.equalsIgnoreCase("SFG")) {
+				break a;
 			}
-			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails("Unit"),
-					Unit);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesUnit")), Unit);
 			logs.logging("INFO", "Verified Unit and DB Value Matched: " + Unit);
-			commonFunc.verifyAssertionBothValues(dbCommonFunctions
-					.validateCompProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet("Shift")), Shift);
-			logs.logging("INFO", "Verified Shift and DB Value Matched: " + Shift);
-			commonFunc.verifyAssertionBothValues(dbCommonFunctions
-					.validateCompProductionOrderHeaderDetails(commonFunc.getDataFromTestDataSheet("Process")), Process);
-			logs.logging("INFO", "Verified Process and DB Value Matched: " + Process);
-			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
-					commonFunc.getDataFromTestDataSheet("ReceiverWH")), ReceiverWH);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesRcptWH")), ReceiverWH);
 			logs.logging("INFO", "Verified ReceiverWH and DB Value Matched: " + ReceiverWH);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("SeqNo")), SeqNo);
-			logs.logging("INFO", "Verified SeqNo and DB Value Matched: " + SeqNo);
-			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("ProcessDesc")), ProcessDesc);
-			logs.logging("INFO", "Verified ProcessDesc and DB Value Matched: " + ProcessDesc);
-			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("RMName")), RMName);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesRMName")), RMName);
 			logs.logging("INFO", "Verified RMName and DB Value Matched: " + RMName);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("UOM")), UOM);
-			logs.logging("INFO", "Verified UOM and DB Value Matched: " + UOM);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesRMUom")), UOM);
+			logs.logging("INFO", "Verified RM UOM and DB Value Matched: " + UOM);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("SourceWH")), SourceWH);
-			logs.logging("INFO", "Verified SourceWH and DB Value Matched: " + SourceWH);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesProcessId")), ProcessId);
+			logs.logging("INFO", "Verified Process and DB Value Matched: " + ProcessId);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("RqrdQnty")), RqrdQnty);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesRqrdQty")), RqrdQnty);
 			logs.logging("INFO", "Verified RqrdQnty and DB Value Matched: " + RqrdQnty);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("TotalConsQnty")), TotalConsQnty);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesConsQty")), TotalConsQnty);
 			logs.logging("INFO", "Verified TotalConsQnty and DB Value Matched: " + TotalConsQnty);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("AllocQnty")), AllocQnty);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesAllocQty")), AllocQnty);
 			logs.logging("INFO", "Verified AllocQnty and DB Value Matched: " + AllocQnty);
 			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
-					commonFunc.getDataFromTestDataSheet("TargetSFCode")), TargetSFCode);
-			logs.logging("INFO", "Verified TargetSFCode and DB Value Matched: " + TargetSFCode);
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesAcptQty")), AcceptQnty);
+			logs.logging("INFO", "Verified Accept Qnty and DB Value Matched: " + AcceptQnty);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesUnitCost")), UnitCost);
+			logs.logging("INFO", "Verified Unit Cost and DB Value Matched: " + UnitCost);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesItemCost")), ItemCost);
+			logs.logging("INFO", "Verified Item Cost and DB Value Matched: " + ItemCost);
+			commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderLinesDetails(SeqNo,
+					OprnNo, commonFunc.getDataFromTestDataSheet("CompProcessLinesProdOrderNo")), ProdOrderNo);
+			logs.logging("INFO", "Verified Production Order No and DB Value Matched: " + ProdOrderNo);
+		}
+	}
+
+	/**
+	 * This method used to validate the Header and Lines Details in
+	 * CompletionProcess
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 * @param StartIndex
+	 */
+	public void verifyHeaderAndLinesValidationInCompletionProcessWithDB(String FileName, String SheetName,
+			int StartIndex) {
+		logs.logging("INFO", "****Completion Production Order DB Validation - Headers After Post****");
+		String Shift, Process, Unit, DMCost, UnitCost, CompQty, AccptQty, ProdOrderNo, ProdId, UOM, RcptWH,
+				TargetSFCode = null;
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		a: for (int i = StartIndex; i < TotalData.length; i++) {
+			String SeqNo = TotalData[i][0];
+			Unit = TotalData[2][1];
+			Shift = TotalData[2][6];
+			Process = TotalData[i][2];
+			UOM = TotalData[2][0];
+			DMCost = TotalData[i][12];
+			RcptWH = TotalData[i][7];
+			CompQty = TotalData[i][8];
+			AccptQty = TotalData[i][9];
+			ProdId = TotalData[2][5];
+			TargetSFCode = TotalData[i][13];
+			UnitCost = TotalData[i][11];
+			ProdOrderNo = VariableHandler.getProductionOrderNumber();
+			if (SeqNo.equalsIgnoreCase("Completion")) {
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderUnit")), Unit);
+				logs.logging("INFO", "Verified Header Unit and DB Value Matched: " + Unit);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderShift")), Shift);
+				logs.logging("INFO", "Verified Header Shift and DB Value Matched: " + Shift);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderProcessId")), Process);
+				logs.logging("INFO", "Verified Header Target Process and DB Value Matched: " + Process);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderFGUom")), UOM);
+				logs.logging("INFO", "Verified Header FG UOM and DB Value Matched: " + UOM);
+//		commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+//				commonFunc.getDataFromTestDataSheet("TargetSFCode")), TargetSFCode);
+//		logs.logging("INFO", "Verified TargetSFCode and DB Value Matched: " + TargetSFCode);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderUnitCost")), UnitCost);
+				logs.logging("INFO", "Verified Process - (Unit Cost) and DB Value Matched: " + UnitCost);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderDMCost")), DMCost);
+				logs.logging("INFO", "Verified FG Item UOM and DB Value Matched: " + DMCost);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderRcptWarehouse")), RcptWH);
+				logs.logging("INFO", "Verified Receipt Warehouse and DB Value Matched: " + RcptWH);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderCompQty")), CompQty);
+				logs.logging("INFO", "Verified Process Completion Quantity and DB Value Matched: " + CompQty);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderAccptQty")), AccptQty);
+				logs.logging("INFO", "Verified Process Accept Quantity and DB Value Matched: " + AccptQty);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderFGName")), ProdId);
+				logs.logging("INFO", "Verified FG Item Name and DB Value Matched: " + ProdId);
+				commonFunc.verifyAssertionBothValues(dbCommonFunctions.validateCompProductionOrderHeaderDetails(
+						commonFunc.getDataFromTestDataSheet("CompProcessHeaderProdNo")), ProdOrderNo);
+				logs.logging("INFO", "Verified Header Production Order and DB Value Matched: " + ProdOrderNo);
+				break a;
+			}
+		}
+	}
+
+	/**
+	 * This method used to validate stock transaction with Completion number
+	 * 
+	 * @author Sakthi-GWL
+	 * @param FileName
+	 * @param SheetName
+	 */
+	public void verifyStockTransactionValidationInCompletionForRawMaterials(String FileName, String SheetName,
+			int StartIndex) {
+		logs.logging("INFO", "****Completion Production Order Stock Transaction DB Validation****");
+		String[][] TotalData = new String[ExcelUtils.getRowCount()][ExcelUtils.getColCount()];
+		ExcelUtils excelUtils = new ExcelUtils();
+		String Filepath = System.getProperty("user.dir") + File.separator + "testdata" + File.separator + FileName;
+		TotalData = excelUtils.readAllDataInExcel(Filepath, SheetName);
+		for (int i = StartIndex; i <= (StartIndex + 6); i++) {
+			String QOHValue = TotalData[i][16];
+			String RMItem = TotalData[i][4];
+			String WH = TotalData[i][7];
+			String DBQOHValve = dbCommonFunctions.validateStockTransactionWithRMInCompletion(RMItem,
+					commonFunc.getDataFromTestDataSheet("QOHValue"),
+					commonFunc.getDataFromTestDataSheet("TransQuantityHeader"));
+			commonFunc.verifyAssertionBothValues(DBQOHValve, QOHValue);
+			logs.logging("INFO", "Verified QOH Value in Stock Transaction and DB Value Matched: " + QOHValue);
+			String DBStoreValve = dbCommonFunctions.validateStockTransactionWithRMInCompletion(RMItem,
+					commonFunc.getDataFromTestDataSheet("QOHValue"),
+					commonFunc.getDataFromTestDataSheet("StockTransactionStoreId"));
+			commonFunc.verifyAssertionBothValues(DBStoreValve, WH);
+			logs.logging("INFO", "Verified Store Id in Stock Transaction and DB Value Matched: " + WH);
+			String DBRMName = dbCommonFunctions.validateStockTransactionWithRMInCompletion(RMItem,
+					commonFunc.getDataFromTestDataSheet("QOHValue"),
+					commonFunc.getDataFromTestDataSheet("StockTransactionProdId"));
+			commonFunc.verifyAssertionBothValues(DBRMName, RMItem);
+			logs.logging("INFO", "Verified Prod Id in Stock Transaction and DB Value Matched: " + RMItem);
 		}
 	}
 }
