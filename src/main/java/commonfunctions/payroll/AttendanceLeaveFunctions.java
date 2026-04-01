@@ -1441,7 +1441,7 @@ public class AttendanceLeaveFunctions {
 			clickMigrationAndSelectLOPLeave();
 			clickAddNewLOPLeaveButton();
 			selectCalendarYearPeriodAndRefInLOP(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Year202526"), Month,
+					commonFunc.getDataFromTestDataSheet("Year202627"), Month,
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			uploadTemplateInLOPLeaveMigration(requestDay);
 			checkExceptionAndSaveHeaderInLOPMigration();
@@ -1484,7 +1484,7 @@ public class AttendanceLeaveFunctions {
 			clickMigrationAndSelectAccrualLeave();
 			clickAddNewAccrualLeaveButton();
 			selectCalendarYearPeriodAndRefInAccrual(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Year202526"), Month,
+					commonFunc.getDataFromTestDataSheet("Year202627"), Month,
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			uploadTemplateInAccrualLeaveMigration(requestDate);
 			checkExceptionAndSaveHeaderInAccrualMigration();
@@ -2477,8 +2477,8 @@ public class AttendanceLeaveFunctions {
 //						AttendanceLeaveLocators.LEAttachmentDocRevInput, DocRev);
 //				logs.logging("INFO", "Leave Entry Attachment Doc Rev Entered: " + DocRev);
 //				webDB.switchToDefaultContent();
-				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
-			}
+			flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
+		}
 //		}
 		Assert.assertTrue(flag);
 	}
@@ -2503,18 +2503,18 @@ public class AttendanceLeaveFunctions {
 			commonPayrollFunctions.addDetailInTableWithoutLovButton(AttendanceLeaveLocators.LEAttachmentDateToInput,
 					AttendanceLeaveLocators.LEAttachmentDateToInput, ToDate);
 			logs.logging("INFO", "Leave Entry Attachment To Date Entered: " + ToDate);
-			flag = webDB.waitForElement(AttendanceLeaveLocators.LEAttachmentChooseFileInput, ElementType.Xpath);
+			commonFunc.hardWait(3000);
+			flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LEAttachmentChooseFileInput,
+					file.getAbsolutePath(), ElementType.Xpath);
 			if (flag) {
-				flag = webDB.sendTextToAnElement(AttendanceLeaveLocators.LEAttachmentChooseFileInput,
-						file.getAbsolutePath(), ElementType.Xpath);
-				commonFunc.hardWait(3000);
+				logs.logging("INFO", "File Name Uploaded" + FileName);
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(AttendanceLeaveLocators.LeaveEntryAttachmentIframe, ElementType.Xpath);
 			}
 		}
 		Assert.assertTrue(flag);
 	}
-	
+
 	/**
 	 * This method used to click add icon in document management frame
 	 */
@@ -2527,6 +2527,7 @@ public class AttendanceLeaveFunctions {
 				webDB.clickAnElement(AttendanceLeaveLocators.DocumentManagementAddButton, ElementType.Xpath);
 			}
 		}
+		webDB.switchToDefaultContent();
 		Assert.assertTrue(flag);
 	}
 
@@ -2546,10 +2547,20 @@ public class AttendanceLeaveFunctions {
 				webDB.switchToDefaultContent();
 				flag = webDB.waitForElement(AttendanceLeaveLocators.AttachmentIframeCloseIcon, ElementType.Xpath);
 				if (flag) {
+					logs.logging("INFO", "Upload Button Clicked");
 					webDB.clickAnElement(AttendanceLeaveLocators.AttachmentIframeCloseIcon, ElementType.Xpath);
-					webDB.navigateToRefresh();
-					flag = webDB.isElementNotDisplayed(AttendanceLeaveLocators.LeaveEntryAttachmentIframe,
+					flag = webDB.waitForElement(AttendanceLeaveLocators.DocManagementIframeCloseIcon,
 							ElementType.Xpath);
+					if (flag) {
+						logs.logging("INFO", "Attachment Iframe Close Button Clicked");
+						webDB.clickAnElement(AttendanceLeaveLocators.DocManagementIframeCloseIcon, ElementType.Xpath);
+						webDB.navigateToRefresh();
+						flag = webDB.isElementNotDisplayed(AttendanceLeaveLocators.LeaveEntryAttachmentIframe,
+								ElementType.Xpath);
+						if (flag) {
+							logs.logging("INFO", "Document Management Iframe Close Button Clicked");
+						}
+					}
 				}
 			}
 		}
@@ -2729,7 +2740,7 @@ public class AttendanceLeaveFunctions {
 			clickMigrationButtonInAdjustment();
 			clickAddIconInAdjustmentMigration();
 			fillHeaderInAdjustmentMigration(commonFunc.getDataFromTestDataSheet("Emp_1to31Calendar"),
-					commonFunc.getDataFromTestDataSheet("Year202526"), month,
+					commonFunc.getDataFromTestDataSheet("Year202627"), month,
 					commonFunc.getDataFromTestDataSheet("AdditionText"),
 					commonFunc.getDataFromTestDataSheet("RefText_Test"));
 			clickSaveIconInAdjustmentMigration();
@@ -3433,7 +3444,7 @@ public class AttendanceLeaveFunctions {
 			clickAdjustmentLabelButton();
 			findWithLeaveInAdjustment(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
 			webDB.navigateToRefresh();
-			findWithYearInAdjustment(commonFunc.getDataFromTestDataSheet("Year202526"));
+			findWithYearInAdjustment(commonFunc.getDataFromTestDataSheet("Year202627"));
 			webDB.navigateToRefresh();
 			findWithDesignationInAdjustment(commonFunc.getDataFromTestDataSheet("ChairmanText"));
 			webDB.navigateToRefresh();
@@ -3462,7 +3473,7 @@ public class AttendanceLeaveFunctions {
 			commonFunc.navigateLeaveEntryScreen();
 			findWithLeaveInLeave(commonFunc.getDataFromTestDataSheet("CasualLeave-Text"));
 			webDB.navigateToRefresh();
-			findWithYearInLeave(commonFunc.getDataFromTestDataSheet("Year202526"));
+			findWithYearInLeave(commonFunc.getDataFromTestDataSheet("Year202627"));
 			webDB.navigateToRefresh();
 			findWithDesignationInLeave(commonFunc.getDataFromTestDataSheet("ChairmanText"));
 			webDB.navigateToRefresh();
