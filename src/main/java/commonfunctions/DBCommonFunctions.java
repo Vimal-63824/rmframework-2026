@@ -2061,7 +2061,7 @@ public class DBCommonFunctions {
 	 * @return String Value
 	 */
 	public String validateBOMLinesDetails(String OprnNo, String i, String DBHeaderColumnValue) {
-		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("$OprnSeqNo}", OprnNo).replace("${SeqNo}", i);
+		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("${OprnSeqNo}", OprnNo).replace("${SeqNo}", i);
 		String value = getDataFromDBUsingQuery(Query, "${BOMNO}", VariableHandler.getBOMNumber(), DBHeaderColumnValue);
 		return value;
 	}
@@ -2076,9 +2076,8 @@ public class DBCommonFunctions {
 	 */
 	public String validateProductionOrderHeaderDetails(String DBHeaderColumnValue) {
 		String Query = getDataFromDBTestDataSheet("ProductionOrderHeaderQuery");
-		String value = getDataFromDBUsingQuery(Query, "${ProductionOrderNo}",
-		String value = getDataFromDBUsingQuery(Query, "${ProdctionOrderNo}",
-				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		String value = getDataFromDBUsingQuery(Query, "${ProdctionOrderNo}", VariableHandler.getProductionOrderNumber(),
+				DBHeaderColumnValue);
 		return value;
 	}
 
