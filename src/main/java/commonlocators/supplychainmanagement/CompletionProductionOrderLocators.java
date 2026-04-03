@@ -31,7 +31,7 @@ public class CompletionProductionOrderLocators {
 	/** @locatorType XPATH */
 	public static final String CreateCompletionProcessOkBtn = "//button[@data-testid='CreateCompletionProcessOkBtn']";
 	/** @locatorType XPATH */
-	public static final String ComplProdOrderAllocateDeAllocateBtn = "//button[@id='Allocate']";
+	public static final String ComplProdOrderAllocateDeAllocateBtn = "//span[text()='Allocate/Deallocate']/parent::button";
 	/** @locatorType XPATH */
 	public static final String ComplProdOrderShiftLovBtn = "//input[@data-testid='ComplProdOrderShiftLovBtn']/following-sibling::button";
 	/** @locatorType XPATH */
@@ -239,8 +239,10 @@ public class CompletionProductionOrderLocators {
 	public static final String ComplMultipleConsumptionNextButton = "//div[@id='consumption_ig_grid_vc_floatingItem_dialog']/following::div[@aria-label='Pagination']/button[@title='Next']";
 	/** @locatorType XPATH */
 	public static final String Pend_ProdOrderLovBtn = "//button[@id='P33_FIND_PROD_NO_lov_btn']";
+//	/** @locatorType XPATH */
+//	public static final String PendingSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
 	/** @locatorType XPATH */
-	public static final String PendingSearchBtn = "//button[@data-testid='PendingProdOrderSearchGoBtn']";
+	public static final String PendingSearchBtn = "//span[text()='Search']/parent::button";
 	/** @locatorType XPATH */
 	public static final String SearchResultStatusData = "//table[contains(@id,'17480775731087779046_orig')]//tbody/tr/td/div[contains(@style,'color')]";
 	/** @locatorType XPATH */
@@ -265,6 +267,20 @@ public class CompletionProductionOrderLocators {
 		return "//table/tbody//td[text()='" + prodNo + "']/../td/input[contains(@id,'checkbox')]";
 	}
 
+	/** @locatorType XPATH */
+	public static final String PendingMRProcessDetailIcon(String prodNo) {
+		return "(//table/tbody//td[text()='" + prodNo + "']/../td//span[@class='fa fa-file-text-o'])[1]";
+	}
+
+	/** @locatorType XPATH */
+	public static final String PendingMRProcessDetailSelectIcon(String ProcessName) {
+		return "//table[contains(@aria-label,'Process Details')]/tbody//td[text()='" + ProcessName + "']/../td/input";
+	}
+
+	/** @locatorType XPATH */
+	public static final String PendingMRProcessDetailSelectAllIcon = "//table[contains(@aria-label,'Process Details')]/tbody//td//input";
+	/** @locatorType XPATH */
+	public static final String PendingMRProcessDetailsIframe = "//iframe[contains(@src,'process-details')]";
 	/** @locatorType XPATH */
 	public static final String CreateMRButton = "//button[@data-testid='CreateCompletionProcessBtn']";
 	/** @locatorType XPATH */

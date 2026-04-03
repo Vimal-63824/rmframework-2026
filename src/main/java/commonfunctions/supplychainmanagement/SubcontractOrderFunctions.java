@@ -75,11 +75,6 @@ public class SubcontractOrderFunctions {
 			if (flag) {
 				logs.logging("INFO", "Pending Frame Is Displayed");
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
-				commonFunc.hardWait(3000);
-//				flag = webDB.waitForElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
-//				if (flag) {
-//					logs.logging("INFO", "Switched To Pending Frame");
-//					webDB.clickAnElement(SubcontractOrderLocators.ProdOrderNo, ElementType.Xpath);
 				commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.ProdOrderNo, DocNo);
 				webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 				flag = webDB.waitForElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
@@ -87,18 +82,14 @@ public class SubcontractOrderFunctions {
 					logs.logging("INFO", "Go Button Is Displayed");
 					webDB.clickAnElement(SubcontractOrderLocators.SearchButton, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(12000);
 					flag = webDB.waitForElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
 					if (flag) {
 						webDB.clickAnElement(SubcontractOrderLocators.CheckBox(DocNo), ElementType.Xpath);
-						commonFunc.hardWait(2000);
 						flag = webDB.waitForElement(SubcontractOrderLocators.Pending_CreateSCO_Button,
 								ElementType.Xpath);
 						if (flag) {
-							commonFunc.hardWait(2000);
 							logs.logging("INFO", "Create SubContract Order Doc Is Displayed");
 							webDB.clickAnElement(SubcontractOrderLocators.Pending_CreateSCO_Button, ElementType.Xpath);
-
 							flag = webDB.waitForElement(SubcontractOrderLocators.SubcontractorLovButton,
 									ElementType.Xpath);
 							if (flag) {
@@ -108,19 +99,18 @@ public class SubcontractOrderFunctions {
 								webDB.switchToFrame(SubcontractOrderLocators.FrameProdPoc, ElementType.Xpath);
 								flag = webDB.waitForElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
 								if (flag) {
-									commonFunc.hardWait(2000);
 									logs.logging("INFO", "Ok Button Is Displayed");
 									webDB.clickAnElement(SubcontractOrderLocators.OkButton, ElementType.Xpath);
 									webDB.switchToDefaultContent();
 									flag = webDB.waitForElement(SubcontractOrderLocators.LocationId, ElementType.Xpath);
 									storeSCODocumentsNumber();
-									if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+									if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
+											ElementType.Xpath)) {
 										webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 												ElementType.Xpath);
 									}
 								}
 							}
-//							}
 						}
 					}
 				}
@@ -305,10 +295,11 @@ public class SubcontractOrderFunctions {
 	public void verifyProcessQuantityCalculation() {
 		flag = webDB.waitForElement(SubcontractOrderLocators.OrderedQuantity, ElementType.Xpath);
 		if (flag) {
-			commonFunc.hardWait(2000);
 			String orderedQty = webDB.getTextFromElement(SubcontractOrderLocators.OrderedQuantity, ElementType.Xpath);
+			webDB.waitForElement(SubcontractOrderLocators.ConvFactor, ElementType.Xpath);
 			String convFactor = webDB.getTextFromElement(SubcontractOrderLocators.ConvFactor, ElementType.Xpath);
 //			String LineUnitCost = webDB.getTextFromElement(SubcontractOrderLocators.LineUnitCost, ElementType.Xpath);
+			webDB.waitForElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 			String BatchQty = webDB.getTextFromElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 			logs.logging("INFO", "Ordered Quantity Is: " + orderedQty);
 			logs.logging("INFO", "Conversion Factor Is: " + convFactor);
@@ -364,6 +355,7 @@ public class SubcontractOrderFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyAddGlAccNumberValue() {
+		webDB.waitForElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 		webDB.moveToElement(SubcontractOrderLocators.BatchQuantity, ElementType.Xpath);
 		webDB.moveToElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 		flag = webDB.waitForElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
@@ -372,16 +364,15 @@ public class SubcontractOrderFunctions {
 			webDB.doubleClickAnElement(SubcontractOrderLocators.GLAccNo, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(SubcontractOrderLocators.GLAccNoLovButton,
 					commonFunc.getDataFromTestDataSheet("GeneralExpense"));
-			commonFunc.hardWait(5000);
 			flag = webDB.waitForElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.LineSave, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 			}
 		}
 		assertTrue(flag);
@@ -400,14 +391,14 @@ public class SubcontractOrderFunctions {
 			webDB.moveToElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			webDB.clickAnElement(SubcontractOrderLocators.IncludeCharges, ElementType.Xpath);
 			commonFunc.checkSuccessToastMessageDisappear();
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.Save, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.Save, ElementType.Xpath);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElement(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 				commonFunc.checkSuccessToastMessageDisappear();
@@ -530,7 +521,6 @@ public class SubcontractOrderFunctions {
 		if (flag) {
 			webDB.clickAnElement(SubcontractOrderLocators.ScoSearchButton, ElementType.Xpath);
 			logs.logging("INFO", "Search Button Is Clicked");
-			commonFunc.hardWait(1000);
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(SubcontractOrderLocators.ApprovedStatus(Number), ElementType.Xpath);
 			if (flag) {
@@ -561,7 +551,7 @@ public class SubcontractOrderFunctions {
 			if (flag) {
 				webDB.moveToElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
 				webDB.clickAnElement(SubcontractOrderLocators.TickButton, ElementType.Xpath);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 			}
@@ -16453,9 +16443,10 @@ public class SubcontractOrderFunctions {
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
+
 	/**
-	 * This Method Used For Pending Serial Subcontract Order to GRN with Gate Entry for SDS
-	 * type
+	 * This Method Used For Pending Serial Subcontract Order to GRN with Gate Entry
+	 * for SDS type
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
@@ -16490,8 +16481,7 @@ public class SubcontractOrderFunctions {
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		subcontractStandardTypeclickingIncludeChargesAndPostIcon();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -16590,6 +16580,7 @@ public class SubcontractOrderFunctions {
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
+
 	/**
 	 * Create Direct Serial GRN With Subcontract Referance
 	 * 
@@ -16649,6 +16640,7 @@ public class SubcontractOrderFunctions {
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN without Gate Entry for SDS type - QC Item
 	 * 
@@ -16761,6 +16753,7 @@ public class SubcontractOrderFunctions {
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 	}
+
 	/**
 	 * Direct Serial Item Subcontract Order to GRN With Gate Entry for SDS type - QC
 	 * Enabled Items
@@ -16782,8 +16775,7 @@ public class SubcontractOrderFunctions {
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationLocalReg"));
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalReg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -16881,6 +16873,7 @@ public class SubcontractOrderFunctions {
 				System.getProperty("HariUsername"));
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 	}
+
 	/**
 	 * Direct Subcontract Order to GRN without Gate Entry for PR type - Free pass
 	 * Items With TDS
@@ -16938,9 +16931,9 @@ public class SubcontractOrderFunctions {
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
+
 	/**
-	 * Direct Subcontract Order With BOM For Standard Type -
-	 * Interstate(Registered)
+	 * Direct Subcontract Order With BOM For Standard Type - Interstate(Registered)
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
@@ -16995,9 +16988,9 @@ public class SubcontractOrderFunctions {
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
+
 	/**
-	 * Direct Subcontract Order With BOM For Standard Type -
-	 * Local(Unregistered)
+	 * Direct Subcontract Order With BOM For Standard Type - Local(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean
@@ -17017,8 +17010,7 @@ public class SubcontractOrderFunctions {
 		clickingMRPDetailsTabVerificationWithBOMAgainst();
 		firstProcessSourceAndTargetSFcode();
 		directsubcontractStandardTypeclickingIncludeChargesAndPostIcon();
-		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(
-				webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
+		headerTaxAmtAndTotalAmtCompareExcelSheetWithDataBase(webDB.getDataFromProperties("ProcCalculationLocalUnreg"));
 		clickPostButton();
 		approvalFunc.waitingForApprovalWithFordwarder(commonFunc.getDataFromTestDataSheet("HodValue"));
 		commonFunc.checkRefreshCellsDisappear();
@@ -17052,6 +17044,7 @@ public class SubcontractOrderFunctions {
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
+
 	/**
 	 * Direct Subcontract Order With BOM For Standard Type -
 	 * Interstate(Unregistered)
@@ -17109,9 +17102,9 @@ public class SubcontractOrderFunctions {
 		mrvFunc.verifyGRNSubcontractForMaterialReceipt();
 		return flag;
 	}
+
 	/**
-	 * Direct Subcontract Order With BOM For Standard Type -
-	 * Imported(Unregistered)
+	 * Direct Subcontract Order With BOM For Standard Type - Imported(Unregistered)
 	 * 
 	 * @author Vimal - RMITS
 	 * @return boolean

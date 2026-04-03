@@ -368,19 +368,21 @@ public class MaterialIssuanceVoucherFunctions {
 			logs.logging("INFO", "Header Tick Icon Is Displayed");
 			webDB.moveToElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(MaterialIssuanceVoucherLocators.HeaderTickIcon, ElementType.Xpath);
-			commonFunc.hardWait(5000);
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			commonFunc.checkRefreshCellsDisappear();
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
+			commonFunc.checkSuccessToastMessageDisappear();
 			flag = webDB.waitForElement(MaterialIssuanceVoucherLocators.HeaderPostIcon, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Header Post Icon Is Displayed");
 				webDB.clickAnElement(MaterialIssuanceVoucherLocators.HeaderPostIcon, ElementType.Xpath);
 				getDeliveryhallanNumber();
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
-
+				commonFunc.checkRefreshCellsDisappear();
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
+				commonFunc.checkSuccessToastMessageDisappear();
 				flag = webDB.waitForElement(CommonUiLocators.PendingMIV, ElementType.Xpath);
 				if (flag) {
 					logs.logging("INFO", "Pending MIV Button Is Displayed");
@@ -880,6 +882,8 @@ public class MaterialIssuanceVoucherFunctions {
 			String LotQuantity = dbCommonFunctions.validateLotSerialWithRMItemWarehouse(RMItem, RMWH,
 					commonFunc.getDataFromTestDataSheet("LotSerialQtyHand"));
 			commonFunc.verifyAssertionBothValues(LotQuantity, SheetValue);
+			logs.logging("INFO", "Verified RMItem: " + RMItem + " Lot Quanity After = " + LotQuantity);
+
 		}
 	}
 }
