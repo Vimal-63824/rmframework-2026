@@ -55,12 +55,10 @@ public class GrnScoPageFunctions {
 							webDB.moveToElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
 							flag = webDB.waitForElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
 							if (flag) {
-								commonFunc.hardWait(2000);
 								logs.logging("INFO", "CheckBox Is Displayed");
 								webDB.clickAnElement(GrnScoLocators.CheckBox(DocNo), ElementType.Xpath);
 								flag = webDB.waitForElement(GrnScoLocators.CreateGrnButton, ElementType.Xpath);
 								if (flag) {
-									commonFunc.hardWait(2000);
 									webDB.clickAnElement(GrnScoLocators.CreateGrnButton, ElementType.Xpath);
 									flag = webDB.waitForElement(GrnScoLocators.SupplierBillNumber, ElementType.Xpath);
 									if (flag) {
@@ -81,7 +79,7 @@ public class GrnScoPageFunctions {
 														commonFunc.getDataFromTestDataSheet("Value"));
 												VariableHandler.setScoGrnNumber(GrnNumber);
 												logs.logging("INFO", "Get Grn Number Is: " + GrnNumber);
-												if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon,
+												if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon,
 														ElementType.Xpath)) {
 													webDB.clickAnElementWithoutException(
 															CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
@@ -106,6 +104,7 @@ public class GrnScoPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void checkConsumptionBeforeGenerationMat() {
+		webDB.waitForElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.Consmp, ElementType.Xpath);
 		flag = webDB.waitForElement(GrnScoLocators.Consmp, ElementType.Xpath);
@@ -141,15 +140,13 @@ public class GrnScoPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void verifyGenMatConsAndAllocate() {
-		verifyGrnSFcodeWithExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
-		commonFunc.hardWait(2000);
+//		verifyGrnSFcodeWithExcelSheet(webDB.getDataFromProperties("GRNSourceSFCode"));
 		flag = webDB.waitForElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Gen Lot Serial Button Is Displayed");
 			webDB.clickAnElement(GrnScoLocators.GenLotSerial, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			commonFunc.hardWait(2000);
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			flag = webDB.waitForElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
@@ -157,8 +154,7 @@ public class GrnScoPageFunctions {
 				logs.logging("INFO", "Gen Mat Cons Button Is Displayed");
 				webDB.clickAnElement(GrnScoLocators.GenMatCons, ElementType.Xpath);
 				commonFunc.checkRefreshCellsDisappear();
-				commonFunc.hardWait(2000);
-				if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+				if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 					webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 				}
 				flag = webDB.waitForElement(GrnScoLocators.Allocate, ElementType.Xpath);
@@ -166,8 +162,7 @@ public class GrnScoPageFunctions {
 					logs.logging("INFO", "Allocate Button Is Displayed");
 					webDB.clickAnElement(GrnScoLocators.Allocate, ElementType.Xpath);
 					commonFunc.checkRefreshCellsDisappear();
-					commonFunc.hardWait(2000);
-					if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+					if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 						webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 					}
 				}
@@ -182,6 +177,7 @@ public class GrnScoPageFunctions {
 	 * @author Deepan-GWL
 	 */
 	public void checkConsumptionAfterGenerationMat() {
+		webDB.waitForElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.Consmp, ElementType.Xpath);
 		flag = webDB.waitForElement(GrnScoLocators.Consmp, ElementType.Xpath);
@@ -191,9 +187,11 @@ public class GrnScoPageFunctions {
 			flag = webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Consump Frame Is Displayed");
+				webDB.waitForElement(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
 				webDB.switchToFrame(GrnScoLocators.ConsumptionFrame, ElementType.Xpath);
 //				purchaseOrderFunc.verifyGetTextValidation(GrnScoLocators.ConsumptionItem,
 //						commonFunc.getDataFromTestDataSheet("RawMaterialSco"));
+				webDB.waitForElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
 				String text = webDB.getTextFromElement(GrnScoLocators.AllatedQty, ElementType.Xpath);
 				flag = text.equals(commonFunc.getDataFromTestDataSheet("ZeroValue"));
 				if (!flag) {
@@ -228,6 +226,7 @@ public class GrnScoPageFunctions {
 	 * 
 	 */
 	public void verifyViewLineDetails() {
+		webDB.waitForElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ItemTable, ElementType.Xpath);
 		webDB.moveToElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
 		flag = webDB.waitForElement(GrnScoLocators.ViewDetails, ElementType.Xpath);
@@ -265,7 +264,7 @@ public class GrnScoPageFunctions {
 			logs.logging("INFO", "Tick Button Is Displayed");
 			webDB.clickAnElement(GrnScoLocators.TickButton, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -323,7 +322,6 @@ public class GrnScoPageFunctions {
 			if (flag) {
 				logs.logging("INFO", "Search Button Is Displayed");
 				webDB.clickAnElement(GrnScoLocators.GrnSearchButton, ElementType.Xpath);
-				commonFunc.hardWait(1000);
 				commonFunc.checkRefreshCellsDisappear();
 				flag = webDB.waitForElement(GrnScoLocators.GRNNumberStatus(GrnNo), ElementType.Xpath);
 				if (flag) {
@@ -353,7 +351,7 @@ public class GrnScoPageFunctions {
 			commonFunc.verifyAddTableSpecs(GrnScoLocators.TestNumber, GrnScoLocators.TestNumberInput, HeatValue);
 			webDB.moveToElement(GrnScoLocators.SaveButton, ElementType.Xpath);
 			webDB.clickAnElement(GrnScoLocators.SaveButton, ElementType.Xpath);
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 		}

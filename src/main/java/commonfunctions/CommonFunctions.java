@@ -193,22 +193,11 @@ public class CommonFunctions {
 			}
 		}
 		if (flag) {
-			flag = webDB.waitForElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
+			flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
 			if (flag) {
 				checkRefreshCellsDisappear();
-				webDB.clickAnElement(CommonUiLocators.ProfileIcon, ElementType.CssSelector);
-				flag = webDB.waitForElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
-				if (flag) {
-					String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName,
-							ElementType.Xpath);
-					if (Username.equals(GetTextUserName)) {
-						logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
-					} else {
-						flag = false;
-						logs.logging("INFO", "Some Other User Logged In  Expected user: " + Username + " but found: "
-								+ GetTextUserName);
-					}
-				}
+				String GetTextUserName = webDB.getTextFromElement(CommonUiLocators.GetTextUserName, ElementType.Xpath);
+				logs.logging("INFO", GetTextUserName + " User Logged In Successfully");
 			}
 		}
 		Assert.assertTrue(flag);

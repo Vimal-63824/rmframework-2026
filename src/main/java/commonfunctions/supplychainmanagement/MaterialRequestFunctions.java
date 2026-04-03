@@ -309,7 +309,7 @@ public class MaterialRequestFunctions {
 			webDB.moveToElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
 			webDB.clickAnElement(MaterialRequestLocators.HeaderTickIcon, ElementType.Xpath);
 			commonFunc.checkRefreshCellsDisappear();
-			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
+			if (webDB.verifyIsElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
 			commonFunc.checkSuccessToastMessageDisappear();
@@ -319,17 +319,6 @@ public class MaterialRequestFunctions {
 				webDB.clickAnElement(MaterialRequestLocators.HeaderPostIcon, ElementType.Xpath);
 				logs.logging("INFO", "Header Post Icon Is Clicked");
 				flag = commonFunc.checkAutoApprovalOrForwardedWhilePost();
-//				if (flag) {
-//					webDB.switchToFrame(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath);
-//					flag = webDB.waitForElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-//					if (flag) {
-//						logs.logging("INFO", "Header Tick Icon Is Displayed");
-//						webDB.clickAnElement(CommonUiLocators.WorkAppoval_OkBtn, ElementType.Xpath);
-//						webDB.switchToDefaultContent();
-//						commonFunc.checkSuccessToastMessageDisappear();
-//						flag = webDB.waitForElement(CommonUiLocators.CreateMaterialRequestButton, ElementType.Xpath);
-//					}
-//				}
 			}
 		}
 		assertTrue(flag);
@@ -694,7 +683,6 @@ public class MaterialRequestFunctions {
 			commonFunc.checkRefreshCellsDisappear();
 			flag = webDB.waitForElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
 			if (flag) {
-				commonFunc.hardWait(2000);
 				logs.logging("INFO", "Search Button Is Clicked");
 				webDB.clickAnElement(MaterialRequestLocators.RequestMRNo(DocNo), ElementType.Xpath);
 				flag = webDB.waitForElement(MaterialRequestLocators.HeaderType, ElementType.Xpath);
