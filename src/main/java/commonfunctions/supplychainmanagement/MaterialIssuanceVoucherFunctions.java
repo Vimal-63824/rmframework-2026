@@ -882,6 +882,8 @@ public class MaterialIssuanceVoucherFunctions {
 			String LotQuantity = dbCommonFunctions.validateLotSerialWithRMItemWarehouse(RMItem, RMWH,
 					commonFunc.getDataFromTestDataSheet("LotSerialQtyHand"));
 			commonFunc.verifyAssertionBothValues(LotQuantity, SheetValue);
+			logs.logging("INFO", "Verified RMItem: " + RMItem + " Lot Quanity After = " + LotQuantity);
+
 		}
 	}
 }
