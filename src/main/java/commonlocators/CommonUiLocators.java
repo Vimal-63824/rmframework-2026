@@ -213,7 +213,7 @@ public class CommonUiLocators {
 	/** @locatorType Xpath */
 	public static final String GateEntryTransaction = "//span[text()='Supply Chain']/ancestor::li/*/li[5]/*/li[2]";
 	/** @locatorType Xpath */
-	public static final String PendingChallan = "//button[@id='B1793441455940942839']";
+	public static final String PendingChallan = "//button[@data-testid='Create_DC']";
 	/** @locatorType Xpath */
 	public static final String ProdPlan_Transaction_BillOfMaterials = "//span[contains(text(),'Production Planning')]/ancestor::li/*/li[2]/*/li[1]";
 	/** @locatorType Xpath */
@@ -369,7 +369,8 @@ public class CommonUiLocators {
 	/** @locatorType CSS Selector */
 	public static final String ProfileIcon = "#t_Header > div > img";
 	/** @locatorType Xpath */
-	public static final String GetTextUserName = "//*[@id='accountMenu_menu']/div/div[2]/div[1]/span[1]";
+	public static final String GetTextUserName = "//li[@title='Sign Out']/../li[3]/a/span[2]";
+	/** @locatorType Xpath */
 	public static final String QualityTab = "//label[text()='Quality']";
 	/** @locatorType Xpath */
 	public static final String TypeDropDown = "//select[@data-testid='P36719401_PRODPLNT_FREQ_TYPE_3']";

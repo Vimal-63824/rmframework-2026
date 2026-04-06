@@ -286,6 +286,8 @@ public class AttendanceLeaveLocators {
 	/** @locatorType Xpath */
 	public static final String AttachmentIframeCloseIcon = "//*[text()='Attachment']/following-sibling::button";
 	/** @locatorType Xpath */
+	public static final String DocManagementIframeCloseIcon = "//*[text()='Document Management View']/following-sibling::button";
+	/** @locatorType Xpath */
 	public static final String LEAttachmentDocTypeLovBtn = "//input[contains(@id,'DOC_TYPE')]/following-sibling::button";
 	/** @locatorType Xpath */
 	public static final String LEAttachmentDocNoInput = "//input[@id='P37_DM_REQ_DOC_NO']";

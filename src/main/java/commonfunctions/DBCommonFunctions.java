@@ -80,7 +80,7 @@ public class DBCommonFunctions {
 			ResultSet resultSet = statement.executeQuery(Query.replace(Replacechar, Replacedchar));
 			while (resultSet.next()) {
 				returnname = resultSet.getString(ExpectedData); // Adjust column name
-				System.out.println("Data Is: " + returnname);
+//				System.out.println("Data Is: " + returnname);
 			}
 			resultSet.close();
 			statement.close();
@@ -2061,7 +2061,8 @@ public class DBCommonFunctions {
 	 * @return String Value
 	 */
 	public String validateBOMLinesDetails(String OprnNo, String i, String DBHeaderColumnValue) {
-		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("$OprnSeqNo}", OprnNo).replace("${SeqNo}", i);
+		String Query = getDataFromDBTestDataSheet("BOMLineQuery").replace("${OprnSeqNo}", OprnNo).replace("${SeqNo}",
+				i);
 		String value = getDataFromDBUsingQuery(Query, "${BOMNO}", VariableHandler.getBOMNumber(), DBHeaderColumnValue);
 		return value;
 	}
@@ -2076,8 +2077,8 @@ public class DBCommonFunctions {
 	 */
 	public String validateProductionOrderHeaderDetails(String DBHeaderColumnValue) {
 		String Query = getDataFromDBTestDataSheet("ProductionOrderHeaderQuery");
-		String value = getDataFromDBUsingQuery(Query, "${ProductionOrderNo}",
-				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+		String value = getDataFromDBUsingQuery(Query, "${ProdctionOrderNo}", VariableHandler.getProductionOrderNumber(),
+				DBHeaderColumnValue);
 		return value;
 	}
 
@@ -2124,7 +2125,7 @@ public class DBCommonFunctions {
 	public String validateCompProductionOrderHeaderDetails(String DBHeaderColumnValue) {
 		String Query = getDataFromDBTestDataSheet("CompProductionOrderHeaderQuery");
 		String value = getDataFromDBUsingQuery(Query, "${CompProductionOrderNo}",
-				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
 
@@ -2136,10 +2137,11 @@ public class DBCommonFunctions {
 	 * @param DBHeaderColumnValue
 	 * @return String Value
 	 */
-	public String validateCompProductionOrderLinesDetails(String i, String DBHeaderColumnValue) {
-		String Query = getDataFromDBTestDataSheet("CompProductionOrderLinesQuery").replace("${SeqNo}", i);
+	public String validateCompProductionOrderLinesDetails(String SeqNo, String OprnNo, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("CompProductionOrderLinesQuery").replace("${SeqNo}", SeqNo)
+				.replace("${OprnNo}", OprnNo);
 		String value = getDataFromDBUsingQuery(Query, "${CompProductionOrderNo}",
-				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
+				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
 
@@ -2169,8 +2171,8 @@ public class DBCommonFunctions {
 	public String validateMaterialRequestLinesDetails(String i, String LineNo, String DBHeaderColumnValue) {
 		String Query = getDataFromDBTestDataSheet("MaterialRequestLinesQuery").replace("${SeqNo}", i)
 				.replace("${LineNo}", LineNo);
-		String value = getDataFromDBUsingQuery(Query, "${MaterialRequestNo}", VariableHandler.getMaterialRequestNo(),
-				DBHeaderColumnValue);
+		String value = getDataFromDBUsingQuery(Query, "${MaterialRequestNo}",
+				VariableHandler.getProductionOrderNumber(), DBHeaderColumnValue);
 		return value;
 	}
 
@@ -2217,6 +2219,69 @@ public class DBCommonFunctions {
 			String DBHeaderColumnValue) {
 		String Query = getDataFromDBTestDataSheet("StockCheckQuery").replace("${Item}", Item);
 		String value = getDataFromDBUsingQuery(Query, "${Warehouse}", Warehouse, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Lot Serial Value RM Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param Warehouse
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateLotSerialWithRMItemWarehouse(String Item, String Warehouse, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("LotSerialStockRMQuery").replace("${RawMaterial}", Item);
+		String value = getDataFromDBUsingQuery(Query, "${Warehouse}", Warehouse, DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Stock Transaction RM With Material Issuance Voucher
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateStockTransactionWithRMInMIV(String Item, String BucketType, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("StockTransWithOrderNoQuery").replace("${RawMaterial}", Item)
+				.replace("${BucketType}", BucketType);
+		String value = getDataFromDBUsingQuery(Query, "${OrderNo}", VariableHandler.getMIVNumber(),
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Stock Transaction RM With Completion process Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Item
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateStockTransactionWithRMInCompletion(String Item, String BucketType,
+			String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("StockTransWithOrderNoQuery").replace("${RawMaterial}", Item)
+				.replace("${BucketType}", BucketType);
+		String value = getDataFromDBUsingQuery(Query, "${OrderNo}", VariableHandler.getProductionCompletionOrderNo(),
+				DBHeaderColumnValue);
+		return value;
+	}
+
+	/**
+	 * Stock Transaction SFG With Completion process Details
+	 * 
+	 * @author Sakthi-GWL
+	 * @param Warehouse
+	 * @param DBHeaderColumnValue
+	 * @return String Value
+	 */
+	public String validateStockTransactionSFGWithRMInCompletion(String Warehouse, String DBHeaderColumnValue) {
+		String Query = getDataFromDBTestDataSheet("StockTransSFGCompProdQuery").replace("${Warehouse}", Warehouse);
+		String value = getDataFromDBUsingQuery(Query, "${CompProdOrderNo}",
+				VariableHandler.getProductionCompletionOrderNo(), DBHeaderColumnValue);
 		return value;
 	}
 }

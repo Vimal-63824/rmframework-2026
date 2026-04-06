@@ -849,6 +849,7 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public boolean autoCreateMRVCheckboxIsSelected() {
 		flag = webDB.isElementSelected(CommonUiLocators.AutoCreationMrvCheckBox, ElementType.Xpath);
+		logs.logging("INFO", "Auto Creation MRV Flag: " + flag);
 		autoPostMRVCheckboxIsSelected();
 		return flag;
 	}
@@ -1003,6 +1004,7 @@ public class MaterialReceiptVoucherFunctions {
 	 */
 	public boolean autoPostMRVCheckboxIsSelected() {
 		flag = webDB.isElementSelected(CommonUiLocators.AutoPostMRVCheckBox, ElementType.Xpath);
+		logs.logging("INFO", "Auto Post MRV Flag: " + flag);
 		VariableHandler.setAutoPostMRVFlag(flag);
 		return flag;
 	}
@@ -1021,10 +1023,10 @@ public class MaterialReceiptVoucherFunctions {
 				commonFunc.getDataFromTestDataSheet("AutoCreationMRV"));
 		logs.logging("INFO", "Autocreation Flag Is " + ApplicationcontrolCreationMrv);
 		if (!ApplicationControlPostMrv.equals("Y") && !ApplicationcontrolCreationMrv.equals("Y")) {
-		commonFunc.navigateToMaterialReceiptVoucher();
-		verifyPendingReworkCompletionMRV(VariableHandler.getRWCdocno());
-		verifyReceiptLocatorsAndPutAway();
-		clickTickAndPostIcon();
+			commonFunc.navigateToMaterialReceiptVoucher();
+			verifyPendingReworkCompletionMRV(VariableHandler.getRWCdocno());
+			verifyReceiptLocatorsAndPutAway();
+			clickTickAndPostIcon();
 		}
 //		verifyValidateMaterialReceiptDocumentsStatus(VariableHandler.getMrvNumber(),
 //				commonFunc.getDataFromTestDataSheet("IssuedStatus"));

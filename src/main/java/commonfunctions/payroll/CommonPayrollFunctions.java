@@ -74,6 +74,10 @@ public class CommonPayrollFunctions {
 			logs.logging("INFO", "Leave And Loan Setup Page URL getted: " + LeaveLoanURL);
 			webDB.navigateToBack();
 			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
+			if(!flag) {
+				webDB.navigateToBack();
+			}
+			flag = webDB.waitForElement(EmployeeMasterLocators.AddEmp_LeaveDetailsSideNav, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Navigated Back to Employee Creation Page");
 				webDB.openNewTabWithUrl(LeaveLoanURL);
