@@ -1775,4 +1775,58 @@ public class GateEntryPageFunctions {
 		}
 		assertTrue(flag);
 	}
+
+	/**
+	 * This Method used to verify Status of Gate Entry Number
+	 * 
+	 * @author Deepan-GWL
+	 * @param MRPNo
+	 * @param ExpectedStatus
+	 */
+	public void openGateEntryDocNo(String GEONo) {
+		commonFunc.clearFiltersInFindPage();
+		commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.FindGateEntryNoLovBtn, GEONo);
+		flag = webDB.waitForElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.HeaderLabelButton, ElementType.Xpath);
+			flag = webDB.waitForElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GateEntryPageLocators.SearchButton, ElementType.Xpath);
+				commonFunc.checkRefreshCellsDisappear();
+				flag = webDB.waitForElement(GateEntryPageLocators.GateEntryDocNo(GEONo), ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GateEntryPageLocators.GateEntryDocNo(GEONo), ElementType.Xpath);
+					flag = webDB.waitForElement(GateEntryPageLocators.GENO, ElementType.Xpath);
+
+				}
+			}
+		}
+		assertTrue(flag);
+	}
+
+	/**
+	 * This Method Is Used To Verify Correction Gate Entry Docs
+	 * 
+	 * @author Deepan-GWL
+	 * @param Reason
+	 */
+	public void verifyCorrectionGateEntryDoc(String Reason) {
+		webDB.waitForElement(GateEntryPageLocators.GECorrection, ElementType.Xpath);
+		if (flag) {
+			webDB.clickAnElement(GateEntryPageLocators.GECorrection, ElementType.Xpath);
+			webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+			commonFunc.checkRefreshCellsDisappear();
+			flag = webDB.waitForElement(GateEntryPageLocators.CancelButton, ElementType.Xpath);
+			if (flag) {
+				webDB.clickAnElement(GateEntryPageLocators.CancelButton, ElementType.Xpath);
+				commonFunc.searchAndSelectValueInFilters(GateEntryPageLocators.ReasonLovButton, Reason);
+				flag = webDB.waitForElement(GateEntryPageLocators.ReasonOkButton, ElementType.Xpath);
+				if (flag) {
+					webDB.clickAnElement(GateEntryPageLocators.ReasonOkButton, ElementType.Xpath);
+					flag = webDB.waitForElement(CommonUiLocators.SuccessToastMessage, ElementType.Xpath);
+				}
+
+			}
+		}
+	}
 }
