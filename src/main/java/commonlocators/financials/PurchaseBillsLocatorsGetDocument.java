@@ -178,4 +178,38 @@ public class PurchaseBillsLocatorsGetDocument {
 	public static final String PBSupplySelect= "//select[@data-testid='SUPLN_TAX_EXMPT_FLAG']";
 	/** @locatorType Xpath */
 	public static final String PBRefType= "//select[@data-testid='Ref']";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTab= "//label[@for='P11613101001_TABS_1']";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabProcLOV = "//input[@data-testid='SDPLH_PROC_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabProcQTy = "//*[@id=\"SC_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[7]";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabProcUnitCost = "//*[@id=\"SC_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[8]";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabProcQTyInput = "//input[@data-testid='SDPL_PROC_QTY']";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabProcCostInput = "//input[@data-testid='SDPLH_PROC_COST']";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabMFGitem = "//input[@data-testid='SDPL_PROD_ID_REV']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabPurchaseAcct = "//*[@id=\"SC_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[13]";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabPurchaseAcctLOV = "//input[@data-testid='SDPLH_AP_GL_ACCT']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabSAC = "//*[@id=\"SC_ig_grid_vc\"]/div[2]/div[3]/table/tbody/tr/td[18]";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabSACLoV = "//input[@data-testid='SDPLH_HSN_CODE']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabTDSLoV = "//input[@data-testid='SDPLH_TDS_US_ID']/following-sibling::button";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabAddIcon = "(//button[@title='Add'])[2]";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabSaveIcon = "(//button[@title='Save'])[4]";
+	/** @locatorType Xpath */
+	public static final String PBSubcontractTabOKbutton = "//button[@id='B3666998425782081864']";
+	/** @locatorType Xpath */
+	public static final String PBInvoiceTablineWiseDelete = "//button[@id='DL']";
+	/** @locatorType Xpath */
+	public static final String SCODirectReferenceTab = "//input[@id='P11613101001_TABS_4']/following-sibling::label";
 }

@@ -124,7 +124,8 @@ public class PurchaseBillsFunctionsGrn {
 							flag = webDB.waitForElement(PurchaseBillsGrnLocators.PendingPayableSelectAll,
 									ElementType.Xpath);
 							if (flag) {
-								webDB.clickAnElement(PurchaseBillsGrnLocators.PendingPayableSelectAll, ElementType.Xpath);
+								webDB.clickAnElement(PurchaseBillsGrnLocators.PendingPayableSelectAll,
+										ElementType.Xpath);
 								logs.logging("INFO", "Document Is Selected");
 
 //							flag = webDB.waitForElement(PurchaseBillsGrnLocators.BPPendingPartyDocumentSelectCheckBox(
@@ -245,7 +246,7 @@ public class PurchaseBillsFunctionsGrn {
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
 				"DuraiUsername");
 		commonFunc.navigateToFinancialPurchaseBill();
-		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(),commonFunc.getDataFromTestDataSheet("TDSValue"),
+		verifyPendingPurchaseBill(VariableHandler.getGrnDocNumber(), commonFunc.getDataFromTestDataSheet("TDSValue"),
 				webDB.getDataFromProperties("PurchaseBillGRN"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
@@ -281,7 +282,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		commonFunc.hardWait(3000);
@@ -329,7 +330,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -363,7 +364,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -396,7 +397,7 @@ public class PurchaseBillsFunctionsGrn {
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -454,7 +455,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -490,7 +491,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -541,7 +542,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -576,7 +577,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyClickingReferenceTabForIgstFlag();
@@ -625,7 +626,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -656,7 +657,7 @@ public class PurchaseBillsFunctionsGrn {
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -715,7 +716,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -751,7 +752,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -817,7 +818,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -856,7 +857,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -913,7 +914,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -948,7 +949,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1015,7 +1016,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1055,7 +1056,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1117,7 +1118,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1155,7 +1156,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyClickingReferenceTabForIgstFlag();
@@ -1212,7 +1213,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1251,7 +1252,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1319,7 +1320,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1359,7 +1360,7 @@ public class PurchaseBillsFunctionsGrn {
 				commonFunc.getDataFromTestDataSheet("PBITCInEligibleSubSection"));
 		verifySaveLine();
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1370,6 +1371,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Creating Grn With Advance
 	 * 
@@ -1385,7 +1387,8 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1393,6 +1396,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1408,12 +1412,13 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		commonFunc.hardWait(3000);
@@ -1423,13 +1428,15 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
 	 * @author Durai
 	 * @throws IOException
 	 */
-	public void verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment() throws IOException {
+	public void verifyRegisteredSupplierwithInterstateGSTAgainstGRNWithDeviationExpenseAndAdjustment()
+			throws IOException {
 		verifyCreatingPurchaseBillwithAdvance();
 		commonFunc.logoutUser();
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
@@ -1443,12 +1450,13 @@ public class PurchaseBillsFunctionsGrn {
 		storePurchaseBillProcesTabProcessQtyAndUnitCostAgainstGrn();
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1458,6 +1466,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1478,6 +1487,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1494,7 +1504,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1502,6 +1512,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1524,7 +1535,7 @@ public class PurchaseBillsFunctionsGrn {
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1534,6 +1545,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1549,7 +1561,8 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -1560,6 +1573,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1575,12 +1589,13 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1589,6 +1604,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1610,12 +1626,13 @@ public class PurchaseBillsFunctionsGrn {
 		storePurchaseBillProcesTabProcessQtyAndUnitCostAgainstGrn();
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1626,6 +1643,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1648,13 +1666,15 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
 	 * @author Durai
 	 * @throws IOException
 	 */
-	public void verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense() throws IOException {
+	public void verifyRegisteredSupplierwithInterstateAllowRcmAgainstGRNWithoutDeviationAndExpense()
+			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillInterstate();
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
 				"DuraiUsername");
@@ -1664,7 +1684,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1672,6 +1692,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1694,7 +1715,7 @@ public class PurchaseBillsFunctionsGrn {
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBillSerIGST"));
 		verifySaveLine();
@@ -1705,6 +1726,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Creating Grn With Advance
 	 * 
@@ -1729,6 +1751,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1749,7 +1772,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		commonFunc.hardWait(3000);
@@ -1759,6 +1782,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1784,7 +1808,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1794,6 +1818,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1814,6 +1839,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1830,7 +1856,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1838,6 +1864,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1860,7 +1887,7 @@ public class PurchaseBillsFunctionsGrn {
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1870,6 +1897,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1896,6 +1924,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1916,7 +1945,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1925,6 +1954,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1951,7 +1981,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -1962,6 +1992,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -1984,13 +2015,15 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
 	 * @author Durai
 	 * @throws IOException
 	 */
-	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense() throws IOException {
+	public void VerifyUnRegisteredSupplierwithLocalGSTAllowIgstAgainstGRNWithoutDeviationAndExpense()
+			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredSupplier();
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
 				"DuraiUsername");
@@ -2000,7 +2033,7 @@ public class PurchaseBillsFunctionsGrn {
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyAddTheItemBasedOnTypeForAgainstGRN(webDB.getDataFromProperties("PurchaseBill"));
 		verifySaveLine();
@@ -2008,6 +2041,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -2034,7 +2068,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRN"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
-				commonFunc.getDataFromTestDataSheet("ExpenseType"),commonFunc.getDataFromTestDataSheet("TDSValue"));
+				commonFunc.getDataFromTestDataSheet("ExpenseType"), commonFunc.getDataFromTestDataSheet("TDSValue"));
 		verifySaveLine();
 		verifyClickingAdjustmentTab(VariableHandler.getBankPaymentOrReceiptDocNumber());
 		verifyClickingReferenceTabForIgstFlag();
@@ -2043,6 +2077,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Creating Grn With Advance
 	 * 
@@ -2058,7 +2093,8 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -2067,6 +2103,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -2082,7 +2119,8 @@ public class PurchaseBillsFunctionsGrn {
 				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		validateHeaderDetails();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -2096,6 +2134,7 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -2117,7 +2156,8 @@ public class PurchaseBillsFunctionsGrn {
 		storePurchaseBillProcesTabProcessQtyAndUnitCostAgainstGrn();
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyChangeCostForDeviation(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
@@ -2133,6 +2173,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -2155,14 +2196,14 @@ public class PurchaseBillsFunctionsGrn {
 
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
 	 * @author Durai
 	 * @throws IOException
 	 */
-	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense()
-			throws IOException {
+	public void VerifyUnRegisteredSupplierwithInterstateGSTAgainstGRNWithoutDeviationAndExpense() throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
 				"DuraiUsername");
@@ -2180,6 +2221,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -2201,7 +2243,8 @@ public class PurchaseBillsFunctionsGrn {
 		storePurchaseBillProcesTabProcessQtyAndUnitCostAgainstGrn();
 		clickingReferenceTabAndValidating();
 		getMatchedAmtAndGRNAmtandWriteInExcelSheetForGrn(webDB.getDataFromProperties("PurchaseBillGRN"));
-		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
+		verifyTowritePriceAdditionToWriteInExcelForPurchasebillDocument(
+				webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifySaveLine();
 //		validatePurchaseBillsLineDetails(webDB.getDataFromProperties("PurchaseBillGRNIGST"));
 		verifyAddExpenseType(commonFunc.getDataFromTestDataSheet("PBGLAccount"),
@@ -2214,13 +2257,14 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreatePost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
 	 * @author Deepan-GWL
 	 * @param DocNo
 	 */
-	public void verifyPendingPurchaseBill(String DocNo , String TdsNo ,String Pending) {
+	public void verifyPendingPurchaseBill(String DocNo, String TdsNo, String Pending) {
 		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PendingPurchaseBill, ElementType.Xpath);
 		if (flag) {
 			logs.logging("INFO", "Pending Purchase Bill Is Displayed");
@@ -2585,7 +2629,7 @@ public class PurchaseBillsFunctionsGrn {
 	 * @param Type
 	 * @author Durai
 	 */
-	private void verifyAddExpenseType(String GLAccount, String Type ,String TdsNo) {
+	private void verifyAddExpenseType(String GLAccount, String Type, String TdsNo) {
 		commonFunc.checkRefreshCellsDisappear();
 		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PBAddLine, ElementType.Xpath);
 		if (flag) {
@@ -2595,7 +2639,7 @@ public class PurchaseBillsFunctionsGrn {
 			if (flag) {
 				webDB.clickAnElement(PurchaseBillsGrnLocators.PBAddTypeExp, ElementType.Xpath);
 				webDB.selectDropDownByValue(PurchaseBillsGrnLocators.PBAddTypeExp, Type, ElementType.Xpath);
-				logs.logging("INFO", "Type Is Entered:"+Type);
+				logs.logging("INFO", "Type Is Entered:" + Type);
 				flag = webDB.waitForElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
 				if (flag) {
 					webDB.clickAnElement(PurchaseBillsGrnLocators.GlAccDescField, ElementType.Xpath);
@@ -2794,11 +2838,15 @@ public class PurchaseBillsFunctionsGrn {
 	 * @author Durai
 	 */
 	public void verifyClickingHSNCode(String HSN) {
+		webDB.moveToElement(PurchaseBillsGrnLocators.ExpenseHsnField, ElementType.Xpath);
 		flag = webDB.waitForElement(PurchaseBillsGrnLocators.ExpenseHsnField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseBillsGrnLocators.ExpenseHsnField, ElementType.Xpath);
 			commonFunc.searchAndSelectValueInFilters(PurchaseBillsGrnLocators.ExpenseHsnLovBtn, HSN);
 			logs.logging("INFO", "HSN code IS Enterd:" + HSN);
+			commonFunc.hardWait(1000);
+			webDB.pressTabKey();
+			commonFunc.hardWait(1000);
 		}
 
 	}
@@ -2952,6 +3000,7 @@ public class PurchaseBillsFunctionsGrn {
 			}
 		}
 	}
+
 	/**
 	 * This Method Used To Verify Purchase Bill Header
 	 * 
@@ -3307,7 +3356,8 @@ public class PurchaseBillsFunctionsGrn {
 								verifyToCreateExpenseType(GLAccount, Cost, HSN);
 							} else if (Type.equals(commonFunc.getDataFromTestDataSheet("ItemType"))) {
 								verifyToCreatetheItemTypeDocument(Item, Cost, Qty, HSN, GLAccount, TrdDisc, SpclDisc,
-										CashDisc,TdsNo,TaxAmountCGST,TaxAmountSGST,TaxAmountIGST,PBLineAmount,PBDiscAmount);
+										CashDisc, TdsNo, TaxAmountCGST, TaxAmountSGST, TaxAmountIGST, PBLineAmount,
+										PBDiscAmount);
 							}
 						}
 					}
@@ -3366,8 +3416,8 @@ public class PurchaseBillsFunctionsGrn {
 	 * @author PremKumar.K-RMITS
 	 */
 	public void verifyToCreatetheItemTypeDocument(String Item, String Cost, String Qty, String HSN, String GLAccount,
-			String TrdDisc, String SpclDisc, String CashDisc ,String TdsNo , String TaxAmountCGST ,String TaxAmountSGST ,String TaxAmountIGST ,
-			String PBLineAmount ,String PBDiscAmount) {
+			String TrdDisc, String SpclDisc, String CashDisc, String TdsNo, String TaxAmountCGST, String TaxAmountSGST,
+			String TaxAmountIGST, String PBLineAmount, String PBDiscAmount) {
 		webDB.waitForElement(PurchaseBillsGrnLocators.PBItemField, ElementType.Xpath);
 		if (flag) {
 			webDB.clickAnElement(PurchaseBillsGrnLocators.PBItemField, ElementType.Xpath);
@@ -3452,6 +3502,7 @@ public class PurchaseBillsFunctionsGrn {
 			}
 		}
 	}
+
 	/**
 	 * This Method Is Used To Verify The Journal Amount With DataBase
 	 * 
@@ -3471,38 +3522,39 @@ public class PurchaseBillsFunctionsGrn {
 			if (!Unit.equals("")) {
 				String SeqNo = String.valueOf(i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
-						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBUnitColumnName")), Unit);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber, SeqNo,
+						commonFunc.getDataFromTestDataSheet("AJDBUnitColumnName")), Unit);
 				logs.logging("INFO",
 						" In The View Journal Screen Unit Id Is Matched With Database Values Against This Document Number "
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
-						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBGLAccountColumnName")), GLAccountNumber);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber, SeqNo,
+						commonFunc.getDataFromTestDataSheet("AJDBGLAccountColumnName")), GLAccountNumber);
 				logs.logging("INFO",
 						" In The View Journal Screen GL Account Number Is Matched With Database Values Against This Document Number "
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
-						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBGLAccountDescColumnName")), GLAccountDesc);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber, SeqNo,
+						commonFunc.getDataFromTestDataSheet("AJDBGLAccountDescColumnName")), GLAccountDesc);
 				logs.logging("INFO",
 						" In The View Journal Screen GL Account Number Description Is Matched With Database Values Against This Document Number "
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
-						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBDebitAmountColumnName")), Debit);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber, SeqNo,
+						commonFunc.getDataFromTestDataSheet("AJDBDebitAmountColumnName")), Debit);
 				logs.logging("INFO",
 						" In The View Journal Screen Debit Amount Is Matched With Database Values Against This Document Number"
 								+ DocumentNumber + " Journal Seq Number " + i);
 
-				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber,
-						SeqNo, commonFunc.getDataFromTestDataSheet("AJDBCreditAmountColumnName")), Credit);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.applicationJournalViewDetails(DocumentNumber, SeqNo,
+						commonFunc.getDataFromTestDataSheet("AJDBCreditAmountColumnName")), Credit);
 				logs.logging("INFO",
 						" In The View Journal Screen Credit Amount Is Matched With Database Values Against This Document Number"
 								+ DocumentNumber + " Journal Seq Number " + i);
 			}
 		}
 	}
+
 	/**
 	 * This Method Used To Verify To Create Journal And Post
 	 * 
@@ -3518,26 +3570,28 @@ public class PurchaseBillsFunctionsGrn {
 			if (webDB.isElementDisplayed(CommonUiLocators.ToastCloseIcon, ElementType.Xpath)) {
 				webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon, ElementType.Xpath);
 			}
-			
+
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used To Verify To Create Journal And Post
 	 * 
 	 * @author Deepan-GWL
 	 */
 	public void verifyCreatePost() {
-	commonFunc.checkRefreshCellsDisappear();
-	commonFunc.hardWait(5000);
-	flag = webDB.waitForElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
-	if (flag) {
-		logs.logging("INFO", "Post Button Is Displayed");
-		webDB.clickAnElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
-		flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
-				|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+		commonFunc.checkRefreshCellsDisappear();
+		commonFunc.hardWait(5000);
+		flag = webDB.waitForElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
+		if (flag) {
+			logs.logging("INFO", "Post Button Is Displayed");
+			webDB.clickAnElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
+			flag = (webDB.waitForElementUntilGivenTime(CommonUiLocators.PostToastMessage, ElementType.Xpath, 10)
+					|| webDB.waitForElement(PurchaseOrderPageLocators.WorkApprovalFrame, ElementType.Xpath));
+		}
 	}
-	}
+
 	/**
 	 * This Method Is Used To Verify Unit Cost and Discount Percentage Write In
 	 * Excel UOM(General)
@@ -3564,6 +3618,7 @@ public class PurchaseBillsFunctionsGrn {
 		logs.logging("INFO", "Discount Amount Matched With DB Values For This Item " + ITEM_ID);
 
 	}
+
 	/**
 	 * verify Add TDS Number
 	 * 
@@ -3586,6 +3641,7 @@ public class PurchaseBillsFunctionsGrn {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
@@ -3638,7 +3694,6 @@ public class PurchaseBillsFunctionsGrn {
 //												ElementType.Xpath)) {
 //											webDB.clickAnElementWithoutException(CommonUiLocators.ToastCloseIcon,
 //													ElementType.Xpath);
-										}
 									}
 								}
 							}
@@ -3646,9 +3701,11 @@ public class PurchaseBillsFunctionsGrn {
 					}
 				}
 			}
+		}
 //		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used To Verify Pending Subcontract Against Purchase Bill Header
 	 * 
@@ -3699,6 +3756,7 @@ public class PurchaseBillsFunctionsGrn {
 						commonFunc.getDataFromTestDataSheet("PBHeaderGrnNo")));
 		logs.logging("INFO", "GRN No Is Matched For GRN and PB ");
 	}
+
 	/**
 	 * This Method Is Used To Add The Bill Number And Pay Amount In The Bank Payment
 	 * View Details
@@ -3738,13 +3796,15 @@ public class PurchaseBillsFunctionsGrn {
 					commonFunc.getDataFromTestDataSheet("Unit_100"), System.getProperty("HariUsername"));
 		}
 	}
+
 	/**
 	 * This Method Used To Verify Pending Purchase Bill
 	 * 
 	 * @author Durai
 	 * @throws IOException
 	 */
-	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationForAdvanceInterstate() throws IOException {
+	public void verifyRegisteredSupplierwithLocalGSTAgainstGRNWithoutDeviationForAdvanceInterstate()
+			throws IOException {
 		DirectGRNFunc.verifyCreationOfDirectGrnSameUomGeneralTypeWithInspectionDPurchaseBillUnRegisteredInterstate();
 		commonFunc.validCommonLogin(System.getProperty("DuraiUsername"), System.getProperty("DuraiPassword"),
 				"DuraiUsername");
@@ -3758,6 +3818,7 @@ public class PurchaseBillsFunctionsGrn {
 		verifyCreateJournalAndPost();
 		waitingForApproval(commonFunc.getDataFromTestDataSheet("HodValue"));
 	}
+
 	/**
 	 * This Method used For Navigate to Reference Tab
 	 * 
@@ -3779,6 +3840,7 @@ public class PurchaseBillsFunctionsGrn {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Methods Used To store PurchaseBill Proces Tab Process Qty And UnitCost
 	 * 
@@ -3790,12 +3852,12 @@ public class PurchaseBillsFunctionsGrn {
 		logs.logging("INFO", "Get PBProcQty Amt Is: " + PBProcQty);
 		VariableHandler.setPBProcQty(PBProcQty);
 		commonFunc.hardWait(1000);
-		String PBUnitcost = webDB.getTextFromElement(PurchaseBillsGrnLocators.PBUnitCost,
-				ElementType.Xpath);
+		String PBUnitcost = webDB.getTextFromElement(PurchaseBillsGrnLocators.PBUnitCost, ElementType.Xpath);
 		logs.logging("INFO", "Get PBUnitcost Is: " + PBUnitcost);
 		VariableHandler.setPBUnitcost(PBUnitcost);
 		commonFunc.hardWait(1000);
 	}
+
 	/**
 	 * This Methods Used To Get BatchQty, BatchCost and Write In Excel Sheet
 	 * 
@@ -3825,6 +3887,7 @@ public class PurchaseBillsFunctionsGrn {
 			}
 		}
 	}
+
 	/**
 	 * This Method Used To Verify To Create Journal And Verify Deviation Post
 	 * 
@@ -3842,7 +3905,8 @@ public class PurchaseBillsFunctionsGrn {
 			}
 			commonFunc.checkRefreshCellsDisappear();
 			commonFunc.hardWait(5000);
-			deviationCalculationCompareExcelSheetWithDataBaseForGrn(webDB.getDataFromProperties("PurchaseBillDeviation"));
+			deviationCalculationCompareExcelSheetWithDataBaseForGrn(
+					webDB.getDataFromProperties("PurchaseBillDeviation"));
 			flag = webDB.waitForElement(PurchaseBillsGrnLocators.PostButton, ElementType.Xpath);
 			if (flag) {
 				logs.logging("INFO", "Post Button Is Displayed");
@@ -3853,6 +3917,7 @@ public class PurchaseBillsFunctionsGrn {
 		}
 		assertTrue(flag);
 	}
+
 	/**
 	 * This Method Used For Process Calculation Compare Excel Sheet With DataBase
 	 * 
@@ -3871,9 +3936,8 @@ public class PurchaseBillsFunctionsGrn {
 			String deviationAmt = itemmultiple[i][78];
 			System.out.println(MatchedAmt);
 			if (!MatchedAmt.equals("")) {
-				salesOrdFunc
-						.verifyAssertionBothValues(dbCommonFunc.PBReferenceQuery(VariableHandler.getPbNumber(),
-								commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN")), MatchedAmt);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.PBReferenceQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN")), MatchedAmt);
 				System.out.println(commonFunc.getDataFromTestDataSheet("PBDBREFMATCHEDAMTCOLUMN"));
 				logs.logging("INFO", "MatchedAmt Details Matched With DataBase Values");
 
@@ -3882,16 +3946,14 @@ public class PurchaseBillsFunctionsGrn {
 //								commonFunc.getDataFromTestDataSheet("PBDBREFGRNAMTCOLUMN")), GRNAmt);
 //				logs.logging("INFO", "GRNAmt Details Matched With DataBase Values");
 
-				salesOrdFunc
-						.verifyAssertionBothValues(
-								dbCommonFunc.PBReferenceQuery(VariableHandler.getPbNumber(),
-										commonFunc.getDataFromTestDataSheet("PBDBREFDEVIATIONAMTCOLUMN")),
-								deviationAmt);
+				salesOrdFunc.verifyAssertionBothValues(dbCommonFunc.PBReferenceQuery(VariableHandler.getPbNumber(),
+						commonFunc.getDataFromTestDataSheet("PBDBREFDEVIATIONAMTCOLUMN")), deviationAmt);
 				logs.logging("INFO", "PBUnitcost Details Matched With DataBase Values");
 				commonFunc.hardWait(2000);
 			}
 		}
 	}
+
 	/**
 	 * This Methods Used To store PurchaseBill Matched Amt And GRNAmt And Deviation
 	 * Amt
