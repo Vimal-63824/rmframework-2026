@@ -48,7 +48,7 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String PostButton = "//button[@data-testid='Post']";
 	/** @locatorType Xpath */
-	public static final String GrnDocNumber = "//span[@id='P161513110303_PORH_RECEIPT_NO_DISPLAY']";
+	public static final String GrnDocNumber = "//span[@data-testid='P161513110303_PORH_RECEIPT_NO']";
 	/** @locatorType Xpath */
 	public static final String DocAprovalIfrmae = "//iframe[@title='Workflow Approval']";
 	/** @locatorType Xpath */
@@ -369,7 +369,15 @@ public class GrnLocators {
 	/** @locatorType Xpath */
 	public static final String GrnDocNo(String DocNo) {
 		return "//a[text()='" + DocNo + "']";
-
 	}
+
+	/** @locatorType Xpath */
+	public static final String AcceptQtyTable = "//div[@id='add_line_ig_grid_vc']/div[2]/div[3]/table/tbody/tr/td[10]";
+	/** @locatorType Xpath */
+	public static final String AcceptQtyInput = "//input[@id='ACPT_QTY']";
+	/** @locatorType Xpath */
+	public static final String AcceptQuantityInput = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]//input";
+	/** @locatorType Xpath */
+	public static final String AcceptQuantity = "//div[@id='grn_lot_ig_grid_vc']/div[3]/div[3]/table/tbody/tr/td[9]";
 
 }
